@@ -123,7 +123,7 @@ Optional:
 - `gcp` (Attributes) GCP holds GCP-specific cluster metadata (see [below for nested schema](#nestedatt--spec--cluster_metadata--platform--gcp))
 
 <a id="nestedatt--spec--cluster_metadata--platform--aws"></a>
-### Nested Schema for `spec.cluster_metadata.platform.gcp`
+### Nested Schema for `spec.cluster_metadata.platform.aws`
 
 Optional:
 
@@ -131,7 +131,7 @@ Optional:
 
 
 <a id="nestedatt--spec--cluster_metadata--platform--azure"></a>
-### Nested Schema for `spec.cluster_metadata.platform.gcp`
+### Nested Schema for `spec.cluster_metadata.platform.azure`
 
 Required:
 

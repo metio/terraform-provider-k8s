@@ -204,11 +204,11 @@ Optional:
 - `warning` (Number)
 
 <a id="nestedatt--spec--components--summary--incidents"></a>
-### Nested Schema for `spec.components.summary.warning`
+### Nested Schema for `spec.components.summary.incidents`
 
 
 <a id="nestedatt--spec--components--summary--insights"></a>
-### Nested Schema for `spec.components.summary.warning`
+### Nested Schema for `spec.components.summary.insights`
 
 
 
@@ -274,7 +274,7 @@ Optional:
 - `id` (String)
 
 <a id="nestedatt--spec--properties--config_lookup--config"></a>
-### Nested Schema for `spec.properties.config_lookup.id`
+### Nested Schema for `spec.properties.config_lookup.config`
 
 Optional:
 
@@ -288,7 +288,7 @@ Optional:
 
 
 <a id="nestedatt--spec--properties--config_lookup--display"></a>
-### Nested Schema for `spec.properties.config_lookup.id`
+### Nested Schema for `spec.properties.config_lookup.display`
 
 Optional:
 

@@ -91,7 +91,7 @@ Optional:
 - `rpc` (Attributes) RPC contains the options to customize the RPC provider. (see [below for nested schema](#nestedatt--spec--connection--provider_options--rpc))
 
 <a id="nestedatt--spec--connection--provider_options--intel_amt"></a>
-### Nested Schema for `spec.connection.provider_options.rpc`
+### Nested Schema for `spec.connection.provider_options.intel_amt`
 
 Required:
 
@@ -99,7 +99,7 @@ Required:
 
 
 <a id="nestedatt--spec--connection--provider_options--ipmitool"></a>
-### Nested Schema for `spec.connection.provider_options.rpc`
+### Nested Schema for `spec.connection.provider_options.ipmitool`
 
 Optional:
 
@@ -108,7 +108,7 @@ Optional:
 
 
 <a id="nestedatt--spec--connection--provider_options--redfish"></a>
-### Nested Schema for `spec.connection.provider_options.rpc`
+### Nested Schema for `spec.connection.provider_options.redfish`
 
 Required:
 

@@ -106,7 +106,7 @@ Optional:
 - `snapshot_schedules` (Attributes List) SnapshotSchedules is the scheduling of snapshot for mirrored images/pools (see [below for nested schema](#nestedatt--spec--data_pool--mirroring--snapshot_schedules))
 
 <a id="nestedatt--spec--data_pool--mirroring--peers"></a>
-### Nested Schema for `spec.data_pool.mirroring.snapshot_schedules`
+### Nested Schema for `spec.data_pool.mirroring.peers`
 
 Optional:
 
@@ -150,7 +150,7 @@ Optional:
 - `target_size_ratio` (Number) TargetSizeRatio gives a hint (%) to Ceph in terms of expected consumption of the total cluster capacity
 
 <a id="nestedatt--spec--data_pool--replicated--hybrid_storage"></a>
-### Nested Schema for `spec.data_pool.replicated.target_size_ratio`
+### Nested Schema for `spec.data_pool.replicated.hybrid_storage`
 
 Required:
 
@@ -220,7 +220,7 @@ Optional:
 - `topology_spread_constraints` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints))
 
 <a id="nestedatt--spec--gateway--placement--node_affinity"></a>
-### Nested Schema for `spec.gateway.placement.topology_spread_constraints`
+### Nested Schema for `spec.gateway.placement.node_affinity`
 
 Optional:
 
@@ -236,7 +236,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -244,7 +244,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -287,7 +287,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.gateway.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.gateway.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -316,7 +316,7 @@ Optional:
 
 
 <a id="nestedatt--spec--gateway--placement--pod_affinity"></a>
-### Nested Schema for `spec.gateway.placement.topology_spread_constraints`
+### Nested Schema for `spec.gateway.placement.pod_affinity`
 
 Optional:
 
@@ -332,7 +332,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -347,7 +347,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -355,7 +355,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -369,7 +369,7 @@ Optional:
 
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -377,7 +377,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -408,7 +408,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.gateway.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.gateway.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -416,7 +416,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.gateway.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.gateway.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -430,7 +430,7 @@ Optional:
 
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.gateway.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.gateway.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -438,7 +438,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.gateway.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.gateway.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -454,7 +454,7 @@ Optional:
 
 
 <a id="nestedatt--spec--gateway--placement--pod_anti_affinity"></a>
-### Nested Schema for `spec.gateway.placement.topology_spread_constraints`
+### Nested Schema for `spec.gateway.placement.pod_anti_affinity`
 
 Optional:
 
@@ -470,7 +470,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -485,7 +485,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -493,7 +493,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -507,7 +507,7 @@ Optional:
 
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -515,7 +515,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -546,7 +546,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.gateway.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.gateway.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -554,7 +554,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.gateway.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.gateway.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -568,7 +568,7 @@ Optional:
 
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.gateway.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.gateway.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -576,7 +576,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.gateway.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.gateway.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -592,7 +592,7 @@ Optional:
 
 
 <a id="nestedatt--spec--gateway--placement--tolerations"></a>
-### Nested Schema for `spec.gateway.placement.topology_spread_constraints`
+### Nested Schema for `spec.gateway.placement.tolerations`
 
 Optional:
 
@@ -629,7 +629,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--label_selector--match_expressions"></a>
-### Nested Schema for `spec.gateway.placement.topology_spread_constraints.label_selector.match_labels`
+### Nested Schema for `spec.gateway.placement.topology_spread_constraints.label_selector.match_expressions`
 
 Required:
 
@@ -654,7 +654,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--gateway--resources--claims"></a>
-### Nested Schema for `spec.gateway.resources.requests`
+### Nested Schema for `spec.gateway.resources.claims`
 
 Required:
 
@@ -738,7 +738,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--health_check--readiness_probe--probe--http_get--http_headers"></a>
-### Nested Schema for `spec.health_check.readiness_probe.probe.http_get.scheme`
+### Nested Schema for `spec.health_check.readiness_probe.probe.http_get.http_headers`
 
 Required:
 
@@ -820,7 +820,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--health_check--startup_probe--probe--http_get--http_headers"></a>
-### Nested Schema for `spec.health_check.startup_probe.probe.http_get.scheme`
+### Nested Schema for `spec.health_check.startup_probe.probe.http_get.http_headers`
 
 Required:
 
@@ -894,7 +894,7 @@ Optional:
 - `snapshot_schedules` (Attributes List) SnapshotSchedules is the scheduling of snapshot for mirrored images/pools (see [below for nested schema](#nestedatt--spec--metadata_pool--mirroring--snapshot_schedules))
 
 <a id="nestedatt--spec--metadata_pool--mirroring--peers"></a>
-### Nested Schema for `spec.metadata_pool.mirroring.snapshot_schedules`
+### Nested Schema for `spec.metadata_pool.mirroring.peers`
 
 Optional:
 
@@ -938,7 +938,7 @@ Optional:
 - `target_size_ratio` (Number) TargetSizeRatio gives a hint (%) to Ceph in terms of expected consumption of the total cluster capacity
 
 <a id="nestedatt--spec--metadata_pool--replicated--hybrid_storage"></a>
-### Nested Schema for `spec.metadata_pool.replicated.target_size_ratio`
+### Nested Schema for `spec.metadata_pool.replicated.hybrid_storage`
 
 Required:
 

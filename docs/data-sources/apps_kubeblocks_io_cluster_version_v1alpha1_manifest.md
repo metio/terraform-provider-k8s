@@ -100,7 +100,7 @@ Optional:
 - `re_render_resource_types` (List of String) An optional field defines which resources change trigger re-render config.
 
 <a id="nestedatt--spec--component_versions--config_specs--legacy_rendered_config_spec"></a>
-### Nested Schema for `spec.component_versions.config_specs.re_render_resource_types`
+### Nested Schema for `spec.component_versions.config_specs.legacy_rendered_config_spec`
 
 Required:
 

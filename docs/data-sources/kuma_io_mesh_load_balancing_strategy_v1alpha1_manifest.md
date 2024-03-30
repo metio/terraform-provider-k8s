@@ -105,7 +105,7 @@ Optional:
 - `locality_awareness` (Attributes) LocalityAwareness contains configuration for locality aware load balancing. (see [below for nested schema](#nestedatt--spec--to--default--locality_awareness))
 
 <a id="nestedatt--spec--to--default--load_balancer"></a>
-### Nested Schema for `spec.to.default.locality_awareness`
+### Nested Schema for `spec.to.default.load_balancer`
 
 Required:
 
@@ -137,7 +137,7 @@ Optional:
 - `table_size` (Number) The table size for Maglev hashing. Maglev aims for “minimal disruption”rather than an absolute guarantee. Minimal disruption means that whenthe set of upstream hosts change, a connection will likely be sentto the same upstream as it was before. Increasing the table size reducesthe amount of disruption. The table size must be prime number limited to 5000011.If it is not specified, the default is 65537.
 
 <a id="nestedatt--spec--to--default--locality_awareness--maglev--hash_policies"></a>
-### Nested Schema for `spec.to.default.locality_awareness.maglev.table_size`
+### Nested Schema for `spec.to.default.locality_awareness.maglev.hash_policies`
 
 Required:
 
@@ -153,7 +153,7 @@ Optional:
 - `terminal` (Boolean) Terminal is a flag that short-circuits the hash computing. This field providesa ‘fallback’ style of configuration: “if a terminal policy doesn’t work, fallbackto rest of the policy list”, it saves time when the terminal policy works.If true, and there is already a hash computed, ignore rest of the list of hash polices.
 
 <a id="nestedatt--spec--to--default--locality_awareness--maglev--table_size--connection"></a>
-### Nested Schema for `spec.to.default.locality_awareness.maglev.table_size.terminal`
+### Nested Schema for `spec.to.default.locality_awareness.maglev.table_size.connection`
 
 Optional:
 
@@ -161,7 +161,7 @@ Optional:
 
 
 <a id="nestedatt--spec--to--default--locality_awareness--maglev--table_size--cookie"></a>
-### Nested Schema for `spec.to.default.locality_awareness.maglev.table_size.terminal`
+### Nested Schema for `spec.to.default.locality_awareness.maglev.table_size.cookie`
 
 Required:
 
@@ -174,7 +174,7 @@ Optional:
 
 
 <a id="nestedatt--spec--to--default--locality_awareness--maglev--table_size--filter_state"></a>
-### Nested Schema for `spec.to.default.locality_awareness.maglev.table_size.terminal`
+### Nested Schema for `spec.to.default.locality_awareness.maglev.table_size.filter_state`
 
 Required:
 
@@ -182,7 +182,7 @@ Required:
 
 
 <a id="nestedatt--spec--to--default--locality_awareness--maglev--table_size--header"></a>
-### Nested Schema for `spec.to.default.locality_awareness.maglev.table_size.terminal`
+### Nested Schema for `spec.to.default.locality_awareness.maglev.table_size.header`
 
 Required:
 
@@ -190,7 +190,7 @@ Required:
 
 
 <a id="nestedatt--spec--to--default--locality_awareness--maglev--table_size--query_parameter"></a>
-### Nested Schema for `spec.to.default.locality_awareness.maglev.table_size.terminal`
+### Nested Schema for `spec.to.default.locality_awareness.maglev.table_size.query_parameter`
 
 Required:
 
@@ -210,7 +210,7 @@ Optional:
 - `min_ring_size` (Number) Minimum hash ring size. The larger the ring is (that is,the more hashes there are for each provided host) the better the request distributionwill reflect the desired weights. Defaults to 1024 entries, and limited to 8M entries.
 
 <a id="nestedatt--spec--to--default--locality_awareness--ring_hash--hash_policies"></a>
-### Nested Schema for `spec.to.default.locality_awareness.ring_hash.min_ring_size`
+### Nested Schema for `spec.to.default.locality_awareness.ring_hash.hash_policies`
 
 Required:
 
@@ -226,7 +226,7 @@ Optional:
 - `terminal` (Boolean) Terminal is a flag that short-circuits the hash computing. This field providesa ‘fallback’ style of configuration: “if a terminal policy doesn’t work, fallbackto rest of the policy list”, it saves time when the terminal policy works.If true, and there is already a hash computed, ignore rest of the list of hash polices.
 
 <a id="nestedatt--spec--to--default--locality_awareness--ring_hash--min_ring_size--connection"></a>
-### Nested Schema for `spec.to.default.locality_awareness.ring_hash.min_ring_size.terminal`
+### Nested Schema for `spec.to.default.locality_awareness.ring_hash.min_ring_size.connection`
 
 Optional:
 
@@ -234,7 +234,7 @@ Optional:
 
 
 <a id="nestedatt--spec--to--default--locality_awareness--ring_hash--min_ring_size--cookie"></a>
-### Nested Schema for `spec.to.default.locality_awareness.ring_hash.min_ring_size.terminal`
+### Nested Schema for `spec.to.default.locality_awareness.ring_hash.min_ring_size.cookie`
 
 Required:
 
@@ -247,7 +247,7 @@ Optional:
 
 
 <a id="nestedatt--spec--to--default--locality_awareness--ring_hash--min_ring_size--filter_state"></a>
-### Nested Schema for `spec.to.default.locality_awareness.ring_hash.min_ring_size.terminal`
+### Nested Schema for `spec.to.default.locality_awareness.ring_hash.min_ring_size.filter_state`
 
 Required:
 
@@ -255,7 +255,7 @@ Required:
 
 
 <a id="nestedatt--spec--to--default--locality_awareness--ring_hash--min_ring_size--header"></a>
-### Nested Schema for `spec.to.default.locality_awareness.ring_hash.min_ring_size.terminal`
+### Nested Schema for `spec.to.default.locality_awareness.ring_hash.min_ring_size.header`
 
 Required:
 
@@ -263,7 +263,7 @@ Required:
 
 
 <a id="nestedatt--spec--to--default--locality_awareness--ring_hash--min_ring_size--query_parameter"></a>
-### Nested Schema for `spec.to.default.locality_awareness.ring_hash.min_ring_size.terminal`
+### Nested Schema for `spec.to.default.locality_awareness.ring_hash.min_ring_size.query_parameter`
 
 Required:
 
@@ -291,7 +291,7 @@ Optional:
 - `failover_threshold` (Attributes) FailoverThreshold defines the percentage of live destination dataplane proxies below which load balancing to thenext priority starts.Example: If you configure failoverThreshold to 70, and you have deployed 10 destination dataplane proxies.Load balancing to next priority will start when number of live destination dataplane proxies drops below 7.Default 50 (see [below for nested schema](#nestedatt--spec--to--default--locality_awareness--cross_zone--failover_threshold))
 
 <a id="nestedatt--spec--to--default--locality_awareness--cross_zone--failover"></a>
-### Nested Schema for `spec.to.default.locality_awareness.cross_zone.failover_threshold`
+### Nested Schema for `spec.to.default.locality_awareness.cross_zone.failover`
 
 Required:
 
@@ -302,7 +302,7 @@ Optional:
 - `from` (Attributes) From defines the list of zones to which the rule applies (see [below for nested schema](#nestedatt--spec--to--default--locality_awareness--cross_zone--failover_threshold--from))
 
 <a id="nestedatt--spec--to--default--locality_awareness--cross_zone--failover_threshold--to"></a>
-### Nested Schema for `spec.to.default.locality_awareness.cross_zone.failover_threshold.from`
+### Nested Schema for `spec.to.default.locality_awareness.cross_zone.failover_threshold.to`
 
 Required:
 

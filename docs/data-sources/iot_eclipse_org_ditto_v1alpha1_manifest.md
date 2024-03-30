@@ -90,7 +90,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--devops--password--config_map"></a>
-### Nested Schema for `spec.devops.password.value`
+### Nested Schema for `spec.devops.password.config_map`
 
 Required:
 
@@ -103,7 +103,7 @@ Optional:
 
 
 <a id="nestedatt--spec--devops--password--secret"></a>
-### Nested Schema for `spec.devops.password.value`
+### Nested Schema for `spec.devops.password.secret`
 
 Required:
 
@@ -126,7 +126,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--devops--status_password--config_map"></a>
-### Nested Schema for `spec.devops.status_password.value`
+### Nested Schema for `spec.devops.status_password.config_map`
 
 Required:
 
@@ -139,7 +139,7 @@ Optional:
 
 
 <a id="nestedatt--spec--devops--status_password--secret"></a>
-### Nested Schema for `spec.devops.status_password.value`
+### Nested Schema for `spec.devops.status_password.secret`
 
 Required:
 
@@ -202,7 +202,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--keycloak--client_id--config_map"></a>
-### Nested Schema for `spec.keycloak.client_id.value`
+### Nested Schema for `spec.keycloak.client_id.config_map`
 
 Required:
 
@@ -215,7 +215,7 @@ Optional:
 
 
 <a id="nestedatt--spec--keycloak--client_id--secret"></a>
-### Nested Schema for `spec.keycloak.client_id.value`
+### Nested Schema for `spec.keycloak.client_id.secret`
 
 Required:
 
@@ -238,7 +238,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--keycloak--client_secret--config_map"></a>
-### Nested Schema for `spec.keycloak.client_secret.value`
+### Nested Schema for `spec.keycloak.client_secret.config_map`
 
 Required:
 
@@ -251,7 +251,7 @@ Optional:
 
 
 <a id="nestedatt--spec--keycloak--client_secret--secret"></a>
-### Nested Schema for `spec.keycloak.client_secret.value`
+### Nested Schema for `spec.keycloak.client_secret.secret`
 
 Required:
 
@@ -294,7 +294,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--mongo_db--database--config_map"></a>
-### Nested Schema for `spec.mongo_db.database.value`
+### Nested Schema for `spec.mongo_db.database.config_map`
 
 Required:
 
@@ -307,7 +307,7 @@ Optional:
 
 
 <a id="nestedatt--spec--mongo_db--database--secret"></a>
-### Nested Schema for `spec.mongo_db.database.value`
+### Nested Schema for `spec.mongo_db.database.secret`
 
 Required:
 
@@ -330,7 +330,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--mongo_db--password--config_map"></a>
-### Nested Schema for `spec.mongo_db.password.value`
+### Nested Schema for `spec.mongo_db.password.config_map`
 
 Required:
 
@@ -343,7 +343,7 @@ Optional:
 
 
 <a id="nestedatt--spec--mongo_db--password--secret"></a>
-### Nested Schema for `spec.mongo_db.password.value`
+### Nested Schema for `spec.mongo_db.password.secret`
 
 Required:
 
@@ -366,7 +366,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--mongo_db--username--config_map"></a>
-### Nested Schema for `spec.mongo_db.username.value`
+### Nested Schema for `spec.mongo_db.username.config_map`
 
 Required:
 
@@ -379,7 +379,7 @@ Optional:
 
 
 <a id="nestedatt--spec--mongo_db--username--secret"></a>
-### Nested Schema for `spec.mongo_db.username.value`
+### Nested Schema for `spec.mongo_db.username.secret`
 
 Required:
 
@@ -446,7 +446,7 @@ Optional:
 - `root_log_level` (String) Allow configuring the root log level.
 
 <a id="nestedatt--spec--services--concierge--resources"></a>
-### Nested Schema for `spec.services.concierge.root_log_level`
+### Nested Schema for `spec.services.concierge.resources`
 
 Optional:
 
@@ -468,7 +468,7 @@ Optional:
 - `root_log_level` (String) Allow configuring the root log level.
 
 <a id="nestedatt--spec--services--connectivity--resources"></a>
-### Nested Schema for `spec.services.connectivity.root_log_level`
+### Nested Schema for `spec.services.connectivity.resources`
 
 Optional:
 
@@ -490,7 +490,7 @@ Optional:
 - `root_log_level` (String) Allow configuring the root log level.
 
 <a id="nestedatt--spec--services--gateway--resources"></a>
-### Nested Schema for `spec.services.gateway.root_log_level`
+### Nested Schema for `spec.services.gateway.resources`
 
 Optional:
 
@@ -512,7 +512,7 @@ Optional:
 - `root_log_level` (String) Allow configuring the root log level.
 
 <a id="nestedatt--spec--services--policies--resources"></a>
-### Nested Schema for `spec.services.policies.root_log_level`
+### Nested Schema for `spec.services.policies.resources`
 
 Optional:
 
@@ -534,7 +534,7 @@ Optional:
 - `root_log_level` (String) Allow configuring the root log level.
 
 <a id="nestedatt--spec--services--things--resources"></a>
-### Nested Schema for `spec.services.things.root_log_level`
+### Nested Schema for `spec.services.things.resources`
 
 Optional:
 
@@ -556,7 +556,7 @@ Optional:
 - `root_log_level` (String) Allow configuring the root log level.
 
 <a id="nestedatt--spec--services--things_search--resources"></a>
-### Nested Schema for `spec.services.things_search.root_log_level`
+### Nested Schema for `spec.services.things_search.resources`
 
 Optional:
 

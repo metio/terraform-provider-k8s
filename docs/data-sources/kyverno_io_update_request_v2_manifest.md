@@ -83,7 +83,7 @@ Optional:
 - `operation` (String) Operation is the type of resource operation being checked for admission control
 
 <a id="nestedatt--spec--context--admission_request_info--admission_request"></a>
-### Nested Schema for `spec.context.admission_request_info.operation`
+### Nested Schema for `spec.context.admission_request_info.admission_request`
 
 Required:
 

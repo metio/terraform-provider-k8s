@@ -81,7 +81,7 @@ Optional:
 - `query_strings_config` (Attributes) An object that determines whether any URL query strings in viewer requests(and if so, which query strings) are included in the cache key and in requeststhat CloudFront sends to the origin. (see [below for nested schema](#nestedatt--spec--cache_policy_config--parameters_in_cache_key_and_forwarded_to_origin--query_strings_config))
 
 <a id="nestedatt--spec--cache_policy_config--parameters_in_cache_key_and_forwarded_to_origin--cookies_config"></a>
-### Nested Schema for `spec.cache_policy_config.parameters_in_cache_key_and_forwarded_to_origin.query_strings_config`
+### Nested Schema for `spec.cache_policy_config.parameters_in_cache_key_and_forwarded_to_origin.cookies_config`
 
 Optional:
 
@@ -98,7 +98,7 @@ Optional:
 
 
 <a id="nestedatt--spec--cache_policy_config--parameters_in_cache_key_and_forwarded_to_origin--headers_config"></a>
-### Nested Schema for `spec.cache_policy_config.parameters_in_cache_key_and_forwarded_to_origin.query_strings_config`
+### Nested Schema for `spec.cache_policy_config.parameters_in_cache_key_and_forwarded_to_origin.headers_config`
 
 Optional:
 

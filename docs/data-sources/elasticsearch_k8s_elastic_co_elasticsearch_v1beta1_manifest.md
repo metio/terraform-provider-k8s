@@ -89,7 +89,7 @@ Optional:
 - `spec` (Attributes) Specification of the desired behavior of the pod.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status (see [below for nested schema](#nestedatt--spec--node_sets--pod_template--spec))
 
 <a id="nestedatt--spec--node_sets--pod_template--metadata"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec`
+### Nested Schema for `spec.node_sets.pod_template.metadata`
 
 Optional:
 
@@ -182,7 +182,7 @@ Optional:
 - `working_dir` (String) Container's working directory.If not specified, the container runtime's default will be used, whichmight be configured in the container image.Cannot be updated.
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--env"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.env`
 
 Required:
 
@@ -204,7 +204,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -217,7 +217,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.value_from.field_ref`
 
 Required:
 
@@ -229,7 +229,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -257,7 +257,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--env_from"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.env_from`
 
 Optional:
 
@@ -266,7 +266,7 @@ Optional:
 - `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--secret_ref))
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--config_map_ref"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.secret_ref`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.config_map_ref`
 
 Optional:
 
@@ -285,7 +285,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--lifecycle"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.lifecycle`
 
 Optional:
 
@@ -293,7 +293,7 @@ Optional:
 - `pre_stop` (Attributes) PreStop is called immediately before a container is terminated due to anAPI request or management event such as liveness/startup probe failure,preemption, resource contention, etc. The handler is not called if thecontainer crashes or exits. The Pod's termination grace period countdown begins before thePreStop hook is executed. Regardless of the outcome of the handler, thecontainer will eventually terminate within the Pod's termination graceperiod (unless delayed by finalizers). Other management of the container blocks until the hook completesor until the termination grace period is reached.More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks (see [below for nested schema](#nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--pre_stop))
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--post_start"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.pre_stop`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.post_start`
 
 Optional:
 
@@ -303,7 +303,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and keptfor the backward compatibility. There are no validation of this field andlifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -311,7 +311,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -335,7 +335,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--pre_stop--sleep"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.pre_stop.sleep`
 
 Required:
 
@@ -366,7 +366,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and keptfor the backward compatibility. There are no validation of this field andlifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -374,7 +374,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -398,7 +398,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--pre_stop--sleep"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.pre_stop.sleep`
 
 Required:
 
@@ -420,7 +420,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--liveness_probe"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.liveness_probe`
 
 Optional:
 
@@ -436,7 +436,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--exec"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.exec`
 
 Optional:
 
@@ -444,7 +444,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--grpc"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.grpc`
 
 Required:
 
@@ -456,7 +456,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--http_get"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.http_get`
 
 Required:
 
@@ -470,7 +470,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host.Defaults to HTTP.
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.timeout_seconds.http_headers`
 
 Required:
 
@@ -480,7 +480,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.tcp_socket`
 
 Required:
 
@@ -493,7 +493,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--ports"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.ports`
 
 Required:
 
@@ -508,7 +508,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--readiness_probe"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.readiness_probe`
 
 Optional:
 
@@ -524,7 +524,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--exec"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.exec`
 
 Optional:
 
@@ -532,7 +532,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--grpc"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.grpc`
 
 Required:
 
@@ -544,7 +544,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--http_get"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.http_get`
 
 Required:
 
@@ -558,7 +558,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host.Defaults to HTTP.
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.timeout_seconds.http_headers`
 
 Required:
 
@@ -568,7 +568,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.tcp_socket`
 
 Required:
 
@@ -581,7 +581,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--resize_policy"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.resize_policy`
 
 Required:
 
@@ -590,7 +590,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--resources"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.resources`
 
 Optional:
 
@@ -599,7 +599,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--claims"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.requests`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.claims`
 
 Required:
 
@@ -608,7 +608,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--security_context"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.security_context`
 
 Optional:
 
@@ -625,7 +625,7 @@ Optional:
 - `windows_options` (Attributes) The Windows specific settings applied to all containers.If unspecified, the options from the PodSecurityContext will be used.If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--windows_options))
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--capabilities"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.windows_options`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.capabilities`
 
 Optional:
 
@@ -634,7 +634,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--se_linux_options"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.windows_options`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.se_linux_options`
 
 Optional:
 
@@ -645,7 +645,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--seccomp_profile"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.windows_options`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.seccomp_profile`
 
 Required:
 
@@ -669,7 +669,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--startup_probe"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.startup_probe`
 
 Optional:
 
@@ -685,7 +685,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--exec"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.exec`
 
 Optional:
 
@@ -693,7 +693,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--grpc"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.grpc`
 
 Required:
 
@@ -705,7 +705,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--http_get"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.http_get`
 
 Required:
 
@@ -719,7 +719,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host.Defaults to HTTP.
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.timeout_seconds.http_headers`
 
 Required:
 
@@ -729,7 +729,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir.tcp_socket`
 
 Required:
 
@@ -742,7 +742,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--volume_devices"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.volume_devices`
 
 Required:
 
@@ -751,7 +751,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--containers--volume_mounts"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.containers.volume_mounts`
 
 Required:
 
@@ -777,7 +777,7 @@ Optional:
 - `pod_anti_affinity` (Attributes) Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--node_sets--pod_template--spec--affinity--pod_anti_affinity))
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--affinity--node_affinity"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_anti_affinity`
+### Nested Schema for `spec.node_sets.pod_template.spec.affinity.node_affinity`
 
 Optional:
 
@@ -785,7 +785,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--node_sets--pod_template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -793,7 +793,7 @@ Required:
 - `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -873,7 +873,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--affinity--pod_affinity"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_anti_affinity`
+### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_affinity`
 
 Optional:
 
@@ -881,7 +881,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--node_sets--pod_template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -889,7 +889,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -912,7 +912,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_labels`
+### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
 
 Required:
 
@@ -934,7 +934,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_labels`
+### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
 
 Required:
 
@@ -965,7 +965,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -987,7 +987,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -1019,7 +1019,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--node_sets--pod_template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -1027,7 +1027,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -1050,7 +1050,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_labels`
+### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
 
 Required:
 
@@ -1072,7 +1072,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_labels`
+### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
 
 Required:
 
@@ -1103,7 +1103,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -1125,7 +1125,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.node_sets.pod_template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -1159,7 +1159,7 @@ Optional:
 - `searches` (List of String) A list of DNS search domains for host-name lookup.This will be appended to the base search paths generated from DNSPolicy.Duplicated search paths will be removed.
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--dns_config--options"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.dns_config.searches`
+### Nested Schema for `spec.node_sets.pod_template.spec.dns_config.options`
 
 Optional:
 
@@ -1203,7 +1203,7 @@ Optional:
 - `working_dir` (String) Container's working directory.If not specified, the container runtime's default will be used, whichmight be configured in the container image.Cannot be updated.
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--env"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.env`
 
 Required:
 
@@ -1225,7 +1225,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -1238,7 +1238,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.value_from.field_ref`
 
 Required:
 
@@ -1250,7 +1250,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -1278,7 +1278,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--env_from"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.env_from`
 
 Optional:
 
@@ -1287,7 +1287,7 @@ Optional:
 - `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--secret_ref))
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--config_map_ref"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.secret_ref`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.config_map_ref`
 
 Optional:
 
@@ -1306,7 +1306,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--lifecycle"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.lifecycle`
 
 Optional:
 
@@ -1314,7 +1314,7 @@ Optional:
 - `pre_stop` (Attributes) PreStop is called immediately before a container is terminated due to anAPI request or management event such as liveness/startup probe failure,preemption, resource contention, etc. The handler is not called if thecontainer crashes or exits. The Pod's termination grace period countdown begins before thePreStop hook is executed. Regardless of the outcome of the handler, thecontainer will eventually terminate within the Pod's termination graceperiod (unless delayed by finalizers). Other management of the container blocks until the hook completesor until the termination grace period is reached.More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks (see [below for nested schema](#nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--pre_stop))
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--post_start"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.pre_stop`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.post_start`
 
 Optional:
 
@@ -1324,7 +1324,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and keptfor the backward compatibility. There are no validation of this field andlifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -1332,7 +1332,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -1356,7 +1356,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--pre_stop--sleep"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.pre_stop.sleep`
 
 Required:
 
@@ -1387,7 +1387,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and keptfor the backward compatibility. There are no validation of this field andlifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -1395,7 +1395,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -1419,7 +1419,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--pre_stop--sleep"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.pre_stop.sleep`
 
 Required:
 
@@ -1441,7 +1441,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--liveness_probe"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.liveness_probe`
 
 Optional:
 
@@ -1457,7 +1457,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--exec"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.exec`
 
 Optional:
 
@@ -1465,7 +1465,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--grpc"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.grpc`
 
 Required:
 
@@ -1477,7 +1477,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--http_get"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.http_get`
 
 Required:
 
@@ -1491,7 +1491,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host.Defaults to HTTP.
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.timeout_seconds.http_headers`
 
 Required:
 
@@ -1501,7 +1501,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.tcp_socket`
 
 Required:
 
@@ -1514,7 +1514,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--ports"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.ports`
 
 Required:
 
@@ -1529,7 +1529,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--readiness_probe"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.readiness_probe`
 
 Optional:
 
@@ -1545,7 +1545,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--exec"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.exec`
 
 Optional:
 
@@ -1553,7 +1553,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--grpc"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.grpc`
 
 Required:
 
@@ -1565,7 +1565,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--http_get"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.http_get`
 
 Required:
 
@@ -1579,7 +1579,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host.Defaults to HTTP.
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.timeout_seconds.http_headers`
 
 Required:
 
@@ -1589,7 +1589,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.tcp_socket`
 
 Required:
 
@@ -1602,7 +1602,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--resize_policy"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.resize_policy`
 
 Required:
 
@@ -1611,7 +1611,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--resources"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.resources`
 
 Optional:
 
@@ -1620,7 +1620,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--claims"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.requests`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.claims`
 
 Required:
 
@@ -1629,7 +1629,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--security_context"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.security_context`
 
 Optional:
 
@@ -1646,7 +1646,7 @@ Optional:
 - `windows_options` (Attributes) The Windows specific settings applied to all containers.If unspecified, the options from the PodSecurityContext will be used.If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--windows_options))
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--capabilities"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.windows_options`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.capabilities`
 
 Optional:
 
@@ -1655,7 +1655,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--se_linux_options"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.windows_options`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.se_linux_options`
 
 Optional:
 
@@ -1666,7 +1666,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--seccomp_profile"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.windows_options`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.seccomp_profile`
 
 Required:
 
@@ -1690,7 +1690,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--startup_probe"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.startup_probe`
 
 Optional:
 
@@ -1706,7 +1706,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--exec"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.exec`
 
 Optional:
 
@@ -1714,7 +1714,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--grpc"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.grpc`
 
 Required:
 
@@ -1726,7 +1726,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--http_get"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.http_get`
 
 Required:
 
@@ -1740,7 +1740,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host.Defaults to HTTP.
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.timeout_seconds.http_headers`
 
 Required:
 
@@ -1750,7 +1750,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir.tcp_socket`
 
 Required:
 
@@ -1763,7 +1763,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--volume_devices"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.volume_devices`
 
 Required:
 
@@ -1772,7 +1772,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--ephemeral_containers--volume_mounts"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.ephemeral_containers.volume_mounts`
 
 Required:
 
@@ -1839,7 +1839,7 @@ Optional:
 - `working_dir` (String) Container's working directory.If not specified, the container runtime's default will be used, whichmight be configured in the container image.Cannot be updated.
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--env"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.env`
 
 Required:
 
@@ -1861,7 +1861,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -1874,7 +1874,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.value_from.field_ref`
 
 Required:
 
@@ -1886,7 +1886,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -1914,7 +1914,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--env_from"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.env_from`
 
 Optional:
 
@@ -1923,7 +1923,7 @@ Optional:
 - `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--secret_ref))
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--config_map_ref"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.secret_ref`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.config_map_ref`
 
 Optional:
 
@@ -1942,7 +1942,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--lifecycle"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.lifecycle`
 
 Optional:
 
@@ -1950,7 +1950,7 @@ Optional:
 - `pre_stop` (Attributes) PreStop is called immediately before a container is terminated due to anAPI request or management event such as liveness/startup probe failure,preemption, resource contention, etc. The handler is not called if thecontainer crashes or exits. The Pod's termination grace period countdown begins before thePreStop hook is executed. Regardless of the outcome of the handler, thecontainer will eventually terminate within the Pod's termination graceperiod (unless delayed by finalizers). Other management of the container blocks until the hook completesor until the termination grace period is reached.More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks (see [below for nested schema](#nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--pre_stop))
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--post_start"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.pre_stop`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.post_start`
 
 Optional:
 
@@ -1960,7 +1960,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and keptfor the backward compatibility. There are no validation of this field andlifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -1968,7 +1968,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -1992,7 +1992,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--pre_stop--sleep"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.pre_stop.sleep`
 
 Required:
 
@@ -2023,7 +2023,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and keptfor the backward compatibility. There are no validation of this field andlifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -2031,7 +2031,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -2055,7 +2055,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--pre_stop--sleep"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.pre_stop.sleep`
 
 Required:
 
@@ -2077,7 +2077,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--liveness_probe"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.liveness_probe`
 
 Optional:
 
@@ -2093,7 +2093,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--exec"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.exec`
 
 Optional:
 
@@ -2101,7 +2101,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--grpc"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.grpc`
 
 Required:
 
@@ -2113,7 +2113,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--http_get"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.http_get`
 
 Required:
 
@@ -2127,7 +2127,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host.Defaults to HTTP.
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.timeout_seconds.http_headers`
 
 Required:
 
@@ -2137,7 +2137,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.tcp_socket`
 
 Required:
 
@@ -2150,7 +2150,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--ports"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.ports`
 
 Required:
 
@@ -2165,7 +2165,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--readiness_probe"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.readiness_probe`
 
 Optional:
 
@@ -2181,7 +2181,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--exec"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.exec`
 
 Optional:
 
@@ -2189,7 +2189,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--grpc"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.grpc`
 
 Required:
 
@@ -2201,7 +2201,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--http_get"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.http_get`
 
 Required:
 
@@ -2215,7 +2215,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host.Defaults to HTTP.
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.timeout_seconds.http_headers`
 
 Required:
 
@@ -2225,7 +2225,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.tcp_socket`
 
 Required:
 
@@ -2238,7 +2238,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--resize_policy"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.resize_policy`
 
 Required:
 
@@ -2247,7 +2247,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--resources"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.resources`
 
 Optional:
 
@@ -2256,7 +2256,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--claims"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.requests`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.claims`
 
 Required:
 
@@ -2265,7 +2265,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--security_context"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.security_context`
 
 Optional:
 
@@ -2282,7 +2282,7 @@ Optional:
 - `windows_options` (Attributes) The Windows specific settings applied to all containers.If unspecified, the options from the PodSecurityContext will be used.If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--windows_options))
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--capabilities"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.windows_options`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.capabilities`
 
 Optional:
 
@@ -2291,7 +2291,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--se_linux_options"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.windows_options`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.se_linux_options`
 
 Optional:
 
@@ -2302,7 +2302,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--seccomp_profile"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.windows_options`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.seccomp_profile`
 
 Required:
 
@@ -2326,7 +2326,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--startup_probe"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.startup_probe`
 
 Optional:
 
@@ -2342,7 +2342,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--exec"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.exec`
 
 Optional:
 
@@ -2350,7 +2350,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--grpc"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.grpc`
 
 Required:
 
@@ -2362,7 +2362,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--http_get"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.http_get`
 
 Required:
 
@@ -2376,7 +2376,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host.Defaults to HTTP.
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.timeout_seconds.http_headers`
 
 Required:
 
@@ -2386,7 +2386,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir.tcp_socket`
 
 Required:
 
@@ -2399,7 +2399,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--volume_devices"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.volume_devices`
 
 Required:
 
@@ -2408,7 +2408,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--init_containers--volume_mounts"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.working_dir`
+### Nested Schema for `spec.node_sets.pod_template.spec.init_containers.volume_mounts`
 
 Required:
 
@@ -2486,7 +2486,7 @@ Optional:
 - `windows_options` (Attributes) The Windows specific settings applied to all containers.If unspecified, the options within a container's SecurityContext will be used.If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--node_sets--pod_template--spec--security_context--windows_options))
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--security_context--se_linux_options"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.security_context.windows_options`
+### Nested Schema for `spec.node_sets.pod_template.spec.security_context.se_linux_options`
 
 Optional:
 
@@ -2497,7 +2497,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.security_context.windows_options`
+### Nested Schema for `spec.node_sets.pod_template.spec.security_context.seccomp_profile`
 
 Required:
 
@@ -2509,7 +2509,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--security_context--sysctls"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.security_context.windows_options`
+### Nested Schema for `spec.node_sets.pod_template.spec.security_context.sysctls`
 
 Required:
 
@@ -2559,7 +2559,7 @@ Optional:
 - `node_taints_policy` (String) NodeTaintsPolicy indicates how we will treat node taints when calculatingpod topology spread skew. Options are:- Honor: nodes without taints, along with tainted nodes for which the incoming podhas a toleration, are included.- Ignore: node taints are ignored. All nodes are included.If this value is nil, the behavior is equivalent to the Ignore policy.This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--topology_spread_constraints--label_selector"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.topology_spread_constraints.node_taints_policy`
+### Nested Schema for `spec.node_sets.pod_template.spec.topology_spread_constraints.label_selector`
 
 Optional:
 
@@ -2567,7 +2567,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--topology_spread_constraints--node_taints_policy--match_expressions"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.topology_spread_constraints.node_taints_policy.match_labels`
+### Nested Schema for `spec.node_sets.pod_template.spec.topology_spread_constraints.node_taints_policy.match_expressions`
 
 Required:
 
@@ -2621,7 +2621,7 @@ Optional:
 - `vsphere_volume` (Attributes) vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--node_sets--pod_template--spec--volumes--vsphere_volume))
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--aws_elastic_block_store"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.aws_elastic_block_store`
 
 Required:
 
@@ -2635,7 +2635,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--azure_disk"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.azure_disk`
 
 Required:
 
@@ -2651,7 +2651,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--azure_file"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.azure_file`
 
 Required:
 
@@ -2664,7 +2664,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--cephfs"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.cephfs`
 
 Required:
 
@@ -2679,7 +2679,7 @@ Optional:
 - `user` (String) user is optional: User is the rados user name, default is adminMore info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.user`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -2688,7 +2688,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--cinder"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.cinder`
 
 Required:
 
@@ -2710,7 +2710,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--config_map"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.config_map`
 
 Optional:
 
@@ -2720,7 +2720,7 @@ Optional:
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.optional`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.items`
 
 Required:
 
@@ -2734,7 +2734,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--csi"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.csi`
 
 Required:
 
@@ -2748,7 +2748,7 @@ Optional:
 - `volume_attributes` (Map of String) volumeAttributes stores driver-specific properties that are passed to the CSIdriver. Consult your driver's documentation for supported values.
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--vsphere_volume--node_publish_secret_ref"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.volume_attributes`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.node_publish_secret_ref`
 
 Optional:
 
@@ -2757,7 +2757,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--downward_api"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.downward_api`
 
 Optional:
 
@@ -2778,7 +2778,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--node_sets--pod_template--spec--volumes--vsphere_volume--items--resource_field_ref))
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.items.resource_field_ref`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.items.field_ref`
 
 Required:
 
@@ -2805,7 +2805,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--empty_dir"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.empty_dir`
 
 Optional:
 
@@ -2814,7 +2814,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--ephemeral"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.ephemeral`
 
 Optional:
 
@@ -2832,7 +2832,7 @@ Optional:
 - `metadata` (Attributes) May contain labels and annotations that will be copied into the PVCwhen creating it. No other fields are allowed and will be rejected duringvalidation. (see [below for nested schema](#nestedatt--spec--node_sets--pod_template--spec--volumes--vsphere_volume--volume_claim_template--metadata))
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.volume_claim_template.metadata`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.volume_claim_template.spec`
 
 Optional:
 
@@ -2891,7 +2891,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--vsphere_volume--volume_claim_template--metadata--selector--match_expressions"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.volume_claim_template.metadata.selector.match_labels`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.volume_claim_template.metadata.selector.match_expressions`
 
 Required:
 
@@ -2920,7 +2920,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--fc"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.fc`
 
 Optional:
 
@@ -2932,7 +2932,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--flex_volume"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.flex_volume`
 
 Required:
 
@@ -2955,7 +2955,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--flocker"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.flocker`
 
 Optional:
 
@@ -2964,7 +2964,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--gce_persistent_disk"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.gce_persistent_disk`
 
 Required:
 
@@ -2978,7 +2978,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--git_repo"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.git_repo`
 
 Required:
 
@@ -2991,7 +2991,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--glusterfs"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.glusterfs`
 
 Required:
 
@@ -3004,7 +3004,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--host_path"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.host_path`
 
 Required:
 
@@ -3016,7 +3016,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--iscsi"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.iscsi`
 
 Required:
 
@@ -3045,7 +3045,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--nfs"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.nfs`
 
 Required:
 
@@ -3058,7 +3058,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--persistent_volume_claim"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.persistent_volume_claim`
 
 Required:
 
@@ -3070,7 +3070,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--photon_persistent_disk"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.photon_persistent_disk`
 
 Required:
 
@@ -3082,7 +3082,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--portworx_volume"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.portworx_volume`
 
 Required:
 
@@ -3095,7 +3095,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--projected"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.projected`
 
 Optional:
 
@@ -3114,7 +3114,7 @@ Optional:
 - `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--node_sets--pod_template--spec--volumes--vsphere_volume--sources--service_account_token))
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--vsphere_volume--sources--cluster_trust_bundle"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.sources.cluster_trust_bundle`
 
 Required:
 
@@ -3136,7 +3136,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--vsphere_volume--sources--service_account_token--label_selector--match_expressions"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.sources.service_account_token.label_selector.match_labels`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.sources.service_account_token.label_selector.match_expressions`
 
 Required:
 
@@ -3151,7 +3151,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.sources.config_map`
 
 Optional:
 
@@ -3174,7 +3174,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.sources.downward_api`
 
 Optional:
 
@@ -3194,7 +3194,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--node_sets--pod_template--spec--volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.sources.service_account_token.items.field_ref`
 
 Required:
 
@@ -3221,7 +3221,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.sources.secret`
 
 Optional:
 
@@ -3259,7 +3259,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--quobyte"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.quobyte`
 
 Required:
 
@@ -3275,7 +3275,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--rbd"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.rbd`
 
 Required:
 
@@ -3292,7 +3292,7 @@ Optional:
 - `user` (String) user is the rados user name.Default is admin.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.user`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -3301,7 +3301,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--scale_io"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.scale_io`
 
 Required:
 
@@ -3320,7 +3320,7 @@ Optional:
 - `volume_name` (String) volumeName is the name of a volume already created in the ScaleIO systemthat is associated with this volume source.
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.volume_name`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -3329,7 +3329,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--secret"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.secret`
 
 Optional:
 
@@ -3339,7 +3339,7 @@ Optional:
 - `secret_name` (String) secretName is the name of the secret in the pod's namespace to use.More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.secret_name`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.items`
 
 Required:
 
@@ -3353,7 +3353,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--storageos"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.storageos`
 
 Optional:
 
@@ -3364,7 +3364,7 @@ Optional:
 - `volume_namespace` (String) volumeNamespace specifies the scope of the volume within StorageOS.  If nonamespace is specified then the Pod's namespace will be used.  This allows theKubernetes name scoping to be mirrored within StorageOS for tighter integration.Set VolumeName to any name to override the default behaviour.Set to 'default' if you are not using namespaces within StorageOS.Namespaces that do not pre-exist within StorageOS will be created.
 
 <a id="nestedatt--spec--node_sets--pod_template--spec--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.volume_namespace`
+### Nested Schema for `spec.node_sets.pod_template.spec.volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -3401,7 +3401,7 @@ Optional:
 - `status` (Attributes) status represents the current information/status of a persistent volume claim.Read-only.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--node_sets--volume_claim_templates--status))
 
 <a id="nestedatt--spec--node_sets--volume_claim_templates--metadata"></a>
-### Nested Schema for `spec.node_sets.volume_claim_templates.status`
+### Nested Schema for `spec.node_sets.volume_claim_templates.metadata`
 
 Optional:
 
@@ -3413,7 +3413,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_sets--volume_claim_templates--spec"></a>
-### Nested Schema for `spec.node_sets.volume_claim_templates.status`
+### Nested Schema for `spec.node_sets.volume_claim_templates.spec`
 
 Optional:
 
@@ -3472,7 +3472,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--node_sets--volume_claim_templates--status--selector--match_expressions"></a>
-### Nested Schema for `spec.node_sets.volume_claim_templates.status.selector.match_labels`
+### Nested Schema for `spec.node_sets.volume_claim_templates.status.selector.match_expressions`
 
 Required:
 
@@ -3548,7 +3548,7 @@ Optional:
 - `spec` (Attributes) Spec is the specification of the service. (see [below for nested schema](#nestedatt--spec--http--service--spec))
 
 <a id="nestedatt--spec--http--service--metadata"></a>
-### Nested Schema for `spec.http.service.spec`
+### Nested Schema for `spec.http.service.metadata`
 
 Optional:
 
@@ -3627,7 +3627,7 @@ Optional:
 - `self_signed_certificate` (Attributes) SelfSignedCertificate allows configuring the self-signed certificate generated by the operator. (see [below for nested schema](#nestedatt--spec--http--tls--self_signed_certificate))
 
 <a id="nestedatt--spec--http--tls--certificate"></a>
-### Nested Schema for `spec.http.tls.self_signed_certificate`
+### Nested Schema for `spec.http.tls.certificate`
 
 Optional:
 
@@ -3685,7 +3685,7 @@ Optional:
 - `unhealthy_pod_eviction_policy` (String) UnhealthyPodEvictionPolicy defines the criteria for when unhealthy podsshould be considered for eviction. Current implementation considers healthy pods,as pods that have status.conditions item with type='Ready',status='True'.Valid policies are IfHealthyBudget and AlwaysAllow.If no policy is specified, the default behavior will be used,which corresponds to the IfHealthyBudget policy.IfHealthyBudget policy means that running pods (status.phase='Running'),but not yet healthy can be evicted only if the guarded application is notdisrupted (status.currentHealthy is at least equal to status.desiredHealthy).Healthy pods will be subject to the PDB for eviction.AlwaysAllow policy means that all running pods (status.phase='Running'),but not yet healthy are considered disrupted and can be evicted regardlessof whether the criteria in a PDB is met. This means perspective runningpods of a disrupted application might not get a chance to become healthy.Healthy pods will be subject to the PDB for eviction.Additional policies may be added in the future.Clients making eviction decisions should disallow eviction of unhealthy podsif they encounter an unrecognized policy in this field.This field is beta-level. The eviction API uses this field whenthe feature gate PDBUnhealthyPodEvictionPolicy is enabled (enabled by default).
 
 <a id="nestedatt--spec--pod_disruption_budget--spec--selector"></a>
-### Nested Schema for `spec.pod_disruption_budget.spec.unhealthy_pod_eviction_policy`
+### Nested Schema for `spec.pod_disruption_budget.spec.selector`
 
 Optional:
 

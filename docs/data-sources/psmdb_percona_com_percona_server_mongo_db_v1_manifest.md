@@ -122,7 +122,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--container_security_context--windows_options))
 
 <a id="nestedatt--spec--backup--container_security_context--capabilities"></a>
-### Nested Schema for `spec.backup.container_security_context.windows_options`
+### Nested Schema for `spec.backup.container_security_context.capabilities`
 
 Optional:
 
@@ -131,7 +131,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backup--container_security_context--se_linux_options"></a>
-### Nested Schema for `spec.backup.container_security_context.windows_options`
+### Nested Schema for `spec.backup.container_security_context.se_linux_options`
 
 Optional:
 
@@ -142,7 +142,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backup--container_security_context--seccomp_profile"></a>
-### Nested Schema for `spec.backup.container_security_context.windows_options`
+### Nested Schema for `spec.backup.container_security_context.seccomp_profile`
 
 Required:
 
@@ -194,7 +194,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pod_security_context--windows_options))
 
 <a id="nestedatt--spec--backup--pod_security_context--se_linux_options"></a>
-### Nested Schema for `spec.backup.pod_security_context.windows_options`
+### Nested Schema for `spec.backup.pod_security_context.se_linux_options`
 
 Optional:
 
@@ -205,7 +205,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backup--pod_security_context--seccomp_profile"></a>
-### Nested Schema for `spec.backup.pod_security_context.windows_options`
+### Nested Schema for `spec.backup.pod_security_context.seccomp_profile`
 
 Required:
 
@@ -217,7 +217,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backup--pod_security_context--sysctls"></a>
-### Nested Schema for `spec.backup.pod_security_context.windows_options`
+### Nested Schema for `spec.backup.pod_security_context.sysctls`
 
 Required:
 
@@ -247,7 +247,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--backup--resources--claims"></a>
-### Nested Schema for `spec.backup.resources.requests`
+### Nested Schema for `spec.backup.resources.claims`
 
 Required:
 
@@ -268,7 +268,7 @@ Optional:
 - `s3` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--s3))
 
 <a id="nestedatt--spec--backup--storages--azure"></a>
-### Nested Schema for `spec.backup.storages.s3`
+### Nested Schema for `spec.backup.storages.azure`
 
 Required:
 
@@ -437,7 +437,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--pmm--resources--claims"></a>
-### Nested Schema for `spec.pmm.resources.requests`
+### Nested Schema for `spec.pmm.resources.claims`
 
 Required:
 
@@ -495,7 +495,7 @@ Optional:
 - `anti_affinity_topology_key` (String)
 
 <a id="nestedatt--spec--replsets--affinity--advanced"></a>
-### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key`
+### Nested Schema for `spec.replsets.affinity.advanced`
 
 Optional:
 
@@ -512,7 +512,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--replsets--affinity--anti_affinity_topology_key--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.node_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -520,7 +520,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--replsets--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.node_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.node_affinity.required_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -528,7 +528,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--replsets--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--replsets--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -571,7 +571,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--replsets--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--replsets--affinity--anti_affinity_topology_key--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -608,7 +608,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--replsets--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--replsets--affinity--anti_affinity_topology_key--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -616,7 +616,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--replsets--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -631,7 +631,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--replsets--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -653,7 +653,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -692,7 +692,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--replsets--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -700,7 +700,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--replsets--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -714,7 +714,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -722,7 +722,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--replsets--affinity--anti_affinity_topology_key--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -746,7 +746,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--replsets--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--replsets--affinity--anti_affinity_topology_key--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -754,7 +754,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--replsets--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -769,7 +769,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--replsets--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -791,7 +791,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -830,7 +830,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--replsets--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -838,7 +838,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--replsets--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -852,7 +852,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -860,7 +860,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--replsets--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.replsets.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -904,7 +904,7 @@ Optional:
 - `topology_spread_constraints` (Attributes List) (see [below for nested schema](#nestedatt--spec--replsets--arbiter--topology_spread_constraints))
 
 <a id="nestedatt--spec--replsets--arbiter--affinity"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints`
+### Nested Schema for `spec.replsets.arbiter.affinity`
 
 Optional:
 
@@ -921,7 +921,7 @@ Optional:
 - `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--arbiter--topology_spread_constraints--advanced--pod_anti_affinity))
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--advanced--node_affinity"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_anti_affinity`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.node_affinity`
 
 Optional:
 
@@ -929,7 +929,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--arbiter--topology_spread_constraints--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -937,7 +937,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -1017,7 +1017,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--advanced--pod_affinity"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_anti_affinity`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_affinity`
 
 Optional:
 
@@ -1025,7 +1025,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--replsets--arbiter--topology_spread_constraints--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -1033,7 +1033,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -1056,7 +1056,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_labels`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
 
 Required:
 
@@ -1078,7 +1078,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_labels`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
 
 Required:
 
@@ -1109,7 +1109,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -1131,7 +1131,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -1163,7 +1163,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--replsets--arbiter--topology_spread_constraints--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -1171,7 +1171,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -1194,7 +1194,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_labels`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
 
 Required:
 
@@ -1216,7 +1216,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_labels`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
 
 Required:
 
@@ -1247,7 +1247,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -1269,7 +1269,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -1295,7 +1295,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--arbiter--pod_disruption_budget"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints`
+### Nested Schema for `spec.replsets.arbiter.pod_disruption_budget`
 
 Optional:
 
@@ -1304,7 +1304,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--arbiter--resources"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints`
+### Nested Schema for `spec.replsets.arbiter.resources`
 
 Optional:
 
@@ -1322,7 +1322,7 @@ Required:
 
 
 <a id="nestedatt--spec--replsets--arbiter--sidecar_pv_cs"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints`
+### Nested Schema for `spec.replsets.arbiter.sidecar_pv_cs`
 
 Optional:
 
@@ -1348,7 +1348,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--spec--data_source"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.spec.volume_name`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.spec.data_source`
 
 Required:
 
@@ -1361,7 +1361,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--spec--data_source_ref"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.spec.volume_name`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.spec.data_source_ref`
 
 Required:
 
@@ -1375,7 +1375,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--spec--resources"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.spec.volume_name`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.spec.resources`
 
 Optional:
 
@@ -1384,7 +1384,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--spec--selector"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.spec.volume_name`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.spec.selector`
 
 Optional:
 
@@ -1392,7 +1392,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.spec.volume_name.match_labels`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.spec.volume_name.match_expressions`
 
 Required:
 
@@ -1421,7 +1421,7 @@ Optional:
 - `phase` (String)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--status--conditions"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.status.phase`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.status.conditions`
 
 Required:
 
@@ -1437,7 +1437,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--status--modify_volume_status"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.status.phase`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.status.modify_volume_status`
 
 Required:
 
@@ -1451,7 +1451,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--arbiter--sidecar_volumes"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints`
+### Nested Schema for `spec.replsets.arbiter.sidecar_volumes`
 
 Required:
 
@@ -1548,7 +1548,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--cephfs--secret_ref"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.cephfs.user`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.cephfs.secret_ref`
 
 Optional:
 
@@ -1589,7 +1589,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--config_map--items"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.config_map.optional`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.config_map.items`
 
 Required:
 
@@ -1617,7 +1617,7 @@ Optional:
 - `volume_attributes` (Map of String)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--csi--node_publish_secret_ref"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.csi.volume_attributes`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -1647,7 +1647,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--arbiter--topology_spread_constraints--downward_api--items--resource_field_ref))
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--downward_api--items--field_ref"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.downward_api.items.resource_field_ref`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.downward_api.items.field_ref`
 
 Required:
 
@@ -1701,7 +1701,7 @@ Optional:
 - `metadata` (Map of String)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--ephemeral--volume_claim_template--spec"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.ephemeral.volume_claim_template.metadata`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.ephemeral.volume_claim_template.spec`
 
 Optional:
 
@@ -1716,7 +1716,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--ephemeral--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.ephemeral.volume_claim_template.metadata.data_source`
 
 Required:
 
@@ -1729,7 +1729,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--ephemeral--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.ephemeral.volume_claim_template.metadata.data_source_ref`
 
 Required:
 
@@ -1743,7 +1743,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--ephemeral--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.ephemeral.volume_claim_template.metadata.resources`
 
 Optional:
 
@@ -1752,7 +1752,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--ephemeral--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.ephemeral.volume_claim_template.metadata.selector`
 
 Optional:
 
@@ -1971,7 +1971,7 @@ Optional:
 - `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--arbiter--topology_spread_constraints--projected--sources--service_account_token))
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--projected--sources--cluster_trust_bundle"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.projected.sources.service_account_token`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.projected.sources.cluster_trust_bundle`
 
 Required:
 
@@ -1985,7 +1985,7 @@ Optional:
 - `signer_name` (String)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--projected--sources--service_account_token--label_selector"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.projected.sources.service_account_token.signer_name`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.projected.sources.service_account_token.label_selector`
 
 Optional:
 
@@ -2008,7 +2008,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--projected--sources--config_map"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.projected.sources.service_account_token`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.projected.sources.config_map`
 
 Optional:
 
@@ -2017,7 +2017,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.projected.sources.service_account_token.optional`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.projected.sources.service_account_token.items`
 
 Required:
 
@@ -2031,7 +2031,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--projected--sources--downward_api"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.projected.sources.service_account_token`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.projected.sources.downward_api`
 
 Optional:
 
@@ -2078,7 +2078,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--projected--sources--secret"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.projected.sources.service_account_token`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.projected.sources.secret`
 
 Optional:
 
@@ -2087,7 +2087,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.projected.sources.service_account_token.optional`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.projected.sources.service_account_token.items`
 
 Required:
 
@@ -2149,7 +2149,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--rbd--secret_ref"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.rbd.user`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.rbd.secret_ref`
 
 Optional:
 
@@ -2177,7 +2177,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--scale_io--secret_ref"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.scale_io.volume_name`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.scale_io.secret_ref`
 
 Optional:
 
@@ -2196,7 +2196,7 @@ Optional:
 - `secret_name` (String)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--secret--items"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.secret.secret_name`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.secret.items`
 
 Required:
 
@@ -2221,7 +2221,7 @@ Optional:
 - `volume_namespace` (String)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--storageos--secret_ref"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.storageos.volume_namespace`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.storageos.secret_ref`
 
 Optional:
 
@@ -2245,7 +2245,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--arbiter--sidecars"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints`
+### Nested Schema for `spec.replsets.arbiter.sidecars`
 
 Required:
 
@@ -2300,7 +2300,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--arbiter--topology_spread_constraints--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.env.value_from.secret_key_ref`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -2313,7 +2313,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--env--value_from--field_ref"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.env.value_from.secret_key_ref`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.env.value_from.field_ref`
 
 Required:
 
@@ -2325,7 +2325,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.env.value_from.secret_key_ref`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.env.value_from.resource_field_ref`
 
 Required:
 
@@ -2362,7 +2362,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--arbiter--topology_spread_constraints--env_from--secret_ref))
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--env_from--config_map_ref"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.env_from.secret_ref`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.env_from.config_map_ref`
 
 Optional:
 
@@ -2389,7 +2389,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--arbiter--topology_spread_constraints--lifecycle--pre_stop))
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--lifecycle--post_start"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.lifecycle.pre_stop`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.lifecycle.post_start`
 
 Optional:
 
@@ -2399,7 +2399,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--arbiter--topology_spread_constraints--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -2407,7 +2407,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -2421,7 +2421,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -2431,7 +2431,7 @@ Required:
 
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--lifecycle--pre_stop--sleep"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.lifecycle.pre_stop.sleep`
 
 Required:
 
@@ -2462,7 +2462,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--arbiter--topology_spread_constraints--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -2470,7 +2470,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -2484,7 +2484,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -2494,7 +2494,7 @@ Required:
 
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--lifecycle--pre_stop--sleep"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.lifecycle.pre_stop.sleep`
 
 Required:
 
@@ -2532,7 +2532,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--liveness_probe--exec"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.liveness_probe.exec`
 
 Optional:
 
@@ -2540,7 +2540,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--liveness_probe--grpc"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.liveness_probe.grpc`
 
 Required:
 
@@ -2552,7 +2552,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--liveness_probe--http_get"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.liveness_probe.http_get`
 
 Required:
 
@@ -2566,7 +2566,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.liveness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.liveness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -2576,7 +2576,7 @@ Required:
 
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.liveness_probe.tcp_socket`
 
 Required:
 
@@ -2620,7 +2620,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--readiness_probe--exec"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.readiness_probe.exec`
 
 Optional:
 
@@ -2628,7 +2628,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--readiness_probe--grpc"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.readiness_probe.grpc`
 
 Required:
 
@@ -2640,7 +2640,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--readiness_probe--http_get"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.readiness_probe.http_get`
 
 Required:
 
@@ -2654,7 +2654,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.readiness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.readiness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -2664,7 +2664,7 @@ Required:
 
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.readiness_probe.tcp_socket`
 
 Required:
 
@@ -2695,7 +2695,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--resources--claims"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.resources.requests`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.resources.claims`
 
 Required:
 
@@ -2721,7 +2721,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--arbiter--topology_spread_constraints--security_context--windows_options))
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--security_context--capabilities"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.security_context.windows_options`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.security_context.capabilities`
 
 Optional:
 
@@ -2730,7 +2730,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--security_context--se_linux_options"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.security_context.windows_options`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.security_context.se_linux_options`
 
 Optional:
 
@@ -2741,7 +2741,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.security_context.windows_options`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.security_context.seccomp_profile`
 
 Required:
 
@@ -2781,7 +2781,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--startup_probe--exec"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.startup_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.startup_probe.exec`
 
 Optional:
 
@@ -2789,7 +2789,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--startup_probe--grpc"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.startup_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.startup_probe.grpc`
 
 Required:
 
@@ -2801,7 +2801,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--startup_probe--http_get"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.startup_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.startup_probe.http_get`
 
 Required:
 
@@ -2815,7 +2815,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--startup_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.startup_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.startup_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -2825,7 +2825,7 @@ Required:
 
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.startup_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.startup_probe.tcp_socket`
 
 Required:
 
@@ -2864,7 +2864,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--arbiter--tolerations"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints`
+### Nested Schema for `spec.replsets.arbiter.tolerations`
 
 Optional:
 
@@ -2901,7 +2901,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--replsets--arbiter--topology_spread_constraints--label_selector--match_expressions"></a>
-### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.label_selector.match_labels`
+### Nested Schema for `spec.replsets.arbiter.topology_spread_constraints.label_selector.match_expressions`
 
 Required:
 
@@ -2934,7 +2934,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--container_security_context--windows_options))
 
 <a id="nestedatt--spec--replsets--container_security_context--capabilities"></a>
-### Nested Schema for `spec.replsets.container_security_context.windows_options`
+### Nested Schema for `spec.replsets.container_security_context.capabilities`
 
 Optional:
 
@@ -2943,7 +2943,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--container_security_context--se_linux_options"></a>
-### Nested Schema for `spec.replsets.container_security_context.windows_options`
+### Nested Schema for `spec.replsets.container_security_context.se_linux_options`
 
 Optional:
 
@@ -2954,7 +2954,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--container_security_context--seccomp_profile"></a>
-### Nested Schema for `spec.replsets.container_security_context.windows_options`
+### Nested Schema for `spec.replsets.container_security_context.seccomp_profile`
 
 Required:
 
@@ -3033,7 +3033,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--replsets--liveness_probe--exec"></a>
-### Nested Schema for `spec.replsets.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.liveness_probe.exec`
 
 Optional:
 
@@ -3041,7 +3041,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--liveness_probe--grpc"></a>
-### Nested Schema for `spec.replsets.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.liveness_probe.grpc`
 
 Required:
 
@@ -3053,7 +3053,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--liveness_probe--http_get"></a>
-### Nested Schema for `spec.replsets.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.liveness_probe.http_get`
 
 Required:
 
@@ -3077,7 +3077,7 @@ Required:
 
 
 <a id="nestedatt--spec--replsets--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.replsets.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.liveness_probe.tcp_socket`
 
 Required:
 
@@ -3122,7 +3122,7 @@ Optional:
 - `volume_spec` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--nonvoting--volume_spec))
 
 <a id="nestedatt--spec--replsets--nonvoting--affinity"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec`
+### Nested Schema for `spec.replsets.nonvoting.affinity`
 
 Optional:
 
@@ -3139,7 +3139,7 @@ Optional:
 - `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--nonvoting--volume_spec--advanced--pod_anti_affinity))
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--advanced--node_affinity"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_anti_affinity`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.node_affinity`
 
 Optional:
 
@@ -3147,7 +3147,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--nonvoting--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -3155,7 +3155,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -3235,7 +3235,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--advanced--pod_affinity"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_anti_affinity`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_affinity`
 
 Optional:
 
@@ -3243,7 +3243,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--replsets--nonvoting--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -3251,7 +3251,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -3274,7 +3274,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_labels`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
 
 Required:
 
@@ -3296,7 +3296,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_labels`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
 
 Required:
 
@@ -3327,7 +3327,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -3349,7 +3349,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -3381,7 +3381,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--replsets--nonvoting--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -3389,7 +3389,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -3412,7 +3412,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_labels`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
 
 Required:
 
@@ -3434,7 +3434,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_labels`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
 
 Required:
 
@@ -3465,7 +3465,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -3487,7 +3487,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -3513,7 +3513,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--container_security_context"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec`
+### Nested Schema for `spec.replsets.nonvoting.container_security_context`
 
 Optional:
 
@@ -3574,7 +3574,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--liveness_probe"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec`
+### Nested Schema for `spec.replsets.nonvoting.liveness_probe`
 
 Optional:
 
@@ -3625,7 +3625,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--http_get--http_headers"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.http_get.scheme`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.http_get.http_headers`
 
 Required:
 
@@ -3648,7 +3648,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--pod_disruption_budget"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec`
+### Nested Schema for `spec.replsets.nonvoting.pod_disruption_budget`
 
 Optional:
 
@@ -3657,7 +3657,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--pod_security_context"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec`
+### Nested Schema for `spec.replsets.nonvoting.pod_security_context`
 
 Optional:
 
@@ -3717,7 +3717,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--readiness_probe"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec`
+### Nested Schema for `spec.replsets.nonvoting.readiness_probe`
 
 Optional:
 
@@ -3767,7 +3767,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--http_get--http_headers"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.http_get.scheme`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.http_get.http_headers`
 
 Required:
 
@@ -3790,7 +3790,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--resources"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec`
+### Nested Schema for `spec.replsets.nonvoting.resources`
 
 Optional:
 
@@ -3808,7 +3808,7 @@ Required:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--sidecar_pv_cs"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec`
+### Nested Schema for `spec.replsets.nonvoting.sidecar_pv_cs`
 
 Optional:
 
@@ -3834,7 +3834,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--spec--data_source"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.spec.volume_name`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.spec.data_source`
 
 Required:
 
@@ -3847,7 +3847,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--spec--data_source_ref"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.spec.volume_name`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.spec.data_source_ref`
 
 Required:
 
@@ -3861,7 +3861,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--spec--resources"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.spec.volume_name`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.spec.resources`
 
 Optional:
 
@@ -3870,7 +3870,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--spec--selector"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.spec.volume_name`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.spec.selector`
 
 Optional:
 
@@ -3878,7 +3878,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.spec.volume_name.match_labels`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.spec.volume_name.match_expressions`
 
 Required:
 
@@ -3907,7 +3907,7 @@ Optional:
 - `phase` (String)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--status--conditions"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.status.phase`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.status.conditions`
 
 Required:
 
@@ -3923,7 +3923,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--status--modify_volume_status"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.status.phase`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.status.modify_volume_status`
 
 Required:
 
@@ -3937,7 +3937,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--sidecar_volumes"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec`
+### Nested Schema for `spec.replsets.nonvoting.sidecar_volumes`
 
 Required:
 
@@ -4034,7 +4034,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--cephfs--secret_ref"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.cephfs.user`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.cephfs.secret_ref`
 
 Optional:
 
@@ -4075,7 +4075,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--config_map--items"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.config_map.optional`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.config_map.items`
 
 Required:
 
@@ -4103,7 +4103,7 @@ Optional:
 - `volume_attributes` (Map of String)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--csi--node_publish_secret_ref"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.csi.volume_attributes`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -4133,7 +4133,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--nonvoting--volume_spec--downward_api--items--resource_field_ref))
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--downward_api--items--field_ref"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.downward_api.items.resource_field_ref`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.downward_api.items.field_ref`
 
 Required:
 
@@ -4187,7 +4187,7 @@ Optional:
 - `metadata` (Map of String)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--ephemeral--volume_claim_template--spec"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.ephemeral.volume_claim_template.metadata`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.ephemeral.volume_claim_template.spec`
 
 Optional:
 
@@ -4202,7 +4202,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--ephemeral--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.ephemeral.volume_claim_template.metadata.data_source`
 
 Required:
 
@@ -4215,7 +4215,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--ephemeral--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.ephemeral.volume_claim_template.metadata.data_source_ref`
 
 Required:
 
@@ -4229,7 +4229,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--ephemeral--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.ephemeral.volume_claim_template.metadata.resources`
 
 Optional:
 
@@ -4238,7 +4238,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--ephemeral--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.ephemeral.volume_claim_template.metadata.selector`
 
 Optional:
 
@@ -4457,7 +4457,7 @@ Optional:
 - `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--nonvoting--volume_spec--projected--sources--service_account_token))
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--projected--sources--cluster_trust_bundle"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.projected.sources.service_account_token`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.projected.sources.cluster_trust_bundle`
 
 Required:
 
@@ -4471,7 +4471,7 @@ Optional:
 - `signer_name` (String)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--projected--sources--service_account_token--label_selector"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.projected.sources.service_account_token.signer_name`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.projected.sources.service_account_token.label_selector`
 
 Optional:
 
@@ -4494,7 +4494,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--projected--sources--config_map"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.projected.sources.service_account_token`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.projected.sources.config_map`
 
 Optional:
 
@@ -4503,7 +4503,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.projected.sources.service_account_token.optional`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.projected.sources.service_account_token.items`
 
 Required:
 
@@ -4517,7 +4517,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--projected--sources--downward_api"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.projected.sources.service_account_token`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.projected.sources.downward_api`
 
 Optional:
 
@@ -4564,7 +4564,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--projected--sources--secret"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.projected.sources.service_account_token`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.projected.sources.secret`
 
 Optional:
 
@@ -4573,7 +4573,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.projected.sources.service_account_token.optional`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.projected.sources.service_account_token.items`
 
 Required:
 
@@ -4635,7 +4635,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--rbd--secret_ref"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.rbd.user`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.rbd.secret_ref`
 
 Optional:
 
@@ -4663,7 +4663,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--scale_io--secret_ref"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.scale_io.volume_name`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.scale_io.secret_ref`
 
 Optional:
 
@@ -4682,7 +4682,7 @@ Optional:
 - `secret_name` (String)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--secret--items"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.secret.secret_name`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.secret.items`
 
 Required:
 
@@ -4707,7 +4707,7 @@ Optional:
 - `volume_namespace` (String)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--storageos--secret_ref"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.storageos.volume_namespace`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.storageos.secret_ref`
 
 Optional:
 
@@ -4731,7 +4731,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--sidecars"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec`
+### Nested Schema for `spec.replsets.nonvoting.sidecars`
 
 Required:
 
@@ -4786,7 +4786,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--nonvoting--volume_spec--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.env.value_from.secret_key_ref`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -4799,7 +4799,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--env--value_from--field_ref"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.env.value_from.secret_key_ref`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.env.value_from.field_ref`
 
 Required:
 
@@ -4811,7 +4811,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.env.value_from.secret_key_ref`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.env.value_from.resource_field_ref`
 
 Required:
 
@@ -4848,7 +4848,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--nonvoting--volume_spec--env_from--secret_ref))
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--env_from--config_map_ref"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.env_from.secret_ref`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.env_from.config_map_ref`
 
 Optional:
 
@@ -4875,7 +4875,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--nonvoting--volume_spec--lifecycle--pre_stop))
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--lifecycle--post_start"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.lifecycle.pre_stop`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.lifecycle.post_start`
 
 Optional:
 
@@ -4885,7 +4885,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--nonvoting--volume_spec--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -4893,7 +4893,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -4907,7 +4907,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -4917,7 +4917,7 @@ Required:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--lifecycle--pre_stop--sleep"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.lifecycle.pre_stop.sleep`
 
 Required:
 
@@ -4948,7 +4948,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--nonvoting--volume_spec--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -4956,7 +4956,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -4970,7 +4970,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -4980,7 +4980,7 @@ Required:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--lifecycle--pre_stop--sleep"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.lifecycle.pre_stop.sleep`
 
 Required:
 
@@ -5018,7 +5018,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--liveness_probe--exec"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.liveness_probe.exec`
 
 Optional:
 
@@ -5026,7 +5026,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--liveness_probe--grpc"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.liveness_probe.grpc`
 
 Required:
 
@@ -5038,7 +5038,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--liveness_probe--http_get"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.liveness_probe.http_get`
 
 Required:
 
@@ -5052,7 +5052,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.liveness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.liveness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -5062,7 +5062,7 @@ Required:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.liveness_probe.tcp_socket`
 
 Required:
 
@@ -5106,7 +5106,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--readiness_probe--exec"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.readiness_probe.exec`
 
 Optional:
 
@@ -5114,7 +5114,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--readiness_probe--grpc"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.readiness_probe.grpc`
 
 Required:
 
@@ -5126,7 +5126,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--readiness_probe--http_get"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.readiness_probe.http_get`
 
 Required:
 
@@ -5140,7 +5140,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.readiness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.readiness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -5150,7 +5150,7 @@ Required:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.readiness_probe.tcp_socket`
 
 Required:
 
@@ -5181,7 +5181,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--resources--claims"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.resources.requests`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.resources.claims`
 
 Required:
 
@@ -5207,7 +5207,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--nonvoting--volume_spec--security_context--windows_options))
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--security_context--capabilities"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.security_context.windows_options`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.security_context.capabilities`
 
 Optional:
 
@@ -5216,7 +5216,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--security_context--se_linux_options"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.security_context.windows_options`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.security_context.se_linux_options`
 
 Optional:
 
@@ -5227,7 +5227,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.security_context.windows_options`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.security_context.seccomp_profile`
 
 Required:
 
@@ -5267,7 +5267,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--startup_probe--exec"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.startup_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.startup_probe.exec`
 
 Optional:
 
@@ -5275,7 +5275,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--startup_probe--grpc"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.startup_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.startup_probe.grpc`
 
 Required:
 
@@ -5287,7 +5287,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--startup_probe--http_get"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.startup_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.startup_probe.http_get`
 
 Required:
 
@@ -5301,7 +5301,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--startup_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.startup_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.startup_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -5311,7 +5311,7 @@ Required:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.startup_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.startup_probe.tcp_socket`
 
 Required:
 
@@ -5350,7 +5350,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--tolerations"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec`
+### Nested Schema for `spec.replsets.nonvoting.tolerations`
 
 Optional:
 
@@ -5362,7 +5362,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--topology_spread_constraints"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec`
+### Nested Schema for `spec.replsets.nonvoting.topology_spread_constraints`
 
 Required:
 
@@ -5387,7 +5387,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--label_selector--match_expressions"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.label_selector.match_labels`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.label_selector.match_expressions`
 
 Required:
 
@@ -5449,7 +5449,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--persistent_volume_claim--data_source"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.persistent_volume_claim.volume_name`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.persistent_volume_claim.data_source`
 
 Required:
 
@@ -5462,7 +5462,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--persistent_volume_claim--data_source_ref"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.persistent_volume_claim.volume_name`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.persistent_volume_claim.data_source_ref`
 
 Required:
 
@@ -5476,7 +5476,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--persistent_volume_claim--resources"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.persistent_volume_claim.volume_name`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.persistent_volume_claim.resources`
 
 Optional:
 
@@ -5485,7 +5485,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--persistent_volume_claim--selector"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.persistent_volume_claim.volume_name`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.persistent_volume_claim.selector`
 
 Optional:
 
@@ -5493,7 +5493,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--replsets--nonvoting--volume_spec--persistent_volume_claim--volume_name--match_expressions"></a>
-### Nested Schema for `spec.replsets.nonvoting.volume_spec.persistent_volume_claim.volume_name.match_labels`
+### Nested Schema for `spec.replsets.nonvoting.volume_spec.persistent_volume_claim.volume_name.match_expressions`
 
 Required:
 
@@ -5535,7 +5535,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--pod_security_context--windows_options))
 
 <a id="nestedatt--spec--replsets--pod_security_context--se_linux_options"></a>
-### Nested Schema for `spec.replsets.pod_security_context.windows_options`
+### Nested Schema for `spec.replsets.pod_security_context.se_linux_options`
 
 Optional:
 
@@ -5546,7 +5546,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--pod_security_context--seccomp_profile"></a>
-### Nested Schema for `spec.replsets.pod_security_context.windows_options`
+### Nested Schema for `spec.replsets.pod_security_context.seccomp_profile`
 
 Required:
 
@@ -5558,7 +5558,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--pod_security_context--sysctls"></a>
-### Nested Schema for `spec.replsets.pod_security_context.windows_options`
+### Nested Schema for `spec.replsets.pod_security_context.sysctls`
 
 Required:
 
@@ -5595,7 +5595,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--replsets--readiness_probe--exec"></a>
-### Nested Schema for `spec.replsets.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.readiness_probe.exec`
 
 Optional:
 
@@ -5603,7 +5603,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--readiness_probe--grpc"></a>
-### Nested Schema for `spec.replsets.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.readiness_probe.grpc`
 
 Required:
 
@@ -5615,7 +5615,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--readiness_probe--http_get"></a>
-### Nested Schema for `spec.replsets.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.readiness_probe.http_get`
 
 Required:
 
@@ -5639,7 +5639,7 @@ Required:
 
 
 <a id="nestedatt--spec--replsets--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.replsets.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.replsets.readiness_probe.tcp_socket`
 
 Required:
 
@@ -5661,7 +5661,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--replsets--resources--claims"></a>
-### Nested Schema for `spec.replsets.resources.requests`
+### Nested Schema for `spec.replsets.resources.claims`
 
 Required:
 
@@ -5681,7 +5681,7 @@ Optional:
 - `status` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--sidecar_pv_cs--status))
 
 <a id="nestedatt--spec--replsets--sidecar_pv_cs--spec"></a>
-### Nested Schema for `spec.replsets.sidecar_pv_cs.status`
+### Nested Schema for `spec.replsets.sidecar_pv_cs.spec`
 
 Optional:
 
@@ -5740,7 +5740,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--replsets--sidecar_pv_cs--status--selector--match_expressions"></a>
-### Nested Schema for `spec.replsets.sidecar_pv_cs.status.selector.match_labels`
+### Nested Schema for `spec.replsets.sidecar_pv_cs.status.selector.match_expressions`
 
 Required:
 
@@ -5838,7 +5838,7 @@ Optional:
 - `vsphere_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--sidecar_volumes--vsphere_volume))
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--aws_elastic_block_store"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.replsets.sidecar_volumes.aws_elastic_block_store`
 
 Required:
 
@@ -5852,7 +5852,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--azure_disk"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.replsets.sidecar_volumes.azure_disk`
 
 Required:
 
@@ -5868,7 +5868,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--azure_file"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.replsets.sidecar_volumes.azure_file`
 
 Required:
 
@@ -5881,7 +5881,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--cephfs"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.replsets.sidecar_volumes.cephfs`
 
 Required:
 
@@ -5905,7 +5905,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--cinder"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.replsets.sidecar_volumes.cinder`
 
 Required:
 
@@ -5927,7 +5927,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--config_map"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.replsets.sidecar_volumes.config_map`
 
 Optional:
 
@@ -5951,7 +5951,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--csi"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.replsets.sidecar_volumes.csi`
 
 Required:
 
@@ -5974,7 +5974,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--downward_api"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.replsets.sidecar_volumes.downward_api`
 
 Optional:
 
@@ -5995,7 +5995,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--sidecar_volumes--vsphere_volume--items--resource_field_ref))
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.items.resource_field_ref`
+### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.items.field_ref`
 
 Required:
 
@@ -6022,7 +6022,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--empty_dir"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.replsets.sidecar_volumes.empty_dir`
 
 Optional:
 
@@ -6031,7 +6031,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--ephemeral"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.replsets.sidecar_volumes.ephemeral`
 
 Optional:
 
@@ -6049,7 +6049,7 @@ Optional:
 - `metadata` (Map of String)
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.volume_claim_template.metadata`
+### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.volume_claim_template.spec`
 
 Optional:
 
@@ -6064,7 +6064,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--vsphere_volume--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.volume_claim_template.metadata.data_source`
 
 Required:
 
@@ -6077,7 +6077,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--vsphere_volume--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.volume_claim_template.metadata.data_source_ref`
 
 Required:
 
@@ -6091,7 +6091,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--vsphere_volume--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.volume_claim_template.metadata.resources`
 
 Optional:
 
@@ -6100,7 +6100,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--vsphere_volume--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.volume_claim_template.metadata.selector`
 
 Optional:
 
@@ -6108,7 +6108,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--vsphere_volume--volume_claim_template--metadata--volume_name--match_expressions"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_labels`
+### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_expressions`
 
 Required:
 
@@ -6125,7 +6125,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--fc"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.replsets.sidecar_volumes.fc`
 
 Optional:
 
@@ -6137,7 +6137,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--flex_volume"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.replsets.sidecar_volumes.flex_volume`
 
 Required:
 
@@ -6160,7 +6160,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--flocker"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.replsets.sidecar_volumes.flocker`
 
 Optional:
 
@@ -6169,7 +6169,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--gce_persistent_disk"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.replsets.sidecar_volumes.gce_persistent_disk`
 
 Required:
 
@@ -6183,7 +6183,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--git_repo"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.replsets.sidecar_volumes.git_repo`
 
 Required:
 
@@ -6196,7 +6196,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--glusterfs"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.replsets.sidecar_volumes.glusterfs`
 
 Required:
 
@@ -6209,7 +6209,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--host_path"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.replsets.sidecar_volumes.host_path`
 
 Required:
 
@@ -6221,7 +6221,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--iscsi"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.replsets.sidecar_volumes.iscsi`
 
 Required:
 
@@ -6250,7 +6250,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--nfs"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.replsets.sidecar_volumes.nfs`
 
 Required:
 
@@ -6263,7 +6263,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--persistent_volume_claim"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.replsets.sidecar_volumes.persistent_volume_claim`
 
 Required:
 
@@ -6275,7 +6275,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--photon_persistent_disk"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.replsets.sidecar_volumes.photon_persistent_disk`
 
 Required:
 
@@ -6287,7 +6287,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--portworx_volume"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.replsets.sidecar_volumes.portworx_volume`
 
 Required:
 
@@ -6300,7 +6300,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--projected"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.replsets.sidecar_volumes.projected`
 
 Optional:
 
@@ -6319,7 +6319,7 @@ Optional:
 - `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--sidecar_volumes--vsphere_volume--sources--service_account_token))
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--vsphere_volume--sources--cluster_trust_bundle"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.sources.cluster_trust_bundle`
 
 Required:
 
@@ -6333,7 +6333,7 @@ Optional:
 - `signer_name` (String)
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--vsphere_volume--sources--service_account_token--label_selector"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.sources.service_account_token.signer_name`
+### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.sources.service_account_token.label_selector`
 
 Optional:
 
@@ -6341,7 +6341,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--vsphere_volume--sources--service_account_token--signer_name--match_expressions"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.sources.service_account_token.signer_name.match_labels`
+### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.sources.service_account_token.signer_name.match_expressions`
 
 Required:
 
@@ -6356,7 +6356,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.sources.config_map`
 
 Optional:
 
@@ -6365,7 +6365,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.sources.service_account_token.optional`
+### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.sources.service_account_token.items`
 
 Required:
 
@@ -6379,7 +6379,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.sources.downward_api`
 
 Optional:
 
@@ -6399,7 +6399,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--sidecar_volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.sources.service_account_token.items.field_ref`
 
 Required:
 
@@ -6426,7 +6426,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.sources.secret`
 
 Optional:
 
@@ -6435,7 +6435,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.sources.service_account_token.optional`
+### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume.sources.service_account_token.items`
 
 Required:
 
@@ -6464,7 +6464,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--quobyte"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.replsets.sidecar_volumes.quobyte`
 
 Required:
 
@@ -6480,7 +6480,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--rbd"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.replsets.sidecar_volumes.rbd`
 
 Required:
 
@@ -6506,7 +6506,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--scale_io"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.replsets.sidecar_volumes.scale_io`
 
 Required:
 
@@ -6534,7 +6534,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--secret"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.replsets.sidecar_volumes.secret`
 
 Optional:
 
@@ -6558,7 +6558,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--storageos"></a>
-### Nested Schema for `spec.replsets.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.replsets.sidecar_volumes.storageos`
 
 Optional:
 
@@ -6626,7 +6626,7 @@ Optional:
 - `working_dir` (String)
 
 <a id="nestedatt--spec--replsets--sidecars--env"></a>
-### Nested Schema for `spec.replsets.sidecars.working_dir`
+### Nested Schema for `spec.replsets.sidecars.env`
 
 Required:
 
@@ -6648,7 +6648,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--sidecars--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--replsets--sidecars--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.replsets.sidecars.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.replsets.sidecars.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -6661,7 +6661,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecars--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.replsets.sidecars.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.replsets.sidecars.working_dir.value_from.field_ref`
 
 Required:
 
@@ -6673,7 +6673,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecars--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.replsets.sidecars.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.replsets.sidecars.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -6701,7 +6701,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecars--env_from"></a>
-### Nested Schema for `spec.replsets.sidecars.working_dir`
+### Nested Schema for `spec.replsets.sidecars.env_from`
 
 Optional:
 
@@ -6729,7 +6729,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecars--lifecycle"></a>
-### Nested Schema for `spec.replsets.sidecars.working_dir`
+### Nested Schema for `spec.replsets.sidecars.lifecycle`
 
 Optional:
 
@@ -6747,7 +6747,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--sidecars--working_dir--post_start--tcp_socket))
 
 <a id="nestedatt--spec--replsets--sidecars--working_dir--post_start--exec"></a>
-### Nested Schema for `spec.replsets.sidecars.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.replsets.sidecars.working_dir.post_start.exec`
 
 Optional:
 
@@ -6755,7 +6755,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecars--working_dir--post_start--http_get"></a>
-### Nested Schema for `spec.replsets.sidecars.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.replsets.sidecars.working_dir.post_start.http_get`
 
 Required:
 
@@ -6769,7 +6769,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--replsets--sidecars--working_dir--post_start--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.replsets.sidecars.working_dir.post_start.tcp_socket.scheme`
+### Nested Schema for `spec.replsets.sidecars.working_dir.post_start.tcp_socket.http_headers`
 
 Required:
 
@@ -6779,7 +6779,7 @@ Required:
 
 
 <a id="nestedatt--spec--replsets--sidecars--working_dir--post_start--sleep"></a>
-### Nested Schema for `spec.replsets.sidecars.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.replsets.sidecars.working_dir.post_start.sleep`
 
 Required:
 
@@ -6810,7 +6810,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--sidecars--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--replsets--sidecars--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.replsets.sidecars.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.replsets.sidecars.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -6818,7 +6818,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecars--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.replsets.sidecars.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.replsets.sidecars.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -6832,7 +6832,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--replsets--sidecars--working_dir--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.replsets.sidecars.working_dir.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.replsets.sidecars.working_dir.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -6842,7 +6842,7 @@ Required:
 
 
 <a id="nestedatt--spec--replsets--sidecars--working_dir--pre_stop--sleep"></a>
-### Nested Schema for `spec.replsets.sidecars.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.replsets.sidecars.working_dir.pre_stop.sleep`
 
 Required:
 
@@ -6864,7 +6864,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecars--liveness_probe"></a>
-### Nested Schema for `spec.replsets.sidecars.working_dir`
+### Nested Schema for `spec.replsets.sidecars.liveness_probe`
 
 Optional:
 
@@ -6914,7 +6914,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--replsets--sidecars--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.replsets.sidecars.working_dir.http_get.scheme`
+### Nested Schema for `spec.replsets.sidecars.working_dir.http_get.http_headers`
 
 Required:
 
@@ -6937,7 +6937,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecars--ports"></a>
-### Nested Schema for `spec.replsets.sidecars.working_dir`
+### Nested Schema for `spec.replsets.sidecars.ports`
 
 Required:
 
@@ -6952,7 +6952,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecars--readiness_probe"></a>
-### Nested Schema for `spec.replsets.sidecars.working_dir`
+### Nested Schema for `spec.replsets.sidecars.readiness_probe`
 
 Optional:
 
@@ -7002,7 +7002,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--replsets--sidecars--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.replsets.sidecars.working_dir.http_get.scheme`
+### Nested Schema for `spec.replsets.sidecars.working_dir.http_get.http_headers`
 
 Required:
 
@@ -7025,7 +7025,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecars--resize_policy"></a>
-### Nested Schema for `spec.replsets.sidecars.working_dir`
+### Nested Schema for `spec.replsets.sidecars.resize_policy`
 
 Required:
 
@@ -7034,7 +7034,7 @@ Required:
 
 
 <a id="nestedatt--spec--replsets--sidecars--resources"></a>
-### Nested Schema for `spec.replsets.sidecars.working_dir`
+### Nested Schema for `spec.replsets.sidecars.resources`
 
 Optional:
 
@@ -7052,7 +7052,7 @@ Required:
 
 
 <a id="nestedatt--spec--replsets--sidecars--security_context"></a>
-### Nested Schema for `spec.replsets.sidecars.working_dir`
+### Nested Schema for `spec.replsets.sidecars.security_context`
 
 Optional:
 
@@ -7113,7 +7113,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecars--startup_probe"></a>
-### Nested Schema for `spec.replsets.sidecars.working_dir`
+### Nested Schema for `spec.replsets.sidecars.startup_probe`
 
 Optional:
 
@@ -7163,7 +7163,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--replsets--sidecars--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.replsets.sidecars.working_dir.http_get.scheme`
+### Nested Schema for `spec.replsets.sidecars.working_dir.http_get.http_headers`
 
 Required:
 
@@ -7186,7 +7186,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--sidecars--volume_devices"></a>
-### Nested Schema for `spec.replsets.sidecars.working_dir`
+### Nested Schema for `spec.replsets.sidecars.volume_devices`
 
 Required:
 
@@ -7195,7 +7195,7 @@ Required:
 
 
 <a id="nestedatt--spec--replsets--sidecars--volume_mounts"></a>
-### Nested Schema for `spec.replsets.sidecars.working_dir`
+### Nested Schema for `spec.replsets.sidecars.volume_mounts`
 
 Required:
 
@@ -7224,7 +7224,7 @@ Optional:
 - `wired_tiger` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--storage--wired_tiger))
 
 <a id="nestedatt--spec--replsets--storage--in_memory"></a>
-### Nested Schema for `spec.replsets.storage.wired_tiger`
+### Nested Schema for `spec.replsets.storage.in_memory`
 
 Optional:
 
@@ -7240,7 +7240,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--storage--mmapv1"></a>
-### Nested Schema for `spec.replsets.storage.wired_tiger`
+### Nested Schema for `spec.replsets.storage.mmapv1`
 
 Optional:
 
@@ -7315,7 +7315,7 @@ Optional:
 - `node_taints_policy` (String)
 
 <a id="nestedatt--spec--replsets--topology_spread_constraints--label_selector"></a>
-### Nested Schema for `spec.replsets.topology_spread_constraints.node_taints_policy`
+### Nested Schema for `spec.replsets.topology_spread_constraints.label_selector`
 
 Optional:
 
@@ -7347,7 +7347,7 @@ Optional:
 - `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--volume_spec--persistent_volume_claim))
 
 <a id="nestedatt--spec--replsets--volume_spec--empty_dir"></a>
-### Nested Schema for `spec.replsets.volume_spec.persistent_volume_claim`
+### Nested Schema for `spec.replsets.volume_spec.empty_dir`
 
 Optional:
 
@@ -7356,7 +7356,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replsets--volume_spec--host_path"></a>
-### Nested Schema for `spec.replsets.volume_spec.persistent_volume_claim`
+### Nested Schema for `spec.replsets.volume_spec.host_path`
 
 Required:
 
@@ -7429,7 +7429,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--replsets--volume_spec--persistent_volume_claim--selector--match_expressions"></a>
-### Nested Schema for `spec.replsets.volume_spec.persistent_volume_claim.selector.match_labels`
+### Nested Schema for `spec.replsets.volume_spec.persistent_volume_claim.selector.match_expressions`
 
 Required:
 
@@ -7519,7 +7519,7 @@ Optional:
 - `volume_spec` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--affinity"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec`
+### Nested Schema for `spec.sharding.configsvr_repl_set.affinity`
 
 Optional:
 
@@ -7536,7 +7536,7 @@ Optional:
 - `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--advanced--pod_anti_affinity))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--advanced--node_affinity"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_anti_affinity`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.node_affinity`
 
 Optional:
 
@@ -7544,7 +7544,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -7552,7 +7552,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -7632,7 +7632,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--advanced--pod_affinity"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_anti_affinity`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_affinity`
 
 Optional:
 
@@ -7640,7 +7640,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -7648,7 +7648,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -7671,7 +7671,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
 
 Required:
 
@@ -7693,7 +7693,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
 
 Required:
 
@@ -7724,7 +7724,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -7746,7 +7746,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -7778,7 +7778,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -7786,7 +7786,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -7809,7 +7809,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
 
 Required:
 
@@ -7831,7 +7831,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
 
 Required:
 
@@ -7862,7 +7862,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -7884,7 +7884,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -7910,7 +7910,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--arbiter"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec`
+### Nested Schema for `spec.sharding.configsvr_repl_set.arbiter`
 
 Required:
 
@@ -7944,7 +7944,7 @@ Optional:
 - `anti_affinity_topology_key` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--advanced"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.advanced`
 
 Optional:
 
@@ -7953,7 +7953,7 @@ Optional:
 - `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--node_affinity"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.node_affinity`
 
 Optional:
 
@@ -7961,7 +7961,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -7977,7 +7977,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference--match_fields))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference.match_fields`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Required:
 
@@ -8020,7 +8020,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -8049,7 +8049,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_affinity"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_affinity`
 
 Optional:
 
@@ -8057,7 +8057,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -8080,7 +8080,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
@@ -8088,7 +8088,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -8102,7 +8102,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
@@ -8110,7 +8110,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -8149,7 +8149,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -8171,7 +8171,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -8195,7 +8195,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -8218,7 +8218,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
@@ -8226,7 +8226,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -8240,7 +8240,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
@@ -8248,7 +8248,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -8287,7 +8287,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -8309,7 +8309,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -8345,7 +8345,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--resources--claims"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.resources.requests`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.resources.claims`
 
 Required:
 
@@ -8365,7 +8365,7 @@ Optional:
 - `status` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_pv_cs--status))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_pv_cs--spec"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.status`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.spec`
 
 Optional:
 
@@ -8380,7 +8380,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_pv_cs--status--data_source"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.status.volume_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.status.data_source`
 
 Required:
 
@@ -8393,7 +8393,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_pv_cs--status--data_source_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.status.volume_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.status.data_source_ref`
 
 Required:
 
@@ -8407,7 +8407,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_pv_cs--status--resources"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.status.volume_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.status.resources`
 
 Optional:
 
@@ -8416,7 +8416,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_pv_cs--status--selector"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.status.volume_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.status.selector`
 
 Optional:
 
@@ -8424,7 +8424,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_pv_cs--status--volume_name--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.status.volume_name.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.status.volume_name.match_expressions`
 
 Required:
 
@@ -8453,7 +8453,7 @@ Optional:
 - `phase` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_pv_cs--status--conditions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.status.phase`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.status.conditions`
 
 Required:
 
@@ -8469,7 +8469,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_pv_cs--status--modify_volume_status"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.status.phase`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.status.modify_volume_status`
 
 Required:
 
@@ -8522,7 +8522,7 @@ Optional:
 - `vsphere_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--aws_elastic_block_store"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.aws_elastic_block_store`
 
 Required:
 
@@ -8536,7 +8536,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--azure_disk"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.azure_disk`
 
 Required:
 
@@ -8552,7 +8552,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--azure_file"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.azure_file`
 
 Required:
 
@@ -8565,7 +8565,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--cephfs"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.cephfs`
 
 Required:
 
@@ -8580,7 +8580,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.user`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -8589,7 +8589,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--cinder"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.cinder`
 
 Required:
 
@@ -8611,7 +8611,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--config_map"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.config_map`
 
 Optional:
 
@@ -8621,7 +8621,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.optional`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.items`
 
 Required:
 
@@ -8635,7 +8635,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--csi"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.csi`
 
 Required:
 
@@ -8649,7 +8649,7 @@ Optional:
 - `volume_attributes` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--node_publish_secret_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.volume_attributes`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.node_publish_secret_ref`
 
 Optional:
 
@@ -8658,7 +8658,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--downward_api"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.downward_api`
 
 Optional:
 
@@ -8679,7 +8679,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--items--resource_field_ref))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.items.resource_field_ref`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.items.field_ref`
 
 Required:
 
@@ -8706,7 +8706,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--empty_dir"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.empty_dir`
 
 Optional:
 
@@ -8715,7 +8715,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--ephemeral"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.ephemeral`
 
 Optional:
 
@@ -8733,7 +8733,7 @@ Optional:
 - `metadata` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.volume_claim_template.metadata`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.volume_claim_template.spec`
 
 Optional:
 
@@ -8792,7 +8792,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--volume_claim_template--metadata--selector--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.volume_claim_template.metadata.selector.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.volume_claim_template.metadata.selector.match_expressions`
 
 Required:
 
@@ -8809,7 +8809,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--fc"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.fc`
 
 Optional:
 
@@ -8821,7 +8821,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--flex_volume"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.flex_volume`
 
 Required:
 
@@ -8844,7 +8844,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--flocker"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.flocker`
 
 Optional:
 
@@ -8853,7 +8853,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--gce_persistent_disk"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.gce_persistent_disk`
 
 Required:
 
@@ -8867,7 +8867,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--git_repo"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.git_repo`
 
 Required:
 
@@ -8880,7 +8880,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--glusterfs"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.glusterfs`
 
 Required:
 
@@ -8893,7 +8893,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--host_path"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.host_path`
 
 Required:
 
@@ -8905,7 +8905,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--iscsi"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.iscsi`
 
 Required:
 
@@ -8934,7 +8934,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--nfs"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.nfs`
 
 Required:
 
@@ -8947,7 +8947,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--persistent_volume_claim"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.persistent_volume_claim`
 
 Required:
 
@@ -8959,7 +8959,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--photon_persistent_disk"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.photon_persistent_disk`
 
 Required:
 
@@ -8971,7 +8971,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--portworx_volume"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.portworx_volume`
 
 Required:
 
@@ -8984,7 +8984,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--projected"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.projected`
 
 Optional:
 
@@ -9003,7 +9003,7 @@ Optional:
 - `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--sources--service_account_token))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--sources--cluster_trust_bundle"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.sources.cluster_trust_bundle`
 
 Required:
 
@@ -9025,7 +9025,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--sources--service_account_token--label_selector--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.sources.service_account_token.label_selector.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.sources.service_account_token.label_selector.match_expressions`
 
 Required:
 
@@ -9040,7 +9040,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.sources.config_map`
 
 Optional:
 
@@ -9063,7 +9063,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.sources.downward_api`
 
 Optional:
 
@@ -9083,7 +9083,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.sources.service_account_token.items.field_ref`
 
 Required:
 
@@ -9110,7 +9110,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.sources.secret`
 
 Optional:
 
@@ -9148,7 +9148,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--quobyte"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.quobyte`
 
 Required:
 
@@ -9164,7 +9164,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--rbd"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.rbd`
 
 Required:
 
@@ -9181,7 +9181,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.user`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -9190,7 +9190,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--scale_io"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.scale_io`
 
 Required:
 
@@ -9209,7 +9209,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.volume_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -9218,7 +9218,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--secret"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.secret`
 
 Optional:
 
@@ -9228,7 +9228,7 @@ Optional:
 - `secret_name` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.secret_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.items`
 
 Required:
 
@@ -9242,7 +9242,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--storageos"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.storageos`
 
 Optional:
 
@@ -9253,7 +9253,7 @@ Optional:
 - `volume_namespace` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.volume_namespace`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -9310,7 +9310,7 @@ Optional:
 - `working_dir` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--env"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.env`
 
 Required:
 
@@ -9332,7 +9332,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -9345,7 +9345,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.value_from.field_ref`
 
 Required:
 
@@ -9357,7 +9357,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -9385,7 +9385,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--env_from"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.env_from`
 
 Optional:
 
@@ -9394,7 +9394,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--secret_ref))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--config_map_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.secret_ref`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.config_map_ref`
 
 Optional:
 
@@ -9413,7 +9413,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--lifecycle"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.lifecycle`
 
 Optional:
 
@@ -9421,7 +9421,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--pre_stop))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--post_start"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.pre_stop`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.post_start`
 
 Optional:
 
@@ -9431,7 +9431,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -9439,7 +9439,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -9463,7 +9463,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--pre_stop--sleep"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.pre_stop.sleep`
 
 Required:
 
@@ -9494,7 +9494,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -9502,7 +9502,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -9526,7 +9526,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--pre_stop--sleep"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.pre_stop.sleep`
 
 Required:
 
@@ -9548,7 +9548,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--liveness_probe"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.liveness_probe`
 
 Optional:
 
@@ -9564,7 +9564,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--exec"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.exec`
 
 Optional:
 
@@ -9572,7 +9572,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--grpc"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.grpc`
 
 Required:
 
@@ -9584,7 +9584,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--http_get"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.http_get`
 
 Required:
 
@@ -9598,7 +9598,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds.http_headers`
 
 Required:
 
@@ -9608,7 +9608,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.tcp_socket`
 
 Required:
 
@@ -9621,7 +9621,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--ports"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.ports`
 
 Required:
 
@@ -9636,7 +9636,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--readiness_probe"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.readiness_probe`
 
 Optional:
 
@@ -9652,7 +9652,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--exec"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.exec`
 
 Optional:
 
@@ -9660,7 +9660,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--grpc"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.grpc`
 
 Required:
 
@@ -9672,7 +9672,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--http_get"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.http_get`
 
 Required:
 
@@ -9686,7 +9686,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds.http_headers`
 
 Required:
 
@@ -9696,7 +9696,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.tcp_socket`
 
 Required:
 
@@ -9709,7 +9709,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--resize_policy"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.resize_policy`
 
 Required:
 
@@ -9718,7 +9718,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--resources"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.resources`
 
 Optional:
 
@@ -9727,7 +9727,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--claims"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.requests`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.claims`
 
 Required:
 
@@ -9736,7 +9736,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--security_context"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.security_context`
 
 Optional:
 
@@ -9753,7 +9753,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--windows_options))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--capabilities"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.windows_options`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.capabilities`
 
 Optional:
 
@@ -9762,7 +9762,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--se_linux_options"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.windows_options`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.se_linux_options`
 
 Optional:
 
@@ -9773,7 +9773,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--seccomp_profile"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.windows_options`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.seccomp_profile`
 
 Required:
 
@@ -9797,7 +9797,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--startup_probe"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.startup_probe`
 
 Optional:
 
@@ -9813,7 +9813,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--exec"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.exec`
 
 Optional:
 
@@ -9821,7 +9821,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--grpc"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.grpc`
 
 Required:
 
@@ -9833,7 +9833,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--http_get"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.http_get`
 
 Required:
 
@@ -9847,7 +9847,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds.http_headers`
 
 Required:
 
@@ -9857,7 +9857,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.tcp_socket`
 
 Required:
 
@@ -9870,7 +9870,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--volume_devices"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.volume_devices`
 
 Required:
 
@@ -9879,7 +9879,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--volume_mounts"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.volume_mounts`
 
 Required:
 
@@ -9925,7 +9925,7 @@ Optional:
 - `node_taints_policy` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--topology_spread_constraints--label_selector"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.topology_spread_constraints.node_taints_policy`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.topology_spread_constraints.label_selector`
 
 Optional:
 
@@ -9933,7 +9933,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--topology_spread_constraints--node_taints_policy--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.topology_spread_constraints.node_taints_policy.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.topology_spread_constraints.node_taints_policy.match_expressions`
 
 Required:
 
@@ -9949,7 +9949,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--container_security_context"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec`
+### Nested Schema for `spec.sharding.configsvr_repl_set.container_security_context`
 
 Optional:
 
@@ -10010,7 +10010,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--expose"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec`
+### Nested Schema for `spec.sharding.configsvr_repl_set.expose`
 
 Required:
 
@@ -10025,7 +10025,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--external_nodes"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec`
+### Nested Schema for `spec.sharding.configsvr_repl_set.external_nodes`
 
 Required:
 
@@ -10039,7 +10039,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--host_aliases"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec`
+### Nested Schema for `spec.sharding.configsvr_repl_set.host_aliases`
 
 Optional:
 
@@ -10048,7 +10048,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--liveness_probe"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec`
+### Nested Schema for `spec.sharding.configsvr_repl_set.liveness_probe`
 
 Optional:
 
@@ -10099,7 +10099,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--http_get--http_headers"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.http_get.scheme`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.http_get.http_headers`
 
 Required:
 
@@ -10122,7 +10122,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--nonvoting"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec`
+### Nested Schema for `spec.sharding.configsvr_repl_set.nonvoting`
 
 Required:
 
@@ -10162,7 +10162,7 @@ Optional:
 - `anti_affinity_topology_key` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--advanced"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.advanced`
 
 Optional:
 
@@ -10171,7 +10171,7 @@ Optional:
 - `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--node_affinity"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.node_affinity`
 
 Optional:
 
@@ -10179,7 +10179,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -10195,7 +10195,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference--match_fields))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference.match_fields`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Required:
 
@@ -10238,7 +10238,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -10267,7 +10267,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_affinity"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_affinity`
 
 Optional:
 
@@ -10275,7 +10275,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -10298,7 +10298,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
@@ -10306,7 +10306,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -10320,7 +10320,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
@@ -10328,7 +10328,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -10367,7 +10367,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -10389,7 +10389,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -10413,7 +10413,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -10436,7 +10436,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
@@ -10444,7 +10444,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -10458,7 +10458,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
@@ -10466,7 +10466,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -10505,7 +10505,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -10527,7 +10527,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--affinity--anti_affinity_topology_key--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.affinity.anti_affinity_topology_key.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -10562,7 +10562,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--container_security_context--windows_options))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--container_security_context--capabilities"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.container_security_context.windows_options`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.container_security_context.capabilities`
 
 Optional:
 
@@ -10571,7 +10571,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--container_security_context--se_linux_options"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.container_security_context.windows_options`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.container_security_context.se_linux_options`
 
 Optional:
 
@@ -10582,7 +10582,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--container_security_context--seccomp_profile"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.container_security_context.windows_options`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.container_security_context.seccomp_profile`
 
 Required:
 
@@ -10623,7 +10623,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--liveness_probe--exec"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.liveness_probe.exec`
 
 Optional:
 
@@ -10631,7 +10631,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--liveness_probe--grpc"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.liveness_probe.grpc`
 
 Required:
 
@@ -10643,7 +10643,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--liveness_probe--http_get"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.liveness_probe.http_get`
 
 Required:
 
@@ -10657,7 +10657,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.liveness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.liveness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -10667,7 +10667,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.liveness_probe.tcp_socket`
 
 Required:
 
@@ -10705,7 +10705,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--pod_security_context--windows_options))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--pod_security_context--se_linux_options"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.pod_security_context.windows_options`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.pod_security_context.se_linux_options`
 
 Optional:
 
@@ -10716,7 +10716,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--pod_security_context--seccomp_profile"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.pod_security_context.windows_options`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.pod_security_context.seccomp_profile`
 
 Required:
 
@@ -10728,7 +10728,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--pod_security_context--sysctls"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.pod_security_context.windows_options`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.pod_security_context.sysctls`
 
 Required:
 
@@ -10765,7 +10765,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--readiness_probe--exec"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.readiness_probe.exec`
 
 Optional:
 
@@ -10773,7 +10773,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--readiness_probe--grpc"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.readiness_probe.grpc`
 
 Required:
 
@@ -10785,7 +10785,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--readiness_probe--http_get"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.readiness_probe.http_get`
 
 Required:
 
@@ -10799,7 +10799,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.readiness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.readiness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -10809,7 +10809,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.readiness_probe.tcp_socket`
 
 Required:
 
@@ -10831,7 +10831,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--resources--claims"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.resources.requests`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.resources.claims`
 
 Required:
 
@@ -10851,7 +10851,7 @@ Optional:
 - `status` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_pv_cs--status))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_pv_cs--spec"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.status`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.spec`
 
 Optional:
 
@@ -10866,7 +10866,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_pv_cs--status--data_source"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.status.volume_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.status.data_source`
 
 Required:
 
@@ -10879,7 +10879,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_pv_cs--status--data_source_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.status.volume_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.status.data_source_ref`
 
 Required:
 
@@ -10893,7 +10893,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_pv_cs--status--resources"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.status.volume_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.status.resources`
 
 Optional:
 
@@ -10902,7 +10902,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_pv_cs--status--selector"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.status.volume_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.status.selector`
 
 Optional:
 
@@ -10910,7 +10910,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_pv_cs--status--volume_name--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.status.volume_name.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.status.volume_name.match_expressions`
 
 Required:
 
@@ -10939,7 +10939,7 @@ Optional:
 - `phase` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_pv_cs--status--conditions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.status.phase`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.status.conditions`
 
 Required:
 
@@ -10955,7 +10955,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_pv_cs--status--modify_volume_status"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.status.phase`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_pv_cs.status.modify_volume_status`
 
 Required:
 
@@ -11008,7 +11008,7 @@ Optional:
 - `vsphere_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--aws_elastic_block_store"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.aws_elastic_block_store`
 
 Required:
 
@@ -11022,7 +11022,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--azure_disk"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.azure_disk`
 
 Required:
 
@@ -11038,7 +11038,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--azure_file"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.azure_file`
 
 Required:
 
@@ -11051,7 +11051,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--cephfs"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.cephfs`
 
 Required:
 
@@ -11066,7 +11066,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.user`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -11075,7 +11075,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--cinder"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.cinder`
 
 Required:
 
@@ -11097,7 +11097,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--config_map"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.config_map`
 
 Optional:
 
@@ -11107,7 +11107,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.optional`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.items`
 
 Required:
 
@@ -11121,7 +11121,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--csi"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.csi`
 
 Required:
 
@@ -11135,7 +11135,7 @@ Optional:
 - `volume_attributes` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--node_publish_secret_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.volume_attributes`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.node_publish_secret_ref`
 
 Optional:
 
@@ -11144,7 +11144,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--downward_api"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.downward_api`
 
 Optional:
 
@@ -11165,7 +11165,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--items--resource_field_ref))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.items.resource_field_ref`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.items.field_ref`
 
 Required:
 
@@ -11192,7 +11192,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--empty_dir"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.empty_dir`
 
 Optional:
 
@@ -11201,7 +11201,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--ephemeral"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.ephemeral`
 
 Optional:
 
@@ -11219,7 +11219,7 @@ Optional:
 - `metadata` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.volume_claim_template.metadata`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.volume_claim_template.spec`
 
 Optional:
 
@@ -11278,7 +11278,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--volume_claim_template--metadata--selector--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.volume_claim_template.metadata.selector.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.volume_claim_template.metadata.selector.match_expressions`
 
 Required:
 
@@ -11295,7 +11295,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--fc"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.fc`
 
 Optional:
 
@@ -11307,7 +11307,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--flex_volume"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.flex_volume`
 
 Required:
 
@@ -11330,7 +11330,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--flocker"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.flocker`
 
 Optional:
 
@@ -11339,7 +11339,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--gce_persistent_disk"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.gce_persistent_disk`
 
 Required:
 
@@ -11353,7 +11353,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--git_repo"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.git_repo`
 
 Required:
 
@@ -11366,7 +11366,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--glusterfs"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.glusterfs`
 
 Required:
 
@@ -11379,7 +11379,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--host_path"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.host_path`
 
 Required:
 
@@ -11391,7 +11391,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--iscsi"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.iscsi`
 
 Required:
 
@@ -11420,7 +11420,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--nfs"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.nfs`
 
 Required:
 
@@ -11433,7 +11433,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--persistent_volume_claim"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.persistent_volume_claim`
 
 Required:
 
@@ -11445,7 +11445,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--photon_persistent_disk"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.photon_persistent_disk`
 
 Required:
 
@@ -11457,7 +11457,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--portworx_volume"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.portworx_volume`
 
 Required:
 
@@ -11470,7 +11470,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--projected"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.projected`
 
 Optional:
 
@@ -11489,7 +11489,7 @@ Optional:
 - `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--sources--service_account_token))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--sources--cluster_trust_bundle"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.sources.cluster_trust_bundle`
 
 Required:
 
@@ -11511,7 +11511,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--sources--service_account_token--label_selector--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.sources.service_account_token.label_selector.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.sources.service_account_token.label_selector.match_expressions`
 
 Required:
 
@@ -11526,7 +11526,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.sources.config_map`
 
 Optional:
 
@@ -11549,7 +11549,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.sources.downward_api`
 
 Optional:
 
@@ -11569,7 +11569,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.sources.service_account_token.items.field_ref`
 
 Required:
 
@@ -11596,7 +11596,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.sources.secret`
 
 Optional:
 
@@ -11634,7 +11634,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--quobyte"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.quobyte`
 
 Required:
 
@@ -11650,7 +11650,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--rbd"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.rbd`
 
 Required:
 
@@ -11667,7 +11667,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.user`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -11676,7 +11676,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--scale_io"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.scale_io`
 
 Required:
 
@@ -11695,7 +11695,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.volume_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -11704,7 +11704,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--secret"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.secret`
 
 Optional:
 
@@ -11714,7 +11714,7 @@ Optional:
 - `secret_name` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.secret_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.items`
 
 Required:
 
@@ -11728,7 +11728,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--storageos"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.storageos`
 
 Optional:
 
@@ -11739,7 +11739,7 @@ Optional:
 - `volume_namespace` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecar_volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.volume_namespace`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecar_volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -11796,7 +11796,7 @@ Optional:
 - `working_dir` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--env"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.env`
 
 Required:
 
@@ -11818,7 +11818,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -11831,7 +11831,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.value_from.field_ref`
 
 Required:
 
@@ -11843,7 +11843,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -11871,7 +11871,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--env_from"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.env_from`
 
 Optional:
 
@@ -11880,7 +11880,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--secret_ref))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--config_map_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.secret_ref`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.config_map_ref`
 
 Optional:
 
@@ -11899,7 +11899,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--lifecycle"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.lifecycle`
 
 Optional:
 
@@ -11907,7 +11907,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--pre_stop))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--post_start"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.pre_stop`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.post_start`
 
 Optional:
 
@@ -11917,7 +11917,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -11925,7 +11925,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -11949,7 +11949,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--pre_stop--sleep"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.pre_stop.sleep`
 
 Required:
 
@@ -11980,7 +11980,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -11988,7 +11988,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -12012,7 +12012,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--pre_stop--sleep"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.pre_stop.sleep`
 
 Required:
 
@@ -12034,7 +12034,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--liveness_probe"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.liveness_probe`
 
 Optional:
 
@@ -12050,7 +12050,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--exec"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.exec`
 
 Optional:
 
@@ -12058,7 +12058,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--grpc"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.grpc`
 
 Required:
 
@@ -12070,7 +12070,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--http_get"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.http_get`
 
 Required:
 
@@ -12084,7 +12084,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds.http_headers`
 
 Required:
 
@@ -12094,7 +12094,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.tcp_socket`
 
 Required:
 
@@ -12107,7 +12107,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--ports"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.ports`
 
 Required:
 
@@ -12122,7 +12122,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--readiness_probe"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.readiness_probe`
 
 Optional:
 
@@ -12138,7 +12138,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--exec"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.exec`
 
 Optional:
 
@@ -12146,7 +12146,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--grpc"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.grpc`
 
 Required:
 
@@ -12158,7 +12158,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--http_get"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.http_get`
 
 Required:
 
@@ -12172,7 +12172,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds.http_headers`
 
 Required:
 
@@ -12182,7 +12182,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.tcp_socket`
 
 Required:
 
@@ -12195,7 +12195,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--resize_policy"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.resize_policy`
 
 Required:
 
@@ -12204,7 +12204,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--resources"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.resources`
 
 Optional:
 
@@ -12213,7 +12213,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--claims"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.requests`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.claims`
 
 Required:
 
@@ -12222,7 +12222,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--security_context"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.security_context`
 
 Optional:
 
@@ -12239,7 +12239,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--windows_options))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--capabilities"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.windows_options`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.capabilities`
 
 Optional:
 
@@ -12248,7 +12248,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--se_linux_options"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.windows_options`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.se_linux_options`
 
 Optional:
 
@@ -12259,7 +12259,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--seccomp_profile"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.windows_options`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.seccomp_profile`
 
 Required:
 
@@ -12283,7 +12283,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--startup_probe"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.startup_probe`
 
 Optional:
 
@@ -12299,7 +12299,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--exec"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.exec`
 
 Optional:
 
@@ -12307,7 +12307,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--grpc"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.grpc`
 
 Required:
 
@@ -12319,7 +12319,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--http_get"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.http_get`
 
 Required:
 
@@ -12333,7 +12333,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds.http_headers`
 
 Required:
 
@@ -12343,7 +12343,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir.tcp_socket`
 
 Required:
 
@@ -12356,7 +12356,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--volume_devices"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.volume_devices`
 
 Required:
 
@@ -12365,7 +12365,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--sidecars--volume_mounts"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.working_dir`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.sidecars.volume_mounts`
 
 Required:
 
@@ -12411,7 +12411,7 @@ Optional:
 - `node_taints_policy` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--topology_spread_constraints--label_selector"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.topology_spread_constraints.node_taints_policy`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.topology_spread_constraints.label_selector`
 
 Optional:
 
@@ -12419,7 +12419,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--topology_spread_constraints--node_taints_policy--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.topology_spread_constraints.node_taints_policy.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.topology_spread_constraints.node_taints_policy.match_expressions`
 
 Required:
 
@@ -12443,7 +12443,7 @@ Optional:
 - `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--volume_spec--persistent_volume_claim))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--volume_spec--empty_dir"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.volume_spec.persistent_volume_claim`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.volume_spec.empty_dir`
 
 Optional:
 
@@ -12452,7 +12452,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--volume_spec--host_path"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.volume_spec.persistent_volume_claim`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.volume_spec.host_path`
 
 Required:
 
@@ -12481,7 +12481,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--volume_spec--persistent_volume_claim--data_source"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.volume_spec.persistent_volume_claim.volume_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.volume_spec.persistent_volume_claim.data_source`
 
 Required:
 
@@ -12494,7 +12494,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--volume_spec--persistent_volume_claim--data_source_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.volume_spec.persistent_volume_claim.volume_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.volume_spec.persistent_volume_claim.data_source_ref`
 
 Required:
 
@@ -12508,7 +12508,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--volume_spec--persistent_volume_claim--resources"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.volume_spec.persistent_volume_claim.volume_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.volume_spec.persistent_volume_claim.resources`
 
 Optional:
 
@@ -12517,7 +12517,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--volume_spec--persistent_volume_claim--selector"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.volume_spec.persistent_volume_claim.volume_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.volume_spec.persistent_volume_claim.selector`
 
 Optional:
 
@@ -12525,7 +12525,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--volume_spec--persistent_volume_claim--volume_name--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.volume_spec.persistent_volume_claim.volume_name.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.volume_spec.persistent_volume_claim.volume_name.match_expressions`
 
 Required:
 
@@ -12542,7 +12542,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--pod_disruption_budget"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec`
+### Nested Schema for `spec.sharding.configsvr_repl_set.pod_disruption_budget`
 
 Optional:
 
@@ -12551,7 +12551,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--pod_security_context"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec`
+### Nested Schema for `spec.sharding.configsvr_repl_set.pod_security_context`
 
 Optional:
 
@@ -12611,7 +12611,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--readiness_probe"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec`
+### Nested Schema for `spec.sharding.configsvr_repl_set.readiness_probe`
 
 Optional:
 
@@ -12661,7 +12661,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--http_get--http_headers"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.http_get.scheme`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.http_get.http_headers`
 
 Required:
 
@@ -12684,7 +12684,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--resources"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec`
+### Nested Schema for `spec.sharding.configsvr_repl_set.resources`
 
 Optional:
 
@@ -12702,7 +12702,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--sidecar_pv_cs"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec`
+### Nested Schema for `spec.sharding.configsvr_repl_set.sidecar_pv_cs`
 
 Optional:
 
@@ -12728,7 +12728,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--spec--data_source"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.spec.volume_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.spec.data_source`
 
 Required:
 
@@ -12741,7 +12741,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--spec--data_source_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.spec.volume_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.spec.data_source_ref`
 
 Required:
 
@@ -12755,7 +12755,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--spec--resources"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.spec.volume_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.spec.resources`
 
 Optional:
 
@@ -12764,7 +12764,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--spec--selector"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.spec.volume_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.spec.selector`
 
 Optional:
 
@@ -12772,7 +12772,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.spec.volume_name.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.spec.volume_name.match_expressions`
 
 Required:
 
@@ -12801,7 +12801,7 @@ Optional:
 - `phase` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--status--conditions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.status.phase`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.status.conditions`
 
 Required:
 
@@ -12817,7 +12817,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--status--modify_volume_status"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.status.phase`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.status.modify_volume_status`
 
 Required:
 
@@ -12831,7 +12831,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--sidecar_volumes"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec`
+### Nested Schema for `spec.sharding.configsvr_repl_set.sidecar_volumes`
 
 Required:
 
@@ -12928,7 +12928,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--cephfs--secret_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.cephfs.user`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.cephfs.secret_ref`
 
 Optional:
 
@@ -12969,7 +12969,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--config_map--items"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.config_map.optional`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.config_map.items`
 
 Required:
 
@@ -12997,7 +12997,7 @@ Optional:
 - `volume_attributes` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--csi--node_publish_secret_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.csi.volume_attributes`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -13027,7 +13027,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--downward_api--items--resource_field_ref))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--downward_api--items--field_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.downward_api.items.resource_field_ref`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.downward_api.items.field_ref`
 
 Required:
 
@@ -13081,7 +13081,7 @@ Optional:
 - `metadata` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--ephemeral--volume_claim_template--spec"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.ephemeral.volume_claim_template.metadata`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.ephemeral.volume_claim_template.spec`
 
 Optional:
 
@@ -13096,7 +13096,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--ephemeral--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.ephemeral.volume_claim_template.metadata.data_source`
 
 Required:
 
@@ -13109,7 +13109,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--ephemeral--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.ephemeral.volume_claim_template.metadata.data_source_ref`
 
 Required:
 
@@ -13123,7 +13123,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--ephemeral--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.ephemeral.volume_claim_template.metadata.resources`
 
 Optional:
 
@@ -13132,7 +13132,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--ephemeral--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.ephemeral.volume_claim_template.metadata.selector`
 
 Optional:
 
@@ -13351,7 +13351,7 @@ Optional:
 - `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--projected--sources--service_account_token))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--projected--sources--cluster_trust_bundle"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.projected.sources.service_account_token`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.projected.sources.cluster_trust_bundle`
 
 Required:
 
@@ -13365,7 +13365,7 @@ Optional:
 - `signer_name` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--projected--sources--service_account_token--label_selector"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.projected.sources.service_account_token.signer_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.projected.sources.service_account_token.label_selector`
 
 Optional:
 
@@ -13388,7 +13388,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--projected--sources--config_map"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.projected.sources.service_account_token`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.projected.sources.config_map`
 
 Optional:
 
@@ -13397,7 +13397,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.projected.sources.service_account_token.optional`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.projected.sources.service_account_token.items`
 
 Required:
 
@@ -13411,7 +13411,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--projected--sources--downward_api"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.projected.sources.service_account_token`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.projected.sources.downward_api`
 
 Optional:
 
@@ -13458,7 +13458,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--projected--sources--secret"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.projected.sources.service_account_token`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.projected.sources.secret`
 
 Optional:
 
@@ -13467,7 +13467,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.projected.sources.service_account_token.optional`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.projected.sources.service_account_token.items`
 
 Required:
 
@@ -13529,7 +13529,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--rbd--secret_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.rbd.user`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.rbd.secret_ref`
 
 Optional:
 
@@ -13557,7 +13557,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--scale_io--secret_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.scale_io.volume_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.scale_io.secret_ref`
 
 Optional:
 
@@ -13576,7 +13576,7 @@ Optional:
 - `secret_name` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--secret--items"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.secret.secret_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.secret.items`
 
 Required:
 
@@ -13601,7 +13601,7 @@ Optional:
 - `volume_namespace` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--storageos--secret_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.storageos.volume_namespace`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.storageos.secret_ref`
 
 Optional:
 
@@ -13625,7 +13625,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--sidecars"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec`
+### Nested Schema for `spec.sharding.configsvr_repl_set.sidecars`
 
 Required:
 
@@ -13680,7 +13680,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.env.value_from.secret_key_ref`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -13693,7 +13693,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--env--value_from--field_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.env.value_from.secret_key_ref`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.env.value_from.field_ref`
 
 Required:
 
@@ -13705,7 +13705,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.env.value_from.secret_key_ref`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.env.value_from.resource_field_ref`
 
 Required:
 
@@ -13742,7 +13742,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--env_from--secret_ref))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--env_from--config_map_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.env_from.secret_ref`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.env_from.config_map_ref`
 
 Optional:
 
@@ -13769,7 +13769,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--lifecycle--pre_stop))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--lifecycle--post_start"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.lifecycle.pre_stop`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.lifecycle.post_start`
 
 Optional:
 
@@ -13779,7 +13779,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -13787,7 +13787,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -13801,7 +13801,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -13811,7 +13811,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--lifecycle--pre_stop--sleep"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.lifecycle.pre_stop.sleep`
 
 Required:
 
@@ -13842,7 +13842,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -13850,7 +13850,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -13864,7 +13864,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -13874,7 +13874,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--lifecycle--pre_stop--sleep"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.lifecycle.pre_stop.sleep`
 
 Required:
 
@@ -13912,7 +13912,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--liveness_probe--exec"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.liveness_probe.exec`
 
 Optional:
 
@@ -13920,7 +13920,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--liveness_probe--grpc"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.liveness_probe.grpc`
 
 Required:
 
@@ -13932,7 +13932,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--liveness_probe--http_get"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.liveness_probe.http_get`
 
 Required:
 
@@ -13946,7 +13946,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.liveness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.liveness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -13956,7 +13956,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.liveness_probe.tcp_socket`
 
 Required:
 
@@ -14000,7 +14000,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--readiness_probe--exec"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.readiness_probe.exec`
 
 Optional:
 
@@ -14008,7 +14008,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--readiness_probe--grpc"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.readiness_probe.grpc`
 
 Required:
 
@@ -14020,7 +14020,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--readiness_probe--http_get"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.readiness_probe.http_get`
 
 Required:
 
@@ -14034,7 +14034,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.readiness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.readiness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -14044,7 +14044,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.readiness_probe.tcp_socket`
 
 Required:
 
@@ -14075,7 +14075,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--resources--claims"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.resources.requests`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.resources.claims`
 
 Required:
 
@@ -14101,7 +14101,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--security_context--windows_options))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--security_context--capabilities"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.security_context.windows_options`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.security_context.capabilities`
 
 Optional:
 
@@ -14110,7 +14110,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--security_context--se_linux_options"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.security_context.windows_options`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.security_context.se_linux_options`
 
 Optional:
 
@@ -14121,7 +14121,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.security_context.windows_options`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.security_context.seccomp_profile`
 
 Required:
 
@@ -14161,7 +14161,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--startup_probe--exec"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.startup_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.startup_probe.exec`
 
 Optional:
 
@@ -14169,7 +14169,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--startup_probe--grpc"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.startup_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.startup_probe.grpc`
 
 Required:
 
@@ -14181,7 +14181,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--startup_probe--http_get"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.startup_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.startup_probe.http_get`
 
 Required:
 
@@ -14195,7 +14195,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--startup_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.startup_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.startup_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -14205,7 +14205,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.startup_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.startup_probe.tcp_socket`
 
 Required:
 
@@ -14244,7 +14244,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--storage"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec`
+### Nested Schema for `spec.sharding.configsvr_repl_set.storage`
 
 Optional:
 
@@ -14290,7 +14290,7 @@ Optional:
 - `index_config` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--volume_spec--wired_tiger--index_config))
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--wired_tiger--collection_config"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.wired_tiger.index_config`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.wired_tiger.collection_config`
 
 Optional:
 
@@ -14298,7 +14298,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--wired_tiger--engine_config"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.wired_tiger.index_config`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.wired_tiger.engine_config`
 
 Optional:
 
@@ -14318,7 +14318,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--tolerations"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec`
+### Nested Schema for `spec.sharding.configsvr_repl_set.tolerations`
 
 Optional:
 
@@ -14330,7 +14330,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--topology_spread_constraints"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec`
+### Nested Schema for `spec.sharding.configsvr_repl_set.topology_spread_constraints`
 
 Required:
 
@@ -14355,7 +14355,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--label_selector--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.label_selector.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.label_selector.match_expressions`
 
 Required:
 
@@ -14417,7 +14417,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--persistent_volume_claim--data_source"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.persistent_volume_claim.volume_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.persistent_volume_claim.data_source`
 
 Required:
 
@@ -14430,7 +14430,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--persistent_volume_claim--data_source_ref"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.persistent_volume_claim.volume_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.persistent_volume_claim.data_source_ref`
 
 Required:
 
@@ -14444,7 +14444,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--persistent_volume_claim--resources"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.persistent_volume_claim.volume_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.persistent_volume_claim.resources`
 
 Optional:
 
@@ -14453,7 +14453,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--persistent_volume_claim--selector"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.persistent_volume_claim.volume_name`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.persistent_volume_claim.selector`
 
 Optional:
 
@@ -14461,7 +14461,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--volume_spec--persistent_volume_claim--volume_name--match_expressions"></a>
-### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.persistent_volume_claim.volume_name.match_labels`
+### Nested Schema for `spec.sharding.configsvr_repl_set.volume_spec.persistent_volume_claim.volume_name.match_expressions`
 
 Required:
 
@@ -14510,7 +14510,7 @@ Optional:
 - `topology_spread_constraints` (Attributes List) (see [below for nested schema](#nestedatt--spec--sharding--mongos--topology_spread_constraints))
 
 <a id="nestedatt--spec--sharding--mongos--affinity"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints`
+### Nested Schema for `spec.sharding.mongos.affinity`
 
 Optional:
 
@@ -14527,7 +14527,7 @@ Optional:
 - `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--mongos--topology_spread_constraints--advanced--pod_anti_affinity))
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--advanced--node_affinity"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_anti_affinity`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.node_affinity`
 
 Optional:
 
@@ -14535,7 +14535,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--mongos--topology_spread_constraints--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -14543,7 +14543,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -14623,7 +14623,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--advanced--pod_affinity"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_anti_affinity`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_affinity`
 
 Optional:
 
@@ -14631,7 +14631,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--sharding--mongos--topology_spread_constraints--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -14639,7 +14639,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -14662,7 +14662,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_labels`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
 
 Required:
 
@@ -14684,7 +14684,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_labels`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
 
 Required:
 
@@ -14715,7 +14715,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -14737,7 +14737,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -14769,7 +14769,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--sharding--mongos--topology_spread_constraints--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -14777,7 +14777,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -14800,7 +14800,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_labels`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
 
 Required:
 
@@ -14822,7 +14822,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_labels`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
 
 Required:
 
@@ -14853,7 +14853,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -14875,7 +14875,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -14901,7 +14901,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--container_security_context"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints`
+### Nested Schema for `spec.sharding.mongos.container_security_context`
 
 Optional:
 
@@ -14962,7 +14962,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--expose"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints`
+### Nested Schema for `spec.sharding.mongos.expose`
 
 Optional:
 
@@ -14974,7 +14974,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--host_aliases"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints`
+### Nested Schema for `spec.sharding.mongos.host_aliases`
 
 Optional:
 
@@ -14983,7 +14983,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--liveness_probe"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints`
+### Nested Schema for `spec.sharding.mongos.liveness_probe`
 
 Optional:
 
@@ -15034,7 +15034,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--http_get--http_headers"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.http_get.scheme`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.http_get.http_headers`
 
 Required:
 
@@ -15057,7 +15057,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--pod_disruption_budget"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints`
+### Nested Schema for `spec.sharding.mongos.pod_disruption_budget`
 
 Optional:
 
@@ -15066,7 +15066,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--pod_security_context"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints`
+### Nested Schema for `spec.sharding.mongos.pod_security_context`
 
 Optional:
 
@@ -15126,7 +15126,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--readiness_probe"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints`
+### Nested Schema for `spec.sharding.mongos.readiness_probe`
 
 Optional:
 
@@ -15176,7 +15176,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--http_get--http_headers"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.http_get.scheme`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.http_get.http_headers`
 
 Required:
 
@@ -15199,7 +15199,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--resources"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints`
+### Nested Schema for `spec.sharding.mongos.resources`
 
 Optional:
 
@@ -15217,7 +15217,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding--mongos--set_parameter"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints`
+### Nested Schema for `spec.sharding.mongos.set_parameter`
 
 Optional:
 
@@ -15225,7 +15225,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--sidecar_pv_cs"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints`
+### Nested Schema for `spec.sharding.mongos.sidecar_pv_cs`
 
 Optional:
 
@@ -15251,7 +15251,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--spec--data_source"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.spec.volume_name`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.spec.data_source`
 
 Required:
 
@@ -15264,7 +15264,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--spec--data_source_ref"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.spec.volume_name`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.spec.data_source_ref`
 
 Required:
 
@@ -15278,7 +15278,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--spec--resources"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.spec.volume_name`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.spec.resources`
 
 Optional:
 
@@ -15287,7 +15287,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--spec--selector"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.spec.volume_name`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.spec.selector`
 
 Optional:
 
@@ -15295,7 +15295,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.spec.volume_name.match_labels`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.spec.volume_name.match_expressions`
 
 Required:
 
@@ -15324,7 +15324,7 @@ Optional:
 - `phase` (String)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--status--conditions"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.status.phase`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.status.conditions`
 
 Required:
 
@@ -15340,7 +15340,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--status--modify_volume_status"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.status.phase`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.status.modify_volume_status`
 
 Required:
 
@@ -15354,7 +15354,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--sidecar_volumes"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints`
+### Nested Schema for `spec.sharding.mongos.sidecar_volumes`
 
 Required:
 
@@ -15451,7 +15451,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--cephfs--secret_ref"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.cephfs.user`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.cephfs.secret_ref`
 
 Optional:
 
@@ -15492,7 +15492,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--config_map--items"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.config_map.optional`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.config_map.items`
 
 Required:
 
@@ -15520,7 +15520,7 @@ Optional:
 - `volume_attributes` (Map of String)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--csi--node_publish_secret_ref"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.csi.volume_attributes`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -15550,7 +15550,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--mongos--topology_spread_constraints--downward_api--items--resource_field_ref))
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--downward_api--items--field_ref"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.downward_api.items.resource_field_ref`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.downward_api.items.field_ref`
 
 Required:
 
@@ -15604,7 +15604,7 @@ Optional:
 - `metadata` (Map of String)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--ephemeral--volume_claim_template--spec"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.ephemeral.volume_claim_template.metadata`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.ephemeral.volume_claim_template.spec`
 
 Optional:
 
@@ -15619,7 +15619,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--ephemeral--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.ephemeral.volume_claim_template.metadata.data_source`
 
 Required:
 
@@ -15632,7 +15632,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--ephemeral--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.ephemeral.volume_claim_template.metadata.data_source_ref`
 
 Required:
 
@@ -15646,7 +15646,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--ephemeral--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.ephemeral.volume_claim_template.metadata.resources`
 
 Optional:
 
@@ -15655,7 +15655,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--ephemeral--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.ephemeral.volume_claim_template.metadata.selector`
 
 Optional:
 
@@ -15874,7 +15874,7 @@ Optional:
 - `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--mongos--topology_spread_constraints--projected--sources--service_account_token))
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--projected--sources--cluster_trust_bundle"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.projected.sources.service_account_token`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.projected.sources.cluster_trust_bundle`
 
 Required:
 
@@ -15888,7 +15888,7 @@ Optional:
 - `signer_name` (String)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--projected--sources--service_account_token--label_selector"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.projected.sources.service_account_token.signer_name`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.projected.sources.service_account_token.label_selector`
 
 Optional:
 
@@ -15911,7 +15911,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--projected--sources--config_map"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.projected.sources.service_account_token`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.projected.sources.config_map`
 
 Optional:
 
@@ -15920,7 +15920,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.projected.sources.service_account_token.optional`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.projected.sources.service_account_token.items`
 
 Required:
 
@@ -15934,7 +15934,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--projected--sources--downward_api"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.projected.sources.service_account_token`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.projected.sources.downward_api`
 
 Optional:
 
@@ -15981,7 +15981,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--projected--sources--secret"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.projected.sources.service_account_token`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.projected.sources.secret`
 
 Optional:
 
@@ -15990,7 +15990,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.projected.sources.service_account_token.optional`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.projected.sources.service_account_token.items`
 
 Required:
 
@@ -16052,7 +16052,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--rbd--secret_ref"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.rbd.user`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.rbd.secret_ref`
 
 Optional:
 
@@ -16080,7 +16080,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--scale_io--secret_ref"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.scale_io.volume_name`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.scale_io.secret_ref`
 
 Optional:
 
@@ -16099,7 +16099,7 @@ Optional:
 - `secret_name` (String)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--secret--items"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.secret.secret_name`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.secret.items`
 
 Required:
 
@@ -16124,7 +16124,7 @@ Optional:
 - `volume_namespace` (String)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--storageos--secret_ref"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.storageos.volume_namespace`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.storageos.secret_ref`
 
 Optional:
 
@@ -16148,7 +16148,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--sidecars"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints`
+### Nested Schema for `spec.sharding.mongos.sidecars`
 
 Required:
 
@@ -16203,7 +16203,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--mongos--topology_spread_constraints--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.env.value_from.secret_key_ref`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -16216,7 +16216,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--env--value_from--field_ref"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.env.value_from.secret_key_ref`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.env.value_from.field_ref`
 
 Required:
 
@@ -16228,7 +16228,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.env.value_from.secret_key_ref`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.env.value_from.resource_field_ref`
 
 Required:
 
@@ -16265,7 +16265,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--mongos--topology_spread_constraints--env_from--secret_ref))
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--env_from--config_map_ref"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.env_from.secret_ref`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.env_from.config_map_ref`
 
 Optional:
 
@@ -16292,7 +16292,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--mongos--topology_spread_constraints--lifecycle--pre_stop))
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--lifecycle--post_start"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.lifecycle.pre_stop`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.lifecycle.post_start`
 
 Optional:
 
@@ -16302,7 +16302,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--mongos--topology_spread_constraints--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -16310,7 +16310,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -16324,7 +16324,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -16334,7 +16334,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--lifecycle--pre_stop--sleep"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.lifecycle.pre_stop.sleep`
 
 Required:
 
@@ -16365,7 +16365,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--mongos--topology_spread_constraints--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -16373,7 +16373,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -16387,7 +16387,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -16397,7 +16397,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--lifecycle--pre_stop--sleep"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.lifecycle.pre_stop.sleep`
 
 Required:
 
@@ -16435,7 +16435,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--liveness_probe--exec"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.liveness_probe.exec`
 
 Optional:
 
@@ -16443,7 +16443,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--liveness_probe--grpc"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.liveness_probe.grpc`
 
 Required:
 
@@ -16455,7 +16455,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--liveness_probe--http_get"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.liveness_probe.http_get`
 
 Required:
 
@@ -16469,7 +16469,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.liveness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.liveness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -16479,7 +16479,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.liveness_probe.tcp_socket`
 
 Required:
 
@@ -16523,7 +16523,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--readiness_probe--exec"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.readiness_probe.exec`
 
 Optional:
 
@@ -16531,7 +16531,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--readiness_probe--grpc"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.readiness_probe.grpc`
 
 Required:
 
@@ -16543,7 +16543,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--readiness_probe--http_get"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.readiness_probe.http_get`
 
 Required:
 
@@ -16557,7 +16557,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.readiness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.readiness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -16567,7 +16567,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.readiness_probe.tcp_socket`
 
 Required:
 
@@ -16598,7 +16598,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--resources--claims"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.resources.requests`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.resources.claims`
 
 Required:
 
@@ -16624,7 +16624,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--mongos--topology_spread_constraints--security_context--windows_options))
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--security_context--capabilities"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.security_context.windows_options`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.security_context.capabilities`
 
 Optional:
 
@@ -16633,7 +16633,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--security_context--se_linux_options"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.security_context.windows_options`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.security_context.se_linux_options`
 
 Optional:
 
@@ -16644,7 +16644,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.security_context.windows_options`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.security_context.seccomp_profile`
 
 Required:
 
@@ -16684,7 +16684,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--startup_probe--exec"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.startup_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.startup_probe.exec`
 
 Optional:
 
@@ -16692,7 +16692,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--startup_probe--grpc"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.startup_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.startup_probe.grpc`
 
 Required:
 
@@ -16704,7 +16704,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--startup_probe--http_get"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.startup_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.startup_probe.http_get`
 
 Required:
 
@@ -16718,7 +16718,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--startup_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.startup_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.startup_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -16728,7 +16728,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.startup_probe.timeout_seconds`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.startup_probe.tcp_socket`
 
 Required:
 
@@ -16767,7 +16767,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding--mongos--tolerations"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints`
+### Nested Schema for `spec.sharding.mongos.tolerations`
 
 Optional:
 
@@ -16804,7 +16804,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--sharding--mongos--topology_spread_constraints--label_selector--match_expressions"></a>
-### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.label_selector.match_labels`
+### Nested Schema for `spec.sharding.mongos.topology_spread_constraints.label_selector.match_expressions`
 
 Required:
 

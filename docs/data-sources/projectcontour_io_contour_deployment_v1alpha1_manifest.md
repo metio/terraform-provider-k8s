@@ -133,7 +133,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--contour--resources--claims"></a>
-### Nested Schema for `spec.contour.resources.requests`
+### Nested Schema for `spec.contour.resources.claims`
 
 Required:
 
@@ -270,7 +270,7 @@ Optional:
 - `vsphere_volume` (Attributes) vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume))
 
 <a id="nestedatt--spec--envoy--extra_volumes--aws_elastic_block_store"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.envoy.extra_volumes.aws_elastic_block_store`
 
 Required:
 
@@ -284,7 +284,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--azure_disk"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.envoy.extra_volumes.azure_disk`
 
 Required:
 
@@ -300,7 +300,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--azure_file"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.envoy.extra_volumes.azure_file`
 
 Required:
 
@@ -313,7 +313,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--cephfs"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.envoy.extra_volumes.cephfs`
 
 Required:
 
@@ -337,7 +337,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--cinder"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.envoy.extra_volumes.cinder`
 
 Required:
 
@@ -359,7 +359,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--config_map"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.envoy.extra_volumes.config_map`
 
 Optional:
 
@@ -383,7 +383,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--csi"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.envoy.extra_volumes.csi`
 
 Required:
 
@@ -406,7 +406,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--downward_api"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.envoy.extra_volumes.downward_api`
 
 Optional:
 
@@ -427,7 +427,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--items--resource_field_ref))
 
 <a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.items.resource_field_ref`
+### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.items.field_ref`
 
 Required:
 
@@ -454,7 +454,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--empty_dir"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.envoy.extra_volumes.empty_dir`
 
 Optional:
 
@@ -463,7 +463,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--ephemeral"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.envoy.extra_volumes.ephemeral`
 
 Optional:
 
@@ -481,7 +481,7 @@ Optional:
 - `metadata` (Map of String) May contain labels and annotations that will be copied into the PVCwhen creating it. No other fields are allowed and will be rejected duringvalidation.
 
 <a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.volume_claim_template.metadata`
+### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.volume_claim_template.spec`
 
 Optional:
 
@@ -496,7 +496,7 @@ Optional:
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.volume_claim_template.metadata.data_source`
 
 Required:
 
@@ -509,7 +509,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.volume_claim_template.metadata.data_source_ref`
 
 Required:
 
@@ -523,7 +523,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.volume_claim_template.metadata.resources`
 
 Optional:
 
@@ -532,7 +532,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.volume_claim_template.metadata.selector`
 
 Optional:
 
@@ -540,7 +540,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--volume_claim_template--metadata--volume_name--match_expressions"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_labels`
+### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_expressions`
 
 Required:
 
@@ -557,7 +557,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--fc"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.envoy.extra_volumes.fc`
 
 Optional:
 
@@ -569,7 +569,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--flex_volume"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.envoy.extra_volumes.flex_volume`
 
 Required:
 
@@ -592,7 +592,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--flocker"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.envoy.extra_volumes.flocker`
 
 Optional:
 
@@ -601,7 +601,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--gce_persistent_disk"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.envoy.extra_volumes.gce_persistent_disk`
 
 Required:
 
@@ -615,7 +615,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--git_repo"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.envoy.extra_volumes.git_repo`
 
 Required:
 
@@ -628,7 +628,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--glusterfs"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.envoy.extra_volumes.glusterfs`
 
 Required:
 
@@ -641,7 +641,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--host_path"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.envoy.extra_volumes.host_path`
 
 Required:
 
@@ -653,7 +653,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--iscsi"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.envoy.extra_volumes.iscsi`
 
 Required:
 
@@ -682,7 +682,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--nfs"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.envoy.extra_volumes.nfs`
 
 Required:
 
@@ -695,7 +695,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--persistent_volume_claim"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.envoy.extra_volumes.persistent_volume_claim`
 
 Required:
 
@@ -707,7 +707,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--photon_persistent_disk"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.envoy.extra_volumes.photon_persistent_disk`
 
 Required:
 
@@ -719,7 +719,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--portworx_volume"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.envoy.extra_volumes.portworx_volume`
 
 Required:
 
@@ -732,7 +732,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--projected"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.envoy.extra_volumes.projected`
 
 Optional:
 
@@ -751,7 +751,7 @@ Optional:
 - `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--service_account_token))
 
 <a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--cluster_trust_bundle"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources.cluster_trust_bundle`
 
 Required:
 
@@ -765,7 +765,7 @@ Optional:
 - `signer_name` (String) Select all ClusterTrustBundles that match this signer name.Mutually-exclusive with name.  The contents of all selectedClusterTrustBundles will be unified and deduplicated.
 
 <a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--service_account_token--label_selector"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources.service_account_token.signer_name`
+### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources.service_account_token.label_selector`
 
 Optional:
 
@@ -773,7 +773,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--service_account_token--signer_name--match_expressions"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources.service_account_token.signer_name.match_labels`
+### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources.service_account_token.signer_name.match_expressions`
 
 Required:
 
@@ -788,7 +788,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources.config_map`
 
 Optional:
 
@@ -797,7 +797,7 @@ Optional:
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources.service_account_token.optional`
+### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources.service_account_token.items`
 
 Required:
 
@@ -811,7 +811,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources.downward_api`
 
 Optional:
 
@@ -831,7 +831,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
 
 <a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources.service_account_token.items.field_ref`
 
 Required:
 
@@ -858,7 +858,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources.secret`
 
 Optional:
 
@@ -867,7 +867,7 @@ Optional:
 - `optional` (Boolean) optional field specify whether the Secret or its key must be defined
 
 <a id="nestedatt--spec--envoy--extra_volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources.service_account_token.optional`
+### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume.sources.service_account_token.items`
 
 Required:
 
@@ -896,7 +896,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--quobyte"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.envoy.extra_volumes.quobyte`
 
 Required:
 
@@ -912,7 +912,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--rbd"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.envoy.extra_volumes.rbd`
 
 Required:
 
@@ -938,7 +938,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--scale_io"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.envoy.extra_volumes.scale_io`
 
 Required:
 
@@ -966,7 +966,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--secret"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.envoy.extra_volumes.secret`
 
 Optional:
 
@@ -990,7 +990,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--extra_volumes--storageos"></a>
-### Nested Schema for `spec.envoy.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.envoy.extra_volumes.storageos`
 
 Optional:
 
@@ -1066,7 +1066,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--envoy--resources--claims"></a>
-### Nested Schema for `spec.envoy.resources.requests`
+### Nested Schema for `spec.envoy.resources.claims`
 
 Required:
 
@@ -1123,7 +1123,7 @@ Optional:
 - `timeouts` (Attributes) Timeouts holds various configurable timeouts that canbe set in the config file. (see [below for nested schema](#nestedatt--spec--runtime_settings--envoy--timeouts))
 
 <a id="nestedatt--spec--runtime_settings--envoy--client_certificate"></a>
-### Nested Schema for `spec.runtime_settings.envoy.timeouts`
+### Nested Schema for `spec.runtime_settings.envoy.client_certificate`
 
 Required:
 
@@ -1132,7 +1132,7 @@ Required:
 
 
 <a id="nestedatt--spec--runtime_settings--envoy--cluster"></a>
-### Nested Schema for `spec.runtime_settings.envoy.timeouts`
+### Nested Schema for `spec.runtime_settings.envoy.cluster`
 
 Optional:
 
@@ -1165,7 +1165,7 @@ Optional:
 
 
 <a id="nestedatt--spec--runtime_settings--envoy--health"></a>
-### Nested Schema for `spec.runtime_settings.envoy.timeouts`
+### Nested Schema for `spec.runtime_settings.envoy.health`
 
 Optional:
 
@@ -1174,7 +1174,7 @@ Optional:
 
 
 <a id="nestedatt--spec--runtime_settings--envoy--http"></a>
-### Nested Schema for `spec.runtime_settings.envoy.timeouts`
+### Nested Schema for `spec.runtime_settings.envoy.http`
 
 Optional:
 
@@ -1184,7 +1184,7 @@ Optional:
 
 
 <a id="nestedatt--spec--runtime_settings--envoy--https"></a>
-### Nested Schema for `spec.runtime_settings.envoy.timeouts`
+### Nested Schema for `spec.runtime_settings.envoy.https`
 
 Optional:
 
@@ -1194,7 +1194,7 @@ Optional:
 
 
 <a id="nestedatt--spec--runtime_settings--envoy--listener"></a>
-### Nested Schema for `spec.runtime_settings.envoy.timeouts`
+### Nested Schema for `spec.runtime_settings.envoy.listener`
 
 Optional:
 
@@ -1232,7 +1232,7 @@ Optional:
 
 
 <a id="nestedatt--spec--runtime_settings--envoy--logging"></a>
-### Nested Schema for `spec.runtime_settings.envoy.timeouts`
+### Nested Schema for `spec.runtime_settings.envoy.logging`
 
 Optional:
 
@@ -1243,7 +1243,7 @@ Optional:
 
 
 <a id="nestedatt--spec--runtime_settings--envoy--metrics"></a>
-### Nested Schema for `spec.runtime_settings.envoy.timeouts`
+### Nested Schema for `spec.runtime_settings.envoy.metrics`
 
 Optional:
 
@@ -1263,7 +1263,7 @@ Optional:
 
 
 <a id="nestedatt--spec--runtime_settings--envoy--network"></a>
-### Nested Schema for `spec.runtime_settings.envoy.timeouts`
+### Nested Schema for `spec.runtime_settings.envoy.network`
 
 Optional:
 
@@ -1272,7 +1272,7 @@ Optional:
 
 
 <a id="nestedatt--spec--runtime_settings--envoy--service"></a>
-### Nested Schema for `spec.runtime_settings.envoy.timeouts`
+### Nested Schema for `spec.runtime_settings.envoy.service`
 
 Required:
 
@@ -1324,7 +1324,7 @@ Optional:
 - `with_request_body` (Attributes) WithRequestBody specifies configuration for sending the client request's body to authorization server. (see [below for nested schema](#nestedatt--spec--runtime_settings--global_ext_auth--with_request_body))
 
 <a id="nestedatt--spec--runtime_settings--global_ext_auth--auth_policy"></a>
-### Nested Schema for `spec.runtime_settings.global_ext_auth.with_request_body`
+### Nested Schema for `spec.runtime_settings.global_ext_auth.auth_policy`
 
 Optional:
 
@@ -1333,7 +1333,7 @@ Optional:
 
 
 <a id="nestedatt--spec--runtime_settings--global_ext_auth--extension_ref"></a>
-### Nested Schema for `spec.runtime_settings.global_ext_auth.with_request_body`
+### Nested Schema for `spec.runtime_settings.global_ext_auth.extension_ref`
 
 Optional:
 
@@ -1372,7 +1372,7 @@ Optional:
 - `root_namespaces` (List of String) Restrict Contour to searching these namespaces for root ingress routes.
 
 <a id="nestedatt--spec--runtime_settings--httpproxy--fallback_certificate"></a>
-### Nested Schema for `spec.runtime_settings.httpproxy.root_namespaces`
+### Nested Schema for `spec.runtime_settings.httpproxy.fallback_certificate`
 
 Required:
 
@@ -1420,7 +1420,7 @@ Optional:
 - `response_headers` (Attributes) ResponseHeadersPolicy defines the response headers set/removed on all routes (see [below for nested schema](#nestedatt--spec--runtime_settings--policy--response_headers))
 
 <a id="nestedatt--spec--runtime_settings--policy--request_headers"></a>
-### Nested Schema for `spec.runtime_settings.policy.response_headers`
+### Nested Schema for `spec.runtime_settings.policy.request_headers`
 
 Optional:
 
@@ -1454,7 +1454,7 @@ Optional:
 - `fail_open` (Boolean) FailOpen defines whether to allow requests to proceed when theRate Limit Service fails to respond with a valid rate limitdecision within the timeout defined on the extension service.
 
 <a id="nestedatt--spec--runtime_settings--rate_limit_service--extension_service"></a>
-### Nested Schema for `spec.runtime_settings.rate_limit_service.fail_open`
+### Nested Schema for `spec.runtime_settings.rate_limit_service.extension_service`
 
 Required:
 
@@ -1463,7 +1463,7 @@ Required:
 
 
 <a id="nestedatt--spec--runtime_settings--rate_limit_service--default_global_rate_limit_policy"></a>
-### Nested Schema for `spec.runtime_settings.rate_limit_service.fail_open`
+### Nested Schema for `spec.runtime_settings.rate_limit_service.default_global_rate_limit_policy`
 
 Optional:
 
@@ -1488,7 +1488,7 @@ Optional:
 - `request_header_value_match` (Attributes) RequestHeaderValueMatch defines a descriptor entry that's populatedif the request's headers match a set of 1+ match criteria. Thedescriptor key is 'header_match', and the descriptor value is static. (see [below for nested schema](#nestedatt--spec--runtime_settings--rate_limit_service--fail_open--descriptors--entries--request_header_value_match))
 
 <a id="nestedatt--spec--runtime_settings--rate_limit_service--fail_open--descriptors--entries--generic_key"></a>
-### Nested Schema for `spec.runtime_settings.rate_limit_service.fail_open.descriptors.entries.request_header_value_match`
+### Nested Schema for `spec.runtime_settings.rate_limit_service.fail_open.descriptors.entries.generic_key`
 
 Optional:
 
@@ -1497,7 +1497,7 @@ Optional:
 
 
 <a id="nestedatt--spec--runtime_settings--rate_limit_service--fail_open--descriptors--entries--request_header"></a>
-### Nested Schema for `spec.runtime_settings.rate_limit_service.fail_open.descriptors.entries.request_header_value_match`
+### Nested Schema for `spec.runtime_settings.rate_limit_service.fail_open.descriptors.entries.request_header`
 
 Optional:
 
@@ -1515,7 +1515,7 @@ Optional:
 - `value` (String) Value defines the value of the descriptor entry.
 
 <a id="nestedatt--spec--runtime_settings--rate_limit_service--fail_open--descriptors--entries--request_header_value_match--headers"></a>
-### Nested Schema for `spec.runtime_settings.rate_limit_service.fail_open.descriptors.entries.request_header_value_match.value`
+### Nested Schema for `spec.runtime_settings.rate_limit_service.fail_open.descriptors.entries.request_header_value_match.headers`
 
 Required:
 
@@ -1555,7 +1555,7 @@ Optional:
 - `service_name` (String) ServiceName defines the name for the service.contour's default is contour.
 
 <a id="nestedatt--spec--runtime_settings--tracing--extension_service"></a>
-### Nested Schema for `spec.runtime_settings.tracing.service_name`
+### Nested Schema for `spec.runtime_settings.tracing.extension_service`
 
 Required:
 
@@ -1564,7 +1564,7 @@ Required:
 
 
 <a id="nestedatt--spec--runtime_settings--tracing--custom_tags"></a>
-### Nested Schema for `spec.runtime_settings.tracing.service_name`
+### Nested Schema for `spec.runtime_settings.tracing.custom_tags`
 
 Required:
 
@@ -1588,7 +1588,7 @@ Optional:
 - `type` (String) Defines the XDSServer to use for 'contour serve'.Values: 'envoy' (default), 'contour (deprecated)'.Other values will produce an error.
 
 <a id="nestedatt--spec--runtime_settings--xds_server--tls"></a>
-### Nested Schema for `spec.runtime_settings.xds_server.type`
+### Nested Schema for `spec.runtime_settings.xds_server.tls`
 
 Optional:
 

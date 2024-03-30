@@ -215,7 +215,7 @@ Optional:
 - `working_dir` (String) Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.
 
 <a id="nestedatt--spec--spec--containers--env"></a>
-### Nested Schema for `spec.spec.containers.working_dir`
+### Nested Schema for `spec.spec.containers.env`
 
 Required:
 
@@ -237,7 +237,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--spec--containers--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--spec--containers--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.spec.containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.spec.containers.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -250,7 +250,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--containers--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.spec.containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.spec.containers.working_dir.value_from.field_ref`
 
 Required:
 
@@ -262,7 +262,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--containers--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.spec.containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.spec.containers.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -290,7 +290,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--containers--env_from"></a>
-### Nested Schema for `spec.spec.containers.working_dir`
+### Nested Schema for `spec.spec.containers.env_from`
 
 Optional:
 
@@ -318,7 +318,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--containers--lifecycle"></a>
-### Nested Schema for `spec.spec.containers.working_dir`
+### Nested Schema for `spec.spec.containers.lifecycle`
 
 Optional:
 
@@ -335,7 +335,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--spec--containers--working_dir--post_start--tcp_socket))
 
 <a id="nestedatt--spec--spec--containers--working_dir--post_start--exec"></a>
-### Nested Schema for `spec.spec.containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.spec.containers.working_dir.post_start.exec`
 
 Optional:
 
@@ -343,7 +343,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--containers--working_dir--post_start--http_get"></a>
-### Nested Schema for `spec.spec.containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.spec.containers.working_dir.post_start.http_get`
 
 Required:
 
@@ -357,7 +357,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--spec--containers--working_dir--post_start--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.spec.containers.working_dir.post_start.tcp_socket.scheme`
+### Nested Schema for `spec.spec.containers.working_dir.post_start.tcp_socket.http_headers`
 
 Required:
 
@@ -389,7 +389,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--spec--containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--spec--containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.spec.containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.spec.containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -397,7 +397,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.spec.containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.spec.containers.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -411,7 +411,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--spec--containers--working_dir--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.spec.containers.working_dir.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.spec.containers.working_dir.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -435,7 +435,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--containers--liveness_probe"></a>
-### Nested Schema for `spec.spec.containers.working_dir`
+### Nested Schema for `spec.spec.containers.liveness_probe`
 
 Optional:
 
@@ -485,7 +485,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--spec--containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.spec.containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.spec.containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -508,7 +508,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--containers--ports"></a>
-### Nested Schema for `spec.spec.containers.working_dir`
+### Nested Schema for `spec.spec.containers.ports`
 
 Required:
 
@@ -523,7 +523,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--containers--readiness_probe"></a>
-### Nested Schema for `spec.spec.containers.working_dir`
+### Nested Schema for `spec.spec.containers.readiness_probe`
 
 Optional:
 
@@ -573,7 +573,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--spec--containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.spec.containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.spec.containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -596,7 +596,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--containers--resize_policy"></a>
-### Nested Schema for `spec.spec.containers.working_dir`
+### Nested Schema for `spec.spec.containers.resize_policy`
 
 Required:
 
@@ -605,7 +605,7 @@ Required:
 
 
 <a id="nestedatt--spec--spec--containers--resources"></a>
-### Nested Schema for `spec.spec.containers.working_dir`
+### Nested Schema for `spec.spec.containers.resources`
 
 Optional:
 
@@ -623,7 +623,7 @@ Required:
 
 
 <a id="nestedatt--spec--spec--containers--security_context"></a>
-### Nested Schema for `spec.spec.containers.working_dir`
+### Nested Schema for `spec.spec.containers.security_context`
 
 Optional:
 
@@ -684,7 +684,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--containers--startup_probe"></a>
-### Nested Schema for `spec.spec.containers.working_dir`
+### Nested Schema for `spec.spec.containers.startup_probe`
 
 Optional:
 
@@ -734,7 +734,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--spec--containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.spec.containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.spec.containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -757,7 +757,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--containers--volume_devices"></a>
-### Nested Schema for `spec.spec.containers.working_dir`
+### Nested Schema for `spec.spec.containers.volume_devices`
 
 Required:
 
@@ -766,7 +766,7 @@ Required:
 
 
 <a id="nestedatt--spec--spec--containers--volume_mounts"></a>
-### Nested Schema for `spec.spec.containers.working_dir`
+### Nested Schema for `spec.spec.containers.volume_mounts`
 
 Required:
 
@@ -792,7 +792,7 @@ Optional:
 - `pod_anti_affinity` (Attributes) Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--spec--affinity--pod_anti_affinity))
 
 <a id="nestedatt--spec--spec--affinity--node_affinity"></a>
-### Nested Schema for `spec.spec.affinity.pod_anti_affinity`
+### Nested Schema for `spec.spec.affinity.node_affinity`
 
 Optional:
 
@@ -808,7 +808,7 @@ Required:
 - `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
 
 <a id="nestedatt--spec--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -816,7 +816,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -859,7 +859,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -888,7 +888,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--affinity--pod_affinity"></a>
-### Nested Schema for `spec.spec.affinity.pod_anti_affinity`
+### Nested Schema for `spec.spec.affinity.pod_affinity`
 
 Optional:
 
@@ -904,7 +904,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -917,7 +917,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -925,7 +925,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -939,7 +939,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -947,7 +947,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -976,7 +976,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -984,7 +984,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -998,7 +998,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -1006,7 +1006,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -1038,7 +1038,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -1051,7 +1051,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -1059,7 +1059,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -1073,7 +1073,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -1081,7 +1081,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -1110,7 +1110,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -1118,7 +1118,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -1132,7 +1132,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -1140,7 +1140,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -1166,7 +1166,7 @@ Optional:
 - `searches` (List of String) A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy. Duplicated search paths will be removed.
 
 <a id="nestedatt--spec--spec--dns_config--options"></a>
-### Nested Schema for `spec.spec.dns_config.searches`
+### Nested Schema for `spec.spec.dns_config.options`
 
 Optional:
 
@@ -1210,7 +1210,7 @@ Optional:
 - `working_dir` (String) Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.
 
 <a id="nestedatt--spec--spec--ephemeral_containers--env"></a>
-### Nested Schema for `spec.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.spec.ephemeral_containers.env`
 
 Required:
 
@@ -1232,7 +1232,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--spec--ephemeral_containers--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--spec--ephemeral_containers--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.spec.ephemeral_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.spec.ephemeral_containers.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -1245,7 +1245,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--ephemeral_containers--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.spec.ephemeral_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.spec.ephemeral_containers.working_dir.value_from.field_ref`
 
 Required:
 
@@ -1257,7 +1257,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--ephemeral_containers--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.spec.ephemeral_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.spec.ephemeral_containers.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -1285,7 +1285,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--ephemeral_containers--env_from"></a>
-### Nested Schema for `spec.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.spec.ephemeral_containers.env_from`
 
 Optional:
 
@@ -1313,7 +1313,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--ephemeral_containers--lifecycle"></a>
-### Nested Schema for `spec.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.spec.ephemeral_containers.lifecycle`
 
 Optional:
 
@@ -1330,7 +1330,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--spec--ephemeral_containers--working_dir--post_start--tcp_socket))
 
 <a id="nestedatt--spec--spec--ephemeral_containers--working_dir--post_start--exec"></a>
-### Nested Schema for `spec.spec.ephemeral_containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.spec.ephemeral_containers.working_dir.post_start.exec`
 
 Optional:
 
@@ -1338,7 +1338,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--ephemeral_containers--working_dir--post_start--http_get"></a>
-### Nested Schema for `spec.spec.ephemeral_containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.spec.ephemeral_containers.working_dir.post_start.http_get`
 
 Required:
 
@@ -1352,7 +1352,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--spec--ephemeral_containers--working_dir--post_start--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.spec.ephemeral_containers.working_dir.post_start.tcp_socket.scheme`
+### Nested Schema for `spec.spec.ephemeral_containers.working_dir.post_start.tcp_socket.http_headers`
 
 Required:
 
@@ -1384,7 +1384,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--spec--ephemeral_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--spec--ephemeral_containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.spec.ephemeral_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.spec.ephemeral_containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -1392,7 +1392,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--ephemeral_containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.spec.ephemeral_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.spec.ephemeral_containers.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -1406,7 +1406,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--spec--ephemeral_containers--working_dir--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.spec.ephemeral_containers.working_dir.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.spec.ephemeral_containers.working_dir.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -1430,7 +1430,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--ephemeral_containers--liveness_probe"></a>
-### Nested Schema for `spec.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.spec.ephemeral_containers.liveness_probe`
 
 Optional:
 
@@ -1480,7 +1480,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--spec--ephemeral_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.spec.ephemeral_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.spec.ephemeral_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -1503,7 +1503,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--ephemeral_containers--ports"></a>
-### Nested Schema for `spec.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.spec.ephemeral_containers.ports`
 
 Required:
 
@@ -1518,7 +1518,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--ephemeral_containers--readiness_probe"></a>
-### Nested Schema for `spec.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.spec.ephemeral_containers.readiness_probe`
 
 Optional:
 
@@ -1568,7 +1568,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--spec--ephemeral_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.spec.ephemeral_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.spec.ephemeral_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -1591,7 +1591,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--ephemeral_containers--resize_policy"></a>
-### Nested Schema for `spec.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.spec.ephemeral_containers.resize_policy`
 
 Required:
 
@@ -1600,7 +1600,7 @@ Required:
 
 
 <a id="nestedatt--spec--spec--ephemeral_containers--resources"></a>
-### Nested Schema for `spec.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.spec.ephemeral_containers.resources`
 
 Optional:
 
@@ -1618,7 +1618,7 @@ Required:
 
 
 <a id="nestedatt--spec--spec--ephemeral_containers--security_context"></a>
-### Nested Schema for `spec.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.spec.ephemeral_containers.security_context`
 
 Optional:
 
@@ -1679,7 +1679,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--ephemeral_containers--startup_probe"></a>
-### Nested Schema for `spec.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.spec.ephemeral_containers.startup_probe`
 
 Optional:
 
@@ -1729,7 +1729,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--spec--ephemeral_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.spec.ephemeral_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.spec.ephemeral_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -1752,7 +1752,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--ephemeral_containers--volume_devices"></a>
-### Nested Schema for `spec.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.spec.ephemeral_containers.volume_devices`
 
 Required:
 
@@ -1761,7 +1761,7 @@ Required:
 
 
 <a id="nestedatt--spec--spec--ephemeral_containers--volume_mounts"></a>
-### Nested Schema for `spec.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.spec.ephemeral_containers.volume_mounts`
 
 Required:
 
@@ -1828,7 +1828,7 @@ Optional:
 - `working_dir` (String) Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.
 
 <a id="nestedatt--spec--spec--init_containers--env"></a>
-### Nested Schema for `spec.spec.init_containers.working_dir`
+### Nested Schema for `spec.spec.init_containers.env`
 
 Required:
 
@@ -1850,7 +1850,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--spec--init_containers--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--spec--init_containers--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.spec.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.spec.init_containers.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -1863,7 +1863,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--init_containers--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.spec.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.spec.init_containers.working_dir.value_from.field_ref`
 
 Required:
 
@@ -1875,7 +1875,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--init_containers--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.spec.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.spec.init_containers.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -1903,7 +1903,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--init_containers--env_from"></a>
-### Nested Schema for `spec.spec.init_containers.working_dir`
+### Nested Schema for `spec.spec.init_containers.env_from`
 
 Optional:
 
@@ -1931,7 +1931,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--init_containers--lifecycle"></a>
-### Nested Schema for `spec.spec.init_containers.working_dir`
+### Nested Schema for `spec.spec.init_containers.lifecycle`
 
 Optional:
 
@@ -1948,7 +1948,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--spec--init_containers--working_dir--post_start--tcp_socket))
 
 <a id="nestedatt--spec--spec--init_containers--working_dir--post_start--exec"></a>
-### Nested Schema for `spec.spec.init_containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.spec.init_containers.working_dir.post_start.exec`
 
 Optional:
 
@@ -1956,7 +1956,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--init_containers--working_dir--post_start--http_get"></a>
-### Nested Schema for `spec.spec.init_containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.spec.init_containers.working_dir.post_start.http_get`
 
 Required:
 
@@ -1970,7 +1970,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--spec--init_containers--working_dir--post_start--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.spec.init_containers.working_dir.post_start.tcp_socket.scheme`
+### Nested Schema for `spec.spec.init_containers.working_dir.post_start.tcp_socket.http_headers`
 
 Required:
 
@@ -2002,7 +2002,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--spec--init_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--spec--init_containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.spec.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.spec.init_containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -2010,7 +2010,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--init_containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.spec.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.spec.init_containers.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -2024,7 +2024,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--spec--init_containers--working_dir--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.spec.init_containers.working_dir.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.spec.init_containers.working_dir.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -2048,7 +2048,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--init_containers--liveness_probe"></a>
-### Nested Schema for `spec.spec.init_containers.working_dir`
+### Nested Schema for `spec.spec.init_containers.liveness_probe`
 
 Optional:
 
@@ -2098,7 +2098,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--spec--init_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.spec.init_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.spec.init_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -2121,7 +2121,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--init_containers--ports"></a>
-### Nested Schema for `spec.spec.init_containers.working_dir`
+### Nested Schema for `spec.spec.init_containers.ports`
 
 Required:
 
@@ -2136,7 +2136,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--init_containers--readiness_probe"></a>
-### Nested Schema for `spec.spec.init_containers.working_dir`
+### Nested Schema for `spec.spec.init_containers.readiness_probe`
 
 Optional:
 
@@ -2186,7 +2186,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--spec--init_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.spec.init_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.spec.init_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -2209,7 +2209,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--init_containers--resize_policy"></a>
-### Nested Schema for `spec.spec.init_containers.working_dir`
+### Nested Schema for `spec.spec.init_containers.resize_policy`
 
 Required:
 
@@ -2218,7 +2218,7 @@ Required:
 
 
 <a id="nestedatt--spec--spec--init_containers--resources"></a>
-### Nested Schema for `spec.spec.init_containers.working_dir`
+### Nested Schema for `spec.spec.init_containers.resources`
 
 Optional:
 
@@ -2236,7 +2236,7 @@ Required:
 
 
 <a id="nestedatt--spec--spec--init_containers--security_context"></a>
-### Nested Schema for `spec.spec.init_containers.working_dir`
+### Nested Schema for `spec.spec.init_containers.security_context`
 
 Optional:
 
@@ -2297,7 +2297,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--init_containers--startup_probe"></a>
-### Nested Schema for `spec.spec.init_containers.working_dir`
+### Nested Schema for `spec.spec.init_containers.startup_probe`
 
 Optional:
 
@@ -2347,7 +2347,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--spec--init_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.spec.init_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.spec.init_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -2370,7 +2370,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--init_containers--volume_devices"></a>
-### Nested Schema for `spec.spec.init_containers.working_dir`
+### Nested Schema for `spec.spec.init_containers.volume_devices`
 
 Required:
 
@@ -2379,7 +2379,7 @@ Required:
 
 
 <a id="nestedatt--spec--spec--init_containers--volume_mounts"></a>
-### Nested Schema for `spec.spec.init_containers.working_dir`
+### Nested Schema for `spec.spec.init_containers.volume_mounts`
 
 Required:
 
@@ -2457,7 +2457,7 @@ Optional:
 - `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--spec--security_context--windows_options))
 
 <a id="nestedatt--spec--spec--security_context--se_linux_options"></a>
-### Nested Schema for `spec.spec.security_context.windows_options`
+### Nested Schema for `spec.spec.security_context.se_linux_options`
 
 Optional:
 
@@ -2468,7 +2468,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.spec.security_context.windows_options`
+### Nested Schema for `spec.spec.security_context.seccomp_profile`
 
 Required:
 
@@ -2480,7 +2480,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--security_context--sysctls"></a>
-### Nested Schema for `spec.spec.security_context.windows_options`
+### Nested Schema for `spec.spec.security_context.sysctls`
 
 Required:
 
@@ -2530,7 +2530,7 @@ Optional:
 - `node_taints_policy` (String) NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
 
 <a id="nestedatt--spec--spec--topology_spread_constraints--label_selector"></a>
-### Nested Schema for `spec.spec.topology_spread_constraints.node_taints_policy`
+### Nested Schema for `spec.spec.topology_spread_constraints.label_selector`
 
 Optional:
 
@@ -2592,7 +2592,7 @@ Optional:
 - `vsphere_volume` (Attributes) vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--spec--volumes--vsphere_volume))
 
 <a id="nestedatt--spec--spec--volumes--aws_elastic_block_store"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.spec.volumes.aws_elastic_block_store`
 
 Required:
 
@@ -2606,7 +2606,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--azure_disk"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.spec.volumes.azure_disk`
 
 Required:
 
@@ -2622,7 +2622,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--azure_file"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.spec.volumes.azure_file`
 
 Required:
 
@@ -2635,7 +2635,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--cephfs"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.spec.volumes.cephfs`
 
 Required:
 
@@ -2659,7 +2659,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--cinder"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.spec.volumes.cinder`
 
 Required:
 
@@ -2681,7 +2681,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--config_map"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.spec.volumes.config_map`
 
 Optional:
 
@@ -2705,7 +2705,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--csi"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.spec.volumes.csi`
 
 Required:
 
@@ -2728,7 +2728,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--downward_api"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.spec.volumes.downward_api`
 
 Optional:
 
@@ -2749,7 +2749,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--spec--volumes--vsphere_volume--items--resource_field_ref))
 
 <a id="nestedatt--spec--spec--volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume.items.resource_field_ref`
+### Nested Schema for `spec.spec.volumes.vsphere_volume.items.field_ref`
 
 Required:
 
@@ -2776,7 +2776,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--empty_dir"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.spec.volumes.empty_dir`
 
 Optional:
 
@@ -2785,7 +2785,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--ephemeral"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.spec.volumes.ephemeral`
 
 Optional:
 
@@ -2803,7 +2803,7 @@ Optional:
 - `metadata` (Attributes) May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation. (see [below for nested schema](#nestedatt--spec--spec--volumes--vsphere_volume--volume_claim_template--metadata))
 
 <a id="nestedatt--spec--spec--volumes--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume.volume_claim_template.metadata`
+### Nested Schema for `spec.spec.volumes.vsphere_volume.volume_claim_template.spec`
 
 Optional:
 
@@ -2817,7 +2817,7 @@ Optional:
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--spec--volumes--vsphere_volume--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.spec.volumes.vsphere_volume.volume_claim_template.metadata.data_source`
 
 Required:
 
@@ -2830,7 +2830,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--vsphere_volume--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.spec.volumes.vsphere_volume.volume_claim_template.metadata.data_source_ref`
 
 Required:
 
@@ -2844,7 +2844,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--vsphere_volume--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.spec.volumes.vsphere_volume.volume_claim_template.metadata.resources`
 
 Optional:
 
@@ -2853,7 +2853,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--spec--volumes--vsphere_volume--volume_claim_template--metadata--volume_name--claims"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume.volume_claim_template.metadata.volume_name.requests`
+### Nested Schema for `spec.spec.volumes.vsphere_volume.volume_claim_template.metadata.volume_name.claims`
 
 Required:
 
@@ -2862,7 +2862,7 @@ Required:
 
 
 <a id="nestedatt--spec--spec--volumes--vsphere_volume--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.spec.volumes.vsphere_volume.volume_claim_template.metadata.selector`
 
 Optional:
 
@@ -2870,7 +2870,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--spec--volumes--vsphere_volume--volume_claim_template--metadata--volume_name--match_expressions"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_labels`
+### Nested Schema for `spec.spec.volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_expressions`
 
 Required:
 
@@ -2899,7 +2899,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--fc"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.spec.volumes.fc`
 
 Optional:
 
@@ -2911,7 +2911,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--flex_volume"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.spec.volumes.flex_volume`
 
 Required:
 
@@ -2934,7 +2934,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--flocker"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.spec.volumes.flocker`
 
 Optional:
 
@@ -2943,7 +2943,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--gce_persistent_disk"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.spec.volumes.gce_persistent_disk`
 
 Required:
 
@@ -2957,7 +2957,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--git_repo"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.spec.volumes.git_repo`
 
 Required:
 
@@ -2970,7 +2970,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--glusterfs"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.spec.volumes.glusterfs`
 
 Required:
 
@@ -2983,7 +2983,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--host_path"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.spec.volumes.host_path`
 
 Required:
 
@@ -2995,7 +2995,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--iscsi"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.spec.volumes.iscsi`
 
 Required:
 
@@ -3024,7 +3024,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--nfs"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.spec.volumes.nfs`
 
 Required:
 
@@ -3037,7 +3037,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--persistent_volume_claim"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.spec.volumes.persistent_volume_claim`
 
 Required:
 
@@ -3049,7 +3049,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--photon_persistent_disk"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.spec.volumes.photon_persistent_disk`
 
 Required:
 
@@ -3061,7 +3061,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--portworx_volume"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.spec.volumes.portworx_volume`
 
 Required:
 
@@ -3074,7 +3074,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--projected"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.spec.volumes.projected`
 
 Optional:
 
@@ -3092,7 +3092,7 @@ Optional:
 - `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--spec--volumes--vsphere_volume--sources--service_account_token))
 
 <a id="nestedatt--spec--spec--volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.spec.volumes.vsphere_volume.sources.config_map`
 
 Optional:
 
@@ -3101,7 +3101,7 @@ Optional:
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--spec--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume.sources.service_account_token.optional`
+### Nested Schema for `spec.spec.volumes.vsphere_volume.sources.service_account_token.items`
 
 Required:
 
@@ -3115,7 +3115,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.spec.volumes.vsphere_volume.sources.downward_api`
 
 Optional:
 
@@ -3135,7 +3135,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--spec--volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
 
 <a id="nestedatt--spec--spec--volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+### Nested Schema for `spec.spec.volumes.vsphere_volume.sources.service_account_token.items.field_ref`
 
 Required:
 
@@ -3162,7 +3162,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.spec.volumes.vsphere_volume.sources.secret`
 
 Optional:
 
@@ -3171,7 +3171,7 @@ Optional:
 - `optional` (Boolean) optional field specify whether the Secret or its key must be defined
 
 <a id="nestedatt--spec--spec--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume.sources.service_account_token.optional`
+### Nested Schema for `spec.spec.volumes.vsphere_volume.sources.service_account_token.items`
 
 Required:
 
@@ -3200,7 +3200,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--quobyte"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.spec.volumes.quobyte`
 
 Required:
 
@@ -3216,7 +3216,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--rbd"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.spec.volumes.rbd`
 
 Required:
 
@@ -3242,7 +3242,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--scale_io"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.spec.volumes.scale_io`
 
 Required:
 
@@ -3270,7 +3270,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--secret"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.spec.volumes.secret`
 
 Optional:
 
@@ -3294,7 +3294,7 @@ Optional:
 
 
 <a id="nestedatt--spec--spec--volumes--storageos"></a>
-### Nested Schema for `spec.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.spec.volumes.storageos`
 
 Optional:
 

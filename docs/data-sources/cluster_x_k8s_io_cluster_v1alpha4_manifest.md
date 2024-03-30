@@ -149,7 +149,7 @@ Optional:
 - `replicas` (Number) Replicas is the number of control plane nodes.If the value is nil, the ControlPlane object is created without the number of Replicasand it's assumed that the control plane controller does not implement support for this field.When specified against a control plane provider that lacks support for this field, this value will be ignored.
 
 <a id="nestedatt--spec--topology--control_plane--metadata"></a>
-### Nested Schema for `spec.topology.control_plane.replicas`
+### Nested Schema for `spec.topology.control_plane.metadata`
 
 Optional:
 

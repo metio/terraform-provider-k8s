@@ -152,7 +152,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--workload_scope--target_node_groups--overriders--env_overriders--value--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--workload_scope--target_node_groups--overriders--env_overriders--value--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.workload_scope.target_node_groups.overriders.env_overriders.value.value_from.secret_key_ref`
+### Nested Schema for `spec.workload_scope.target_node_groups.overriders.env_overriders.value.value_from.config_map_key_ref`
 
 Required:
 
@@ -165,7 +165,7 @@ Optional:
 
 
 <a id="nestedatt--spec--workload_scope--target_node_groups--overriders--env_overriders--value--value_from--field_ref"></a>
-### Nested Schema for `spec.workload_scope.target_node_groups.overriders.env_overriders.value.value_from.secret_key_ref`
+### Nested Schema for `spec.workload_scope.target_node_groups.overriders.env_overriders.value.value_from.field_ref`
 
 Required:
 
@@ -177,7 +177,7 @@ Optional:
 
 
 <a id="nestedatt--spec--workload_scope--target_node_groups--overriders--env_overriders--value--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.workload_scope.target_node_groups.overriders.env_overriders.value.value_from.secret_key_ref`
+### Nested Schema for `spec.workload_scope.target_node_groups.overriders.env_overriders.value.value_from.resource_field_ref`
 
 Required:
 
@@ -219,7 +219,7 @@ Optional:
 - `value` (String) Value to be applied to image. Must not be empty when operator is 'add' or 'replace'. Defaults to empty and ignored when operator is 'remove'.
 
 <a id="nestedatt--spec--workload_scope--target_node_groups--overriders--image_overriders--predicate"></a>
-### Nested Schema for `spec.workload_scope.target_node_groups.overriders.image_overriders.value`
+### Nested Schema for `spec.workload_scope.target_node_groups.overriders.image_overriders.predicate`
 
 Required:
 
@@ -248,7 +248,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--workload_scope--target_node_groups--overriders--resources_overriders--value--claims"></a>
-### Nested Schema for `spec.workload_scope.target_node_groups.overriders.resources_overriders.value.requests`
+### Nested Schema for `spec.workload_scope.target_node_groups.overriders.resources_overriders.value.claims`
 
 Required:
 

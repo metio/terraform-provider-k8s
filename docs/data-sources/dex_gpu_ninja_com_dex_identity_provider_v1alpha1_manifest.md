@@ -134,7 +134,7 @@ Optional:
 - `ssl` (Attributes) SSL holds optional TLS configuration for postgres. (see [below for nested schema](#nestedatt--spec--storage--postgres--ssl))
 
 <a id="nestedatt--spec--storage--postgres--credentials_secret_ref"></a>
-### Nested Schema for `spec.storage.postgres.ssl`
+### Nested Schema for `spec.storage.postgres.credentials_secret_ref`
 
 Required:
 
@@ -239,7 +239,7 @@ Optional:
 - `username_prompt` (String) UsernamePrompt allows users to override the username attribute (displayed in the username/password prompt). If unset, the handler will use 'Username'.
 
 <a id="nestedatt--spec--connectors--ldap--bind_password_secret_ref"></a>
-### Nested Schema for `spec.connectors.ldap.username_prompt`
+### Nested Schema for `spec.connectors.ldap.bind_password_secret_ref`
 
 Required:
 
@@ -247,7 +247,7 @@ Required:
 
 
 <a id="nestedatt--spec--connectors--ldap--group_search"></a>
-### Nested Schema for `spec.connectors.ldap.username_prompt`
+### Nested Schema for `spec.connectors.ldap.group_search`
 
 Required:
 
@@ -271,7 +271,7 @@ Required:
 
 
 <a id="nestedatt--spec--connectors--ldap--user_search"></a>
-### Nested Schema for `spec.connectors.ldap.username_prompt`
+### Nested Schema for `spec.connectors.ldap.user_search`
 
 Required:
 
@@ -290,7 +290,7 @@ Optional:
 
 
 <a id="nestedatt--spec--connectors--ldap--ca_secret_ref"></a>
-### Nested Schema for `spec.connectors.ldap.username_prompt`
+### Nested Schema for `spec.connectors.ldap.ca_secret_ref`
 
 Required:
 
@@ -298,7 +298,7 @@ Required:
 
 
 <a id="nestedatt--spec--connectors--ldap--client_certificate_secret_ref"></a>
-### Nested Schema for `spec.connectors.ldap.username_prompt`
+### Nested Schema for `spec.connectors.ldap.client_certificate_secret_ref`
 
 Required:
 
@@ -332,7 +332,7 @@ Optional:
 - `user_name_key` (String) UserNameKey is the claim key to use for the username (default name).
 
 <a id="nestedatt--spec--connectors--oidc--client_secret_ref"></a>
-### Nested Schema for `spec.connectors.oidc.user_name_key`
+### Nested Schema for `spec.connectors.oidc.client_secret_ref`
 
 Required:
 
@@ -340,7 +340,7 @@ Required:
 
 
 <a id="nestedatt--spec--connectors--oidc--ca_secret_ref"></a>
-### Nested Schema for `spec.connectors.oidc.user_name_key`
+### Nested Schema for `spec.connectors.oidc.ca_secret_ref`
 
 Required:
 
@@ -348,7 +348,7 @@ Required:
 
 
 <a id="nestedatt--spec--connectors--oidc--claim_mapping"></a>
-### Nested Schema for `spec.connectors.oidc.user_name_key`
+### Nested Schema for `spec.connectors.oidc.claim_mapping`
 
 Optional:
 
@@ -521,7 +521,7 @@ Optional:
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--volume_claim_templates--spec--data_source"></a>
-### Nested Schema for `spec.volume_claim_templates.spec.volume_name`
+### Nested Schema for `spec.volume_claim_templates.spec.data_source`
 
 Required:
 
@@ -534,7 +534,7 @@ Optional:
 
 
 <a id="nestedatt--spec--volume_claim_templates--spec--data_source_ref"></a>
-### Nested Schema for `spec.volume_claim_templates.spec.volume_name`
+### Nested Schema for `spec.volume_claim_templates.spec.data_source_ref`
 
 Required:
 
@@ -548,7 +548,7 @@ Optional:
 
 
 <a id="nestedatt--spec--volume_claim_templates--spec--resources"></a>
-### Nested Schema for `spec.volume_claim_templates.spec.volume_name`
+### Nested Schema for `spec.volume_claim_templates.spec.resources`
 
 Optional:
 
@@ -566,7 +566,7 @@ Required:
 
 
 <a id="nestedatt--spec--volume_claim_templates--spec--selector"></a>
-### Nested Schema for `spec.volume_claim_templates.spec.volume_name`
+### Nested Schema for `spec.volume_claim_templates.spec.selector`
 
 Optional:
 
@@ -601,7 +601,7 @@ Optional:
 - `phase` (String) phase represents the current phase of PersistentVolumeClaim.
 
 <a id="nestedatt--spec--volume_claim_templates--status--conditions"></a>
-### Nested Schema for `spec.volume_claim_templates.status.phase`
+### Nested Schema for `spec.volume_claim_templates.status.conditions`
 
 Required:
 

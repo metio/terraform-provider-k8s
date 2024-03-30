@@ -127,7 +127,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--downward_api_options--items--resource_field_ref))
 
 <a id="nestedatt--spec--downward_api_options--items--field_ref"></a>
-### Nested Schema for `spec.downward_api_options.items.resource_field_ref`
+### Nested Schema for `spec.downward_api_options.items.field_ref`
 
 Required:
 

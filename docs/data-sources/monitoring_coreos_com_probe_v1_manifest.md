@@ -181,7 +181,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--oauth2--client_id--secret))
 
 <a id="nestedatt--spec--oauth2--client_id--config_map"></a>
-### Nested Schema for `spec.oauth2.client_id.secret`
+### Nested Schema for `spec.oauth2.client_id.config_map`
 
 Required:
 
@@ -253,7 +253,7 @@ Optional:
 - `selector` (Attributes) Selector to select the Ingress objects. (see [below for nested schema](#nestedatt--spec--targets--ingress--selector))
 
 <a id="nestedatt--spec--targets--ingress--namespace_selector"></a>
-### Nested Schema for `spec.targets.ingress.selector`
+### Nested Schema for `spec.targets.ingress.namespace_selector`
 
 Optional:
 
@@ -262,7 +262,7 @@ Optional:
 
 
 <a id="nestedatt--spec--targets--ingress--relabeling_configs"></a>
-### Nested Schema for `spec.targets.ingress.selector`
+### Nested Schema for `spec.targets.ingress.relabeling_configs`
 
 Optional:
 
@@ -308,7 +308,7 @@ Optional:
 - `static` (List of String) The list of hosts to probe.
 
 <a id="nestedatt--spec--targets--static_config--relabeling_configs"></a>
-### Nested Schema for `spec.targets.static_config.static`
+### Nested Schema for `spec.targets.static_config.relabeling_configs`
 
 Optional:
 
@@ -343,7 +343,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--tls_config--ca--secret))
 
 <a id="nestedatt--spec--tls_config--ca--config_map"></a>
-### Nested Schema for `spec.tls_config.ca.secret`
+### Nested Schema for `spec.tls_config.ca.config_map`
 
 Required:
 
@@ -378,7 +378,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--tls_config--cert--secret))
 
 <a id="nestedatt--spec--tls_config--cert--config_map"></a>
-### Nested Schema for `spec.tls_config.cert.secret`
+### Nested Schema for `spec.tls_config.cert.config_map`
 
 Required:
 

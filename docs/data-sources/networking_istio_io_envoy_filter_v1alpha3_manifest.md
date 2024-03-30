@@ -80,7 +80,7 @@ Optional:
 - `route_configuration` (Attributes) Match on envoy HTTP route configuration attributes. (see [below for nested schema](#nestedatt--spec--config_patches--match--route_configuration))
 
 <a id="nestedatt--spec--config_patches--match--cluster"></a>
-### Nested Schema for `spec.config_patches.match.route_configuration`
+### Nested Schema for `spec.config_patches.match.cluster`
 
 Optional:
 
@@ -91,7 +91,7 @@ Optional:
 
 
 <a id="nestedatt--spec--config_patches--match--listener"></a>
-### Nested Schema for `spec.config_patches.match.route_configuration`
+### Nested Schema for `spec.config_patches.match.listener`
 
 Optional:
 
@@ -114,7 +114,7 @@ Optional:
 - `transport_protocol` (String) Applies only to 'SIDECAR_INBOUND' context.
 
 <a id="nestedatt--spec--config_patches--match--route_configuration--filter_chain--filter"></a>
-### Nested Schema for `spec.config_patches.match.route_configuration.filter_chain.transport_protocol`
+### Nested Schema for `spec.config_patches.match.route_configuration.filter_chain.filter`
 
 Optional:
 
@@ -133,7 +133,7 @@ Optional:
 
 
 <a id="nestedatt--spec--config_patches--match--proxy"></a>
-### Nested Schema for `spec.config_patches.match.route_configuration`
+### Nested Schema for `spec.config_patches.match.proxy`
 
 Optional:
 

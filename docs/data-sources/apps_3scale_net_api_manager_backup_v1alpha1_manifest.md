@@ -74,7 +74,7 @@ Optional:
 - `volume_name` (String) Name of an existing PersistentVolume to be bound to the backup data PersistentVolumeClaim
 
 <a id="nestedatt--spec--backup_destination--persistent_volume_claim--resources"></a>
-### Nested Schema for `spec.backup_destination.persistent_volume_claim.volume_name`
+### Nested Schema for `spec.backup_destination.persistent_volume_claim.resources`
 
 Required:
 

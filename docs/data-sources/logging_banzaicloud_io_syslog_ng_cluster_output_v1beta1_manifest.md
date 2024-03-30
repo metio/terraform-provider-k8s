@@ -132,7 +132,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--password--value_from))
 
 <a id="nestedatt--spec--elasticsearch--password--mount_from"></a>
-### Nested Schema for `spec.elasticsearch.password.value_from`
+### Nested Schema for `spec.elasticsearch.password.mount_from`
 
 Optional:
 
@@ -189,7 +189,7 @@ Optional:
 - `use_system_cert_store` (Boolean)
 
 <a id="nestedatt--spec--elasticsearch--tls--ca_dir"></a>
-### Nested Schema for `spec.elasticsearch.tls.use_system_cert_store`
+### Nested Schema for `spec.elasticsearch.tls.ca_dir`
 
 Optional:
 
@@ -241,7 +241,7 @@ Optional:
 
 
 <a id="nestedatt--spec--elasticsearch--tls--ca_file"></a>
-### Nested Schema for `spec.elasticsearch.tls.use_system_cert_store`
+### Nested Schema for `spec.elasticsearch.tls.ca_file`
 
 Optional:
 
@@ -293,7 +293,7 @@ Optional:
 
 
 <a id="nestedatt--spec--elasticsearch--tls--cert_file"></a>
-### Nested Schema for `spec.elasticsearch.tls.use_system_cert_store`
+### Nested Schema for `spec.elasticsearch.tls.cert_file`
 
 Optional:
 
@@ -345,7 +345,7 @@ Optional:
 
 
 <a id="nestedatt--spec--elasticsearch--tls--key_file"></a>
-### Nested Schema for `spec.elasticsearch.tls.use_system_cert_store`
+### Nested Schema for `spec.elasticsearch.tls.key_file`
 
 Optional:
 
@@ -488,7 +488,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--http--password--value_from))
 
 <a id="nestedatt--spec--http--password--mount_from"></a>
-### Nested Schema for `spec.http.password.value_from`
+### Nested Schema for `spec.http.password.mount_from`
 
 Optional:
 
@@ -545,7 +545,7 @@ Optional:
 - `use_system_cert_store` (Boolean)
 
 <a id="nestedatt--spec--http--tls--ca_dir"></a>
-### Nested Schema for `spec.http.tls.use_system_cert_store`
+### Nested Schema for `spec.http.tls.ca_dir`
 
 Optional:
 
@@ -597,7 +597,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http--tls--ca_file"></a>
-### Nested Schema for `spec.http.tls.use_system_cert_store`
+### Nested Schema for `spec.http.tls.ca_file`
 
 Optional:
 
@@ -649,7 +649,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http--tls--cert_file"></a>
-### Nested Schema for `spec.http.tls.use_system_cert_store`
+### Nested Schema for `spec.http.tls.cert_file`
 
 Optional:
 
@@ -701,7 +701,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http--tls--key_file"></a>
-### Nested Schema for `spec.http.tls.use_system_cert_store`
+### Nested Schema for `spec.http.tls.key_file`
 
 Optional:
 
@@ -789,7 +789,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--loggly--token--value_from))
 
 <a id="nestedatt--spec--loggly--token--mount_from"></a>
-### Nested Schema for `spec.loggly.token.value_from`
+### Nested Schema for `spec.loggly.token.mount_from`
 
 Optional:
 
@@ -863,7 +863,7 @@ Optional:
 - `use_system_cert_store` (Boolean)
 
 <a id="nestedatt--spec--loggly--tls--ca_dir"></a>
-### Nested Schema for `spec.loggly.tls.use_system_cert_store`
+### Nested Schema for `spec.loggly.tls.ca_dir`
 
 Optional:
 
@@ -915,7 +915,7 @@ Optional:
 
 
 <a id="nestedatt--spec--loggly--tls--ca_file"></a>
-### Nested Schema for `spec.loggly.tls.use_system_cert_store`
+### Nested Schema for `spec.loggly.tls.ca_file`
 
 Optional:
 
@@ -967,7 +967,7 @@ Optional:
 
 
 <a id="nestedatt--spec--loggly--tls--cert_file"></a>
-### Nested Schema for `spec.loggly.tls.use_system_cert_store`
+### Nested Schema for `spec.loggly.tls.cert_file`
 
 Optional:
 
@@ -1019,7 +1019,7 @@ Optional:
 
 
 <a id="nestedatt--spec--loggly--tls--key_file"></a>
-### Nested Schema for `spec.loggly.tls.use_system_cert_store`
+### Nested Schema for `spec.loggly.tls.key_file`
 
 Optional:
 
@@ -1118,7 +1118,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--logscale--token--value_from))
 
 <a id="nestedatt--spec--logscale--token--mount_from"></a>
-### Nested Schema for `spec.logscale.token.value_from`
+### Nested Schema for `spec.logscale.token.mount_from`
 
 Optional:
 
@@ -1170,7 +1170,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--logscale--url--value_from))
 
 <a id="nestedatt--spec--logscale--url--mount_from"></a>
-### Nested Schema for `spec.logscale.url.value_from`
+### Nested Schema for `spec.logscale.url.mount_from`
 
 Optional:
 
@@ -1243,7 +1243,7 @@ Optional:
 - `tls` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--auth--tls))
 
 <a id="nestedatt--spec--loki--auth--alts"></a>
-### Nested Schema for `spec.loki.auth.tls`
+### Nested Schema for `spec.loki.auth.alts`
 
 Optional:
 
@@ -1269,7 +1269,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--auth--tls--ca_file--value_from))
 
 <a id="nestedatt--spec--loki--auth--tls--ca_file--mount_from"></a>
-### Nested Schema for `spec.loki.auth.tls.ca_file.value_from`
+### Nested Schema for `spec.loki.auth.tls.ca_file.mount_from`
 
 Optional:
 
@@ -1321,7 +1321,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--auth--tls--cert_file--value_from))
 
 <a id="nestedatt--spec--loki--auth--tls--cert_file--mount_from"></a>
-### Nested Schema for `spec.loki.auth.tls.cert_file.value_from`
+### Nested Schema for `spec.loki.auth.tls.cert_file.mount_from`
 
 Optional:
 
@@ -1373,7 +1373,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--auth--tls--key_file--value_from))
 
 <a id="nestedatt--spec--loki--auth--tls--key_file--mount_from"></a>
-### Nested Schema for `spec.loki.auth.tls.key_file.value_from`
+### Nested Schema for `spec.loki.auth.tls.key_file.mount_from`
 
 Optional:
 
@@ -1487,7 +1487,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--uri--value_from))
 
 <a id="nestedatt--spec--mongodb--uri--mount_from"></a>
-### Nested Schema for `spec.mongodb.uri.value_from`
+### Nested Schema for `spec.mongodb.uri.mount_from`
 
 Optional:
 
@@ -1612,7 +1612,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve--password--value_from))
 
 <a id="nestedatt--spec--openobserve--password--mount_from"></a>
-### Nested Schema for `spec.openobserve.password.value_from`
+### Nested Schema for `spec.openobserve.password.mount_from`
 
 Optional:
 
@@ -1669,7 +1669,7 @@ Optional:
 - `use_system_cert_store` (Boolean)
 
 <a id="nestedatt--spec--openobserve--tls--ca_dir"></a>
-### Nested Schema for `spec.openobserve.tls.use_system_cert_store`
+### Nested Schema for `spec.openobserve.tls.ca_dir`
 
 Optional:
 
@@ -1721,7 +1721,7 @@ Optional:
 
 
 <a id="nestedatt--spec--openobserve--tls--ca_file"></a>
-### Nested Schema for `spec.openobserve.tls.use_system_cert_store`
+### Nested Schema for `spec.openobserve.tls.ca_file`
 
 Optional:
 
@@ -1773,7 +1773,7 @@ Optional:
 
 
 <a id="nestedatt--spec--openobserve--tls--cert_file"></a>
-### Nested Schema for `spec.openobserve.tls.use_system_cert_store`
+### Nested Schema for `spec.openobserve.tls.cert_file`
 
 Optional:
 
@@ -1825,7 +1825,7 @@ Optional:
 
 
 <a id="nestedatt--spec--openobserve--tls--key_file"></a>
-### Nested Schema for `spec.openobserve.tls.use_system_cert_store`
+### Nested Schema for `spec.openobserve.tls.key_file`
 
 Optional:
 
@@ -1909,7 +1909,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--auth--value_from))
 
 <a id="nestedatt--spec--redis--auth--mount_from"></a>
-### Nested Schema for `spec.redis.auth.value_from`
+### Nested Schema for `spec.redis.auth.mount_from`
 
 Optional:
 
@@ -2014,7 +2014,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--s3--access_key--value_from))
 
 <a id="nestedatt--spec--s3--access_key--mount_from"></a>
-### Nested Schema for `spec.s3.access_key.value_from`
+### Nested Schema for `spec.s3.access_key.mount_from`
 
 Optional:
 
@@ -2066,7 +2066,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--s3--secret_key--value_from))
 
 <a id="nestedatt--spec--s3--secret_key--mount_from"></a>
-### Nested Schema for `spec.s3.secret_key.value_from`
+### Nested Schema for `spec.s3.secret_key.mount_from`
 
 Optional:
 
@@ -2178,7 +2178,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--password--value_from))
 
 <a id="nestedatt--spec--splunk_hec_event--password--mount_from"></a>
-### Nested Schema for `spec.splunk_hec_event.password.value_from`
+### Nested Schema for `spec.splunk_hec_event.password.mount_from`
 
 Optional:
 
@@ -2235,7 +2235,7 @@ Optional:
 - `use_system_cert_store` (Boolean)
 
 <a id="nestedatt--spec--splunk_hec_event--tls--ca_dir"></a>
-### Nested Schema for `spec.splunk_hec_event.tls.use_system_cert_store`
+### Nested Schema for `spec.splunk_hec_event.tls.ca_dir`
 
 Optional:
 
@@ -2287,7 +2287,7 @@ Optional:
 
 
 <a id="nestedatt--spec--splunk_hec_event--tls--ca_file"></a>
-### Nested Schema for `spec.splunk_hec_event.tls.use_system_cert_store`
+### Nested Schema for `spec.splunk_hec_event.tls.ca_file`
 
 Optional:
 
@@ -2339,7 +2339,7 @@ Optional:
 
 
 <a id="nestedatt--spec--splunk_hec_event--tls--cert_file"></a>
-### Nested Schema for `spec.splunk_hec_event.tls.use_system_cert_store`
+### Nested Schema for `spec.splunk_hec_event.tls.cert_file`
 
 Optional:
 
@@ -2391,7 +2391,7 @@ Optional:
 
 
 <a id="nestedatt--spec--splunk_hec_event--tls--key_file"></a>
-### Nested Schema for `spec.splunk_hec_event.tls.use_system_cert_store`
+### Nested Schema for `spec.splunk_hec_event.tls.key_file`
 
 Optional:
 
@@ -2453,7 +2453,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--token--value_from))
 
 <a id="nestedatt--spec--splunk_hec_event--token--mount_from"></a>
-### Nested Schema for `spec.splunk_hec_event.token.value_from`
+### Nested Schema for `spec.splunk_hec_event.token.mount_from`
 
 Optional:
 
@@ -2524,7 +2524,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--sumologic_http--collector--value_from))
 
 <a id="nestedatt--spec--sumologic_http--collector--mount_from"></a>
-### Nested Schema for `spec.sumologic_http.collector.value_from`
+### Nested Schema for `spec.sumologic_http.collector.mount_from`
 
 Optional:
 
@@ -2598,7 +2598,7 @@ Optional:
 - `use_system_cert_store` (Boolean)
 
 <a id="nestedatt--spec--sumologic_http--tls--ca_dir"></a>
-### Nested Schema for `spec.sumologic_http.tls.use_system_cert_store`
+### Nested Schema for `spec.sumologic_http.tls.ca_dir`
 
 Optional:
 
@@ -2650,7 +2650,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sumologic_http--tls--ca_file"></a>
-### Nested Schema for `spec.sumologic_http.tls.use_system_cert_store`
+### Nested Schema for `spec.sumologic_http.tls.ca_file`
 
 Optional:
 
@@ -2702,7 +2702,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sumologic_http--tls--cert_file"></a>
-### Nested Schema for `spec.sumologic_http.tls.use_system_cert_store`
+### Nested Schema for `spec.sumologic_http.tls.cert_file`
 
 Optional:
 
@@ -2754,7 +2754,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sumologic_http--tls--key_file"></a>
-### Nested Schema for `spec.sumologic_http.tls.use_system_cert_store`
+### Nested Schema for `spec.sumologic_http.tls.key_file`
 
 Optional:
 
@@ -2816,7 +2816,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--sumologic_http--url--value_from))
 
 <a id="nestedatt--spec--sumologic_http--url--mount_from"></a>
-### Nested Schema for `spec.sumologic_http.url.value_from`
+### Nested Schema for `spec.sumologic_http.url.mount_from`
 
 Optional:
 
@@ -2904,7 +2904,7 @@ Optional:
 - `use_system_cert_store` (Boolean)
 
 <a id="nestedatt--spec--sumologic_syslog--tls--ca_dir"></a>
-### Nested Schema for `spec.sumologic_syslog.tls.use_system_cert_store`
+### Nested Schema for `spec.sumologic_syslog.tls.ca_dir`
 
 Optional:
 
@@ -2956,7 +2956,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sumologic_syslog--tls--ca_file"></a>
-### Nested Schema for `spec.sumologic_syslog.tls.use_system_cert_store`
+### Nested Schema for `spec.sumologic_syslog.tls.ca_file`
 
 Optional:
 
@@ -3008,7 +3008,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sumologic_syslog--tls--cert_file"></a>
-### Nested Schema for `spec.sumologic_syslog.tls.use_system_cert_store`
+### Nested Schema for `spec.sumologic_syslog.tls.cert_file`
 
 Optional:
 
@@ -3060,7 +3060,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sumologic_syslog--tls--key_file"></a>
-### Nested Schema for `spec.sumologic_syslog.tls.use_system_cert_store`
+### Nested Schema for `spec.sumologic_syslog.tls.key_file`
 
 Optional:
 
@@ -3165,7 +3165,7 @@ Optional:
 - `use_system_cert_store` (Boolean)
 
 <a id="nestedatt--spec--syslog--tls--ca_dir"></a>
-### Nested Schema for `spec.syslog.tls.use_system_cert_store`
+### Nested Schema for `spec.syslog.tls.ca_dir`
 
 Optional:
 
@@ -3217,7 +3217,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog--tls--ca_file"></a>
-### Nested Schema for `spec.syslog.tls.use_system_cert_store`
+### Nested Schema for `spec.syslog.tls.ca_file`
 
 Optional:
 
@@ -3269,7 +3269,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog--tls--cert_file"></a>
-### Nested Schema for `spec.syslog.tls.use_system_cert_store`
+### Nested Schema for `spec.syslog.tls.cert_file`
 
 Optional:
 
@@ -3321,7 +3321,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog--tls--key_file"></a>
-### Nested Schema for `spec.syslog.tls.use_system_cert_store`
+### Nested Schema for `spec.syslog.tls.key_file`
 
 Optional:
 

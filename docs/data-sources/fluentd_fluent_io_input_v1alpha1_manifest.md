@@ -104,7 +104,7 @@ Optional:
 - `user` (Attributes) The security section of user plugin (see [below for nested schema](#nestedatt--spec--inputs--forward--user))
 
 <a id="nestedatt--spec--inputs--forward--client"></a>
-### Nested Schema for `spec.inputs.forward.user`
+### Nested Schema for `spec.inputs.forward.client`
 
 Optional:
 
@@ -115,7 +115,7 @@ Optional:
 
 
 <a id="nestedatt--spec--inputs--forward--security"></a>
-### Nested Schema for `spec.inputs.forward.user`
+### Nested Schema for `spec.inputs.forward.security`
 
 Optional:
 
@@ -134,7 +134,7 @@ Optional:
 - `username` (Attributes) Secret defines the key of a value. (see [below for nested schema](#nestedatt--spec--inputs--forward--user--user--username))
 
 <a id="nestedatt--spec--inputs--forward--user--user--password"></a>
-### Nested Schema for `spec.inputs.forward.user.user.username`
+### Nested Schema for `spec.inputs.forward.user.user.password`
 
 Optional:
 
@@ -194,7 +194,7 @@ Optional:
 
 
 <a id="nestedatt--spec--inputs--forward--transport"></a>
-### Nested Schema for `spec.inputs.forward.user`
+### Nested Schema for `spec.inputs.forward.transport`
 
 Optional:
 
@@ -299,7 +299,7 @@ Optional:
 - `transport` (Attributes) The transport section of http plugin (see [below for nested schema](#nestedatt--spec--inputs--http--transport))
 
 <a id="nestedatt--spec--inputs--http--parse"></a>
-### Nested Schema for `spec.inputs.http.transport`
+### Nested Schema for `spec.inputs.http.parse`
 
 Required:
 
@@ -424,7 +424,7 @@ Optional:
 - `skip_refresh_on_startup` (Boolean) Skips the refresh of the watch list on startup. This reduces the startup time when * is used in path.
 
 <a id="nestedatt--spec--inputs--tail--parse"></a>
-### Nested Schema for `spec.inputs.tail.skip_refresh_on_startup`
+### Nested Schema for `spec.inputs.tail.parse`
 
 Required:
 
@@ -468,7 +468,7 @@ Optional:
 
 
 <a id="nestedatt--spec--inputs--tail--group"></a>
-### Nested Schema for `spec.inputs.tail.skip_refresh_on_startup`
+### Nested Schema for `spec.inputs.tail.group`
 
 Required:
 

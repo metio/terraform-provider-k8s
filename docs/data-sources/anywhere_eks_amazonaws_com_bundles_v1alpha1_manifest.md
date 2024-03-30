@@ -104,7 +104,7 @@ Required:
 - `version` (String)
 
 <a id="nestedatt--spec--versions_bundles--bootstrap--components"></a>
-### Nested Schema for `spec.versions_bundles.bootstrap.version`
+### Nested Schema for `spec.versions_bundles.bootstrap.components`
 
 Optional:
 
@@ -112,7 +112,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--bootstrap--controller"></a>
-### Nested Schema for `spec.versions_bundles.bootstrap.version`
+### Nested Schema for `spec.versions_bundles.bootstrap.controller`
 
 Optional:
 
@@ -126,7 +126,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--bootstrap--kube_proxy"></a>
-### Nested Schema for `spec.versions_bundles.bootstrap.version`
+### Nested Schema for `spec.versions_bundles.bootstrap.kube_proxy`
 
 Optional:
 
@@ -140,7 +140,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--bootstrap--metadata"></a>
-### Nested Schema for `spec.versions_bundles.bootstrap.version`
+### Nested Schema for `spec.versions_bundles.bootstrap.metadata`
 
 Optional:
 
@@ -158,7 +158,7 @@ Required:
 - `kubeadm_bootstrap` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--bottlerocket_host_containers--kubeadm_bootstrap))
 
 <a id="nestedatt--spec--versions_bundles--bottlerocket_host_containers--admin"></a>
-### Nested Schema for `spec.versions_bundles.bottlerocket_host_containers.kubeadm_bootstrap`
+### Nested Schema for `spec.versions_bundles.bottlerocket_host_containers.admin`
 
 Optional:
 
@@ -172,7 +172,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--bottlerocket_host_containers--control"></a>
-### Nested Schema for `spec.versions_bundles.bottlerocket_host_containers.kubeadm_bootstrap`
+### Nested Schema for `spec.versions_bundles.bottlerocket_host_containers.control`
 
 Optional:
 
@@ -217,7 +217,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--versions_bundles--cert_manager--acmesolver"></a>
-### Nested Schema for `spec.versions_bundles.cert_manager.version`
+### Nested Schema for `spec.versions_bundles.cert_manager.acmesolver`
 
 Optional:
 
@@ -231,7 +231,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--cert_manager--cainjector"></a>
-### Nested Schema for `spec.versions_bundles.cert_manager.version`
+### Nested Schema for `spec.versions_bundles.cert_manager.cainjector`
 
 Optional:
 
@@ -245,7 +245,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--cert_manager--controller"></a>
-### Nested Schema for `spec.versions_bundles.cert_manager.version`
+### Nested Schema for `spec.versions_bundles.cert_manager.controller`
 
 Optional:
 
@@ -259,7 +259,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--cert_manager--ctl"></a>
-### Nested Schema for `spec.versions_bundles.cert_manager.version`
+### Nested Schema for `spec.versions_bundles.cert_manager.ctl`
 
 Optional:
 
@@ -273,7 +273,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--cert_manager--manifest"></a>
-### Nested Schema for `spec.versions_bundles.cert_manager.version`
+### Nested Schema for `spec.versions_bundles.cert_manager.manifest`
 
 Optional:
 
@@ -281,7 +281,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--cert_manager--webhook"></a>
-### Nested Schema for `spec.versions_bundles.cert_manager.version`
+### Nested Schema for `spec.versions_bundles.cert_manager.webhook`
 
 Optional:
 
@@ -310,7 +310,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--versions_bundles--cilium--cilium"></a>
-### Nested Schema for `spec.versions_bundles.cilium.version`
+### Nested Schema for `spec.versions_bundles.cilium.cilium`
 
 Optional:
 
@@ -324,7 +324,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--cilium--manifest"></a>
-### Nested Schema for `spec.versions_bundles.cilium.version`
+### Nested Schema for `spec.versions_bundles.cilium.manifest`
 
 Optional:
 
@@ -332,7 +332,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--cilium--operator"></a>
-### Nested Schema for `spec.versions_bundles.cilium.version`
+### Nested Schema for `spec.versions_bundles.cilium.operator`
 
 Optional:
 
@@ -346,7 +346,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--cilium--helm_chart"></a>
-### Nested Schema for `spec.versions_bundles.cilium.version`
+### Nested Schema for `spec.versions_bundles.cilium.helm_chart`
 
 Optional:
 
@@ -372,7 +372,7 @@ Required:
 - `version` (String)
 
 <a id="nestedatt--spec--versions_bundles--cluster_api--components"></a>
-### Nested Schema for `spec.versions_bundles.cluster_api.version`
+### Nested Schema for `spec.versions_bundles.cluster_api.components`
 
 Optional:
 
@@ -380,7 +380,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--cluster_api--controller"></a>
-### Nested Schema for `spec.versions_bundles.cluster_api.version`
+### Nested Schema for `spec.versions_bundles.cluster_api.controller`
 
 Optional:
 
@@ -394,7 +394,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--cluster_api--kube_proxy"></a>
-### Nested Schema for `spec.versions_bundles.cluster_api.version`
+### Nested Schema for `spec.versions_bundles.cluster_api.kube_proxy`
 
 Optional:
 
@@ -408,7 +408,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--cluster_api--metadata"></a>
-### Nested Schema for `spec.versions_bundles.cluster_api.version`
+### Nested Schema for `spec.versions_bundles.cluster_api.metadata`
 
 Optional:
 
@@ -428,7 +428,7 @@ Required:
 - `version` (String)
 
 <a id="nestedatt--spec--versions_bundles--control_plane--components"></a>
-### Nested Schema for `spec.versions_bundles.control_plane.version`
+### Nested Schema for `spec.versions_bundles.control_plane.components`
 
 Optional:
 
@@ -436,7 +436,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--control_plane--controller"></a>
-### Nested Schema for `spec.versions_bundles.control_plane.version`
+### Nested Schema for `spec.versions_bundles.control_plane.controller`
 
 Optional:
 
@@ -450,7 +450,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--control_plane--kube_proxy"></a>
-### Nested Schema for `spec.versions_bundles.control_plane.version`
+### Nested Schema for `spec.versions_bundles.control_plane.kube_proxy`
 
 Optional:
 
@@ -464,7 +464,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--control_plane--metadata"></a>
-### Nested Schema for `spec.versions_bundles.control_plane.version`
+### Nested Schema for `spec.versions_bundles.control_plane.metadata`
 
 Optional:
 
@@ -485,7 +485,7 @@ Required:
 - `version` (String)
 
 <a id="nestedatt--spec--versions_bundles--docker--cluster_template"></a>
-### Nested Schema for `spec.versions_bundles.docker.version`
+### Nested Schema for `spec.versions_bundles.docker.cluster_template`
 
 Optional:
 
@@ -493,7 +493,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--docker--components"></a>
-### Nested Schema for `spec.versions_bundles.docker.version`
+### Nested Schema for `spec.versions_bundles.docker.components`
 
 Optional:
 
@@ -501,7 +501,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--docker--kube_proxy"></a>
-### Nested Schema for `spec.versions_bundles.docker.version`
+### Nested Schema for `spec.versions_bundles.docker.kube_proxy`
 
 Optional:
 
@@ -515,7 +515,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--docker--manager"></a>
-### Nested Schema for `spec.versions_bundles.docker.version`
+### Nested Schema for `spec.versions_bundles.docker.manager`
 
 Optional:
 
@@ -529,7 +529,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--docker--metadata"></a>
-### Nested Schema for `spec.versions_bundles.docker.version`
+### Nested Schema for `spec.versions_bundles.docker.metadata`
 
 Optional:
 
@@ -558,7 +558,7 @@ Optional:
 - `raw` (Attributes) Raw points to a collection of Raw images built with this eks-d version (see [below for nested schema](#nestedatt--spec--versions_bundles--eks_d--raw))
 
 <a id="nestedatt--spec--versions_bundles--eks_d--ami"></a>
-### Nested Schema for `spec.versions_bundles.eks_d.raw`
+### Nested Schema for `spec.versions_bundles.eks_d.ami`
 
 Optional:
 
@@ -581,7 +581,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--eks_d--containerd"></a>
-### Nested Schema for `spec.versions_bundles.eks_d.raw`
+### Nested Schema for `spec.versions_bundles.eks_d.containerd`
 
 Optional:
 
@@ -596,7 +596,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--eks_d--crictl"></a>
-### Nested Schema for `spec.versions_bundles.eks_d.raw`
+### Nested Schema for `spec.versions_bundles.eks_d.crictl`
 
 Optional:
 
@@ -611,7 +611,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--eks_d--etcdadm"></a>
-### Nested Schema for `spec.versions_bundles.eks_d.raw`
+### Nested Schema for `spec.versions_bundles.eks_d.etcdadm`
 
 Optional:
 
@@ -626,7 +626,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--eks_d--imagebuilder"></a>
-### Nested Schema for `spec.versions_bundles.eks_d.raw`
+### Nested Schema for `spec.versions_bundles.eks_d.imagebuilder`
 
 Optional:
 
@@ -641,7 +641,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--eks_d--kind_node"></a>
-### Nested Schema for `spec.versions_bundles.eks_d.raw`
+### Nested Schema for `spec.versions_bundles.eks_d.kind_node`
 
 Optional:
 
@@ -655,7 +655,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--eks_d--ova"></a>
-### Nested Schema for `spec.versions_bundles.eks_d.raw`
+### Nested Schema for `spec.versions_bundles.eks_d.ova`
 
 Optional:
 
@@ -716,7 +716,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--versions_bundles--eksa--cli_tools"></a>
-### Nested Schema for `spec.versions_bundles.eksa.version`
+### Nested Schema for `spec.versions_bundles.eksa.cli_tools`
 
 Optional:
 
@@ -730,7 +730,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--eksa--cluster_controller"></a>
-### Nested Schema for `spec.versions_bundles.eksa.version`
+### Nested Schema for `spec.versions_bundles.eksa.cluster_controller`
 
 Optional:
 
@@ -744,7 +744,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--eksa--components"></a>
-### Nested Schema for `spec.versions_bundles.eksa.version`
+### Nested Schema for `spec.versions_bundles.eksa.components`
 
 Optional:
 
@@ -752,7 +752,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--eksa--diagnostic_collector"></a>
-### Nested Schema for `spec.versions_bundles.eksa.version`
+### Nested Schema for `spec.versions_bundles.eksa.diagnostic_collector`
 
 Optional:
 
@@ -778,7 +778,7 @@ Required:
 - `version` (String)
 
 <a id="nestedatt--spec--versions_bundles--etcdadm_bootstrap--components"></a>
-### Nested Schema for `spec.versions_bundles.etcdadm_bootstrap.version`
+### Nested Schema for `spec.versions_bundles.etcdadm_bootstrap.components`
 
 Optional:
 
@@ -786,7 +786,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--etcdadm_bootstrap--controller"></a>
-### Nested Schema for `spec.versions_bundles.etcdadm_bootstrap.version`
+### Nested Schema for `spec.versions_bundles.etcdadm_bootstrap.controller`
 
 Optional:
 
@@ -800,7 +800,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--etcdadm_bootstrap--kube_proxy"></a>
-### Nested Schema for `spec.versions_bundles.etcdadm_bootstrap.version`
+### Nested Schema for `spec.versions_bundles.etcdadm_bootstrap.kube_proxy`
 
 Optional:
 
@@ -814,7 +814,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--etcdadm_bootstrap--metadata"></a>
-### Nested Schema for `spec.versions_bundles.etcdadm_bootstrap.version`
+### Nested Schema for `spec.versions_bundles.etcdadm_bootstrap.metadata`
 
 Optional:
 
@@ -834,7 +834,7 @@ Required:
 - `version` (String)
 
 <a id="nestedatt--spec--versions_bundles--etcdadm_controller--components"></a>
-### Nested Schema for `spec.versions_bundles.etcdadm_controller.version`
+### Nested Schema for `spec.versions_bundles.etcdadm_controller.components`
 
 Optional:
 
@@ -842,7 +842,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--etcdadm_controller--controller"></a>
-### Nested Schema for `spec.versions_bundles.etcdadm_controller.version`
+### Nested Schema for `spec.versions_bundles.etcdadm_controller.controller`
 
 Optional:
 
@@ -856,7 +856,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--etcdadm_controller--kube_proxy"></a>
-### Nested Schema for `spec.versions_bundles.etcdadm_controller.version`
+### Nested Schema for `spec.versions_bundles.etcdadm_controller.kube_proxy`
 
 Optional:
 
@@ -870,7 +870,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--etcdadm_controller--metadata"></a>
-### Nested Schema for `spec.versions_bundles.etcdadm_controller.version`
+### Nested Schema for `spec.versions_bundles.etcdadm_controller.metadata`
 
 Optional:
 
@@ -893,7 +893,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--versions_bundles--flux--helm_controller"></a>
-### Nested Schema for `spec.versions_bundles.flux.version`
+### Nested Schema for `spec.versions_bundles.flux.helm_controller`
 
 Optional:
 
@@ -907,7 +907,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--flux--kustomize_controller"></a>
-### Nested Schema for `spec.versions_bundles.flux.version`
+### Nested Schema for `spec.versions_bundles.flux.kustomize_controller`
 
 Optional:
 
@@ -921,7 +921,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--flux--notification_controller"></a>
-### Nested Schema for `spec.versions_bundles.flux.version`
+### Nested Schema for `spec.versions_bundles.flux.notification_controller`
 
 Optional:
 
@@ -935,7 +935,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--flux--source_controller"></a>
-### Nested Schema for `spec.versions_bundles.flux.version`
+### Nested Schema for `spec.versions_bundles.flux.source_controller`
 
 Optional:
 
@@ -961,7 +961,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--versions_bundles--kindnetd--manifest"></a>
-### Nested Schema for `spec.versions_bundles.kindnetd.version`
+### Nested Schema for `spec.versions_bundles.kindnetd.manifest`
 
 Optional:
 
@@ -984,7 +984,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--versions_bundles--package_controller--package_controller"></a>
-### Nested Schema for `spec.versions_bundles.package_controller.version`
+### Nested Schema for `spec.versions_bundles.package_controller.package_controller`
 
 Optional:
 
@@ -998,7 +998,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--package_controller--token_refresher"></a>
-### Nested Schema for `spec.versions_bundles.package_controller.version`
+### Nested Schema for `spec.versions_bundles.package_controller.token_refresher`
 
 Optional:
 
@@ -1012,7 +1012,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--package_controller--credential_provider_package"></a>
-### Nested Schema for `spec.versions_bundles.package_controller.version`
+### Nested Schema for `spec.versions_bundles.package_controller.credential_provider_package`
 
 Optional:
 
@@ -1026,7 +1026,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--package_controller--helm_chart"></a>
-### Nested Schema for `spec.versions_bundles.package_controller.version`
+### Nested Schema for `spec.versions_bundles.package_controller.helm_chart`
 
 Optional:
 
@@ -1060,7 +1060,7 @@ Optional:
 - `syncer` (Attributes) This field has been deprecated (see [below for nested schema](#nestedatt--spec--versions_bundles--v_sphere--syncer))
 
 <a id="nestedatt--spec--versions_bundles--v_sphere--cluster_api_controller"></a>
-### Nested Schema for `spec.versions_bundles.v_sphere.syncer`
+### Nested Schema for `spec.versions_bundles.v_sphere.cluster_api_controller`
 
 Optional:
 
@@ -1074,7 +1074,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--v_sphere--cluster_template"></a>
-### Nested Schema for `spec.versions_bundles.v_sphere.syncer`
+### Nested Schema for `spec.versions_bundles.v_sphere.cluster_template`
 
 Optional:
 
@@ -1082,7 +1082,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--v_sphere--components"></a>
-### Nested Schema for `spec.versions_bundles.v_sphere.syncer`
+### Nested Schema for `spec.versions_bundles.v_sphere.components`
 
 Optional:
 
@@ -1090,7 +1090,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--v_sphere--kube_proxy"></a>
-### Nested Schema for `spec.versions_bundles.v_sphere.syncer`
+### Nested Schema for `spec.versions_bundles.v_sphere.kube_proxy`
 
 Optional:
 
@@ -1104,7 +1104,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--v_sphere--kube_vip"></a>
-### Nested Schema for `spec.versions_bundles.v_sphere.syncer`
+### Nested Schema for `spec.versions_bundles.v_sphere.kube_vip`
 
 Optional:
 
@@ -1118,7 +1118,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--v_sphere--manager"></a>
-### Nested Schema for `spec.versions_bundles.v_sphere.syncer`
+### Nested Schema for `spec.versions_bundles.v_sphere.manager`
 
 Optional:
 
@@ -1132,7 +1132,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--v_sphere--metadata"></a>
-### Nested Schema for `spec.versions_bundles.v_sphere.syncer`
+### Nested Schema for `spec.versions_bundles.v_sphere.metadata`
 
 Optional:
 
@@ -1140,7 +1140,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--v_sphere--driver"></a>
-### Nested Schema for `spec.versions_bundles.v_sphere.syncer`
+### Nested Schema for `spec.versions_bundles.v_sphere.driver`
 
 Optional:
 
@@ -1181,7 +1181,7 @@ Required:
 - `version` (String)
 
 <a id="nestedatt--spec--versions_bundles--aws--cluster_template"></a>
-### Nested Schema for `spec.versions_bundles.aws.version`
+### Nested Schema for `spec.versions_bundles.aws.cluster_template`
 
 Optional:
 
@@ -1189,7 +1189,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--aws--components"></a>
-### Nested Schema for `spec.versions_bundles.aws.version`
+### Nested Schema for `spec.versions_bundles.aws.components`
 
 Optional:
 
@@ -1197,7 +1197,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--aws--controller"></a>
-### Nested Schema for `spec.versions_bundles.aws.version`
+### Nested Schema for `spec.versions_bundles.aws.controller`
 
 Optional:
 
@@ -1211,7 +1211,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--aws--kube_proxy"></a>
-### Nested Schema for `spec.versions_bundles.aws.version`
+### Nested Schema for `spec.versions_bundles.aws.kube_proxy`
 
 Optional:
 
@@ -1225,7 +1225,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--aws--metadata"></a>
-### Nested Schema for `spec.versions_bundles.aws.version`
+### Nested Schema for `spec.versions_bundles.aws.metadata`
 
 Optional:
 
@@ -1246,7 +1246,7 @@ Required:
 - `version` (String)
 
 <a id="nestedatt--spec--versions_bundles--cloud_stack--cluster_api_controller"></a>
-### Nested Schema for `spec.versions_bundles.cloud_stack.version`
+### Nested Schema for `spec.versions_bundles.cloud_stack.cluster_api_controller`
 
 Optional:
 
@@ -1260,7 +1260,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--cloud_stack--components"></a>
-### Nested Schema for `spec.versions_bundles.cloud_stack.version`
+### Nested Schema for `spec.versions_bundles.cloud_stack.components`
 
 Optional:
 
@@ -1268,7 +1268,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--cloud_stack--kube_rbac_proxy"></a>
-### Nested Schema for `spec.versions_bundles.cloud_stack.version`
+### Nested Schema for `spec.versions_bundles.cloud_stack.kube_rbac_proxy`
 
 Optional:
 
@@ -1282,7 +1282,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--cloud_stack--kube_vip"></a>
-### Nested Schema for `spec.versions_bundles.cloud_stack.version`
+### Nested Schema for `spec.versions_bundles.cloud_stack.kube_vip`
 
 Optional:
 
@@ -1296,7 +1296,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--cloud_stack--metadata"></a>
-### Nested Schema for `spec.versions_bundles.cloud_stack.version`
+### Nested Schema for `spec.versions_bundles.cloud_stack.metadata`
 
 Optional:
 
@@ -1343,7 +1343,7 @@ Optional:
 - `cloud_provider` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--nutanix--cloud_provider))
 
 <a id="nestedatt--spec--versions_bundles--nutanix--cluster_api_controller"></a>
-### Nested Schema for `spec.versions_bundles.nutanix.cloud_provider`
+### Nested Schema for `spec.versions_bundles.nutanix.cluster_api_controller`
 
 Optional:
 
@@ -1357,7 +1357,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--nutanix--cluster_template"></a>
-### Nested Schema for `spec.versions_bundles.nutanix.cloud_provider`
+### Nested Schema for `spec.versions_bundles.nutanix.cluster_template`
 
 Optional:
 
@@ -1365,7 +1365,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--nutanix--components"></a>
-### Nested Schema for `spec.versions_bundles.nutanix.cloud_provider`
+### Nested Schema for `spec.versions_bundles.nutanix.components`
 
 Optional:
 
@@ -1373,7 +1373,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--nutanix--kube_vip"></a>
-### Nested Schema for `spec.versions_bundles.nutanix.cloud_provider`
+### Nested Schema for `spec.versions_bundles.nutanix.kube_vip`
 
 Optional:
 
@@ -1387,7 +1387,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--nutanix--metadata"></a>
-### Nested Schema for `spec.versions_bundles.nutanix.cloud_provider`
+### Nested Schema for `spec.versions_bundles.nutanix.metadata`
 
 Optional:
 
@@ -1422,7 +1422,7 @@ Required:
 - `version` (String)
 
 <a id="nestedatt--spec--versions_bundles--snow--bottlerocket_bootstrap_snow"></a>
-### Nested Schema for `spec.versions_bundles.snow.version`
+### Nested Schema for `spec.versions_bundles.snow.bottlerocket_bootstrap_snow`
 
 Optional:
 
@@ -1436,7 +1436,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--snow--components"></a>
-### Nested Schema for `spec.versions_bundles.snow.version`
+### Nested Schema for `spec.versions_bundles.snow.components`
 
 Optional:
 
@@ -1444,7 +1444,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--snow--kube_vip"></a>
-### Nested Schema for `spec.versions_bundles.snow.version`
+### Nested Schema for `spec.versions_bundles.snow.kube_vip`
 
 Optional:
 
@@ -1458,7 +1458,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--snow--manager"></a>
-### Nested Schema for `spec.versions_bundles.snow.version`
+### Nested Schema for `spec.versions_bundles.snow.manager`
 
 Optional:
 
@@ -1472,7 +1472,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--snow--metadata"></a>
-### Nested Schema for `spec.versions_bundles.snow.version`
+### Nested Schema for `spec.versions_bundles.snow.metadata`
 
 Optional:
 
@@ -1498,7 +1498,7 @@ Optional:
 - `tinkerbell_stack` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack))
 
 <a id="nestedatt--spec--versions_bundles--tinkerbell--cluster_api_controller"></a>
-### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack`
+### Nested Schema for `spec.versions_bundles.tinkerbell.cluster_api_controller`
 
 Optional:
 
@@ -1512,7 +1512,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--tinkerbell--cluster_template"></a>
-### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack`
+### Nested Schema for `spec.versions_bundles.tinkerbell.cluster_template`
 
 Optional:
 
@@ -1520,7 +1520,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--tinkerbell--components"></a>
-### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack`
+### Nested Schema for `spec.versions_bundles.tinkerbell.components`
 
 Optional:
 
@@ -1528,7 +1528,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--tinkerbell--envoy"></a>
-### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack`
+### Nested Schema for `spec.versions_bundles.tinkerbell.envoy`
 
 Optional:
 
@@ -1542,7 +1542,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--tinkerbell--kube_vip"></a>
-### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack`
+### Nested Schema for `spec.versions_bundles.tinkerbell.kube_vip`
 
 Optional:
 
@@ -1556,7 +1556,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--tinkerbell--metadata"></a>
-### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack`
+### Nested Schema for `spec.versions_bundles.tinkerbell.metadata`
 
 Optional:
 
@@ -1589,7 +1589,7 @@ Required:
 - `write_file` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--actions--write_file))
 
 <a id="nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--actions--cexec"></a>
-### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.actions.write_file`
+### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.actions.cexec`
 
 Optional:
 
@@ -1603,7 +1603,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--actions--image_to_disk"></a>
-### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.actions.write_file`
+### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.actions.image_to_disk`
 
 Optional:
 
@@ -1617,7 +1617,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--actions--kexec"></a>
-### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.actions.write_file`
+### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.actions.kexec`
 
 Optional:
 
@@ -1631,7 +1631,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--actions--oci_to_disk"></a>
-### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.actions.write_file`
+### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.actions.oci_to_disk`
 
 Optional:
 
@@ -1645,7 +1645,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--actions--reboot"></a>
-### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.actions.write_file`
+### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.actions.reboot`
 
 Optional:
 
@@ -1713,7 +1713,7 @@ Required:
 - `vmlinuz` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--hook--vmlinuz))
 
 <a id="nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--hook--bootkit"></a>
-### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.hook.vmlinuz`
+### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.hook.bootkit`
 
 Optional:
 
@@ -1727,7 +1727,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--hook--docker"></a>
-### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.hook.vmlinuz`
+### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.hook.docker`
 
 Optional:
 
@@ -1741,7 +1741,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--hook--initramfs"></a>
-### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.hook.vmlinuz`
+### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.hook.initramfs`
 
 Required:
 
@@ -1749,7 +1749,7 @@ Required:
 - `arm` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--hook--vmlinuz--arm))
 
 <a id="nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--hook--vmlinuz--amd"></a>
-### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.hook.vmlinuz.arm`
+### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.hook.vmlinuz.amd`
 
 Optional:
 
@@ -1780,7 +1780,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--hook--kernel"></a>
-### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.hook.vmlinuz`
+### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.hook.kernel`
 
 Optional:
 
@@ -1802,7 +1802,7 @@ Required:
 - `arm` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--hook--vmlinuz--arm))
 
 <a id="nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--hook--vmlinuz--amd"></a>
-### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.hook.vmlinuz.arm`
+### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.hook.vmlinuz.amd`
 
 Optional:
 
@@ -1857,7 +1857,7 @@ Required:
 - `tink_worker` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--tink--tink_worker))
 
 <a id="nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--tink--tink_controller"></a>
-### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.tink.tink_worker`
+### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.tink.tink_controller`
 
 Optional:
 
@@ -1871,7 +1871,7 @@ Optional:
 
 
 <a id="nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--tink--tink_server"></a>
-### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.tink.tink_worker`
+### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.tink.tink_server`
 
 Optional:
 

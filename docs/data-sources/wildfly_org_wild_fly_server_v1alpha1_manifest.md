@@ -103,7 +103,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.env.value_from.secret_key_ref`
+### Nested Schema for `spec.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -116,7 +116,7 @@ Optional:
 
 
 <a id="nestedatt--spec--env--value_from--field_ref"></a>
-### Nested Schema for `spec.env.value_from.secret_key_ref`
+### Nested Schema for `spec.env.value_from.field_ref`
 
 Required:
 
@@ -128,7 +128,7 @@ Optional:
 
 
 <a id="nestedatt--spec--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.env.value_from.secret_key_ref`
+### Nested Schema for `spec.env.value_from.resource_field_ref`
 
 Required:
 
@@ -219,7 +219,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--liveness_probe--http_get--http_headers"></a>
-### Nested Schema for `spec.liveness_probe.http_get.scheme`
+### Nested Schema for `spec.liveness_probe.http_get.http_headers`
 
 Required:
 
@@ -265,7 +265,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--readiness_probe--http_get--http_headers"></a>
-### Nested Schema for `spec.readiness_probe.http_get.scheme`
+### Nested Schema for `spec.readiness_probe.http_get.http_headers`
 
 Required:
 
@@ -393,7 +393,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--startup_probe--http_get--http_headers"></a>
-### Nested Schema for `spec.startup_probe.http_get.scheme`
+### Nested Schema for `spec.startup_probe.http_get.http_headers`
 
 Required:
 
@@ -432,7 +432,7 @@ Optional:
 - `status` (Attributes) status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template--status))
 
 <a id="nestedatt--spec--storage--volume_claim_template--spec"></a>
-### Nested Schema for `spec.storage.volume_claim_template.status`
+### Nested Schema for `spec.storage.volume_claim_template.spec`
 
 Optional:
 
@@ -489,7 +489,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--storage--volume_claim_template--status--selector--match_expressions"></a>
-### Nested Schema for `spec.storage.volume_claim_template.status.selector.match_labels`
+### Nested Schema for `spec.storage.volume_claim_template.status.selector.match_expressions`
 
 Required:
 

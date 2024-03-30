@@ -103,7 +103,7 @@ Optional:
 - `signing_key` (Attributes) SigningKey provides the option to sign commits with a GPG key (see [below for nested schema](#nestedatt--spec--git--commit--signing_key))
 
 <a id="nestedatt--spec--git--commit--author"></a>
-### Nested Schema for `spec.git.commit.signing_key`
+### Nested Schema for `spec.git.commit.author`
 
 Required:
 

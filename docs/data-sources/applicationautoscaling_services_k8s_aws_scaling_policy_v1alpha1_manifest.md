@@ -112,7 +112,7 @@ Optional:
 - `unit` (String)
 
 <a id="nestedatt--spec--target_tracking_scaling_policy_configuration--customized_metric_specification--dimensions"></a>
-### Nested Schema for `spec.target_tracking_scaling_policy_configuration.customized_metric_specification.unit`
+### Nested Schema for `spec.target_tracking_scaling_policy_configuration.customized_metric_specification.dimensions`
 
 Optional:
 

@@ -96,7 +96,7 @@ Optional:
 - `zipkin` (Attributes) Zipkin backend configuration. (see [below for nested schema](#nestedatt--spec--default--backends--zipkin))
 
 <a id="nestedatt--spec--default--backends--datadog"></a>
-### Nested Schema for `spec.default.backends.zipkin`
+### Nested Schema for `spec.default.backends.datadog`
 
 Required:
 
@@ -108,7 +108,7 @@ Optional:
 
 
 <a id="nestedatt--spec--default--backends--open_telemetry"></a>
-### Nested Schema for `spec.default.backends.zipkin`
+### Nested Schema for `spec.default.backends.open_telemetry`
 
 Required:
 
@@ -153,7 +153,7 @@ Optional:
 - `literal` (String) Tag taken from literal value.
 
 <a id="nestedatt--spec--default--tags--header"></a>
-### Nested Schema for `spec.default.tags.literal`
+### Nested Schema for `spec.default.tags.header`
 
 Required:
 

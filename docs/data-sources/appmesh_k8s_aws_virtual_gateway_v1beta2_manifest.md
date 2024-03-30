@@ -103,7 +103,7 @@ Optional:
 - `subject_alternative_names` (Attributes) Possible alternative names to consider (see [below for nested schema](#nestedatt--spec--backend_defaults--client_policy--tls--validation--subject_alternative_names))
 
 <a id="nestedatt--spec--backend_defaults--client_policy--tls--validation--trust"></a>
-### Nested Schema for `spec.backend_defaults.client_policy.tls.validation.subject_alternative_names`
+### Nested Schema for `spec.backend_defaults.client_policy.tls.validation.trust`
 
 Optional:
 
@@ -112,7 +112,7 @@ Optional:
 - `sds` (Attributes) An object that represents a TLS validation context trust for a SDS certificate (see [below for nested schema](#nestedatt--spec--backend_defaults--client_policy--tls--validation--subject_alternative_names--sds))
 
 <a id="nestedatt--spec--backend_defaults--client_policy--tls--validation--subject_alternative_names--acm"></a>
-### Nested Schema for `spec.backend_defaults.client_policy.tls.validation.subject_alternative_names.sds`
+### Nested Schema for `spec.backend_defaults.client_policy.tls.validation.subject_alternative_names.acm`
 
 Required:
 
@@ -120,7 +120,7 @@ Required:
 
 
 <a id="nestedatt--spec--backend_defaults--client_policy--tls--validation--subject_alternative_names--file"></a>
-### Nested Schema for `spec.backend_defaults.client_policy.tls.validation.subject_alternative_names.sds`
+### Nested Schema for `spec.backend_defaults.client_policy.tls.validation.subject_alternative_names.file`
 
 Required:
 
@@ -162,7 +162,7 @@ Optional:
 - `sds` (Attributes) An object that represents a TLS cert via SDS entry (see [below for nested schema](#nestedatt--spec--backend_defaults--client_policy--tls--certificate--sds))
 
 <a id="nestedatt--spec--backend_defaults--client_policy--tls--certificate--file"></a>
-### Nested Schema for `spec.backend_defaults.client_policy.tls.certificate.sds`
+### Nested Schema for `spec.backend_defaults.client_policy.tls.certificate.file`
 
 Required:
 
@@ -236,7 +236,7 @@ Optional:
 - `http2` (Attributes) Specifies http2 connection pool settings for the virtual gateway listener (see [below for nested schema](#nestedatt--spec--listeners--connection_pool--http2))
 
 <a id="nestedatt--spec--listeners--connection_pool--grpc"></a>
-### Nested Schema for `spec.listeners.connection_pool.http2`
+### Nested Schema for `spec.listeners.connection_pool.grpc`
 
 Required:
 
@@ -244,7 +244,7 @@ Required:
 
 
 <a id="nestedatt--spec--listeners--connection_pool--http"></a>
-### Nested Schema for `spec.listeners.connection_pool.http2`
+### Nested Schema for `spec.listeners.connection_pool.http`
 
 Required:
 
@@ -294,7 +294,7 @@ Optional:
 - `validation` (Attributes) A reference to an object that represents Validation context (see [below for nested schema](#nestedatt--spec--listeners--tls--validation))
 
 <a id="nestedatt--spec--listeners--tls--certificate"></a>
-### Nested Schema for `spec.listeners.tls.validation`
+### Nested Schema for `spec.listeners.tls.certificate`
 
 Optional:
 
@@ -349,7 +349,7 @@ Optional:
 - `sds` (Attributes) An object that represents a TLS validation context trust for an SDS system (see [below for nested schema](#nestedatt--spec--listeners--tls--validation--trust--sds))
 
 <a id="nestedatt--spec--listeners--tls--validation--trust--acm"></a>
-### Nested Schema for `spec.listeners.tls.validation.trust.sds`
+### Nested Schema for `spec.listeners.tls.validation.trust.acm`
 
 Required:
 
@@ -357,7 +357,7 @@ Required:
 
 
 <a id="nestedatt--spec--listeners--tls--validation--trust--file"></a>
-### Nested Schema for `spec.listeners.tls.validation.trust.sds`
+### Nested Schema for `spec.listeners.tls.validation.trust.file`
 
 Required:
 
@@ -426,7 +426,7 @@ Optional:
 - `text` (String) Custom format string
 
 <a id="nestedatt--spec--logging--access_log--file--format--json"></a>
-### Nested Schema for `spec.logging.access_log.file.format.text`
+### Nested Schema for `spec.logging.access_log.file.format.json`
 
 Required:
 

@@ -104,7 +104,7 @@ Optional:
 - `user` (Attributes) UserSubject holds detailed information for user-kind subject. (see [below for nested schema](#nestedatt--spec--rules--subjects--user))
 
 <a id="nestedatt--spec--rules--subjects--group"></a>
-### Nested Schema for `spec.rules.subjects.user`
+### Nested Schema for `spec.rules.subjects.group`
 
 Required:
 
@@ -112,7 +112,7 @@ Required:
 
 
 <a id="nestedatt--spec--rules--subjects--service_account"></a>
-### Nested Schema for `spec.rules.subjects.user`
+### Nested Schema for `spec.rules.subjects.service_account`
 
 Required:
 

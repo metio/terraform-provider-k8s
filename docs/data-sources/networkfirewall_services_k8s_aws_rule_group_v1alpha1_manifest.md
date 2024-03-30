@@ -114,7 +114,7 @@ Optional:
 - `port_sets` (Attributes) (see [below for nested schema](#nestedatt--spec--rule_group--rule_variables--port_sets))
 
 <a id="nestedatt--spec--rule_group--rule_variables--i_p_sets"></a>
-### Nested Schema for `spec.rule_group.rule_variables.port_sets`
+### Nested Schema for `spec.rule_group.rule_variables.i_p_sets`
 
 Optional:
 
@@ -141,7 +141,7 @@ Optional:
 - `stateless_rules_and_custom_actions` (Attributes) Stateless inspection criteria. Each stateless rule group uses exactly oneof these data types to define its stateless rules. (see [below for nested schema](#nestedatt--spec--rule_group--rules_source--stateless_rules_and_custom_actions))
 
 <a id="nestedatt--spec--rule_group--rules_source--rules_source_list"></a>
-### Nested Schema for `spec.rule_group.rules_source.stateless_rules_and_custom_actions`
+### Nested Schema for `spec.rule_group.rules_source.rules_source_list`
 
 Optional:
 
@@ -151,7 +151,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rule_group--rules_source--stateful_rules"></a>
-### Nested Schema for `spec.rule_group.rules_source.stateless_rules_and_custom_actions`
+### Nested Schema for `spec.rule_group.rules_source.stateful_rules`
 
 Optional:
 
@@ -199,7 +199,7 @@ Optional:
 - `action_name` (String)
 
 <a id="nestedatt--spec--rule_group--rules_source--stateless_rules_and_custom_actions--custom_actions--action_definition"></a>
-### Nested Schema for `spec.rule_group.rules_source.stateless_rules_and_custom_actions.custom_actions.action_name`
+### Nested Schema for `spec.rule_group.rules_source.stateless_rules_and_custom_actions.custom_actions.action_definition`
 
 Optional:
 
@@ -252,7 +252,7 @@ Optional:
 - `tcp_flags` (Attributes List) (see [below for nested schema](#nestedatt--spec--rule_group--rules_source--stateless_rules_and_custom_actions--stateless_rules--rule_definition--match_attributes--tcp_flags))
 
 <a id="nestedatt--spec--rule_group--rules_source--stateless_rules_and_custom_actions--stateless_rules--rule_definition--match_attributes--destination_ports"></a>
-### Nested Schema for `spec.rule_group.rules_source.stateless_rules_and_custom_actions.stateless_rules.rule_definition.match_attributes.tcp_flags`
+### Nested Schema for `spec.rule_group.rules_source.stateless_rules_and_custom_actions.stateless_rules.rule_definition.match_attributes.destination_ports`
 
 Optional:
 
@@ -261,7 +261,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rule_group--rules_source--stateless_rules_and_custom_actions--stateless_rules--rule_definition--match_attributes--destinations"></a>
-### Nested Schema for `spec.rule_group.rules_source.stateless_rules_and_custom_actions.stateless_rules.rule_definition.match_attributes.tcp_flags`
+### Nested Schema for `spec.rule_group.rules_source.stateless_rules_and_custom_actions.stateless_rules.rule_definition.match_attributes.destinations`
 
 Optional:
 
@@ -269,7 +269,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rule_group--rules_source--stateless_rules_and_custom_actions--stateless_rules--rule_definition--match_attributes--source_ports"></a>
-### Nested Schema for `spec.rule_group.rules_source.stateless_rules_and_custom_actions.stateless_rules.rule_definition.match_attributes.tcp_flags`
+### Nested Schema for `spec.rule_group.rules_source.stateless_rules_and_custom_actions.stateless_rules.rule_definition.match_attributes.source_ports`
 
 Optional:
 
@@ -278,7 +278,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rule_group--rules_source--stateless_rules_and_custom_actions--stateless_rules--rule_definition--match_attributes--sources"></a>
-### Nested Schema for `spec.rule_group.rules_source.stateless_rules_and_custom_actions.stateless_rules.rule_definition.match_attributes.tcp_flags`
+### Nested Schema for `spec.rule_group.rules_source.stateless_rules_and_custom_actions.stateless_rules.rule_definition.match_attributes.sources`
 
 Optional:
 

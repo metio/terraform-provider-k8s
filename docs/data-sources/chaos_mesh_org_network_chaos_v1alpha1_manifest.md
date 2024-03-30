@@ -221,7 +221,7 @@ Optional:
 - `pods` (Map of List of String) Pods is a map of string keys and a set values that used to select pods. The key defines the namespace which pods belong, and the each values is a set of pod names.
 
 <a id="nestedatt--spec--target--selector--expression_selectors"></a>
-### Nested Schema for `spec.target.selector.pods`
+### Nested Schema for `spec.target.selector.expression_selectors`
 
 Required:
 

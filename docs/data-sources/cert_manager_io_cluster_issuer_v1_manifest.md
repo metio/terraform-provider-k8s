@@ -101,7 +101,7 @@ Optional:
 - `key_algorithm` (String) Deprecated: keyAlgorithm field exists for historical compatibilityreasons and should not be used. The algorithm is now hardcoded to HS256in golang/x/crypto/acme.
 
 <a id="nestedatt--spec--acme--external_account_binding--key_secret_ref"></a>
-### Nested Schema for `spec.acme.external_account_binding.key_algorithm`
+### Nested Schema for `spec.acme.external_account_binding.key_secret_ref`
 
 Required:
 
@@ -123,7 +123,7 @@ Optional:
 - `selector` (Attributes) Selector selects a set of DNSNames on the Certificate resource thatshould be solved using this challenge solver.If not specified, the solver will be treated as the 'default' solverwith the lowest priority, i.e. if any other solver has a more specificmatch, it will be used instead. (see [below for nested schema](#nestedatt--spec--acme--solvers--selector))
 
 <a id="nestedatt--spec--acme--solvers--dns01"></a>
-### Nested Schema for `spec.acme.solvers.selector`
+### Nested Schema for `spec.acme.solvers.dns01`
 
 Optional:
 
@@ -147,7 +147,7 @@ Required:
 - `host` (String)
 
 <a id="nestedatt--spec--acme--solvers--selector--acme_dns--account_secret_ref"></a>
-### Nested Schema for `spec.acme.solvers.selector.acme_dns.host`
+### Nested Schema for `spec.acme.solvers.selector.acme_dns.account_secret_ref`
 
 Required:
 
@@ -170,7 +170,7 @@ Required:
 - `service_consumer_domain` (String)
 
 <a id="nestedatt--spec--acme--solvers--selector--akamai--access_token_secret_ref"></a>
-### Nested Schema for `spec.acme.solvers.selector.akamai.service_consumer_domain`
+### Nested Schema for `spec.acme.solvers.selector.akamai.access_token_secret_ref`
 
 Required:
 
@@ -182,7 +182,7 @@ Optional:
 
 
 <a id="nestedatt--spec--acme--solvers--selector--akamai--client_secret_secret_ref"></a>
-### Nested Schema for `spec.acme.solvers.selector.akamai.service_consumer_domain`
+### Nested Schema for `spec.acme.solvers.selector.akamai.client_secret_secret_ref`
 
 Required:
 
@@ -194,7 +194,7 @@ Optional:
 
 
 <a id="nestedatt--spec--acme--solvers--selector--akamai--client_token_secret_ref"></a>
-### Nested Schema for `spec.acme.solvers.selector.akamai.service_consumer_domain`
+### Nested Schema for `spec.acme.solvers.selector.akamai.client_token_secret_ref`
 
 Required:
 
@@ -224,7 +224,7 @@ Optional:
 - `tenant_id` (String) Auth: Azure Service Principal:The TenantID of the Azure Service Principal used to authenticate with Azure DNS.If set, ClientID and ClientSecret must also be set.
 
 <a id="nestedatt--spec--acme--solvers--selector--azure_dns--client_secret_secret_ref"></a>
-### Nested Schema for `spec.acme.solvers.selector.azure_dns.tenant_id`
+### Nested Schema for `spec.acme.solvers.selector.azure_dns.client_secret_secret_ref`
 
 Required:
 
@@ -236,7 +236,7 @@ Optional:
 
 
 <a id="nestedatt--spec--acme--solvers--selector--azure_dns--managed_identity"></a>
-### Nested Schema for `spec.acme.solvers.selector.azure_dns.tenant_id`
+### Nested Schema for `spec.acme.solvers.selector.azure_dns.managed_identity`
 
 Optional:
 
@@ -280,7 +280,7 @@ Optional:
 - `email` (String) Email of the account, only required when using API key based authentication.
 
 <a id="nestedatt--spec--acme--solvers--selector--cloudflare--api_key_secret_ref"></a>
-### Nested Schema for `spec.acme.solvers.selector.cloudflare.email`
+### Nested Schema for `spec.acme.solvers.selector.cloudflare.api_key_secret_ref`
 
 Required:
 
@@ -292,7 +292,7 @@ Optional:
 
 
 <a id="nestedatt--spec--acme--solvers--selector--cloudflare--api_token_secret_ref"></a>
-### Nested Schema for `spec.acme.solvers.selector.cloudflare.email`
+### Nested Schema for `spec.acme.solvers.selector.cloudflare.api_token_secret_ref`
 
 Required:
 
@@ -366,7 +366,7 @@ Optional:
 - `secret_access_key_secret_ref` (Attributes) The SecretAccessKey is used for authentication.If neither the Access Key nor Key ID are set, we fall-back to using envvars, shared credentials file or AWS Instance metadata,see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials (see [below for nested schema](#nestedatt--spec--acme--solvers--selector--route53--secret_access_key_secret_ref))
 
 <a id="nestedatt--spec--acme--solvers--selector--route53--access_key_id_secret_ref"></a>
-### Nested Schema for `spec.acme.solvers.selector.route53.secret_access_key_secret_ref`
+### Nested Schema for `spec.acme.solvers.selector.route53.access_key_id_secret_ref`
 
 Required:
 
@@ -405,7 +405,7 @@ Optional:
 
 
 <a id="nestedatt--spec--acme--solvers--http01"></a>
-### Nested Schema for `spec.acme.solvers.selector`
+### Nested Schema for `spec.acme.solvers.http01`
 
 Optional:
 
@@ -422,7 +422,7 @@ Optional:
 - `service_type` (String) Optional service type for Kubernetes solver service. Supported valuesare NodePort or ClusterIP. If unset, defaults to NodePort.
 
 <a id="nestedatt--spec--acme--solvers--selector--gateway_http_route--parent_refs"></a>
-### Nested Schema for `spec.acme.solvers.selector.gateway_http_route.service_type`
+### Nested Schema for `spec.acme.solvers.selector.gateway_http_route.parent_refs`
 
 Required:
 
@@ -451,7 +451,7 @@ Optional:
 - `service_type` (String) Optional service type for Kubernetes solver service. Supported valuesare NodePort or ClusterIP. If unset, defaults to NodePort.
 
 <a id="nestedatt--spec--acme--solvers--selector--ingress--ingress_template"></a>
-### Nested Schema for `spec.acme.solvers.selector.ingress.service_type`
+### Nested Schema for `spec.acme.solvers.selector.ingress.ingress_template`
 
 Optional:
 
@@ -468,7 +468,7 @@ Optional:
 
 
 <a id="nestedatt--spec--acme--solvers--selector--ingress--pod_template"></a>
-### Nested Schema for `spec.acme.solvers.selector.ingress.service_type`
+### Nested Schema for `spec.acme.solvers.selector.ingress.pod_template`
 
 Optional:
 
@@ -476,7 +476,7 @@ Optional:
 - `spec` (Attributes) PodSpec defines overrides for the HTTP01 challenge solver pod.Check ACMEChallengeSolverHTTP01IngressPodSpec to find out currently supported fields.All other fields will be ignored. (see [below for nested schema](#nestedatt--spec--acme--solvers--selector--ingress--service_type--spec))
 
 <a id="nestedatt--spec--acme--solvers--selector--ingress--service_type--metadata"></a>
-### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec`
+### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.metadata`
 
 Optional:
 
@@ -497,7 +497,7 @@ Optional:
 - `tolerations` (Attributes List) If specified, the pod's tolerations. (see [below for nested schema](#nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--tolerations))
 
 <a id="nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--affinity"></a>
-### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations`
+### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.affinity`
 
 Optional:
 
@@ -514,7 +514,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--tolerations--node_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--tolerations--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.node_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -522,7 +522,7 @@ Required:
 - `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
 
 <a id="nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.node_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.node_affinity.required_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -530,7 +530,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -573,7 +573,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -610,7 +610,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--tolerations--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -618,7 +618,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
 <a id="nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -633,7 +633,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -641,7 +641,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -655,7 +655,7 @@ Optional:
 
 
 <a id="nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -663,7 +663,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -694,7 +694,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -702,7 +702,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -716,7 +716,7 @@ Optional:
 
 
 <a id="nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -724,7 +724,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -748,7 +748,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -756,7 +756,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
 <a id="nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -771,7 +771,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -779,7 +779,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -793,7 +793,7 @@ Optional:
 
 
 <a id="nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -801,7 +801,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -832,7 +832,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -840,7 +840,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -854,7 +854,7 @@ Optional:
 
 
 <a id="nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -862,7 +862,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -879,7 +879,7 @@ Optional:
 
 
 <a id="nestedatt--spec--acme--solvers--selector--ingress--service_type--spec--image_pull_secrets"></a>
-### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.tolerations`
+### Nested Schema for `spec.acme.solvers.selector.ingress.service_type.spec.image_pull_secrets`
 
 Optional:
 
@@ -963,7 +963,7 @@ Optional:
 - `token_secret_ref` (Attributes) TokenSecretRef authenticates with Vault by presenting a token. (see [below for nested schema](#nestedatt--spec--vault--auth--token_secret_ref))
 
 <a id="nestedatt--spec--vault--auth--app_role"></a>
-### Nested Schema for `spec.vault.auth.token_secret_ref`
+### Nested Schema for `spec.vault.auth.app_role`
 
 Required:
 
@@ -985,7 +985,7 @@ Optional:
 
 
 <a id="nestedatt--spec--vault--auth--kubernetes"></a>
-### Nested Schema for `spec.vault.auth.token_secret_ref`
+### Nested Schema for `spec.vault.auth.kubernetes`
 
 Required:
 
@@ -1096,7 +1096,7 @@ Optional:
 - `url` (String) URL is the base URL for Venafi Cloud.Defaults to 'https://api.venafi.cloud/v1'.
 
 <a id="nestedatt--spec--venafi--cloud--api_token_secret_ref"></a>
-### Nested Schema for `spec.venafi.cloud.url`
+### Nested Schema for `spec.venafi.cloud.api_token_secret_ref`
 
 Required:
 
@@ -1121,7 +1121,7 @@ Optional:
 - `ca_bundle` (String) Base64-encoded bundle of PEM CAs which will be used to validate the certificatechain presented by the TPP server. Only used if using HTTPS; ignored for HTTP.If undefined, the certificate bundle in the cert-manager controller containeris used to validate the chain.
 
 <a id="nestedatt--spec--venafi--tpp--credentials_ref"></a>
-### Nested Schema for `spec.venafi.tpp.ca_bundle`
+### Nested Schema for `spec.venafi.tpp.credentials_ref`
 
 Required:
 

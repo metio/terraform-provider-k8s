@@ -109,7 +109,7 @@ Optional:
 - `version` (String) Version semver expression, ignored for charts from v1beta2.GitRepository andv1beta2.Bucket sources. Defaults to latest when omitted.
 
 <a id="nestedatt--spec--chart--spec--source_ref"></a>
-### Nested Schema for `spec.chart.spec.version`
+### Nested Schema for `spec.chart.spec.source_ref`
 
 Required:
 
@@ -123,7 +123,7 @@ Optional:
 
 
 <a id="nestedatt--spec--chart--spec--verify"></a>
-### Nested Schema for `spec.chart.spec.version`
+### Nested Schema for `spec.chart.spec.verify`
 
 Required:
 
@@ -265,7 +265,7 @@ Optional:
 - `patches_strategic_merge` (List of String) Strategic merge patches, defined as inline YAML objects.Deprecated: use Patches instead.
 
 <a id="nestedatt--spec--post_renderers--kustomize--images"></a>
-### Nested Schema for `spec.post_renderers.kustomize.patches_strategic_merge`
+### Nested Schema for `spec.post_renderers.kustomize.images`
 
 Required:
 
@@ -279,7 +279,7 @@ Optional:
 
 
 <a id="nestedatt--spec--post_renderers--kustomize--patches"></a>
-### Nested Schema for `spec.post_renderers.kustomize.patches_strategic_merge`
+### Nested Schema for `spec.post_renderers.kustomize.patches`
 
 Required:
 
@@ -305,7 +305,7 @@ Optional:
 
 
 <a id="nestedatt--spec--post_renderers--kustomize--patches_json6902"></a>
-### Nested Schema for `spec.post_renderers.kustomize.patches_strategic_merge`
+### Nested Schema for `spec.post_renderers.kustomize.patches_json6902`
 
 Required:
 

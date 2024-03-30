@@ -169,7 +169,7 @@ Optional:
 - `type_int_key` (List of String) If these keys are matched, the fields are converted to integer. If more than one key, delimit by space. Note that starting from Fluent Bit v1.6 integer data types are preserved and not converted to double as in previous versions.
 
 <a id="nestedatt--spec--filters--lua--script"></a>
-### Nested Schema for `spec.filters.lua.type_int_key`
+### Nested Schema for `spec.filters.lua.script`
 
 Required:
 
@@ -193,7 +193,7 @@ Optional:
 - `rules` (Attributes List) Rules are applied in the order they appear, with each rule operating on the result of the previous rule. (see [below for nested schema](#nestedatt--spec--filters--modify--rules))
 
 <a id="nestedatt--spec--filters--modify--conditions"></a>
-### Nested Schema for `spec.filters.modify.rules`
+### Nested Schema for `spec.filters.modify.conditions`
 
 Optional:
 

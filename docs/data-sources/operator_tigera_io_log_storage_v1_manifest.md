@@ -83,7 +83,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--component_resources--resource_requirements--claims"></a>
-### Nested Schema for `spec.component_resources.resource_requirements.requests`
+### Nested Schema for `spec.component_resources.resource_requirements.claims`
 
 Required:
 
@@ -122,7 +122,7 @@ Optional:
 - `init_containers` (Attributes List) InitContainers is a list of ECKOperator StatefulSet init containers. If specified, this overrides the specified ECKOperator StatefulSet init containers. If omitted, the ECKOperator StatefulSet will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--eck_operator_stateful_set--spec--template--spec--init_containers))
 
 <a id="nestedatt--spec--eck_operator_stateful_set--spec--template--spec--containers"></a>
-### Nested Schema for `spec.eck_operator_stateful_set.spec.template.spec.init_containers`
+### Nested Schema for `spec.eck_operator_stateful_set.spec.template.spec.containers`
 
 Required:
 
@@ -142,7 +142,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--eck_operator_stateful_set--spec--template--spec--init_containers--resources--claims"></a>
-### Nested Schema for `spec.eck_operator_stateful_set.spec.template.spec.init_containers.resources.requests`
+### Nested Schema for `spec.eck_operator_stateful_set.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
@@ -172,7 +172,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--eck_operator_stateful_set--spec--template--spec--init_containers--resources--claims"></a>
-### Nested Schema for `spec.eck_operator_stateful_set.spec.template.spec.init_containers.resources.requests`
+### Nested Schema for `spec.eck_operator_stateful_set.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
@@ -215,7 +215,7 @@ Optional:
 - `init_containers` (Attributes List) InitContainers is a list of ElasticsearchMetricsDeployment init containers. If specified, this overrides the specified ElasticsearchMetricsDeployment init containers. If omitted, the ElasticsearchMetrics Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--elasticsearch_metrics_deployment--spec--template--spec--init_containers))
 
 <a id="nestedatt--spec--elasticsearch_metrics_deployment--spec--template--spec--containers"></a>
-### Nested Schema for `spec.elasticsearch_metrics_deployment.spec.template.spec.init_containers`
+### Nested Schema for `spec.elasticsearch_metrics_deployment.spec.template.spec.containers`
 
 Required:
 
@@ -235,7 +235,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--elasticsearch_metrics_deployment--spec--template--spec--init_containers--resources--claims"></a>
-### Nested Schema for `spec.elasticsearch_metrics_deployment.spec.template.spec.init_containers.resources.requests`
+### Nested Schema for `spec.elasticsearch_metrics_deployment.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
@@ -265,7 +265,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--elasticsearch_metrics_deployment--spec--template--spec--init_containers--resources--claims"></a>
-### Nested Schema for `spec.elasticsearch_metrics_deployment.spec.template.spec.init_containers.resources.requests`
+### Nested Schema for `spec.elasticsearch_metrics_deployment.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
@@ -316,7 +316,7 @@ Optional:
 - `init_containers` (Attributes List) InitContainers is a list of Kibana init containers. If specified, this overrides the specified Kibana Deployment init containers. If omitted, the Kibana Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--kibana--spec--template--spec--init_containers))
 
 <a id="nestedatt--spec--kibana--spec--template--spec--containers"></a>
-### Nested Schema for `spec.kibana.spec.template.spec.init_containers`
+### Nested Schema for `spec.kibana.spec.template.spec.containers`
 
 Required:
 
@@ -336,7 +336,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--kibana--spec--template--spec--init_containers--resources--claims"></a>
-### Nested Schema for `spec.kibana.spec.template.spec.init_containers.resources.requests`
+### Nested Schema for `spec.kibana.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
@@ -366,7 +366,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--kibana--spec--template--spec--init_containers--resources--claims"></a>
-### Nested Schema for `spec.kibana.spec.template.spec.init_containers.resources.requests`
+### Nested Schema for `spec.kibana.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
@@ -409,7 +409,7 @@ Optional:
 - `init_containers` (Attributes List) InitContainers is a list of linseed init containers. If specified, this overrides the specified linseed Deployment init containers. If omitted, the linseed Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--linseed_deployment--spec--template--spec--init_containers))
 
 <a id="nestedatt--spec--linseed_deployment--spec--template--spec--containers"></a>
-### Nested Schema for `spec.linseed_deployment.spec.template.spec.init_containers`
+### Nested Schema for `spec.linseed_deployment.spec.template.spec.containers`
 
 Required:
 
@@ -429,7 +429,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--linseed_deployment--spec--template--spec--init_containers--resources--claims"></a>
-### Nested Schema for `spec.linseed_deployment.spec.template.spec.init_containers.resources.requests`
+### Nested Schema for `spec.linseed_deployment.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
@@ -459,7 +459,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--linseed_deployment--spec--template--spec--init_containers--resources--claims"></a>
-### Nested Schema for `spec.linseed_deployment.spec.template.spec.init_containers.resources.requests`
+### Nested Schema for `spec.linseed_deployment.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
@@ -509,7 +509,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--nodes--resource_requirements--claims"></a>
-### Nested Schema for `spec.nodes.resource_requirements.requests`
+### Nested Schema for `spec.nodes.resource_requirements.claims`
 
 Required:
 

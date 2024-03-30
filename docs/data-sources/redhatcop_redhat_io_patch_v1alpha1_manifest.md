@@ -93,7 +93,7 @@ Optional:
 - `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 
 <a id="nestedatt--spec--patches--target_object_ref--annotation_selector"></a>
-### Nested Schema for `spec.patches.target_object_ref.namespace`
+### Nested Schema for `spec.patches.target_object_ref.annotation_selector`
 
 Optional:
 
@@ -115,7 +115,7 @@ Optional:
 
 
 <a id="nestedatt--spec--patches--target_object_ref--label_selector"></a>
-### Nested Schema for `spec.patches.target_object_ref.namespace`
+### Nested Schema for `spec.patches.target_object_ref.label_selector`
 
 Optional:
 

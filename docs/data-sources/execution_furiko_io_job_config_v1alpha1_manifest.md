@@ -102,7 +102,7 @@ Optional:
 - `task_pending_timeout_seconds` (Number) Optional duration in seconds to wait before terminating the task if it is still pending. This field is useful to prevent jobs from being stuck forever if the Job has a deadline to start running by. If not set, it will be set to the DefaultPendingTimeoutSeconds configuration value in the controller. To disable pending timeout, set this to 0.
 
 <a id="nestedatt--spec--template--spec--task_template"></a>
-### Nested Schema for `spec.template.spec.task_pending_timeout_seconds`
+### Nested Schema for `spec.template.spec.task_template`
 
 Optional:
 
@@ -119,7 +119,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--parallelism"></a>
-### Nested Schema for `spec.template.spec.task_pending_timeout_seconds`
+### Nested Schema for `spec.template.spec.parallelism`
 
 Optional:
 
@@ -157,7 +157,7 @@ Optional:
 - `string` (Attributes) String adds additional configuration for OptionTypeString. (see [below for nested schema](#nestedatt--spec--option--options--string))
 
 <a id="nestedatt--spec--option--options--bool"></a>
-### Nested Schema for `spec.option.options.string`
+### Nested Schema for `spec.option.options.bool`
 
 Required:
 
@@ -171,7 +171,7 @@ Optional:
 
 
 <a id="nestedatt--spec--option--options--date"></a>
-### Nested Schema for `spec.option.options.string`
+### Nested Schema for `spec.option.options.date`
 
 Optional:
 
@@ -179,7 +179,7 @@ Optional:
 
 
 <a id="nestedatt--spec--option--options--multi"></a>
-### Nested Schema for `spec.option.options.string`
+### Nested Schema for `spec.option.options.multi`
 
 Required:
 
@@ -193,7 +193,7 @@ Optional:
 
 
 <a id="nestedatt--spec--option--options--select"></a>
-### Nested Schema for `spec.option.options.string`
+### Nested Schema for `spec.option.options.select`
 
 Optional:
 

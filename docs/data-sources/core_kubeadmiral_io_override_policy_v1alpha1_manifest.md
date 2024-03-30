@@ -75,7 +75,7 @@ Optional:
 - `labels` (Attributes List) Label specifies overriders that apply to the resource labels. (see [below for nested schema](#nestedatt--spec--override_rules--overriders--labels))
 
 <a id="nestedatt--spec--override_rules--overriders--annotations"></a>
-### Nested Schema for `spec.override_rules.overriders.labels`
+### Nested Schema for `spec.override_rules.overriders.annotations`
 
 Required:
 
@@ -87,7 +87,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override_rules--overriders--args"></a>
-### Nested Schema for `spec.override_rules.overriders.labels`
+### Nested Schema for `spec.override_rules.overriders.args`
 
 Required:
 
@@ -100,7 +100,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override_rules--overriders--command"></a>
-### Nested Schema for `spec.override_rules.overriders.labels`
+### Nested Schema for `spec.override_rules.overriders.command`
 
 Required:
 
@@ -113,7 +113,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override_rules--overriders--image"></a>
-### Nested Schema for `spec.override_rules.overriders.labels`
+### Nested Schema for `spec.override_rules.overriders.image`
 
 Required:
 
@@ -139,7 +139,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override_rules--overriders--jsonpatch"></a>
-### Nested Schema for `spec.override_rules.overriders.labels`
+### Nested Schema for `spec.override_rules.overriders.jsonpatch`
 
 Required:
 
@@ -174,7 +174,7 @@ Optional:
 - `clusters` (List of String) Clusters selects FederatedClusters by their names. Empty Clusters selects all FederatedClusters.
 
 <a id="nestedatt--spec--override_rules--target_clusters--cluster_affinity"></a>
-### Nested Schema for `spec.override_rules.target_clusters.clusters`
+### Nested Schema for `spec.override_rules.target_clusters.cluster_affinity`
 
 Optional:
 

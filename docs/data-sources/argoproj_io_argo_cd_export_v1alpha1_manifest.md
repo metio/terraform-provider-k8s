@@ -88,7 +88,7 @@ Optional:
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--storage--pvc--data_source"></a>
-### Nested Schema for `spec.storage.pvc.volume_name`
+### Nested Schema for `spec.storage.pvc.data_source`
 
 Required:
 
@@ -101,7 +101,7 @@ Optional:
 
 
 <a id="nestedatt--spec--storage--pvc--data_source_ref"></a>
-### Nested Schema for `spec.storage.pvc.volume_name`
+### Nested Schema for `spec.storage.pvc.data_source_ref`
 
 Required:
 
@@ -115,7 +115,7 @@ Optional:
 
 
 <a id="nestedatt--spec--storage--pvc--resources"></a>
-### Nested Schema for `spec.storage.pvc.volume_name`
+### Nested Schema for `spec.storage.pvc.resources`
 
 Optional:
 
@@ -133,7 +133,7 @@ Required:
 
 
 <a id="nestedatt--spec--storage--pvc--selector"></a>
-### Nested Schema for `spec.storage.pvc.volume_name`
+### Nested Schema for `spec.storage.pvc.selector`
 
 Optional:
 

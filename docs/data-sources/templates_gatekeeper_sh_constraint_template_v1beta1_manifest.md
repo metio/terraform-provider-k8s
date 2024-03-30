@@ -73,7 +73,7 @@ Optional:
 - `validation` (Attributes) (see [below for nested schema](#nestedatt--spec--crd--spec--validation))
 
 <a id="nestedatt--spec--crd--spec--names"></a>
-### Nested Schema for `spec.crd.spec.validation`
+### Nested Schema for `spec.crd.spec.names`
 
 Optional:
 

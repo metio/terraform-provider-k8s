@@ -119,7 +119,7 @@ Optional:
 - `topology_spread_constraints` (Attributes List) TopologySpreadConstraints describes how the Tenant Control Plane pods ought to spread across topology domains. Scheduler will schedule pods in a way which abides by the constraints. In case of nil underlying LabelSelector, the Kamaji one for the given Tenant Control Plane will be used. All topologySpreadConstraints are ANDed. (see [below for nested schema](#nestedatt--spec--control_plane--deployment--topology_spread_constraints))
 
 <a id="nestedatt--spec--control_plane--deployment--additional_containers"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints`
+### Nested Schema for `spec.control_plane.deployment.additional_containers`
 
 Required:
 
@@ -174,7 +174,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--control_plane--deployment--topology_spread_constraints--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.env.value_from.secret_key_ref`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -187,7 +187,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--env--value_from--field_ref"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.env.value_from.secret_key_ref`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.env.value_from.field_ref`
 
 Required:
 
@@ -199,7 +199,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.env.value_from.secret_key_ref`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.env.value_from.resource_field_ref`
 
 Required:
 
@@ -236,7 +236,7 @@ Optional:
 - `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--control_plane--deployment--topology_spread_constraints--env_from--secret_ref))
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--env_from--config_map_ref"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.env_from.secret_ref`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.env_from.config_map_ref`
 
 Optional:
 
@@ -263,7 +263,7 @@ Optional:
 - `pre_stop` (Attributes) PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The Pod's termination grace period countdown begins before the PreStop hook is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period (unless delayed by finalizers). Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks (see [below for nested schema](#nestedatt--spec--control_plane--deployment--topology_spread_constraints--lifecycle--pre_stop))
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--lifecycle--post_start"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.post_start`
 
 Optional:
 
@@ -273,7 +273,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--control_plane--deployment--topology_spread_constraints--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -281,7 +281,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -295,7 +295,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -305,7 +305,7 @@ Required:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--lifecycle--pre_stop--sleep"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.sleep`
 
 Required:
 
@@ -336,7 +336,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--control_plane--deployment--topology_spread_constraints--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -344,7 +344,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -358,7 +358,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -368,7 +368,7 @@ Required:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--lifecycle--pre_stop--sleep"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.sleep`
 
 Required:
 
@@ -406,7 +406,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--liveness_probe--exec"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.liveness_probe.exec`
 
 Optional:
 
@@ -414,7 +414,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--liveness_probe--grpc"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.liveness_probe.grpc`
 
 Required:
 
@@ -426,7 +426,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--liveness_probe--http_get"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.liveness_probe.http_get`
 
 Required:
 
@@ -440,7 +440,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.liveness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.liveness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -450,7 +450,7 @@ Required:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.liveness_probe.tcp_socket`
 
 Required:
 
@@ -494,7 +494,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--readiness_probe--exec"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.readiness_probe.exec`
 
 Optional:
 
@@ -502,7 +502,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--readiness_probe--grpc"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.readiness_probe.grpc`
 
 Required:
 
@@ -514,7 +514,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--readiness_probe--http_get"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.readiness_probe.http_get`
 
 Required:
 
@@ -528,7 +528,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.readiness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.readiness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -538,7 +538,7 @@ Required:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.readiness_probe.tcp_socket`
 
 Required:
 
@@ -569,7 +569,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--resources--claims"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.resources.requests`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.resources.claims`
 
 Required:
 
@@ -595,7 +595,7 @@ Optional:
 - `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--control_plane--deployment--topology_spread_constraints--security_context--windows_options))
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--security_context--capabilities"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.security_context.windows_options`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.security_context.capabilities`
 
 Optional:
 
@@ -604,7 +604,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--security_context--se_linux_options"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.security_context.windows_options`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.security_context.se_linux_options`
 
 Optional:
 
@@ -615,7 +615,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.security_context.windows_options`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.security_context.seccomp_profile`
 
 Required:
 
@@ -655,7 +655,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--startup_probe--exec"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.startup_probe.timeout_seconds`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.startup_probe.exec`
 
 Optional:
 
@@ -663,7 +663,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--startup_probe--grpc"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.startup_probe.timeout_seconds`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.startup_probe.grpc`
 
 Required:
 
@@ -675,7 +675,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--startup_probe--http_get"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.startup_probe.timeout_seconds`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.startup_probe.http_get`
 
 Required:
 
@@ -689,7 +689,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--startup_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.startup_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.startup_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -699,7 +699,7 @@ Required:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.startup_probe.timeout_seconds`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.startup_probe.tcp_socket`
 
 Required:
 
@@ -738,7 +738,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--additional_init_containers"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints`
+### Nested Schema for `spec.control_plane.deployment.additional_init_containers`
 
 Required:
 
@@ -793,7 +793,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--control_plane--deployment--topology_spread_constraints--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.env.value_from.secret_key_ref`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -806,7 +806,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--env--value_from--field_ref"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.env.value_from.secret_key_ref`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.env.value_from.field_ref`
 
 Required:
 
@@ -818,7 +818,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.env.value_from.secret_key_ref`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.env.value_from.resource_field_ref`
 
 Required:
 
@@ -855,7 +855,7 @@ Optional:
 - `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--control_plane--deployment--topology_spread_constraints--env_from--secret_ref))
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--env_from--config_map_ref"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.env_from.secret_ref`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.env_from.config_map_ref`
 
 Optional:
 
@@ -882,7 +882,7 @@ Optional:
 - `pre_stop` (Attributes) PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The Pod's termination grace period countdown begins before the PreStop hook is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period (unless delayed by finalizers). Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks (see [below for nested schema](#nestedatt--spec--control_plane--deployment--topology_spread_constraints--lifecycle--pre_stop))
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--lifecycle--post_start"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.post_start`
 
 Optional:
 
@@ -892,7 +892,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--control_plane--deployment--topology_spread_constraints--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -900,7 +900,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -914,7 +914,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -924,7 +924,7 @@ Required:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--lifecycle--pre_stop--sleep"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.sleep`
 
 Required:
 
@@ -955,7 +955,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--control_plane--deployment--topology_spread_constraints--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -963,7 +963,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -977,7 +977,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -987,7 +987,7 @@ Required:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--lifecycle--pre_stop--sleep"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.lifecycle.pre_stop.sleep`
 
 Required:
 
@@ -1025,7 +1025,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--liveness_probe--exec"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.liveness_probe.exec`
 
 Optional:
 
@@ -1033,7 +1033,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--liveness_probe--grpc"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.liveness_probe.grpc`
 
 Required:
 
@@ -1045,7 +1045,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--liveness_probe--http_get"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.liveness_probe.http_get`
 
 Required:
 
@@ -1059,7 +1059,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.liveness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.liveness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -1069,7 +1069,7 @@ Required:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.liveness_probe.tcp_socket`
 
 Required:
 
@@ -1113,7 +1113,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--readiness_probe--exec"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.readiness_probe.exec`
 
 Optional:
 
@@ -1121,7 +1121,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--readiness_probe--grpc"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.readiness_probe.grpc`
 
 Required:
 
@@ -1133,7 +1133,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--readiness_probe--http_get"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.readiness_probe.http_get`
 
 Required:
 
@@ -1147,7 +1147,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.readiness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.readiness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -1157,7 +1157,7 @@ Required:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.readiness_probe.tcp_socket`
 
 Required:
 
@@ -1188,7 +1188,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--resources--claims"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.resources.requests`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.resources.claims`
 
 Required:
 
@@ -1214,7 +1214,7 @@ Optional:
 - `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--control_plane--deployment--topology_spread_constraints--security_context--windows_options))
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--security_context--capabilities"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.security_context.windows_options`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.security_context.capabilities`
 
 Optional:
 
@@ -1223,7 +1223,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--security_context--se_linux_options"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.security_context.windows_options`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.security_context.se_linux_options`
 
 Optional:
 
@@ -1234,7 +1234,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.security_context.windows_options`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.security_context.seccomp_profile`
 
 Required:
 
@@ -1274,7 +1274,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--startup_probe--exec"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.startup_probe.timeout_seconds`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.startup_probe.exec`
 
 Optional:
 
@@ -1282,7 +1282,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--startup_probe--grpc"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.startup_probe.timeout_seconds`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.startup_probe.grpc`
 
 Required:
 
@@ -1294,7 +1294,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--startup_probe--http_get"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.startup_probe.timeout_seconds`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.startup_probe.http_get`
 
 Required:
 
@@ -1308,7 +1308,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--startup_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.startup_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.startup_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -1318,7 +1318,7 @@ Required:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.startup_probe.timeout_seconds`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.startup_probe.tcp_socket`
 
 Required:
 
@@ -1357,7 +1357,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--additional_metadata"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints`
+### Nested Schema for `spec.control_plane.deployment.additional_metadata`
 
 Optional:
 
@@ -1366,7 +1366,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--additional_volume_mounts"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints`
+### Nested Schema for `spec.control_plane.deployment.additional_volume_mounts`
 
 Optional:
 
@@ -1424,7 +1424,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--additional_volumes"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints`
+### Nested Schema for `spec.control_plane.deployment.additional_volumes`
 
 Required:
 
@@ -1521,7 +1521,7 @@ Optional:
 - `user` (String) user is optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--cephfs--secret_ref"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.cephfs.user`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.cephfs.secret_ref`
 
 Optional:
 
@@ -1562,7 +1562,7 @@ Optional:
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--config_map--items"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.config_map.optional`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.config_map.items`
 
 Required:
 
@@ -1590,7 +1590,7 @@ Optional:
 - `volume_attributes` (Map of String) volumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--csi--node_publish_secret_ref"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.csi.volume_attributes`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -1620,7 +1620,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--control_plane--deployment--topology_spread_constraints--downward_api--items--resource_field_ref))
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--downward_api--items--field_ref"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.downward_api.items.resource_field_ref`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.downward_api.items.field_ref`
 
 Required:
 
@@ -1674,7 +1674,7 @@ Optional:
 - `metadata` (Map of String) May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation.
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--ephemeral--volume_claim_template--spec"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.ephemeral.volume_claim_template.metadata`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.ephemeral.volume_claim_template.spec`
 
 Optional:
 
@@ -1689,7 +1689,7 @@ Optional:
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--ephemeral--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.ephemeral.volume_claim_template.metadata.data_source`
 
 Required:
 
@@ -1702,7 +1702,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--ephemeral--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.ephemeral.volume_claim_template.metadata.data_source_ref`
 
 Required:
 
@@ -1716,7 +1716,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--ephemeral--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.ephemeral.volume_claim_template.metadata.resources`
 
 Optional:
 
@@ -1725,7 +1725,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--ephemeral--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.ephemeral.volume_claim_template.metadata.selector`
 
 Optional:
 
@@ -1944,7 +1944,7 @@ Optional:
 - `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--control_plane--deployment--topology_spread_constraints--projected--sources--service_account_token))
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--projected--sources--cluster_trust_bundle"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.projected.sources.service_account_token`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.projected.sources.cluster_trust_bundle`
 
 Required:
 
@@ -1958,7 +1958,7 @@ Optional:
 - `signer_name` (String) Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name.  The contents of all selected ClusterTrustBundles will be unified and deduplicated.
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--projected--sources--service_account_token--label_selector"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.projected.sources.service_account_token.signer_name`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.projected.sources.service_account_token.label_selector`
 
 Optional:
 
@@ -1981,7 +1981,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--projected--sources--config_map"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.projected.sources.service_account_token`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.projected.sources.config_map`
 
 Optional:
 
@@ -1990,7 +1990,7 @@ Optional:
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.projected.sources.service_account_token.optional`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.projected.sources.service_account_token.items`
 
 Required:
 
@@ -2004,7 +2004,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--projected--sources--downward_api"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.projected.sources.service_account_token`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.projected.sources.downward_api`
 
 Optional:
 
@@ -2051,7 +2051,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--projected--sources--secret"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.projected.sources.service_account_token`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.projected.sources.secret`
 
 Optional:
 
@@ -2060,7 +2060,7 @@ Optional:
 - `optional` (Boolean) optional field specify whether the Secret or its key must be defined
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.projected.sources.service_account_token.optional`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.projected.sources.service_account_token.items`
 
 Required:
 
@@ -2122,7 +2122,7 @@ Optional:
 - `user` (String) user is the rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--rbd--secret_ref"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.rbd.user`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.rbd.secret_ref`
 
 Optional:
 
@@ -2150,7 +2150,7 @@ Optional:
 - `volume_name` (String) volumeName is the name of a volume already created in the ScaleIO system that is associated with this volume source.
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--scale_io--secret_ref"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.scale_io.volume_name`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.scale_io.secret_ref`
 
 Optional:
 
@@ -2169,7 +2169,7 @@ Optional:
 - `secret_name` (String) secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--secret--items"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.secret.secret_name`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.secret.items`
 
 Required:
 
@@ -2194,7 +2194,7 @@ Optional:
 - `volume_namespace` (String) volumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--storageos--secret_ref"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.storageos.volume_namespace`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.storageos.secret_ref`
 
 Optional:
 
@@ -2218,7 +2218,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--affinity"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints`
+### Nested Schema for `spec.control_plane.deployment.affinity`
 
 Optional:
 
@@ -2235,7 +2235,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--control_plane--deployment--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -2243,7 +2243,7 @@ Required:
 - `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -2251,7 +2251,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--control_plane--deployment--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -2294,7 +2294,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--control_plane--deployment--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -2331,7 +2331,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--control_plane--deployment--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -2339,7 +2339,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -2354,7 +2354,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -2376,7 +2376,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -2415,7 +2415,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -2423,7 +2423,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -2437,7 +2437,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -2445,7 +2445,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -2469,7 +2469,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--control_plane--deployment--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -2477,7 +2477,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -2492,7 +2492,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -2514,7 +2514,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -2553,7 +2553,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -2561,7 +2561,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -2575,7 +2575,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -2583,7 +2583,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -2600,7 +2600,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--extra_args"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints`
+### Nested Schema for `spec.control_plane.deployment.extra_args`
 
 Optional:
 
@@ -2611,7 +2611,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--registry_settings"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints`
+### Nested Schema for `spec.control_plane.deployment.registry_settings`
 
 Optional:
 
@@ -2623,7 +2623,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--resources"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints`
+### Nested Schema for `spec.control_plane.deployment.resources`
 
 Optional:
 
@@ -2642,7 +2642,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--api_server--claims"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.api_server.requests`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.api_server.claims`
 
 Required:
 
@@ -2660,7 +2660,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--controller_manager--claims"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.controller_manager.requests`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.controller_manager.claims`
 
 Required:
 
@@ -2678,7 +2678,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--kine--claims"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.kine.requests`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.kine.claims`
 
 Required:
 
@@ -2696,7 +2696,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--scheduler--claims"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.scheduler.requests`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.scheduler.claims`
 
 Required:
 
@@ -2706,7 +2706,7 @@ Required:
 
 
 <a id="nestedatt--spec--control_plane--deployment--strategy"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints`
+### Nested Schema for `spec.control_plane.deployment.strategy`
 
 Optional:
 
@@ -2724,7 +2724,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--deployment--tolerations"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints`
+### Nested Schema for `spec.control_plane.deployment.tolerations`
 
 Optional:
 
@@ -2761,7 +2761,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--control_plane--deployment--topology_spread_constraints--label_selector--match_expressions"></a>
-### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.label_selector.match_labels`
+### Nested Schema for `spec.control_plane.deployment.topology_spread_constraints.label_selector.match_expressions`
 
 Required:
 
@@ -2786,7 +2786,7 @@ Optional:
 - `ingress_class_name` (String)
 
 <a id="nestedatt--spec--control_plane--ingress--additional_metadata"></a>
-### Nested Schema for `spec.control_plane.ingress.ingress_class_name`
+### Nested Schema for `spec.control_plane.ingress.additional_metadata`
 
 Optional:
 
@@ -2845,7 +2845,7 @@ Optional:
 - `server` (Attributes) (see [below for nested schema](#nestedatt--spec--addons--konnectivity--server))
 
 <a id="nestedatt--spec--addons--konnectivity--agent"></a>
-### Nested Schema for `spec.addons.konnectivity.server`
+### Nested Schema for `spec.addons.konnectivity.agent`
 
 Optional:
 
@@ -2878,7 +2878,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--addons--konnectivity--server--resources--claims"></a>
-### Nested Schema for `spec.addons.konnectivity.server.resources.requests`
+### Nested Schema for `spec.addons.konnectivity.server.resources.claims`
 
 Required:
 

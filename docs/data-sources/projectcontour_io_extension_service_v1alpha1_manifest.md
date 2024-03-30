@@ -97,7 +97,7 @@ Optional:
 - `terminal` (Boolean) Terminal is a flag that allows for short-circuiting computing of a hashfor a given request. If set to true, and the request attribute specifiedin the attribute hash options is present, no further hash policies willbe used to calculate a hash for the request.
 
 <a id="nestedatt--spec--load_balancer_policy--request_hash_policies--header_hash_options"></a>
-### Nested Schema for `spec.load_balancer_policy.request_hash_policies.terminal`
+### Nested Schema for `spec.load_balancer_policy.request_hash_policies.header_hash_options`
 
 Optional:
 
@@ -105,7 +105,7 @@ Optional:
 
 
 <a id="nestedatt--spec--load_balancer_policy--request_hash_policies--query_parameter_hash_options"></a>
-### Nested Schema for `spec.load_balancer_policy.request_hash_policies.terminal`
+### Nested Schema for `spec.load_balancer_policy.request_hash_policies.query_parameter_hash_options`
 
 Optional:
 

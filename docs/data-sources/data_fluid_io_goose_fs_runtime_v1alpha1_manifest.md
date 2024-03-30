@@ -286,7 +286,7 @@ Optional:
 - `volume_type` (String) VolumeType is the volume type of the tier. Should be one of the three types: 'hostPath', 'emptyDir' and 'volumeTemplate'. If not set, defaults to hostPath.
 
 <a id="nestedatt--spec--tieredstore--levels--volume_source"></a>
-### Nested Schema for `spec.tieredstore.levels.volume_type`
+### Nested Schema for `spec.tieredstore.levels.volume_source`
 
 Optional:
 
@@ -379,7 +379,7 @@ Optional:
 - `user` (String) Optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
 
 <a id="nestedatt--spec--tieredstore--levels--volume_type--cephfs--secret_ref"></a>
-### Nested Schema for `spec.tieredstore.levels.volume_type.cephfs.user`
+### Nested Schema for `spec.tieredstore.levels.volume_type.cephfs.secret_ref`
 
 Optional:
 
@@ -420,7 +420,7 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--tieredstore--levels--volume_type--config_map--items"></a>
-### Nested Schema for `spec.tieredstore.levels.volume_type.config_map.optional`
+### Nested Schema for `spec.tieredstore.levels.volume_type.config_map.items`
 
 Required:
 
@@ -448,7 +448,7 @@ Optional:
 - `volume_attributes` (Map of String) VolumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.
 
 <a id="nestedatt--spec--tieredstore--levels--volume_type--csi--node_publish_secret_ref"></a>
-### Nested Schema for `spec.tieredstore.levels.volume_type.csi.volume_attributes`
+### Nested Schema for `spec.tieredstore.levels.volume_type.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -478,7 +478,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--tieredstore--levels--volume_type--downward_api--items--resource_field_ref))
 
 <a id="nestedatt--spec--tieredstore--levels--volume_type--downward_api--items--field_ref"></a>
-### Nested Schema for `spec.tieredstore.levels.volume_type.downward_api.items.resource_field_ref`
+### Nested Schema for `spec.tieredstore.levels.volume_type.downward_api.items.field_ref`
 
 Required:
 
@@ -532,7 +532,7 @@ Optional:
 - `metadata` (Map of String) May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation.
 
 <a id="nestedatt--spec--tieredstore--levels--volume_type--ephemeral--volume_claim_template--spec"></a>
-### Nested Schema for `spec.tieredstore.levels.volume_type.ephemeral.volume_claim_template.metadata`
+### Nested Schema for `spec.tieredstore.levels.volume_type.ephemeral.volume_claim_template.spec`
 
 Optional:
 
@@ -546,7 +546,7 @@ Optional:
 - `volume_name` (String) VolumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--tieredstore--levels--volume_type--ephemeral--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.tieredstore.levels.volume_type.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.tieredstore.levels.volume_type.ephemeral.volume_claim_template.metadata.data_source`
 
 Required:
 
@@ -559,7 +559,7 @@ Optional:
 
 
 <a id="nestedatt--spec--tieredstore--levels--volume_type--ephemeral--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.tieredstore.levels.volume_type.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.tieredstore.levels.volume_type.ephemeral.volume_claim_template.metadata.data_source_ref`
 
 Required:
 
@@ -572,7 +572,7 @@ Optional:
 
 
 <a id="nestedatt--spec--tieredstore--levels--volume_type--ephemeral--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.tieredstore.levels.volume_type.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.tieredstore.levels.volume_type.ephemeral.volume_claim_template.metadata.resources`
 
 Optional:
 
@@ -581,7 +581,7 @@ Optional:
 
 
 <a id="nestedatt--spec--tieredstore--levels--volume_type--ephemeral--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.tieredstore.levels.volume_type.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.tieredstore.levels.volume_type.ephemeral.volume_claim_template.metadata.selector`
 
 Optional:
 
@@ -799,7 +799,7 @@ Optional:
 - `service_account_token` (Attributes) information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--tieredstore--levels--volume_type--projected--sources--service_account_token))
 
 <a id="nestedatt--spec--tieredstore--levels--volume_type--projected--sources--config_map"></a>
-### Nested Schema for `spec.tieredstore.levels.volume_type.projected.sources.service_account_token`
+### Nested Schema for `spec.tieredstore.levels.volume_type.projected.sources.config_map`
 
 Optional:
 
@@ -808,7 +808,7 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--tieredstore--levels--volume_type--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.tieredstore.levels.volume_type.projected.sources.service_account_token.optional`
+### Nested Schema for `spec.tieredstore.levels.volume_type.projected.sources.service_account_token.items`
 
 Required:
 
@@ -822,7 +822,7 @@ Optional:
 
 
 <a id="nestedatt--spec--tieredstore--levels--volume_type--projected--sources--downward_api"></a>
-### Nested Schema for `spec.tieredstore.levels.volume_type.projected.sources.service_account_token`
+### Nested Schema for `spec.tieredstore.levels.volume_type.projected.sources.downward_api`
 
 Optional:
 
@@ -869,7 +869,7 @@ Optional:
 
 
 <a id="nestedatt--spec--tieredstore--levels--volume_type--projected--sources--secret"></a>
-### Nested Schema for `spec.tieredstore.levels.volume_type.projected.sources.service_account_token`
+### Nested Schema for `spec.tieredstore.levels.volume_type.projected.sources.secret`
 
 Optional:
 
@@ -878,7 +878,7 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 <a id="nestedatt--spec--tieredstore--levels--volume_type--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.tieredstore.levels.volume_type.projected.sources.service_account_token.optional`
+### Nested Schema for `spec.tieredstore.levels.volume_type.projected.sources.service_account_token.items`
 
 Required:
 
@@ -940,7 +940,7 @@ Optional:
 - `user` (String) The rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 
 <a id="nestedatt--spec--tieredstore--levels--volume_type--rbd--secret_ref"></a>
-### Nested Schema for `spec.tieredstore.levels.volume_type.rbd.user`
+### Nested Schema for `spec.tieredstore.levels.volume_type.rbd.secret_ref`
 
 Optional:
 
@@ -968,7 +968,7 @@ Optional:
 - `volume_name` (String) The name of a volume already created in the ScaleIO system that is associated with this volume source.
 
 <a id="nestedatt--spec--tieredstore--levels--volume_type--scale_io--secret_ref"></a>
-### Nested Schema for `spec.tieredstore.levels.volume_type.scale_io.volume_name`
+### Nested Schema for `spec.tieredstore.levels.volume_type.scale_io.secret_ref`
 
 Optional:
 
@@ -987,7 +987,7 @@ Optional:
 - `secret_name` (String) Name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
 
 <a id="nestedatt--spec--tieredstore--levels--volume_type--secret--items"></a>
-### Nested Schema for `spec.tieredstore.levels.volume_type.secret.secret_name`
+### Nested Schema for `spec.tieredstore.levels.volume_type.secret.items`
 
 Required:
 
@@ -1012,7 +1012,7 @@ Optional:
 - `volume_namespace` (String) VolumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
 
 <a id="nestedatt--spec--tieredstore--levels--volume_type--storageos--secret_ref"></a>
-### Nested Schema for `spec.tieredstore.levels.volume_type.storageos.volume_namespace`
+### Nested Schema for `spec.tieredstore.levels.volume_type.storageos.secret_ref`
 
 Optional:
 

@@ -77,7 +77,7 @@ Optional:
 - `virtual_host` (Attributes) VirtualHost is a modification of Envoy's VirtualHostreferenced in HTTP Connection Manager in a Listener resource. (see [below for nested schema](#nestedatt--spec--default--append_modifications--virtual_host))
 
 <a id="nestedatt--spec--default--append_modifications--cluster"></a>
-### Nested Schema for `spec.default.append_modifications.virtual_host`
+### Nested Schema for `spec.default.append_modifications.cluster`
 
 Required:
 
@@ -114,7 +114,7 @@ Optional:
 
 
 <a id="nestedatt--spec--default--append_modifications--http_filter"></a>
-### Nested Schema for `spec.default.append_modifications.virtual_host`
+### Nested Schema for `spec.default.append_modifications.http_filter`
 
 Required:
 
@@ -153,7 +153,7 @@ Optional:
 
 
 <a id="nestedatt--spec--default--append_modifications--listener"></a>
-### Nested Schema for `spec.default.append_modifications.virtual_host`
+### Nested Schema for `spec.default.append_modifications.listener`
 
 Required:
 
@@ -191,7 +191,7 @@ Optional:
 
 
 <a id="nestedatt--spec--default--append_modifications--network_filter"></a>
-### Nested Schema for `spec.default.append_modifications.virtual_host`
+### Nested Schema for `spec.default.append_modifications.network_filter`
 
 Required:
 

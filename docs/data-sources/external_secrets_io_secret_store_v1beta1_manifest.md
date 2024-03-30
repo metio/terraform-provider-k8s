@@ -110,7 +110,7 @@ Optional:
 - `ca_provider` (Attributes) The provider for the CA bundle to use to validate Akeyless Gateway certificate. (see [below for nested schema](#nestedatt--spec--provider--akeyless--ca_provider))
 
 <a id="nestedatt--spec--provider--akeyless--auth_secret_ref"></a>
-### Nested Schema for `spec.provider.akeyless.ca_provider`
+### Nested Schema for `spec.provider.akeyless.auth_secret_ref`
 
 Optional:
 
@@ -131,7 +131,7 @@ Optional:
 - `service_account_ref` (Attributes) Optional service account field containing the name of a kubernetes ServiceAccount.If the service account is specified, the service account secret token JWT will be usedfor authenticating with Akeyless. If the service account selector is not supplied,the secretRef will be used instead. (see [below for nested schema](#nestedatt--spec--provider--akeyless--ca_provider--kubernetes_auth--service_account_ref))
 
 <a id="nestedatt--spec--provider--akeyless--ca_provider--kubernetes_auth--secret_ref"></a>
-### Nested Schema for `spec.provider.akeyless.ca_provider.kubernetes_auth.service_account_ref`
+### Nested Schema for `spec.provider.akeyless.ca_provider.kubernetes_auth.secret_ref`
 
 Optional:
 
@@ -164,7 +164,7 @@ Optional:
 - `access_type_param` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--akeyless--ca_provider--secret_ref--access_type_param))
 
 <a id="nestedatt--spec--provider--akeyless--ca_provider--secret_ref--access_id"></a>
-### Nested Schema for `spec.provider.akeyless.ca_provider.secret_ref.access_type_param`
+### Nested Schema for `spec.provider.akeyless.ca_provider.secret_ref.access_id`
 
 Optional:
 
@@ -174,7 +174,7 @@ Optional:
 
 
 <a id="nestedatt--spec--provider--akeyless--ca_provider--secret_ref--access_type"></a>
-### Nested Schema for `spec.provider.akeyless.ca_provider.secret_ref.access_type_param`
+### Nested Schema for `spec.provider.akeyless.ca_provider.secret_ref.access_type`
 
 Optional:
 
@@ -219,7 +219,7 @@ Required:
 - `region_id` (String) Alibaba Region to be used for the provider
 
 <a id="nestedatt--spec--provider--alibaba--auth"></a>
-### Nested Schema for `spec.provider.alibaba.region_id`
+### Nested Schema for `spec.provider.alibaba.auth`
 
 Optional:
 
@@ -246,7 +246,7 @@ Required:
 - `access_key_secret_secret_ref` (Attributes) The AccessKeySecret is used for authentication (see [below for nested schema](#nestedatt--spec--provider--alibaba--region_id--secret_ref--access_key_secret_secret_ref))
 
 <a id="nestedatt--spec--provider--alibaba--region_id--secret_ref--access_key_id_secret_ref"></a>
-### Nested Schema for `spec.provider.alibaba.region_id.secret_ref.access_key_secret_secret_ref`
+### Nested Schema for `spec.provider.alibaba.region_id.secret_ref.access_key_id_secret_ref`
 
 Optional:
 
@@ -287,7 +287,7 @@ Optional:
 - `transitive_tag_keys` (List of String) AWS STS assume role transitive session tags. Required when multiple rules are used with the provider
 
 <a id="nestedatt--spec--provider--aws--auth"></a>
-### Nested Schema for `spec.provider.aws.transitive_tag_keys`
+### Nested Schema for `spec.provider.aws.auth`
 
 Optional:
 
@@ -325,7 +325,7 @@ Optional:
 - `session_token_secret_ref` (Attributes) The SessionToken used for authenticationThis must be defined if AccessKeyID and SecretAccessKey are temporary credentialssee: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html (see [below for nested schema](#nestedatt--spec--provider--aws--transitive_tag_keys--secret_ref--session_token_secret_ref))
 
 <a id="nestedatt--spec--provider--aws--transitive_tag_keys--secret_ref--access_key_id_secret_ref"></a>
-### Nested Schema for `spec.provider.aws.transitive_tag_keys.secret_ref.session_token_secret_ref`
+### Nested Schema for `spec.provider.aws.transitive_tag_keys.secret_ref.access_key_id_secret_ref`
 
 Optional:
 
@@ -335,7 +335,7 @@ Optional:
 
 
 <a id="nestedatt--spec--provider--aws--transitive_tag_keys--secret_ref--secret_access_key_secret_ref"></a>
-### Nested Schema for `spec.provider.aws.transitive_tag_keys.secret_ref.session_token_secret_ref`
+### Nested Schema for `spec.provider.aws.transitive_tag_keys.secret_ref.secret_access_key_secret_ref`
 
 Optional:
 
@@ -357,7 +357,7 @@ Optional:
 
 
 <a id="nestedatt--spec--provider--aws--secrets_manager"></a>
-### Nested Schema for `spec.provider.aws.transitive_tag_keys`
+### Nested Schema for `spec.provider.aws.secrets_manager`
 
 Optional:
 
@@ -366,7 +366,7 @@ Optional:
 
 
 <a id="nestedatt--spec--provider--aws--session_tags"></a>
-### Nested Schema for `spec.provider.aws.transitive_tag_keys`
+### Nested Schema for `spec.provider.aws.session_tags`
 
 Required:
 
@@ -392,7 +392,7 @@ Optional:
 - `tenant_id` (String) TenantID configures the Azure Tenant to send requests to. Required for ServicePrincipal auth type.
 
 <a id="nestedatt--spec--provider--azurekv--auth_secret_ref"></a>
-### Nested Schema for `spec.provider.azurekv.tenant_id`
+### Nested Schema for `spec.provider.azurekv.auth_secret_ref`
 
 Optional:
 
@@ -421,7 +421,7 @@ Optional:
 
 
 <a id="nestedatt--spec--provider--azurekv--service_account_ref"></a>
-### Nested Schema for `spec.provider.azurekv.tenant_id`
+### Nested Schema for `spec.provider.azurekv.service_account_ref`
 
 Required:
 
@@ -444,7 +444,7 @@ Required:
 - `username` (String) UserName should be the user ID on the chef server
 
 <a id="nestedatt--spec--provider--chef--auth"></a>
-### Nested Schema for `spec.provider.chef.username`
+### Nested Schema for `spec.provider.chef.auth`
 
 Required:
 
@@ -484,7 +484,7 @@ Optional:
 - `ca_provider` (Attributes) Used to provide custom certificate authority (CA) certificatesfor a secret store. The CAProvider points to a Secret or ConfigMap resourcethat contains a PEM-encoded certificate. (see [below for nested schema](#nestedatt--spec--provider--conjur--ca_provider))
 
 <a id="nestedatt--spec--provider--conjur--auth"></a>
-### Nested Schema for `spec.provider.conjur.ca_provider`
+### Nested Schema for `spec.provider.conjur.auth`
 
 Optional:
 
@@ -501,7 +501,7 @@ Required:
 - `user_ref` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--conjur--ca_provider--apikey--user_ref))
 
 <a id="nestedatt--spec--provider--conjur--ca_provider--apikey--api_key_ref"></a>
-### Nested Schema for `spec.provider.conjur.ca_provider.apikey.user_ref`
+### Nested Schema for `spec.provider.conjur.ca_provider.apikey.api_key_ref`
 
 Optional:
 
@@ -536,7 +536,7 @@ Optional:
 - `service_account_ref` (Attributes) Optional ServiceAccountRef specifies the Kubernetes service account for which to requesta token for with the 'TokenRequest' API. (see [below for nested schema](#nestedatt--spec--provider--conjur--ca_provider--jwt--service_account_ref))
 
 <a id="nestedatt--spec--provider--conjur--ca_provider--jwt--secret_ref"></a>
-### Nested Schema for `spec.provider.conjur.ca_provider.jwt.service_account_ref`
+### Nested Schema for `spec.provider.conjur.ca_provider.jwt.secret_ref`
 
 Optional:
 
@@ -590,7 +590,7 @@ Optional:
 - `url_template` (String) URLTemplateIf unset, defaults to 'https://%s.secretsvaultcloud.%s/v1/%s%s'.
 
 <a id="nestedatt--spec--provider--delinea--client_id"></a>
-### Nested Schema for `spec.provider.delinea.url_template`
+### Nested Schema for `spec.provider.delinea.client_id`
 
 Optional:
 
@@ -609,7 +609,7 @@ Optional:
 
 
 <a id="nestedatt--spec--provider--delinea--client_secret"></a>
-### Nested Schema for `spec.provider.delinea.url_template`
+### Nested Schema for `spec.provider.delinea.client_secret`
 
 Optional:
 
@@ -643,7 +643,7 @@ Optional:
 - `project` (String) Doppler project (required if not using a Service Token)
 
 <a id="nestedatt--spec--provider--doppler--auth"></a>
-### Nested Schema for `spec.provider.doppler.project`
+### Nested Schema for `spec.provider.doppler.auth`
 
 Required:
 
@@ -700,7 +700,7 @@ Optional:
 - `api_url` (String) APIURL is the URL of SDKMS API. Defaults to 'sdkms.fortanix.com'.
 
 <a id="nestedatt--spec--provider--fortanix--api_key"></a>
-### Nested Schema for `spec.provider.fortanix.api_url`
+### Nested Schema for `spec.provider.fortanix.api_key`
 
 Optional:
 
@@ -727,7 +727,7 @@ Optional:
 - `project_id` (String) ProjectID project where secret is located
 
 <a id="nestedatt--spec--provider--gcpsm--auth"></a>
-### Nested Schema for `spec.provider.gcpsm.project_id`
+### Nested Schema for `spec.provider.gcpsm.auth`
 
 Optional:
 
@@ -766,7 +766,7 @@ Optional:
 - `cluster_project_id` (String)
 
 <a id="nestedatt--spec--provider--gcpsm--project_id--workload_identity--service_account_ref"></a>
-### Nested Schema for `spec.provider.gcpsm.project_id.workload_identity.cluster_project_id`
+### Nested Schema for `spec.provider.gcpsm.project_id.workload_identity.service_account_ref`
 
 Required:
 
@@ -797,7 +797,7 @@ Optional:
 - `url` (String) URL configures the GitLab instance URL. Defaults to https://gitlab.com/.
 
 <a id="nestedatt--spec--provider--gitlab--auth"></a>
-### Nested Schema for `spec.provider.gitlab.url`
+### Nested Schema for `spec.provider.gitlab.auth`
 
 Required:
 
@@ -835,7 +835,7 @@ Optional:
 - `service_url` (String) ServiceURL is the Endpoint URL that is specific to the Secrets Manager service instance
 
 <a id="nestedatt--spec--provider--ibm--auth"></a>
-### Nested Schema for `spec.provider.ibm.service_url`
+### Nested Schema for `spec.provider.ibm.auth`
 
 Optional:
 
@@ -884,7 +884,7 @@ Required:
 - `folder_id` (String)
 
 <a id="nestedatt--spec--provider--keepersecurity--auth_ref"></a>
-### Nested Schema for `spec.provider.keepersecurity.folder_id`
+### Nested Schema for `spec.provider.keepersecurity.auth_ref`
 
 Optional:
 
@@ -907,7 +907,7 @@ Optional:
 - `server` (Attributes) configures the Kubernetes server Address. (see [below for nested schema](#nestedatt--spec--provider--kubernetes--server))
 
 <a id="nestedatt--spec--provider--kubernetes--auth"></a>
-### Nested Schema for `spec.provider.kubernetes.server`
+### Nested Schema for `spec.provider.kubernetes.auth`
 
 Optional:
 
@@ -924,7 +924,7 @@ Optional:
 - `client_key` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--kubernetes--server--cert--client_key))
 
 <a id="nestedatt--spec--provider--kubernetes--server--cert--client_cert"></a>
-### Nested Schema for `spec.provider.kubernetes.server.cert.client_key`
+### Nested Schema for `spec.provider.kubernetes.server.cert.client_cert`
 
 Optional:
 
@@ -1012,7 +1012,7 @@ Required:
 - `project` (String) Project is an onboardbase project that the secrets should be pulled from
 
 <a id="nestedatt--spec--provider--onboardbase--auth"></a>
-### Nested Schema for `spec.provider.onboardbase.project`
+### Nested Schema for `spec.provider.onboardbase.auth`
 
 Required:
 
@@ -1051,7 +1051,7 @@ Required:
 - `vaults` (Map of String) Vaults defines which OnePassword vaults to search in which order
 
 <a id="nestedatt--spec--provider--onepassword--auth"></a>
-### Nested Schema for `spec.provider.onepassword.vaults`
+### Nested Schema for `spec.provider.onepassword.auth`
 
 Required:
 
@@ -1094,7 +1094,7 @@ Optional:
 - `service_account_ref` (Attributes) ServiceAccountRef specified the service accountthat should be used when authenticating with WorkloadIdentity. (see [below for nested schema](#nestedatt--spec--provider--oracle--service_account_ref))
 
 <a id="nestedatt--spec--provider--oracle--auth"></a>
-### Nested Schema for `spec.provider.oracle.service_account_ref`
+### Nested Schema for `spec.provider.oracle.auth`
 
 Required:
 
@@ -1111,7 +1111,7 @@ Required:
 - `privatekey` (Attributes) PrivateKey is the user's API Signing Key in PEM format, used for authentication. (see [below for nested schema](#nestedatt--spec--provider--oracle--service_account_ref--secret_ref--privatekey))
 
 <a id="nestedatt--spec--provider--oracle--service_account_ref--secret_ref--fingerprint"></a>
-### Nested Schema for `spec.provider.oracle.service_account_ref.secret_ref.privatekey`
+### Nested Schema for `spec.provider.oracle.service_account_ref.secret_ref.fingerprint`
 
 Optional:
 
@@ -1156,7 +1156,7 @@ Required:
 - `host` (String) URL configures the Password Depot instance URL.
 
 <a id="nestedatt--spec--provider--passworddepot--auth"></a>
-### Nested Schema for `spec.provider.passworddepot.host`
+### Nested Schema for `spec.provider.passworddepot.auth`
 
 Required:
 
@@ -1196,7 +1196,7 @@ Optional:
 - `api_url` (String) APIURL is the URL of the Pulumi API.
 
 <a id="nestedatt--spec--provider--pulumi--access_token"></a>
-### Nested Schema for `spec.provider.pulumi.api_url`
+### Nested Schema for `spec.provider.pulumi.access_token`
 
 Optional:
 
@@ -1229,7 +1229,7 @@ Optional:
 - `api_url` (String) APIURL is the url of the api to use. Defaults to https://api.scaleway.com
 
 <a id="nestedatt--spec--provider--scaleway--access_key"></a>
-### Nested Schema for `spec.provider.scaleway.api_url`
+### Nested Schema for `spec.provider.scaleway.access_key`
 
 Optional:
 
@@ -1248,7 +1248,7 @@ Optional:
 
 
 <a id="nestedatt--spec--provider--scaleway--secret_key"></a>
-### Nested Schema for `spec.provider.scaleway.api_url`
+### Nested Schema for `spec.provider.scaleway.secret_key`
 
 Optional:
 
@@ -1281,7 +1281,7 @@ Optional:
 - `ignore_ssl_certificate` (Boolean) IgnoreSslCertificate defines if SSL certificate must be ignored
 
 <a id="nestedatt--spec--provider--senhasegura--auth"></a>
-### Nested Schema for `spec.provider.senhasegura.ignore_ssl_certificate`
+### Nested Schema for `spec.provider.senhasegura.auth`
 
 Required:
 
@@ -1320,7 +1320,7 @@ Optional:
 - `version` (String) Version is the Vault KV secret engine version. This can be either 'v1' or'v2'. Version defaults to 'v2'.
 
 <a id="nestedatt--spec--provider--vault--auth"></a>
-### Nested Schema for `spec.provider.vault.version`
+### Nested Schema for `spec.provider.vault.auth`
 
 Optional:
 
@@ -1347,7 +1347,7 @@ Optional:
 - `role_ref` (Attributes) Reference to a key in a Secret that contains the App Role ID usedto authenticate with Vault.The 'key' field must be specified and denotes which entry within the Secretresource is used as the app role id. (see [below for nested schema](#nestedatt--spec--provider--vault--version--app_role--role_ref))
 
 <a id="nestedatt--spec--provider--vault--version--app_role--secret_ref"></a>
-### Nested Schema for `spec.provider.vault.version.app_role.role_ref`
+### Nested Schema for `spec.provider.vault.version.app_role.secret_ref`
 
 Optional:
 
@@ -1376,7 +1376,7 @@ Optional:
 - `secret_ref` (Attributes) SecretRef to a key in a Secret resource containing client private key toauthenticate with Vault using the Cert authentication method (see [below for nested schema](#nestedatt--spec--provider--vault--version--cert--secret_ref))
 
 <a id="nestedatt--spec--provider--vault--version--cert--client_cert"></a>
-### Nested Schema for `spec.provider.vault.version.cert.secret_ref`
+### Nested Schema for `spec.provider.vault.version.cert.client_cert`
 
 Optional:
 
@@ -1414,7 +1414,7 @@ Optional:
 - `vault_aws_iam_server_id` (String) X-Vault-AWS-IAM-Server-ID is an additional header used by Vault IAM auth method to mitigate against different types of replay attacks. More details here: https://developer.hashicorp.com/vault/docs/auth/aws
 
 <a id="nestedatt--spec--provider--vault--version--iam--jwt"></a>
-### Nested Schema for `spec.provider.vault.version.iam.vault_aws_iam_server_id`
+### Nested Schema for `spec.provider.vault.version.iam.jwt`
 
 Optional:
 
@@ -1435,7 +1435,7 @@ Optional:
 
 
 <a id="nestedatt--spec--provider--vault--version--iam--secret_ref"></a>
-### Nested Schema for `spec.provider.vault.version.iam.vault_aws_iam_server_id`
+### Nested Schema for `spec.provider.vault.version.iam.secret_ref`
 
 Optional:
 
@@ -1444,7 +1444,7 @@ Optional:
 - `session_token_secret_ref` (Attributes) The SessionToken used for authenticationThis must be defined if AccessKeyID and SecretAccessKey are temporary credentialssee: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html (see [below for nested schema](#nestedatt--spec--provider--vault--version--iam--vault_aws_iam_server_id--session_token_secret_ref))
 
 <a id="nestedatt--spec--provider--vault--version--iam--vault_aws_iam_server_id--access_key_id_secret_ref"></a>
-### Nested Schema for `spec.provider.vault.version.iam.vault_aws_iam_server_id.session_token_secret_ref`
+### Nested Schema for `spec.provider.vault.version.iam.vault_aws_iam_server_id.access_key_id_secret_ref`
 
 Optional:
 
@@ -1454,7 +1454,7 @@ Optional:
 
 
 <a id="nestedatt--spec--provider--vault--version--iam--vault_aws_iam_server_id--secret_access_key_secret_ref"></a>
-### Nested Schema for `spec.provider.vault.version.iam.vault_aws_iam_server_id.session_token_secret_ref`
+### Nested Schema for `spec.provider.vault.version.iam.vault_aws_iam_server_id.secret_access_key_secret_ref`
 
 Optional:
 
@@ -1489,7 +1489,7 @@ Optional:
 - `secret_ref` (Attributes) Optional SecretRef that refers to a key in a Secret resource containing JWT token toauthenticate with Vault using the JWT/OIDC authentication method. (see [below for nested schema](#nestedatt--spec--provider--vault--version--jwt--secret_ref))
 
 <a id="nestedatt--spec--provider--vault--version--jwt--kubernetes_service_account_token"></a>
-### Nested Schema for `spec.provider.vault.version.jwt.secret_ref`
+### Nested Schema for `spec.provider.vault.version.jwt.kubernetes_service_account_token`
 
 Required:
 
@@ -1501,7 +1501,7 @@ Optional:
 - `expiration_seconds` (Number) Optional expiration time in seconds that will be used to request a temporaryKubernetes service account token for the service account referenced by'serviceAccountRef'.Deprecated: this will be removed in the future.Defaults to 10 minutes.
 
 <a id="nestedatt--spec--provider--vault--version--jwt--secret_ref--service_account_ref"></a>
-### Nested Schema for `spec.provider.vault.version.jwt.secret_ref.expiration_seconds`
+### Nested Schema for `spec.provider.vault.version.jwt.secret_ref.service_account_ref`
 
 Required:
 
@@ -1539,7 +1539,7 @@ Optional:
 - `service_account_ref` (Attributes) Optional service account field containing the name of a kubernetes ServiceAccount.If the service account is specified, the service account secret token JWT will be usedfor authenticating with Vault. If the service account selector is not supplied,the secretRef will be used instead. (see [below for nested schema](#nestedatt--spec--provider--vault--version--kubernetes--service_account_ref))
 
 <a id="nestedatt--spec--provider--vault--version--kubernetes--secret_ref"></a>
-### Nested Schema for `spec.provider.vault.version.kubernetes.service_account_ref`
+### Nested Schema for `spec.provider.vault.version.kubernetes.secret_ref`
 
 Optional:
 
@@ -1620,7 +1620,7 @@ Optional:
 
 
 <a id="nestedatt--spec--provider--vault--ca_provider"></a>
-### Nested Schema for `spec.provider.vault.version`
+### Nested Schema for `spec.provider.vault.ca_provider`
 
 Required:
 
@@ -1634,7 +1634,7 @@ Optional:
 
 
 <a id="nestedatt--spec--provider--vault--tls"></a>
-### Nested Schema for `spec.provider.vault.version`
+### Nested Schema for `spec.provider.vault.tls`
 
 Optional:
 
@@ -1682,7 +1682,7 @@ Optional:
 - `timeout` (String) Timeout
 
 <a id="nestedatt--spec--provider--webhook--result"></a>
-### Nested Schema for `spec.provider.webhook.timeout`
+### Nested Schema for `spec.provider.webhook.result`
 
 Optional:
 
@@ -1690,7 +1690,7 @@ Optional:
 
 
 <a id="nestedatt--spec--provider--webhook--ca_provider"></a>
-### Nested Schema for `spec.provider.webhook.timeout`
+### Nested Schema for `spec.provider.webhook.ca_provider`
 
 Required:
 
@@ -1704,7 +1704,7 @@ Optional:
 
 
 <a id="nestedatt--spec--provider--webhook--secrets"></a>
-### Nested Schema for `spec.provider.webhook.timeout`
+### Nested Schema for `spec.provider.webhook.secrets`
 
 Required:
 
@@ -1736,7 +1736,7 @@ Optional:
 - `ca_provider` (Attributes) The provider for the CA bundle to use to validate Yandex.Cloud server certificate. (see [below for nested schema](#nestedatt--spec--provider--yandexcertificatemanager--ca_provider))
 
 <a id="nestedatt--spec--provider--yandexcertificatemanager--auth"></a>
-### Nested Schema for `spec.provider.yandexcertificatemanager.ca_provider`
+### Nested Schema for `spec.provider.yandexcertificatemanager.auth`
 
 Optional:
 
@@ -1785,7 +1785,7 @@ Optional:
 - `ca_provider` (Attributes) The provider for the CA bundle to use to validate Yandex.Cloud server certificate. (see [below for nested schema](#nestedatt--spec--provider--yandexlockbox--ca_provider))
 
 <a id="nestedatt--spec--provider--yandexlockbox--auth"></a>
-### Nested Schema for `spec.provider.yandexlockbox.ca_provider`
+### Nested Schema for `spec.provider.yandexlockbox.auth`
 
 Optional:
 
@@ -1839,7 +1839,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--conditions--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.conditions.namespace_selector.match_labels`
+### Nested Schema for `spec.conditions.namespace_selector.match_expressions`
 
 Required:
 

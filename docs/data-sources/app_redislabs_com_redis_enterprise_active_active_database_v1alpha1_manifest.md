@@ -135,7 +135,7 @@ Optional:
 - `bdb_size` (Attributes) Dataset size has reached the threshold value [% of the memory limit] (see [below for nested schema](#nestedatt--spec--global_configurations--alert_settings--bdb_size))
 
 <a id="nestedatt--spec--global_configurations--alert_settings--bdb_backup_delayed"></a>
-### Nested Schema for `spec.global_configurations.alert_settings.bdb_size`
+### Nested Schema for `spec.global_configurations.alert_settings.bdb_backup_delayed`
 
 Required:
 
@@ -144,7 +144,7 @@ Required:
 
 
 <a id="nestedatt--spec--global_configurations--alert_settings--bdb_crdt_src_high_syncer_lag"></a>
-### Nested Schema for `spec.global_configurations.alert_settings.bdb_size`
+### Nested Schema for `spec.global_configurations.alert_settings.bdb_crdt_src_high_syncer_lag`
 
 Required:
 
@@ -153,7 +153,7 @@ Required:
 
 
 <a id="nestedatt--spec--global_configurations--alert_settings--bdb_crdt_src_syncer_connection_error"></a>
-### Nested Schema for `spec.global_configurations.alert_settings.bdb_size`
+### Nested Schema for `spec.global_configurations.alert_settings.bdb_crdt_src_syncer_connection_error`
 
 Required:
 
@@ -162,7 +162,7 @@ Required:
 
 
 <a id="nestedatt--spec--global_configurations--alert_settings--bdb_crdt_src_syncer_general_error"></a>
-### Nested Schema for `spec.global_configurations.alert_settings.bdb_size`
+### Nested Schema for `spec.global_configurations.alert_settings.bdb_crdt_src_syncer_general_error`
 
 Required:
 
@@ -171,7 +171,7 @@ Required:
 
 
 <a id="nestedatt--spec--global_configurations--alert_settings--bdb_high_latency"></a>
-### Nested Schema for `spec.global_configurations.alert_settings.bdb_size`
+### Nested Schema for `spec.global_configurations.alert_settings.bdb_high_latency`
 
 Required:
 
@@ -180,7 +180,7 @@ Required:
 
 
 <a id="nestedatt--spec--global_configurations--alert_settings--bdb_high_throughput"></a>
-### Nested Schema for `spec.global_configurations.alert_settings.bdb_size`
+### Nested Schema for `spec.global_configurations.alert_settings.bdb_high_throughput`
 
 Required:
 
@@ -189,7 +189,7 @@ Required:
 
 
 <a id="nestedatt--spec--global_configurations--alert_settings--bdb_long_running_action"></a>
-### Nested Schema for `spec.global_configurations.alert_settings.bdb_size`
+### Nested Schema for `spec.global_configurations.alert_settings.bdb_long_running_action`
 
 Required:
 
@@ -198,7 +198,7 @@ Required:
 
 
 <a id="nestedatt--spec--global_configurations--alert_settings--bdb_low_throughput"></a>
-### Nested Schema for `spec.global_configurations.alert_settings.bdb_size`
+### Nested Schema for `spec.global_configurations.alert_settings.bdb_low_throughput`
 
 Required:
 
@@ -207,7 +207,7 @@ Required:
 
 
 <a id="nestedatt--spec--global_configurations--alert_settings--bdb_ram_dataset_overhead"></a>
-### Nested Schema for `spec.global_configurations.alert_settings.bdb_size`
+### Nested Schema for `spec.global_configurations.alert_settings.bdb_ram_dataset_overhead`
 
 Required:
 
@@ -216,7 +216,7 @@ Required:
 
 
 <a id="nestedatt--spec--global_configurations--alert_settings--bdb_ram_values"></a>
-### Nested Schema for `spec.global_configurations.alert_settings.bdb_size`
+### Nested Schema for `spec.global_configurations.alert_settings.bdb_ram_values`
 
 Required:
 
@@ -225,7 +225,7 @@ Required:
 
 
 <a id="nestedatt--spec--global_configurations--alert_settings--bdb_replica_src_high_syncer_lag"></a>
-### Nested Schema for `spec.global_configurations.alert_settings.bdb_size`
+### Nested Schema for `spec.global_configurations.alert_settings.bdb_replica_src_high_syncer_lag`
 
 Required:
 
@@ -234,7 +234,7 @@ Required:
 
 
 <a id="nestedatt--spec--global_configurations--alert_settings--bdb_replica_src_syncer_connection_error"></a>
-### Nested Schema for `spec.global_configurations.alert_settings.bdb_size`
+### Nested Schema for `spec.global_configurations.alert_settings.bdb_replica_src_syncer_connection_error`
 
 Required:
 
@@ -243,7 +243,7 @@ Required:
 
 
 <a id="nestedatt--spec--global_configurations--alert_settings--bdb_shard_num_ram_values"></a>
-### Nested Schema for `spec.global_configurations.alert_settings.bdb_size`
+### Nested Schema for `spec.global_configurations.alert_settings.bdb_shard_num_ram_values`
 
 Required:
 
@@ -276,7 +276,7 @@ Optional:
 - `swift` (Attributes) (see [below for nested schema](#nestedatt--spec--global_configurations--backup--swift))
 
 <a id="nestedatt--spec--global_configurations--backup--abs"></a>
-### Nested Schema for `spec.global_configurations.backup.swift`
+### Nested Schema for `spec.global_configurations.backup.abs`
 
 Required:
 
@@ -289,7 +289,7 @@ Optional:
 
 
 <a id="nestedatt--spec--global_configurations--backup--ftp"></a>
-### Nested Schema for `spec.global_configurations.backup.swift`
+### Nested Schema for `spec.global_configurations.backup.ftp`
 
 Required:
 
@@ -297,7 +297,7 @@ Required:
 
 
 <a id="nestedatt--spec--global_configurations--backup--gcs"></a>
-### Nested Schema for `spec.global_configurations.backup.swift`
+### Nested Schema for `spec.global_configurations.backup.gcs`
 
 Required:
 
@@ -310,7 +310,7 @@ Optional:
 
 
 <a id="nestedatt--spec--global_configurations--backup--mount"></a>
-### Nested Schema for `spec.global_configurations.backup.swift`
+### Nested Schema for `spec.global_configurations.backup.mount`
 
 Required:
 
@@ -318,7 +318,7 @@ Required:
 
 
 <a id="nestedatt--spec--global_configurations--backup--s3"></a>
-### Nested Schema for `spec.global_configurations.backup.swift`
+### Nested Schema for `spec.global_configurations.backup.s3`
 
 Required:
 
@@ -331,7 +331,7 @@ Optional:
 
 
 <a id="nestedatt--spec--global_configurations--backup--sftp"></a>
-### Nested Schema for `spec.global_configurations.backup.swift`
+### Nested Schema for `spec.global_configurations.backup.sftp`
 
 Required:
 

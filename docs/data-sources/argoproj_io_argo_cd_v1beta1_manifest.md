@@ -199,7 +199,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--application_set--resources--claims"></a>
-### Nested Schema for `spec.application_set.resources.requests`
+### Nested Schema for `spec.application_set.resources.claims`
 
 Required:
 
@@ -217,7 +217,7 @@ Optional:
 - `route` (Attributes) Route defines the desired state for an OpenShift Route for the Application set webhook component. (see [below for nested schema](#nestedatt--spec--application_set--webhook_server--route))
 
 <a id="nestedatt--spec--application_set--webhook_server--ingress"></a>
-### Nested Schema for `spec.application_set.webhook_server.route`
+### Nested Schema for `spec.application_set.webhook_server.ingress`
 
 Required:
 
@@ -395,7 +395,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--controller--resources--claims"></a>
-### Nested Schema for `spec.controller.resources.requests`
+### Nested Schema for `spec.controller.resources.claims`
 
 Required:
 
@@ -468,7 +468,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--grafana--resources--claims"></a>
-### Nested Schema for `spec.grafana.resources.requests`
+### Nested Schema for `spec.grafana.resources.claims`
 
 Required:
 
@@ -492,7 +492,7 @@ Optional:
 - `wildcard_policy` (String) WildcardPolicy if any for the route. Currently only 'Subdomain' or 'None' is allowed.
 
 <a id="nestedatt--spec--grafana--route--tls"></a>
-### Nested Schema for `spec.grafana.route.wildcard_policy`
+### Nested Schema for `spec.grafana.route.tls`
 
 Required:
 
@@ -532,7 +532,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--ha--resources--claims"></a>
-### Nested Schema for `spec.ha.resources.requests`
+### Nested Schema for `spec.ha.resources.claims`
 
 Required:
 
@@ -701,7 +701,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--notifications--resources--claims"></a>
-### Nested Schema for `spec.notifications.resources.requests`
+### Nested Schema for `spec.notifications.resources.claims`
 
 Required:
 
@@ -764,7 +764,7 @@ Optional:
 - `wildcard_policy` (String) WildcardPolicy if any for the route. Currently only 'Subdomain' or 'None' is allowed.
 
 <a id="nestedatt--spec--prometheus--route--tls"></a>
-### Nested Schema for `spec.prometheus.route.wildcard_policy`
+### Nested Schema for `spec.prometheus.route.tls`
 
 Required:
 
@@ -815,7 +815,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--redis--resources--claims"></a>
-### Nested Schema for `spec.redis.resources.requests`
+### Nested Schema for `spec.redis.resources.claims`
 
 Required:
 
@@ -958,7 +958,7 @@ Optional:
 - `working_dir` (String) Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.
 
 <a id="nestedatt--spec--repo--init_containers--env"></a>
-### Nested Schema for `spec.repo.init_containers.working_dir`
+### Nested Schema for `spec.repo.init_containers.env`
 
 Required:
 
@@ -980,7 +980,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--repo--init_containers--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--repo--init_containers--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.repo.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.repo.init_containers.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -993,7 +993,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--init_containers--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.repo.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.repo.init_containers.working_dir.value_from.field_ref`
 
 Required:
 
@@ -1005,7 +1005,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--init_containers--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.repo.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.repo.init_containers.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -1033,7 +1033,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--init_containers--env_from"></a>
-### Nested Schema for `spec.repo.init_containers.working_dir`
+### Nested Schema for `spec.repo.init_containers.env_from`
 
 Optional:
 
@@ -1061,7 +1061,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--init_containers--lifecycle"></a>
-### Nested Schema for `spec.repo.init_containers.working_dir`
+### Nested Schema for `spec.repo.init_containers.lifecycle`
 
 Optional:
 
@@ -1078,7 +1078,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--repo--init_containers--working_dir--post_start--tcp_socket))
 
 <a id="nestedatt--spec--repo--init_containers--working_dir--post_start--exec"></a>
-### Nested Schema for `spec.repo.init_containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.repo.init_containers.working_dir.post_start.exec`
 
 Optional:
 
@@ -1086,7 +1086,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--init_containers--working_dir--post_start--http_get"></a>
-### Nested Schema for `spec.repo.init_containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.repo.init_containers.working_dir.post_start.http_get`
 
 Required:
 
@@ -1100,7 +1100,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--repo--init_containers--working_dir--post_start--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.repo.init_containers.working_dir.post_start.tcp_socket.scheme`
+### Nested Schema for `spec.repo.init_containers.working_dir.post_start.tcp_socket.http_headers`
 
 Required:
 
@@ -1132,7 +1132,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--repo--init_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--repo--init_containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.repo.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.repo.init_containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -1140,7 +1140,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--init_containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.repo.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.repo.init_containers.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -1154,7 +1154,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--repo--init_containers--working_dir--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.repo.init_containers.working_dir.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.repo.init_containers.working_dir.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -1178,7 +1178,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--init_containers--liveness_probe"></a>
-### Nested Schema for `spec.repo.init_containers.working_dir`
+### Nested Schema for `spec.repo.init_containers.liveness_probe`
 
 Optional:
 
@@ -1228,7 +1228,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--repo--init_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.repo.init_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.repo.init_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -1251,7 +1251,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--init_containers--ports"></a>
-### Nested Schema for `spec.repo.init_containers.working_dir`
+### Nested Schema for `spec.repo.init_containers.ports`
 
 Required:
 
@@ -1266,7 +1266,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--init_containers--readiness_probe"></a>
-### Nested Schema for `spec.repo.init_containers.working_dir`
+### Nested Schema for `spec.repo.init_containers.readiness_probe`
 
 Optional:
 
@@ -1316,7 +1316,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--repo--init_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.repo.init_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.repo.init_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -1339,7 +1339,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--init_containers--resize_policy"></a>
-### Nested Schema for `spec.repo.init_containers.working_dir`
+### Nested Schema for `spec.repo.init_containers.resize_policy`
 
 Required:
 
@@ -1348,7 +1348,7 @@ Required:
 
 
 <a id="nestedatt--spec--repo--init_containers--resources"></a>
-### Nested Schema for `spec.repo.init_containers.working_dir`
+### Nested Schema for `spec.repo.init_containers.resources`
 
 Optional:
 
@@ -1366,7 +1366,7 @@ Required:
 
 
 <a id="nestedatt--spec--repo--init_containers--security_context"></a>
-### Nested Schema for `spec.repo.init_containers.working_dir`
+### Nested Schema for `spec.repo.init_containers.security_context`
 
 Optional:
 
@@ -1427,7 +1427,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--init_containers--startup_probe"></a>
-### Nested Schema for `spec.repo.init_containers.working_dir`
+### Nested Schema for `spec.repo.init_containers.startup_probe`
 
 Optional:
 
@@ -1477,7 +1477,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--repo--init_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.repo.init_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.repo.init_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -1500,7 +1500,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--init_containers--volume_devices"></a>
-### Nested Schema for `spec.repo.init_containers.working_dir`
+### Nested Schema for `spec.repo.init_containers.volume_devices`
 
 Required:
 
@@ -1509,7 +1509,7 @@ Required:
 
 
 <a id="nestedatt--spec--repo--init_containers--volume_mounts"></a>
-### Nested Schema for `spec.repo.init_containers.working_dir`
+### Nested Schema for `spec.repo.init_containers.volume_mounts`
 
 Required:
 
@@ -1535,7 +1535,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--repo--resources--claims"></a>
-### Nested Schema for `spec.repo.resources.requests`
+### Nested Schema for `spec.repo.resources.claims`
 
 Required:
 
@@ -1577,7 +1577,7 @@ Optional:
 - `working_dir` (String) Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.
 
 <a id="nestedatt--spec--repo--sidecar_containers--env"></a>
-### Nested Schema for `spec.repo.sidecar_containers.working_dir`
+### Nested Schema for `spec.repo.sidecar_containers.env`
 
 Required:
 
@@ -1599,7 +1599,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--repo--sidecar_containers--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--repo--sidecar_containers--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.repo.sidecar_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.repo.sidecar_containers.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -1612,7 +1612,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--sidecar_containers--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.repo.sidecar_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.repo.sidecar_containers.working_dir.value_from.field_ref`
 
 Required:
 
@@ -1624,7 +1624,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--sidecar_containers--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.repo.sidecar_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.repo.sidecar_containers.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -1652,7 +1652,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--sidecar_containers--env_from"></a>
-### Nested Schema for `spec.repo.sidecar_containers.working_dir`
+### Nested Schema for `spec.repo.sidecar_containers.env_from`
 
 Optional:
 
@@ -1680,7 +1680,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--sidecar_containers--lifecycle"></a>
-### Nested Schema for `spec.repo.sidecar_containers.working_dir`
+### Nested Schema for `spec.repo.sidecar_containers.lifecycle`
 
 Optional:
 
@@ -1697,7 +1697,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--repo--sidecar_containers--working_dir--post_start--tcp_socket))
 
 <a id="nestedatt--spec--repo--sidecar_containers--working_dir--post_start--exec"></a>
-### Nested Schema for `spec.repo.sidecar_containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.repo.sidecar_containers.working_dir.post_start.exec`
 
 Optional:
 
@@ -1705,7 +1705,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--sidecar_containers--working_dir--post_start--http_get"></a>
-### Nested Schema for `spec.repo.sidecar_containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.repo.sidecar_containers.working_dir.post_start.http_get`
 
 Required:
 
@@ -1719,7 +1719,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--repo--sidecar_containers--working_dir--post_start--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.repo.sidecar_containers.working_dir.post_start.tcp_socket.scheme`
+### Nested Schema for `spec.repo.sidecar_containers.working_dir.post_start.tcp_socket.http_headers`
 
 Required:
 
@@ -1751,7 +1751,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--repo--sidecar_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--repo--sidecar_containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.repo.sidecar_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.repo.sidecar_containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -1759,7 +1759,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--sidecar_containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.repo.sidecar_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.repo.sidecar_containers.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -1773,7 +1773,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--repo--sidecar_containers--working_dir--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.repo.sidecar_containers.working_dir.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.repo.sidecar_containers.working_dir.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -1797,7 +1797,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--sidecar_containers--liveness_probe"></a>
-### Nested Schema for `spec.repo.sidecar_containers.working_dir`
+### Nested Schema for `spec.repo.sidecar_containers.liveness_probe`
 
 Optional:
 
@@ -1847,7 +1847,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--repo--sidecar_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.repo.sidecar_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.repo.sidecar_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -1870,7 +1870,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--sidecar_containers--ports"></a>
-### Nested Schema for `spec.repo.sidecar_containers.working_dir`
+### Nested Schema for `spec.repo.sidecar_containers.ports`
 
 Required:
 
@@ -1885,7 +1885,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--sidecar_containers--readiness_probe"></a>
-### Nested Schema for `spec.repo.sidecar_containers.working_dir`
+### Nested Schema for `spec.repo.sidecar_containers.readiness_probe`
 
 Optional:
 
@@ -1935,7 +1935,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--repo--sidecar_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.repo.sidecar_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.repo.sidecar_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -1958,7 +1958,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--sidecar_containers--resize_policy"></a>
-### Nested Schema for `spec.repo.sidecar_containers.working_dir`
+### Nested Schema for `spec.repo.sidecar_containers.resize_policy`
 
 Required:
 
@@ -1967,7 +1967,7 @@ Required:
 
 
 <a id="nestedatt--spec--repo--sidecar_containers--resources"></a>
-### Nested Schema for `spec.repo.sidecar_containers.working_dir`
+### Nested Schema for `spec.repo.sidecar_containers.resources`
 
 Optional:
 
@@ -1985,7 +1985,7 @@ Required:
 
 
 <a id="nestedatt--spec--repo--sidecar_containers--security_context"></a>
-### Nested Schema for `spec.repo.sidecar_containers.working_dir`
+### Nested Schema for `spec.repo.sidecar_containers.security_context`
 
 Optional:
 
@@ -2046,7 +2046,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--sidecar_containers--startup_probe"></a>
-### Nested Schema for `spec.repo.sidecar_containers.working_dir`
+### Nested Schema for `spec.repo.sidecar_containers.startup_probe`
 
 Optional:
 
@@ -2096,7 +2096,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--repo--sidecar_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.repo.sidecar_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.repo.sidecar_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -2119,7 +2119,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--sidecar_containers--volume_devices"></a>
-### Nested Schema for `spec.repo.sidecar_containers.working_dir`
+### Nested Schema for `spec.repo.sidecar_containers.volume_devices`
 
 Required:
 
@@ -2128,7 +2128,7 @@ Required:
 
 
 <a id="nestedatt--spec--repo--sidecar_containers--volume_mounts"></a>
-### Nested Schema for `spec.repo.sidecar_containers.working_dir`
+### Nested Schema for `spec.repo.sidecar_containers.volume_mounts`
 
 Required:
 
@@ -2200,7 +2200,7 @@ Optional:
 - `vsphere_volume` (Attributes) vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--repo--volumes--vsphere_volume))
 
 <a id="nestedatt--spec--repo--volumes--aws_elastic_block_store"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume`
+### Nested Schema for `spec.repo.volumes.aws_elastic_block_store`
 
 Required:
 
@@ -2214,7 +2214,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--azure_disk"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume`
+### Nested Schema for `spec.repo.volumes.azure_disk`
 
 Required:
 
@@ -2230,7 +2230,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--azure_file"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume`
+### Nested Schema for `spec.repo.volumes.azure_file`
 
 Required:
 
@@ -2243,7 +2243,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--cephfs"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume`
+### Nested Schema for `spec.repo.volumes.cephfs`
 
 Required:
 
@@ -2267,7 +2267,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--cinder"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume`
+### Nested Schema for `spec.repo.volumes.cinder`
 
 Required:
 
@@ -2289,7 +2289,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--config_map"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume`
+### Nested Schema for `spec.repo.volumes.config_map`
 
 Optional:
 
@@ -2313,7 +2313,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--csi"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume`
+### Nested Schema for `spec.repo.volumes.csi`
 
 Required:
 
@@ -2336,7 +2336,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--downward_api"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume`
+### Nested Schema for `spec.repo.volumes.downward_api`
 
 Optional:
 
@@ -2357,7 +2357,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--repo--volumes--vsphere_volume--items--resource_field_ref))
 
 <a id="nestedatt--spec--repo--volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume.items.resource_field_ref`
+### Nested Schema for `spec.repo.volumes.vsphere_volume.items.field_ref`
 
 Required:
 
@@ -2384,7 +2384,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--empty_dir"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume`
+### Nested Schema for `spec.repo.volumes.empty_dir`
 
 Optional:
 
@@ -2393,7 +2393,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--ephemeral"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume`
+### Nested Schema for `spec.repo.volumes.ephemeral`
 
 Optional:
 
@@ -2411,7 +2411,7 @@ Optional:
 - `metadata` (Map of String) May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation.
 
 <a id="nestedatt--spec--repo--volumes--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume.volume_claim_template.metadata`
+### Nested Schema for `spec.repo.volumes.vsphere_volume.volume_claim_template.spec`
 
 Optional:
 
@@ -2425,7 +2425,7 @@ Optional:
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--repo--volumes--vsphere_volume--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.repo.volumes.vsphere_volume.volume_claim_template.metadata.data_source`
 
 Required:
 
@@ -2438,7 +2438,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--vsphere_volume--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.repo.volumes.vsphere_volume.volume_claim_template.metadata.data_source_ref`
 
 Required:
 
@@ -2452,7 +2452,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--vsphere_volume--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.repo.volumes.vsphere_volume.volume_claim_template.metadata.resources`
 
 Optional:
 
@@ -2461,7 +2461,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--repo--volumes--vsphere_volume--volume_claim_template--metadata--volume_name--claims"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume.volume_claim_template.metadata.volume_name.requests`
+### Nested Schema for `spec.repo.volumes.vsphere_volume.volume_claim_template.metadata.volume_name.claims`
 
 Required:
 
@@ -2470,7 +2470,7 @@ Required:
 
 
 <a id="nestedatt--spec--repo--volumes--vsphere_volume--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.repo.volumes.vsphere_volume.volume_claim_template.metadata.selector`
 
 Optional:
 
@@ -2478,7 +2478,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--repo--volumes--vsphere_volume--volume_claim_template--metadata--volume_name--match_expressions"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_labels`
+### Nested Schema for `spec.repo.volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_expressions`
 
 Required:
 
@@ -2495,7 +2495,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--fc"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume`
+### Nested Schema for `spec.repo.volumes.fc`
 
 Optional:
 
@@ -2507,7 +2507,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--flex_volume"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume`
+### Nested Schema for `spec.repo.volumes.flex_volume`
 
 Required:
 
@@ -2530,7 +2530,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--flocker"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume`
+### Nested Schema for `spec.repo.volumes.flocker`
 
 Optional:
 
@@ -2539,7 +2539,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--gce_persistent_disk"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume`
+### Nested Schema for `spec.repo.volumes.gce_persistent_disk`
 
 Required:
 
@@ -2553,7 +2553,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--git_repo"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume`
+### Nested Schema for `spec.repo.volumes.git_repo`
 
 Required:
 
@@ -2566,7 +2566,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--glusterfs"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume`
+### Nested Schema for `spec.repo.volumes.glusterfs`
 
 Required:
 
@@ -2579,7 +2579,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--host_path"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume`
+### Nested Schema for `spec.repo.volumes.host_path`
 
 Required:
 
@@ -2591,7 +2591,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--iscsi"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume`
+### Nested Schema for `spec.repo.volumes.iscsi`
 
 Required:
 
@@ -2620,7 +2620,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--nfs"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume`
+### Nested Schema for `spec.repo.volumes.nfs`
 
 Required:
 
@@ -2633,7 +2633,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--persistent_volume_claim"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume`
+### Nested Schema for `spec.repo.volumes.persistent_volume_claim`
 
 Required:
 
@@ -2645,7 +2645,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--photon_persistent_disk"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume`
+### Nested Schema for `spec.repo.volumes.photon_persistent_disk`
 
 Required:
 
@@ -2657,7 +2657,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--portworx_volume"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume`
+### Nested Schema for `spec.repo.volumes.portworx_volume`
 
 Required:
 
@@ -2670,7 +2670,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--projected"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume`
+### Nested Schema for `spec.repo.volumes.projected`
 
 Optional:
 
@@ -2688,7 +2688,7 @@ Optional:
 - `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--repo--volumes--vsphere_volume--sources--service_account_token))
 
 <a id="nestedatt--spec--repo--volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.repo.volumes.vsphere_volume.sources.config_map`
 
 Optional:
 
@@ -2697,7 +2697,7 @@ Optional:
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--repo--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume.sources.service_account_token.optional`
+### Nested Schema for `spec.repo.volumes.vsphere_volume.sources.service_account_token.items`
 
 Required:
 
@@ -2711,7 +2711,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.repo.volumes.vsphere_volume.sources.downward_api`
 
 Optional:
 
@@ -2731,7 +2731,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--repo--volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
 
 <a id="nestedatt--spec--repo--volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+### Nested Schema for `spec.repo.volumes.vsphere_volume.sources.service_account_token.items.field_ref`
 
 Required:
 
@@ -2758,7 +2758,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.repo.volumes.vsphere_volume.sources.secret`
 
 Optional:
 
@@ -2767,7 +2767,7 @@ Optional:
 - `optional` (Boolean) optional field specify whether the Secret or its key must be defined
 
 <a id="nestedatt--spec--repo--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume.sources.service_account_token.optional`
+### Nested Schema for `spec.repo.volumes.vsphere_volume.sources.service_account_token.items`
 
 Required:
 
@@ -2796,7 +2796,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--quobyte"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume`
+### Nested Schema for `spec.repo.volumes.quobyte`
 
 Required:
 
@@ -2812,7 +2812,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--rbd"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume`
+### Nested Schema for `spec.repo.volumes.rbd`
 
 Required:
 
@@ -2838,7 +2838,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--scale_io"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume`
+### Nested Schema for `spec.repo.volumes.scale_io`
 
 Required:
 
@@ -2866,7 +2866,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--secret"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume`
+### Nested Schema for `spec.repo.volumes.secret`
 
 Optional:
 
@@ -2890,7 +2890,7 @@ Optional:
 
 
 <a id="nestedatt--spec--repo--volumes--storageos"></a>
-### Nested Schema for `spec.repo.volumes.vsphere_volume`
+### Nested Schema for `spec.repo.volumes.storageos`
 
 Optional:
 
@@ -2973,7 +2973,7 @@ Optional:
 - `kind` (String)
 
 <a id="nestedatt--spec--resource_ignore_differences--resource_identifiers--customization"></a>
-### Nested Schema for `spec.resource_ignore_differences.resource_identifiers.kind`
+### Nested Schema for `spec.resource_ignore_differences.resource_identifiers.customization`
 
 Optional:
 
@@ -3185,7 +3185,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--server--resources--claims"></a>
-### Nested Schema for `spec.server.resources.requests`
+### Nested Schema for `spec.server.resources.claims`
 
 Required:
 
@@ -3209,7 +3209,7 @@ Optional:
 - `wildcard_policy` (String) WildcardPolicy if any for the route. Currently only 'Subdomain' or 'None' is allowed.
 
 <a id="nestedatt--spec--server--route--tls"></a>
-### Nested Schema for `spec.server.route.wildcard_policy`
+### Nested Schema for `spec.server.route.tls`
 
 Required:
 
@@ -3257,7 +3257,7 @@ Optional:
 - `version` (String) Version is the Dex container image tag.
 
 <a id="nestedatt--spec--sso--dex--env"></a>
-### Nested Schema for `spec.sso.dex.version`
+### Nested Schema for `spec.sso.dex.env`
 
 Required:
 
@@ -3279,7 +3279,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--sso--dex--version--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--sso--dex--version--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.sso.dex.version.value_from.secret_key_ref`
+### Nested Schema for `spec.sso.dex.version.value_from.config_map_key_ref`
 
 Required:
 
@@ -3292,7 +3292,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sso--dex--version--value_from--field_ref"></a>
-### Nested Schema for `spec.sso.dex.version.value_from.secret_key_ref`
+### Nested Schema for `spec.sso.dex.version.value_from.field_ref`
 
 Required:
 
@@ -3304,7 +3304,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sso--dex--version--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.sso.dex.version.value_from.secret_key_ref`
+### Nested Schema for `spec.sso.dex.version.value_from.resource_field_ref`
 
 Required:
 
@@ -3332,7 +3332,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sso--dex--resources"></a>
-### Nested Schema for `spec.sso.dex.version`
+### Nested Schema for `spec.sso.dex.resources`
 
 Optional:
 
@@ -3362,7 +3362,7 @@ Optional:
 - `version` (String) Version is the Keycloak container image tag.
 
 <a id="nestedatt--spec--sso--keycloak--resources"></a>
-### Nested Schema for `spec.sso.keycloak.version`
+### Nested Schema for `spec.sso.keycloak.resources`
 
 Optional:
 

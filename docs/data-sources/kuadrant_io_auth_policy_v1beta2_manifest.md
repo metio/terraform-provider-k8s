@@ -97,7 +97,7 @@ Optional:
 - `query_params` (Attributes List) QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended (see [below for nested schema](#nestedatt--spec--route_selectors--matches--query_params))
 
 <a id="nestedatt--spec--route_selectors--matches--headers"></a>
-### Nested Schema for `spec.route_selectors.matches.query_params`
+### Nested Schema for `spec.route_selectors.matches.headers`
 
 Required:
 
@@ -110,7 +110,7 @@ Optional:
 
 
 <a id="nestedatt--spec--route_selectors--matches--path"></a>
-### Nested Schema for `spec.route_selectors.matches.query_params`
+### Nested Schema for `spec.route_selectors.matches.path`
 
 Optional:
 
@@ -166,7 +166,7 @@ Optional:
 - `x509` (Attributes) Authentication based on client X.509 certificates.The certificates presented by the clients must be signed by a trusted CA whose certificates are stored in Kubernetes secrets. (see [below for nested schema](#nestedatt--spec--rules--authentication--x509))
 
 <a id="nestedatt--spec--rules--authentication--api_key"></a>
-### Nested Schema for `spec.rules.authentication.x509`
+### Nested Schema for `spec.rules.authentication.api_key`
 
 Required:
 
@@ -185,7 +185,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--authentication--x509--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.authentication.x509.selector.match_labels`
+### Nested Schema for `spec.rules.authentication.x509.selector.match_expressions`
 
 Required:
 
@@ -200,7 +200,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--authentication--cache"></a>
-### Nested Schema for `spec.rules.authentication.x509`
+### Nested Schema for `spec.rules.authentication.cache`
 
 Required:
 
@@ -221,7 +221,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--authentication--credentials"></a>
-### Nested Schema for `spec.rules.authentication.x509`
+### Nested Schema for `spec.rules.authentication.credentials`
 
 Optional:
 
@@ -264,7 +264,7 @@ Required:
 
 
 <a id="nestedatt--spec--rules--authentication--defaults"></a>
-### Nested Schema for `spec.rules.authentication.x509`
+### Nested Schema for `spec.rules.authentication.defaults`
 
 Optional:
 
@@ -273,7 +273,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--authentication--jwt"></a>
-### Nested Schema for `spec.rules.authentication.x509`
+### Nested Schema for `spec.rules.authentication.jwt`
 
 Optional:
 
@@ -282,7 +282,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--authentication--kubernetes_token_review"></a>
-### Nested Schema for `spec.rules.authentication.x509`
+### Nested Schema for `spec.rules.authentication.kubernetes_token_review`
 
 Optional:
 
@@ -290,7 +290,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--authentication--oauth2_introspection"></a>
-### Nested Schema for `spec.rules.authentication.x509`
+### Nested Schema for `spec.rules.authentication.oauth2_introspection`
 
 Required:
 
@@ -311,7 +311,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--authentication--overrides"></a>
-### Nested Schema for `spec.rules.authentication.x509`
+### Nested Schema for `spec.rules.authentication.overrides`
 
 Optional:
 
@@ -320,7 +320,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--authentication--plain"></a>
-### Nested Schema for `spec.rules.authentication.x509`
+### Nested Schema for `spec.rules.authentication.plain`
 
 Required:
 
@@ -328,7 +328,7 @@ Required:
 
 
 <a id="nestedatt--spec--rules--authentication--route_selectors"></a>
-### Nested Schema for `spec.rules.authentication.x509`
+### Nested Schema for `spec.rules.authentication.route_selectors`
 
 Optional:
 
@@ -346,7 +346,7 @@ Optional:
 - `query_params` (Attributes List) QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended (see [below for nested schema](#nestedatt--spec--rules--authentication--x509--matches--query_params))
 
 <a id="nestedatt--spec--rules--authentication--x509--matches--headers"></a>
-### Nested Schema for `spec.rules.authentication.x509.matches.query_params`
+### Nested Schema for `spec.rules.authentication.x509.matches.headers`
 
 Required:
 
@@ -359,7 +359,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--authentication--x509--matches--path"></a>
-### Nested Schema for `spec.rules.authentication.x509.matches.query_params`
+### Nested Schema for `spec.rules.authentication.x509.matches.path`
 
 Optional:
 
@@ -383,7 +383,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--authentication--when"></a>
-### Nested Schema for `spec.rules.authentication.x509`
+### Nested Schema for `spec.rules.authentication.when`
 
 Optional:
 
@@ -415,7 +415,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--authentication--x509--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.authentication.x509.selector.match_labels`
+### Nested Schema for `spec.rules.authentication.x509.selector.match_expressions`
 
 Required:
 
@@ -446,7 +446,7 @@ Optional:
 - `when` (Attributes List) Conditions for Authorino to enforce this config.If omitted, the config will be enforced for all requests.If present, all conditions must match for the config to be enforced; otherwise, the config will be skipped. (see [below for nested schema](#nestedatt--spec--rules--authorization--when))
 
 <a id="nestedatt--spec--rules--authorization--cache"></a>
-### Nested Schema for `spec.rules.authorization.when`
+### Nested Schema for `spec.rules.authorization.cache`
 
 Required:
 
@@ -467,7 +467,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--authorization--kubernetes_subject_access_review"></a>
-### Nested Schema for `spec.rules.authorization.when`
+### Nested Schema for `spec.rules.authorization.kubernetes_subject_access_review`
 
 Optional:
 
@@ -488,7 +488,7 @@ Optional:
 - `verb` (Attributes) Verb to check for authorization on the resource.Use '*' for all verbs. (see [below for nested schema](#nestedatt--spec--rules--authorization--when--resource_attributes--verb))
 
 <a id="nestedatt--spec--rules--authorization--when--resource_attributes--group"></a>
-### Nested Schema for `spec.rules.authorization.when.resource_attributes.verb`
+### Nested Schema for `spec.rules.authorization.when.resource_attributes.group`
 
 Optional:
 
@@ -497,7 +497,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--authorization--when--resource_attributes--name"></a>
-### Nested Schema for `spec.rules.authorization.when.resource_attributes.verb`
+### Nested Schema for `spec.rules.authorization.when.resource_attributes.name`
 
 Optional:
 
@@ -506,7 +506,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--authorization--when--resource_attributes--namespace"></a>
-### Nested Schema for `spec.rules.authorization.when.resource_attributes.verb`
+### Nested Schema for `spec.rules.authorization.when.resource_attributes.namespace`
 
 Optional:
 
@@ -515,7 +515,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--authorization--when--resource_attributes--resource"></a>
-### Nested Schema for `spec.rules.authorization.when.resource_attributes.verb`
+### Nested Schema for `spec.rules.authorization.when.resource_attributes.resource`
 
 Optional:
 
@@ -524,7 +524,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--authorization--when--resource_attributes--subresource"></a>
-### Nested Schema for `spec.rules.authorization.when.resource_attributes.verb`
+### Nested Schema for `spec.rules.authorization.when.resource_attributes.subresource`
 
 Optional:
 
@@ -553,7 +553,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--authorization--opa"></a>
-### Nested Schema for `spec.rules.authorization.when`
+### Nested Schema for `spec.rules.authorization.opa`
 
 Optional:
 
@@ -581,7 +581,7 @@ Optional:
 - `ttl` (Number) Duration (in seconds) of the external data in the cache before pulled again from the source.
 
 <a id="nestedatt--spec--rules--authorization--when--external_policy--body"></a>
-### Nested Schema for `spec.rules.authorization.when.external_policy.ttl`
+### Nested Schema for `spec.rules.authorization.when.external_policy.body`
 
 Optional:
 
@@ -590,7 +590,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--authorization--when--external_policy--body_parameters"></a>
-### Nested Schema for `spec.rules.authorization.when.external_policy.ttl`
+### Nested Schema for `spec.rules.authorization.when.external_policy.body_parameters`
 
 Optional:
 
@@ -599,7 +599,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--authorization--when--external_policy--credentials"></a>
-### Nested Schema for `spec.rules.authorization.when.external_policy.ttl`
+### Nested Schema for `spec.rules.authorization.when.external_policy.credentials`
 
 Optional:
 
@@ -609,7 +609,7 @@ Optional:
 - `query_string` (Attributes) (see [below for nested schema](#nestedatt--spec--rules--authorization--when--external_policy--ttl--query_string))
 
 <a id="nestedatt--spec--rules--authorization--when--external_policy--ttl--authorization_header"></a>
-### Nested Schema for `spec.rules.authorization.when.external_policy.ttl.query_string`
+### Nested Schema for `spec.rules.authorization.when.external_policy.ttl.authorization_header`
 
 Optional:
 
@@ -617,7 +617,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--authorization--when--external_policy--ttl--cookie"></a>
-### Nested Schema for `spec.rules.authorization.when.external_policy.ttl.query_string`
+### Nested Schema for `spec.rules.authorization.when.external_policy.ttl.cookie`
 
 Required:
 
@@ -625,7 +625,7 @@ Required:
 
 
 <a id="nestedatt--spec--rules--authorization--when--external_policy--ttl--custom_header"></a>
-### Nested Schema for `spec.rules.authorization.when.external_policy.ttl.query_string`
+### Nested Schema for `spec.rules.authorization.when.external_policy.ttl.custom_header`
 
 Required:
 
@@ -642,7 +642,7 @@ Required:
 
 
 <a id="nestedatt--spec--rules--authorization--when--external_policy--headers"></a>
-### Nested Schema for `spec.rules.authorization.when.external_policy.ttl`
+### Nested Schema for `spec.rules.authorization.when.external_policy.headers`
 
 Optional:
 
@@ -651,7 +651,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--authorization--when--external_policy--oauth2"></a>
-### Nested Schema for `spec.rules.authorization.when.external_policy.ttl`
+### Nested Schema for `spec.rules.authorization.when.external_policy.oauth2`
 
 Required:
 
@@ -666,7 +666,7 @@ Optional:
 - `scopes` (List of String) Optional scopes for the client credentials grant, if supported by he OAuth2 server.
 
 <a id="nestedatt--spec--rules--authorization--when--external_policy--ttl--client_secret_ref"></a>
-### Nested Schema for `spec.rules.authorization.when.external_policy.ttl.scopes`
+### Nested Schema for `spec.rules.authorization.when.external_policy.ttl.client_secret_ref`
 
 Required:
 
@@ -676,7 +676,7 @@ Required:
 
 
 <a id="nestedatt--spec--rules--authorization--when--external_policy--shared_secret_ref"></a>
-### Nested Schema for `spec.rules.authorization.when.external_policy.ttl`
+### Nested Schema for `spec.rules.authorization.when.external_policy.shared_secret_ref`
 
 Required:
 
@@ -687,7 +687,7 @@ Required:
 
 
 <a id="nestedatt--spec--rules--authorization--pattern_matching"></a>
-### Nested Schema for `spec.rules.authorization.when`
+### Nested Schema for `spec.rules.authorization.pattern_matching`
 
 Required:
 
@@ -708,7 +708,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--authorization--route_selectors"></a>
-### Nested Schema for `spec.rules.authorization.when`
+### Nested Schema for `spec.rules.authorization.route_selectors`
 
 Optional:
 
@@ -726,7 +726,7 @@ Optional:
 - `query_params` (Attributes List) QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended (see [below for nested schema](#nestedatt--spec--rules--authorization--when--matches--query_params))
 
 <a id="nestedatt--spec--rules--authorization--when--matches--headers"></a>
-### Nested Schema for `spec.rules.authorization.when.matches.query_params`
+### Nested Schema for `spec.rules.authorization.when.matches.headers`
 
 Required:
 
@@ -739,7 +739,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--authorization--when--matches--path"></a>
-### Nested Schema for `spec.rules.authorization.when.matches.query_params`
+### Nested Schema for `spec.rules.authorization.when.matches.path`
 
 Optional:
 
@@ -763,7 +763,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--authorization--spicedb"></a>
-### Nested Schema for `spec.rules.authorization.when`
+### Nested Schema for `spec.rules.authorization.spicedb`
 
 Required:
 
@@ -795,7 +795,7 @@ Optional:
 - `name` (Attributes) (see [below for nested schema](#nestedatt--spec--rules--authorization--when--resource--name))
 
 <a id="nestedatt--spec--rules--authorization--when--resource--kind"></a>
-### Nested Schema for `spec.rules.authorization.when.resource.name`
+### Nested Schema for `spec.rules.authorization.when.resource.kind`
 
 Optional:
 
@@ -831,7 +831,7 @@ Optional:
 - `name` (Attributes) (see [below for nested schema](#nestedatt--spec--rules--authorization--when--subject--name))
 
 <a id="nestedatt--spec--rules--authorization--when--subject--kind"></a>
-### Nested Schema for `spec.rules.authorization.when.subject.name`
+### Nested Schema for `spec.rules.authorization.when.subject.kind`
 
 Optional:
 
@@ -880,7 +880,7 @@ Optional:
 - `when` (Attributes List) Conditions for Authorino to enforce this config.If omitted, the config will be enforced for all requests.If present, all conditions must match for the config to be enforced; otherwise, the config will be skipped. (see [below for nested schema](#nestedatt--spec--rules--callbacks--when))
 
 <a id="nestedatt--spec--rules--callbacks--http"></a>
-### Nested Schema for `spec.rules.callbacks.when`
+### Nested Schema for `spec.rules.callbacks.http`
 
 Required:
 
@@ -926,7 +926,7 @@ Optional:
 - `query_string` (Attributes) (see [below for nested schema](#nestedatt--spec--rules--callbacks--when--credentials--query_string))
 
 <a id="nestedatt--spec--rules--callbacks--when--credentials--authorization_header"></a>
-### Nested Schema for `spec.rules.callbacks.when.credentials.query_string`
+### Nested Schema for `spec.rules.callbacks.when.credentials.authorization_header`
 
 Optional:
 
@@ -934,7 +934,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--callbacks--when--credentials--cookie"></a>
-### Nested Schema for `spec.rules.callbacks.when.credentials.query_string`
+### Nested Schema for `spec.rules.callbacks.when.credentials.cookie`
 
 Required:
 
@@ -942,7 +942,7 @@ Required:
 
 
 <a id="nestedatt--spec--rules--callbacks--when--credentials--custom_header"></a>
-### Nested Schema for `spec.rules.callbacks.when.credentials.query_string`
+### Nested Schema for `spec.rules.callbacks.when.credentials.custom_header`
 
 Required:
 
@@ -983,7 +983,7 @@ Optional:
 - `scopes` (List of String) Optional scopes for the client credentials grant, if supported by he OAuth2 server.
 
 <a id="nestedatt--spec--rules--callbacks--when--oauth2--client_secret_ref"></a>
-### Nested Schema for `spec.rules.callbacks.when.oauth2.scopes`
+### Nested Schema for `spec.rules.callbacks.when.oauth2.client_secret_ref`
 
 Required:
 
@@ -1003,7 +1003,7 @@ Required:
 
 
 <a id="nestedatt--spec--rules--callbacks--cache"></a>
-### Nested Schema for `spec.rules.callbacks.when`
+### Nested Schema for `spec.rules.callbacks.cache`
 
 Required:
 
@@ -1024,7 +1024,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--callbacks--route_selectors"></a>
-### Nested Schema for `spec.rules.callbacks.when`
+### Nested Schema for `spec.rules.callbacks.route_selectors`
 
 Optional:
 
@@ -1042,7 +1042,7 @@ Optional:
 - `query_params` (Attributes List) QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended (see [below for nested schema](#nestedatt--spec--rules--callbacks--when--matches--query_params))
 
 <a id="nestedatt--spec--rules--callbacks--when--matches--headers"></a>
-### Nested Schema for `spec.rules.callbacks.when.matches.query_params`
+### Nested Schema for `spec.rules.callbacks.when.matches.headers`
 
 Required:
 
@@ -1055,7 +1055,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--callbacks--when--matches--path"></a>
-### Nested Schema for `spec.rules.callbacks.when.matches.query_params`
+### Nested Schema for `spec.rules.callbacks.when.matches.path`
 
 Optional:
 
@@ -1107,7 +1107,7 @@ Optional:
 - `when` (Attributes List) Conditions for Authorino to enforce this config.If omitted, the config will be enforced for all requests.If present, all conditions must match for the config to be enforced; otherwise, the config will be skipped. (see [below for nested schema](#nestedatt--spec--rules--metadata--when))
 
 <a id="nestedatt--spec--rules--metadata--cache"></a>
-### Nested Schema for `spec.rules.metadata.when`
+### Nested Schema for `spec.rules.metadata.cache`
 
 Required:
 
@@ -1128,7 +1128,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--metadata--http"></a>
-### Nested Schema for `spec.rules.metadata.when`
+### Nested Schema for `spec.rules.metadata.http`
 
 Required:
 
@@ -1174,7 +1174,7 @@ Optional:
 - `query_string` (Attributes) (see [below for nested schema](#nestedatt--spec--rules--metadata--when--credentials--query_string))
 
 <a id="nestedatt--spec--rules--metadata--when--credentials--authorization_header"></a>
-### Nested Schema for `spec.rules.metadata.when.credentials.query_string`
+### Nested Schema for `spec.rules.metadata.when.credentials.authorization_header`
 
 Optional:
 
@@ -1182,7 +1182,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--metadata--when--credentials--cookie"></a>
-### Nested Schema for `spec.rules.metadata.when.credentials.query_string`
+### Nested Schema for `spec.rules.metadata.when.credentials.cookie`
 
 Required:
 
@@ -1190,7 +1190,7 @@ Required:
 
 
 <a id="nestedatt--spec--rules--metadata--when--credentials--custom_header"></a>
-### Nested Schema for `spec.rules.metadata.when.credentials.query_string`
+### Nested Schema for `spec.rules.metadata.when.credentials.custom_header`
 
 Required:
 
@@ -1231,7 +1231,7 @@ Optional:
 - `scopes` (List of String) Optional scopes for the client credentials grant, if supported by he OAuth2 server.
 
 <a id="nestedatt--spec--rules--metadata--when--oauth2--client_secret_ref"></a>
-### Nested Schema for `spec.rules.metadata.when.oauth2.scopes`
+### Nested Schema for `spec.rules.metadata.when.oauth2.client_secret_ref`
 
 Required:
 
@@ -1251,7 +1251,7 @@ Required:
 
 
 <a id="nestedatt--spec--rules--metadata--route_selectors"></a>
-### Nested Schema for `spec.rules.metadata.when`
+### Nested Schema for `spec.rules.metadata.route_selectors`
 
 Optional:
 
@@ -1269,7 +1269,7 @@ Optional:
 - `query_params` (Attributes List) QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended (see [below for nested schema](#nestedatt--spec--rules--metadata--when--matches--query_params))
 
 <a id="nestedatt--spec--rules--metadata--when--matches--headers"></a>
-### Nested Schema for `spec.rules.metadata.when.matches.query_params`
+### Nested Schema for `spec.rules.metadata.when.matches.headers`
 
 Required:
 
@@ -1282,7 +1282,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--metadata--when--matches--path"></a>
-### Nested Schema for `spec.rules.metadata.when.matches.query_params`
+### Nested Schema for `spec.rules.metadata.when.matches.path`
 
 Optional:
 
@@ -1306,7 +1306,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--metadata--uma"></a>
-### Nested Schema for `spec.rules.metadata.when`
+### Nested Schema for `spec.rules.metadata.uma`
 
 Required:
 
@@ -1323,7 +1323,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--metadata--user_info"></a>
-### Nested Schema for `spec.rules.metadata.when`
+### Nested Schema for `spec.rules.metadata.user_info`
 
 Required:
 
@@ -1354,7 +1354,7 @@ Optional:
 - `unauthorized` (Attributes) Customizations on the denial status attributes when the request is unauthorized.For integration of Authorino via proxy, the proxy must honour the response status attributes specified in this config.Default: 403 Forbidden (see [below for nested schema](#nestedatt--spec--rules--response--unauthorized))
 
 <a id="nestedatt--spec--rules--response--success"></a>
-### Nested Schema for `spec.rules.response.unauthorized`
+### Nested Schema for `spec.rules.response.success`
 
 Optional:
 
@@ -1377,7 +1377,7 @@ Optional:
 - `wristband` (Attributes) Authorino Festival Wristband token (see [below for nested schema](#nestedatt--spec--rules--response--unauthorized--dynamic_metadata--wristband))
 
 <a id="nestedatt--spec--rules--response--unauthorized--dynamic_metadata--cache"></a>
-### Nested Schema for `spec.rules.response.unauthorized.dynamic_metadata.wristband`
+### Nested Schema for `spec.rules.response.unauthorized.dynamic_metadata.cache`
 
 Required:
 
@@ -1388,7 +1388,7 @@ Optional:
 - `ttl` (Number) Duration (in seconds) of the external data in the cache before pulled again from the source.
 
 <a id="nestedatt--spec--rules--response--unauthorized--dynamic_metadata--wristband--key"></a>
-### Nested Schema for `spec.rules.response.unauthorized.dynamic_metadata.wristband.ttl`
+### Nested Schema for `spec.rules.response.unauthorized.dynamic_metadata.wristband.key`
 
 Optional:
 
@@ -1398,7 +1398,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--response--unauthorized--dynamic_metadata--json"></a>
-### Nested Schema for `spec.rules.response.unauthorized.dynamic_metadata.wristband`
+### Nested Schema for `spec.rules.response.unauthorized.dynamic_metadata.json`
 
 Required:
 
@@ -1415,7 +1415,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--response--unauthorized--dynamic_metadata--plain"></a>
-### Nested Schema for `spec.rules.response.unauthorized.dynamic_metadata.wristband`
+### Nested Schema for `spec.rules.response.unauthorized.dynamic_metadata.plain`
 
 Optional:
 
@@ -1424,7 +1424,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--response--unauthorized--dynamic_metadata--route_selectors"></a>
-### Nested Schema for `spec.rules.response.unauthorized.dynamic_metadata.wristband`
+### Nested Schema for `spec.rules.response.unauthorized.dynamic_metadata.route_selectors`
 
 Optional:
 
@@ -1442,7 +1442,7 @@ Optional:
 - `query_params` (Attributes List) QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended (see [below for nested schema](#nestedatt--spec--rules--response--unauthorized--dynamic_metadata--wristband--matches--query_params))
 
 <a id="nestedatt--spec--rules--response--unauthorized--dynamic_metadata--wristband--matches--headers"></a>
-### Nested Schema for `spec.rules.response.unauthorized.dynamic_metadata.wristband.matches.query_params`
+### Nested Schema for `spec.rules.response.unauthorized.dynamic_metadata.wristband.matches.headers`
 
 Required:
 
@@ -1455,7 +1455,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--response--unauthorized--dynamic_metadata--wristband--matches--path"></a>
-### Nested Schema for `spec.rules.response.unauthorized.dynamic_metadata.wristband.matches.query_params`
+### Nested Schema for `spec.rules.response.unauthorized.dynamic_metadata.wristband.matches.path`
 
 Optional:
 
@@ -1479,7 +1479,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--response--unauthorized--dynamic_metadata--when"></a>
-### Nested Schema for `spec.rules.response.unauthorized.dynamic_metadata.wristband`
+### Nested Schema for `spec.rules.response.unauthorized.dynamic_metadata.when`
 
 Optional:
 
@@ -1505,7 +1505,7 @@ Optional:
 - `token_duration` (Number) Time span of the wristband token, in seconds.
 
 <a id="nestedatt--spec--rules--response--unauthorized--dynamic_metadata--wristband--signing_key_refs"></a>
-### Nested Schema for `spec.rules.response.unauthorized.dynamic_metadata.wristband.token_duration`
+### Nested Schema for `spec.rules.response.unauthorized.dynamic_metadata.wristband.signing_key_refs`
 
 Required:
 
@@ -1514,7 +1514,7 @@ Required:
 
 
 <a id="nestedatt--spec--rules--response--unauthorized--dynamic_metadata--wristband--custom_claims"></a>
-### Nested Schema for `spec.rules.response.unauthorized.dynamic_metadata.wristband.token_duration`
+### Nested Schema for `spec.rules.response.unauthorized.dynamic_metadata.wristband.custom_claims`
 
 Optional:
 
@@ -1540,7 +1540,7 @@ Optional:
 - `wristband` (Attributes) Authorino Festival Wristband token (see [below for nested schema](#nestedatt--spec--rules--response--unauthorized--headers--wristband))
 
 <a id="nestedatt--spec--rules--response--unauthorized--headers--cache"></a>
-### Nested Schema for `spec.rules.response.unauthorized.headers.wristband`
+### Nested Schema for `spec.rules.response.unauthorized.headers.cache`
 
 Required:
 
@@ -1551,7 +1551,7 @@ Optional:
 - `ttl` (Number) Duration (in seconds) of the external data in the cache before pulled again from the source.
 
 <a id="nestedatt--spec--rules--response--unauthorized--headers--wristband--key"></a>
-### Nested Schema for `spec.rules.response.unauthorized.headers.wristband.ttl`
+### Nested Schema for `spec.rules.response.unauthorized.headers.wristband.key`
 
 Optional:
 
@@ -1561,7 +1561,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--response--unauthorized--headers--json"></a>
-### Nested Schema for `spec.rules.response.unauthorized.headers.wristband`
+### Nested Schema for `spec.rules.response.unauthorized.headers.json`
 
 Required:
 
@@ -1578,7 +1578,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--response--unauthorized--headers--plain"></a>
-### Nested Schema for `spec.rules.response.unauthorized.headers.wristband`
+### Nested Schema for `spec.rules.response.unauthorized.headers.plain`
 
 Optional:
 
@@ -1587,7 +1587,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--response--unauthorized--headers--route_selectors"></a>
-### Nested Schema for `spec.rules.response.unauthorized.headers.wristband`
+### Nested Schema for `spec.rules.response.unauthorized.headers.route_selectors`
 
 Optional:
 
@@ -1605,7 +1605,7 @@ Optional:
 - `query_params` (Attributes List) QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended (see [below for nested schema](#nestedatt--spec--rules--response--unauthorized--headers--wristband--matches--query_params))
 
 <a id="nestedatt--spec--rules--response--unauthorized--headers--wristband--matches--headers"></a>
-### Nested Schema for `spec.rules.response.unauthorized.headers.wristband.matches.query_params`
+### Nested Schema for `spec.rules.response.unauthorized.headers.wristband.matches.headers`
 
 Required:
 
@@ -1618,7 +1618,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--response--unauthorized--headers--wristband--matches--path"></a>
-### Nested Schema for `spec.rules.response.unauthorized.headers.wristband.matches.query_params`
+### Nested Schema for `spec.rules.response.unauthorized.headers.wristband.matches.path`
 
 Optional:
 
@@ -1642,7 +1642,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--response--unauthorized--headers--when"></a>
-### Nested Schema for `spec.rules.response.unauthorized.headers.wristband`
+### Nested Schema for `spec.rules.response.unauthorized.headers.when`
 
 Optional:
 
@@ -1668,7 +1668,7 @@ Optional:
 - `token_duration` (Number) Time span of the wristband token, in seconds.
 
 <a id="nestedatt--spec--rules--response--unauthorized--headers--wristband--signing_key_refs"></a>
-### Nested Schema for `spec.rules.response.unauthorized.headers.wristband.token_duration`
+### Nested Schema for `spec.rules.response.unauthorized.headers.wristband.signing_key_refs`
 
 Required:
 
@@ -1677,7 +1677,7 @@ Required:
 
 
 <a id="nestedatt--spec--rules--response--unauthorized--headers--wristband--custom_claims"></a>
-### Nested Schema for `spec.rules.response.unauthorized.headers.wristband.token_duration`
+### Nested Schema for `spec.rules.response.unauthorized.headers.wristband.custom_claims`
 
 Optional:
 
@@ -1689,7 +1689,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--response--unauthenticated"></a>
-### Nested Schema for `spec.rules.response.unauthorized`
+### Nested Schema for `spec.rules.response.unauthenticated`
 
 Optional:
 

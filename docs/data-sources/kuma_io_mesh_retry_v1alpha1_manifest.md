@@ -106,7 +106,7 @@ Optional:
 - `tcp` (Attributes) TCP defines a configuration of retries for TCP traffic (see [below for nested schema](#nestedatt--spec--to--default--tcp))
 
 <a id="nestedatt--spec--to--default--grpc"></a>
-### Nested Schema for `spec.to.default.tcp`
+### Nested Schema for `spec.to.default.grpc`
 
 Optional:
 
@@ -145,7 +145,7 @@ Required:
 
 
 <a id="nestedatt--spec--to--default--http"></a>
-### Nested Schema for `spec.to.default.tcp`
+### Nested Schema for `spec.to.default.http`
 
 Optional:
 

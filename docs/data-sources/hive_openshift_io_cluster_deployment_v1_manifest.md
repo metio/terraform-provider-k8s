@@ -138,7 +138,7 @@ Optional:
 - `user_tags` (Map of String) UserTags specifies additional tags for AWS resources created for the cluster.
 
 <a id="nestedatt--spec--platform--aws--credentials_assume_role"></a>
-### Nested Schema for `spec.platform.aws.user_tags`
+### Nested Schema for `spec.platform.aws.credentials_assume_role`
 
 Required:
 
@@ -150,7 +150,7 @@ Optional:
 
 
 <a id="nestedatt--spec--platform--aws--credentials_secret_ref"></a>
-### Nested Schema for `spec.platform.aws.user_tags`
+### Nested Schema for `spec.platform.aws.credentials_secret_ref`
 
 Optional:
 
@@ -158,7 +158,7 @@ Optional:
 
 
 <a id="nestedatt--spec--platform--aws--private_link"></a>
-### Nested Schema for `spec.platform.aws.user_tags`
+### Nested Schema for `spec.platform.aws.private_link`
 
 Required:
 
@@ -184,7 +184,7 @@ Optional:
 - `cloud_name` (String) cloudName is the name of the Azure cloud environment which can be used to configure the Azure SDK with the appropriate Azure API endpoints. If empty, the value is equal to 'AzurePublicCloud'.
 
 <a id="nestedatt--spec--platform--azure--credentials_secret_ref"></a>
-### Nested Schema for `spec.platform.azure.cloud_name`
+### Nested Schema for `spec.platform.azure.credentials_secret_ref`
 
 Optional:
 
@@ -217,7 +217,7 @@ Required:
 - `region` (String) Region specifies the GCP region where the cluster will be created.
 
 <a id="nestedatt--spec--platform--gcp--credentials_secret_ref"></a>
-### Nested Schema for `spec.platform.gcp.region`
+### Nested Schema for `spec.platform.gcp.credentials_secret_ref`
 
 Optional:
 
@@ -239,7 +239,7 @@ Optional:
 - `cis_instance_crn` (String) CISInstanceCRN is the IBM Cloud Internet Services Instance CRN CISInstanceCRN is DEPRECATED and gathered via the IBM Cloud API for the provided credentials and cluster deployment base domain. This field will be ignored.
 
 <a id="nestedatt--spec--platform--ibmcloud--credentials_secret_ref"></a>
-### Nested Schema for `spec.platform.ibmcloud.cis_instance_crn`
+### Nested Schema for `spec.platform.ibmcloud.credentials_secret_ref`
 
 Optional:
 
@@ -261,7 +261,7 @@ Optional:
 - `trunk_support` (Boolean) TrunkSupport indicates whether or not to use trunk ports in your OpenShift cluster.
 
 <a id="nestedatt--spec--platform--openstack--credentials_secret_ref"></a>
-### Nested Schema for `spec.platform.openstack.trunk_support`
+### Nested Schema for `spec.platform.openstack.credentials_secret_ref`
 
 Optional:
 
@@ -269,7 +269,7 @@ Optional:
 
 
 <a id="nestedatt--spec--platform--openstack--certificates_secret_ref"></a>
-### Nested Schema for `spec.platform.openstack.trunk_support`
+### Nested Schema for `spec.platform.openstack.certificates_secret_ref`
 
 Optional:
 
@@ -292,7 +292,7 @@ Optional:
 - `ovirt_network_name` (String) The target network of all the network interfaces of the nodes. Omitting defaults to ovirtmgmt network which is a default network for evert ovirt cluster.
 
 <a id="nestedatt--spec--platform--ovirt--certificates_secret_ref"></a>
-### Nested Schema for `spec.platform.ovirt.ovirt_network_name`
+### Nested Schema for `spec.platform.ovirt.certificates_secret_ref`
 
 Optional:
 
@@ -300,7 +300,7 @@ Optional:
 
 
 <a id="nestedatt--spec--platform--ovirt--credentials_secret_ref"></a>
-### Nested Schema for `spec.platform.ovirt.ovirt_network_name`
+### Nested Schema for `spec.platform.ovirt.credentials_secret_ref`
 
 Optional:
 
@@ -326,7 +326,7 @@ Optional:
 - `network` (String) Network specifies the name of the network to be used by the cluster.
 
 <a id="nestedatt--spec--platform--vsphere--certificates_secret_ref"></a>
-### Nested Schema for `spec.platform.vsphere.network`
+### Nested Schema for `spec.platform.vsphere.certificates_secret_ref`
 
 Optional:
 
@@ -334,7 +334,7 @@ Optional:
 
 
 <a id="nestedatt--spec--platform--vsphere--credentials_secret_ref"></a>
-### Nested Schema for `spec.platform.vsphere.network`
+### Nested Schema for `spec.platform.vsphere.credentials_secret_ref`
 
 Optional:
 
@@ -423,7 +423,7 @@ Optional:
 - `gcp` (Attributes) GCP holds GCP-specific cluster metadata (see [below for nested schema](#nestedatt--spec--cluster_metadata--platform--gcp))
 
 <a id="nestedatt--spec--cluster_metadata--platform--aws"></a>
-### Nested Schema for `spec.cluster_metadata.platform.gcp`
+### Nested Schema for `spec.cluster_metadata.platform.aws`
 
 Optional:
 
@@ -431,7 +431,7 @@ Optional:
 
 
 <a id="nestedatt--spec--cluster_metadata--platform--azure"></a>
-### Nested Schema for `spec.cluster_metadata.platform.gcp`
+### Nested Schema for `spec.cluster_metadata.platform.azure`
 
 Required:
 
@@ -489,7 +489,7 @@ Optional:
 - `default` (String) Default references the name of a CertificateBundle in the ClusterDeployment that should be used for the control plane's default endpoint.
 
 <a id="nestedatt--spec--control_plane_config--serving_certificates--additional"></a>
-### Nested Schema for `spec.control_plane_config.serving_certificates.default`
+### Nested Schema for `spec.control_plane_config.serving_certificates.additional`
 
 Required:
 
@@ -531,7 +531,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--ingress--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.ingress.namespace_selector.match_labels`
+### Nested Schema for `spec.ingress.namespace_selector.match_expressions`
 
 Required:
 
@@ -553,7 +553,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--ingress--route_selector--match_expressions"></a>
-### Nested Schema for `spec.ingress.route_selector.match_labels`
+### Nested Schema for `spec.ingress.route_selector.match_expressions`
 
 Required:
 

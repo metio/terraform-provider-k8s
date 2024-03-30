@@ -124,7 +124,7 @@ Optional:
 - `queries` (Attributes) QueryLimits defines the limit applied on querying log streams. (see [below for nested schema](#nestedatt--spec--limits--global--queries))
 
 <a id="nestedatt--spec--limits--global--ingestion"></a>
-### Nested Schema for `spec.limits.global.queries`
+### Nested Schema for `spec.limits.global.ingestion`
 
 Optional:
 
@@ -157,7 +157,7 @@ Optional:
 - `queries` (Attributes) QueryLimits defines the limit applied on querying log streams. (see [below for nested schema](#nestedatt--spec--limits--tenants--queries))
 
 <a id="nestedatt--spec--limits--tenants--ingestion"></a>
-### Nested Schema for `spec.limits.tenants.queries`
+### Nested Schema for `spec.limits.tenants.ingestion`
 
 Optional:
 
@@ -203,7 +203,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.rules.namespace_selector.match_labels`
+### Nested Schema for `spec.rules.namespace_selector.match_expressions`
 
 Required:
 
@@ -225,7 +225,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.selector.match_labels`
+### Nested Schema for `spec.rules.selector.match_expressions`
 
 Required:
 
@@ -452,7 +452,7 @@ Required:
 - `tenant_name` (String) TenantName defines the name of the tenant.
 
 <a id="nestedatt--spec--tenants--authentication--oidc"></a>
-### Nested Schema for `spec.tenants.authentication.tenant_name`
+### Nested Schema for `spec.tenants.authentication.oidc`
 
 Required:
 
@@ -485,7 +485,7 @@ Optional:
 - `roles` (Attributes List) Roles defines a set of permissions to interact with a tenant. (see [below for nested schema](#nestedatt--spec--tenants--authorization--roles))
 
 <a id="nestedatt--spec--tenants--authorization--opa"></a>
-### Nested Schema for `spec.tenants.authorization.roles`
+### Nested Schema for `spec.tenants.authorization.opa`
 
 Required:
 
@@ -493,7 +493,7 @@ Required:
 
 
 <a id="nestedatt--spec--tenants--authorization--role_bindings"></a>
-### Nested Schema for `spec.tenants.authorization.roles`
+### Nested Schema for `spec.tenants.authorization.role_bindings`
 
 Required:
 

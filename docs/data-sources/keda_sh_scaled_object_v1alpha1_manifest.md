@@ -125,7 +125,7 @@ Optional:
 - `name` (String)
 
 <a id="nestedatt--spec--advanced--horizontal_pod_autoscaler_config--behavior"></a>
-### Nested Schema for `spec.advanced.horizontal_pod_autoscaler_config.name`
+### Nested Schema for `spec.advanced.horizontal_pod_autoscaler_config.behavior`
 
 Optional:
 
@@ -142,7 +142,7 @@ Optional:
 - `stabilization_window_seconds` (Number) stabilizationWindowSeconds is the number of seconds for which past recommendations should beconsidered while scaling up or scaling down.StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour).If not set, use the default values:- For scale up: 0 (i.e. no stabilization is done).- For scale down: 300 (i.e. the stabilization window is 300 seconds long).
 
 <a id="nestedatt--spec--advanced--horizontal_pod_autoscaler_config--name--scale_down--policies"></a>
-### Nested Schema for `spec.advanced.horizontal_pod_autoscaler_config.name.scale_down.stabilization_window_seconds`
+### Nested Schema for `spec.advanced.horizontal_pod_autoscaler_config.name.scale_down.policies`
 
 Required:
 
@@ -162,7 +162,7 @@ Optional:
 - `stabilization_window_seconds` (Number) stabilizationWindowSeconds is the number of seconds for which past recommendations should beconsidered while scaling up or scaling down.StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour).If not set, use the default values:- For scale up: 0 (i.e. no stabilization is done).- For scale down: 300 (i.e. the stabilization window is 300 seconds long).
 
 <a id="nestedatt--spec--advanced--horizontal_pod_autoscaler_config--name--scale_up--policies"></a>
-### Nested Schema for `spec.advanced.horizontal_pod_autoscaler_config.name.scale_up.stabilization_window_seconds`
+### Nested Schema for `spec.advanced.horizontal_pod_autoscaler_config.name.scale_up.policies`
 
 Required:
 

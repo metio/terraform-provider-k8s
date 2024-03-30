@@ -119,7 +119,7 @@ Optional:
 - `resctrl_qos` (Attributes) ResctrlQOSCfg stores node-level config of resctrl qos (see [below for nested schema](#nestedatt--spec--resource_qos_strategy--be_class--resctrl_qos))
 
 <a id="nestedatt--spec--resource_qos_strategy--be_class--blkio_qos"></a>
-### Nested Schema for `spec.resource_qos_strategy.be_class.resctrl_qos`
+### Nested Schema for `spec.resource_qos_strategy.be_class.blkio_qos`
 
 Optional:
 
@@ -136,7 +136,7 @@ Optional:
 - `type` (String)
 
 <a id="nestedatt--spec--resource_qos_strategy--be_class--resctrl_qos--blocks--io_cfg"></a>
-### Nested Schema for `spec.resource_qos_strategy.be_class.resctrl_qos.blocks.type`
+### Nested Schema for `spec.resource_qos_strategy.be_class.resctrl_qos.blocks.io_cfg`
 
 Optional:
 
@@ -161,7 +161,7 @@ Optional:
 
 
 <a id="nestedatt--spec--resource_qos_strategy--be_class--cpu_qos"></a>
-### Nested Schema for `spec.resource_qos_strategy.be_class.resctrl_qos`
+### Nested Schema for `spec.resource_qos_strategy.be_class.cpu_qos`
 
 Optional:
 
@@ -172,7 +172,7 @@ Optional:
 
 
 <a id="nestedatt--spec--resource_qos_strategy--be_class--memory_qos"></a>
-### Nested Schema for `spec.resource_qos_strategy.be_class.resctrl_qos`
+### Nested Schema for `spec.resource_qos_strategy.be_class.memory_qos`
 
 Optional:
 
@@ -189,7 +189,7 @@ Optional:
 
 
 <a id="nestedatt--spec--resource_qos_strategy--be_class--network_qos"></a>
-### Nested Schema for `spec.resource_qos_strategy.be_class.resctrl_qos`
+### Nested Schema for `spec.resource_qos_strategy.be_class.network_qos`
 
 Optional:
 
@@ -224,7 +224,7 @@ Optional:
 - `resctrl_qos` (Attributes) ResctrlQOSCfg stores node-level config of resctrl qos (see [below for nested schema](#nestedatt--spec--resource_qos_strategy--cgroup_root--resctrl_qos))
 
 <a id="nestedatt--spec--resource_qos_strategy--cgroup_root--blkio_qos"></a>
-### Nested Schema for `spec.resource_qos_strategy.cgroup_root.resctrl_qos`
+### Nested Schema for `spec.resource_qos_strategy.cgroup_root.blkio_qos`
 
 Optional:
 
@@ -241,7 +241,7 @@ Optional:
 - `type` (String)
 
 <a id="nestedatt--spec--resource_qos_strategy--cgroup_root--resctrl_qos--blocks--io_cfg"></a>
-### Nested Schema for `spec.resource_qos_strategy.cgroup_root.resctrl_qos.blocks.type`
+### Nested Schema for `spec.resource_qos_strategy.cgroup_root.resctrl_qos.blocks.io_cfg`
 
 Optional:
 
@@ -266,7 +266,7 @@ Optional:
 
 
 <a id="nestedatt--spec--resource_qos_strategy--cgroup_root--cpu_qos"></a>
-### Nested Schema for `spec.resource_qos_strategy.cgroup_root.resctrl_qos`
+### Nested Schema for `spec.resource_qos_strategy.cgroup_root.cpu_qos`
 
 Optional:
 
@@ -277,7 +277,7 @@ Optional:
 
 
 <a id="nestedatt--spec--resource_qos_strategy--cgroup_root--memory_qos"></a>
-### Nested Schema for `spec.resource_qos_strategy.cgroup_root.resctrl_qos`
+### Nested Schema for `spec.resource_qos_strategy.cgroup_root.memory_qos`
 
 Optional:
 
@@ -294,7 +294,7 @@ Optional:
 
 
 <a id="nestedatt--spec--resource_qos_strategy--cgroup_root--network_qos"></a>
-### Nested Schema for `spec.resource_qos_strategy.cgroup_root.resctrl_qos`
+### Nested Schema for `spec.resource_qos_strategy.cgroup_root.network_qos`
 
 Optional:
 
@@ -329,7 +329,7 @@ Optional:
 - `resctrl_qos` (Attributes) ResctrlQOSCfg stores node-level config of resctrl qos (see [below for nested schema](#nestedatt--spec--resource_qos_strategy--ls_class--resctrl_qos))
 
 <a id="nestedatt--spec--resource_qos_strategy--ls_class--blkio_qos"></a>
-### Nested Schema for `spec.resource_qos_strategy.ls_class.resctrl_qos`
+### Nested Schema for `spec.resource_qos_strategy.ls_class.blkio_qos`
 
 Optional:
 
@@ -346,7 +346,7 @@ Optional:
 - `type` (String)
 
 <a id="nestedatt--spec--resource_qos_strategy--ls_class--resctrl_qos--blocks--io_cfg"></a>
-### Nested Schema for `spec.resource_qos_strategy.ls_class.resctrl_qos.blocks.type`
+### Nested Schema for `spec.resource_qos_strategy.ls_class.resctrl_qos.blocks.io_cfg`
 
 Optional:
 
@@ -371,7 +371,7 @@ Optional:
 
 
 <a id="nestedatt--spec--resource_qos_strategy--ls_class--cpu_qos"></a>
-### Nested Schema for `spec.resource_qos_strategy.ls_class.resctrl_qos`
+### Nested Schema for `spec.resource_qos_strategy.ls_class.cpu_qos`
 
 Optional:
 
@@ -382,7 +382,7 @@ Optional:
 
 
 <a id="nestedatt--spec--resource_qos_strategy--ls_class--memory_qos"></a>
-### Nested Schema for `spec.resource_qos_strategy.ls_class.resctrl_qos`
+### Nested Schema for `spec.resource_qos_strategy.ls_class.memory_qos`
 
 Optional:
 
@@ -399,7 +399,7 @@ Optional:
 
 
 <a id="nestedatt--spec--resource_qos_strategy--ls_class--network_qos"></a>
-### Nested Schema for `spec.resource_qos_strategy.ls_class.resctrl_qos`
+### Nested Schema for `spec.resource_qos_strategy.ls_class.network_qos`
 
 Optional:
 
@@ -434,7 +434,7 @@ Optional:
 - `resctrl_qos` (Attributes) ResctrlQOSCfg stores node-level config of resctrl qos (see [below for nested schema](#nestedatt--spec--resource_qos_strategy--lsr_class--resctrl_qos))
 
 <a id="nestedatt--spec--resource_qos_strategy--lsr_class--blkio_qos"></a>
-### Nested Schema for `spec.resource_qos_strategy.lsr_class.resctrl_qos`
+### Nested Schema for `spec.resource_qos_strategy.lsr_class.blkio_qos`
 
 Optional:
 
@@ -451,7 +451,7 @@ Optional:
 - `type` (String)
 
 <a id="nestedatt--spec--resource_qos_strategy--lsr_class--resctrl_qos--blocks--io_cfg"></a>
-### Nested Schema for `spec.resource_qos_strategy.lsr_class.resctrl_qos.blocks.type`
+### Nested Schema for `spec.resource_qos_strategy.lsr_class.resctrl_qos.blocks.io_cfg`
 
 Optional:
 
@@ -476,7 +476,7 @@ Optional:
 
 
 <a id="nestedatt--spec--resource_qos_strategy--lsr_class--cpu_qos"></a>
-### Nested Schema for `spec.resource_qos_strategy.lsr_class.resctrl_qos`
+### Nested Schema for `spec.resource_qos_strategy.lsr_class.cpu_qos`
 
 Optional:
 
@@ -487,7 +487,7 @@ Optional:
 
 
 <a id="nestedatt--spec--resource_qos_strategy--lsr_class--memory_qos"></a>
-### Nested Schema for `spec.resource_qos_strategy.lsr_class.resctrl_qos`
+### Nested Schema for `spec.resource_qos_strategy.lsr_class.memory_qos`
 
 Optional:
 
@@ -504,7 +504,7 @@ Optional:
 
 
 <a id="nestedatt--spec--resource_qos_strategy--lsr_class--network_qos"></a>
-### Nested Schema for `spec.resource_qos_strategy.lsr_class.resctrl_qos`
+### Nested Schema for `spec.resource_qos_strategy.lsr_class.network_qos`
 
 Optional:
 
@@ -548,7 +548,7 @@ Optional:
 - `resctrl_qos` (Attributes) ResctrlQOSCfg stores node-level config of resctrl qos (see [below for nested schema](#nestedatt--spec--resource_qos_strategy--system_class--resctrl_qos))
 
 <a id="nestedatt--spec--resource_qos_strategy--system_class--blkio_qos"></a>
-### Nested Schema for `spec.resource_qos_strategy.system_class.resctrl_qos`
+### Nested Schema for `spec.resource_qos_strategy.system_class.blkio_qos`
 
 Optional:
 
@@ -565,7 +565,7 @@ Optional:
 - `type` (String)
 
 <a id="nestedatt--spec--resource_qos_strategy--system_class--resctrl_qos--blocks--io_cfg"></a>
-### Nested Schema for `spec.resource_qos_strategy.system_class.resctrl_qos.blocks.type`
+### Nested Schema for `spec.resource_qos_strategy.system_class.resctrl_qos.blocks.io_cfg`
 
 Optional:
 
@@ -590,7 +590,7 @@ Optional:
 
 
 <a id="nestedatt--spec--resource_qos_strategy--system_class--cpu_qos"></a>
-### Nested Schema for `spec.resource_qos_strategy.system_class.resctrl_qos`
+### Nested Schema for `spec.resource_qos_strategy.system_class.cpu_qos`
 
 Optional:
 
@@ -601,7 +601,7 @@ Optional:
 
 
 <a id="nestedatt--spec--resource_qos_strategy--system_class--memory_qos"></a>
-### Nested Schema for `spec.resource_qos_strategy.system_class.resctrl_qos`
+### Nested Schema for `spec.resource_qos_strategy.system_class.memory_qos`
 
 Optional:
 
@@ -618,7 +618,7 @@ Optional:
 
 
 <a id="nestedatt--spec--resource_qos_strategy--system_class--network_qos"></a>
-### Nested Schema for `spec.resource_qos_strategy.system_class.resctrl_qos`
+### Nested Schema for `spec.resource_qos_strategy.system_class.network_qos`
 
 Optional:
 

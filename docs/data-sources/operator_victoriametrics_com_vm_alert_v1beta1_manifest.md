@@ -142,7 +142,7 @@ Optional:
 - `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--datasource--basic_auth--username))
 
 <a id="nestedatt--spec--datasource--basic_auth--password"></a>
-### Nested Schema for `spec.datasource.basic_auth.username`
+### Nested Schema for `spec.datasource.basic_auth.password`
 
 Required:
 
@@ -197,7 +197,7 @@ Optional:
 - `scopes` (List of String) OAuth2 scopes used for the token request
 
 <a id="nestedatt--spec--datasource--oauth2--client_id"></a>
-### Nested Schema for `spec.datasource.oauth2.scopes`
+### Nested Schema for `spec.datasource.oauth2.client_id`
 
 Optional:
 
@@ -232,7 +232,7 @@ Optional:
 
 
 <a id="nestedatt--spec--datasource--oauth2--client_secret"></a>
-### Nested Schema for `spec.datasource.oauth2.scopes`
+### Nested Schema for `spec.datasource.oauth2.client_secret`
 
 Required:
 
@@ -330,7 +330,7 @@ Optional:
 - `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--notifier--basic_auth--username))
 
 <a id="nestedatt--spec--notifier--basic_auth--password"></a>
-### Nested Schema for `spec.notifier.basic_auth.username`
+### Nested Schema for `spec.notifier.basic_auth.password`
 
 Required:
 
@@ -385,7 +385,7 @@ Optional:
 - `scopes` (List of String) OAuth2 scopes used for the token request
 
 <a id="nestedatt--spec--notifier--oauth2--client_id"></a>
-### Nested Schema for `spec.notifier.oauth2.scopes`
+### Nested Schema for `spec.notifier.oauth2.client_id`
 
 Optional:
 
@@ -420,7 +420,7 @@ Optional:
 
 
 <a id="nestedatt--spec--notifier--oauth2--client_secret"></a>
-### Nested Schema for `spec.notifier.oauth2.scopes`
+### Nested Schema for `spec.notifier.oauth2.client_secret`
 
 Required:
 
@@ -442,7 +442,7 @@ Optional:
 - `namespace_selector` (Attributes) NamespaceSelector is a selector for selecting either all namespaces or alist of namespaces. (see [below for nested schema](#nestedatt--spec--notifier--selector--namespace_selector))
 
 <a id="nestedatt--spec--notifier--selector--label_selector"></a>
-### Nested Schema for `spec.notifier.selector.namespace_selector`
+### Nested Schema for `spec.notifier.selector.label_selector`
 
 Optional:
 
@@ -512,7 +512,7 @@ Optional:
 - `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--notifiers--basic_auth--username))
 
 <a id="nestedatt--spec--notifiers--basic_auth--password"></a>
-### Nested Schema for `spec.notifiers.basic_auth.username`
+### Nested Schema for `spec.notifiers.basic_auth.password`
 
 Required:
 
@@ -567,7 +567,7 @@ Optional:
 - `scopes` (List of String) OAuth2 scopes used for the token request
 
 <a id="nestedatt--spec--notifiers--oauth2--client_id"></a>
-### Nested Schema for `spec.notifiers.oauth2.scopes`
+### Nested Schema for `spec.notifiers.oauth2.client_id`
 
 Optional:
 
@@ -602,7 +602,7 @@ Optional:
 
 
 <a id="nestedatt--spec--notifiers--oauth2--client_secret"></a>
-### Nested Schema for `spec.notifiers.oauth2.scopes`
+### Nested Schema for `spec.notifiers.oauth2.client_secret`
 
 Required:
 
@@ -624,7 +624,7 @@ Optional:
 - `namespace_selector` (Attributes) NamespaceSelector is a selector for selecting either all namespaces or alist of namespaces. (see [below for nested schema](#nestedatt--spec--notifiers--selector--namespace_selector))
 
 <a id="nestedatt--spec--notifiers--selector--label_selector"></a>
-### Nested Schema for `spec.notifiers.selector.namespace_selector`
+### Nested Schema for `spec.notifiers.selector.label_selector`
 
 Optional:
 
@@ -712,7 +712,7 @@ Optional:
 - `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--remote_read--basic_auth--username))
 
 <a id="nestedatt--spec--remote_read--basic_auth--password"></a>
-### Nested Schema for `spec.remote_read.basic_auth.username`
+### Nested Schema for `spec.remote_read.basic_auth.password`
 
 Required:
 
@@ -767,7 +767,7 @@ Optional:
 - `scopes` (List of String) OAuth2 scopes used for the token request
 
 <a id="nestedatt--spec--remote_read--oauth2--client_id"></a>
-### Nested Schema for `spec.remote_read.oauth2.scopes`
+### Nested Schema for `spec.remote_read.oauth2.client_id`
 
 Optional:
 
@@ -802,7 +802,7 @@ Optional:
 
 
 <a id="nestedatt--spec--remote_read--oauth2--client_secret"></a>
-### Nested Schema for `spec.remote_read.oauth2.scopes`
+### Nested Schema for `spec.remote_read.oauth2.client_secret`
 
 Required:
 
@@ -847,7 +847,7 @@ Optional:
 - `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--remote_write--basic_auth--username))
 
 <a id="nestedatt--spec--remote_write--basic_auth--password"></a>
-### Nested Schema for `spec.remote_write.basic_auth.username`
+### Nested Schema for `spec.remote_write.basic_auth.password`
 
 Required:
 
@@ -902,7 +902,7 @@ Optional:
 - `scopes` (List of String) OAuth2 scopes used for the token request
 
 <a id="nestedatt--spec--remote_write--oauth2--client_id"></a>
-### Nested Schema for `spec.remote_write.oauth2.scopes`
+### Nested Schema for `spec.remote_write.oauth2.client_id`
 
 Optional:
 
@@ -937,7 +937,7 @@ Optional:
 
 
 <a id="nestedatt--spec--remote_write--oauth2--client_secret"></a>
-### Nested Schema for `spec.remote_write.oauth2.scopes`
+### Nested Schema for `spec.remote_write.oauth2.client_secret`
 
 Required:
 

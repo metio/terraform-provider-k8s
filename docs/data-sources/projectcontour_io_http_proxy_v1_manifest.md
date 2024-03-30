@@ -82,7 +82,7 @@ Optional:
 - `regex` (String) Regex defines a regex match for a request.This field is not allowed in include match conditions.
 
 <a id="nestedatt--spec--includes--conditions--header"></a>
-### Nested Schema for `spec.includes.conditions.regex`
+### Nested Schema for `spec.includes.conditions.header`
 
 Required:
 
@@ -102,7 +102,7 @@ Optional:
 
 
 <a id="nestedatt--spec--includes--conditions--query_parameter"></a>
-### Nested Schema for `spec.includes.conditions.regex`
+### Nested Schema for `spec.includes.conditions.query_parameter`
 
 Required:
 
@@ -168,7 +168,7 @@ Optional:
 - `regex` (String) Regex defines a regex match for a request.This field is not allowed in include match conditions.
 
 <a id="nestedatt--spec--routes--conditions--header"></a>
-### Nested Schema for `spec.routes.conditions.regex`
+### Nested Schema for `spec.routes.conditions.header`
 
 Required:
 
@@ -188,7 +188,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--conditions--query_parameter"></a>
-### Nested Schema for `spec.routes.conditions.regex`
+### Nested Schema for `spec.routes.conditions.query_parameter`
 
 Required:
 
@@ -221,7 +221,7 @@ Optional:
 - `secure` (Boolean) Secure enables rewriting the Set-Cookie Secure element.If not set, Secure attribute will not be rewritten.
 
 <a id="nestedatt--spec--routes--cookie_rewrite_policies--domain_rewrite"></a>
-### Nested Schema for `spec.routes.cookie_rewrite_policies.secure`
+### Nested Schema for `spec.routes.cookie_rewrite_policies.domain_rewrite`
 
 Required:
 
@@ -229,7 +229,7 @@ Required:
 
 
 <a id="nestedatt--spec--routes--cookie_rewrite_policies--path_rewrite"></a>
-### Nested Schema for `spec.routes.cookie_rewrite_policies.secure`
+### Nested Schema for `spec.routes.cookie_rewrite_policies.path_rewrite`
 
 Required:
 
@@ -266,7 +266,7 @@ Optional:
 - `unhealthy_threshold_count` (Number) The number of unhealthy health checks required before a host is marked unhealthy
 
 <a id="nestedatt--spec--routes--health_check_policy--expected_statuses"></a>
-### Nested Schema for `spec.routes.health_check_policy.unhealthy_threshold_count`
+### Nested Schema for `spec.routes.health_check_policy.expected_statuses`
 
 Required:
 
@@ -322,7 +322,7 @@ Optional:
 - `strategy` (String) Strategy specifies the policy used to balance requestsacross the pool of backend pods. Valid policy names are'Random', 'RoundRobin', 'WeightedLeastRequest', 'Cookie',and 'RequestHash'. If an unknown strategy name is specifiedor no policy is supplied, the default 'RoundRobin' policyis used.
 
 <a id="nestedatt--spec--routes--load_balancer_policy--request_hash_policies"></a>
-### Nested Schema for `spec.routes.load_balancer_policy.strategy`
+### Nested Schema for `spec.routes.load_balancer_policy.request_hash_policies`
 
 Optional:
 
@@ -378,7 +378,7 @@ Optional:
 - `local` (Attributes) Local defines local rate limiting parameters, i.e. parametersfor rate limiting that occurs within each Envoy pod as requestsare handled. (see [below for nested schema](#nestedatt--spec--routes--rate_limit_policy--local))
 
 <a id="nestedatt--spec--routes--rate_limit_policy--global"></a>
-### Nested Schema for `spec.routes.rate_limit_policy.local`
+### Nested Schema for `spec.routes.rate_limit_policy.global`
 
 Optional:
 
@@ -403,7 +403,7 @@ Optional:
 - `request_header_value_match` (Attributes) RequestHeaderValueMatch defines a descriptor entry that's populatedif the request's headers match a set of 1+ match criteria. Thedescriptor key is 'header_match', and the descriptor value is static. (see [below for nested schema](#nestedatt--spec--routes--rate_limit_policy--local--descriptors--entries--request_header_value_match))
 
 <a id="nestedatt--spec--routes--rate_limit_policy--local--descriptors--entries--generic_key"></a>
-### Nested Schema for `spec.routes.rate_limit_policy.local.descriptors.entries.request_header_value_match`
+### Nested Schema for `spec.routes.rate_limit_policy.local.descriptors.entries.generic_key`
 
 Optional:
 
@@ -412,7 +412,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--rate_limit_policy--local--descriptors--entries--request_header"></a>
-### Nested Schema for `spec.routes.rate_limit_policy.local.descriptors.entries.request_header_value_match`
+### Nested Schema for `spec.routes.rate_limit_policy.local.descriptors.entries.request_header`
 
 Optional:
 
@@ -430,7 +430,7 @@ Optional:
 - `value` (String) Value defines the value of the descriptor entry.
 
 <a id="nestedatt--spec--routes--rate_limit_policy--local--descriptors--entries--request_header_value_match--headers"></a>
-### Nested Schema for `spec.routes.rate_limit_policy.local.descriptors.entries.request_header_value_match.value`
+### Nested Schema for `spec.routes.rate_limit_policy.local.descriptors.entries.request_header_value_match.headers`
 
 Required:
 
@@ -559,7 +559,7 @@ Optional:
 - `weight` (Number) Weight defines percentage of traffic to balance traffic
 
 <a id="nestedatt--spec--routes--services--cookie_rewrite_policies"></a>
-### Nested Schema for `spec.routes.services.weight`
+### Nested Schema for `spec.routes.services.cookie_rewrite_policies`
 
 Required:
 
@@ -590,7 +590,7 @@ Required:
 
 
 <a id="nestedatt--spec--routes--services--request_headers_policy"></a>
-### Nested Schema for `spec.routes.services.weight`
+### Nested Schema for `spec.routes.services.request_headers_policy`
 
 Optional:
 
@@ -608,7 +608,7 @@ Required:
 
 
 <a id="nestedatt--spec--routes--services--response_headers_policy"></a>
-### Nested Schema for `spec.routes.services.weight`
+### Nested Schema for `spec.routes.services.response_headers_policy`
 
 Optional:
 
@@ -626,7 +626,7 @@ Required:
 
 
 <a id="nestedatt--spec--routes--services--slow_start_policy"></a>
-### Nested Schema for `spec.routes.services.weight`
+### Nested Schema for `spec.routes.services.slow_start_policy`
 
 Required:
 
@@ -639,7 +639,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--services--validation"></a>
-### Nested Schema for `spec.routes.services.weight`
+### Nested Schema for `spec.routes.services.validation`
 
 Required:
 
@@ -718,7 +718,7 @@ Optional:
 - `strategy` (String) Strategy specifies the policy used to balance requestsacross the pool of backend pods. Valid policy names are'Random', 'RoundRobin', 'WeightedLeastRequest', 'Cookie',and 'RequestHash'. If an unknown strategy name is specifiedor no policy is supplied, the default 'RoundRobin' policyis used.
 
 <a id="nestedatt--spec--tcpproxy--load_balancer_policy--request_hash_policies"></a>
-### Nested Schema for `spec.tcpproxy.load_balancer_policy.strategy`
+### Nested Schema for `spec.tcpproxy.load_balancer_policy.request_hash_policies`
 
 Optional:
 
@@ -766,7 +766,7 @@ Optional:
 - `weight` (Number) Weight defines percentage of traffic to balance traffic
 
 <a id="nestedatt--spec--tcpproxy--services--cookie_rewrite_policies"></a>
-### Nested Schema for `spec.tcpproxy.services.weight`
+### Nested Schema for `spec.tcpproxy.services.cookie_rewrite_policies`
 
 Required:
 
@@ -797,7 +797,7 @@ Required:
 
 
 <a id="nestedatt--spec--tcpproxy--services--request_headers_policy"></a>
-### Nested Schema for `spec.tcpproxy.services.weight`
+### Nested Schema for `spec.tcpproxy.services.request_headers_policy`
 
 Optional:
 
@@ -815,7 +815,7 @@ Required:
 
 
 <a id="nestedatt--spec--tcpproxy--services--response_headers_policy"></a>
-### Nested Schema for `spec.tcpproxy.services.weight`
+### Nested Schema for `spec.tcpproxy.services.response_headers_policy`
 
 Optional:
 
@@ -833,7 +833,7 @@ Required:
 
 
 <a id="nestedatt--spec--tcpproxy--services--slow_start_policy"></a>
-### Nested Schema for `spec.tcpproxy.services.weight`
+### Nested Schema for `spec.tcpproxy.services.slow_start_policy`
 
 Required:
 
@@ -846,7 +846,7 @@ Optional:
 
 
 <a id="nestedatt--spec--tcpproxy--services--validation"></a>
-### Nested Schema for `spec.tcpproxy.services.weight`
+### Nested Schema for `spec.tcpproxy.services.validation`
 
 Required:
 
@@ -889,7 +889,7 @@ Optional:
 - `with_request_body` (Attributes) WithRequestBody specifies configuration for sending the client request's body to authorization server. (see [below for nested schema](#nestedatt--spec--virtualhost--authorization--with_request_body))
 
 <a id="nestedatt--spec--virtualhost--authorization--auth_policy"></a>
-### Nested Schema for `spec.virtualhost.authorization.with_request_body`
+### Nested Schema for `spec.virtualhost.authorization.auth_policy`
 
 Optional:
 
@@ -898,7 +898,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtualhost--authorization--extension_ref"></a>
-### Nested Schema for `spec.virtualhost.authorization.with_request_body`
+### Nested Schema for `spec.virtualhost.authorization.extension_ref`
 
 Optional:
 
@@ -969,7 +969,7 @@ Optional:
 - `issuer` (String) Issuer that JWTs are required to have in the 'iss' field.If not provided, JWT issuers are not checked.
 
 <a id="nestedatt--spec--virtualhost--jwt_providers--remote_jwks"></a>
-### Nested Schema for `spec.virtualhost.jwt_providers.issuer`
+### Nested Schema for `spec.virtualhost.jwt_providers.remote_jwks`
 
 Required:
 
@@ -1006,7 +1006,7 @@ Optional:
 - `local` (Attributes) Local defines local rate limiting parameters, i.e. parametersfor rate limiting that occurs within each Envoy pod as requestsare handled. (see [below for nested schema](#nestedatt--spec--virtualhost--rate_limit_policy--local))
 
 <a id="nestedatt--spec--virtualhost--rate_limit_policy--global"></a>
-### Nested Schema for `spec.virtualhost.rate_limit_policy.local`
+### Nested Schema for `spec.virtualhost.rate_limit_policy.global`
 
 Optional:
 
@@ -1031,7 +1031,7 @@ Optional:
 - `request_header_value_match` (Attributes) RequestHeaderValueMatch defines a descriptor entry that's populatedif the request's headers match a set of 1+ match criteria. Thedescriptor key is 'header_match', and the descriptor value is static. (see [below for nested schema](#nestedatt--spec--virtualhost--rate_limit_policy--local--descriptors--entries--request_header_value_match))
 
 <a id="nestedatt--spec--virtualhost--rate_limit_policy--local--descriptors--entries--generic_key"></a>
-### Nested Schema for `spec.virtualhost.rate_limit_policy.local.descriptors.entries.request_header_value_match`
+### Nested Schema for `spec.virtualhost.rate_limit_policy.local.descriptors.entries.generic_key`
 
 Optional:
 
@@ -1040,7 +1040,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtualhost--rate_limit_policy--local--descriptors--entries--request_header"></a>
-### Nested Schema for `spec.virtualhost.rate_limit_policy.local.descriptors.entries.request_header_value_match`
+### Nested Schema for `spec.virtualhost.rate_limit_policy.local.descriptors.entries.request_header`
 
 Optional:
 
@@ -1058,7 +1058,7 @@ Optional:
 - `value` (String) Value defines the value of the descriptor entry.
 
 <a id="nestedatt--spec--virtualhost--rate_limit_policy--local--descriptors--entries--request_header_value_match--headers"></a>
-### Nested Schema for `spec.virtualhost.rate_limit_policy.local.descriptors.entries.request_header_value_match.value`
+### Nested Schema for `spec.virtualhost.rate_limit_policy.local.descriptors.entries.request_header_value_match.headers`
 
 Required:
 
@@ -1119,7 +1119,7 @@ Optional:
 - `secret_name` (String) SecretName is the name of a TLS secret.Either SecretName or Passthrough must be specified, but not both.If specified, the named secret must contain a matching certificatefor the virtual host's FQDN.The name can be optionally prefixed with namespace 'namespace/name'.When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret.
 
 <a id="nestedatt--spec--virtualhost--tls--client_validation"></a>
-### Nested Schema for `spec.virtualhost.tls.secret_name`
+### Nested Schema for `spec.virtualhost.tls.client_validation`
 
 Optional:
 

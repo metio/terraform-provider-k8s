@@ -106,7 +106,7 @@ Optional:
 - `outlier_detection` (Attributes) OutlierDetection contains the configuration of the process of dynamicallydetermining whether some number of hosts in an upstream cluster areperforming unlike the others and removing them from the healthy loadbalancing set. Performance might be along different axes such asconsecutive failures, temporal success rate, temporal latency, etc.Outlier detection is a form of passive health checking. (see [below for nested schema](#nestedatt--spec--from--default--outlier_detection))
 
 <a id="nestedatt--spec--from--default--connection_limits"></a>
-### Nested Schema for `spec.from.default.outlier_detection`
+### Nested Schema for `spec.from.default.connection_limits`
 
 Optional:
 
@@ -141,7 +141,7 @@ Optional:
 - `total_failures` (Attributes) In the default mode (outlierDetection.splitExternalAndLocalErrors isfalse) this detection type takes into account all generated errors:locally originated and externally originated (transaction) errors.In split mode (outlierDetection.splitExternalLocalOriginErrors is true)this detection type takes into account only externally originated(transaction) errors, ignoring locally originated errors.If an upstream host is an HTTP-server, only 5xx types of error are takeninto account (see Consecutive Gateway Failure for exceptions).Properly formatted responses, even when they carry an operational error(like index not found, access denied) are not taken into account. (see [below for nested schema](#nestedatt--spec--from--default--outlier_detection--detectors--total_failures))
 
 <a id="nestedatt--spec--from--default--outlier_detection--detectors--failure_percentage"></a>
-### Nested Schema for `spec.from.default.outlier_detection.detectors.total_failures`
+### Nested Schema for `spec.from.default.outlier_detection.detectors.failure_percentage`
 
 Optional:
 
@@ -151,7 +151,7 @@ Optional:
 
 
 <a id="nestedatt--spec--from--default--outlier_detection--detectors--gateway_failures"></a>
-### Nested Schema for `spec.from.default.outlier_detection.detectors.total_failures`
+### Nested Schema for `spec.from.default.outlier_detection.detectors.gateway_failures`
 
 Optional:
 
@@ -159,7 +159,7 @@ Optional:
 
 
 <a id="nestedatt--spec--from--default--outlier_detection--detectors--local_origin_failures"></a>
-### Nested Schema for `spec.from.default.outlier_detection.detectors.total_failures`
+### Nested Schema for `spec.from.default.outlier_detection.detectors.local_origin_failures`
 
 Optional:
 
@@ -167,7 +167,7 @@ Optional:
 
 
 <a id="nestedatt--spec--from--default--outlier_detection--detectors--success_rate"></a>
-### Nested Schema for `spec.from.default.outlier_detection.detectors.total_failures`
+### Nested Schema for `spec.from.default.outlier_detection.detectors.success_rate`
 
 Optional:
 
@@ -220,7 +220,7 @@ Optional:
 - `outlier_detection` (Attributes) OutlierDetection contains the configuration of the process of dynamicallydetermining whether some number of hosts in an upstream cluster areperforming unlike the others and removing them from the healthy loadbalancing set. Performance might be along different axes such asconsecutive failures, temporal success rate, temporal latency, etc.Outlier detection is a form of passive health checking. (see [below for nested schema](#nestedatt--spec--to--default--outlier_detection))
 
 <a id="nestedatt--spec--to--default--connection_limits"></a>
-### Nested Schema for `spec.to.default.outlier_detection`
+### Nested Schema for `spec.to.default.connection_limits`
 
 Optional:
 
@@ -255,7 +255,7 @@ Optional:
 - `total_failures` (Attributes) In the default mode (outlierDetection.splitExternalAndLocalErrors isfalse) this detection type takes into account all generated errors:locally originated and externally originated (transaction) errors.In split mode (outlierDetection.splitExternalLocalOriginErrors is true)this detection type takes into account only externally originated(transaction) errors, ignoring locally originated errors.If an upstream host is an HTTP-server, only 5xx types of error are takeninto account (see Consecutive Gateway Failure for exceptions).Properly formatted responses, even when they carry an operational error(like index not found, access denied) are not taken into account. (see [below for nested schema](#nestedatt--spec--to--default--outlier_detection--detectors--total_failures))
 
 <a id="nestedatt--spec--to--default--outlier_detection--detectors--failure_percentage"></a>
-### Nested Schema for `spec.to.default.outlier_detection.detectors.total_failures`
+### Nested Schema for `spec.to.default.outlier_detection.detectors.failure_percentage`
 
 Optional:
 
@@ -265,7 +265,7 @@ Optional:
 
 
 <a id="nestedatt--spec--to--default--outlier_detection--detectors--gateway_failures"></a>
-### Nested Schema for `spec.to.default.outlier_detection.detectors.total_failures`
+### Nested Schema for `spec.to.default.outlier_detection.detectors.gateway_failures`
 
 Optional:
 
@@ -273,7 +273,7 @@ Optional:
 
 
 <a id="nestedatt--spec--to--default--outlier_detection--detectors--local_origin_failures"></a>
-### Nested Schema for `spec.to.default.outlier_detection.detectors.total_failures`
+### Nested Schema for `spec.to.default.outlier_detection.detectors.local_origin_failures`
 
 Optional:
 
@@ -281,7 +281,7 @@ Optional:
 
 
 <a id="nestedatt--spec--to--default--outlier_detection--detectors--success_rate"></a>
-### Nested Schema for `spec.to.default.outlier_detection.detectors.total_failures`
+### Nested Schema for `spec.to.default.outlier_detection.detectors.success_rate`
 
 Optional:
 

@@ -142,7 +142,7 @@ Optional:
 - `plain` (String)
 
 <a id="nestedatt--spec--from--default--backends--file--format--json"></a>
-### Nested Schema for `spec.from.default.backends.file.format.plain`
+### Nested Schema for `spec.from.default.backends.file.format.json`
 
 Optional:
 
@@ -165,7 +165,7 @@ Optional:
 - `body` (Map of String) Body is a raw string or an OTLP any value as described athttps://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/data-model.md#field-bodyIt can contain placeholders available onhttps://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators
 
 <a id="nestedatt--spec--from--default--backends--open_telemetry--attributes"></a>
-### Nested Schema for `spec.from.default.backends.open_telemetry.body`
+### Nested Schema for `spec.from.default.backends.open_telemetry.attributes`
 
 Optional:
 
@@ -199,7 +199,7 @@ Optional:
 - `plain` (String)
 
 <a id="nestedatt--spec--from--default--backends--tcp--format--json"></a>
-### Nested Schema for `spec.from.default.backends.tcp.format.plain`
+### Nested Schema for `spec.from.default.backends.tcp.format.json`
 
 Optional:
 
@@ -280,7 +280,7 @@ Optional:
 - `plain` (String)
 
 <a id="nestedatt--spec--to--default--backends--file--format--json"></a>
-### Nested Schema for `spec.to.default.backends.file.format.plain`
+### Nested Schema for `spec.to.default.backends.file.format.json`
 
 Optional:
 
@@ -303,7 +303,7 @@ Optional:
 - `body` (Map of String) Body is a raw string or an OTLP any value as described athttps://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/data-model.md#field-bodyIt can contain placeholders available onhttps://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators
 
 <a id="nestedatt--spec--to--default--backends--open_telemetry--attributes"></a>
-### Nested Schema for `spec.to.default.backends.open_telemetry.body`
+### Nested Schema for `spec.to.default.backends.open_telemetry.attributes`
 
 Optional:
 
@@ -337,7 +337,7 @@ Optional:
 - `plain` (String)
 
 <a id="nestedatt--spec--to--default--backends--tcp--format--json"></a>
-### Nested Schema for `spec.to.default.backends.tcp.format.plain`
+### Nested Schema for `spec.to.default.backends.tcp.format.json`
 
 Optional:
 

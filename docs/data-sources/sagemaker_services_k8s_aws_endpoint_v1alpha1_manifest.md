@@ -138,7 +138,7 @@ Optional:
 - `wait_interval_in_seconds` (Number)
 
 <a id="nestedatt--spec--deployment_config--rolling_update_policy--maximum_batch_size"></a>
-### Nested Schema for `spec.deployment_config.rolling_update_policy.wait_interval_in_seconds`
+### Nested Schema for `spec.deployment_config.rolling_update_policy.maximum_batch_size`
 
 Optional:
 
@@ -147,7 +147,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment_config--rolling_update_policy--rollback_maximum_batch_size"></a>
-### Nested Schema for `spec.deployment_config.rolling_update_policy.wait_interval_in_seconds`
+### Nested Schema for `spec.deployment_config.rolling_update_policy.rollback_maximum_batch_size`
 
 Optional:
 

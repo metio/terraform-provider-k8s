@@ -122,7 +122,7 @@ Optional:
 - `subject_key` (String)
 
 <a id="nestedatt--spec--advanced_security_options--s_aml_options--idp"></a>
-### Nested Schema for `spec.advanced_security_options.s_aml_options.subject_key`
+### Nested Schema for `spec.advanced_security_options.s_aml_options.idp`
 
 Optional:
 
@@ -150,7 +150,7 @@ Optional:
 - `start_at` (String)
 
 <a id="nestedatt--spec--auto_tune_options--maintenance_schedules--duration"></a>
-### Nested Schema for `spec.auto_tune_options.maintenance_schedules.start_at`
+### Nested Schema for `spec.auto_tune_options.maintenance_schedules.duration`
 
 Optional:
 

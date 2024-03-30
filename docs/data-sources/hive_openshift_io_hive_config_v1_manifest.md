@@ -148,7 +148,7 @@ Required:
 - `vpc_id` (String)
 
 <a id="nestedatt--spec--aws_private_link--endpoint_vpc_inventory--subnets"></a>
-### Nested Schema for `spec.aws_private_link.endpoint_vpc_inventory.vpc_id`
+### Nested Schema for `spec.aws_private_link.endpoint_vpc_inventory.subnets`
 
 Required:
 
@@ -193,7 +193,7 @@ Required:
 - `name` (String) Name specifies the name of the controller
 
 <a id="nestedatt--spec--controllers_config--controllers--config"></a>
-### Nested Schema for `spec.controllers_config.controllers.name`
+### Nested Schema for `spec.controllers_config.controllers.config`
 
 Optional:
 
@@ -215,7 +215,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--controllers_config--controllers--name--resources--claims"></a>
-### Nested Schema for `spec.controllers_config.controllers.name.resources.requests`
+### Nested Schema for `spec.controllers_config.controllers.name.resources.claims`
 
 Required:
 
@@ -279,7 +279,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--deployment_config--resources--claims"></a>
-### Nested Schema for `spec.deployment_config.resources.requests`
+### Nested Schema for `spec.deployment_config.resources.claims`
 
 Required:
 
@@ -311,7 +311,7 @@ Optional:
 - `service_endpoint` (String) ServiceEndpoint is the url to connect to an S3 compatible provider.
 
 <a id="nestedatt--spec--failed_provision_config--aws--credentials_secret_ref"></a>
-### Nested Schema for `spec.failed_provision_config.aws.service_endpoint`
+### Nested Schema for `spec.failed_provision_config.aws.credentials_secret_ref`
 
 Optional:
 
@@ -370,7 +370,7 @@ Optional:
 - `region` (String) Region is the AWS region to use for route53 operations. This defaults to us-east-1. For AWS China, use cn-northwest-1.
 
 <a id="nestedatt--spec--managed_domains--aws--credentials_secret_ref"></a>
-### Nested Schema for `spec.managed_domains.aws.region`
+### Nested Schema for `spec.managed_domains.aws.credentials_secret_ref`
 
 Optional:
 
@@ -391,7 +391,7 @@ Optional:
 - `cloud_name` (String) CloudName is the name of the Azure cloud environment which can be used to configure the Azure SDK with the appropriate Azure API endpoints. If empty, the value is equal to 'AzurePublicCloud'.
 
 <a id="nestedatt--spec--managed_domains--azure--credentials_secret_ref"></a>
-### Nested Schema for `spec.managed_domains.azure.cloud_name`
+### Nested Schema for `spec.managed_domains.azure.credentials_secret_ref`
 
 Optional:
 

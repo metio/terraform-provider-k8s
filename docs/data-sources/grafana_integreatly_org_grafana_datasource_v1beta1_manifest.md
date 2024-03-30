@@ -134,7 +134,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--values_from--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--values_from--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.values_from.value_from.secret_key_ref`
+### Nested Schema for `spec.values_from.value_from.config_map_key_ref`
 
 Required:
 

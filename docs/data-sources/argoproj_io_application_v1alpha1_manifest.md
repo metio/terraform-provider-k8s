@@ -142,7 +142,7 @@ Optional:
 - `recurse` (Boolean) Recurse specifies whether to scan a directory recursively for manifests
 
 <a id="nestedatt--spec--source--directory--jsonnet"></a>
-### Nested Schema for `spec.source.directory.recurse`
+### Nested Schema for `spec.source.directory.jsonnet`
 
 Optional:
 
@@ -195,7 +195,7 @@ Optional:
 - `version` (String) Version is the Helm version to use for templating ('3')
 
 <a id="nestedatt--spec--source--helm--file_parameters"></a>
-### Nested Schema for `spec.source.helm.version`
+### Nested Schema for `spec.source.helm.file_parameters`
 
 Optional:
 
@@ -204,7 +204,7 @@ Optional:
 
 
 <a id="nestedatt--spec--source--helm--parameters"></a>
-### Nested Schema for `spec.source.helm.version`
+### Nested Schema for `spec.source.helm.parameters`
 
 Optional:
 
@@ -234,7 +234,7 @@ Optional:
 - `version` (String) Version controls which version of Kustomize to use for rendering manifests
 
 <a id="nestedatt--spec--source--kustomize--patches"></a>
-### Nested Schema for `spec.source.kustomize.version`
+### Nested Schema for `spec.source.kustomize.patches`
 
 Optional:
 
@@ -259,7 +259,7 @@ Optional:
 
 
 <a id="nestedatt--spec--source--kustomize--replicas"></a>
-### Nested Schema for `spec.source.kustomize.version`
+### Nested Schema for `spec.source.kustomize.replicas`
 
 Required:
 
@@ -278,7 +278,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--source--plugin--parameters))
 
 <a id="nestedatt--spec--source--plugin--env"></a>
-### Nested Schema for `spec.source.plugin.parameters`
+### Nested Schema for `spec.source.plugin.env`
 
 Required:
 
@@ -328,7 +328,7 @@ Optional:
 - `recurse` (Boolean) Recurse specifies whether to scan a directory recursively for manifests
 
 <a id="nestedatt--spec--sources--directory--jsonnet"></a>
-### Nested Schema for `spec.sources.directory.recurse`
+### Nested Schema for `spec.sources.directory.jsonnet`
 
 Optional:
 
@@ -381,7 +381,7 @@ Optional:
 - `version` (String) Version is the Helm version to use for templating ('3')
 
 <a id="nestedatt--spec--sources--helm--file_parameters"></a>
-### Nested Schema for `spec.sources.helm.version`
+### Nested Schema for `spec.sources.helm.file_parameters`
 
 Optional:
 
@@ -390,7 +390,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sources--helm--parameters"></a>
-### Nested Schema for `spec.sources.helm.version`
+### Nested Schema for `spec.sources.helm.parameters`
 
 Optional:
 
@@ -420,7 +420,7 @@ Optional:
 - `version` (String) Version controls which version of Kustomize to use for rendering manifests
 
 <a id="nestedatt--spec--sources--kustomize--patches"></a>
-### Nested Schema for `spec.sources.kustomize.version`
+### Nested Schema for `spec.sources.kustomize.patches`
 
 Optional:
 
@@ -445,7 +445,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sources--kustomize--replicas"></a>
-### Nested Schema for `spec.sources.kustomize.version`
+### Nested Schema for `spec.sources.kustomize.replicas`
 
 Required:
 
@@ -464,7 +464,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--sources--plugin--parameters))
 
 <a id="nestedatt--spec--sources--plugin--env"></a>
-### Nested Schema for `spec.sources.plugin.parameters`
+### Nested Schema for `spec.sources.plugin.env`
 
 Required:
 
@@ -523,7 +523,7 @@ Optional:
 - `limit` (Number) Limit is the maximum number of attempts for retrying a failed sync. If set to 0, no retries will be performed.
 
 <a id="nestedatt--spec--sync_policy--retry--backoff"></a>
-### Nested Schema for `spec.sync_policy.retry.limit`
+### Nested Schema for `spec.sync_policy.retry.backoff`
 
 Optional:
 
@@ -631,7 +631,7 @@ Optional:
 - `target_revision` (String) TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.
 
 <a id="nestedatt--operation--sync--source--directory"></a>
-### Nested Schema for `operation.sync.source.target_revision`
+### Nested Schema for `operation.sync.source.directory`
 
 Optional:
 
@@ -650,7 +650,7 @@ Optional:
 - `tlas` (Attributes List) TLAS is a list of Jsonnet Top-level Arguments (see [below for nested schema](#nestedatt--operation--sync--source--target_revision--jsonnet--tlas))
 
 <a id="nestedatt--operation--sync--source--target_revision--jsonnet--ext_vars"></a>
-### Nested Schema for `operation.sync.source.target_revision.jsonnet.tlas`
+### Nested Schema for `operation.sync.source.target_revision.jsonnet.ext_vars`
 
 Required:
 
@@ -678,7 +678,7 @@ Optional:
 
 
 <a id="nestedatt--operation--sync--source--helm"></a>
-### Nested Schema for `operation.sync.source.target_revision`
+### Nested Schema for `operation.sync.source.helm`
 
 Optional:
 
@@ -714,7 +714,7 @@ Optional:
 
 
 <a id="nestedatt--operation--sync--source--kustomize"></a>
-### Nested Schema for `operation.sync.source.target_revision`
+### Nested Schema for `operation.sync.source.kustomize`
 
 Optional:
 
@@ -768,7 +768,7 @@ Required:
 
 
 <a id="nestedatt--operation--sync--source--plugin"></a>
-### Nested Schema for `operation.sync.source.target_revision`
+### Nested Schema for `operation.sync.source.plugin`
 
 Optional:
 
@@ -817,7 +817,7 @@ Optional:
 - `target_revision` (String) TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.
 
 <a id="nestedatt--operation--sync--sources--directory"></a>
-### Nested Schema for `operation.sync.sources.target_revision`
+### Nested Schema for `operation.sync.sources.directory`
 
 Optional:
 
@@ -836,7 +836,7 @@ Optional:
 - `tlas` (Attributes List) TLAS is a list of Jsonnet Top-level Arguments (see [below for nested schema](#nestedatt--operation--sync--sources--target_revision--jsonnet--tlas))
 
 <a id="nestedatt--operation--sync--sources--target_revision--jsonnet--ext_vars"></a>
-### Nested Schema for `operation.sync.sources.target_revision.jsonnet.tlas`
+### Nested Schema for `operation.sync.sources.target_revision.jsonnet.ext_vars`
 
 Required:
 
@@ -864,7 +864,7 @@ Optional:
 
 
 <a id="nestedatt--operation--sync--sources--helm"></a>
-### Nested Schema for `operation.sync.sources.target_revision`
+### Nested Schema for `operation.sync.sources.helm`
 
 Optional:
 
@@ -900,7 +900,7 @@ Optional:
 
 
 <a id="nestedatt--operation--sync--sources--kustomize"></a>
-### Nested Schema for `operation.sync.sources.target_revision`
+### Nested Schema for `operation.sync.sources.kustomize`
 
 Optional:
 
@@ -954,7 +954,7 @@ Required:
 
 
 <a id="nestedatt--operation--sync--sources--plugin"></a>
-### Nested Schema for `operation.sync.sources.target_revision`
+### Nested Schema for `operation.sync.sources.plugin`
 
 Optional:
 
@@ -993,7 +993,7 @@ Optional:
 - `hook` (Attributes) Hook will submit any referenced resources to perform the sync. This is the default strategy (see [below for nested schema](#nestedatt--operation--sync--sync_strategy--hook))
 
 <a id="nestedatt--operation--sync--sync_strategy--apply"></a>
-### Nested Schema for `operation.sync.sync_strategy.hook`
+### Nested Schema for `operation.sync.sync_strategy.apply`
 
 Optional:
 

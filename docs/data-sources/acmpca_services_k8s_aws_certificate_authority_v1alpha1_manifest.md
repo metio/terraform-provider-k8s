@@ -84,7 +84,7 @@ Optional:
 - `subject_information_access` (Attributes List) (see [below for nested schema](#nestedatt--spec--certificate_authority_configuration--csr_extensions--subject_information_access))
 
 <a id="nestedatt--spec--certificate_authority_configuration--csr_extensions--key_usage"></a>
-### Nested Schema for `spec.certificate_authority_configuration.csr_extensions.subject_information_access`
+### Nested Schema for `spec.certificate_authority_configuration.csr_extensions.key_usage`
 
 Optional:
 
@@ -122,7 +122,7 @@ Optional:
 - `uniform_resource_identifier` (String)
 
 <a id="nestedatt--spec--certificate_authority_configuration--csr_extensions--subject_information_access--access_location--directory_name"></a>
-### Nested Schema for `spec.certificate_authority_configuration.csr_extensions.subject_information_access.access_location.uniform_resource_identifier`
+### Nested Schema for `spec.certificate_authority_configuration.csr_extensions.subject_information_access.access_location.directory_name`
 
 Optional:
 
@@ -143,7 +143,7 @@ Optional:
 - `title` (String)
 
 <a id="nestedatt--spec--certificate_authority_configuration--csr_extensions--subject_information_access--access_location--uniform_resource_identifier--custom_attributes"></a>
-### Nested Schema for `spec.certificate_authority_configuration.csr_extensions.subject_information_access.access_location.uniform_resource_identifier.title`
+### Nested Schema for `spec.certificate_authority_configuration.csr_extensions.subject_information_access.access_location.uniform_resource_identifier.custom_attributes`
 
 Optional:
 
@@ -153,7 +153,7 @@ Optional:
 
 
 <a id="nestedatt--spec--certificate_authority_configuration--csr_extensions--subject_information_access--access_location--edi_party_name"></a>
-### Nested Schema for `spec.certificate_authority_configuration.csr_extensions.subject_information_access.access_location.uniform_resource_identifier`
+### Nested Schema for `spec.certificate_authority_configuration.csr_extensions.subject_information_access.access_location.edi_party_name`
 
 Optional:
 
@@ -162,7 +162,7 @@ Optional:
 
 
 <a id="nestedatt--spec--certificate_authority_configuration--csr_extensions--subject_information_access--access_location--other_name"></a>
-### Nested Schema for `spec.certificate_authority_configuration.csr_extensions.subject_information_access.access_location.uniform_resource_identifier`
+### Nested Schema for `spec.certificate_authority_configuration.csr_extensions.subject_information_access.access_location.other_name`
 
 Optional:
 
@@ -204,7 +204,7 @@ Optional:
 - `title` (String)
 
 <a id="nestedatt--spec--certificate_authority_configuration--subject--custom_attributes"></a>
-### Nested Schema for `spec.certificate_authority_configuration.subject.title`
+### Nested Schema for `spec.certificate_authority_configuration.subject.custom_attributes`
 
 Optional:
 

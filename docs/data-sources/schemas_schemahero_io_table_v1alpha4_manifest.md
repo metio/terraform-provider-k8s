@@ -89,7 +89,7 @@ Optional:
 - `properties` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--cassandra--properties))
 
 <a id="nestedatt--spec--schema--cassandra--clustering_order"></a>
-### Nested Schema for `spec.schema.cassandra.properties`
+### Nested Schema for `spec.schema.cassandra.clustering_order`
 
 Required:
 
@@ -101,7 +101,7 @@ Optional:
 
 
 <a id="nestedatt--spec--schema--cassandra--columns"></a>
-### Nested Schema for `spec.schema.cassandra.properties`
+### Nested Schema for `spec.schema.cassandra.columns`
 
 Required:
 
@@ -148,7 +148,7 @@ Optional:
 - `primary_key` (List of String)
 
 <a id="nestedatt--spec--schema--cockroachdb--columns"></a>
-### Nested Schema for `spec.schema.cockroachdb.primary_key`
+### Nested Schema for `spec.schema.cockroachdb.columns`
 
 Required:
 
@@ -179,7 +179,7 @@ Optional:
 
 
 <a id="nestedatt--spec--schema--cockroachdb--foreign_keys"></a>
-### Nested Schema for `spec.schema.cockroachdb.primary_key`
+### Nested Schema for `spec.schema.cockroachdb.foreign_keys`
 
 Required:
 
@@ -202,7 +202,7 @@ Required:
 
 
 <a id="nestedatt--spec--schema--cockroachdb--indexes"></a>
-### Nested Schema for `spec.schema.cockroachdb.primary_key`
+### Nested Schema for `spec.schema.cockroachdb.indexes`
 
 Required:
 
@@ -216,7 +216,7 @@ Optional:
 
 
 <a id="nestedatt--spec--schema--cockroachdb--json_triggers"></a>
-### Nested Schema for `spec.schema.cockroachdb.primary_key`
+### Nested Schema for `spec.schema.cockroachdb.json_triggers`
 
 Required:
 
@@ -248,7 +248,7 @@ Optional:
 - `primary_key` (List of String)
 
 <a id="nestedatt--spec--schema--mysql--columns"></a>
-### Nested Schema for `spec.schema.mysql.primary_key`
+### Nested Schema for `spec.schema.mysql.columns`
 
 Required:
 
@@ -281,7 +281,7 @@ Optional:
 
 
 <a id="nestedatt--spec--schema--mysql--foreign_keys"></a>
-### Nested Schema for `spec.schema.mysql.primary_key`
+### Nested Schema for `spec.schema.mysql.foreign_keys`
 
 Required:
 
@@ -304,7 +304,7 @@ Required:
 
 
 <a id="nestedatt--spec--schema--mysql--indexes"></a>
-### Nested Schema for `spec.schema.mysql.primary_key`
+### Nested Schema for `spec.schema.mysql.indexes`
 
 Required:
 
@@ -331,7 +331,7 @@ Optional:
 - `primary_key` (List of String)
 
 <a id="nestedatt--spec--schema--postgres--columns"></a>
-### Nested Schema for `spec.schema.postgres.primary_key`
+### Nested Schema for `spec.schema.postgres.columns`
 
 Required:
 
@@ -362,7 +362,7 @@ Optional:
 
 
 <a id="nestedatt--spec--schema--postgres--foreign_keys"></a>
-### Nested Schema for `spec.schema.postgres.primary_key`
+### Nested Schema for `spec.schema.postgres.foreign_keys`
 
 Required:
 
@@ -385,7 +385,7 @@ Required:
 
 
 <a id="nestedatt--spec--schema--postgres--indexes"></a>
-### Nested Schema for `spec.schema.postgres.primary_key`
+### Nested Schema for `spec.schema.postgres.indexes`
 
 Required:
 
@@ -399,7 +399,7 @@ Optional:
 
 
 <a id="nestedatt--spec--schema--postgres--json_triggers"></a>
-### Nested Schema for `spec.schema.postgres.primary_key`
+### Nested Schema for `spec.schema.postgres.json_triggers`
 
 Required:
 
@@ -430,7 +430,7 @@ Optional:
 - `strict` (Boolean)
 
 <a id="nestedatt--spec--schema--rqlite--columns"></a>
-### Nested Schema for `spec.schema.rqlite.strict`
+### Nested Schema for `spec.schema.rqlite.columns`
 
 Required:
 
@@ -461,7 +461,7 @@ Optional:
 
 
 <a id="nestedatt--spec--schema--rqlite--foreign_keys"></a>
-### Nested Schema for `spec.schema.rqlite.strict`
+### Nested Schema for `spec.schema.rqlite.foreign_keys`
 
 Required:
 
@@ -484,7 +484,7 @@ Required:
 
 
 <a id="nestedatt--spec--schema--rqlite--indexes"></a>
-### Nested Schema for `spec.schema.rqlite.strict`
+### Nested Schema for `spec.schema.rqlite.indexes`
 
 Required:
 
@@ -511,7 +511,7 @@ Optional:
 - `strict` (Boolean)
 
 <a id="nestedatt--spec--schema--sqlite--columns"></a>
-### Nested Schema for `spec.schema.sqlite.strict`
+### Nested Schema for `spec.schema.sqlite.columns`
 
 Required:
 
@@ -542,7 +542,7 @@ Optional:
 
 
 <a id="nestedatt--spec--schema--sqlite--foreign_keys"></a>
-### Nested Schema for `spec.schema.sqlite.strict`
+### Nested Schema for `spec.schema.sqlite.foreign_keys`
 
 Required:
 
@@ -565,7 +565,7 @@ Required:
 
 
 <a id="nestedatt--spec--schema--sqlite--indexes"></a>
-### Nested Schema for `spec.schema.sqlite.strict`
+### Nested Schema for `spec.schema.sqlite.indexes`
 
 Required:
 
@@ -593,7 +593,7 @@ Optional:
 - `triggers` (Attributes List) (see [below for nested schema](#nestedatt--spec--schema--timescaledb--triggers))
 
 <a id="nestedatt--spec--schema--timescaledb--columns"></a>
-### Nested Schema for `spec.schema.timescaledb.triggers`
+### Nested Schema for `spec.schema.timescaledb.columns`
 
 Required:
 
@@ -624,7 +624,7 @@ Optional:
 
 
 <a id="nestedatt--spec--schema--timescaledb--foreign_keys"></a>
-### Nested Schema for `spec.schema.timescaledb.triggers`
+### Nested Schema for `spec.schema.timescaledb.foreign_keys`
 
 Required:
 
@@ -647,7 +647,7 @@ Required:
 
 
 <a id="nestedatt--spec--schema--timescaledb--hypertable"></a>
-### Nested Schema for `spec.schema.timescaledb.triggers`
+### Nested Schema for `spec.schema.timescaledb.hypertable`
 
 Optional:
 
@@ -686,7 +686,7 @@ Required:
 
 
 <a id="nestedatt--spec--schema--timescaledb--indexes"></a>
-### Nested Schema for `spec.schema.timescaledb.triggers`
+### Nested Schema for `spec.schema.timescaledb.indexes`
 
 Required:
 

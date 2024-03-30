@@ -107,7 +107,7 @@ Optional:
 - `idle_timeout` (String) IdleTimeout is defined as the period in which there are no bytes sent or received on connectionSetting this timeout to 0 will disable it. Be cautious when disabling it becauseit can lead to connection leaking. Default value is 1h.
 
 <a id="nestedatt--spec--from--default--http"></a>
-### Nested Schema for `spec.from.default.idle_timeout`
+### Nested Schema for `spec.from.default.http`
 
 Optional:
 
@@ -153,7 +153,7 @@ Optional:
 - `idle_timeout` (String) IdleTimeout is defined as the period in which there are no bytes sent or received on connectionSetting this timeout to 0 will disable it. Be cautious when disabling it becauseit can lead to connection leaking. Default value is 1h.
 
 <a id="nestedatt--spec--to--default--http"></a>
-### Nested Schema for `spec.to.default.idle_timeout`
+### Nested Schema for `spec.to.default.http`
 
 Optional:
 

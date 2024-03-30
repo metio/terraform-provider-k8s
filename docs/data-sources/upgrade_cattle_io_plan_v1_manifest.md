@@ -96,7 +96,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--upgrade--env_from--secret_ref))
 
 <a id="nestedatt--spec--upgrade--env_from--config_map_ref"></a>
-### Nested Schema for `spec.upgrade.env_from.secret_ref`
+### Nested Schema for `spec.upgrade.env_from.config_map_ref`
 
 Optional:
 
@@ -192,7 +192,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--upgrade--security_context--windows_options))
 
 <a id="nestedatt--spec--upgrade--security_context--capabilities"></a>
-### Nested Schema for `spec.upgrade.security_context.windows_options`
+### Nested Schema for `spec.upgrade.security_context.capabilities`
 
 Optional:
 
@@ -201,7 +201,7 @@ Optional:
 
 
 <a id="nestedatt--spec--upgrade--security_context--se_linux_options"></a>
-### Nested Schema for `spec.upgrade.security_context.windows_options`
+### Nested Schema for `spec.upgrade.security_context.se_linux_options`
 
 Optional:
 
@@ -212,7 +212,7 @@ Optional:
 
 
 <a id="nestedatt--spec--upgrade--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.upgrade.security_context.windows_options`
+### Nested Schema for `spec.upgrade.security_context.seccomp_profile`
 
 Optional:
 
@@ -267,7 +267,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--drain--pod_selector--match_expressions"></a>
-### Nested Schema for `spec.drain.pod_selector.match_labels`
+### Nested Schema for `spec.drain.pod_selector.match_expressions`
 
 Optional:
 
@@ -328,7 +328,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--prepare--env_from--secret_ref))
 
 <a id="nestedatt--spec--prepare--env_from--config_map_ref"></a>
-### Nested Schema for `spec.prepare.env_from.secret_ref`
+### Nested Schema for `spec.prepare.env_from.config_map_ref`
 
 Optional:
 
@@ -424,7 +424,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--prepare--security_context--windows_options))
 
 <a id="nestedatt--spec--prepare--security_context--capabilities"></a>
-### Nested Schema for `spec.prepare.security_context.windows_options`
+### Nested Schema for `spec.prepare.security_context.capabilities`
 
 Optional:
 
@@ -433,7 +433,7 @@ Optional:
 
 
 <a id="nestedatt--spec--prepare--security_context--se_linux_options"></a>
-### Nested Schema for `spec.prepare.security_context.windows_options`
+### Nested Schema for `spec.prepare.security_context.se_linux_options`
 
 Optional:
 
@@ -444,7 +444,7 @@ Optional:
 
 
 <a id="nestedatt--spec--prepare--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.prepare.security_context.windows_options`
+### Nested Schema for `spec.prepare.security_context.seccomp_profile`
 
 Optional:
 

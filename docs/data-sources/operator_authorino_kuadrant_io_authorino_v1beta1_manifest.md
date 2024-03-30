@@ -98,7 +98,7 @@ Optional:
 - `enabled` (Boolean)
 
 <a id="nestedatt--spec--listener--tls--cert_secret_ref"></a>
-### Nested Schema for `spec.listener.tls.enabled`
+### Nested Schema for `spec.listener.tls.cert_secret_ref`
 
 Optional:
 
@@ -136,7 +136,7 @@ Optional:
 - `enabled` (Boolean)
 
 <a id="nestedatt--spec--oidc_server--tls--cert_secret_ref"></a>
-### Nested Schema for `spec.oidc_server.tls.enabled`
+### Nested Schema for `spec.oidc_server.tls.cert_secret_ref`
 
 Optional:
 
@@ -198,7 +198,7 @@ Optional:
 - `secrets` (List of String) Secret mount
 
 <a id="nestedatt--spec--volumes--items--items"></a>
-### Nested Schema for `spec.volumes.items.secrets`
+### Nested Schema for `spec.volumes.items.items`
 
 Required:
 

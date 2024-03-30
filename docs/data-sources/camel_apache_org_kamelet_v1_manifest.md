@@ -97,7 +97,7 @@ Optional:
 - `scheme` (String) the data type component scheme
 
 <a id="nestedatt--spec--data_types--types--headers"></a>
-### Nested Schema for `spec.data_types.types.scheme`
+### Nested Schema for `spec.data_types.types.headers`
 
 Optional:
 
@@ -109,7 +109,7 @@ Optional:
 
 
 <a id="nestedatt--spec--data_types--types--schema"></a>
-### Nested Schema for `spec.data_types.types.scheme`
+### Nested Schema for `spec.data_types.types.schema`
 
 Optional:
 
@@ -267,7 +267,7 @@ Optional:
 - `type` (String)
 
 <a id="nestedatt--spec--types--schema--external_docs"></a>
-### Nested Schema for `spec.types.schema.type`
+### Nested Schema for `spec.types.schema.external_docs`
 
 Optional:
 
@@ -276,7 +276,7 @@ Optional:
 
 
 <a id="nestedatt--spec--types--schema--properties"></a>
-### Nested Schema for `spec.types.schema.type`
+### Nested Schema for `spec.types.schema.properties`
 
 Optional:
 

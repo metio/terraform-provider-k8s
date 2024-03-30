@@ -141,7 +141,7 @@ Optional:
 - `version` (String) Version defines the desired Kubernetes version.This field is meant to be optionally used by bootstrap providers.
 
 <a id="nestedatt--spec--template--spec--bootstrap"></a>
-### Nested Schema for `spec.template.spec.version`
+### Nested Schema for `spec.template.spec.bootstrap`
 
 Optional:
 
@@ -165,7 +165,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--infrastructure_ref"></a>
-### Nested Schema for `spec.template.spec.version`
+### Nested Schema for `spec.template.spec.infrastructure_ref`
 
 Optional:
 

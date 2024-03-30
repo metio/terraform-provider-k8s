@@ -155,7 +155,7 @@ Optional:
 - `top_level` (Boolean) Top level
 
 <a id="nestedatt--spec--realm--authentication_flows--authentication_executions"></a>
-### Nested Schema for `spec.realm.authentication_flows.top_level`
+### Nested Schema for `spec.realm.authentication_flows.authentication_executions`
 
 Optional:
 
@@ -256,7 +256,7 @@ Optional:
 - `web_origins` (List of String) A list of valid Web Origins.
 
 <a id="nestedatt--spec--realm--clients--authorization_settings"></a>
-### Nested Schema for `spec.realm.clients.web_origins`
+### Nested Schema for `spec.realm.clients.authorization_settings`
 
 Optional:
 
@@ -290,7 +290,7 @@ Optional:
 - `type` (String) Type.
 
 <a id="nestedatt--spec--realm--clients--web_origins--policies--resources_data"></a>
-### Nested Schema for `spec.realm.clients.web_origins.policies.type`
+### Nested Schema for `spec.realm.clients.web_origins.policies.resources_data`
 
 Optional:
 
@@ -335,7 +335,7 @@ Optional:
 - `resources` (Attributes List) Resources. (see [below for nested schema](#nestedatt--spec--realm--clients--web_origins--scopes--resources))
 
 <a id="nestedatt--spec--realm--clients--web_origins--scopes--policies"></a>
-### Nested Schema for `spec.realm.clients.web_origins.scopes.resources`
+### Nested Schema for `spec.realm.clients.web_origins.scopes.policies`
 
 Optional:
 
@@ -354,7 +354,7 @@ Optional:
 - `type` (String) Type.
 
 <a id="nestedatt--spec--realm--clients--web_origins--scopes--resources--resources_data"></a>
-### Nested Schema for `spec.realm.clients.web_origins.scopes.resources.type`
+### Nested Schema for `spec.realm.clients.web_origins.scopes.resources.resources_data`
 
 Optional:
 
@@ -389,7 +389,7 @@ Optional:
 
 
 <a id="nestedatt--spec--realm--clients--protocol_mappers"></a>
-### Nested Schema for `spec.realm.clients.web_origins`
+### Nested Schema for `spec.realm.clients.protocol_mappers`
 
 Optional:
 
@@ -421,7 +421,7 @@ Optional:
 - `id` (String) Id
 
 <a id="nestedatt--spec--realm--default_role--composites"></a>
-### Nested Schema for `spec.realm.default_role.id`
+### Nested Schema for `spec.realm.default_role.composites`
 
 Optional:
 
@@ -555,7 +555,7 @@ Optional:
 - `username` (String) User Name.
 
 <a id="nestedatt--spec--realm--users--credentials"></a>
-### Nested Schema for `spec.realm.users.username`
+### Nested Schema for `spec.realm.users.credentials`
 
 Optional:
 
@@ -565,7 +565,7 @@ Optional:
 
 
 <a id="nestedatt--spec--realm--users--federated_identities"></a>
-### Nested Schema for `spec.realm.users.username`
+### Nested Schema for `spec.realm.users.federated_identities`
 
 Optional:
 

@@ -84,7 +84,7 @@ Optional:
 - `url` (String) url is the remote URL to connect to
 
 <a id="nestedatt--spec--identity_providers--basic_auth--ca"></a>
-### Nested Schema for `spec.identity_providers.basic_auth.url`
+### Nested Schema for `spec.identity_providers.basic_auth.ca`
 
 Required:
 
@@ -92,7 +92,7 @@ Required:
 
 
 <a id="nestedatt--spec--identity_providers--basic_auth--tls_client_cert"></a>
-### Nested Schema for `spec.identity_providers.basic_auth.url`
+### Nested Schema for `spec.identity_providers.basic_auth.tls_client_cert`
 
 Required:
 
@@ -100,7 +100,7 @@ Required:
 
 
 <a id="nestedatt--spec--identity_providers--basic_auth--tls_client_key"></a>
-### Nested Schema for `spec.identity_providers.basic_auth.url`
+### Nested Schema for `spec.identity_providers.basic_auth.tls_client_key`
 
 Required:
 
@@ -121,7 +121,7 @@ Optional:
 - `teams` (List of String) teams optionally restricts which teams are allowed to log in. Format is <org>/<team>.
 
 <a id="nestedatt--spec--identity_providers--github--ca"></a>
-### Nested Schema for `spec.identity_providers.github.teams`
+### Nested Schema for `spec.identity_providers.github.ca`
 
 Required:
 
@@ -129,7 +129,7 @@ Required:
 
 
 <a id="nestedatt--spec--identity_providers--github--client_secret"></a>
-### Nested Schema for `spec.identity_providers.github.teams`
+### Nested Schema for `spec.identity_providers.github.client_secret`
 
 Required:
 
@@ -148,7 +148,7 @@ Optional:
 - `url` (String) url is the oauth server base URL
 
 <a id="nestedatt--spec--identity_providers--gitlab--ca"></a>
-### Nested Schema for `spec.identity_providers.gitlab.url`
+### Nested Schema for `spec.identity_providers.gitlab.ca`
 
 Required:
 
@@ -156,7 +156,7 @@ Required:
 
 
 <a id="nestedatt--spec--identity_providers--gitlab--client_secret"></a>
-### Nested Schema for `spec.identity_providers.gitlab.url`
+### Nested Schema for `spec.identity_providers.gitlab.client_secret`
 
 Required:
 
@@ -174,7 +174,7 @@ Optional:
 - `hosted_domain` (String) hostedDomain is the optional Google App domain (e.g. 'mycompany.com') to restrict logins to
 
 <a id="nestedatt--spec--identity_providers--google--client_secret"></a>
-### Nested Schema for `spec.identity_providers.google.hosted_domain`
+### Nested Schema for `spec.identity_providers.google.client_secret`
 
 Required:
 
@@ -210,7 +210,7 @@ Optional:
 - `url` (String) url is the remote URL to connect to
 
 <a id="nestedatt--spec--identity_providers--keystone--ca"></a>
-### Nested Schema for `spec.identity_providers.keystone.url`
+### Nested Schema for `spec.identity_providers.keystone.ca`
 
 Required:
 
@@ -218,7 +218,7 @@ Required:
 
 
 <a id="nestedatt--spec--identity_providers--keystone--tls_client_cert"></a>
-### Nested Schema for `spec.identity_providers.keystone.url`
+### Nested Schema for `spec.identity_providers.keystone.tls_client_cert`
 
 Required:
 
@@ -226,7 +226,7 @@ Required:
 
 
 <a id="nestedatt--spec--identity_providers--keystone--tls_client_key"></a>
-### Nested Schema for `spec.identity_providers.keystone.url`
+### Nested Schema for `spec.identity_providers.keystone.tls_client_key`
 
 Required:
 
@@ -247,7 +247,7 @@ Optional:
 - `url` (String) url is an RFC 2255 URL which specifies the LDAP search parameters to use. The syntax of the URL is: ldap://host:port/basedn?attribute?scope?filter
 
 <a id="nestedatt--spec--identity_providers--ldap--attributes"></a>
-### Nested Schema for `spec.identity_providers.ldap.url`
+### Nested Schema for `spec.identity_providers.ldap.attributes`
 
 Optional:
 
@@ -258,7 +258,7 @@ Optional:
 
 
 <a id="nestedatt--spec--identity_providers--ldap--bind_password"></a>
-### Nested Schema for `spec.identity_providers.ldap.url`
+### Nested Schema for `spec.identity_providers.ldap.bind_password`
 
 Required:
 
@@ -266,7 +266,7 @@ Required:
 
 
 <a id="nestedatt--spec--identity_providers--ldap--ca"></a>
-### Nested Schema for `spec.identity_providers.ldap.url`
+### Nested Schema for `spec.identity_providers.ldap.ca`
 
 Required:
 
@@ -288,7 +288,7 @@ Optional:
 - `issuer` (String) issuer is the URL that the OpenID Provider asserts as its Issuer Identifier. It must use the https scheme with no query or fragment component.
 
 <a id="nestedatt--spec--identity_providers--open_id--ca"></a>
-### Nested Schema for `spec.identity_providers.open_id.issuer`
+### Nested Schema for `spec.identity_providers.open_id.ca`
 
 Required:
 
@@ -296,7 +296,7 @@ Required:
 
 
 <a id="nestedatt--spec--identity_providers--open_id--claims"></a>
-### Nested Schema for `spec.identity_providers.open_id.issuer`
+### Nested Schema for `spec.identity_providers.open_id.claims`
 
 Optional:
 
@@ -307,7 +307,7 @@ Optional:
 
 
 <a id="nestedatt--spec--identity_providers--open_id--client_secret"></a>
-### Nested Schema for `spec.identity_providers.open_id.issuer`
+### Nested Schema for `spec.identity_providers.open_id.client_secret`
 
 Required:
 
@@ -330,7 +330,7 @@ Optional:
 - `preferred_username_headers` (List of String) preferredUsernameHeaders is the set of headers to check for the preferred username
 
 <a id="nestedatt--spec--identity_providers--request_header--ca"></a>
-### Nested Schema for `spec.identity_providers.request_header.preferred_username_headers`
+### Nested Schema for `spec.identity_providers.request_header.ca`
 
 Required:
 

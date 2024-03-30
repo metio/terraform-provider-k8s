@@ -105,7 +105,7 @@ Optional:
 - `work_webhook_configuration` (Attributes) WorkWebhookConfiguration represents the customized webhook-server configuration of work. (see [below for nested schema](#nestedatt--spec--deploy_option--hosted--work_webhook_configuration))
 
 <a id="nestedatt--spec--deploy_option--hosted--registration_webhook_configuration"></a>
-### Nested Schema for `spec.deploy_option.hosted.work_webhook_configuration`
+### Nested Schema for `spec.deploy_option.hosted.registration_webhook_configuration`
 
 Required:
 
@@ -190,7 +190,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--resource_requirement--resource_requirements--claims"></a>
-### Nested Schema for `spec.resource_requirement.resource_requirements.requests`
+### Nested Schema for `spec.resource_requirement.resource_requirements.claims`
 
 Required:
 

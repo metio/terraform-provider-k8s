@@ -86,7 +86,7 @@ Optional:
 - `taints` (Attributes List) Taints will be applied to the NodeClaim's node. (see [below for nested schema](#nestedatt--spec--template--spec--taints))
 
 <a id="nestedatt--spec--template--spec--node_class_ref"></a>
-### Nested Schema for `spec.template.spec.taints`
+### Nested Schema for `spec.template.spec.node_class_ref`
 
 Required:
 
@@ -99,7 +99,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--requirements"></a>
-### Nested Schema for `spec.template.spec.taints`
+### Nested Schema for `spec.template.spec.requirements`
 
 Required:
 
@@ -113,7 +113,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--kubelet"></a>
-### Nested Schema for `spec.template.spec.taints`
+### Nested Schema for `spec.template.spec.kubelet`
 
 Optional:
 
@@ -132,7 +132,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--resources"></a>
-### Nested Schema for `spec.template.spec.taints`
+### Nested Schema for `spec.template.spec.resources`
 
 Optional:
 
@@ -140,7 +140,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--startup_taints"></a>
-### Nested Schema for `spec.template.spec.taints`
+### Nested Schema for `spec.template.spec.startup_taints`
 
 Required:
 

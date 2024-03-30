@@ -78,7 +78,7 @@ Optional:
 - `targets` (List of String)
 
 <a id="nestedatt--spec--flows--depends_on--probe"></a>
-### Nested Schema for `spec.flows.depends_on.targets`
+### Nested Schema for `spec.flows.depends_on.probe`
 
 Optional:
 
@@ -97,7 +97,7 @@ Optional:
 - `task_name` (String)
 
 <a id="nestedatt--spec--flows--depends_on--targets--http_get_list--http_header"></a>
-### Nested Schema for `spec.flows.depends_on.targets.http_get_list.task_name`
+### Nested Schema for `spec.flows.depends_on.targets.http_get_list.http_header`
 
 Required:
 

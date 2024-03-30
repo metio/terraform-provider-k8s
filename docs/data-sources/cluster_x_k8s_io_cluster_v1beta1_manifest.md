@@ -154,7 +154,7 @@ Optional:
 - `replicas` (Number) Replicas is the number of control plane nodes.If the value is nil, the ControlPlane object is created without the number of Replicasand it's assumed that the control plane controller does not implement support for this field.When specified against a control plane provider that lacks support for this field, this value will be ignored.
 
 <a id="nestedatt--spec--topology--control_plane--machine_health_check"></a>
-### Nested Schema for `spec.topology.control_plane.replicas`
+### Nested Schema for `spec.topology.control_plane.machine_health_check`
 
 Optional:
 
@@ -191,7 +191,7 @@ Required:
 
 
 <a id="nestedatt--spec--topology--control_plane--metadata"></a>
-### Nested Schema for `spec.topology.control_plane.replicas`
+### Nested Schema for `spec.topology.control_plane.metadata`
 
 Optional:
 
@@ -222,7 +222,7 @@ Optional:
 - `machine_pools` (Attributes List) MachinePools is a list of machine pools in the cluster. (see [below for nested schema](#nestedatt--spec--topology--workers--machine_pools))
 
 <a id="nestedatt--spec--topology--workers--machine_deployments"></a>
-### Nested Schema for `spec.topology.workers.machine_pools`
+### Nested Schema for `spec.topology.workers.machine_deployments`
 
 Required:
 
@@ -255,7 +255,7 @@ Optional:
 - `unhealthy_range` (String) Any further remediation is only allowed if the number of machines selected by 'selector' as not healthyis within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy.Eg. '[3-5]' - This means that remediation will be allowed only when:(a) there are at least 3 unhealthy machines (and)(b) there are at most 5 unhealthy machines
 
 <a id="nestedatt--spec--topology--workers--machine_pools--machine_health_check--remediation_template"></a>
-### Nested Schema for `spec.topology.workers.machine_pools.machine_health_check.unhealthy_range`
+### Nested Schema for `spec.topology.workers.machine_pools.machine_health_check.remediation_template`
 
 Optional:
 
@@ -269,7 +269,7 @@ Optional:
 
 
 <a id="nestedatt--spec--topology--workers--machine_pools--machine_health_check--unhealthy_conditions"></a>
-### Nested Schema for `spec.topology.workers.machine_pools.machine_health_check.unhealthy_range`
+### Nested Schema for `spec.topology.workers.machine_pools.machine_health_check.unhealthy_conditions`
 
 Required:
 
@@ -297,7 +297,7 @@ Optional:
 - `type` (String) Type of deployment. Allowed values are RollingUpdate and OnDelete.The default is RollingUpdate.
 
 <a id="nestedatt--spec--topology--workers--machine_pools--strategy--rolling_update"></a>
-### Nested Schema for `spec.topology.workers.machine_pools.strategy.type`
+### Nested Schema for `spec.topology.workers.machine_pools.strategy.rolling_update`
 
 Optional:
 

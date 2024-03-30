@@ -194,7 +194,7 @@ Optional:
 - `keycloak` (Attributes) Keycloak:  Configure Apicurio Registry to use Keycloak for Identity and Access Management (IAM). (see [below for nested schema](#nestedatt--spec--configuration--security--keycloak))
 
 <a id="nestedatt--spec--configuration--security--https"></a>
-### Nested Schema for `spec.configuration.security.keycloak`
+### Nested Schema for `spec.configuration.security.https`
 
 Optional:
 
@@ -266,7 +266,7 @@ Optional:
 - `pod_anti_affinity` (Attributes) Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--deployment--affinity--pod_anti_affinity))
 
 <a id="nestedatt--spec--deployment--affinity--node_affinity"></a>
-### Nested Schema for `spec.deployment.affinity.pod_anti_affinity`
+### Nested Schema for `spec.deployment.affinity.node_affinity`
 
 Optional:
 
@@ -282,7 +282,7 @@ Required:
 - `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
 
 <a id="nestedatt--spec--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -290,7 +290,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -333,7 +333,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -362,7 +362,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--affinity--pod_affinity"></a>
-### Nested Schema for `spec.deployment.affinity.pod_anti_affinity`
+### Nested Schema for `spec.deployment.affinity.pod_affinity`
 
 Optional:
 
@@ -378,7 +378,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -393,7 +393,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -401,7 +401,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -415,7 +415,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -423,7 +423,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -454,7 +454,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -462,7 +462,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -476,7 +476,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -484,7 +484,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -516,7 +516,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -531,7 +531,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -539,7 +539,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -553,7 +553,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -561,7 +561,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -592,7 +592,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -600,7 +600,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -614,7 +614,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -622,7 +622,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -674,7 +674,7 @@ Optional:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--metadata"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.metadata`
 
 Optional:
 
@@ -778,7 +778,7 @@ Optional:
 - `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--affinity--pod_anti_affinity))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--affinity--node_affinity"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_anti_affinity`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.node_affinity`
 
 Optional:
 
@@ -786,7 +786,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -794,7 +794,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -874,7 +874,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--affinity--pod_affinity"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_anti_affinity`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_affinity`
 
 Optional:
 
@@ -882,7 +882,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -890,7 +890,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -913,7 +913,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_labels`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
 
 Required:
 
@@ -935,7 +935,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_labels`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
 
 Required:
 
@@ -966,7 +966,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -988,7 +988,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -1020,7 +1020,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -1028,7 +1028,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -1051,7 +1051,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_labels`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
 
 Required:
 
@@ -1073,7 +1073,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_labels`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
 
 Required:
 
@@ -1104,7 +1104,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -1126,7 +1126,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -1184,7 +1184,7 @@ Optional:
 - `working_dir` (String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--env"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.env`
 
 Required:
 
@@ -1206,7 +1206,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -1219,7 +1219,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.value_from.field_ref`
 
 Required:
 
@@ -1231,7 +1231,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -1259,7 +1259,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--env_from"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.env_from`
 
 Optional:
 
@@ -1268,7 +1268,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--secret_ref))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--config_map_ref"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.secret_ref`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.config_map_ref`
 
 Optional:
 
@@ -1287,7 +1287,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--lifecycle"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.lifecycle`
 
 Optional:
 
@@ -1295,7 +1295,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--pre_stop))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--post_start"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.pre_stop`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.post_start`
 
 Optional:
 
@@ -1305,7 +1305,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -1313,7 +1313,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -1337,7 +1337,7 @@ Required:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--pre_stop--sleep"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.pre_stop.sleep`
 
 Required:
 
@@ -1368,7 +1368,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -1376,7 +1376,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -1400,7 +1400,7 @@ Required:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--pre_stop--sleep"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.pre_stop.sleep`
 
 Required:
 
@@ -1422,7 +1422,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--liveness_probe"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.liveness_probe`
 
 Optional:
 
@@ -1438,7 +1438,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--exec"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.exec`
 
 Optional:
 
@@ -1446,7 +1446,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--grpc"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.grpc`
 
 Required:
 
@@ -1458,7 +1458,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--http_get"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.http_get`
 
 Required:
 
@@ -1472,7 +1472,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.timeout_seconds.http_headers`
 
 Required:
 
@@ -1482,7 +1482,7 @@ Required:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.tcp_socket`
 
 Required:
 
@@ -1495,7 +1495,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--ports"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.ports`
 
 Required:
 
@@ -1510,7 +1510,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--readiness_probe"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.readiness_probe`
 
 Optional:
 
@@ -1526,7 +1526,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--exec"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.exec`
 
 Optional:
 
@@ -1534,7 +1534,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--grpc"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.grpc`
 
 Required:
 
@@ -1546,7 +1546,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--http_get"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.http_get`
 
 Required:
 
@@ -1560,7 +1560,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.timeout_seconds.http_headers`
 
 Required:
 
@@ -1570,7 +1570,7 @@ Required:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.tcp_socket`
 
 Required:
 
@@ -1583,7 +1583,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--resize_policy"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.resize_policy`
 
 Required:
 
@@ -1592,7 +1592,7 @@ Required:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--resources"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.resources`
 
 Optional:
 
@@ -1601,7 +1601,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--claims"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.requests`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.claims`
 
 Required:
 
@@ -1610,7 +1610,7 @@ Required:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--security_context"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.security_context`
 
 Optional:
 
@@ -1627,7 +1627,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--windows_options))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--capabilities"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.windows_options`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.capabilities`
 
 Optional:
 
@@ -1636,7 +1636,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--se_linux_options"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.windows_options`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.se_linux_options`
 
 Optional:
 
@@ -1647,7 +1647,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--seccomp_profile"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.windows_options`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.seccomp_profile`
 
 Required:
 
@@ -1671,7 +1671,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--startup_probe"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.startup_probe`
 
 Optional:
 
@@ -1687,7 +1687,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--exec"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.exec`
 
 Optional:
 
@@ -1695,7 +1695,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--grpc"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.grpc`
 
 Required:
 
@@ -1707,7 +1707,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--http_get"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.http_get`
 
 Required:
 
@@ -1721,7 +1721,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.timeout_seconds.http_headers`
 
 Required:
 
@@ -1731,7 +1731,7 @@ Required:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.tcp_socket`
 
 Required:
 
@@ -1744,7 +1744,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--volume_devices"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.volume_devices`
 
 Required:
 
@@ -1753,7 +1753,7 @@ Required:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--volume_mounts"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.volume_mounts`
 
 Required:
 
@@ -1779,7 +1779,7 @@ Optional:
 - `searches` (List of String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--dns_config--options"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.dns_config.searches`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.dns_config.options`
 
 Optional:
 
@@ -1823,7 +1823,7 @@ Optional:
 - `working_dir` (String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--env"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.env`
 
 Required:
 
@@ -1845,7 +1845,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -1858,7 +1858,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.value_from.field_ref`
 
 Required:
 
@@ -1870,7 +1870,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -1898,7 +1898,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--env_from"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.env_from`
 
 Optional:
 
@@ -1907,7 +1907,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--secret_ref))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--config_map_ref"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.secret_ref`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.config_map_ref`
 
 Optional:
 
@@ -1926,7 +1926,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--lifecycle"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.lifecycle`
 
 Optional:
 
@@ -1934,7 +1934,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--pre_stop))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--post_start"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.pre_stop`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.post_start`
 
 Optional:
 
@@ -1944,7 +1944,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -1952,7 +1952,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -1976,7 +1976,7 @@ Required:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--pre_stop--sleep"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.pre_stop.sleep`
 
 Required:
 
@@ -2007,7 +2007,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -2015,7 +2015,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -2039,7 +2039,7 @@ Required:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--pre_stop--sleep"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.pre_stop.sleep`
 
 Required:
 
@@ -2061,7 +2061,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--liveness_probe"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.liveness_probe`
 
 Optional:
 
@@ -2077,7 +2077,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--exec"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.exec`
 
 Optional:
 
@@ -2085,7 +2085,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--grpc"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.grpc`
 
 Required:
 
@@ -2097,7 +2097,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--http_get"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.http_get`
 
 Required:
 
@@ -2111,7 +2111,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.timeout_seconds.http_headers`
 
 Required:
 
@@ -2121,7 +2121,7 @@ Required:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.tcp_socket`
 
 Required:
 
@@ -2134,7 +2134,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--ports"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.ports`
 
 Required:
 
@@ -2149,7 +2149,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--readiness_probe"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.readiness_probe`
 
 Optional:
 
@@ -2165,7 +2165,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--exec"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.exec`
 
 Optional:
 
@@ -2173,7 +2173,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--grpc"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.grpc`
 
 Required:
 
@@ -2185,7 +2185,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--http_get"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.http_get`
 
 Required:
 
@@ -2199,7 +2199,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.timeout_seconds.http_headers`
 
 Required:
 
@@ -2209,7 +2209,7 @@ Required:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.tcp_socket`
 
 Required:
 
@@ -2222,7 +2222,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--resize_policy"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.resize_policy`
 
 Required:
 
@@ -2231,7 +2231,7 @@ Required:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--resources"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.resources`
 
 Optional:
 
@@ -2240,7 +2240,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--claims"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.requests`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.claims`
 
 Required:
 
@@ -2249,7 +2249,7 @@ Required:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--security_context"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.security_context`
 
 Optional:
 
@@ -2266,7 +2266,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--windows_options))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--capabilities"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.windows_options`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.capabilities`
 
 Optional:
 
@@ -2275,7 +2275,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--se_linux_options"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.windows_options`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.se_linux_options`
 
 Optional:
 
@@ -2286,7 +2286,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--seccomp_profile"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.windows_options`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.seccomp_profile`
 
 Required:
 
@@ -2310,7 +2310,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--startup_probe"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.startup_probe`
 
 Optional:
 
@@ -2326,7 +2326,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--exec"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.exec`
 
 Optional:
 
@@ -2334,7 +2334,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--grpc"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.grpc`
 
 Required:
 
@@ -2346,7 +2346,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--http_get"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.http_get`
 
 Required:
 
@@ -2360,7 +2360,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.timeout_seconds.http_headers`
 
 Required:
 
@@ -2370,7 +2370,7 @@ Required:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.tcp_socket`
 
 Required:
 
@@ -2383,7 +2383,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--volume_devices"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.volume_devices`
 
 Required:
 
@@ -2392,7 +2392,7 @@ Required:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--volume_mounts"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.volume_mounts`
 
 Required:
 
@@ -2459,7 +2459,7 @@ Optional:
 - `working_dir` (String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--env"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.env`
 
 Required:
 
@@ -2481,7 +2481,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -2494,7 +2494,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.value_from.field_ref`
 
 Required:
 
@@ -2506,7 +2506,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -2534,7 +2534,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--env_from"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.env_from`
 
 Optional:
 
@@ -2543,7 +2543,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--secret_ref))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--config_map_ref"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.secret_ref`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.config_map_ref`
 
 Optional:
 
@@ -2562,7 +2562,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--lifecycle"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.lifecycle`
 
 Optional:
 
@@ -2570,7 +2570,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--pre_stop))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--post_start"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.pre_stop`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.post_start`
 
 Optional:
 
@@ -2580,7 +2580,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -2588,7 +2588,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -2612,7 +2612,7 @@ Required:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--pre_stop--sleep"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.pre_stop.sleep`
 
 Required:
 
@@ -2643,7 +2643,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -2651,7 +2651,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -2675,7 +2675,7 @@ Required:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--pre_stop--sleep"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.pre_stop.sleep`
 
 Required:
 
@@ -2697,7 +2697,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--liveness_probe"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.liveness_probe`
 
 Optional:
 
@@ -2713,7 +2713,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--exec"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.exec`
 
 Optional:
 
@@ -2721,7 +2721,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--grpc"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.grpc`
 
 Required:
 
@@ -2733,7 +2733,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--http_get"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.http_get`
 
 Required:
 
@@ -2747,7 +2747,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.timeout_seconds.http_headers`
 
 Required:
 
@@ -2757,7 +2757,7 @@ Required:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.tcp_socket`
 
 Required:
 
@@ -2770,7 +2770,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--ports"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.ports`
 
 Required:
 
@@ -2785,7 +2785,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--readiness_probe"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.readiness_probe`
 
 Optional:
 
@@ -2801,7 +2801,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--exec"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.exec`
 
 Optional:
 
@@ -2809,7 +2809,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--grpc"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.grpc`
 
 Required:
 
@@ -2821,7 +2821,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--http_get"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.http_get`
 
 Required:
 
@@ -2835,7 +2835,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.timeout_seconds.http_headers`
 
 Required:
 
@@ -2845,7 +2845,7 @@ Required:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.tcp_socket`
 
 Required:
 
@@ -2858,7 +2858,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--resize_policy"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.resize_policy`
 
 Required:
 
@@ -2867,7 +2867,7 @@ Required:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--resources"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.resources`
 
 Optional:
 
@@ -2876,7 +2876,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--claims"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.requests`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.claims`
 
 Required:
 
@@ -2885,7 +2885,7 @@ Required:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--security_context"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.security_context`
 
 Optional:
 
@@ -2902,7 +2902,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--windows_options))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--capabilities"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.windows_options`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.capabilities`
 
 Optional:
 
@@ -2911,7 +2911,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--se_linux_options"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.windows_options`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.se_linux_options`
 
 Optional:
 
@@ -2922,7 +2922,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--seccomp_profile"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.windows_options`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.seccomp_profile`
 
 Required:
 
@@ -2946,7 +2946,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--startup_probe"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.startup_probe`
 
 Optional:
 
@@ -2962,7 +2962,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--exec"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.exec`
 
 Optional:
 
@@ -2970,7 +2970,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--grpc"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.grpc`
 
 Required:
 
@@ -2982,7 +2982,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--http_get"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.http_get`
 
 Required:
 
@@ -2996,7 +2996,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.timeout_seconds.http_headers`
 
 Required:
 
@@ -3006,7 +3006,7 @@ Required:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.tcp_socket`
 
 Required:
 
@@ -3019,7 +3019,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--volume_devices"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.volume_devices`
 
 Required:
 
@@ -3028,7 +3028,7 @@ Required:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--volume_mounts"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.volume_mounts`
 
 Required:
 
@@ -3077,7 +3077,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--security_context--windows_options))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--security_context--se_linux_options"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.security_context.windows_options`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.security_context.se_linux_options`
 
 Optional:
 
@@ -3088,7 +3088,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.security_context.windows_options`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.security_context.seccomp_profile`
 
 Required:
 
@@ -3100,7 +3100,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--security_context--sysctls"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.security_context.windows_options`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.security_context.sysctls`
 
 Required:
 
@@ -3150,7 +3150,7 @@ Optional:
 - `node_taints_policy` (String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--topology_spread_constraints--label_selector"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.topology_spread_constraints.node_taints_policy`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.topology_spread_constraints.label_selector`
 
 Optional:
 
@@ -3158,7 +3158,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--topology_spread_constraints--node_taints_policy--match_expressions"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.topology_spread_constraints.node_taints_policy.match_labels`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.topology_spread_constraints.node_taints_policy.match_expressions`
 
 Required:
 
@@ -3212,7 +3212,7 @@ Optional:
 - `vsphere_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--aws_elastic_block_store"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.aws_elastic_block_store`
 
 Required:
 
@@ -3226,7 +3226,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--azure_disk"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.azure_disk`
 
 Required:
 
@@ -3242,7 +3242,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--azure_file"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.azure_file`
 
 Required:
 
@@ -3255,7 +3255,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--cephfs"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.cephfs`
 
 Required:
 
@@ -3270,7 +3270,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.user`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -3279,7 +3279,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--cinder"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.cinder`
 
 Required:
 
@@ -3301,7 +3301,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--config_map"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.config_map`
 
 Optional:
 
@@ -3311,7 +3311,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.optional`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.items`
 
 Required:
 
@@ -3325,7 +3325,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--csi"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.csi`
 
 Required:
 
@@ -3339,7 +3339,7 @@ Optional:
 - `volume_attributes` (Map of String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--node_publish_secret_ref"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.volume_attributes`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.node_publish_secret_ref`
 
 Optional:
 
@@ -3348,7 +3348,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--downward_api"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.downward_api`
 
 Optional:
 
@@ -3369,7 +3369,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--items--resource_field_ref))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.items.resource_field_ref`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.items.field_ref`
 
 Required:
 
@@ -3396,7 +3396,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--empty_dir"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.empty_dir`
 
 Optional:
 
@@ -3405,7 +3405,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--ephemeral"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.ephemeral`
 
 Optional:
 
@@ -3423,7 +3423,7 @@ Optional:
 - `metadata` (Map of String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.volume_claim_template.metadata`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.volume_claim_template.spec`
 
 Optional:
 
@@ -3482,7 +3482,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--volume_claim_template--metadata--selector--match_expressions"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.volume_claim_template.metadata.selector.match_labels`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.volume_claim_template.metadata.selector.match_expressions`
 
 Required:
 
@@ -3499,7 +3499,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--fc"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.fc`
 
 Optional:
 
@@ -3511,7 +3511,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--flex_volume"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.flex_volume`
 
 Required:
 
@@ -3534,7 +3534,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--flocker"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.flocker`
 
 Optional:
 
@@ -3543,7 +3543,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--gce_persistent_disk"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.gce_persistent_disk`
 
 Required:
 
@@ -3557,7 +3557,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--git_repo"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.git_repo`
 
 Required:
 
@@ -3570,7 +3570,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--glusterfs"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.glusterfs`
 
 Required:
 
@@ -3583,7 +3583,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--host_path"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.host_path`
 
 Required:
 
@@ -3595,7 +3595,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--iscsi"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.iscsi`
 
 Required:
 
@@ -3624,7 +3624,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--nfs"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.nfs`
 
 Required:
 
@@ -3637,7 +3637,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--persistent_volume_claim"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.persistent_volume_claim`
 
 Required:
 
@@ -3649,7 +3649,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--photon_persistent_disk"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.photon_persistent_disk`
 
 Required:
 
@@ -3661,7 +3661,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--portworx_volume"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.portworx_volume`
 
 Required:
 
@@ -3674,7 +3674,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--projected"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.projected`
 
 Optional:
 
@@ -3693,7 +3693,7 @@ Optional:
 - `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--sources--service_account_token))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--sources--cluster_trust_bundle"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.sources.cluster_trust_bundle`
 
 Required:
 
@@ -3715,7 +3715,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--sources--service_account_token--label_selector--match_expressions"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.sources.service_account_token.label_selector.match_labels`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.sources.service_account_token.label_selector.match_expressions`
 
 Required:
 
@@ -3730,7 +3730,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.sources.config_map`
 
 Optional:
 
@@ -3753,7 +3753,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.sources.downward_api`
 
 Optional:
 
@@ -3773,7 +3773,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.sources.service_account_token.items.field_ref`
 
 Required:
 
@@ -3800,7 +3800,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.sources.secret`
 
 Optional:
 
@@ -3838,7 +3838,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--quobyte"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.quobyte`
 
 Required:
 
@@ -3854,7 +3854,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--rbd"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.rbd`
 
 Required:
 
@@ -3871,7 +3871,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.user`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -3880,7 +3880,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--scale_io"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.scale_io`
 
 Required:
 
@@ -3899,7 +3899,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.volume_name`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -3908,7 +3908,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--secret"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.secret`
 
 Optional:
 
@@ -3918,7 +3918,7 @@ Optional:
 - `secret_name` (String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.secret_name`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.items`
 
 Required:
 
@@ -3932,7 +3932,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--storageos"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.storageos`
 
 Optional:
 
@@ -3943,7 +3943,7 @@ Optional:
 - `volume_namespace` (String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.volume_namespace`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.secret_ref`
 
 Optional:
 

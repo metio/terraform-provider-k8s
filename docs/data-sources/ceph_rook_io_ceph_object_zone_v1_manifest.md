@@ -109,7 +109,7 @@ Optional:
 - `snapshot_schedules` (Attributes List) SnapshotSchedules is the scheduling of snapshot for mirrored images/pools (see [below for nested schema](#nestedatt--spec--data_pool--mirroring--snapshot_schedules))
 
 <a id="nestedatt--spec--data_pool--mirroring--peers"></a>
-### Nested Schema for `spec.data_pool.mirroring.snapshot_schedules`
+### Nested Schema for `spec.data_pool.mirroring.peers`
 
 Optional:
 
@@ -153,7 +153,7 @@ Optional:
 - `target_size_ratio` (Number) TargetSizeRatio gives a hint (%) to Ceph in terms of expected consumption of the total cluster capacity
 
 <a id="nestedatt--spec--data_pool--replicated--hybrid_storage"></a>
-### Nested Schema for `spec.data_pool.replicated.target_size_ratio`
+### Nested Schema for `spec.data_pool.replicated.hybrid_storage`
 
 Required:
 
@@ -223,7 +223,7 @@ Optional:
 - `snapshot_schedules` (Attributes List) SnapshotSchedules is the scheduling of snapshot for mirrored images/pools (see [below for nested schema](#nestedatt--spec--metadata_pool--mirroring--snapshot_schedules))
 
 <a id="nestedatt--spec--metadata_pool--mirroring--peers"></a>
-### Nested Schema for `spec.metadata_pool.mirroring.snapshot_schedules`
+### Nested Schema for `spec.metadata_pool.mirroring.peers`
 
 Optional:
 
@@ -267,7 +267,7 @@ Optional:
 - `target_size_ratio` (Number) TargetSizeRatio gives a hint (%) to Ceph in terms of expected consumption of the total cluster capacity
 
 <a id="nestedatt--spec--metadata_pool--replicated--hybrid_storage"></a>
-### Nested Schema for `spec.metadata_pool.replicated.target_size_ratio`
+### Nested Schema for `spec.metadata_pool.replicated.hybrid_storage`
 
 Required:
 

@@ -157,7 +157,7 @@ Optional:
 - `retention` (Attributes) Retention defines how long logs are kept in storage. (see [below for nested schema](#nestedatt--spec--limits--global--retention))
 
 <a id="nestedatt--spec--limits--global--ingestion"></a>
-### Nested Schema for `spec.limits.global.retention`
+### Nested Schema for `spec.limits.global.ingestion`
 
 Optional:
 
@@ -174,7 +174,7 @@ Optional:
 
 
 <a id="nestedatt--spec--limits--global--queries"></a>
-### Nested Schema for `spec.limits.global.retention`
+### Nested Schema for `spec.limits.global.queries`
 
 Optional:
 
@@ -221,7 +221,7 @@ Optional:
 - `retention` (Attributes) Retention defines how long logs are kept in storage. (see [below for nested schema](#nestedatt--spec--limits--tenants--retention))
 
 <a id="nestedatt--spec--limits--tenants--ingestion"></a>
-### Nested Schema for `spec.limits.tenants.retention`
+### Nested Schema for `spec.limits.tenants.ingestion`
 
 Optional:
 
@@ -238,7 +238,7 @@ Optional:
 
 
 <a id="nestedatt--spec--limits--tenants--queries"></a>
-### Nested Schema for `spec.limits.tenants.retention`
+### Nested Schema for `spec.limits.tenants.queries`
 
 Optional:
 
@@ -337,7 +337,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.rules.namespace_selector.match_labels`
+### Nested Schema for `spec.rules.namespace_selector.match_expressions`
 
 Required:
 
@@ -359,7 +359,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.selector.match_labels`
+### Nested Schema for `spec.rules.selector.match_expressions`
 
 Required:
 
@@ -398,7 +398,7 @@ Optional:
 - `tolerations` (Attributes List) Tolerations defines the tolerations required by a node to schedulethe component onto it. (see [below for nested schema](#nestedatt--spec--template--compactor--tolerations))
 
 <a id="nestedatt--spec--template--compactor--pod_anti_affinity"></a>
-### Nested Schema for `spec.template.compactor.tolerations`
+### Nested Schema for `spec.template.compactor.pod_anti_affinity`
 
 Optional:
 
@@ -414,7 +414,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
 <a id="nestedatt--spec--template--compactor--tolerations--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.template.compactor.tolerations.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.template.compactor.tolerations.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -427,7 +427,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--template--compactor--tolerations--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.template.compactor.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.template.compactor.tolerations.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -435,7 +435,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--compactor--tolerations--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.compactor.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.template.compactor.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -449,7 +449,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--compactor--tolerations--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.template.compactor.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.template.compactor.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -457,7 +457,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--compactor--tolerations--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.compactor.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.template.compactor.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -486,7 +486,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--template--compactor--tolerations--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.template.compactor.tolerations.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.template.compactor.tolerations.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -494,7 +494,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--compactor--tolerations--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.compactor.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.template.compactor.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -508,7 +508,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--compactor--tolerations--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.template.compactor.tolerations.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.template.compactor.tolerations.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -516,7 +516,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--compactor--tolerations--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.compactor.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.template.compactor.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -555,7 +555,7 @@ Optional:
 - `tolerations` (Attributes List) Tolerations defines the tolerations required by a node to schedulethe component onto it. (see [below for nested schema](#nestedatt--spec--template--distributor--tolerations))
 
 <a id="nestedatt--spec--template--distributor--pod_anti_affinity"></a>
-### Nested Schema for `spec.template.distributor.tolerations`
+### Nested Schema for `spec.template.distributor.pod_anti_affinity`
 
 Optional:
 
@@ -571,7 +571,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
 <a id="nestedatt--spec--template--distributor--tolerations--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.template.distributor.tolerations.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.template.distributor.tolerations.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -584,7 +584,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--template--distributor--tolerations--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.template.distributor.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.template.distributor.tolerations.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -592,7 +592,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--distributor--tolerations--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.distributor.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.template.distributor.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -606,7 +606,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--distributor--tolerations--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.template.distributor.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.template.distributor.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -614,7 +614,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--distributor--tolerations--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.distributor.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.template.distributor.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -643,7 +643,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--template--distributor--tolerations--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.template.distributor.tolerations.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.template.distributor.tolerations.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -651,7 +651,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--distributor--tolerations--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.distributor.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.template.distributor.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -665,7 +665,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--distributor--tolerations--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.template.distributor.tolerations.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.template.distributor.tolerations.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -673,7 +673,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--distributor--tolerations--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.distributor.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.template.distributor.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -712,7 +712,7 @@ Optional:
 - `tolerations` (Attributes List) Tolerations defines the tolerations required by a node to schedulethe component onto it. (see [below for nested schema](#nestedatt--spec--template--gateway--tolerations))
 
 <a id="nestedatt--spec--template--gateway--pod_anti_affinity"></a>
-### Nested Schema for `spec.template.gateway.tolerations`
+### Nested Schema for `spec.template.gateway.pod_anti_affinity`
 
 Optional:
 
@@ -728,7 +728,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
 <a id="nestedatt--spec--template--gateway--tolerations--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.template.gateway.tolerations.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.template.gateway.tolerations.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -741,7 +741,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--template--gateway--tolerations--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.template.gateway.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.template.gateway.tolerations.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -749,7 +749,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--gateway--tolerations--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.gateway.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.template.gateway.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -763,7 +763,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--gateway--tolerations--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.template.gateway.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.template.gateway.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -771,7 +771,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--gateway--tolerations--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.gateway.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.template.gateway.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -800,7 +800,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--template--gateway--tolerations--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.template.gateway.tolerations.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.template.gateway.tolerations.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -808,7 +808,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--gateway--tolerations--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.gateway.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.template.gateway.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -822,7 +822,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--gateway--tolerations--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.template.gateway.tolerations.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.template.gateway.tolerations.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -830,7 +830,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--gateway--tolerations--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.gateway.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.template.gateway.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -869,7 +869,7 @@ Optional:
 - `tolerations` (Attributes List) Tolerations defines the tolerations required by a node to schedulethe component onto it. (see [below for nested schema](#nestedatt--spec--template--index_gateway--tolerations))
 
 <a id="nestedatt--spec--template--index_gateway--pod_anti_affinity"></a>
-### Nested Schema for `spec.template.index_gateway.tolerations`
+### Nested Schema for `spec.template.index_gateway.pod_anti_affinity`
 
 Optional:
 
@@ -885,7 +885,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
 <a id="nestedatt--spec--template--index_gateway--tolerations--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.template.index_gateway.tolerations.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.template.index_gateway.tolerations.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -898,7 +898,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--template--index_gateway--tolerations--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.template.index_gateway.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.template.index_gateway.tolerations.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -906,7 +906,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--index_gateway--tolerations--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.index_gateway.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.template.index_gateway.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -920,7 +920,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--index_gateway--tolerations--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.template.index_gateway.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.template.index_gateway.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -928,7 +928,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--index_gateway--tolerations--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.index_gateway.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.template.index_gateway.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -957,7 +957,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--template--index_gateway--tolerations--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.template.index_gateway.tolerations.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.template.index_gateway.tolerations.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -965,7 +965,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--index_gateway--tolerations--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.index_gateway.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.template.index_gateway.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -979,7 +979,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--index_gateway--tolerations--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.template.index_gateway.tolerations.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.template.index_gateway.tolerations.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -987,7 +987,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--index_gateway--tolerations--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.index_gateway.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.template.index_gateway.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -1026,7 +1026,7 @@ Optional:
 - `tolerations` (Attributes List) Tolerations defines the tolerations required by a node to schedulethe component onto it. (see [below for nested schema](#nestedatt--spec--template--ingester--tolerations))
 
 <a id="nestedatt--spec--template--ingester--pod_anti_affinity"></a>
-### Nested Schema for `spec.template.ingester.tolerations`
+### Nested Schema for `spec.template.ingester.pod_anti_affinity`
 
 Optional:
 
@@ -1042,7 +1042,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
 <a id="nestedatt--spec--template--ingester--tolerations--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.template.ingester.tolerations.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.template.ingester.tolerations.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -1055,7 +1055,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--template--ingester--tolerations--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.template.ingester.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.template.ingester.tolerations.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -1063,7 +1063,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--ingester--tolerations--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.ingester.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.template.ingester.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -1077,7 +1077,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--ingester--tolerations--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.template.ingester.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.template.ingester.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -1085,7 +1085,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--ingester--tolerations--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.ingester.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.template.ingester.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -1114,7 +1114,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--template--ingester--tolerations--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.template.ingester.tolerations.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.template.ingester.tolerations.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -1122,7 +1122,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--ingester--tolerations--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.ingester.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.template.ingester.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -1136,7 +1136,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--ingester--tolerations--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.template.ingester.tolerations.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.template.ingester.tolerations.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -1144,7 +1144,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--ingester--tolerations--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.ingester.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.template.ingester.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -1183,7 +1183,7 @@ Optional:
 - `tolerations` (Attributes List) Tolerations defines the tolerations required by a node to schedulethe component onto it. (see [below for nested schema](#nestedatt--spec--template--querier--tolerations))
 
 <a id="nestedatt--spec--template--querier--pod_anti_affinity"></a>
-### Nested Schema for `spec.template.querier.tolerations`
+### Nested Schema for `spec.template.querier.pod_anti_affinity`
 
 Optional:
 
@@ -1199,7 +1199,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
 <a id="nestedatt--spec--template--querier--tolerations--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.template.querier.tolerations.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.template.querier.tolerations.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -1212,7 +1212,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--template--querier--tolerations--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.template.querier.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.template.querier.tolerations.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -1220,7 +1220,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--querier--tolerations--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.querier.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.template.querier.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -1234,7 +1234,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--querier--tolerations--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.template.querier.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.template.querier.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -1242,7 +1242,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--querier--tolerations--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.querier.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.template.querier.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -1271,7 +1271,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--template--querier--tolerations--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.template.querier.tolerations.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.template.querier.tolerations.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -1279,7 +1279,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--querier--tolerations--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.querier.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.template.querier.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -1293,7 +1293,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--querier--tolerations--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.template.querier.tolerations.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.template.querier.tolerations.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -1301,7 +1301,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--querier--tolerations--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.querier.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.template.querier.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -1340,7 +1340,7 @@ Optional:
 - `tolerations` (Attributes List) Tolerations defines the tolerations required by a node to schedulethe component onto it. (see [below for nested schema](#nestedatt--spec--template--query_frontend--tolerations))
 
 <a id="nestedatt--spec--template--query_frontend--pod_anti_affinity"></a>
-### Nested Schema for `spec.template.query_frontend.tolerations`
+### Nested Schema for `spec.template.query_frontend.pod_anti_affinity`
 
 Optional:
 
@@ -1356,7 +1356,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
 <a id="nestedatt--spec--template--query_frontend--tolerations--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.template.query_frontend.tolerations.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.template.query_frontend.tolerations.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -1369,7 +1369,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--template--query_frontend--tolerations--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.template.query_frontend.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.template.query_frontend.tolerations.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -1377,7 +1377,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--query_frontend--tolerations--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.query_frontend.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.template.query_frontend.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -1391,7 +1391,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--query_frontend--tolerations--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.template.query_frontend.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.template.query_frontend.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -1399,7 +1399,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--query_frontend--tolerations--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.query_frontend.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.template.query_frontend.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -1428,7 +1428,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--template--query_frontend--tolerations--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.template.query_frontend.tolerations.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.template.query_frontend.tolerations.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -1436,7 +1436,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--query_frontend--tolerations--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.query_frontend.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.template.query_frontend.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -1450,7 +1450,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--query_frontend--tolerations--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.template.query_frontend.tolerations.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.template.query_frontend.tolerations.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -1458,7 +1458,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--query_frontend--tolerations--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.query_frontend.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.template.query_frontend.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -1497,7 +1497,7 @@ Optional:
 - `tolerations` (Attributes List) Tolerations defines the tolerations required by a node to schedulethe component onto it. (see [below for nested schema](#nestedatt--spec--template--ruler--tolerations))
 
 <a id="nestedatt--spec--template--ruler--pod_anti_affinity"></a>
-### Nested Schema for `spec.template.ruler.tolerations`
+### Nested Schema for `spec.template.ruler.pod_anti_affinity`
 
 Optional:
 
@@ -1513,7 +1513,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
 <a id="nestedatt--spec--template--ruler--tolerations--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.template.ruler.tolerations.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.template.ruler.tolerations.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -1526,7 +1526,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--template--ruler--tolerations--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.template.ruler.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.template.ruler.tolerations.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -1534,7 +1534,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--ruler--tolerations--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.ruler.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.template.ruler.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -1548,7 +1548,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--ruler--tolerations--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.template.ruler.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.template.ruler.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -1556,7 +1556,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--ruler--tolerations--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.ruler.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.template.ruler.tolerations.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -1585,7 +1585,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--template--ruler--tolerations--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.template.ruler.tolerations.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.template.ruler.tolerations.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -1593,7 +1593,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--ruler--tolerations--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.ruler.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.template.ruler.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -1607,7 +1607,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--ruler--tolerations--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.template.ruler.tolerations.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.template.ruler.tolerations.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -1615,7 +1615,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--ruler--tolerations--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.ruler.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.template.ruler.tolerations.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -1671,7 +1671,7 @@ Optional:
 - `oidc` (Attributes) OIDC defines the spec for the OIDC tenant's authentication. (see [below for nested schema](#nestedatt--spec--tenants--authentication--oidc))
 
 <a id="nestedatt--spec--tenants--authentication--m_tls"></a>
-### Nested Schema for `spec.tenants.authentication.oidc`
+### Nested Schema for `spec.tenants.authentication.m_tls`
 
 Required:
 
@@ -1737,7 +1737,7 @@ Optional:
 - `roles` (Attributes List) Roles defines a set of permissions to interact with a tenant. (see [below for nested schema](#nestedatt--spec--tenants--authorization--roles))
 
 <a id="nestedatt--spec--tenants--authorization--opa"></a>
-### Nested Schema for `spec.tenants.authorization.roles`
+### Nested Schema for `spec.tenants.authorization.opa`
 
 Required:
 
@@ -1745,7 +1745,7 @@ Required:
 
 
 <a id="nestedatt--spec--tenants--authorization--role_bindings"></a>
-### Nested Schema for `spec.tenants.authorization.roles`
+### Nested Schema for `spec.tenants.authorization.role_bindings`
 
 Required:
 

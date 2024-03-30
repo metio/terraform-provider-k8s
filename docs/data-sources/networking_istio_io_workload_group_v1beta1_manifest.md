@@ -122,7 +122,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--probe--http_get--http_headers"></a>
-### Nested Schema for `spec.probe.http_get.scheme`
+### Nested Schema for `spec.probe.http_get.http_headers`
 
 Optional:
 

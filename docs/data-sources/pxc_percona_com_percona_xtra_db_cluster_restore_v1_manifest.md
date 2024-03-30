@@ -248,7 +248,7 @@ Optional:
 - `verify_tls` (Boolean)
 
 <a id="nestedatt--spec--pitr--backup_source--azure"></a>
-### Nested Schema for `spec.pitr.backup_source.verify_tls`
+### Nested Schema for `spec.pitr.backup_source.azure`
 
 Optional:
 
@@ -259,7 +259,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pitr--backup_source--conditions"></a>
-### Nested Schema for `spec.pitr.backup_source.verify_tls`
+### Nested Schema for `spec.pitr.backup_source.conditions`
 
 Required:
 
@@ -275,7 +275,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pitr--backup_source--s3"></a>
-### Nested Schema for `spec.pitr.backup_source.verify_tls`
+### Nested Schema for `spec.pitr.backup_source.s3`
 
 Optional:
 

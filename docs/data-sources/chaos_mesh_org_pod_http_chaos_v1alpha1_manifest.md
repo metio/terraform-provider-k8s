@@ -83,7 +83,7 @@ Optional:
 - `replace` (Attributes) Replace is a rule to replace some contents in target. (see [below for nested schema](#nestedatt--spec--rules--actions--replace))
 
 <a id="nestedatt--spec--rules--actions--patch"></a>
-### Nested Schema for `spec.rules.actions.replace`
+### Nested Schema for `spec.rules.actions.patch`
 
 Optional:
 

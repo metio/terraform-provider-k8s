@@ -114,7 +114,7 @@ Optional:
 - `unit` (String)
 
 <a id="nestedatt--spec--metrics--metric_stat--metric"></a>
-### Nested Schema for `spec.metrics.metric_stat.unit`
+### Nested Schema for `spec.metrics.metric_stat.metric`
 
 Optional:
 

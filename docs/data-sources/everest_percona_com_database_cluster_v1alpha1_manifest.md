@@ -191,7 +191,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--monitoring--resources--claims"></a>
-### Nested Schema for `spec.monitoring.resources.requests`
+### Nested Schema for `spec.monitoring.resources.claims`
 
 Required:
 

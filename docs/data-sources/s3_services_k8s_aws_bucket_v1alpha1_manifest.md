@@ -114,7 +114,7 @@ Optional:
 - `tag` (Attributes) A container of a key value name pair. (see [below for nested schema](#nestedatt--spec--analytics--filter--tag))
 
 <a id="nestedatt--spec--analytics--filter--and"></a>
-### Nested Schema for `spec.analytics.filter.tag`
+### Nested Schema for `spec.analytics.filter.and`
 
 Optional:
 
@@ -223,7 +223,7 @@ Optional:
 - `bucket_key_enabled` (Boolean)
 
 <a id="nestedatt--spec--encryption--rules--apply_server_side_encryption_by_default"></a>
-### Nested Schema for `spec.encryption.rules.bucket_key_enabled`
+### Nested Schema for `spec.encryption.rules.apply_server_side_encryption_by_default`
 
 Optional:
 
@@ -253,7 +253,7 @@ Optional:
 - `tag` (Attributes) A container of a key value name pair. (see [below for nested schema](#nestedatt--spec--intelligent_tiering--filter--tag))
 
 <a id="nestedatt--spec--intelligent_tiering--filter--and"></a>
-### Nested Schema for `spec.intelligent_tiering.filter.tag`
+### Nested Schema for `spec.intelligent_tiering.filter.and`
 
 Optional:
 
@@ -379,7 +379,7 @@ Optional:
 - `transitions` (Attributes List) (see [below for nested schema](#nestedatt--spec--lifecycle--rules--transitions))
 
 <a id="nestedatt--spec--lifecycle--rules--abort_incomplete_multipart_upload"></a>
-### Nested Schema for `spec.lifecycle.rules.transitions`
+### Nested Schema for `spec.lifecycle.rules.abort_incomplete_multipart_upload`
 
 Optional:
 
@@ -387,7 +387,7 @@ Optional:
 
 
 <a id="nestedatt--spec--lifecycle--rules--expiration"></a>
-### Nested Schema for `spec.lifecycle.rules.transitions`
+### Nested Schema for `spec.lifecycle.rules.expiration`
 
 Optional:
 
@@ -397,7 +397,7 @@ Optional:
 
 
 <a id="nestedatt--spec--lifecycle--rules--filter"></a>
-### Nested Schema for `spec.lifecycle.rules.transitions`
+### Nested Schema for `spec.lifecycle.rules.filter`
 
 Optional:
 
@@ -438,7 +438,7 @@ Optional:
 
 
 <a id="nestedatt--spec--lifecycle--rules--noncurrent_version_expiration"></a>
-### Nested Schema for `spec.lifecycle.rules.transitions`
+### Nested Schema for `spec.lifecycle.rules.noncurrent_version_expiration`
 
 Optional:
 
@@ -447,7 +447,7 @@ Optional:
 
 
 <a id="nestedatt--spec--lifecycle--rules--noncurrent_version_transitions"></a>
-### Nested Schema for `spec.lifecycle.rules.transitions`
+### Nested Schema for `spec.lifecycle.rules.noncurrent_version_transitions`
 
 Optional:
 
@@ -485,7 +485,7 @@ Optional:
 - `target_prefix` (String)
 
 <a id="nestedatt--spec--logging--logging_enabled--target_grants"></a>
-### Nested Schema for `spec.logging.logging_enabled.target_prefix`
+### Nested Schema for `spec.logging.logging_enabled.target_grants`
 
 Optional:
 
@@ -526,7 +526,7 @@ Optional:
 - `tag` (Attributes) A container of a key value name pair. (see [below for nested schema](#nestedatt--spec--metrics--filter--tag))
 
 <a id="nestedatt--spec--metrics--filter--and"></a>
-### Nested Schema for `spec.metrics.filter.tag`
+### Nested Schema for `spec.metrics.filter.and`
 
 Optional:
 
@@ -575,7 +575,7 @@ Optional:
 - `lambda_function_arn` (String)
 
 <a id="nestedatt--spec--notification--lambda_function_configurations--filter"></a>
-### Nested Schema for `spec.notification.lambda_function_configurations.lambda_function_arn`
+### Nested Schema for `spec.notification.lambda_function_configurations.filter`
 
 Optional:
 
@@ -611,7 +611,7 @@ Optional:
 - `queue_arn` (String)
 
 <a id="nestedatt--spec--notification--queue_configurations--filter"></a>
-### Nested Schema for `spec.notification.queue_configurations.queue_arn`
+### Nested Schema for `spec.notification.queue_configurations.filter`
 
 Optional:
 
@@ -647,7 +647,7 @@ Optional:
 - `topic_arn` (String)
 
 <a id="nestedatt--spec--notification--topic_configurations--filter"></a>
-### Nested Schema for `spec.notification.topic_configurations.topic_arn`
+### Nested Schema for `spec.notification.topic_configurations.filter`
 
 Optional:
 
@@ -724,7 +724,7 @@ Optional:
 - `status` (String)
 
 <a id="nestedatt--spec--replication--rules--delete_marker_replication"></a>
-### Nested Schema for `spec.replication.rules.status`
+### Nested Schema for `spec.replication.rules.delete_marker_replication`
 
 Optional:
 
@@ -732,7 +732,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replication--rules--destination"></a>
-### Nested Schema for `spec.replication.rules.status`
+### Nested Schema for `spec.replication.rules.destination`
 
 Optional:
 
@@ -769,7 +769,7 @@ Optional:
 - `status` (String)
 
 <a id="nestedatt--spec--replication--rules--status--metrics--event_threshold"></a>
-### Nested Schema for `spec.replication.rules.status.metrics.status`
+### Nested Schema for `spec.replication.rules.status.metrics.event_threshold`
 
 Optional:
 
@@ -796,7 +796,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replication--rules--existing_object_replication"></a>
-### Nested Schema for `spec.replication.rules.status`
+### Nested Schema for `spec.replication.rules.existing_object_replication`
 
 Optional:
 
@@ -804,7 +804,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replication--rules--filter"></a>
-### Nested Schema for `spec.replication.rules.status`
+### Nested Schema for `spec.replication.rules.filter`
 
 Optional:
 
@@ -841,7 +841,7 @@ Optional:
 
 
 <a id="nestedatt--spec--replication--rules--source_selection_criteria"></a>
-### Nested Schema for `spec.replication.rules.status`
+### Nested Schema for `spec.replication.rules.source_selection_criteria`
 
 Optional:
 
@@ -944,7 +944,7 @@ Optional:
 - `redirect` (Attributes) Specifies how requests are redirected. In the event of an error, you canspecify a different error code to return. (see [below for nested schema](#nestedatt--spec--website--routing_rules--redirect))
 
 <a id="nestedatt--spec--website--routing_rules--condition"></a>
-### Nested Schema for `spec.website.routing_rules.redirect`
+### Nested Schema for `spec.website.routing_rules.condition`
 
 Optional:
 

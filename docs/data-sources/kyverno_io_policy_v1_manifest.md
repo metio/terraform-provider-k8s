@@ -3,7 +3,7 @@
 page_title: "k8s_kyverno_io_policy_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "kyverno.io"
 description: |-
-  Policy declares validation, mutation, and generation behaviors for matching resources. See: https://kyverno.io/docs/writing-policies/ for more information.
+  Policy declares validation, mutation, and generation behaviors for matching resources. See:  for more information.
 ---
 
 # k8s_kyverno_io_policy_v1_manifest (Data Source)
@@ -109,7 +109,7 @@ Optional:
 - `variable` (Attributes) Variable defines an arbitrary JMESPath context variable that can be defined inline. (see [below for nested schema](#nestedatt--spec--rules--context--variable))
 
 <a id="nestedatt--spec--rules--context--api_call"></a>
-### Nested Schema for `spec.rules.context.variable`
+### Nested Schema for `spec.rules.context.api_call`
 
 Optional:
 
@@ -142,7 +142,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--context--config_map"></a>
-### Nested Schema for `spec.rules.context.variable`
+### Nested Schema for `spec.rules.context.config_map`
 
 Required:
 
@@ -154,7 +154,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--context--image_registry"></a>
-### Nested Schema for `spec.rules.context.variable`
+### Nested Schema for `spec.rules.context.image_registry`
 
 Required:
 
@@ -200,7 +200,7 @@ Optional:
 - `subjects` (Attributes List) Subjects is the list of subject names like users, user groups, and service accounts. (see [below for nested schema](#nestedatt--spec--rules--exclude--subjects))
 
 <a id="nestedatt--spec--rules--exclude--all"></a>
-### Nested Schema for `spec.rules.exclude.subjects`
+### Nested Schema for `spec.rules.exclude.all`
 
 Optional:
 
@@ -224,7 +224,7 @@ Optional:
 - `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character). Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--exclude--subjects--resources--selector))
 
 <a id="nestedatt--spec--rules--exclude--subjects--resources--namespace_selector"></a>
-### Nested Schema for `spec.rules.exclude.subjects.resources.selector`
+### Nested Schema for `spec.rules.exclude.subjects.resources.namespace_selector`
 
 Optional:
 
@@ -232,7 +232,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--exclude--subjects--resources--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.exclude.subjects.resources.selector.match_labels`
+### Nested Schema for `spec.rules.exclude.subjects.resources.selector.match_expressions`
 
 Required:
 
@@ -254,7 +254,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--exclude--subjects--resources--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.exclude.subjects.resources.selector.match_labels`
+### Nested Schema for `spec.rules.exclude.subjects.resources.selector.match_expressions`
 
 Required:
 
@@ -284,7 +284,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--exclude--any"></a>
-### Nested Schema for `spec.rules.exclude.subjects`
+### Nested Schema for `spec.rules.exclude.any`
 
 Optional:
 
@@ -308,7 +308,7 @@ Optional:
 - `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character). Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--exclude--subjects--resources--selector))
 
 <a id="nestedatt--spec--rules--exclude--subjects--resources--namespace_selector"></a>
-### Nested Schema for `spec.rules.exclude.subjects.resources.selector`
+### Nested Schema for `spec.rules.exclude.subjects.resources.namespace_selector`
 
 Optional:
 
@@ -316,7 +316,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--exclude--subjects--resources--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.exclude.subjects.resources.selector.match_labels`
+### Nested Schema for `spec.rules.exclude.subjects.resources.selector.match_expressions`
 
 Required:
 
@@ -338,7 +338,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--exclude--subjects--resources--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.exclude.subjects.resources.selector.match_labels`
+### Nested Schema for `spec.rules.exclude.subjects.resources.selector.match_expressions`
 
 Required:
 
@@ -368,7 +368,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--exclude--resources"></a>
-### Nested Schema for `spec.rules.exclude.subjects`
+### Nested Schema for `spec.rules.exclude.resources`
 
 Optional:
 
@@ -390,7 +390,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--exclude--subjects--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.rules.exclude.subjects.namespace_selector.match_labels`
+### Nested Schema for `spec.rules.exclude.subjects.namespace_selector.match_expressions`
 
 Required:
 
@@ -412,7 +412,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--exclude--subjects--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.exclude.subjects.selector.match_labels`
+### Nested Schema for `spec.rules.exclude.subjects.selector.match_expressions`
 
 Required:
 
@@ -457,7 +457,7 @@ Optional:
 - `uid` (String) UID specifies the resource uid.
 
 <a id="nestedatt--spec--rules--generate--clone"></a>
-### Nested Schema for `spec.rules.generate.uid`
+### Nested Schema for `spec.rules.generate.clone`
 
 Optional:
 
@@ -466,7 +466,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--generate--clone_list"></a>
-### Nested Schema for `spec.rules.generate.uid`
+### Nested Schema for `spec.rules.generate.clone_list`
 
 Optional:
 
@@ -483,7 +483,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--generate--uid--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.generate.uid.selector.match_labels`
+### Nested Schema for `spec.rules.generate.uid.selector.match_expressions`
 
 Required:
 
@@ -511,7 +511,7 @@ Optional:
 - `subjects` (Attributes List) Subjects is the list of subject names like users, user groups, and service accounts. (see [below for nested schema](#nestedatt--spec--rules--match--subjects))
 
 <a id="nestedatt--spec--rules--match--all"></a>
-### Nested Schema for `spec.rules.match.subjects`
+### Nested Schema for `spec.rules.match.all`
 
 Optional:
 
@@ -535,7 +535,7 @@ Optional:
 - `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character). Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--subjects--resources--selector))
 
 <a id="nestedatt--spec--rules--match--subjects--resources--namespace_selector"></a>
-### Nested Schema for `spec.rules.match.subjects.resources.selector`
+### Nested Schema for `spec.rules.match.subjects.resources.namespace_selector`
 
 Optional:
 
@@ -543,7 +543,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--match--subjects--resources--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.match.subjects.resources.selector.match_labels`
+### Nested Schema for `spec.rules.match.subjects.resources.selector.match_expressions`
 
 Required:
 
@@ -565,7 +565,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--match--subjects--resources--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.match.subjects.resources.selector.match_labels`
+### Nested Schema for `spec.rules.match.subjects.resources.selector.match_expressions`
 
 Required:
 
@@ -595,7 +595,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--match--any"></a>
-### Nested Schema for `spec.rules.match.subjects`
+### Nested Schema for `spec.rules.match.any`
 
 Optional:
 
@@ -619,7 +619,7 @@ Optional:
 - `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character). Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--subjects--resources--selector))
 
 <a id="nestedatt--spec--rules--match--subjects--resources--namespace_selector"></a>
-### Nested Schema for `spec.rules.match.subjects.resources.selector`
+### Nested Schema for `spec.rules.match.subjects.resources.namespace_selector`
 
 Optional:
 
@@ -627,7 +627,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--match--subjects--resources--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.match.subjects.resources.selector.match_labels`
+### Nested Schema for `spec.rules.match.subjects.resources.selector.match_expressions`
 
 Required:
 
@@ -649,7 +649,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--match--subjects--resources--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.match.subjects.resources.selector.match_labels`
+### Nested Schema for `spec.rules.match.subjects.resources.selector.match_expressions`
 
 Required:
 
@@ -679,7 +679,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--match--resources"></a>
-### Nested Schema for `spec.rules.match.subjects`
+### Nested Schema for `spec.rules.match.resources`
 
 Optional:
 
@@ -701,7 +701,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--match--subjects--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.rules.match.subjects.namespace_selector.match_labels`
+### Nested Schema for `spec.rules.match.subjects.namespace_selector.match_expressions`
 
 Required:
 
@@ -723,7 +723,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--match--subjects--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.match.subjects.selector.match_labels`
+### Nested Schema for `spec.rules.match.subjects.selector.match_expressions`
 
 Required:
 
@@ -763,7 +763,7 @@ Optional:
 - `targets` (Attributes List) Targets defines the target resources to be mutated. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets))
 
 <a id="nestedatt--spec--rules--mutate--foreach"></a>
-### Nested Schema for `spec.rules.mutate.targets`
+### Nested Schema for `spec.rules.mutate.foreach`
 
 Optional:
 
@@ -787,7 +787,7 @@ Optional:
 - `variable` (Attributes) Variable defines an arbitrary JMESPath context variable that can be defined inline. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--variable))
 
 <a id="nestedatt--spec--rules--mutate--targets--context--api_call"></a>
-### Nested Schema for `spec.rules.mutate.targets.context.variable`
+### Nested Schema for `spec.rules.mutate.targets.context.api_call`
 
 Optional:
 
@@ -798,7 +798,7 @@ Optional:
 - `url_path` (String) URLPath is the URL path to be used in the HTTP GET or POST request to the Kubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments'). The format required is the same format used by the 'kubectl get --raw' command. See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-calls for details.
 
 <a id="nestedatt--spec--rules--mutate--targets--context--variable--data"></a>
-### Nested Schema for `spec.rules.mutate.targets.context.variable.url_path`
+### Nested Schema for `spec.rules.mutate.targets.context.variable.data`
 
 Required:
 
@@ -807,7 +807,7 @@ Required:
 
 
 <a id="nestedatt--spec--rules--mutate--targets--context--variable--service"></a>
-### Nested Schema for `spec.rules.mutate.targets.context.variable.url_path`
+### Nested Schema for `spec.rules.mutate.targets.context.variable.service`
 
 Required:
 
@@ -820,7 +820,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--mutate--targets--context--config_map"></a>
-### Nested Schema for `spec.rules.mutate.targets.context.variable`
+### Nested Schema for `spec.rules.mutate.targets.context.config_map`
 
 Required:
 
@@ -832,7 +832,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--mutate--targets--context--image_registry"></a>
-### Nested Schema for `spec.rules.mutate.targets.context.variable`
+### Nested Schema for `spec.rules.mutate.targets.context.image_registry`
 
 Required:
 
@@ -844,7 +844,7 @@ Optional:
 - `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used to transform the ImageData struct returned as a result of processing the image reference.
 
 <a id="nestedatt--spec--rules--mutate--targets--context--variable--image_registry_credentials"></a>
-### Nested Schema for `spec.rules.mutate.targets.context.variable.jmes_path`
+### Nested Schema for `spec.rules.mutate.targets.context.variable.image_registry_credentials`
 
 Optional:
 
@@ -874,7 +874,7 @@ Optional:
 - `any` (Attributes List) AnyConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, at least one of the conditions need to pass (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--preconditions--any))
 
 <a id="nestedatt--spec--rules--mutate--targets--preconditions--all"></a>
-### Nested Schema for `spec.rules.mutate.targets.preconditions.any`
+### Nested Schema for `spec.rules.mutate.targets.preconditions.all`
 
 Optional:
 
@@ -922,7 +922,7 @@ Optional:
 - `variable` (Attributes) Variable defines an arbitrary JMESPath context variable that can be defined inline. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--variable))
 
 <a id="nestedatt--spec--rules--mutate--targets--context--api_call"></a>
-### Nested Schema for `spec.rules.mutate.targets.context.variable`
+### Nested Schema for `spec.rules.mutate.targets.context.api_call`
 
 Optional:
 
@@ -933,7 +933,7 @@ Optional:
 - `url_path` (String) URLPath is the URL path to be used in the HTTP GET or POST request to the Kubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments'). The format required is the same format used by the 'kubectl get --raw' command. See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-calls for details.
 
 <a id="nestedatt--spec--rules--mutate--targets--context--variable--data"></a>
-### Nested Schema for `spec.rules.mutate.targets.context.variable.url_path`
+### Nested Schema for `spec.rules.mutate.targets.context.variable.data`
 
 Required:
 
@@ -942,7 +942,7 @@ Required:
 
 
 <a id="nestedatt--spec--rules--mutate--targets--context--variable--service"></a>
-### Nested Schema for `spec.rules.mutate.targets.context.variable.url_path`
+### Nested Schema for `spec.rules.mutate.targets.context.variable.service`
 
 Required:
 
@@ -955,7 +955,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--mutate--targets--context--config_map"></a>
-### Nested Schema for `spec.rules.mutate.targets.context.variable`
+### Nested Schema for `spec.rules.mutate.targets.context.config_map`
 
 Required:
 
@@ -967,7 +967,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--mutate--targets--context--image_registry"></a>
-### Nested Schema for `spec.rules.mutate.targets.context.variable`
+### Nested Schema for `spec.rules.mutate.targets.context.image_registry`
 
 Required:
 
@@ -979,7 +979,7 @@ Optional:
 - `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used to transform the ImageData struct returned as a result of processing the image reference.
 
 <a id="nestedatt--spec--rules--mutate--targets--context--variable--image_registry_credentials"></a>
-### Nested Schema for `spec.rules.mutate.targets.context.variable.jmes_path`
+### Nested Schema for `spec.rules.mutate.targets.context.variable.image_registry_credentials`
 
 Optional:
 
@@ -1017,7 +1017,7 @@ Optional:
 - `pod_security` (Attributes) PodSecurity applies exemptions for Kubernetes Pod Security admission by specifying exclusions for Pod Security Standards controls. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security))
 
 <a id="nestedatt--spec--rules--validate--cel"></a>
-### Nested Schema for `spec.rules.validate.pod_security`
+### Nested Schema for `spec.rules.validate.cel`
 
 Optional:
 
@@ -1078,7 +1078,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--validate--pod_security--param_ref--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.validate.pod_security.param_ref.selector.match_labels`
+### Nested Schema for `spec.rules.validate.pod_security.param_ref.selector.match_expressions`
 
 Required:
 
@@ -1103,7 +1103,7 @@ Required:
 
 
 <a id="nestedatt--spec--rules--validate--deny"></a>
-### Nested Schema for `spec.rules.validate.pod_security`
+### Nested Schema for `spec.rules.validate.deny`
 
 Optional:
 
@@ -1111,7 +1111,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--validate--foreach"></a>
-### Nested Schema for `spec.rules.validate.pod_security`
+### Nested Schema for `spec.rules.validate.foreach`
 
 Optional:
 
@@ -1136,7 +1136,7 @@ Optional:
 - `variable` (Attributes) Variable defines an arbitrary JMESPath context variable that can be defined inline. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--context--variable))
 
 <a id="nestedatt--spec--rules--validate--pod_security--context--api_call"></a>
-### Nested Schema for `spec.rules.validate.pod_security.context.variable`
+### Nested Schema for `spec.rules.validate.pod_security.context.api_call`
 
 Optional:
 
@@ -1147,7 +1147,7 @@ Optional:
 - `url_path` (String) URLPath is the URL path to be used in the HTTP GET or POST request to the Kubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments'). The format required is the same format used by the 'kubectl get --raw' command. See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-calls for details.
 
 <a id="nestedatt--spec--rules--validate--pod_security--context--variable--data"></a>
-### Nested Schema for `spec.rules.validate.pod_security.context.variable.url_path`
+### Nested Schema for `spec.rules.validate.pod_security.context.variable.data`
 
 Required:
 
@@ -1156,7 +1156,7 @@ Required:
 
 
 <a id="nestedatt--spec--rules--validate--pod_security--context--variable--service"></a>
-### Nested Schema for `spec.rules.validate.pod_security.context.variable.url_path`
+### Nested Schema for `spec.rules.validate.pod_security.context.variable.service`
 
 Required:
 
@@ -1169,7 +1169,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--validate--pod_security--context--config_map"></a>
-### Nested Schema for `spec.rules.validate.pod_security.context.variable`
+### Nested Schema for `spec.rules.validate.pod_security.context.config_map`
 
 Required:
 
@@ -1181,7 +1181,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--validate--pod_security--context--image_registry"></a>
-### Nested Schema for `spec.rules.validate.pod_security.context.variable`
+### Nested Schema for `spec.rules.validate.pod_security.context.image_registry`
 
 Required:
 
@@ -1193,7 +1193,7 @@ Optional:
 - `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used to transform the ImageData struct returned as a result of processing the image reference.
 
 <a id="nestedatt--spec--rules--validate--pod_security--context--variable--image_registry_credentials"></a>
-### Nested Schema for `spec.rules.validate.pod_security.context.variable.jmes_path`
+### Nested Schema for `spec.rules.validate.pod_security.context.variable.image_registry_credentials`
 
 Optional:
 
@@ -1231,7 +1231,7 @@ Optional:
 - `any` (Attributes List) AnyConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, at least one of the conditions need to pass (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--preconditions--any))
 
 <a id="nestedatt--spec--rules--validate--pod_security--preconditions--all"></a>
-### Nested Schema for `spec.rules.validate.pod_security.preconditions.any`
+### Nested Schema for `spec.rules.validate.pod_security.preconditions.all`
 
 Optional:
 
@@ -1255,7 +1255,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--validate--manifests"></a>
-### Nested Schema for `spec.rules.validate.pod_security`
+### Nested Schema for `spec.rules.validate.manifests`
 
 Optional:
 
@@ -1286,7 +1286,7 @@ Optional:
 - `repository` (String) Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule. If specified Repository will override other OCI image repository locations for this Attestor.
 
 <a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--certificates"></a>
-### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.repository`
+### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.certificates`
 
 Optional:
 
@@ -1296,7 +1296,7 @@ Optional:
 - `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--rekor))
 
 <a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--ctlog"></a>
-### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.repository.rekor`
+### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.repository.ctlog`
 
 Optional:
 
@@ -1319,7 +1319,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--keyless"></a>
-### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.repository`
+### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.keyless`
 
 Optional:
 
@@ -1331,7 +1331,7 @@ Optional:
 - `subject` (String) Subject is the verified identity used for keyless signing, for example the email address.
 
 <a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--ctlog"></a>
-### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.repository.subject`
+### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.repository.ctlog`
 
 Optional:
 
@@ -1340,7 +1340,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--rekor"></a>
-### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.repository.subject`
+### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.repository.rekor`
 
 Required:
 
@@ -1354,7 +1354,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--keys"></a>
-### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.repository`
+### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.keys`
 
 Optional:
 
@@ -1366,7 +1366,7 @@ Optional:
 - `signature_algorithm` (String) Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.
 
 <a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--ctlog"></a>
-### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.repository.signature_algorithm`
+### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.repository.ctlog`
 
 Optional:
 
@@ -1375,7 +1375,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--rekor"></a>
-### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.repository.signature_algorithm`
+### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.repository.rekor`
 
 Required:
 
@@ -1388,7 +1388,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--secret"></a>
-### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.repository.signature_algorithm`
+### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.repository.secret`
 
 Required:
 
@@ -1480,7 +1480,7 @@ Optional:
 - `verify_digest` (Boolean) VerifyDigest validates that images have a digest.
 
 <a id="nestedatt--spec--rules--verify_images--attestations"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest`
+### Nested Schema for `spec.rules.verify_images.attestations`
 
 Optional:
 
@@ -1510,7 +1510,7 @@ Optional:
 - `repository` (String) Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule. If specified Repository will override other OCI image repository locations for this Attestor.
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--certificates"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.repository`
+### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.certificates`
 
 Optional:
 
@@ -1520,7 +1520,7 @@ Optional:
 - `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--rekor))
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--ctlog"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.repository.rekor`
+### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.repository.ctlog`
 
 Optional:
 
@@ -1543,7 +1543,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--keyless"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.repository`
+### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.keyless`
 
 Optional:
 
@@ -1555,7 +1555,7 @@ Optional:
 - `subject` (String) Subject is the verified identity used for keyless signing, for example the email address.
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--ctlog"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.repository.subject`
+### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.repository.ctlog`
 
 Optional:
 
@@ -1564,7 +1564,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--rekor"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.repository.subject`
+### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.repository.rekor`
 
 Required:
 
@@ -1578,7 +1578,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--keys"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.repository`
+### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.keys`
 
 Optional:
 
@@ -1590,7 +1590,7 @@ Optional:
 - `signature_algorithm` (String) Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--ctlog"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.repository.signature_algorithm`
+### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.repository.ctlog`
 
 Optional:
 
@@ -1599,7 +1599,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--rekor"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.repository.signature_algorithm`
+### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.repository.rekor`
 
 Required:
 
@@ -1612,7 +1612,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--secret"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.repository.signature_algorithm`
+### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.repository.secret`
 
 Required:
 
@@ -1632,7 +1632,7 @@ Optional:
 - `any` (Attributes List) AnyConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, at least one of the conditions need to pass (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--conditions--any))
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--conditions--all"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.conditions.any`
+### Nested Schema for `spec.rules.verify_images.verify_digest.conditions.all`
 
 Optional:
 
@@ -1656,7 +1656,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--verify_images--attestors"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest`
+### Nested Schema for `spec.rules.verify_images.attestors`
 
 Optional:
 
@@ -1676,7 +1676,7 @@ Optional:
 - `repository` (String) Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule. If specified Repository will override other OCI image repository locations for this Attestor.
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--entries--certificates"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.entries.repository`
+### Nested Schema for `spec.rules.verify_images.verify_digest.entries.certificates`
 
 Optional:
 
@@ -1686,7 +1686,7 @@ Optional:
 - `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--rekor))
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--entries--repository--ctlog"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.entries.repository.rekor`
+### Nested Schema for `spec.rules.verify_images.verify_digest.entries.repository.ctlog`
 
 Optional:
 
@@ -1709,7 +1709,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--entries--keyless"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.entries.repository`
+### Nested Schema for `spec.rules.verify_images.verify_digest.entries.keyless`
 
 Optional:
 
@@ -1721,7 +1721,7 @@ Optional:
 - `subject` (String) Subject is the verified identity used for keyless signing, for example the email address.
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--entries--repository--ctlog"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.entries.repository.subject`
+### Nested Schema for `spec.rules.verify_images.verify_digest.entries.repository.ctlog`
 
 Optional:
 
@@ -1730,7 +1730,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--entries--repository--rekor"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.entries.repository.subject`
+### Nested Schema for `spec.rules.verify_images.verify_digest.entries.repository.rekor`
 
 Required:
 
@@ -1744,7 +1744,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--entries--keys"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.entries.repository`
+### Nested Schema for `spec.rules.verify_images.verify_digest.entries.keys`
 
 Optional:
 
@@ -1756,7 +1756,7 @@ Optional:
 - `signature_algorithm` (String) Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--entries--repository--ctlog"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.entries.repository.signature_algorithm`
+### Nested Schema for `spec.rules.verify_images.verify_digest.entries.repository.ctlog`
 
 Optional:
 
@@ -1765,7 +1765,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--entries--repository--rekor"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.entries.repository.signature_algorithm`
+### Nested Schema for `spec.rules.verify_images.verify_digest.entries.repository.rekor`
 
 Required:
 
@@ -1778,7 +1778,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--entries--repository--secret"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.entries.repository.signature_algorithm`
+### Nested Schema for `spec.rules.verify_images.verify_digest.entries.repository.secret`
 
 Required:
 
@@ -1790,7 +1790,7 @@ Required:
 
 
 <a id="nestedatt--spec--rules--verify_images--image_registry_credentials"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest`
+### Nested Schema for `spec.rules.verify_images.image_registry_credentials`
 
 Optional:
 
@@ -1819,7 +1819,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--validation_failure_action_overrides--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.validation_failure_action_overrides.namespace_selector.match_labels`
+### Nested Schema for `spec.validation_failure_action_overrides.namespace_selector.match_expressions`
 
 Required:
 

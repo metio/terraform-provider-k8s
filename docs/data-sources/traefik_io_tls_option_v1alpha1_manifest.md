@@ -3,7 +3,7 @@
 page_title: "k8s_traefik_io_tls_option_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "traefik.io"
 description: |-
-  TLSOption is the CRD implementation of a Traefik TLS Option, allowing to configure some parameters of the TLS connection.More info: https://doc.traefik.io/traefik/v3.0/https/tls/#tls-options
+  TLSOption is the CRD implementation of a Traefik TLS Option, allowing to configure some parameters of the TLS connection.More info:
 ---
 
 # k8s_traefik_io_tls_option_v1alpha1_manifest (Data Source)

@@ -77,7 +77,7 @@ Optional:
 - `service` (Attributes) Service references a Service as a Backend. This is a mutually exclusive setting with 'Resource'. (see [below for nested schema](#nestedatt--spec--ingress--backend--service))
 
 <a id="nestedatt--spec--ingress--backend--resource"></a>
-### Nested Schema for `spec.ingress.backend.service`
+### Nested Schema for `spec.ingress.backend.resource`
 
 Required:
 
@@ -123,7 +123,7 @@ Optional:
 - `host` (String) Host is the fully qualified domain name of a network host, as defined by RFC 3986. Note the following deviations from the 'host' part of the URI as defined in RFC 3986: 1. IPs are not allowed. Currently an IngressRuleValue can only apply to the IP in the Spec of the parent Ingress. 2. The ':' delimiter is not respected because ports are not allowed. Currently the port of an Ingress is implicitly :80 for http and :443 for https. Both these may change in the future. Incoming requests are matched against the host before the IngressRuleValue. If the host is unspecified, the Ingress routes all traffic based on the specified IngressRuleValue.  Host can be 'precise' which is a domain name without the terminating dot of a network host (e.g. 'foo.bar.com') or 'wildcard', which is a domain name prefixed with a single wildcard label (e.g. '*.foo.com'). The wildcard character '*' must appear by itself as the first DNS label and matches only a single label. You cannot have a wildcard label by itself (e.g. Host == '*'). Requests will be matched against the Host field in the following way: 1. If Host is precise, the request matches this rule if the http host header is equal to Host. 2. If Host is a wildcard, then the request matches this rule if the http host header is to equal to the suffix (removing the first label) of the wildcard rule.
 
 <a id="nestedatt--spec--ingress--rules--http"></a>
-### Nested Schema for `spec.ingress.rules.host`
+### Nested Schema for `spec.ingress.rules.http`
 
 Required:
 
@@ -142,7 +142,7 @@ Optional:
 - `path` (String) Path is matched against the path of an incoming request. Currently it can contain characters disallowed from the conventional 'path' part of a URL as defined by RFC 3986. Paths must begin with a '/' and must be present when using PathType with value 'Exact' or 'Prefix'.
 
 <a id="nestedatt--spec--ingress--rules--host--paths--backend"></a>
-### Nested Schema for `spec.ingress.rules.host.paths.path`
+### Nested Schema for `spec.ingress.rules.host.paths.backend`
 
 Optional:
 
@@ -150,7 +150,7 @@ Optional:
 - `service` (Attributes) Service references a Service as a Backend. This is a mutually exclusive setting with 'Resource'. (see [below for nested schema](#nestedatt--spec--ingress--rules--host--paths--path--service))
 
 <a id="nestedatt--spec--ingress--rules--host--paths--path--resource"></a>
-### Nested Schema for `spec.ingress.rules.host.paths.path.service`
+### Nested Schema for `spec.ingress.rules.host.paths.path.resource`
 
 Required:
 

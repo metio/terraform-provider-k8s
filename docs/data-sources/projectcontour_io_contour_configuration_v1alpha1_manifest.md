@@ -115,7 +115,7 @@ Optional:
 - `upstream_tls` (Attributes) UpstreamTLS contains the TLS policy parameters for upstream connections (see [below for nested schema](#nestedatt--spec--envoy--cluster--upstream_tls))
 
 <a id="nestedatt--spec--envoy--cluster--circuit_breakers"></a>
-### Nested Schema for `spec.envoy.cluster.upstream_tls`
+### Nested Schema for `spec.envoy.cluster.circuit_breakers`
 
 Optional:
 
@@ -184,7 +184,7 @@ Optional:
 - `use_proxy_protocol` (Boolean) Use PROXY protocol for all listeners.Contour's default is false.
 
 <a id="nestedatt--spec--envoy--listener--socket_options"></a>
-### Nested Schema for `spec.envoy.listener.use_proxy_protocol`
+### Nested Schema for `spec.envoy.listener.socket_options`
 
 Optional:
 
@@ -193,7 +193,7 @@ Optional:
 
 
 <a id="nestedatt--spec--envoy--listener--tls"></a>
-### Nested Schema for `spec.envoy.listener.use_proxy_protocol`
+### Nested Schema for `spec.envoy.listener.tls`
 
 Optional:
 
@@ -443,7 +443,7 @@ Optional:
 - `disabled` (Boolean) Disabled configures the HTTPProxy to not usethe default global rate limit policy defined by the Contour configuration.
 
 <a id="nestedatt--spec--rate_limit_service--default_global_rate_limit_policy--descriptors"></a>
-### Nested Schema for `spec.rate_limit_service.default_global_rate_limit_policy.disabled`
+### Nested Schema for `spec.rate_limit_service.default_global_rate_limit_policy.descriptors`
 
 Optional:
 
@@ -460,7 +460,7 @@ Optional:
 - `request_header_value_match` (Attributes) RequestHeaderValueMatch defines a descriptor entry that's populatedif the request's headers match a set of 1+ match criteria. Thedescriptor key is 'header_match', and the descriptor value is static. (see [below for nested schema](#nestedatt--spec--rate_limit_service--default_global_rate_limit_policy--disabled--entries--request_header_value_match))
 
 <a id="nestedatt--spec--rate_limit_service--default_global_rate_limit_policy--disabled--entries--generic_key"></a>
-### Nested Schema for `spec.rate_limit_service.default_global_rate_limit_policy.disabled.entries.request_header_value_match`
+### Nested Schema for `spec.rate_limit_service.default_global_rate_limit_policy.disabled.entries.generic_key`
 
 Optional:
 
@@ -469,7 +469,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rate_limit_service--default_global_rate_limit_policy--disabled--entries--request_header"></a>
-### Nested Schema for `spec.rate_limit_service.default_global_rate_limit_policy.disabled.entries.request_header_value_match`
+### Nested Schema for `spec.rate_limit_service.default_global_rate_limit_policy.disabled.entries.request_header`
 
 Optional:
 
@@ -487,7 +487,7 @@ Optional:
 - `value` (String) Value defines the value of the descriptor entry.
 
 <a id="nestedatt--spec--rate_limit_service--default_global_rate_limit_policy--disabled--entries--request_header_value_match--headers"></a>
-### Nested Schema for `spec.rate_limit_service.default_global_rate_limit_policy.disabled.entries.request_header_value_match.value`
+### Nested Schema for `spec.rate_limit_service.default_global_rate_limit_policy.disabled.entries.request_header_value_match.headers`
 
 Required:
 

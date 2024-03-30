@@ -130,7 +130,7 @@ Optional:
 - `items` (List of String)
 
 <a id="nestedatt--spec--distribution_config--cache_behaviors--items--allowed_methods--cached_methods"></a>
-### Nested Schema for `spec.distribution_config.cache_behaviors.items.allowed_methods.items`
+### Nested Schema for `spec.distribution_config.cache_behaviors.items.allowed_methods.cached_methods`
 
 Optional:
 
@@ -149,7 +149,7 @@ Optional:
 - `query_string_cache_keys` (Attributes) This field is deprecated. We recommend that you use a cache policy or anorigin request policy instead of this field.If you want to include query strings in the cache key, use QueryStringsConfigin a cache policy. See CachePolicy.If you want to send query strings to the origin but not include them in thecache key, use QueryStringsConfig in an origin request policy. See OriginRequestPolicy.A complex type that contains information about the query string parametersthat you want CloudFront to use for caching for a cache behavior. (see [below for nested schema](#nestedatt--spec--distribution_config--cache_behaviors--items--forwarded_values--query_string_cache_keys))
 
 <a id="nestedatt--spec--distribution_config--cache_behaviors--items--forwarded_values--cookies"></a>
-### Nested Schema for `spec.distribution_config.cache_behaviors.items.forwarded_values.query_string_cache_keys`
+### Nested Schema for `spec.distribution_config.cache_behaviors.items.forwarded_values.cookies`
 
 Optional:
 
@@ -166,7 +166,7 @@ Optional:
 
 
 <a id="nestedatt--spec--distribution_config--cache_behaviors--items--forwarded_values--headers"></a>
-### Nested Schema for `spec.distribution_config.cache_behaviors.items.forwarded_values.query_string_cache_keys`
+### Nested Schema for `spec.distribution_config.cache_behaviors.items.forwarded_values.headers`
 
 Optional:
 
@@ -281,7 +281,7 @@ Optional:
 - `viewer_protocol_policy` (String)
 
 <a id="nestedatt--spec--distribution_config--default_cache_behavior--allowed_methods"></a>
-### Nested Schema for `spec.distribution_config.default_cache_behavior.viewer_protocol_policy`
+### Nested Schema for `spec.distribution_config.default_cache_behavior.allowed_methods`
 
 Optional:
 
@@ -298,7 +298,7 @@ Optional:
 
 
 <a id="nestedatt--spec--distribution_config--default_cache_behavior--forwarded_values"></a>
-### Nested Schema for `spec.distribution_config.default_cache_behavior.viewer_protocol_policy`
+### Nested Schema for `spec.distribution_config.default_cache_behavior.forwarded_values`
 
 Optional:
 
@@ -342,7 +342,7 @@ Optional:
 
 
 <a id="nestedatt--spec--distribution_config--default_cache_behavior--function_associations"></a>
-### Nested Schema for `spec.distribution_config.default_cache_behavior.viewer_protocol_policy`
+### Nested Schema for `spec.distribution_config.default_cache_behavior.function_associations`
 
 Optional:
 
@@ -359,7 +359,7 @@ Optional:
 
 
 <a id="nestedatt--spec--distribution_config--default_cache_behavior--lambda_function_associations"></a>
-### Nested Schema for `spec.distribution_config.default_cache_behavior.viewer_protocol_policy`
+### Nested Schema for `spec.distribution_config.default_cache_behavior.lambda_function_associations`
 
 Optional:
 
@@ -377,7 +377,7 @@ Optional:
 
 
 <a id="nestedatt--spec--distribution_config--default_cache_behavior--trusted_key_groups"></a>
-### Nested Schema for `spec.distribution_config.default_cache_behavior.viewer_protocol_policy`
+### Nested Schema for `spec.distribution_config.default_cache_behavior.trusted_key_groups`
 
 Optional:
 
@@ -386,7 +386,7 @@ Optional:
 
 
 <a id="nestedatt--spec--distribution_config--default_cache_behavior--trusted_signers"></a>
-### Nested Schema for `spec.distribution_config.default_cache_behavior.viewer_protocol_policy`
+### Nested Schema for `spec.distribution_config.default_cache_behavior.trusted_signers`
 
 Optional:
 
@@ -568,7 +568,7 @@ Optional:
 - `ssl_support_method` (String)
 
 <a id="nestedatt--spec--distribution_config--viewer_certificate--acm_certificate_ref"></a>
-### Nested Schema for `spec.distribution_config.viewer_certificate.ssl_support_method`
+### Nested Schema for `spec.distribution_config.viewer_certificate.acm_certificate_ref`
 
 Optional:
 

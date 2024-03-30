@@ -98,7 +98,7 @@ Optional:
 - `max_age` (String) Specifies how long the results of a preflight request can be cached.
 
 <a id="nestedatt--spec--http--cors_policy--allow_origins"></a>
-### Nested Schema for `spec.http.cors_policy.max_age`
+### Nested Schema for `spec.http.cors_policy.allow_origins`
 
 Optional:
 
@@ -147,7 +147,7 @@ Optional:
 - `delay` (Attributes) Delay requests before forwarding, emulating various failures such as network issues, overloaded upstream service, etc. (see [below for nested schema](#nestedatt--spec--http--fault--delay))
 
 <a id="nestedatt--spec--http--fault--abort"></a>
-### Nested Schema for `spec.http.fault.delay`
+### Nested Schema for `spec.http.fault.abort`
 
 Optional:
 
@@ -194,7 +194,7 @@ Optional:
 - `response` (Attributes) (see [below for nested schema](#nestedatt--spec--http--headers--response))
 
 <a id="nestedatt--spec--http--headers--request"></a>
-### Nested Schema for `spec.http.headers.response`
+### Nested Schema for `spec.http.headers.request`
 
 Optional:
 
@@ -235,7 +235,7 @@ Optional:
 - `without_headers` (Attributes) withoutHeader has the same syntax with the header, but has opposite meaning. (see [below for nested schema](#nestedatt--spec--http--match--without_headers))
 
 <a id="nestedatt--spec--http--match--authority"></a>
-### Nested Schema for `spec.http.match.without_headers`
+### Nested Schema for `spec.http.match.authority`
 
 Optional:
 
@@ -245,7 +245,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http--match--headers"></a>
-### Nested Schema for `spec.http.match.without_headers`
+### Nested Schema for `spec.http.match.headers`
 
 Optional:
 
@@ -255,7 +255,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http--match--method"></a>
-### Nested Schema for `spec.http.match.without_headers`
+### Nested Schema for `spec.http.match.method`
 
 Optional:
 
@@ -265,7 +265,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http--match--query_params"></a>
-### Nested Schema for `spec.http.match.without_headers`
+### Nested Schema for `spec.http.match.query_params`
 
 Optional:
 
@@ -275,7 +275,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http--match--scheme"></a>
-### Nested Schema for `spec.http.match.without_headers`
+### Nested Schema for `spec.http.match.scheme`
 
 Optional:
 
@@ -285,7 +285,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http--match--uri"></a>
-### Nested Schema for `spec.http.match.without_headers`
+### Nested Schema for `spec.http.match.uri`
 
 Optional:
 
@@ -318,7 +318,7 @@ Optional:
 - `subset` (String) The name of a subset within the service.
 
 <a id="nestedatt--spec--http--mirror--port"></a>
-### Nested Schema for `spec.http.mirror.subset`
+### Nested Schema for `spec.http.mirror.port`
 
 Optional:
 
@@ -346,7 +346,7 @@ Optional:
 - `percentage` (Attributes) Percentage of the traffic to be mirrored by the 'destination' field. (see [below for nested schema](#nestedatt--spec--http--mirrors--percentage))
 
 <a id="nestedatt--spec--http--mirrors--destination"></a>
-### Nested Schema for `spec.http.mirrors.percentage`
+### Nested Schema for `spec.http.mirrors.destination`
 
 Required:
 
@@ -431,7 +431,7 @@ Optional:
 - `weight` (Number) Weight specifies the relative proportion of traffic to be forwarded to the destination.
 
 <a id="nestedatt--spec--http--route--destination"></a>
-### Nested Schema for `spec.http.route.weight`
+### Nested Schema for `spec.http.route.destination`
 
 Required:
 
@@ -452,7 +452,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http--route--headers"></a>
-### Nested Schema for `spec.http.route.weight`
+### Nested Schema for `spec.http.route.headers`
 
 Optional:
 
@@ -515,7 +515,7 @@ Optional:
 - `weight` (Number) Weight specifies the relative proportion of traffic to be forwarded to the destination.
 
 <a id="nestedatt--spec--tcp--route--destination"></a>
-### Nested Schema for `spec.tcp.route.weight`
+### Nested Schema for `spec.tcp.route.destination`
 
 Required:
 
@@ -576,7 +576,7 @@ Optional:
 - `weight` (Number) Weight specifies the relative proportion of traffic to be forwarded to the destination.
 
 <a id="nestedatt--spec--tls--route--destination"></a>
-### Nested Schema for `spec.tls.route.weight`
+### Nested Schema for `spec.tls.route.destination`
 
 Required:
 

@@ -112,7 +112,7 @@ Optional:
 - `labels` (Map of String) Labels are the metadata.labels of the ServiceMonitor. When combined with spec.serviceMonitorSelector.matchLabels on your prometheus instance, the service monitor will automatically be picked up. Default: k8s-app=tigera-prometheus
 
 <a id="nestedatt--spec--external_prometheus--service_monitor--endpoints"></a>
-### Nested Schema for `spec.external_prometheus.service_monitor.labels`
+### Nested Schema for `spec.external_prometheus.service_monitor.endpoints`
 
 Optional:
 
@@ -212,7 +212,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--prometheus--spec--common_prometheus_fields--containers--resources--claims"></a>
-### Nested Schema for `spec.prometheus.spec.common_prometheus_fields.containers.resources.requests`
+### Nested Schema for `spec.prometheus.spec.common_prometheus_fields.containers.resources.claims`
 
 Required:
 
@@ -231,7 +231,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--prometheus--spec--common_prometheus_fields--resources--claims"></a>
-### Nested Schema for `spec.prometheus.spec.common_prometheus_fields.resources.requests`
+### Nested Schema for `spec.prometheus.spec.common_prometheus_fields.resources.claims`
 
 Required:
 

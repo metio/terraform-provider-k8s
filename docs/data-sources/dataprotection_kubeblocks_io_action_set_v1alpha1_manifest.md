@@ -106,7 +106,7 @@ Optional:
 - `job` (Attributes) Specifies that the action should be executed by a Kubernetes Job. (see [below for nested schema](#nestedatt--spec--backup--post_backup--job))
 
 <a id="nestedatt--spec--backup--post_backup--exec"></a>
-### Nested Schema for `spec.backup.post_backup.job`
+### Nested Schema for `spec.backup.post_backup.exec`
 
 Required:
 
@@ -143,7 +143,7 @@ Optional:
 - `job` (Attributes) Specifies that the action should be executed by a Kubernetes Job. (see [below for nested schema](#nestedatt--spec--backup--pre_backup--job))
 
 <a id="nestedatt--spec--backup--pre_backup--exec"></a>
-### Nested Schema for `spec.backup.pre_backup.job`
+### Nested Schema for `spec.backup.pre_backup.exec`
 
 Required:
 
@@ -198,7 +198,7 @@ Optional:
 - `job` (Attributes) Specifies that the action should be executed by a Kubernetes Job. (see [below for nested schema](#nestedatt--spec--restore--post_ready--job))
 
 <a id="nestedatt--spec--restore--post_ready--exec"></a>
-### Nested Schema for `spec.restore.post_ready.job`
+### Nested Schema for `spec.restore.post_ready.exec`
 
 Required:
 

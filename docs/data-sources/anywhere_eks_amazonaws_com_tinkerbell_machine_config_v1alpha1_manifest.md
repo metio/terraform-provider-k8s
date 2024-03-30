@@ -84,7 +84,7 @@ Optional:
 - `kubernetes` (Attributes) Kubernetes defines the Kubernetes settings on the host OS. (see [below for nested schema](#nestedatt--spec--host_os_configuration--bottlerocket_configuration--kubernetes))
 
 <a id="nestedatt--spec--host_os_configuration--bottlerocket_configuration--boot"></a>
-### Nested Schema for `spec.host_os_configuration.bottlerocket_configuration.kubernetes`
+### Nested Schema for `spec.host_os_configuration.bottlerocket_configuration.boot`
 
 Optional:
 
@@ -92,7 +92,7 @@ Optional:
 
 
 <a id="nestedatt--spec--host_os_configuration--bottlerocket_configuration--kernel"></a>
-### Nested Schema for `spec.host_os_configuration.bottlerocket_configuration.kubernetes`
+### Nested Schema for `spec.host_os_configuration.bottlerocket_configuration.kernel`
 
 Optional:
 

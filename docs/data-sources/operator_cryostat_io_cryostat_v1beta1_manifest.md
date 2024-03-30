@@ -131,7 +131,7 @@ Optional:
 - `labels` (Map of String) Labels to add to the Ingress or Route during its creation. The label with key 'app' is reserved for use by the operator.
 
 <a id="nestedatt--spec--network_options--command_config--ingress_spec"></a>
-### Nested Schema for `spec.network_options.command_config.labels`
+### Nested Schema for `spec.network_options.command_config.ingress_spec`
 
 Optional:
 
@@ -149,7 +149,7 @@ Optional:
 - `service` (Attributes) Service references a Service as a Backend. This is a mutually exclusive setting with 'Resource'. (see [below for nested schema](#nestedatt--spec--network_options--command_config--labels--default_backend--service))
 
 <a id="nestedatt--spec--network_options--command_config--labels--default_backend--resource"></a>
-### Nested Schema for `spec.network_options.command_config.labels.default_backend.service`
+### Nested Schema for `spec.network_options.command_config.labels.default_backend.resource`
 
 Required:
 
@@ -211,7 +211,7 @@ Optional:
 - `path` (String) Path is matched against the path of an incoming request. Currently it can contain characters disallowed from the conventional 'path' part of a URL as defined by RFC 3986. Paths must begin with a '/' and must be present when using PathType with value 'Exact' or 'Prefix'.
 
 <a id="nestedatt--spec--network_options--command_config--labels--rules--http--paths--backend"></a>
-### Nested Schema for `spec.network_options.command_config.labels.rules.http.paths.path`
+### Nested Schema for `spec.network_options.command_config.labels.rules.http.paths.backend`
 
 Optional:
 
@@ -277,7 +277,7 @@ Optional:
 - `labels` (Map of String) Labels to add to the Ingress or Route during its creation. The label with key 'app' is reserved for use by the operator.
 
 <a id="nestedatt--spec--network_options--core_config--ingress_spec"></a>
-### Nested Schema for `spec.network_options.core_config.labels`
+### Nested Schema for `spec.network_options.core_config.ingress_spec`
 
 Optional:
 
@@ -295,7 +295,7 @@ Optional:
 - `service` (Attributes) Service references a Service as a Backend. This is a mutually exclusive setting with 'Resource'. (see [below for nested schema](#nestedatt--spec--network_options--core_config--labels--default_backend--service))
 
 <a id="nestedatt--spec--network_options--core_config--labels--default_backend--resource"></a>
-### Nested Schema for `spec.network_options.core_config.labels.default_backend.service`
+### Nested Schema for `spec.network_options.core_config.labels.default_backend.resource`
 
 Required:
 
@@ -357,7 +357,7 @@ Optional:
 - `path` (String) Path is matched against the path of an incoming request. Currently it can contain characters disallowed from the conventional 'path' part of a URL as defined by RFC 3986. Paths must begin with a '/' and must be present when using PathType with value 'Exact' or 'Prefix'.
 
 <a id="nestedatt--spec--network_options--core_config--labels--rules--http--paths--backend"></a>
-### Nested Schema for `spec.network_options.core_config.labels.rules.http.paths.path`
+### Nested Schema for `spec.network_options.core_config.labels.rules.http.paths.backend`
 
 Optional:
 
@@ -423,7 +423,7 @@ Optional:
 - `labels` (Map of String) Labels to add to the Ingress or Route during its creation. The label with key 'app' is reserved for use by the operator.
 
 <a id="nestedatt--spec--network_options--grafana_config--ingress_spec"></a>
-### Nested Schema for `spec.network_options.grafana_config.labels`
+### Nested Schema for `spec.network_options.grafana_config.ingress_spec`
 
 Optional:
 
@@ -441,7 +441,7 @@ Optional:
 - `service` (Attributes) Service references a Service as a Backend. This is a mutually exclusive setting with 'Resource'. (see [below for nested schema](#nestedatt--spec--network_options--grafana_config--labels--default_backend--service))
 
 <a id="nestedatt--spec--network_options--grafana_config--labels--default_backend--resource"></a>
-### Nested Schema for `spec.network_options.grafana_config.labels.default_backend.service`
+### Nested Schema for `spec.network_options.grafana_config.labels.default_backend.resource`
 
 Required:
 
@@ -503,7 +503,7 @@ Optional:
 - `path` (String) Path is matched against the path of an incoming request. Currently it can contain characters disallowed from the conventional 'path' part of a URL as defined by RFC 3986. Paths must begin with a '/' and must be present when using PathType with value 'Exact' or 'Prefix'.
 
 <a id="nestedatt--spec--network_options--grafana_config--labels--rules--http--paths--backend"></a>
-### Nested Schema for `spec.network_options.grafana_config.labels.rules.http.paths.path`
+### Nested Schema for `spec.network_options.grafana_config.labels.rules.http.paths.backend`
 
 Optional:
 
@@ -608,7 +608,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--report_options--resources--claims"></a>
-### Nested Schema for `spec.report_options.resources.requests`
+### Nested Schema for `spec.report_options.resources.claims`
 
 Required:
 
@@ -626,7 +626,7 @@ Optional:
 - `tolerations` (Attributes List) Tolerations to allow scheduling of Cryostat pods to tainted nodes. See: https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/ (see [below for nested schema](#nestedatt--spec--report_options--scheduling_options--tolerations))
 
 <a id="nestedatt--spec--report_options--scheduling_options--affinity"></a>
-### Nested Schema for `spec.report_options.scheduling_options.tolerations`
+### Nested Schema for `spec.report_options.scheduling_options.affinity`
 
 Optional:
 
@@ -643,7 +643,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--report_options--scheduling_options--tolerations--node_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--report_options--scheduling_options--tolerations--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.report_options.scheduling_options.tolerations.node_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.report_options.scheduling_options.tolerations.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -651,7 +651,7 @@ Required:
 - `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
 
 <a id="nestedatt--spec--report_options--scheduling_options--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.report_options.scheduling_options.tolerations.node_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.report_options.scheduling_options.tolerations.node_affinity.required_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -659,7 +659,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--report_options--scheduling_options--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--report_options--scheduling_options--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.report_options.scheduling_options.tolerations.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.report_options.scheduling_options.tolerations.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -702,7 +702,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--report_options--scheduling_options--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--report_options--scheduling_options--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.report_options.scheduling_options.tolerations.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.report_options.scheduling_options.tolerations.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -739,7 +739,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--report_options--scheduling_options--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--report_options--scheduling_options--tolerations--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -747,7 +747,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--report_options--scheduling_options--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -760,7 +760,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--report_options--scheduling_options--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -782,7 +782,7 @@ Optional:
 
 
 <a id="nestedatt--spec--report_options--scheduling_options--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -819,7 +819,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--report_options--scheduling_options--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -827,7 +827,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--report_options--scheduling_options--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -841,7 +841,7 @@ Optional:
 
 
 <a id="nestedatt--spec--report_options--scheduling_options--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -849,7 +849,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--report_options--scheduling_options--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -873,7 +873,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--report_options--scheduling_options--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--report_options--scheduling_options--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -881,7 +881,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--report_options--scheduling_options--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -894,7 +894,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--report_options--scheduling_options--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -916,7 +916,7 @@ Optional:
 
 
 <a id="nestedatt--spec--report_options--scheduling_options--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -953,7 +953,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--report_options--scheduling_options--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -961,7 +961,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--report_options--scheduling_options--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -975,7 +975,7 @@ Optional:
 
 
 <a id="nestedatt--spec--report_options--scheduling_options--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -983,7 +983,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--report_options--scheduling_options--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.report_options.scheduling_options.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -1021,7 +1021,7 @@ Optional:
 - `reports_security_context` (Attributes) Security Context to apply to the Cryostat report generator container. (see [below for nested schema](#nestedatt--spec--report_options--security_options--reports_security_context))
 
 <a id="nestedatt--spec--report_options--security_options--pod_security_context"></a>
-### Nested Schema for `spec.report_options.security_options.reports_security_context`
+### Nested Schema for `spec.report_options.security_options.pod_security_context`
 
 Optional:
 
@@ -1162,7 +1162,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--resources--core_resources--claims"></a>
-### Nested Schema for `spec.resources.core_resources.requests`
+### Nested Schema for `spec.resources.core_resources.claims`
 
 Required:
 
@@ -1180,7 +1180,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--resources--data_source_resources--claims"></a>
-### Nested Schema for `spec.resources.data_source_resources.requests`
+### Nested Schema for `spec.resources.data_source_resources.claims`
 
 Required:
 
@@ -1198,7 +1198,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--resources--grafana_resources--claims"></a>
-### Nested Schema for `spec.resources.grafana_resources.requests`
+### Nested Schema for `spec.resources.grafana_resources.claims`
 
 Required:
 
@@ -1226,7 +1226,7 @@ Optional:
 - `pod_anti_affinity` (Attributes) Pod anti-affinity scheduling rules for a Cryostat pod. See: https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#PodAntiAffinity (see [below for nested schema](#nestedatt--spec--scheduling_options--affinity--pod_anti_affinity))
 
 <a id="nestedatt--spec--scheduling_options--affinity--node_affinity"></a>
-### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity`
+### Nested Schema for `spec.scheduling_options.affinity.node_affinity`
 
 Optional:
 
@@ -1242,7 +1242,7 @@ Required:
 - `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
 
 <a id="nestedatt--spec--scheduling_options--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -1250,7 +1250,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--scheduling_options--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--scheduling_options--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -1293,7 +1293,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--scheduling_options--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--scheduling_options--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -1322,7 +1322,7 @@ Optional:
 
 
 <a id="nestedatt--spec--scheduling_options--affinity--pod_affinity"></a>
-### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity`
+### Nested Schema for `spec.scheduling_options.affinity.pod_affinity`
 
 Optional:
 
@@ -1338,7 +1338,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--scheduling_options--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -1351,7 +1351,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--scheduling_options--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -1359,7 +1359,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--scheduling_options--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -1373,7 +1373,7 @@ Optional:
 
 
 <a id="nestedatt--spec--scheduling_options--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -1381,7 +1381,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--scheduling_options--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -1410,7 +1410,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--scheduling_options--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -1418,7 +1418,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--scheduling_options--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -1432,7 +1432,7 @@ Optional:
 
 
 <a id="nestedatt--spec--scheduling_options--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -1440,7 +1440,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--scheduling_options--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -1472,7 +1472,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--scheduling_options--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -1485,7 +1485,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--scheduling_options--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -1493,7 +1493,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--scheduling_options--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -1507,7 +1507,7 @@ Optional:
 
 
 <a id="nestedatt--spec--scheduling_options--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -1515,7 +1515,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--scheduling_options--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -1544,7 +1544,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--scheduling_options--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -1552,7 +1552,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--scheduling_options--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -1566,7 +1566,7 @@ Optional:
 
 
 <a id="nestedatt--spec--scheduling_options--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -1574,7 +1574,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--scheduling_options--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.scheduling_options.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -1631,7 +1631,7 @@ Optional:
 - `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--security_options--core_security_context--windows_options))
 
 <a id="nestedatt--spec--security_options--core_security_context--capabilities"></a>
-### Nested Schema for `spec.security_options.core_security_context.windows_options`
+### Nested Schema for `spec.security_options.core_security_context.capabilities`
 
 Optional:
 
@@ -1640,7 +1640,7 @@ Optional:
 
 
 <a id="nestedatt--spec--security_options--core_security_context--se_linux_options"></a>
-### Nested Schema for `spec.security_options.core_security_context.windows_options`
+### Nested Schema for `spec.security_options.core_security_context.se_linux_options`
 
 Optional:
 
@@ -1651,7 +1651,7 @@ Optional:
 
 
 <a id="nestedatt--spec--security_options--core_security_context--seccomp_profile"></a>
-### Nested Schema for `spec.security_options.core_security_context.windows_options`
+### Nested Schema for `spec.security_options.core_security_context.seccomp_profile`
 
 Required:
 
@@ -1692,7 +1692,7 @@ Optional:
 - `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--security_options--data_source_security_context--windows_options))
 
 <a id="nestedatt--spec--security_options--data_source_security_context--capabilities"></a>
-### Nested Schema for `spec.security_options.data_source_security_context.windows_options`
+### Nested Schema for `spec.security_options.data_source_security_context.capabilities`
 
 Optional:
 
@@ -1701,7 +1701,7 @@ Optional:
 
 
 <a id="nestedatt--spec--security_options--data_source_security_context--se_linux_options"></a>
-### Nested Schema for `spec.security_options.data_source_security_context.windows_options`
+### Nested Schema for `spec.security_options.data_source_security_context.se_linux_options`
 
 Optional:
 
@@ -1712,7 +1712,7 @@ Optional:
 
 
 <a id="nestedatt--spec--security_options--data_source_security_context--seccomp_profile"></a>
-### Nested Schema for `spec.security_options.data_source_security_context.windows_options`
+### Nested Schema for `spec.security_options.data_source_security_context.seccomp_profile`
 
 Required:
 
@@ -1753,7 +1753,7 @@ Optional:
 - `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--security_options--grafana_security_context--windows_options))
 
 <a id="nestedatt--spec--security_options--grafana_security_context--capabilities"></a>
-### Nested Schema for `spec.security_options.grafana_security_context.windows_options`
+### Nested Schema for `spec.security_options.grafana_security_context.capabilities`
 
 Optional:
 
@@ -1762,7 +1762,7 @@ Optional:
 
 
 <a id="nestedatt--spec--security_options--grafana_security_context--se_linux_options"></a>
-### Nested Schema for `spec.security_options.grafana_security_context.windows_options`
+### Nested Schema for `spec.security_options.grafana_security_context.se_linux_options`
 
 Optional:
 
@@ -1773,7 +1773,7 @@ Optional:
 
 
 <a id="nestedatt--spec--security_options--grafana_security_context--seccomp_profile"></a>
-### Nested Schema for `spec.security_options.grafana_security_context.windows_options`
+### Nested Schema for `spec.security_options.grafana_security_context.seccomp_profile`
 
 Required:
 
@@ -1813,7 +1813,7 @@ Optional:
 - `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--security_options--pod_security_context--windows_options))
 
 <a id="nestedatt--spec--security_options--pod_security_context--se_linux_options"></a>
-### Nested Schema for `spec.security_options.pod_security_context.windows_options`
+### Nested Schema for `spec.security_options.pod_security_context.se_linux_options`
 
 Optional:
 
@@ -1824,7 +1824,7 @@ Optional:
 
 
 <a id="nestedatt--spec--security_options--pod_security_context--seccomp_profile"></a>
-### Nested Schema for `spec.security_options.pod_security_context.windows_options`
+### Nested Schema for `spec.security_options.pod_security_context.seccomp_profile`
 
 Required:
 
@@ -1836,7 +1836,7 @@ Optional:
 
 
 <a id="nestedatt--spec--security_options--pod_security_context--sysctls"></a>
-### Nested Schema for `spec.security_options.pod_security_context.windows_options`
+### Nested Schema for `spec.security_options.pod_security_context.sysctls`
 
 Required:
 
@@ -1979,7 +1979,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--storage_options--pvc--spec--resources--claims"></a>
-### Nested Schema for `spec.storage_options.pvc.spec.resources.requests`
+### Nested Schema for `spec.storage_options.pvc.spec.resources.claims`
 
 Required:
 
@@ -1996,7 +1996,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--storage_options--pvc--spec--selector--match_expressions"></a>
-### Nested Schema for `spec.storage_options.pvc.spec.selector.match_labels`
+### Nested Schema for `spec.storage_options.pvc.spec.selector.match_expressions`
 
 Required:
 

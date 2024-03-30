@@ -124,7 +124,7 @@ Optional:
 - `webhook` (Attributes) Configure an external webhook based DNS01 challenge solver to manageDNS01 challenge records. (see [below for nested schema](#nestedatt--spec--solver--dns01--webhook))
 
 <a id="nestedatt--spec--solver--dns01--acme_dns"></a>
-### Nested Schema for `spec.solver.dns01.webhook`
+### Nested Schema for `spec.solver.dns01.acme_dns`
 
 Required:
 
@@ -145,7 +145,7 @@ Optional:
 
 
 <a id="nestedatt--spec--solver--dns01--akamai"></a>
-### Nested Schema for `spec.solver.dns01.webhook`
+### Nested Schema for `spec.solver.dns01.akamai`
 
 Required:
 
@@ -192,7 +192,7 @@ Optional:
 
 
 <a id="nestedatt--spec--solver--dns01--azure_dns"></a>
-### Nested Schema for `spec.solver.dns01.webhook`
+### Nested Schema for `spec.solver.dns01.azure_dns`
 
 Required:
 
@@ -231,7 +231,7 @@ Optional:
 
 
 <a id="nestedatt--spec--solver--dns01--cloud_dns"></a>
-### Nested Schema for `spec.solver.dns01.webhook`
+### Nested Schema for `spec.solver.dns01.cloud_dns`
 
 Required:
 
@@ -256,7 +256,7 @@ Optional:
 
 
 <a id="nestedatt--spec--solver--dns01--cloudflare"></a>
-### Nested Schema for `spec.solver.dns01.webhook`
+### Nested Schema for `spec.solver.dns01.cloudflare`
 
 Optional:
 
@@ -290,7 +290,7 @@ Optional:
 
 
 <a id="nestedatt--spec--solver--dns01--digitalocean"></a>
-### Nested Schema for `spec.solver.dns01.webhook`
+### Nested Schema for `spec.solver.dns01.digitalocean`
 
 Required:
 
@@ -310,7 +310,7 @@ Optional:
 
 
 <a id="nestedatt--spec--solver--dns01--rfc2136"></a>
-### Nested Schema for `spec.solver.dns01.webhook`
+### Nested Schema for `spec.solver.dns01.rfc2136`
 
 Required:
 
@@ -336,7 +336,7 @@ Optional:
 
 
 <a id="nestedatt--spec--solver--dns01--route53"></a>
-### Nested Schema for `spec.solver.dns01.webhook`
+### Nested Schema for `spec.solver.dns01.route53`
 
 Required:
 
@@ -398,7 +398,7 @@ Optional:
 - `ingress` (Attributes) The ingress based HTTP01 challenge solver will solve challenges bycreating or modifying Ingress resources in order to route requests for'/.well-known/acme-challenge/XYZ' to 'challenge solver' pods that areprovisioned by cert-manager for each Challenge to be completed. (see [below for nested schema](#nestedatt--spec--solver--http01--ingress))
 
 <a id="nestedatt--spec--solver--http01--gateway_http_route"></a>
-### Nested Schema for `spec.solver.http01.ingress`
+### Nested Schema for `spec.solver.http01.gateway_http_route`
 
 Optional:
 
@@ -461,7 +461,7 @@ Optional:
 - `spec` (Attributes) PodSpec defines overrides for the HTTP01 challenge solver pod.Check ACMEChallengeSolverHTTP01IngressPodSpec to find out currently supported fields.All other fields will be ignored. (see [below for nested schema](#nestedatt--spec--solver--http01--ingress--pod_template--spec))
 
 <a id="nestedatt--spec--solver--http01--ingress--pod_template--metadata"></a>
-### Nested Schema for `spec.solver.http01.ingress.pod_template.spec`
+### Nested Schema for `spec.solver.http01.ingress.pod_template.metadata`
 
 Optional:
 
@@ -482,7 +482,7 @@ Optional:
 - `tolerations` (Attributes List) If specified, the pod's tolerations. (see [below for nested schema](#nestedatt--spec--solver--http01--ingress--pod_template--spec--tolerations))
 
 <a id="nestedatt--spec--solver--http01--ingress--pod_template--spec--affinity"></a>
-### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations`
+### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.affinity`
 
 Optional:
 
@@ -491,7 +491,7 @@ Optional:
 - `pod_anti_affinity` (Attributes) Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--solver--http01--ingress--pod_template--spec--tolerations--pod_anti_affinity))
 
 <a id="nestedatt--spec--solver--http01--ingress--pod_template--spec--tolerations--node_affinity"></a>
-### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity`
+### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.node_affinity`
 
 Optional:
 
@@ -507,7 +507,7 @@ Required:
 - `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
 
 <a id="nestedatt--spec--solver--http01--ingress--pod_template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -515,7 +515,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--solver--http01--ingress--pod_template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--solver--http01--ingress--pod_template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -558,7 +558,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--solver--http01--ingress--pod_template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--solver--http01--ingress--pod_template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -587,7 +587,7 @@ Optional:
 
 
 <a id="nestedatt--spec--solver--http01--ingress--pod_template--spec--tolerations--pod_affinity"></a>
-### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity`
+### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_affinity`
 
 Optional:
 
@@ -603,7 +603,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
 <a id="nestedatt--spec--solver--http01--ingress--pod_template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -618,7 +618,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--solver--http01--ingress--pod_template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -626,7 +626,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--solver--http01--ingress--pod_template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -640,7 +640,7 @@ Optional:
 
 
 <a id="nestedatt--spec--solver--http01--ingress--pod_template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -648,7 +648,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--solver--http01--ingress--pod_template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -679,7 +679,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--solver--http01--ingress--pod_template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -687,7 +687,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--solver--http01--ingress--pod_template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -701,7 +701,7 @@ Optional:
 
 
 <a id="nestedatt--spec--solver--http01--ingress--pod_template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -709,7 +709,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--solver--http01--ingress--pod_template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -741,7 +741,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
 <a id="nestedatt--spec--solver--http01--ingress--pod_template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -756,7 +756,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--solver--http01--ingress--pod_template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -764,7 +764,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--solver--http01--ingress--pod_template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -778,7 +778,7 @@ Optional:
 
 
 <a id="nestedatt--spec--solver--http01--ingress--pod_template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -786,7 +786,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--solver--http01--ingress--pod_template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -817,7 +817,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--solver--http01--ingress--pod_template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -825,7 +825,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--solver--http01--ingress--pod_template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -839,7 +839,7 @@ Optional:
 
 
 <a id="nestedatt--spec--solver--http01--ingress--pod_template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -847,7 +847,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--solver--http01--ingress--pod_template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -864,7 +864,7 @@ Optional:
 
 
 <a id="nestedatt--spec--solver--http01--ingress--pod_template--spec--image_pull_secrets"></a>
-### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.tolerations`
+### Nested Schema for `spec.solver.http01.ingress.pod_template.spec.image_pull_secrets`
 
 Optional:
 

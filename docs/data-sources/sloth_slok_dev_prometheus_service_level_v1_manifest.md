@@ -89,7 +89,7 @@ Optional:
 - `ticket_alert` (Attributes) TicketAlert alert refers to the warning alert (check multiwindow-multiburn alerts). (see [below for nested schema](#nestedatt--spec--slos--alerting--ticket_alert))
 
 <a id="nestedatt--spec--slos--alerting--page_alert"></a>
-### Nested Schema for `spec.slos.alerting.ticket_alert`
+### Nested Schema for `spec.slos.alerting.page_alert`
 
 Optional:
 
@@ -119,7 +119,7 @@ Optional:
 - `raw` (Attributes) Raw is the raw SLI type. (see [below for nested schema](#nestedatt--spec--slos--sli--raw))
 
 <a id="nestedatt--spec--slos--sli--events"></a>
-### Nested Schema for `spec.slos.sli.raw`
+### Nested Schema for `spec.slos.sli.events`
 
 Required:
 
@@ -128,7 +128,7 @@ Required:
 
 
 <a id="nestedatt--spec--slos--sli--plugin"></a>
-### Nested Schema for `spec.slos.sli.raw`
+### Nested Schema for `spec.slos.sli.plugin`
 
 Required:
 

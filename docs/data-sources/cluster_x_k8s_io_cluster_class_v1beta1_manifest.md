@@ -104,7 +104,7 @@ Optional:
 - `unhealthy_range` (String) Any further remediation is only allowed if the number of machines selected by 'selector' as not healthyis within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy.Eg. '[3-5]' - This means that remediation will be allowed only when:(a) there are at least 3 unhealthy machines (and)(b) there are at most 5 unhealthy machines
 
 <a id="nestedatt--spec--control_plane--machine_health_check--remediation_template"></a>
-### Nested Schema for `spec.control_plane.machine_health_check.unhealthy_range`
+### Nested Schema for `spec.control_plane.machine_health_check.remediation_template`
 
 Optional:
 
@@ -118,7 +118,7 @@ Optional:
 
 
 <a id="nestedatt--spec--control_plane--machine_health_check--unhealthy_conditions"></a>
-### Nested Schema for `spec.control_plane.machine_health_check.unhealthy_range`
+### Nested Schema for `spec.control_plane.machine_health_check.unhealthy_conditions`
 
 Required:
 
@@ -213,7 +213,7 @@ Required:
 - `selector` (Attributes) Selector defines on which templates the patch should be applied. (see [below for nested schema](#nestedatt--spec--patches--definitions--selector))
 
 <a id="nestedatt--spec--patches--definitions--json_patches"></a>
-### Nested Schema for `spec.patches.definitions.selector`
+### Nested Schema for `spec.patches.definitions.json_patches`
 
 Required:
 
@@ -255,7 +255,7 @@ Optional:
 - `machine_pool_class` (Attributes) MachinePoolClass selects templates referenced in specific MachinePoolClasses in.spec.workers.machinePools. (see [below for nested schema](#nestedatt--spec--patches--definitions--selector--match_resources--machine_pool_class))
 
 <a id="nestedatt--spec--patches--definitions--selector--match_resources--machine_deployment_class"></a>
-### Nested Schema for `spec.patches.definitions.selector.match_resources.machine_pool_class`
+### Nested Schema for `spec.patches.definitions.selector.match_resources.machine_deployment_class`
 
 Optional:
 
@@ -362,7 +362,7 @@ Optional:
 - `strategy` (Attributes) The deployment strategy to use to replace existing machines withnew ones.NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--strategy))
 
 <a id="nestedatt--spec--workers--machine_deployments--template"></a>
-### Nested Schema for `spec.workers.machine_deployments.strategy`
+### Nested Schema for `spec.workers.machine_deployments.template`
 
 Required:
 
@@ -428,7 +428,7 @@ Optional:
 
 
 <a id="nestedatt--spec--workers--machine_deployments--machine_health_check"></a>
-### Nested Schema for `spec.workers.machine_deployments.strategy`
+### Nested Schema for `spec.workers.machine_deployments.machine_health_check`
 
 Optional:
 
@@ -464,7 +464,7 @@ Required:
 
 
 <a id="nestedatt--spec--workers--machine_deployments--naming_strategy"></a>
-### Nested Schema for `spec.workers.machine_deployments.strategy`
+### Nested Schema for `spec.workers.machine_deployments.naming_strategy`
 
 Optional:
 
@@ -509,7 +509,7 @@ Optional:
 - `node_volume_detach_timeout` (String) NodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumesto be detached. The default value is 0, meaning that the volumes can be detached without any time limitations.NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.
 
 <a id="nestedatt--spec--workers--machine_pools--template"></a>
-### Nested Schema for `spec.workers.machine_pools.node_volume_detach_timeout`
+### Nested Schema for `spec.workers.machine_pools.template`
 
 Required:
 
@@ -575,7 +575,7 @@ Optional:
 
 
 <a id="nestedatt--spec--workers--machine_pools--naming_strategy"></a>
-### Nested Schema for `spec.workers.machine_pools.node_volume_detach_timeout`
+### Nested Schema for `spec.workers.machine_pools.naming_strategy`
 
 Optional:
 

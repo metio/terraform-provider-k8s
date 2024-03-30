@@ -112,7 +112,7 @@ Optional:
 - `weight` (Number) Weight defines the weight and should only be specified when Name references a TraefikService object(and to be precise, one that embeds a Weighted Round Robin).
 
 <a id="nestedatt--spec--routes--services--response_forwarding"></a>
-### Nested Schema for `spec.routes.services.weight`
+### Nested Schema for `spec.routes.services.response_forwarding`
 
 Optional:
 
@@ -120,7 +120,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--services--sticky"></a>
-### Nested Schema for `spec.routes.services.weight`
+### Nested Schema for `spec.routes.services.sticky`
 
 Optional:
 

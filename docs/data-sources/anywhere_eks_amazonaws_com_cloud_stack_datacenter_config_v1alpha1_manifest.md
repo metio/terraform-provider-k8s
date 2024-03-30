@@ -89,7 +89,7 @@ Optional:
 - `name` (String)
 
 <a id="nestedatt--spec--availability_zones--zone--network"></a>
-### Nested Schema for `spec.availability_zones.zone.name`
+### Nested Schema for `spec.availability_zones.zone.network`
 
 Optional:
 

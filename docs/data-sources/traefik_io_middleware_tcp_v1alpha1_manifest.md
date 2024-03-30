@@ -3,7 +3,7 @@
 page_title: "k8s_traefik_io_middleware_tcp_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "traefik.io"
 description: |-
-  MiddlewareTCP is the CRD implementation of a Traefik TCP middleware.More info: https://doc.traefik.io/traefik/v3.0/middlewares/overview/
+  MiddlewareTCP is the CRD implementation of a Traefik TCP middleware.More info:
 ---
 
 # k8s_traefik_io_middleware_tcp_v1alpha1_manifest (Data Source)

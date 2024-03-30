@@ -96,7 +96,7 @@ Optional:
 - `peer_port` (Number) PeerPort is the TCP port of the peer. 1-65535 is the range of valid port numbers that can be specified. If unset, defaults to 179.
 
 <a id="nestedatt--spec--virtual_routers--neighbors--advertised_path_attributes"></a>
-### Nested Schema for `spec.virtual_routers.neighbors.peer_port`
+### Nested Schema for `spec.virtual_routers.neighbors.advertised_path_attributes`
 
 Required:
 
@@ -127,7 +127,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--virtual_routers--neighbors--peer_port--selector--match_expressions"></a>
-### Nested Schema for `spec.virtual_routers.neighbors.peer_port.selector.match_labels`
+### Nested Schema for `spec.virtual_routers.neighbors.peer_port.selector.match_expressions`
 
 Required:
 
@@ -142,7 +142,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_routers--neighbors--families"></a>
-### Nested Schema for `spec.virtual_routers.neighbors.peer_port`
+### Nested Schema for `spec.virtual_routers.neighbors.families`
 
 Required:
 
@@ -151,7 +151,7 @@ Required:
 
 
 <a id="nestedatt--spec--virtual_routers--neighbors--graceful_restart"></a>
-### Nested Schema for `spec.virtual_routers.neighbors.peer_port`
+### Nested Schema for `spec.virtual_routers.neighbors.graceful_restart`
 
 Required:
 
@@ -172,7 +172,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--virtual_routers--pod_ip_pool_selector--match_expressions"></a>
-### Nested Schema for `spec.virtual_routers.pod_ip_pool_selector.match_labels`
+### Nested Schema for `spec.virtual_routers.pod_ip_pool_selector.match_expressions`
 
 Required:
 
@@ -194,7 +194,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--virtual_routers--service_selector--match_expressions"></a>
-### Nested Schema for `spec.virtual_routers.service_selector.match_labels`
+### Nested Schema for `spec.virtual_routers.service_selector.match_expressions`
 
 Required:
 

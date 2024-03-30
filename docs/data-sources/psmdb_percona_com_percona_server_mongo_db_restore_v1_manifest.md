@@ -114,7 +114,7 @@ Optional:
 - `upload_part_size` (Number)
 
 <a id="nestedatt--spec--backup_source--s3--server_side_encryption"></a>
-### Nested Schema for `spec.backup_source.s3.upload_part_size`
+### Nested Schema for `spec.backup_source.s3.server_side_encryption`
 
 Optional:
 

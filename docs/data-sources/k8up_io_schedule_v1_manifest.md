@@ -102,7 +102,7 @@ Optional:
 - `swift` (Attributes) (see [below for nested schema](#nestedatt--spec--archive--backend--swift))
 
 <a id="nestedatt--spec--archive--backend--azure"></a>
-### Nested Schema for `spec.archive.backend.swift`
+### Nested Schema for `spec.archive.backend.azure`
 
 Optional:
 
@@ -139,7 +139,7 @@ Optional:
 
 
 <a id="nestedatt--spec--archive--backend--b2"></a>
-### Nested Schema for `spec.archive.backend.swift`
+### Nested Schema for `spec.archive.backend.b2`
 
 Optional:
 
@@ -176,7 +176,7 @@ Optional:
 
 
 <a id="nestedatt--spec--archive--backend--env_from"></a>
-### Nested Schema for `spec.archive.backend.swift`
+### Nested Schema for `spec.archive.backend.env_from`
 
 Optional:
 
@@ -204,7 +204,7 @@ Optional:
 
 
 <a id="nestedatt--spec--archive--backend--gcs"></a>
-### Nested Schema for `spec.archive.backend.swift`
+### Nested Schema for `spec.archive.backend.gcs`
 
 Optional:
 
@@ -240,7 +240,7 @@ Optional:
 
 
 <a id="nestedatt--spec--archive--backend--local"></a>
-### Nested Schema for `spec.archive.backend.swift`
+### Nested Schema for `spec.archive.backend.local`
 
 Optional:
 
@@ -248,7 +248,7 @@ Optional:
 
 
 <a id="nestedatt--spec--archive--backend--repo_password_secret_ref"></a>
-### Nested Schema for `spec.archive.backend.swift`
+### Nested Schema for `spec.archive.backend.repo_password_secret_ref`
 
 Required:
 
@@ -261,7 +261,7 @@ Optional:
 
 
 <a id="nestedatt--spec--archive--backend--rest"></a>
-### Nested Schema for `spec.archive.backend.swift`
+### Nested Schema for `spec.archive.backend.rest`
 
 Optional:
 
@@ -297,7 +297,7 @@ Optional:
 
 
 <a id="nestedatt--spec--archive--backend--s3"></a>
-### Nested Schema for `spec.archive.backend.swift`
+### Nested Schema for `spec.archive.backend.s3`
 
 Optional:
 
@@ -360,7 +360,7 @@ Optional:
 - `windows_options` (Attributes) The Windows specific settings applied to all containers.If unspecified, the options within a container's SecurityContext will be used.If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--archive--pod_security_context--windows_options))
 
 <a id="nestedatt--spec--archive--pod_security_context--se_linux_options"></a>
-### Nested Schema for `spec.archive.pod_security_context.windows_options`
+### Nested Schema for `spec.archive.pod_security_context.se_linux_options`
 
 Optional:
 
@@ -371,7 +371,7 @@ Optional:
 
 
 <a id="nestedatt--spec--archive--pod_security_context--seccomp_profile"></a>
-### Nested Schema for `spec.archive.pod_security_context.windows_options`
+### Nested Schema for `spec.archive.pod_security_context.seccomp_profile`
 
 Required:
 
@@ -383,7 +383,7 @@ Optional:
 
 
 <a id="nestedatt--spec--archive--pod_security_context--sysctls"></a>
-### Nested Schema for `spec.archive.pod_security_context.windows_options`
+### Nested Schema for `spec.archive.pod_security_context.sysctls`
 
 Required:
 
@@ -413,7 +413,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--archive--resources--claims"></a>
-### Nested Schema for `spec.archive.resources.requests`
+### Nested Schema for `spec.archive.resources.claims`
 
 Required:
 
@@ -430,7 +430,7 @@ Optional:
 - `s3` (Attributes) (see [below for nested schema](#nestedatt--spec--archive--restore_method--s3))
 
 <a id="nestedatt--spec--archive--restore_method--folder"></a>
-### Nested Schema for `spec.archive.restore_method.s3`
+### Nested Schema for `spec.archive.restore_method.folder`
 
 Required:
 
@@ -506,7 +506,7 @@ Optional:
 - `path` (String)
 
 <a id="nestedatt--spec--backend--azure--account_key_secret_ref"></a>
-### Nested Schema for `spec.backend.azure.path`
+### Nested Schema for `spec.backend.azure.account_key_secret_ref`
 
 Required:
 
@@ -519,7 +519,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backend--azure--account_name_secret_ref"></a>
-### Nested Schema for `spec.backend.azure.path`
+### Nested Schema for `spec.backend.azure.account_name_secret_ref`
 
 Required:
 
@@ -543,7 +543,7 @@ Optional:
 - `path` (String)
 
 <a id="nestedatt--spec--backend--b2--account_id_secret_ref"></a>
-### Nested Schema for `spec.backend.b2.path`
+### Nested Schema for `spec.backend.b2.account_id_secret_ref`
 
 Required:
 
@@ -556,7 +556,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backend--b2--account_key_secret_ref"></a>
-### Nested Schema for `spec.backend.b2.path`
+### Nested Schema for `spec.backend.b2.account_key_secret_ref`
 
 Required:
 
@@ -579,7 +579,7 @@ Optional:
 - `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--backend--env_from--secret_ref))
 
 <a id="nestedatt--spec--backend--env_from--config_map_ref"></a>
-### Nested Schema for `spec.backend.env_from.secret_ref`
+### Nested Schema for `spec.backend.env_from.config_map_ref`
 
 Optional:
 
@@ -607,7 +607,7 @@ Optional:
 - `project_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backend--gcs--project_id_secret_ref))
 
 <a id="nestedatt--spec--backend--gcs--access_token_secret_ref"></a>
-### Nested Schema for `spec.backend.gcs.project_id_secret_ref`
+### Nested Schema for `spec.backend.gcs.access_token_secret_ref`
 
 Required:
 
@@ -664,7 +664,7 @@ Optional:
 - `user_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backend--rest--user_secret_ref))
 
 <a id="nestedatt--spec--backend--rest--password_secret_reg"></a>
-### Nested Schema for `spec.backend.rest.user_secret_ref`
+### Nested Schema for `spec.backend.rest.password_secret_reg`
 
 Required:
 
@@ -701,7 +701,7 @@ Optional:
 - `secret_access_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backend--s3--secret_access_key_secret_ref))
 
 <a id="nestedatt--spec--backend--s3--access_key_id_secret_ref"></a>
-### Nested Schema for `spec.backend.s3.secret_access_key_secret_ref`
+### Nested Schema for `spec.backend.s3.access_key_id_secret_ref`
 
 Required:
 
@@ -771,7 +771,7 @@ Optional:
 - `swift` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--backend--swift))
 
 <a id="nestedatt--spec--backup--backend--azure"></a>
-### Nested Schema for `spec.backup.backend.swift`
+### Nested Schema for `spec.backup.backend.azure`
 
 Optional:
 
@@ -808,7 +808,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backup--backend--b2"></a>
-### Nested Schema for `spec.backup.backend.swift`
+### Nested Schema for `spec.backup.backend.b2`
 
 Optional:
 
@@ -845,7 +845,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backup--backend--env_from"></a>
-### Nested Schema for `spec.backup.backend.swift`
+### Nested Schema for `spec.backup.backend.env_from`
 
 Optional:
 
@@ -873,7 +873,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backup--backend--gcs"></a>
-### Nested Schema for `spec.backup.backend.swift`
+### Nested Schema for `spec.backup.backend.gcs`
 
 Optional:
 
@@ -909,7 +909,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backup--backend--local"></a>
-### Nested Schema for `spec.backup.backend.swift`
+### Nested Schema for `spec.backup.backend.local`
 
 Optional:
 
@@ -917,7 +917,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backup--backend--repo_password_secret_ref"></a>
-### Nested Schema for `spec.backup.backend.swift`
+### Nested Schema for `spec.backup.backend.repo_password_secret_ref`
 
 Required:
 
@@ -930,7 +930,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backup--backend--rest"></a>
-### Nested Schema for `spec.backup.backend.swift`
+### Nested Schema for `spec.backup.backend.rest`
 
 Optional:
 
@@ -966,7 +966,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backup--backend--s3"></a>
-### Nested Schema for `spec.backup.backend.swift`
+### Nested Schema for `spec.backup.backend.s3`
 
 Optional:
 
@@ -1029,7 +1029,7 @@ Optional:
 - `windows_options` (Attributes) The Windows specific settings applied to all containers.If unspecified, the options within a container's SecurityContext will be used.If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--backup--pod_security_context--windows_options))
 
 <a id="nestedatt--spec--backup--pod_security_context--se_linux_options"></a>
-### Nested Schema for `spec.backup.pod_security_context.windows_options`
+### Nested Schema for `spec.backup.pod_security_context.se_linux_options`
 
 Optional:
 
@@ -1040,7 +1040,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backup--pod_security_context--seccomp_profile"></a>
-### Nested Schema for `spec.backup.pod_security_context.windows_options`
+### Nested Schema for `spec.backup.pod_security_context.seccomp_profile`
 
 Required:
 
@@ -1052,7 +1052,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backup--pod_security_context--sysctls"></a>
-### Nested Schema for `spec.backup.pod_security_context.windows_options`
+### Nested Schema for `spec.backup.pod_security_context.sysctls`
 
 Required:
 
@@ -1082,7 +1082,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--backup--resources--claims"></a>
-### Nested Schema for `spec.backup.resources.requests`
+### Nested Schema for `spec.backup.resources.claims`
 
 Required:
 
@@ -1123,7 +1123,7 @@ Optional:
 - `swift` (Attributes) (see [below for nested schema](#nestedatt--spec--check--backend--swift))
 
 <a id="nestedatt--spec--check--backend--azure"></a>
-### Nested Schema for `spec.check.backend.swift`
+### Nested Schema for `spec.check.backend.azure`
 
 Optional:
 
@@ -1160,7 +1160,7 @@ Optional:
 
 
 <a id="nestedatt--spec--check--backend--b2"></a>
-### Nested Schema for `spec.check.backend.swift`
+### Nested Schema for `spec.check.backend.b2`
 
 Optional:
 
@@ -1197,7 +1197,7 @@ Optional:
 
 
 <a id="nestedatt--spec--check--backend--env_from"></a>
-### Nested Schema for `spec.check.backend.swift`
+### Nested Schema for `spec.check.backend.env_from`
 
 Optional:
 
@@ -1225,7 +1225,7 @@ Optional:
 
 
 <a id="nestedatt--spec--check--backend--gcs"></a>
-### Nested Schema for `spec.check.backend.swift`
+### Nested Schema for `spec.check.backend.gcs`
 
 Optional:
 
@@ -1261,7 +1261,7 @@ Optional:
 
 
 <a id="nestedatt--spec--check--backend--local"></a>
-### Nested Schema for `spec.check.backend.swift`
+### Nested Schema for `spec.check.backend.local`
 
 Optional:
 
@@ -1269,7 +1269,7 @@ Optional:
 
 
 <a id="nestedatt--spec--check--backend--repo_password_secret_ref"></a>
-### Nested Schema for `spec.check.backend.swift`
+### Nested Schema for `spec.check.backend.repo_password_secret_ref`
 
 Required:
 
@@ -1282,7 +1282,7 @@ Optional:
 
 
 <a id="nestedatt--spec--check--backend--rest"></a>
-### Nested Schema for `spec.check.backend.swift`
+### Nested Schema for `spec.check.backend.rest`
 
 Optional:
 
@@ -1318,7 +1318,7 @@ Optional:
 
 
 <a id="nestedatt--spec--check--backend--s3"></a>
-### Nested Schema for `spec.check.backend.swift`
+### Nested Schema for `spec.check.backend.s3`
 
 Optional:
 
@@ -1381,7 +1381,7 @@ Optional:
 - `windows_options` (Attributes) The Windows specific settings applied to all containers.If unspecified, the options within a container's SecurityContext will be used.If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--check--pod_security_context--windows_options))
 
 <a id="nestedatt--spec--check--pod_security_context--se_linux_options"></a>
-### Nested Schema for `spec.check.pod_security_context.windows_options`
+### Nested Schema for `spec.check.pod_security_context.se_linux_options`
 
 Optional:
 
@@ -1392,7 +1392,7 @@ Optional:
 
 
 <a id="nestedatt--spec--check--pod_security_context--seccomp_profile"></a>
-### Nested Schema for `spec.check.pod_security_context.windows_options`
+### Nested Schema for `spec.check.pod_security_context.seccomp_profile`
 
 Required:
 
@@ -1404,7 +1404,7 @@ Optional:
 
 
 <a id="nestedatt--spec--check--pod_security_context--sysctls"></a>
-### Nested Schema for `spec.check.pod_security_context.windows_options`
+### Nested Schema for `spec.check.pod_security_context.sysctls`
 
 Required:
 
@@ -1434,7 +1434,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--check--resources--claims"></a>
-### Nested Schema for `spec.check.resources.requests`
+### Nested Schema for `spec.check.resources.claims`
 
 Required:
 
@@ -1535,7 +1535,7 @@ Optional:
 - `swift` (Attributes) (see [below for nested schema](#nestedatt--spec--prune--backend--swift))
 
 <a id="nestedatt--spec--prune--backend--azure"></a>
-### Nested Schema for `spec.prune.backend.swift`
+### Nested Schema for `spec.prune.backend.azure`
 
 Optional:
 
@@ -1572,7 +1572,7 @@ Optional:
 
 
 <a id="nestedatt--spec--prune--backend--b2"></a>
-### Nested Schema for `spec.prune.backend.swift`
+### Nested Schema for `spec.prune.backend.b2`
 
 Optional:
 
@@ -1609,7 +1609,7 @@ Optional:
 
 
 <a id="nestedatt--spec--prune--backend--env_from"></a>
-### Nested Schema for `spec.prune.backend.swift`
+### Nested Schema for `spec.prune.backend.env_from`
 
 Optional:
 
@@ -1637,7 +1637,7 @@ Optional:
 
 
 <a id="nestedatt--spec--prune--backend--gcs"></a>
-### Nested Schema for `spec.prune.backend.swift`
+### Nested Schema for `spec.prune.backend.gcs`
 
 Optional:
 
@@ -1673,7 +1673,7 @@ Optional:
 
 
 <a id="nestedatt--spec--prune--backend--local"></a>
-### Nested Schema for `spec.prune.backend.swift`
+### Nested Schema for `spec.prune.backend.local`
 
 Optional:
 
@@ -1681,7 +1681,7 @@ Optional:
 
 
 <a id="nestedatt--spec--prune--backend--repo_password_secret_ref"></a>
-### Nested Schema for `spec.prune.backend.swift`
+### Nested Schema for `spec.prune.backend.repo_password_secret_ref`
 
 Required:
 
@@ -1694,7 +1694,7 @@ Optional:
 
 
 <a id="nestedatt--spec--prune--backend--rest"></a>
-### Nested Schema for `spec.prune.backend.swift`
+### Nested Schema for `spec.prune.backend.rest`
 
 Optional:
 
@@ -1730,7 +1730,7 @@ Optional:
 
 
 <a id="nestedatt--spec--prune--backend--s3"></a>
-### Nested Schema for `spec.prune.backend.swift`
+### Nested Schema for `spec.prune.backend.s3`
 
 Optional:
 
@@ -1793,7 +1793,7 @@ Optional:
 - `windows_options` (Attributes) The Windows specific settings applied to all containers.If unspecified, the options within a container's SecurityContext will be used.If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--prune--pod_security_context--windows_options))
 
 <a id="nestedatt--spec--prune--pod_security_context--se_linux_options"></a>
-### Nested Schema for `spec.prune.pod_security_context.windows_options`
+### Nested Schema for `spec.prune.pod_security_context.se_linux_options`
 
 Optional:
 
@@ -1804,7 +1804,7 @@ Optional:
 
 
 <a id="nestedatt--spec--prune--pod_security_context--seccomp_profile"></a>
-### Nested Schema for `spec.prune.pod_security_context.windows_options`
+### Nested Schema for `spec.prune.pod_security_context.seccomp_profile`
 
 Required:
 
@@ -1816,7 +1816,7 @@ Optional:
 
 
 <a id="nestedatt--spec--prune--pod_security_context--sysctls"></a>
-### Nested Schema for `spec.prune.pod_security_context.windows_options`
+### Nested Schema for `spec.prune.pod_security_context.sysctls`
 
 Required:
 
@@ -1846,7 +1846,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--prune--resources--claims"></a>
-### Nested Schema for `spec.prune.resources.requests`
+### Nested Schema for `spec.prune.resources.claims`
 
 Required:
 
@@ -1924,7 +1924,7 @@ Optional:
 - `swift` (Attributes) (see [below for nested schema](#nestedatt--spec--restore--backend--swift))
 
 <a id="nestedatt--spec--restore--backend--azure"></a>
-### Nested Schema for `spec.restore.backend.swift`
+### Nested Schema for `spec.restore.backend.azure`
 
 Optional:
 
@@ -1961,7 +1961,7 @@ Optional:
 
 
 <a id="nestedatt--spec--restore--backend--b2"></a>
-### Nested Schema for `spec.restore.backend.swift`
+### Nested Schema for `spec.restore.backend.b2`
 
 Optional:
 
@@ -1998,7 +1998,7 @@ Optional:
 
 
 <a id="nestedatt--spec--restore--backend--env_from"></a>
-### Nested Schema for `spec.restore.backend.swift`
+### Nested Schema for `spec.restore.backend.env_from`
 
 Optional:
 
@@ -2026,7 +2026,7 @@ Optional:
 
 
 <a id="nestedatt--spec--restore--backend--gcs"></a>
-### Nested Schema for `spec.restore.backend.swift`
+### Nested Schema for `spec.restore.backend.gcs`
 
 Optional:
 
@@ -2062,7 +2062,7 @@ Optional:
 
 
 <a id="nestedatt--spec--restore--backend--local"></a>
-### Nested Schema for `spec.restore.backend.swift`
+### Nested Schema for `spec.restore.backend.local`
 
 Optional:
 
@@ -2070,7 +2070,7 @@ Optional:
 
 
 <a id="nestedatt--spec--restore--backend--repo_password_secret_ref"></a>
-### Nested Schema for `spec.restore.backend.swift`
+### Nested Schema for `spec.restore.backend.repo_password_secret_ref`
 
 Required:
 
@@ -2083,7 +2083,7 @@ Optional:
 
 
 <a id="nestedatt--spec--restore--backend--rest"></a>
-### Nested Schema for `spec.restore.backend.swift`
+### Nested Schema for `spec.restore.backend.rest`
 
 Optional:
 
@@ -2119,7 +2119,7 @@ Optional:
 
 
 <a id="nestedatt--spec--restore--backend--s3"></a>
-### Nested Schema for `spec.restore.backend.swift`
+### Nested Schema for `spec.restore.backend.s3`
 
 Optional:
 
@@ -2182,7 +2182,7 @@ Optional:
 - `windows_options` (Attributes) The Windows specific settings applied to all containers.If unspecified, the options within a container's SecurityContext will be used.If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--restore--pod_security_context--windows_options))
 
 <a id="nestedatt--spec--restore--pod_security_context--se_linux_options"></a>
-### Nested Schema for `spec.restore.pod_security_context.windows_options`
+### Nested Schema for `spec.restore.pod_security_context.se_linux_options`
 
 Optional:
 
@@ -2193,7 +2193,7 @@ Optional:
 
 
 <a id="nestedatt--spec--restore--pod_security_context--seccomp_profile"></a>
-### Nested Schema for `spec.restore.pod_security_context.windows_options`
+### Nested Schema for `spec.restore.pod_security_context.seccomp_profile`
 
 Required:
 
@@ -2205,7 +2205,7 @@ Optional:
 
 
 <a id="nestedatt--spec--restore--pod_security_context--sysctls"></a>
-### Nested Schema for `spec.restore.pod_security_context.windows_options`
+### Nested Schema for `spec.restore.pod_security_context.sysctls`
 
 Required:
 
@@ -2235,7 +2235,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--restore--resources--claims"></a>
-### Nested Schema for `spec.restore.resources.requests`
+### Nested Schema for `spec.restore.resources.claims`
 
 Required:
 
@@ -2252,7 +2252,7 @@ Optional:
 - `s3` (Attributes) (see [below for nested schema](#nestedatt--spec--restore--restore_method--s3))
 
 <a id="nestedatt--spec--restore--restore_method--folder"></a>
-### Nested Schema for `spec.restore.restore_method.s3`
+### Nested Schema for `spec.restore.restore_method.folder`
 
 Required:
 

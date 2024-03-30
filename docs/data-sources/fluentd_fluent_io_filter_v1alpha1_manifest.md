@@ -89,7 +89,7 @@ Optional:
 - `regexp` (Attributes List) (see [below for nested schema](#nestedatt--spec--filters--grep--regexp))
 
 <a id="nestedatt--spec--filters--grep--and"></a>
-### Nested Schema for `spec.filters.grep.regexp`
+### Nested Schema for `spec.filters.grep.and`
 
 Optional:
 
@@ -116,7 +116,7 @@ Optional:
 
 
 <a id="nestedatt--spec--filters--grep--exclude"></a>
-### Nested Schema for `spec.filters.grep.regexp`
+### Nested Schema for `spec.filters.grep.exclude`
 
 Optional:
 
@@ -125,7 +125,7 @@ Optional:
 
 
 <a id="nestedatt--spec--filters--grep--or"></a>
-### Nested Schema for `spec.filters.grep.regexp`
+### Nested Schema for `spec.filters.grep.or`
 
 Optional:
 
@@ -180,7 +180,7 @@ Optional:
 - `reserve_time` (Boolean) Keeps the original event time in the parsed result. Default is false.
 
 <a id="nestedatt--spec--filters--parser--parse"></a>
-### Nested Schema for `spec.filters.parser.reserve_time`
+### Nested Schema for `spec.filters.parser.parse`
 
 Required:
 
@@ -238,7 +238,7 @@ Optional:
 - `renew_time_key` (String) renew_time_key foo overwrites the time of events with a value of the record field foo if exists. The value of foo must be a Unix timestamp.
 
 <a id="nestedatt--spec--filters--record_transformer--records"></a>
-### Nested Schema for `spec.filters.record_transformer.renew_time_key`
+### Nested Schema for `spec.filters.record_transformer.records`
 
 Required:
 
@@ -256,7 +256,7 @@ Optional:
 - `inject` (Attributes) The inject section (see [below for nested schema](#nestedatt--spec--filters--stdout--inject))
 
 <a id="nestedatt--spec--filters--stdout--format"></a>
-### Nested Schema for `spec.filters.stdout.inject`
+### Nested Schema for `spec.filters.stdout.format`
 
 Optional:
 

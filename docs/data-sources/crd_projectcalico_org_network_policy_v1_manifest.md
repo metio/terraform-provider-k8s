@@ -98,7 +98,7 @@ Optional:
 - `services` (Attributes) Services is an optional field that contains options for matching Kubernetes Services. If specified, only traffic that originates from or terminates at endpoints within the selected service(s) will be matched, and only to/from each endpoint's port.  Services cannot be specified on the same rule as Selector, NotSelector, NamespaceSelector, Nets, NotNets or ServiceAccounts.  Ports and NotPorts can only be specified with Services on ingress rules. (see [below for nested schema](#nestedatt--spec--egress--destination--services))
 
 <a id="nestedatt--spec--egress--destination--service_accounts"></a>
-### Nested Schema for `spec.egress.destination.services`
+### Nested Schema for `spec.egress.destination.service_accounts`
 
 Optional:
 
@@ -176,7 +176,7 @@ Optional:
 - `services` (Attributes) Services is an optional field that contains options for matching Kubernetes Services. If specified, only traffic that originates from or terminates at endpoints within the selected service(s) will be matched, and only to/from each endpoint's port.  Services cannot be specified on the same rule as Selector, NotSelector, NamespaceSelector, Nets, NotNets or ServiceAccounts.  Ports and NotPorts can only be specified with Services on ingress rules. (see [below for nested schema](#nestedatt--spec--egress--source--services))
 
 <a id="nestedatt--spec--egress--source--service_accounts"></a>
-### Nested Schema for `spec.egress.source.services`
+### Nested Schema for `spec.egress.source.service_accounts`
 
 Optional:
 
@@ -230,7 +230,7 @@ Optional:
 - `services` (Attributes) Services is an optional field that contains options for matching Kubernetes Services. If specified, only traffic that originates from or terminates at endpoints within the selected service(s) will be matched, and only to/from each endpoint's port.  Services cannot be specified on the same rule as Selector, NotSelector, NamespaceSelector, Nets, NotNets or ServiceAccounts.  Ports and NotPorts can only be specified with Services on ingress rules. (see [below for nested schema](#nestedatt--spec--ingress--destination--services))
 
 <a id="nestedatt--spec--ingress--destination--service_accounts"></a>
-### Nested Schema for `spec.ingress.destination.services`
+### Nested Schema for `spec.ingress.destination.service_accounts`
 
 Optional:
 
@@ -308,7 +308,7 @@ Optional:
 - `services` (Attributes) Services is an optional field that contains options for matching Kubernetes Services. If specified, only traffic that originates from or terminates at endpoints within the selected service(s) will be matched, and only to/from each endpoint's port.  Services cannot be specified on the same rule as Selector, NotSelector, NamespaceSelector, Nets, NotNets or ServiceAccounts.  Ports and NotPorts can only be specified with Services on ingress rules. (see [below for nested schema](#nestedatt--spec--ingress--source--services))
 
 <a id="nestedatt--spec--ingress--source--service_accounts"></a>
-### Nested Schema for `spec.ingress.source.services`
+### Nested Schema for `spec.ingress.source.service_accounts`
 
 Optional:
 

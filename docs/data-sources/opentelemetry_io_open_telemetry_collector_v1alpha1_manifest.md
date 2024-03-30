@@ -215,7 +215,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_containers--env_from--secret_ref))
 
 <a id="nestedatt--spec--additional_containers--env_from--config_map_ref"></a>
-### Nested Schema for `spec.additional_containers.env_from.secret_ref`
+### Nested Schema for `spec.additional_containers.env_from.config_map_ref`
 
 Optional:
 
@@ -242,7 +242,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_containers--lifecycle--pre_stop))
 
 <a id="nestedatt--spec--additional_containers--lifecycle--post_start"></a>
-### Nested Schema for `spec.additional_containers.lifecycle.pre_stop`
+### Nested Schema for `spec.additional_containers.lifecycle.post_start`
 
 Optional:
 
@@ -274,7 +274,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--additional_containers--lifecycle--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.additional_containers.lifecycle.pre_stop.http_get.scheme`
+### Nested Schema for `spec.additional_containers.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -337,7 +337,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--additional_containers--lifecycle--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.additional_containers.lifecycle.pre_stop.http_get.scheme`
+### Nested Schema for `spec.additional_containers.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -385,7 +385,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--additional_containers--liveness_probe--exec"></a>
-### Nested Schema for `spec.additional_containers.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.additional_containers.liveness_probe.exec`
 
 Optional:
 
@@ -393,7 +393,7 @@ Optional:
 
 
 <a id="nestedatt--spec--additional_containers--liveness_probe--grpc"></a>
-### Nested Schema for `spec.additional_containers.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.additional_containers.liveness_probe.grpc`
 
 Required:
 
@@ -405,7 +405,7 @@ Optional:
 
 
 <a id="nestedatt--spec--additional_containers--liveness_probe--http_get"></a>
-### Nested Schema for `spec.additional_containers.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.additional_containers.liveness_probe.http_get`
 
 Required:
 
@@ -429,7 +429,7 @@ Required:
 
 
 <a id="nestedatt--spec--additional_containers--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.additional_containers.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.additional_containers.liveness_probe.tcp_socket`
 
 Required:
 
@@ -473,7 +473,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--additional_containers--readiness_probe--exec"></a>
-### Nested Schema for `spec.additional_containers.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.additional_containers.readiness_probe.exec`
 
 Optional:
 
@@ -481,7 +481,7 @@ Optional:
 
 
 <a id="nestedatt--spec--additional_containers--readiness_probe--grpc"></a>
-### Nested Schema for `spec.additional_containers.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.additional_containers.readiness_probe.grpc`
 
 Required:
 
@@ -493,7 +493,7 @@ Optional:
 
 
 <a id="nestedatt--spec--additional_containers--readiness_probe--http_get"></a>
-### Nested Schema for `spec.additional_containers.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.additional_containers.readiness_probe.http_get`
 
 Required:
 
@@ -517,7 +517,7 @@ Required:
 
 
 <a id="nestedatt--spec--additional_containers--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.additional_containers.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.additional_containers.readiness_probe.tcp_socket`
 
 Required:
 
@@ -548,7 +548,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--additional_containers--resources--claims"></a>
-### Nested Schema for `spec.additional_containers.resources.requests`
+### Nested Schema for `spec.additional_containers.resources.claims`
 
 Required:
 
@@ -574,7 +574,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_containers--security_context--windows_options))
 
 <a id="nestedatt--spec--additional_containers--security_context--capabilities"></a>
-### Nested Schema for `spec.additional_containers.security_context.windows_options`
+### Nested Schema for `spec.additional_containers.security_context.capabilities`
 
 Optional:
 
@@ -583,7 +583,7 @@ Optional:
 
 
 <a id="nestedatt--spec--additional_containers--security_context--se_linux_options"></a>
-### Nested Schema for `spec.additional_containers.security_context.windows_options`
+### Nested Schema for `spec.additional_containers.security_context.se_linux_options`
 
 Optional:
 
@@ -594,7 +594,7 @@ Optional:
 
 
 <a id="nestedatt--spec--additional_containers--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.additional_containers.security_context.windows_options`
+### Nested Schema for `spec.additional_containers.security_context.seccomp_profile`
 
 Required:
 
@@ -634,7 +634,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--additional_containers--startup_probe--exec"></a>
-### Nested Schema for `spec.additional_containers.startup_probe.timeout_seconds`
+### Nested Schema for `spec.additional_containers.startup_probe.exec`
 
 Optional:
 
@@ -642,7 +642,7 @@ Optional:
 
 
 <a id="nestedatt--spec--additional_containers--startup_probe--grpc"></a>
-### Nested Schema for `spec.additional_containers.startup_probe.timeout_seconds`
+### Nested Schema for `spec.additional_containers.startup_probe.grpc`
 
 Required:
 
@@ -654,7 +654,7 @@ Optional:
 
 
 <a id="nestedatt--spec--additional_containers--startup_probe--http_get"></a>
-### Nested Schema for `spec.additional_containers.startup_probe.timeout_seconds`
+### Nested Schema for `spec.additional_containers.startup_probe.http_get`
 
 Required:
 
@@ -678,7 +678,7 @@ Required:
 
 
 <a id="nestedatt--spec--additional_containers--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.additional_containers.startup_probe.timeout_seconds`
+### Nested Schema for `spec.additional_containers.startup_probe.tcp_socket`
 
 Required:
 
@@ -734,7 +734,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -750,7 +750,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--preference--match_fields))
 
 <a id="nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
-### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.preference.match_fields`
+### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Required:
 
@@ -793,7 +793,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -830,7 +830,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -853,7 +853,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
@@ -861,7 +861,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -875,7 +875,7 @@ Optional:
 
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
@@ -883,7 +883,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -922,7 +922,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_labels`
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -944,7 +944,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_labels`
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -968,7 +968,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -991,7 +991,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
@@ -999,7 +999,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -1013,7 +1013,7 @@ Optional:
 
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
@@ -1021,7 +1021,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -1060,7 +1060,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_labels`
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -1082,7 +1082,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_labels`
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -1119,7 +1119,7 @@ Optional:
 - `scale_up` (Attributes) (see [below for nested schema](#nestedatt--spec--autoscaler--behavior--scale_up))
 
 <a id="nestedatt--spec--autoscaler--behavior--scale_down"></a>
-### Nested Schema for `spec.autoscaler.behavior.scale_up`
+### Nested Schema for `spec.autoscaler.behavior.scale_down`
 
 Optional:
 
@@ -1198,7 +1198,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--autoscaler--metrics--pods--metric--selector--match_expressions"></a>
-### Nested Schema for `spec.autoscaler.metrics.pods.metric.selector.match_labels`
+### Nested Schema for `spec.autoscaler.metrics.pods.metric.selector.match_expressions`
 
 Required:
 
@@ -1279,7 +1279,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.env.value_from.secret_key_ref`
+### Nested Schema for `spec.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -1292,7 +1292,7 @@ Optional:
 
 
 <a id="nestedatt--spec--env--value_from--field_ref"></a>
-### Nested Schema for `spec.env.value_from.secret_key_ref`
+### Nested Schema for `spec.env.value_from.field_ref`
 
 Required:
 
@@ -1304,7 +1304,7 @@ Optional:
 
 
 <a id="nestedatt--spec--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.env.value_from.secret_key_ref`
+### Nested Schema for `spec.env.value_from.resource_field_ref`
 
 Required:
 
@@ -1508,7 +1508,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--init_containers--env_from--secret_ref))
 
 <a id="nestedatt--spec--init_containers--env_from--config_map_ref"></a>
-### Nested Schema for `spec.init_containers.env_from.secret_ref`
+### Nested Schema for `spec.init_containers.env_from.config_map_ref`
 
 Optional:
 
@@ -1535,7 +1535,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--init_containers--lifecycle--pre_stop))
 
 <a id="nestedatt--spec--init_containers--lifecycle--post_start"></a>
-### Nested Schema for `spec.init_containers.lifecycle.pre_stop`
+### Nested Schema for `spec.init_containers.lifecycle.post_start`
 
 Optional:
 
@@ -1567,7 +1567,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--init_containers--lifecycle--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.init_containers.lifecycle.pre_stop.http_get.scheme`
+### Nested Schema for `spec.init_containers.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -1630,7 +1630,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--init_containers--lifecycle--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.init_containers.lifecycle.pre_stop.http_get.scheme`
+### Nested Schema for `spec.init_containers.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -1678,7 +1678,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--init_containers--liveness_probe--exec"></a>
-### Nested Schema for `spec.init_containers.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.liveness_probe.exec`
 
 Optional:
 
@@ -1686,7 +1686,7 @@ Optional:
 
 
 <a id="nestedatt--spec--init_containers--liveness_probe--grpc"></a>
-### Nested Schema for `spec.init_containers.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.liveness_probe.grpc`
 
 Required:
 
@@ -1698,7 +1698,7 @@ Optional:
 
 
 <a id="nestedatt--spec--init_containers--liveness_probe--http_get"></a>
-### Nested Schema for `spec.init_containers.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.liveness_probe.http_get`
 
 Required:
 
@@ -1722,7 +1722,7 @@ Required:
 
 
 <a id="nestedatt--spec--init_containers--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.init_containers.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.liveness_probe.tcp_socket`
 
 Required:
 
@@ -1766,7 +1766,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--init_containers--readiness_probe--exec"></a>
-### Nested Schema for `spec.init_containers.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.readiness_probe.exec`
 
 Optional:
 
@@ -1774,7 +1774,7 @@ Optional:
 
 
 <a id="nestedatt--spec--init_containers--readiness_probe--grpc"></a>
-### Nested Schema for `spec.init_containers.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.readiness_probe.grpc`
 
 Required:
 
@@ -1786,7 +1786,7 @@ Optional:
 
 
 <a id="nestedatt--spec--init_containers--readiness_probe--http_get"></a>
-### Nested Schema for `spec.init_containers.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.readiness_probe.http_get`
 
 Required:
 
@@ -1810,7 +1810,7 @@ Required:
 
 
 <a id="nestedatt--spec--init_containers--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.init_containers.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.readiness_probe.tcp_socket`
 
 Required:
 
@@ -1841,7 +1841,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--init_containers--resources--claims"></a>
-### Nested Schema for `spec.init_containers.resources.requests`
+### Nested Schema for `spec.init_containers.resources.claims`
 
 Required:
 
@@ -1867,7 +1867,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--init_containers--security_context--windows_options))
 
 <a id="nestedatt--spec--init_containers--security_context--capabilities"></a>
-### Nested Schema for `spec.init_containers.security_context.windows_options`
+### Nested Schema for `spec.init_containers.security_context.capabilities`
 
 Optional:
 
@@ -1876,7 +1876,7 @@ Optional:
 
 
 <a id="nestedatt--spec--init_containers--security_context--se_linux_options"></a>
-### Nested Schema for `spec.init_containers.security_context.windows_options`
+### Nested Schema for `spec.init_containers.security_context.se_linux_options`
 
 Optional:
 
@@ -1887,7 +1887,7 @@ Optional:
 
 
 <a id="nestedatt--spec--init_containers--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.init_containers.security_context.windows_options`
+### Nested Schema for `spec.init_containers.security_context.seccomp_profile`
 
 Required:
 
@@ -1927,7 +1927,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--init_containers--startup_probe--exec"></a>
-### Nested Schema for `spec.init_containers.startup_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.startup_probe.exec`
 
 Optional:
 
@@ -1935,7 +1935,7 @@ Optional:
 
 
 <a id="nestedatt--spec--init_containers--startup_probe--grpc"></a>
-### Nested Schema for `spec.init_containers.startup_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.startup_probe.grpc`
 
 Required:
 
@@ -1947,7 +1947,7 @@ Optional:
 
 
 <a id="nestedatt--spec--init_containers--startup_probe--http_get"></a>
-### Nested Schema for `spec.init_containers.startup_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.startup_probe.http_get`
 
 Required:
 
@@ -1971,7 +1971,7 @@ Required:
 
 
 <a id="nestedatt--spec--init_containers--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.init_containers.startup_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.startup_probe.tcp_socket`
 
 Required:
 
@@ -2028,7 +2028,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--lifecycle--post_start--tcp_socket))
 
 <a id="nestedatt--spec--lifecycle--post_start--exec"></a>
-### Nested Schema for `spec.lifecycle.post_start.tcp_socket`
+### Nested Schema for `spec.lifecycle.post_start.exec`
 
 Optional:
 
@@ -2036,7 +2036,7 @@ Optional:
 
 
 <a id="nestedatt--spec--lifecycle--post_start--http_get"></a>
-### Nested Schema for `spec.lifecycle.post_start.tcp_socket`
+### Nested Schema for `spec.lifecycle.post_start.http_get`
 
 Required:
 
@@ -2060,7 +2060,7 @@ Required:
 
 
 <a id="nestedatt--spec--lifecycle--post_start--sleep"></a>
-### Nested Schema for `spec.lifecycle.post_start.tcp_socket`
+### Nested Schema for `spec.lifecycle.post_start.sleep`
 
 Required:
 
@@ -2091,7 +2091,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -2099,7 +2099,7 @@ Optional:
 
 
 <a id="nestedatt--spec--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -2123,7 +2123,7 @@ Required:
 
 
 <a id="nestedatt--spec--lifecycle--pre_stop--sleep"></a>
-### Nested Schema for `spec.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.lifecycle.pre_stop.sleep`
 
 Required:
 
@@ -2371,7 +2371,7 @@ Optional:
 - `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--target_allocator--affinity--pod_anti_affinity))
 
 <a id="nestedatt--spec--target_allocator--affinity--node_affinity"></a>
-### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity`
+### Nested Schema for `spec.target_allocator.affinity.node_affinity`
 
 Optional:
 
@@ -2387,7 +2387,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--target_allocator--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -2395,7 +2395,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--target_allocator--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--target_allocator--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -2438,7 +2438,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--target_allocator--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--target_allocator--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -2467,7 +2467,7 @@ Optional:
 
 
 <a id="nestedatt--spec--target_allocator--affinity--pod_affinity"></a>
-### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity`
+### Nested Schema for `spec.target_allocator.affinity.pod_affinity`
 
 Optional:
 
@@ -2483,7 +2483,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--target_allocator--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -2498,7 +2498,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--target_allocator--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -2506,7 +2506,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--target_allocator--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -2520,7 +2520,7 @@ Optional:
 
 
 <a id="nestedatt--spec--target_allocator--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -2528,7 +2528,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--target_allocator--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -2559,7 +2559,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--target_allocator--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -2567,7 +2567,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--target_allocator--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -2581,7 +2581,7 @@ Optional:
 
 
 <a id="nestedatt--spec--target_allocator--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -2589,7 +2589,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--target_allocator--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -2621,7 +2621,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--target_allocator--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -2636,7 +2636,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--target_allocator--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -2644,7 +2644,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--target_allocator--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -2658,7 +2658,7 @@ Optional:
 
 
 <a id="nestedatt--spec--target_allocator--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -2666,7 +2666,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--target_allocator--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -2697,7 +2697,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--target_allocator--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -2705,7 +2705,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--target_allocator--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -2719,7 +2719,7 @@ Optional:
 
 
 <a id="nestedatt--spec--target_allocator--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -2727,7 +2727,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--target_allocator--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.target_allocator.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -2861,7 +2861,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--target_allocator--pod_security_context--windows_options))
 
 <a id="nestedatt--spec--target_allocator--pod_security_context--se_linux_options"></a>
-### Nested Schema for `spec.target_allocator.pod_security_context.windows_options`
+### Nested Schema for `spec.target_allocator.pod_security_context.se_linux_options`
 
 Optional:
 
@@ -2872,7 +2872,7 @@ Optional:
 
 
 <a id="nestedatt--spec--target_allocator--pod_security_context--seccomp_profile"></a>
-### Nested Schema for `spec.target_allocator.pod_security_context.windows_options`
+### Nested Schema for `spec.target_allocator.pod_security_context.seccomp_profile`
 
 Required:
 
@@ -2884,7 +2884,7 @@ Optional:
 
 
 <a id="nestedatt--spec--target_allocator--pod_security_context--sysctls"></a>
-### Nested Schema for `spec.target_allocator.pod_security_context.windows_options`
+### Nested Schema for `spec.target_allocator.pod_security_context.sysctls`
 
 Required:
 
@@ -2925,7 +2925,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--target_allocator--resources--claims"></a>
-### Nested Schema for `spec.target_allocator.resources.requests`
+### Nested Schema for `spec.target_allocator.resources.claims`
 
 Required:
 
@@ -2951,7 +2951,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--target_allocator--security_context--windows_options))
 
 <a id="nestedatt--spec--target_allocator--security_context--capabilities"></a>
-### Nested Schema for `spec.target_allocator.security_context.windows_options`
+### Nested Schema for `spec.target_allocator.security_context.capabilities`
 
 Optional:
 
@@ -2960,7 +2960,7 @@ Optional:
 
 
 <a id="nestedatt--spec--target_allocator--security_context--se_linux_options"></a>
-### Nested Schema for `spec.target_allocator.security_context.windows_options`
+### Nested Schema for `spec.target_allocator.security_context.se_linux_options`
 
 Optional:
 
@@ -2971,7 +2971,7 @@ Optional:
 
 
 <a id="nestedatt--spec--target_allocator--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.target_allocator.security_context.windows_options`
+### Nested Schema for `spec.target_allocator.security_context.seccomp_profile`
 
 Required:
 
@@ -3024,7 +3024,7 @@ Optional:
 - `node_taints_policy` (String)
 
 <a id="nestedatt--spec--target_allocator--topology_spread_constraints--label_selector"></a>
-### Nested Schema for `spec.target_allocator.topology_spread_constraints.node_taints_policy`
+### Nested Schema for `spec.target_allocator.topology_spread_constraints.label_selector`
 
 Optional:
 
@@ -3085,7 +3085,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--topology_spread_constraints--label_selector--match_expressions"></a>
-### Nested Schema for `spec.topology_spread_constraints.label_selector.match_labels`
+### Nested Schema for `spec.topology_spread_constraints.label_selector.match_expressions`
 
 Required:
 
@@ -3156,7 +3156,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--volume_claim_templates--spec--data_source"></a>
-### Nested Schema for `spec.volume_claim_templates.spec.volume_name`
+### Nested Schema for `spec.volume_claim_templates.spec.data_source`
 
 Required:
 
@@ -3169,7 +3169,7 @@ Optional:
 
 
 <a id="nestedatt--spec--volume_claim_templates--spec--data_source_ref"></a>
-### Nested Schema for `spec.volume_claim_templates.spec.volume_name`
+### Nested Schema for `spec.volume_claim_templates.spec.data_source_ref`
 
 Required:
 
@@ -3183,7 +3183,7 @@ Optional:
 
 
 <a id="nestedatt--spec--volume_claim_templates--spec--resources"></a>
-### Nested Schema for `spec.volume_claim_templates.spec.volume_name`
+### Nested Schema for `spec.volume_claim_templates.spec.resources`
 
 Optional:
 
@@ -3192,7 +3192,7 @@ Optional:
 
 
 <a id="nestedatt--spec--volume_claim_templates--spec--selector"></a>
-### Nested Schema for `spec.volume_claim_templates.spec.volume_name`
+### Nested Schema for `spec.volume_claim_templates.spec.selector`
 
 Optional:
 
@@ -3229,7 +3229,7 @@ Optional:
 - `phase` (String)
 
 <a id="nestedatt--spec--volume_claim_templates--status--conditions"></a>
-### Nested Schema for `spec.volume_claim_templates.status.phase`
+### Nested Schema for `spec.volume_claim_templates.status.conditions`
 
 Required:
 
@@ -3245,7 +3245,7 @@ Optional:
 
 
 <a id="nestedatt--spec--volume_claim_templates--status--modify_volume_status"></a>
-### Nested Schema for `spec.volume_claim_templates.status.phase`
+### Nested Schema for `spec.volume_claim_templates.status.modify_volume_status`
 
 Required:
 
@@ -3372,7 +3372,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--volumes--cephfs--secret_ref"></a>
-### Nested Schema for `spec.volumes.cephfs.user`
+### Nested Schema for `spec.volumes.cephfs.secret_ref`
 
 Optional:
 
@@ -3413,7 +3413,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--volumes--config_map--items"></a>
-### Nested Schema for `spec.volumes.config_map.optional`
+### Nested Schema for `spec.volumes.config_map.items`
 
 Required:
 
@@ -3441,7 +3441,7 @@ Optional:
 - `volume_attributes` (Map of String)
 
 <a id="nestedatt--spec--volumes--csi--node_publish_secret_ref"></a>
-### Nested Schema for `spec.volumes.csi.volume_attributes`
+### Nested Schema for `spec.volumes.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -3540,7 +3540,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--volumes--ephemeral--volume_claim_template--spec--data_source"></a>
-### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.volume_name`
+### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.data_source`
 
 Required:
 
@@ -3553,7 +3553,7 @@ Optional:
 
 
 <a id="nestedatt--spec--volumes--ephemeral--volume_claim_template--spec--data_source_ref"></a>
-### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.volume_name`
+### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.data_source_ref`
 
 Required:
 
@@ -3567,7 +3567,7 @@ Optional:
 
 
 <a id="nestedatt--spec--volumes--ephemeral--volume_claim_template--spec--resources"></a>
-### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.volume_name`
+### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.resources`
 
 Optional:
 
@@ -3576,7 +3576,7 @@ Optional:
 
 
 <a id="nestedatt--spec--volumes--ephemeral--volume_claim_template--spec--selector"></a>
-### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.volume_name`
+### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.selector`
 
 Optional:
 
@@ -3584,7 +3584,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--volumes--ephemeral--volume_claim_template--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.volume_name.match_labels`
+### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.volume_name.match_expressions`
 
 Required:
 
@@ -3821,7 +3821,7 @@ Optional:
 - `signer_name` (String)
 
 <a id="nestedatt--spec--volumes--projected--sources--cluster_trust_bundle--label_selector"></a>
-### Nested Schema for `spec.volumes.projected.sources.cluster_trust_bundle.signer_name`
+### Nested Schema for `spec.volumes.projected.sources.cluster_trust_bundle.label_selector`
 
 Optional:
 
@@ -3829,7 +3829,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--volumes--projected--sources--cluster_trust_bundle--signer_name--match_expressions"></a>
-### Nested Schema for `spec.volumes.projected.sources.cluster_trust_bundle.signer_name.match_labels`
+### Nested Schema for `spec.volumes.projected.sources.cluster_trust_bundle.signer_name.match_expressions`
 
 Required:
 
@@ -3853,7 +3853,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--volumes--projected--sources--config_map--items"></a>
-### Nested Schema for `spec.volumes.projected.sources.config_map.optional`
+### Nested Schema for `spec.volumes.projected.sources.config_map.items`
 
 Required:
 
@@ -3887,7 +3887,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--volumes--projected--sources--downward_api--items--resource_field_ref))
 
 <a id="nestedatt--spec--volumes--projected--sources--downward_api--items--field_ref"></a>
-### Nested Schema for `spec.volumes.projected.sources.downward_api.items.resource_field_ref`
+### Nested Schema for `spec.volumes.projected.sources.downward_api.items.field_ref`
 
 Required:
 
@@ -3923,7 +3923,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--volumes--projected--sources--secret--items"></a>
-### Nested Schema for `spec.volumes.projected.sources.secret.optional`
+### Nested Schema for `spec.volumes.projected.sources.secret.items`
 
 Required:
 
@@ -3985,7 +3985,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--volumes--rbd--secret_ref"></a>
-### Nested Schema for `spec.volumes.rbd.user`
+### Nested Schema for `spec.volumes.rbd.secret_ref`
 
 Optional:
 
@@ -4013,7 +4013,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--volumes--scale_io--secret_ref"></a>
-### Nested Schema for `spec.volumes.scale_io.volume_name`
+### Nested Schema for `spec.volumes.scale_io.secret_ref`
 
 Optional:
 
@@ -4032,7 +4032,7 @@ Optional:
 - `secret_name` (String)
 
 <a id="nestedatt--spec--volumes--secret--items"></a>
-### Nested Schema for `spec.volumes.secret.secret_name`
+### Nested Schema for `spec.volumes.secret.items`
 
 Required:
 
@@ -4057,7 +4057,7 @@ Optional:
 - `volume_namespace` (String)
 
 <a id="nestedatt--spec--volumes--storageos--secret_ref"></a>
-### Nested Schema for `spec.volumes.storageos.volume_namespace`
+### Nested Schema for `spec.volumes.storageos.secret_ref`
 
 Optional:
 

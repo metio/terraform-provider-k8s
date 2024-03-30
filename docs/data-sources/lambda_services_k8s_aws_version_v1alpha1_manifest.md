@@ -83,7 +83,7 @@ Optional:
 - `on_success` (Attributes) A destination for events that were processed successfully. (see [below for nested schema](#nestedatt--spec--function_event_invoke_config--destination_config--on_success))
 
 <a id="nestedatt--spec--function_event_invoke_config--destination_config--on_failure"></a>
-### Nested Schema for `spec.function_event_invoke_config.destination_config.on_success`
+### Nested Schema for `spec.function_event_invoke_config.destination_config.on_failure`
 
 Optional:
 

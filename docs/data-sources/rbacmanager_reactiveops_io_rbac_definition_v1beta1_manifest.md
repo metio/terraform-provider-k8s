@@ -101,7 +101,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--rbac_bindings--role_bindings--namespace_selector--match_expressions"></a>
-### Nested Schema for `rbac_bindings.role_bindings.namespace_selector.match_labels`
+### Nested Schema for `rbac_bindings.role_bindings.namespace_selector.match_expressions`
 
 Required:
 

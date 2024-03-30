@@ -190,7 +190,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--component_specs--resources--claims"></a>
-### Nested Schema for `spec.component_specs.resources.requests`
+### Nested Schema for `spec.component_specs.resources.claims`
 
 Required:
 
@@ -242,7 +242,7 @@ Optional:
 - `secret_refs` (Attributes List) SecretRefs defines the user-defined secrets. (see [below for nested schema](#nestedatt--spec--component_specs--user_resource_refs--secret_refs))
 
 <a id="nestedatt--spec--component_specs--user_resource_refs--config_map_refs"></a>
-### Nested Schema for `spec.component_specs.user_resource_refs.secret_refs`
+### Nested Schema for `spec.component_specs.user_resource_refs.config_map_refs`
 
 Required:
 
@@ -266,7 +266,7 @@ Optional:
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--component_specs--user_resource_refs--secret_refs--config_map--items"></a>
-### Nested Schema for `spec.component_specs.user_resource_refs.secret_refs.config_map.optional`
+### Nested Schema for `spec.component_specs.user_resource_refs.secret_refs.config_map.items`
 
 Required:
 
@@ -305,7 +305,7 @@ Optional:
 - `secret_name` (String) secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
 
 <a id="nestedatt--spec--component_specs--user_resource_refs--secret_refs--secret--items"></a>
-### Nested Schema for `spec.component_specs.user_resource_refs.secret_refs.secret.secret_name`
+### Nested Schema for `spec.component_specs.user_resource_refs.secret_refs.secret.items`
 
 Required:
 
@@ -351,7 +351,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--component_specs--volume_claim_templates--spec--resources--claims"></a>
-### Nested Schema for `spec.component_specs.volume_claim_templates.spec.resources.requests`
+### Nested Schema for `spec.component_specs.volume_claim_templates.spec.resources.claims`
 
 Required:
 
@@ -432,7 +432,7 @@ Optional:
 - `volume_claim_templates` (Attributes List) Provides information for statefulset.spec.volumeClaimTemplates. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates))
 
 <a id="nestedatt--spec--sharding_specs--template--affinity"></a>
-### Nested Schema for `spec.sharding_specs.template.volume_claim_templates`
+### Nested Schema for `spec.sharding_specs.template.affinity`
 
 Optional:
 
@@ -443,7 +443,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding_specs--template--class_def_ref"></a>
-### Nested Schema for `spec.sharding_specs.template.volume_claim_templates`
+### Nested Schema for `spec.sharding_specs.template.class_def_ref`
 
 Required:
 
@@ -455,7 +455,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding_specs--template--issuer"></a>
-### Nested Schema for `spec.sharding_specs.template.volume_claim_templates`
+### Nested Schema for `spec.sharding_specs.template.issuer`
 
 Required:
 
@@ -478,7 +478,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding_specs--template--resources"></a>
-### Nested Schema for `spec.sharding_specs.template.volume_claim_templates`
+### Nested Schema for `spec.sharding_specs.template.resources`
 
 Optional:
 
@@ -496,7 +496,7 @@ Required:
 
 
 <a id="nestedatt--spec--sharding_specs--template--service_refs"></a>
-### Nested Schema for `spec.sharding_specs.template.volume_claim_templates`
+### Nested Schema for `spec.sharding_specs.template.service_refs`
 
 Required:
 
@@ -510,7 +510,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding_specs--template--services"></a>
-### Nested Schema for `spec.sharding_specs.template.volume_claim_templates`
+### Nested Schema for `spec.sharding_specs.template.services`
 
 Required:
 
@@ -523,7 +523,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding_specs--template--switch_policy"></a>
-### Nested Schema for `spec.sharding_specs.template.volume_claim_templates`
+### Nested Schema for `spec.sharding_specs.template.switch_policy`
 
 Optional:
 
@@ -531,7 +531,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sharding_specs--template--user_resource_refs"></a>
-### Nested Schema for `spec.sharding_specs.template.volume_claim_templates`
+### Nested Schema for `spec.sharding_specs.template.user_resource_refs`
 
 Optional:
 
@@ -553,7 +553,7 @@ Optional:
 - `sub_path` (String) SubPath specifies a path within the volume from which to mount.
 
 <a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--config_map_refs--config_map"></a>
-### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.config_map_refs.sub_path`
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.config_map_refs.config_map`
 
 Optional:
 
@@ -563,7 +563,7 @@ Optional:
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--config_map_refs--sub_path--items"></a>
-### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.config_map_refs.sub_path.optional`
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.config_map_refs.sub_path.items`
 
 Required:
 
@@ -592,7 +592,7 @@ Optional:
 - `sub_path` (String) SubPath specifies a path within the volume from which to mount.
 
 <a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--secret_refs--secret"></a>
-### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.secret_refs.sub_path`
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.secret_refs.secret`
 
 Optional:
 
@@ -602,7 +602,7 @@ Optional:
 - `secret_name` (String) secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
 
 <a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--secret_refs--sub_path--items"></a>
-### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.secret_refs.sub_path.secret_name`
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.secret_refs.sub_path.items`
 
 Required:
 
@@ -639,7 +639,7 @@ Optional:
 - `volume_mode` (String) Defines what type of volume is required by the claim.
 
 <a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--spec--resources"></a>
-### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.spec.volume_mode`
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.spec.resources`
 
 Optional:
 
@@ -648,7 +648,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--spec--volume_mode--claims"></a>
-### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.spec.volume_mode.requests`
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.spec.volume_mode.claims`
 
 Required:
 

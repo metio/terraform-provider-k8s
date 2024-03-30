@@ -154,7 +154,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--alertmanager--metrics--labels"></a>
-### Nested Schema for `spec.alertmanager.metrics.value`
+### Nested Schema for `spec.alertmanager.metrics.labels`
 
 Required:
 
@@ -233,7 +233,7 @@ Optional:
 - `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--alertmanager--relationships--configs))
 
 <a id="nestedatt--spec--alertmanager--relationships--components"></a>
-### Nested Schema for `spec.alertmanager.relationships.configs`
+### Nested Schema for `spec.alertmanager.relationships.components`
 
 Optional:
 
@@ -500,7 +500,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--aws_config--metrics--labels"></a>
-### Nested Schema for `spec.aws_config.metrics.value`
+### Nested Schema for `spec.aws_config.metrics.labels`
 
 Required:
 
@@ -758,7 +758,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--aws_config_rule--metrics--labels"></a>
-### Nested Schema for `spec.aws_config_rule.metrics.value`
+### Nested Schema for `spec.aws_config_rule.metrics.labels`
 
 Required:
 
@@ -1014,7 +1014,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--azure_devops--metrics--labels"></a>
-### Nested Schema for `spec.azure_devops.metrics.value`
+### Nested Schema for `spec.azure_devops.metrics.labels`
 
 Required:
 
@@ -1108,7 +1108,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--catalog--metrics--labels"></a>
-### Nested Schema for `spec.catalog.metrics.value`
+### Nested Schema for `spec.catalog.metrics.labels`
 
 Required:
 
@@ -1253,7 +1253,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--cloudwatch--metrics--labels"></a>
-### Nested Schema for `spec.cloudwatch.metrics.value`
+### Nested Schema for `spec.cloudwatch.metrics.labels`
 
 Required:
 
@@ -1445,7 +1445,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--config_db--metrics--labels"></a>
-### Nested Schema for `spec.config_db.metrics.value`
+### Nested Schema for `spec.config_db.metrics.labels`
 
 Required:
 
@@ -1510,7 +1510,7 @@ Optional:
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--containerd--auth--username))
 
 <a id="nestedatt--spec--containerd--auth--password"></a>
-### Nested Schema for `spec.containerd.auth.username`
+### Nested Schema for `spec.containerd.auth.password`
 
 Optional:
 
@@ -1529,7 +1529,7 @@ Optional:
 - `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
 
 <a id="nestedatt--spec--containerd--auth--username--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.containerd.auth.username.value_from.service_account`
+### Nested Schema for `spec.containerd.auth.username.value_from.config_map_key_ref`
 
 Required:
 
@@ -1541,7 +1541,7 @@ Optional:
 
 
 <a id="nestedatt--spec--containerd--auth--username--value_from--helm_ref"></a>
-### Nested Schema for `spec.containerd.auth.username.value_from.service_account`
+### Nested Schema for `spec.containerd.auth.username.value_from.helm_ref`
 
 Required:
 
@@ -1553,7 +1553,7 @@ Optional:
 
 
 <a id="nestedatt--spec--containerd--auth--username--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.containerd.auth.username.value_from.service_account`
+### Nested Schema for `spec.containerd.auth.username.value_from.secret_key_ref`
 
 Required:
 
@@ -1586,7 +1586,7 @@ Optional:
 - `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
 
 <a id="nestedatt--spec--containerd--auth--username--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.containerd.auth.username.value_from.service_account`
+### Nested Schema for `spec.containerd.auth.username.value_from.config_map_key_ref`
 
 Required:
 
@@ -1598,7 +1598,7 @@ Optional:
 
 
 <a id="nestedatt--spec--containerd--auth--username--value_from--helm_ref"></a>
-### Nested Schema for `spec.containerd.auth.username.value_from.service_account`
+### Nested Schema for `spec.containerd.auth.username.value_from.helm_ref`
 
 Required:
 
@@ -1610,7 +1610,7 @@ Optional:
 
 
 <a id="nestedatt--spec--containerd--auth--username--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.containerd.auth.username.value_from.service_account`
+### Nested Schema for `spec.containerd.auth.username.value_from.secret_key_ref`
 
 Required:
 
@@ -1635,7 +1635,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--containerd--metrics--labels"></a>
-### Nested Schema for `spec.containerd.metrics.value`
+### Nested Schema for `spec.containerd.metrics.labels`
 
 Required:
 
@@ -1679,7 +1679,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--containerd_push--metrics--labels"></a>
-### Nested Schema for `spec.containerd_push.metrics.value`
+### Nested Schema for `spec.containerd_push.metrics.labels`
 
 Required:
 
@@ -1766,7 +1766,7 @@ Optional:
 - `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
 
 <a id="nestedatt--spec--database_backup--gcp--gcp_connection--credentials--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.database_backup.gcp.gcp_connection.credentials.value_from.service_account`
+### Nested Schema for `spec.database_backup.gcp.gcp_connection.credentials.value_from.config_map_key_ref`
 
 Required:
 
@@ -1778,7 +1778,7 @@ Optional:
 
 
 <a id="nestedatt--spec--database_backup--gcp--gcp_connection--credentials--value_from--helm_ref"></a>
-### Nested Schema for `spec.database_backup.gcp.gcp_connection.credentials.value_from.service_account`
+### Nested Schema for `spec.database_backup.gcp.gcp_connection.credentials.value_from.helm_ref`
 
 Required:
 
@@ -1790,7 +1790,7 @@ Optional:
 
 
 <a id="nestedatt--spec--database_backup--gcp--gcp_connection--credentials--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.database_backup.gcp.gcp_connection.credentials.value_from.service_account`
+### Nested Schema for `spec.database_backup.gcp.gcp_connection.credentials.value_from.secret_key_ref`
 
 Required:
 
@@ -1816,7 +1816,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--database_backup--metrics--labels"></a>
-### Nested Schema for `spec.database_backup.metrics.value`
+### Nested Schema for `spec.database_backup.metrics.labels`
 
 Required:
 
@@ -1887,7 +1887,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--dns--metrics--labels"></a>
-### Nested Schema for `spec.dns.metrics.value`
+### Nested Schema for `spec.dns.metrics.labels`
 
 Required:
 
@@ -1930,7 +1930,7 @@ Optional:
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--docker--auth--username))
 
 <a id="nestedatt--spec--docker--auth--password"></a>
-### Nested Schema for `spec.docker.auth.username`
+### Nested Schema for `spec.docker.auth.password`
 
 Optional:
 
@@ -1949,7 +1949,7 @@ Optional:
 - `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
 
 <a id="nestedatt--spec--docker--auth--username--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.docker.auth.username.value_from.service_account`
+### Nested Schema for `spec.docker.auth.username.value_from.config_map_key_ref`
 
 Required:
 
@@ -1961,7 +1961,7 @@ Optional:
 
 
 <a id="nestedatt--spec--docker--auth--username--value_from--helm_ref"></a>
-### Nested Schema for `spec.docker.auth.username.value_from.service_account`
+### Nested Schema for `spec.docker.auth.username.value_from.helm_ref`
 
 Required:
 
@@ -1973,7 +1973,7 @@ Optional:
 
 
 <a id="nestedatt--spec--docker--auth--username--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.docker.auth.username.value_from.service_account`
+### Nested Schema for `spec.docker.auth.username.value_from.secret_key_ref`
 
 Required:
 
@@ -2006,7 +2006,7 @@ Optional:
 - `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
 
 <a id="nestedatt--spec--docker--auth--username--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.docker.auth.username.value_from.service_account`
+### Nested Schema for `spec.docker.auth.username.value_from.config_map_key_ref`
 
 Required:
 
@@ -2018,7 +2018,7 @@ Optional:
 
 
 <a id="nestedatt--spec--docker--auth--username--value_from--helm_ref"></a>
-### Nested Schema for `spec.docker.auth.username.value_from.service_account`
+### Nested Schema for `spec.docker.auth.username.value_from.helm_ref`
 
 Required:
 
@@ -2030,7 +2030,7 @@ Optional:
 
 
 <a id="nestedatt--spec--docker--auth--username--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.docker.auth.username.value_from.service_account`
+### Nested Schema for `spec.docker.auth.username.value_from.secret_key_ref`
 
 Required:
 
@@ -2055,7 +2055,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--docker--metrics--labels"></a>
-### Nested Schema for `spec.docker.metrics.value`
+### Nested Schema for `spec.docker.metrics.labels`
 
 Required:
 
@@ -2096,7 +2096,7 @@ Optional:
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--docker_push--auth--username))
 
 <a id="nestedatt--spec--docker_push--auth--password"></a>
-### Nested Schema for `spec.docker_push.auth.username`
+### Nested Schema for `spec.docker_push.auth.password`
 
 Optional:
 
@@ -2115,7 +2115,7 @@ Optional:
 - `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
 
 <a id="nestedatt--spec--docker_push--auth--username--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.docker_push.auth.username.value_from.service_account`
+### Nested Schema for `spec.docker_push.auth.username.value_from.config_map_key_ref`
 
 Required:
 
@@ -2127,7 +2127,7 @@ Optional:
 
 
 <a id="nestedatt--spec--docker_push--auth--username--value_from--helm_ref"></a>
-### Nested Schema for `spec.docker_push.auth.username.value_from.service_account`
+### Nested Schema for `spec.docker_push.auth.username.value_from.helm_ref`
 
 Required:
 
@@ -2139,7 +2139,7 @@ Optional:
 
 
 <a id="nestedatt--spec--docker_push--auth--username--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.docker_push.auth.username.value_from.service_account`
+### Nested Schema for `spec.docker_push.auth.username.value_from.secret_key_ref`
 
 Required:
 
@@ -2172,7 +2172,7 @@ Optional:
 - `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
 
 <a id="nestedatt--spec--docker_push--auth--username--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.docker_push.auth.username.value_from.service_account`
+### Nested Schema for `spec.docker_push.auth.username.value_from.config_map_key_ref`
 
 Required:
 
@@ -2184,7 +2184,7 @@ Optional:
 
 
 <a id="nestedatt--spec--docker_push--auth--username--value_from--helm_ref"></a>
-### Nested Schema for `spec.docker_push.auth.username.value_from.service_account`
+### Nested Schema for `spec.docker_push.auth.username.value_from.helm_ref`
 
 Required:
 
@@ -2196,7 +2196,7 @@ Optional:
 
 
 <a id="nestedatt--spec--docker_push--auth--username--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.docker_push.auth.username.value_from.service_account`
+### Nested Schema for `spec.docker_push.auth.username.value_from.secret_key_ref`
 
 Required:
 
@@ -2221,7 +2221,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--docker_push--metrics--labels"></a>
-### Nested Schema for `spec.docker_push.metrics.value`
+### Nested Schema for `spec.docker_push.metrics.labels`
 
 Required:
 
@@ -2337,7 +2337,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--dynatrace--metrics--labels"></a>
-### Nested Schema for `spec.dynatrace.metrics.value`
+### Nested Schema for `spec.dynatrace.metrics.labels`
 
 Required:
 
@@ -2479,7 +2479,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--ec2--metrics--labels"></a>
-### Nested Schema for `spec.ec2.metrics.value`
+### Nested Schema for `spec.ec2.metrics.labels`
 
 Required:
 
@@ -2655,7 +2655,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--elasticsearch--metrics--labels"></a>
-### Nested Schema for `spec.elasticsearch.metrics.value`
+### Nested Schema for `spec.elasticsearch.metrics.labels`
 
 Required:
 
@@ -2899,7 +2899,7 @@ Optional:
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--exec--checkout--username))
 
 <a id="nestedatt--spec--exec--checkout--certificate"></a>
-### Nested Schema for `spec.exec.checkout.username`
+### Nested Schema for `spec.exec.checkout.certificate`
 
 Optional:
 
@@ -2918,7 +2918,7 @@ Optional:
 - `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
 
 <a id="nestedatt--spec--exec--checkout--username--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.exec.checkout.username.value_from.service_account`
+### Nested Schema for `spec.exec.checkout.username.value_from.config_map_key_ref`
 
 Required:
 
@@ -2930,7 +2930,7 @@ Optional:
 
 
 <a id="nestedatt--spec--exec--checkout--username--value_from--helm_ref"></a>
-### Nested Schema for `spec.exec.checkout.username.value_from.service_account`
+### Nested Schema for `spec.exec.checkout.username.value_from.helm_ref`
 
 Required:
 
@@ -2942,7 +2942,7 @@ Optional:
 
 
 <a id="nestedatt--spec--exec--checkout--username--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.exec.checkout.username.value_from.service_account`
+### Nested Schema for `spec.exec.checkout.username.value_from.secret_key_ref`
 
 Required:
 
@@ -2956,7 +2956,7 @@ Optional:
 
 
 <a id="nestedatt--spec--exec--checkout--password"></a>
-### Nested Schema for `spec.exec.checkout.username`
+### Nested Schema for `spec.exec.checkout.password`
 
 Optional:
 
@@ -2975,7 +2975,7 @@ Optional:
 - `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
 
 <a id="nestedatt--spec--exec--checkout--username--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.exec.checkout.username.value_from.service_account`
+### Nested Schema for `spec.exec.checkout.username.value_from.config_map_key_ref`
 
 Required:
 
@@ -2987,7 +2987,7 @@ Optional:
 
 
 <a id="nestedatt--spec--exec--checkout--username--value_from--helm_ref"></a>
-### Nested Schema for `spec.exec.checkout.username.value_from.service_account`
+### Nested Schema for `spec.exec.checkout.username.value_from.helm_ref`
 
 Required:
 
@@ -2999,7 +2999,7 @@ Optional:
 
 
 <a id="nestedatt--spec--exec--checkout--username--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.exec.checkout.username.value_from.service_account`
+### Nested Schema for `spec.exec.checkout.username.value_from.secret_key_ref`
 
 Required:
 
@@ -3032,7 +3032,7 @@ Optional:
 - `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
 
 <a id="nestedatt--spec--exec--checkout--username--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.exec.checkout.username.value_from.service_account`
+### Nested Schema for `spec.exec.checkout.username.value_from.config_map_key_ref`
 
 Required:
 
@@ -3044,7 +3044,7 @@ Optional:
 
 
 <a id="nestedatt--spec--exec--checkout--username--value_from--helm_ref"></a>
-### Nested Schema for `spec.exec.checkout.username.value_from.service_account`
+### Nested Schema for `spec.exec.checkout.username.value_from.helm_ref`
 
 Required:
 
@@ -3056,7 +3056,7 @@ Optional:
 
 
 <a id="nestedatt--spec--exec--checkout--username--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.exec.checkout.username.value_from.service_account`
+### Nested Schema for `spec.exec.checkout.username.value_from.secret_key_ref`
 
 Required:
 
@@ -3080,7 +3080,7 @@ Optional:
 - `gcp` (Attributes) (see [below for nested schema](#nestedatt--spec--exec--connections--gcp))
 
 <a id="nestedatt--spec--exec--connections--aws"></a>
-### Nested Schema for `spec.exec.connections.gcp`
+### Nested Schema for `spec.exec.connections.aws`
 
 Optional:
 
@@ -3112,7 +3112,7 @@ Optional:
 - `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
 
 <a id="nestedatt--spec--exec--connections--gcp--access_key--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.exec.connections.gcp.access_key.value_from.service_account`
+### Nested Schema for `spec.exec.connections.gcp.access_key.value_from.config_map_key_ref`
 
 Required:
 
@@ -3124,7 +3124,7 @@ Optional:
 
 
 <a id="nestedatt--spec--exec--connections--gcp--access_key--value_from--helm_ref"></a>
-### Nested Schema for `spec.exec.connections.gcp.access_key.value_from.service_account`
+### Nested Schema for `spec.exec.connections.gcp.access_key.value_from.helm_ref`
 
 Required:
 
@@ -3136,7 +3136,7 @@ Optional:
 
 
 <a id="nestedatt--spec--exec--connections--gcp--access_key--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.exec.connections.gcp.access_key.value_from.service_account`
+### Nested Schema for `spec.exec.connections.gcp.access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -3169,7 +3169,7 @@ Optional:
 - `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
 
 <a id="nestedatt--spec--exec--connections--gcp--secret_key--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.exec.connections.gcp.secret_key.value_from.service_account`
+### Nested Schema for `spec.exec.connections.gcp.secret_key.value_from.config_map_key_ref`
 
 Required:
 
@@ -3181,7 +3181,7 @@ Optional:
 
 
 <a id="nestedatt--spec--exec--connections--gcp--secret_key--value_from--helm_ref"></a>
-### Nested Schema for `spec.exec.connections.gcp.secret_key.value_from.service_account`
+### Nested Schema for `spec.exec.connections.gcp.secret_key.value_from.helm_ref`
 
 Required:
 
@@ -3193,7 +3193,7 @@ Optional:
 
 
 <a id="nestedatt--spec--exec--connections--gcp--secret_key--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.exec.connections.gcp.secret_key.value_from.service_account`
+### Nested Schema for `spec.exec.connections.gcp.secret_key.value_from.secret_key_ref`
 
 Required:
 
@@ -3226,7 +3226,7 @@ Optional:
 - `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
 
 <a id="nestedatt--spec--exec--connections--gcp--session_token--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.exec.connections.gcp.session_token.value_from.service_account`
+### Nested Schema for `spec.exec.connections.gcp.session_token.value_from.config_map_key_ref`
 
 Required:
 
@@ -3238,7 +3238,7 @@ Optional:
 
 
 <a id="nestedatt--spec--exec--connections--gcp--session_token--value_from--helm_ref"></a>
-### Nested Schema for `spec.exec.connections.gcp.session_token.value_from.service_account`
+### Nested Schema for `spec.exec.connections.gcp.session_token.value_from.helm_ref`
 
 Required:
 
@@ -3250,7 +3250,7 @@ Optional:
 
 
 <a id="nestedatt--spec--exec--connections--gcp--session_token--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.exec.connections.gcp.session_token.value_from.service_account`
+### Nested Schema for `spec.exec.connections.gcp.session_token.value_from.secret_key_ref`
 
 Required:
 
@@ -3265,7 +3265,7 @@ Optional:
 
 
 <a id="nestedatt--spec--exec--connections--azure"></a>
-### Nested Schema for `spec.exec.connections.gcp`
+### Nested Schema for `spec.exec.connections.azure`
 
 Optional:
 
@@ -3294,7 +3294,7 @@ Optional:
 - `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
 
 <a id="nestedatt--spec--exec--connections--gcp--client_id--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.exec.connections.gcp.client_id.value_from.service_account`
+### Nested Schema for `spec.exec.connections.gcp.client_id.value_from.config_map_key_ref`
 
 Required:
 
@@ -3306,7 +3306,7 @@ Optional:
 
 
 <a id="nestedatt--spec--exec--connections--gcp--client_id--value_from--helm_ref"></a>
-### Nested Schema for `spec.exec.connections.gcp.client_id.value_from.service_account`
+### Nested Schema for `spec.exec.connections.gcp.client_id.value_from.helm_ref`
 
 Required:
 
@@ -3318,7 +3318,7 @@ Optional:
 
 
 <a id="nestedatt--spec--exec--connections--gcp--client_id--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.exec.connections.gcp.client_id.value_from.service_account`
+### Nested Schema for `spec.exec.connections.gcp.client_id.value_from.secret_key_ref`
 
 Required:
 
@@ -3351,7 +3351,7 @@ Optional:
 - `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
 
 <a id="nestedatt--spec--exec--connections--gcp--client_secret--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.exec.connections.gcp.client_secret.value_from.service_account`
+### Nested Schema for `spec.exec.connections.gcp.client_secret.value_from.config_map_key_ref`
 
 Required:
 
@@ -3363,7 +3363,7 @@ Optional:
 
 
 <a id="nestedatt--spec--exec--connections--gcp--client_secret--value_from--helm_ref"></a>
-### Nested Schema for `spec.exec.connections.gcp.client_secret.value_from.service_account`
+### Nested Schema for `spec.exec.connections.gcp.client_secret.value_from.helm_ref`
 
 Required:
 
@@ -3375,7 +3375,7 @@ Optional:
 
 
 <a id="nestedatt--spec--exec--connections--gcp--client_secret--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.exec.connections.gcp.client_secret.value_from.service_account`
+### Nested Schema for `spec.exec.connections.gcp.client_secret.value_from.secret_key_ref`
 
 Required:
 
@@ -3418,7 +3418,7 @@ Optional:
 - `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
 
 <a id="nestedatt--spec--exec--connections--gcp--credentials--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.exec.connections.gcp.credentials.value_from.service_account`
+### Nested Schema for `spec.exec.connections.gcp.credentials.value_from.config_map_key_ref`
 
 Required:
 
@@ -3430,7 +3430,7 @@ Optional:
 
 
 <a id="nestedatt--spec--exec--connections--gcp--credentials--value_from--helm_ref"></a>
-### Nested Schema for `spec.exec.connections.gcp.credentials.value_from.service_account`
+### Nested Schema for `spec.exec.connections.gcp.credentials.value_from.helm_ref`
 
 Required:
 
@@ -3442,7 +3442,7 @@ Optional:
 
 
 <a id="nestedatt--spec--exec--connections--gcp--credentials--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.exec.connections.gcp.credentials.value_from.service_account`
+### Nested Schema for `spec.exec.connections.gcp.credentials.value_from.secret_key_ref`
 
 Required:
 
@@ -3536,7 +3536,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--exec--metrics--labels"></a>
-### Nested Schema for `spec.exec.metrics.value`
+### Nested Schema for `spec.exec.metrics.labels`
 
 Required:
 
@@ -3623,7 +3623,7 @@ Optional:
 - `use_path_style` (Boolean) Use path style path: http://s3.amazonaws.com/BUCKET/KEY instead of http://BUCKET.s3.amazonaws.com/KEY
 
 <a id="nestedatt--spec--folder--aws_connection--access_key"></a>
-### Nested Schema for `spec.folder.aws_connection.use_path_style`
+### Nested Schema for `spec.folder.aws_connection.access_key`
 
 Optional:
 
@@ -3642,7 +3642,7 @@ Optional:
 - `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
 
 <a id="nestedatt--spec--folder--aws_connection--use_path_style--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.folder.aws_connection.use_path_style.value_from.service_account`
+### Nested Schema for `spec.folder.aws_connection.use_path_style.value_from.config_map_key_ref`
 
 Required:
 
@@ -3654,7 +3654,7 @@ Optional:
 
 
 <a id="nestedatt--spec--folder--aws_connection--use_path_style--value_from--helm_ref"></a>
-### Nested Schema for `spec.folder.aws_connection.use_path_style.value_from.service_account`
+### Nested Schema for `spec.folder.aws_connection.use_path_style.value_from.helm_ref`
 
 Required:
 
@@ -3666,7 +3666,7 @@ Optional:
 
 
 <a id="nestedatt--spec--folder--aws_connection--use_path_style--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.folder.aws_connection.use_path_style.value_from.service_account`
+### Nested Schema for `spec.folder.aws_connection.use_path_style.value_from.secret_key_ref`
 
 Required:
 
@@ -3680,7 +3680,7 @@ Optional:
 
 
 <a id="nestedatt--spec--folder--aws_connection--secret_key"></a>
-### Nested Schema for `spec.folder.aws_connection.use_path_style`
+### Nested Schema for `spec.folder.aws_connection.secret_key`
 
 Optional:
 
@@ -3699,7 +3699,7 @@ Optional:
 - `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
 
 <a id="nestedatt--spec--folder--aws_connection--use_path_style--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.folder.aws_connection.use_path_style.value_from.service_account`
+### Nested Schema for `spec.folder.aws_connection.use_path_style.value_from.config_map_key_ref`
 
 Required:
 
@@ -3711,7 +3711,7 @@ Optional:
 
 
 <a id="nestedatt--spec--folder--aws_connection--use_path_style--value_from--helm_ref"></a>
-### Nested Schema for `spec.folder.aws_connection.use_path_style.value_from.service_account`
+### Nested Schema for `spec.folder.aws_connection.use_path_style.value_from.helm_ref`
 
 Required:
 
@@ -3723,7 +3723,7 @@ Optional:
 
 
 <a id="nestedatt--spec--folder--aws_connection--use_path_style--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.folder.aws_connection.use_path_style.value_from.service_account`
+### Nested Schema for `spec.folder.aws_connection.use_path_style.value_from.secret_key_ref`
 
 Required:
 
@@ -3737,7 +3737,7 @@ Optional:
 
 
 <a id="nestedatt--spec--folder--aws_connection--session_token"></a>
-### Nested Schema for `spec.folder.aws_connection.use_path_style`
+### Nested Schema for `spec.folder.aws_connection.session_token`
 
 Optional:
 
@@ -3756,7 +3756,7 @@ Optional:
 - `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
 
 <a id="nestedatt--spec--folder--aws_connection--use_path_style--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.folder.aws_connection.use_path_style.value_from.service_account`
+### Nested Schema for `spec.folder.aws_connection.use_path_style.value_from.config_map_key_ref`
 
 Required:
 
@@ -3768,7 +3768,7 @@ Optional:
 
 
 <a id="nestedatt--spec--folder--aws_connection--use_path_style--value_from--helm_ref"></a>
-### Nested Schema for `spec.folder.aws_connection.use_path_style.value_from.service_account`
+### Nested Schema for `spec.folder.aws_connection.use_path_style.value_from.helm_ref`
 
 Required:
 
@@ -3780,7 +3780,7 @@ Optional:
 
 
 <a id="nestedatt--spec--folder--aws_connection--use_path_style--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.folder.aws_connection.use_path_style.value_from.service_account`
+### Nested Schema for `spec.folder.aws_connection.use_path_style.value_from.secret_key_ref`
 
 Required:
 
@@ -3829,7 +3829,7 @@ Optional:
 - `endpoint` (String)
 
 <a id="nestedatt--spec--folder--gcp_connection--credentials"></a>
-### Nested Schema for `spec.folder.gcp_connection.endpoint`
+### Nested Schema for `spec.folder.gcp_connection.credentials`
 
 Optional:
 
@@ -3848,7 +3848,7 @@ Optional:
 - `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
 
 <a id="nestedatt--spec--folder--gcp_connection--endpoint--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.folder.gcp_connection.endpoint.value_from.service_account`
+### Nested Schema for `spec.folder.gcp_connection.endpoint.value_from.config_map_key_ref`
 
 Required:
 
@@ -3860,7 +3860,7 @@ Optional:
 
 
 <a id="nestedatt--spec--folder--gcp_connection--endpoint--value_from--helm_ref"></a>
-### Nested Schema for `spec.folder.gcp_connection.endpoint.value_from.service_account`
+### Nested Schema for `spec.folder.gcp_connection.endpoint.value_from.helm_ref`
 
 Required:
 
@@ -3872,7 +3872,7 @@ Optional:
 
 
 <a id="nestedatt--spec--folder--gcp_connection--endpoint--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.folder.gcp_connection.endpoint.value_from.service_account`
+### Nested Schema for `spec.folder.gcp_connection.endpoint.value_from.secret_key_ref`
 
 Required:
 
@@ -3897,7 +3897,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--folder--metrics--labels"></a>
-### Nested Schema for `spec.folder.metrics.value`
+### Nested Schema for `spec.folder.metrics.labels`
 
 Required:
 
@@ -3925,7 +3925,7 @@ Optional:
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--username))
 
 <a id="nestedatt--spec--folder--sftp_connection--password"></a>
-### Nested Schema for `spec.folder.sftp_connection.username`
+### Nested Schema for `spec.folder.sftp_connection.password`
 
 Optional:
 
@@ -3944,7 +3944,7 @@ Optional:
 - `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
 
 <a id="nestedatt--spec--folder--sftp_connection--username--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.folder.sftp_connection.username.value_from.service_account`
+### Nested Schema for `spec.folder.sftp_connection.username.value_from.config_map_key_ref`
 
 Required:
 
@@ -3956,7 +3956,7 @@ Optional:
 
 
 <a id="nestedatt--spec--folder--sftp_connection--username--value_from--helm_ref"></a>
-### Nested Schema for `spec.folder.sftp_connection.username.value_from.service_account`
+### Nested Schema for `spec.folder.sftp_connection.username.value_from.helm_ref`
 
 Required:
 
@@ -3968,7 +3968,7 @@ Optional:
 
 
 <a id="nestedatt--spec--folder--sftp_connection--username--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.folder.sftp_connection.username.value_from.service_account`
+### Nested Schema for `spec.folder.sftp_connection.username.value_from.secret_key_ref`
 
 Required:
 
@@ -4001,7 +4001,7 @@ Optional:
 - `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
 
 <a id="nestedatt--spec--folder--sftp_connection--username--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.folder.sftp_connection.username.value_from.service_account`
+### Nested Schema for `spec.folder.sftp_connection.username.value_from.config_map_key_ref`
 
 Required:
 
@@ -4013,7 +4013,7 @@ Optional:
 
 
 <a id="nestedatt--spec--folder--sftp_connection--username--value_from--helm_ref"></a>
-### Nested Schema for `spec.folder.sftp_connection.username.value_from.service_account`
+### Nested Schema for `spec.folder.sftp_connection.username.value_from.helm_ref`
 
 Required:
 
@@ -4025,7 +4025,7 @@ Optional:
 
 
 <a id="nestedatt--spec--folder--sftp_connection--username--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.folder.sftp_connection.username.value_from.service_account`
+### Nested Schema for `spec.folder.sftp_connection.username.value_from.secret_key_ref`
 
 Required:
 
@@ -4051,7 +4051,7 @@ Optional:
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--username))
 
 <a id="nestedatt--spec--folder--smb_connection--password"></a>
-### Nested Schema for `spec.folder.smb_connection.username`
+### Nested Schema for `spec.folder.smb_connection.password`
 
 Optional:
 
@@ -4070,7 +4070,7 @@ Optional:
 - `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
 
 <a id="nestedatt--spec--folder--smb_connection--username--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.folder.smb_connection.username.value_from.service_account`
+### Nested Schema for `spec.folder.smb_connection.username.value_from.config_map_key_ref`
 
 Required:
 
@@ -4082,7 +4082,7 @@ Optional:
 
 
 <a id="nestedatt--spec--folder--smb_connection--username--value_from--helm_ref"></a>
-### Nested Schema for `spec.folder.smb_connection.username.value_from.service_account`
+### Nested Schema for `spec.folder.smb_connection.username.value_from.helm_ref`
 
 Required:
 
@@ -4094,7 +4094,7 @@ Optional:
 
 
 <a id="nestedatt--spec--folder--smb_connection--username--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.folder.smb_connection.username.value_from.service_account`
+### Nested Schema for `spec.folder.smb_connection.username.value_from.secret_key_ref`
 
 Required:
 
@@ -4127,7 +4127,7 @@ Optional:
 - `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
 
 <a id="nestedatt--spec--folder--smb_connection--username--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.folder.smb_connection.username.value_from.service_account`
+### Nested Schema for `spec.folder.smb_connection.username.value_from.config_map_key_ref`
 
 Required:
 
@@ -4139,7 +4139,7 @@ Optional:
 
 
 <a id="nestedatt--spec--folder--smb_connection--username--value_from--helm_ref"></a>
-### Nested Schema for `spec.folder.smb_connection.username.value_from.service_account`
+### Nested Schema for `spec.folder.smb_connection.username.value_from.helm_ref`
 
 Required:
 
@@ -4151,7 +4151,7 @@ Optional:
 
 
 <a id="nestedatt--spec--folder--smb_connection--username--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.folder.smb_connection.username.value_from.service_account`
+### Nested Schema for `spec.folder.smb_connection.username.value_from.secret_key_ref`
 
 Required:
 
@@ -4347,7 +4347,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--git_protocol--metrics--labels"></a>
-### Nested Schema for `spec.git_protocol.metrics.value`
+### Nested Schema for `spec.git_protocol.metrics.labels`
 
 Required:
 
@@ -4484,7 +4484,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--github--metrics--labels"></a>
-### Nested Schema for `spec.github.metrics.value`
+### Nested Schema for `spec.github.metrics.labels`
 
 Required:
 
@@ -4549,7 +4549,7 @@ Optional:
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--helm--auth--username))
 
 <a id="nestedatt--spec--helm--auth--password"></a>
-### Nested Schema for `spec.helm.auth.username`
+### Nested Schema for `spec.helm.auth.password`
 
 Optional:
 
@@ -4568,7 +4568,7 @@ Optional:
 - `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
 
 <a id="nestedatt--spec--helm--auth--username--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.helm.auth.username.value_from.service_account`
+### Nested Schema for `spec.helm.auth.username.value_from.config_map_key_ref`
 
 Required:
 
@@ -4580,7 +4580,7 @@ Optional:
 
 
 <a id="nestedatt--spec--helm--auth--username--value_from--helm_ref"></a>
-### Nested Schema for `spec.helm.auth.username.value_from.service_account`
+### Nested Schema for `spec.helm.auth.username.value_from.helm_ref`
 
 Required:
 
@@ -4592,7 +4592,7 @@ Optional:
 
 
 <a id="nestedatt--spec--helm--auth--username--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.helm.auth.username.value_from.service_account`
+### Nested Schema for `spec.helm.auth.username.value_from.secret_key_ref`
 
 Required:
 
@@ -4625,7 +4625,7 @@ Optional:
 - `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
 
 <a id="nestedatt--spec--helm--auth--username--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.helm.auth.username.value_from.service_account`
+### Nested Schema for `spec.helm.auth.username.value_from.config_map_key_ref`
 
 Required:
 
@@ -4637,7 +4637,7 @@ Optional:
 
 
 <a id="nestedatt--spec--helm--auth--username--value_from--helm_ref"></a>
-### Nested Schema for `spec.helm.auth.username.value_from.service_account`
+### Nested Schema for `spec.helm.auth.username.value_from.helm_ref`
 
 Required:
 
@@ -4649,7 +4649,7 @@ Optional:
 
 
 <a id="nestedatt--spec--helm--auth--username--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.helm.auth.username.value_from.service_account`
+### Nested Schema for `spec.helm.auth.username.value_from.secret_key_ref`
 
 Required:
 
@@ -4674,7 +4674,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--helm--metrics--labels"></a>
-### Nested Schema for `spec.helm.metrics.value`
+### Nested Schema for `spec.helm.metrics.labels`
 
 Required:
 
@@ -4861,7 +4861,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--http--metrics--labels"></a>
-### Nested Schema for `spec.http.metrics.value`
+### Nested Schema for `spec.http.metrics.labels`
 
 Required:
 
@@ -5061,7 +5061,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--icmp--metrics--labels"></a>
-### Nested Schema for `spec.icmp.metrics.value`
+### Nested Schema for `spec.icmp.metrics.labels`
 
 Required:
 
@@ -5165,7 +5165,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--jmeter--metrics--labels"></a>
-### Nested Schema for `spec.jmeter.metrics.value`
+### Nested Schema for `spec.jmeter.metrics.labels`
 
 Required:
 
@@ -5232,7 +5232,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--junit--metrics--labels"></a>
-### Nested Schema for `spec.junit.metrics.value`
+### Nested Schema for `spec.junit.metrics.labels`
 
 Required:
 
@@ -5372,7 +5372,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--kubernetes--metrics--labels"></a>
-### Nested Schema for `spec.kubernetes.metrics.value`
+### Nested Schema for `spec.kubernetes.metrics.labels`
 
 Required:
 
@@ -5462,7 +5462,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--ldap--metrics--labels"></a>
-### Nested Schema for `spec.ldap.metrics.value`
+### Nested Schema for `spec.ldap.metrics.labels`
 
 Required:
 
@@ -5621,7 +5621,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--mongodb--metrics--labels"></a>
-### Nested Schema for `spec.mongodb.metrics.value`
+### Nested Schema for `spec.mongodb.metrics.labels`
 
 Required:
 
@@ -5796,7 +5796,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--mssql--metrics--labels"></a>
-### Nested Schema for `spec.mssql.metrics.value`
+### Nested Schema for `spec.mssql.metrics.labels`
 
 Required:
 
@@ -5993,7 +5993,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--mysql--metrics--labels"></a>
-### Nested Schema for `spec.mysql.metrics.value`
+### Nested Schema for `spec.mysql.metrics.labels`
 
 Required:
 
@@ -6188,7 +6188,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--namespace--metrics--labels"></a>
-### Nested Schema for `spec.namespace.metrics.value`
+### Nested Schema for `spec.namespace.metrics.labels`
 
 Required:
 
@@ -6250,7 +6250,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--opensearch--metrics--labels"></a>
-### Nested Schema for `spec.opensearch.metrics.value`
+### Nested Schema for `spec.opensearch.metrics.labels`
 
 Required:
 
@@ -6444,7 +6444,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--pod--metrics--labels"></a>
-### Nested Schema for `spec.pod.metrics.value`
+### Nested Schema for `spec.pod.metrics.labels`
 
 Required:
 
@@ -6505,7 +6505,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--postgres--metrics--labels"></a>
-### Nested Schema for `spec.postgres.metrics.value`
+### Nested Schema for `spec.postgres.metrics.labels`
 
 Required:
 
@@ -6702,7 +6702,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--prometheus--metrics--labels"></a>
-### Nested Schema for `spec.prometheus.metrics.value`
+### Nested Schema for `spec.prometheus.metrics.labels`
 
 Required:
 
@@ -6885,7 +6885,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--redis--metrics--labels"></a>
-### Nested Schema for `spec.redis.metrics.value`
+### Nested Schema for `spec.redis.metrics.labels`
 
 Required:
 
@@ -7163,7 +7163,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--restic--metrics--labels"></a>
-### Nested Schema for `spec.restic.metrics.value`
+### Nested Schema for `spec.restic.metrics.labels`
 
 Required:
 
@@ -7329,7 +7329,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--s3--metrics--labels"></a>
-### Nested Schema for `spec.s3.metrics.value`
+### Nested Schema for `spec.s3.metrics.labels`
 
 Required:
 
@@ -7486,7 +7486,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--tcp--metrics--labels"></a>
-### Nested Schema for `spec.tcp.metrics.value`
+### Nested Schema for `spec.tcp.metrics.labels`
 
 Required:
 
@@ -7542,7 +7542,7 @@ Optional:
 - `value` (String)
 
 <a id="nestedatt--spec--webhook--metrics--labels"></a>
-### Nested Schema for `spec.webhook.metrics.value`
+### Nested Schema for `spec.webhook.metrics.labels`
 
 Required:
 

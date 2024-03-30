@@ -194,7 +194,7 @@ Optional:
 - `service_account_name` (String) Specifies the service account to run the backup workload.
 
 <a id="nestedatt--spec--backup_methods--target--connection_credential"></a>
-### Nested Schema for `spec.backup_methods.target.service_account_name`
+### Nested Schema for `spec.backup_methods.target.connection_credential`
 
 Required:
 
@@ -209,7 +209,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backup_methods--target--pod_selector"></a>
-### Nested Schema for `spec.backup_methods.target.service_account_name`
+### Nested Schema for `spec.backup_methods.target.pod_selector`
 
 Optional:
 
@@ -232,7 +232,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backup_methods--target--resources"></a>
-### Nested Schema for `spec.backup_methods.target.service_account_name`
+### Nested Schema for `spec.backup_methods.target.resources`
 
 Optional:
 
@@ -249,7 +249,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--backup_methods--target--service_account_name--selector--match_expressions"></a>
-### Nested Schema for `spec.backup_methods.target.service_account_name.selector.match_labels`
+### Nested Schema for `spec.backup_methods.target.service_account_name.selector.match_expressions`
 
 Required:
 
@@ -273,7 +273,7 @@ Optional:
 - `volumes` (List of String) Specifies the list of volumes of targeted application that should be mounted on the backup workload.
 
 <a id="nestedatt--spec--backup_methods--target_volumes--volume_mounts"></a>
-### Nested Schema for `spec.backup_methods.target_volumes.volumes`
+### Nested Schema for `spec.backup_methods.target_volumes.volume_mounts`
 
 Required:
 
@@ -325,7 +325,7 @@ Optional:
 - `strategy` (String) Specifies the strategy to select the target pod when multiple pods are selected. Valid values are: Any: select any one pod that match the labelsSelector.  - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector.
 
 <a id="nestedatt--spec--target--pod_selector--match_expressions"></a>
-### Nested Schema for `spec.target.pod_selector.strategy`
+### Nested Schema for `spec.target.pod_selector.match_expressions`
 
 Required:
 

@@ -74,7 +74,7 @@ Optional:
 - `naming_template` (String) namingTemplate is a template that uses the Go template syntax and allows for referencing variables defined in ComponentClassGroup.Template. This enables dynamic generation of class names. For example: name: 'general-{{ .cpu }}c{{ .memory }}g'
 
 <a id="nestedatt--spec--groups--series--classes"></a>
-### Nested Schema for `spec.groups.series.naming_template`
+### Nested Schema for `spec.groups.series.classes`
 
 Optional:
 

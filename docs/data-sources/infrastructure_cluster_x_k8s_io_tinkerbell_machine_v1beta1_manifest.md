@@ -81,7 +81,7 @@ Required:
 - `weight` (Number) Weight associated with matching the corresponding hardwareAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--hardware_affinity--preferred--hardware_affinity_term"></a>
-### Nested Schema for `spec.hardware_affinity.preferred.weight`
+### Nested Schema for `spec.hardware_affinity.preferred.hardware_affinity_term`
 
 Required:
 
@@ -96,7 +96,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--hardware_affinity--preferred--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.hardware_affinity.preferred.weight.label_selector.match_labels`
+### Nested Schema for `spec.hardware_affinity.preferred.weight.label_selector.match_expressions`
 
 Required:
 

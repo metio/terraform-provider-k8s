@@ -88,7 +88,7 @@ Required:
 - `ports` (Attributes List) List of ports which should be made accessible on the targets in TargetGroup.If ports is empty or unspecified, it defaults to all ports with TCP. (see [below for nested schema](#nestedatt--spec--networking--ingress--ports))
 
 <a id="nestedatt--spec--networking--ingress--from"></a>
-### Nested Schema for `spec.networking.ingress.ports`
+### Nested Schema for `spec.networking.ingress.from`
 
 Optional:
 

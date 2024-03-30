@@ -3,7 +3,7 @@
 page_title: "k8s_traefik_io_traefik_service_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "traefik.io"
 description: |-
-  TraefikService is the CRD implementation of a Traefik Service.TraefikService object allows to:- Apply weight to Services on load-balancing- Mirror traffic on servicesMore info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#kind-traefikservice
+  TraefikService is the CRD implementation of a Traefik Service.TraefikService object allows to:- Apply weight to Services on load-balancing- Mirror traffic on servicesMore info:
 ---
 
 # k8s_traefik_io_traefik_service_v1alpha1_manifest (Data Source)
@@ -106,7 +106,7 @@ Optional:
 - `weight` (Number) Weight defines the weight and should only be specified when Name references a TraefikService object(and to be precise, one that embeds a Weighted Round Robin).
 
 <a id="nestedatt--spec--mirroring--mirrors--response_forwarding"></a>
-### Nested Schema for `spec.mirroring.mirrors.weight`
+### Nested Schema for `spec.mirroring.mirrors.response_forwarding`
 
 Optional:
 
@@ -114,7 +114,7 @@ Optional:
 
 
 <a id="nestedatt--spec--mirroring--mirrors--sticky"></a>
-### Nested Schema for `spec.mirroring.mirrors.weight`
+### Nested Schema for `spec.mirroring.mirrors.sticky`
 
 Optional:
 
@@ -194,7 +194,7 @@ Optional:
 - `weight` (Number) Weight defines the weight and should only be specified when Name references a TraefikService object(and to be precise, one that embeds a Weighted Round Robin).
 
 <a id="nestedatt--spec--weighted--services--response_forwarding"></a>
-### Nested Schema for `spec.weighted.services.weight`
+### Nested Schema for `spec.weighted.services.response_forwarding`
 
 Optional:
 
@@ -202,7 +202,7 @@ Optional:
 
 
 <a id="nestedatt--spec--weighted--services--sticky"></a>
-### Nested Schema for `spec.weighted.services.weight`
+### Nested Schema for `spec.weighted.services.sticky`
 
 Optional:
 

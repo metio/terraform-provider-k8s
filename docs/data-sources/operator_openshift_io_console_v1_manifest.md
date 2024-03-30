@@ -102,7 +102,7 @@ Optional:
 - `types` (Attributes) types allows enabling or disabling of sub-catalog types that user can see in the Developer catalog. When omitted, all the sub-catalog types will be shown. (see [below for nested schema](#nestedatt--spec--customization--developer_catalog--types))
 
 <a id="nestedatt--spec--customization--developer_catalog--categories"></a>
-### Nested Schema for `spec.customization.developer_catalog.types`
+### Nested Schema for `spec.customization.developer_catalog.categories`
 
 Required:
 
@@ -155,7 +155,7 @@ Optional:
 - `pinned_resources` (Attributes List) pinnedResources defines the list of default pinned resources that users will see on the perspective navigation if they have not customized these pinned resources themselves. The list of available Kubernetes resources could be read via 'kubectl api-resources'. The console will also provide a configuration UI and a YAML snippet that will list the available resources that can be pinned to the navigation. Incorrect or unknown resources will be ignored. (see [below for nested schema](#nestedatt--spec--customization--perspectives--pinned_resources))
 
 <a id="nestedatt--spec--customization--perspectives--visibility"></a>
-### Nested Schema for `spec.customization.perspectives.pinned_resources`
+### Nested Schema for `spec.customization.perspectives.visibility`
 
 Required:
 
@@ -174,7 +174,7 @@ Optional:
 - `required` (Attributes List) required defines a list of permission checks. The perspective will only be shown when all checks are successful. When omitted, the access review is skipped and the perspective will not be shown unless it is required to do so based on the configuration of the missing access review list. (see [below for nested schema](#nestedatt--spec--customization--perspectives--pinned_resources--access_review--required))
 
 <a id="nestedatt--spec--customization--perspectives--pinned_resources--access_review--missing"></a>
-### Nested Schema for `spec.customization.perspectives.pinned_resources.access_review.required`
+### Nested Schema for `spec.customization.perspectives.pinned_resources.access_review.missing`
 
 Optional:
 

@@ -92,7 +92,7 @@ Optional:
 - `transformation_refs` (Attributes List) TransformationRefs contain references to template configuration from SecretTransformation. (see [below for nested schema](#nestedatt--spec--destination--transformation--transformation_refs))
 
 <a id="nestedatt--spec--destination--transformation--templates"></a>
-### Nested Schema for `spec.destination.transformation.transformation_refs`
+### Nested Schema for `spec.destination.transformation.templates`
 
 Required:
 

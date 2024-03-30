@@ -154,7 +154,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--volume--selector--match_expressions"></a>
-### Nested Schema for `spec.volume.selector.match_labels`
+### Nested Schema for `spec.volume.selector.match_expressions`
 
 Required:
 
@@ -223,7 +223,7 @@ Optional:
 - `requests` (Attributes) (see [below for nested schema](#nestedatt--spec--connection_pooler--resources--requests))
 
 <a id="nestedatt--spec--connection_pooler--resources--limits"></a>
-### Nested Schema for `spec.connection_pooler.resources.requests`
+### Nested Schema for `spec.connection_pooler.resources.limits`
 
 Optional:
 
@@ -259,7 +259,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.node_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 

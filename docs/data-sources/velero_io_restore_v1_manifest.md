@@ -101,7 +101,7 @@ Optional:
 - `post_hooks` (Attributes List) PostHooks is a list of RestoreResourceHooks to execute during and after restoring a resource. (see [below for nested schema](#nestedatt--spec--hooks--resources--post_hooks))
 
 <a id="nestedatt--spec--hooks--resources--label_selector"></a>
-### Nested Schema for `spec.hooks.resources.post_hooks`
+### Nested Schema for `spec.hooks.resources.label_selector`
 
 Optional:
 

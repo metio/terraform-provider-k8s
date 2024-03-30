@@ -95,7 +95,7 @@ Optional:
 - `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--delegate_action--selector))
 
 <a id="nestedatt--spec--routes--delegate_action--ref"></a>
-### Nested Schema for `spec.routes.delegate_action.selector`
+### Nested Schema for `spec.routes.delegate_action.ref`
 
 Optional:
 
@@ -157,7 +157,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--routes--matchers--headers"></a>
-### Nested Schema for `spec.routes.matchers.regex`
+### Nested Schema for `spec.routes.matchers.headers`
 
 Optional:
 
@@ -168,7 +168,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--matchers--query_parameters"></a>
-### Nested Schema for `spec.routes.matchers.regex`
+### Nested Schema for `spec.routes.matchers.query_parameters`
 
 Optional:
 
@@ -222,7 +222,7 @@ Optional:
 - `waf` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--waf))
 
 <a id="nestedatt--spec--routes--options--buffer_per_route"></a>
-### Nested Schema for `spec.routes.options.waf`
+### Nested Schema for `spec.routes.options.buffer_per_route`
 
 Optional:
 
@@ -239,7 +239,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--cors"></a>
-### Nested Schema for `spec.routes.options.waf`
+### Nested Schema for `spec.routes.options.cors`
 
 Optional:
 
@@ -254,7 +254,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--csrf"></a>
-### Nested Schema for `spec.routes.options.waf`
+### Nested Schema for `spec.routes.options.csrf`
 
 Optional:
 
@@ -274,7 +274,7 @@ Optional:
 - `suffix` (String)
 
 <a id="nestedatt--spec--routes--options--waf--additional_origins--safe_regex"></a>
-### Nested Schema for `spec.routes.options.waf.additional_origins.suffix`
+### Nested Schema for `spec.routes.options.waf.additional_origins.safe_regex`
 
 Optional:
 
@@ -282,7 +282,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--routes--options--waf--additional_origins--suffix--google_re2"></a>
-### Nested Schema for `spec.routes.options.waf.additional_origins.suffix.regex`
+### Nested Schema for `spec.routes.options.waf.additional_origins.suffix.google_re2`
 
 Optional:
 
@@ -300,7 +300,7 @@ Optional:
 - `runtime_key` (String)
 
 <a id="nestedatt--spec--routes--options--waf--filter_enabled--default_value"></a>
-### Nested Schema for `spec.routes.options.waf.filter_enabled.runtime_key`
+### Nested Schema for `spec.routes.options.waf.filter_enabled.default_value`
 
 Optional:
 
@@ -318,7 +318,7 @@ Optional:
 - `runtime_key` (String)
 
 <a id="nestedatt--spec--routes--options--waf--shadow_enabled--default_value"></a>
-### Nested Schema for `spec.routes.options.waf.shadow_enabled.runtime_key`
+### Nested Schema for `spec.routes.options.waf.shadow_enabled.default_value`
 
 Optional:
 
@@ -329,7 +329,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--dlp"></a>
-### Nested Schema for `spec.routes.options.waf`
+### Nested Schema for `spec.routes.options.dlp`
 
 Optional:
 
@@ -347,7 +347,7 @@ Optional:
 - `shadow` (Boolean)
 
 <a id="nestedatt--spec--routes--options--waf--actions--custom_action"></a>
-### Nested Schema for `spec.routes.options.waf.actions.shadow`
+### Nested Schema for `spec.routes.options.waf.actions.custom_action`
 
 Optional:
 
@@ -358,7 +358,7 @@ Optional:
 - `regex_actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--routes--options--waf--actions--shadow--regex_actions))
 
 <a id="nestedatt--spec--routes--options--waf--actions--shadow--percent"></a>
-### Nested Schema for `spec.routes.options.waf.actions.shadow.regex_actions`
+### Nested Schema for `spec.routes.options.waf.actions.shadow.percent`
 
 Optional:
 
@@ -376,7 +376,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--actions--key_value_action"></a>
-### Nested Schema for `spec.routes.options.waf.actions.shadow`
+### Nested Schema for `spec.routes.options.waf.actions.key_value_action`
 
 Optional:
 
@@ -397,7 +397,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--ext_proc"></a>
-### Nested Schema for `spec.routes.options.waf`
+### Nested Schema for `spec.routes.options.ext_proc`
 
 Optional:
 
@@ -418,7 +418,7 @@ Optional:
 - `typed_metadata_context_namespaces` (List of String)
 
 <a id="nestedatt--spec--routes--options--waf--overrides--grpc_service"></a>
-### Nested Schema for `spec.routes.options.waf.overrides.typed_metadata_context_namespaces`
+### Nested Schema for `spec.routes.options.waf.overrides.grpc_service`
 
 Optional:
 
@@ -429,7 +429,7 @@ Optional:
 - `timeout` (String)
 
 <a id="nestedatt--spec--routes--options--waf--overrides--typed_metadata_context_namespaces--ext_proc_server_ref"></a>
-### Nested Schema for `spec.routes.options.waf.overrides.typed_metadata_context_namespaces.timeout`
+### Nested Schema for `spec.routes.options.waf.overrides.typed_metadata_context_namespaces.ext_proc_server_ref`
 
 Optional:
 
@@ -438,7 +438,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--overrides--typed_metadata_context_namespaces--initial_metadata"></a>
-### Nested Schema for `spec.routes.options.waf.overrides.typed_metadata_context_namespaces.timeout`
+### Nested Schema for `spec.routes.options.waf.overrides.typed_metadata_context_namespaces.initial_metadata`
 
 Optional:
 
@@ -447,7 +447,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--overrides--typed_metadata_context_namespaces--retry_policy"></a>
-### Nested Schema for `spec.routes.options.waf.overrides.typed_metadata_context_namespaces.timeout`
+### Nested Schema for `spec.routes.options.waf.overrides.typed_metadata_context_namespaces.retry_policy`
 
 Optional:
 
@@ -466,7 +466,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--overrides--processing_mode"></a>
-### Nested Schema for `spec.routes.options.waf.overrides.typed_metadata_context_namespaces`
+### Nested Schema for `spec.routes.options.waf.overrides.processing_mode`
 
 Optional:
 
@@ -481,7 +481,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--extauth"></a>
-### Nested Schema for `spec.routes.options.waf`
+### Nested Schema for `spec.routes.options.extauth`
 
 Optional:
 
@@ -509,7 +509,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--extensions"></a>
-### Nested Schema for `spec.routes.options.waf`
+### Nested Schema for `spec.routes.options.extensions`
 
 Optional:
 
@@ -517,7 +517,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--faults"></a>
-### Nested Schema for `spec.routes.options.waf`
+### Nested Schema for `spec.routes.options.faults`
 
 Optional:
 
@@ -544,7 +544,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--header_manipulation"></a>
-### Nested Schema for `spec.routes.options.waf`
+### Nested Schema for `spec.routes.options.header_manipulation`
 
 Optional:
 
@@ -563,7 +563,7 @@ Optional:
 - `header_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--waf--request_headers_to_add--header_secret_ref))
 
 <a id="nestedatt--spec--routes--options--waf--request_headers_to_add--header"></a>
-### Nested Schema for `spec.routes.options.waf.request_headers_to_add.header_secret_ref`
+### Nested Schema for `spec.routes.options.waf.request_headers_to_add.header`
 
 Optional:
 
@@ -601,7 +601,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--host_rewrite_path_regex"></a>
-### Nested Schema for `spec.routes.options.waf`
+### Nested Schema for `spec.routes.options.host_rewrite_path_regex`
 
 Optional:
 
@@ -617,7 +617,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--routes--options--waf--pattern--google_re2"></a>
-### Nested Schema for `spec.routes.options.waf.pattern.regex`
+### Nested Schema for `spec.routes.options.waf.pattern.google_re2`
 
 Optional:
 
@@ -627,7 +627,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--jwt"></a>
-### Nested Schema for `spec.routes.options.waf`
+### Nested Schema for `spec.routes.options.jwt`
 
 Optional:
 
@@ -635,7 +635,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--jwt_staged"></a>
-### Nested Schema for `spec.routes.options.waf`
+### Nested Schema for `spec.routes.options.jwt_staged`
 
 Optional:
 
@@ -660,7 +660,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--lb_hash"></a>
-### Nested Schema for `spec.routes.options.waf`
+### Nested Schema for `spec.routes.options.lb_hash`
 
 Optional:
 
@@ -677,7 +677,7 @@ Optional:
 - `terminal` (Boolean)
 
 <a id="nestedatt--spec--routes--options--waf--hash_policies--cookie"></a>
-### Nested Schema for `spec.routes.options.waf.hash_policies.terminal`
+### Nested Schema for `spec.routes.options.waf.hash_policies.cookie`
 
 Optional:
 
@@ -689,7 +689,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--max_stream_duration"></a>
-### Nested Schema for `spec.routes.options.waf`
+### Nested Schema for `spec.routes.options.max_stream_duration`
 
 Optional:
 
@@ -699,7 +699,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--rate_limit_configs"></a>
-### Nested Schema for `spec.routes.options.waf`
+### Nested Schema for `spec.routes.options.rate_limit_configs`
 
 Optional:
 
@@ -716,7 +716,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--rate_limit_early_configs"></a>
-### Nested Schema for `spec.routes.options.waf`
+### Nested Schema for `spec.routes.options.rate_limit_early_configs`
 
 Optional:
 
@@ -733,7 +733,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--rate_limit_regular_configs"></a>
-### Nested Schema for `spec.routes.options.waf`
+### Nested Schema for `spec.routes.options.rate_limit_regular_configs`
 
 Optional:
 
@@ -750,7 +750,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--ratelimit"></a>
-### Nested Schema for `spec.routes.options.waf`
+### Nested Schema for `spec.routes.options.ratelimit`
 
 Optional:
 
@@ -778,7 +778,7 @@ Optional:
 - `set_actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--routes--options--waf--rate_limits--set_actions))
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--actions"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions`
+### Nested Schema for `spec.routes.options.waf.rate_limits.actions`
 
 Optional:
 
@@ -791,7 +791,7 @@ Optional:
 - `source_cluster` (Map of String)
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--set_actions--generic_key"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.generic_key`
 
 Optional:
 
@@ -799,7 +799,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--set_actions--header_value_match"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.header_value_match`
 
 Optional:
 
@@ -833,7 +833,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--set_actions--metadata"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.metadata`
 
 Optional:
 
@@ -843,7 +843,7 @@ Optional:
 - `source` (String)
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--set_actions--source_cluster--metadata_key"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster.source`
+### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster.metadata_key`
 
 Optional:
 
@@ -861,7 +861,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--set_actions--request_headers"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.request_headers`
 
 Optional:
 
@@ -871,7 +871,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--limit"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions`
+### Nested Schema for `spec.routes.options.waf.rate_limits.limit`
 
 Optional:
 
@@ -917,7 +917,7 @@ Optional:
 - `source_cluster` (Map of String)
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--set_actions--generic_key"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.generic_key`
 
 Optional:
 
@@ -925,7 +925,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--set_actions--header_value_match"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.header_value_match`
 
 Optional:
 
@@ -959,7 +959,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--set_actions--metadata"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.metadata`
 
 Optional:
 
@@ -969,7 +969,7 @@ Optional:
 - `source` (String)
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--set_actions--source_cluster--metadata_key"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster.source`
+### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster.metadata_key`
 
 Optional:
 
@@ -987,7 +987,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--set_actions--request_headers"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.request_headers`
 
 Optional:
 
@@ -999,7 +999,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--ratelimit_basic"></a>
-### Nested Schema for `spec.routes.options.waf`
+### Nested Schema for `spec.routes.options.ratelimit_basic`
 
 Optional:
 
@@ -1026,7 +1026,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--ratelimit_early"></a>
-### Nested Schema for `spec.routes.options.waf`
+### Nested Schema for `spec.routes.options.ratelimit_early`
 
 Optional:
 
@@ -1054,7 +1054,7 @@ Optional:
 - `set_actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--routes--options--waf--rate_limits--set_actions))
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--actions"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions`
+### Nested Schema for `spec.routes.options.waf.rate_limits.actions`
 
 Optional:
 
@@ -1067,7 +1067,7 @@ Optional:
 - `source_cluster` (Map of String)
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--set_actions--generic_key"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.generic_key`
 
 Optional:
 
@@ -1075,7 +1075,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--set_actions--header_value_match"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.header_value_match`
 
 Optional:
 
@@ -1109,7 +1109,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--set_actions--metadata"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.metadata`
 
 Optional:
 
@@ -1119,7 +1119,7 @@ Optional:
 - `source` (String)
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--set_actions--source_cluster--metadata_key"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster.source`
+### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster.metadata_key`
 
 Optional:
 
@@ -1137,7 +1137,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--set_actions--request_headers"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.request_headers`
 
 Optional:
 
@@ -1147,7 +1147,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--limit"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions`
+### Nested Schema for `spec.routes.options.waf.rate_limits.limit`
 
 Optional:
 
@@ -1193,7 +1193,7 @@ Optional:
 - `source_cluster` (Map of String)
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--set_actions--generic_key"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.generic_key`
 
 Optional:
 
@@ -1201,7 +1201,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--set_actions--header_value_match"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.header_value_match`
 
 Optional:
 
@@ -1235,7 +1235,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--set_actions--metadata"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.metadata`
 
 Optional:
 
@@ -1245,7 +1245,7 @@ Optional:
 - `source` (String)
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--set_actions--source_cluster--metadata_key"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster.source`
+### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster.metadata_key`
 
 Optional:
 
@@ -1263,7 +1263,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--set_actions--request_headers"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.request_headers`
 
 Optional:
 
@@ -1275,7 +1275,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--ratelimit_regular"></a>
-### Nested Schema for `spec.routes.options.waf`
+### Nested Schema for `spec.routes.options.ratelimit_regular`
 
 Optional:
 
@@ -1303,7 +1303,7 @@ Optional:
 - `set_actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--routes--options--waf--rate_limits--set_actions))
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--actions"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions`
+### Nested Schema for `spec.routes.options.waf.rate_limits.actions`
 
 Optional:
 
@@ -1316,7 +1316,7 @@ Optional:
 - `source_cluster` (Map of String)
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--set_actions--generic_key"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.generic_key`
 
 Optional:
 
@@ -1324,7 +1324,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--set_actions--header_value_match"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.header_value_match`
 
 Optional:
 
@@ -1358,7 +1358,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--set_actions--metadata"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.metadata`
 
 Optional:
 
@@ -1368,7 +1368,7 @@ Optional:
 - `source` (String)
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--set_actions--source_cluster--metadata_key"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster.source`
+### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster.metadata_key`
 
 Optional:
 
@@ -1386,7 +1386,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--set_actions--request_headers"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.request_headers`
 
 Optional:
 
@@ -1396,7 +1396,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--limit"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions`
+### Nested Schema for `spec.routes.options.waf.rate_limits.limit`
 
 Optional:
 
@@ -1442,7 +1442,7 @@ Optional:
 - `source_cluster` (Map of String)
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--set_actions--generic_key"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.generic_key`
 
 Optional:
 
@@ -1450,7 +1450,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--set_actions--header_value_match"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.header_value_match`
 
 Optional:
 
@@ -1484,7 +1484,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--set_actions--metadata"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.metadata`
 
 Optional:
 
@@ -1494,7 +1494,7 @@ Optional:
 - `source` (String)
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--set_actions--source_cluster--metadata_key"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster.source`
+### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster.metadata_key`
 
 Optional:
 
@@ -1512,7 +1512,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits--set_actions--request_headers"></a>
-### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.routes.options.waf.rate_limits.set_actions.request_headers`
 
 Optional:
 
@@ -1524,7 +1524,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--rbac"></a>
-### Nested Schema for `spec.routes.options.waf`
+### Nested Schema for `spec.routes.options.rbac`
 
 Optional:
 
@@ -1541,7 +1541,7 @@ Optional:
 - `principals` (Attributes List) (see [below for nested schema](#nestedatt--spec--routes--options--waf--policies--principals))
 
 <a id="nestedatt--spec--routes--options--waf--policies--permissions"></a>
-### Nested Schema for `spec.routes.options.waf.policies.principals`
+### Nested Schema for `spec.routes.options.waf.policies.permissions`
 
 Optional:
 
@@ -1570,7 +1570,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--regex_rewrite"></a>
-### Nested Schema for `spec.routes.options.waf`
+### Nested Schema for `spec.routes.options.regex_rewrite`
 
 Optional:
 
@@ -1586,7 +1586,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--routes--options--waf--pattern--google_re2"></a>
-### Nested Schema for `spec.routes.options.waf.pattern.regex`
+### Nested Schema for `spec.routes.options.waf.pattern.google_re2`
 
 Optional:
 
@@ -1596,7 +1596,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--retries"></a>
-### Nested Schema for `spec.routes.options.waf`
+### Nested Schema for `spec.routes.options.retries`
 
 Optional:
 
@@ -1616,7 +1616,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--shadowing"></a>
-### Nested Schema for `spec.routes.options.waf`
+### Nested Schema for `spec.routes.options.shadowing`
 
 Optional:
 
@@ -1634,7 +1634,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--staged_transformations"></a>
-### Nested Schema for `spec.routes.options.waf`
+### Nested Schema for `spec.routes.options.staged_transformations`
 
 Optional:
 
@@ -1653,7 +1653,7 @@ Optional:
 - `response_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--routes--options--waf--early--response_transforms))
 
 <a id="nestedatt--spec--routes--options--waf--early--request_transforms"></a>
-### Nested Schema for `spec.routes.options.waf.early.response_transforms`
+### Nested Schema for `spec.routes.options.waf.early.request_transforms`
 
 Optional:
 
@@ -1663,7 +1663,7 @@ Optional:
 - `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--waf--early--response_transforms--response_transformation))
 
 <a id="nestedatt--spec--routes--options--waf--early--response_transforms--matcher"></a>
-### Nested Schema for `spec.routes.options.waf.early.response_transforms.response_transformation`
+### Nested Schema for `spec.routes.options.waf.early.response_transforms.matcher`
 
 Optional:
 
@@ -1677,7 +1677,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--routes--options--waf--early--response_transforms--response_transformation--headers"></a>
-### Nested Schema for `spec.routes.options.waf.early.response_transforms.response_transformation.regex`
+### Nested Schema for `spec.routes.options.waf.early.response_transforms.response_transformation.headers`
 
 Optional:
 
@@ -1688,7 +1688,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--early--response_transforms--response_transformation--query_parameters"></a>
-### Nested Schema for `spec.routes.options.waf.early.response_transforms.response_transformation.regex`
+### Nested Schema for `spec.routes.options.waf.early.response_transforms.response_transformation.query_parameters`
 
 Optional:
 
@@ -1699,7 +1699,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--early--response_transforms--request_transformation"></a>
-### Nested Schema for `spec.routes.options.waf.early.response_transforms.response_transformation`
+### Nested Schema for `spec.routes.options.waf.early.response_transforms.request_transformation`
 
 Optional:
 
@@ -1709,7 +1709,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--waf--early--response_transforms--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--routes--options--waf--early--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.routes.options.waf.early.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.routes.options.waf.early.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
@@ -1717,7 +1717,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--early--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.routes.options.waf.early.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.routes.options.waf.early.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
@@ -1821,7 +1821,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--waf--early--response_transforms--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--routes--options--waf--early--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.routes.options.waf.early.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.routes.options.waf.early.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
@@ -1829,7 +1829,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--early--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.routes.options.waf.early.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.routes.options.waf.early.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
@@ -1933,7 +1933,7 @@ Optional:
 - `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--waf--early--response_transforms--response_transformation))
 
 <a id="nestedatt--spec--routes--options--waf--early--response_transforms--matchers"></a>
-### Nested Schema for `spec.routes.options.waf.early.response_transforms.response_transformation`
+### Nested Schema for `spec.routes.options.waf.early.response_transforms.matchers`
 
 Optional:
 
@@ -1954,7 +1954,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--waf--early--response_transforms--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--routes--options--waf--early--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.routes.options.waf.early.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.routes.options.waf.early.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
@@ -1962,7 +1962,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--early--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.routes.options.waf.early.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.routes.options.waf.early.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
@@ -2066,7 +2066,7 @@ Optional:
 - `response_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--routes--options--waf--regular--response_transforms))
 
 <a id="nestedatt--spec--routes--options--waf--regular--request_transforms"></a>
-### Nested Schema for `spec.routes.options.waf.regular.response_transforms`
+### Nested Schema for `spec.routes.options.waf.regular.request_transforms`
 
 Optional:
 
@@ -2076,7 +2076,7 @@ Optional:
 - `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--waf--regular--response_transforms--response_transformation))
 
 <a id="nestedatt--spec--routes--options--waf--regular--response_transforms--matcher"></a>
-### Nested Schema for `spec.routes.options.waf.regular.response_transforms.response_transformation`
+### Nested Schema for `spec.routes.options.waf.regular.response_transforms.matcher`
 
 Optional:
 
@@ -2090,7 +2090,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--routes--options--waf--regular--response_transforms--response_transformation--headers"></a>
-### Nested Schema for `spec.routes.options.waf.regular.response_transforms.response_transformation.regex`
+### Nested Schema for `spec.routes.options.waf.regular.response_transforms.response_transformation.headers`
 
 Optional:
 
@@ -2101,7 +2101,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--regular--response_transforms--response_transformation--query_parameters"></a>
-### Nested Schema for `spec.routes.options.waf.regular.response_transforms.response_transformation.regex`
+### Nested Schema for `spec.routes.options.waf.regular.response_transforms.response_transformation.query_parameters`
 
 Optional:
 
@@ -2112,7 +2112,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--regular--response_transforms--request_transformation"></a>
-### Nested Schema for `spec.routes.options.waf.regular.response_transforms.response_transformation`
+### Nested Schema for `spec.routes.options.waf.regular.response_transforms.request_transformation`
 
 Optional:
 
@@ -2122,7 +2122,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--waf--regular--response_transforms--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--routes--options--waf--regular--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.routes.options.waf.regular.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.routes.options.waf.regular.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
@@ -2130,7 +2130,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--regular--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.routes.options.waf.regular.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.routes.options.waf.regular.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
@@ -2234,7 +2234,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--waf--regular--response_transforms--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--routes--options--waf--regular--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.routes.options.waf.regular.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.routes.options.waf.regular.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
@@ -2242,7 +2242,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--regular--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.routes.options.waf.regular.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.routes.options.waf.regular.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
@@ -2346,7 +2346,7 @@ Optional:
 - `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--waf--regular--response_transforms--response_transformation))
 
 <a id="nestedatt--spec--routes--options--waf--regular--response_transforms--matchers"></a>
-### Nested Schema for `spec.routes.options.waf.regular.response_transforms.response_transformation`
+### Nested Schema for `spec.routes.options.waf.regular.response_transforms.matchers`
 
 Optional:
 
@@ -2367,7 +2367,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--waf--regular--response_transforms--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--routes--options--waf--regular--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.routes.options.waf.regular.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.routes.options.waf.regular.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
@@ -2375,7 +2375,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--regular--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.routes.options.waf.regular.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.routes.options.waf.regular.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
@@ -2472,7 +2472,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--tracing"></a>
-### Nested Schema for `spec.routes.options.waf`
+### Nested Schema for `spec.routes.options.tracing`
 
 Optional:
 
@@ -2492,7 +2492,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--transformations"></a>
-### Nested Schema for `spec.routes.options.waf`
+### Nested Schema for `spec.routes.options.transformations`
 
 Optional:
 
@@ -2511,7 +2511,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--waf--request_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--routes--options--waf--request_transformation--header_body_transform"></a>
-### Nested Schema for `spec.routes.options.waf.request_transformation.xslt_transformation`
+### Nested Schema for `spec.routes.options.waf.request_transformation.header_body_transform`
 
 Optional:
 
@@ -2519,7 +2519,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--request_transformation--transformation_template"></a>
-### Nested Schema for `spec.routes.options.waf.request_transformation.xslt_transformation`
+### Nested Schema for `spec.routes.options.waf.request_transformation.transformation_template`
 
 Optional:
 
@@ -2537,7 +2537,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--routes--options--waf--request_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.routes.options.waf.request_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.options.waf.request_transformation.xslt_transformation.body`
 
 Optional:
 
@@ -2545,7 +2545,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--request_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.routes.options.waf.request_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.options.waf.request_transformation.xslt_transformation.dynamic_metadata_values`
 
 Optional:
 
@@ -2563,7 +2563,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--request_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.routes.options.waf.request_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.options.waf.request_transformation.xslt_transformation.extractors`
 
 Optional:
 
@@ -2576,7 +2576,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--request_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.routes.options.waf.request_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.options.waf.request_transformation.xslt_transformation.headers`
 
 Optional:
 
@@ -2584,7 +2584,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--request_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.routes.options.waf.request_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.options.waf.request_transformation.xslt_transformation.headers_to_append`
 
 Optional:
 
@@ -2623,7 +2623,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--waf--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--routes--options--waf--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.routes.options.waf.response_transformation.xslt_transformation`
+### Nested Schema for `spec.routes.options.waf.response_transformation.header_body_transform`
 
 Optional:
 
@@ -2631,7 +2631,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.routes.options.waf.response_transformation.xslt_transformation`
+### Nested Schema for `spec.routes.options.waf.response_transformation.transformation_template`
 
 Optional:
 
@@ -2649,7 +2649,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--routes--options--waf--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.routes.options.waf.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.options.waf.response_transformation.xslt_transformation.body`
 
 Optional:
 
@@ -2657,7 +2657,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.routes.options.waf.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.options.waf.response_transformation.xslt_transformation.dynamic_metadata_values`
 
 Optional:
 
@@ -2675,7 +2675,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.routes.options.waf.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.options.waf.response_transformation.xslt_transformation.extractors`
 
 Optional:
 
@@ -2688,7 +2688,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.routes.options.waf.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.options.waf.response_transformation.xslt_transformation.headers`
 
 Optional:
 
@@ -2696,7 +2696,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.routes.options.waf.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.options.waf.response_transformation.xslt_transformation.headers_to_append`
 
 Optional:
 
@@ -2726,7 +2726,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--upgrades"></a>
-### Nested Schema for `spec.routes.options.waf`
+### Nested Schema for `spec.routes.options.upgrades`
 
 Optional:
 
@@ -2782,7 +2782,7 @@ Optional:
 - `data_map_keys` (List of String)
 
 <a id="nestedatt--spec--routes--options--waf--config_map_rule_sets--config_map_ref"></a>
-### Nested Schema for `spec.routes.options.waf.config_map_rule_sets.data_map_keys`
+### Nested Schema for `spec.routes.options.waf.config_map_rule_sets.config_map_ref`
 
 Optional:
 
@@ -2844,7 +2844,7 @@ Optional:
 - `strip_query` (Boolean)
 
 <a id="nestedatt--spec--routes--redirect_action--regex_rewrite"></a>
-### Nested Schema for `spec.routes.redirect_action.strip_query`
+### Nested Schema for `spec.routes.redirect_action.regex_rewrite`
 
 Optional:
 
@@ -2860,7 +2860,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--routes--redirect_action--strip_query--pattern--google_re2"></a>
-### Nested Schema for `spec.routes.redirect_action.strip_query.pattern.regex`
+### Nested Schema for `spec.routes.redirect_action.strip_query.pattern.google_re2`
 
 Optional:
 
@@ -2882,7 +2882,7 @@ Optional:
 - `upstream_group` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--route_action--upstream_group))
 
 <a id="nestedatt--spec--routes--route_action--dynamic_forward_proxy"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group`
+### Nested Schema for `spec.routes.route_action.dynamic_forward_proxy`
 
 Optional:
 
@@ -2891,7 +2891,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--multi"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group`
+### Nested Schema for `spec.routes.route_action.multi`
 
 Optional:
 
@@ -2907,7 +2907,7 @@ Optional:
 - `weight` (Number)
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--destination"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.destination`
 
 Optional:
 
@@ -2918,7 +2918,7 @@ Optional:
 - `upstream` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--route_action--upstream_group--destinations--weight--upstream))
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--consul"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.upstream`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.consul`
 
 Optional:
 
@@ -2928,7 +2928,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--destination_spec"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.upstream`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.destination_spec`
 
 Optional:
 
@@ -2938,7 +2938,7 @@ Optional:
 - `rest` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--route_action--upstream_group--destinations--weight--upstream--rest))
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--upstream--aws"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.upstream.rest`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.upstream.aws`
 
 Optional:
 
@@ -2952,7 +2952,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--upstream--azure"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.upstream.rest`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.upstream.azure`
 
 Optional:
 
@@ -2960,7 +2960,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--upstream--grpc"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.upstream.rest`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.upstream.grpc`
 
 Optional:
 
@@ -3016,7 +3016,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--upstream--rest--response_transformation--body"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.upstream.rest.response_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.upstream.rest.response_transformation.body`
 
 Optional:
 
@@ -3024,7 +3024,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--upstream--rest--response_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.upstream.rest.response_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.upstream.rest.response_transformation.dynamic_metadata_values`
 
 Optional:
 
@@ -3042,7 +3042,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--upstream--rest--response_transformation--extractors"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.upstream.rest.response_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.upstream.rest.response_transformation.extractors`
 
 Optional:
 
@@ -3055,7 +3055,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--upstream--rest--response_transformation--headers"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.upstream.rest.response_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.upstream.rest.response_transformation.headers`
 
 Optional:
 
@@ -3063,7 +3063,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--upstream--rest--response_transformation--headers_to_append"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.upstream.rest.response_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.upstream.rest.response_transformation.headers_to_append`
 
 Optional:
 
@@ -3083,7 +3083,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--kube"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.upstream`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.kube`
 
 Optional:
 
@@ -3101,7 +3101,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--subset"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.upstream`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.subset`
 
 Optional:
 
@@ -3119,7 +3119,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--options"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.options`
 
 Optional:
 
@@ -3132,7 +3132,7 @@ Optional:
 - `transformations` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations))
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--buffer_per_route"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.buffer_per_route`
 
 Optional:
 
@@ -3140,7 +3140,7 @@ Optional:
 - `disabled` (Boolean)
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--buffer"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.disabled`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.buffer`
 
 Optional:
 
@@ -3149,7 +3149,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--csrf"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.csrf`
 
 Optional:
 
@@ -3158,7 +3158,7 @@ Optional:
 - `shadow_enabled` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--shadow_enabled))
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--additional_origins"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.shadow_enabled`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.additional_origins`
 
 Optional:
 
@@ -3177,7 +3177,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--shadow_enabled--safe_regex--google_re2"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.shadow_enabled.safe_regex.regex`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.shadow_enabled.safe_regex.google_re2`
 
 Optional:
 
@@ -3187,7 +3187,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--filter_enabled"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.shadow_enabled`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.filter_enabled`
 
 Optional:
 
@@ -3224,7 +3224,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--extauth"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.extauth`
 
 Optional:
 
@@ -3233,7 +3233,7 @@ Optional:
 - `disable` (Boolean)
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--config_ref"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.disable`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.config_ref`
 
 Optional:
 
@@ -3242,7 +3242,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--custom_auth"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.disable`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.custom_auth`
 
 Optional:
 
@@ -3252,7 +3252,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--extensions"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.extensions`
 
 Optional:
 
@@ -3260,7 +3260,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--header_manipulation"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.header_manipulation`
 
 Optional:
 
@@ -3270,7 +3270,7 @@ Optional:
 - `response_headers_to_remove` (List of String)
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--request_headers_to_add"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.response_headers_to_remove`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.request_headers_to_add`
 
 Optional:
 
@@ -3298,7 +3298,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--response_headers_to_add"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.response_headers_to_remove`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.response_headers_to_add`
 
 Optional:
 
@@ -3317,7 +3317,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--staged_transformations"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.staged_transformations`
 
 Optional:
 
@@ -3328,7 +3328,7 @@ Optional:
 - `regular` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular))
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--early"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.early`
 
 Optional:
 
@@ -3346,7 +3346,7 @@ Optional:
 - `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation))
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--matcher"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.matcher`
 
 Optional:
 
@@ -3360,7 +3360,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--headers"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.regex`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.headers`
 
 Optional:
 
@@ -3371,7 +3371,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--query_parameters"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.regex`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.query_parameters`
 
 Optional:
 
@@ -3382,7 +3382,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--request_transformation"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.request_transformation`
 
 Optional:
 
@@ -3392,7 +3392,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.header_body_transform`
 
 Optional:
 
@@ -3400,7 +3400,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.transformation_template`
 
 Optional:
 
@@ -3418,7 +3418,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.body`
 
 Optional:
 
@@ -3426,7 +3426,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.dynamic_metadata_values`
 
 Optional:
 
@@ -3444,7 +3444,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.extractors`
 
 Optional:
 
@@ -3457,7 +3457,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.headers`
 
 Optional:
 
@@ -3465,7 +3465,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.headers_to_append`
 
 Optional:
 
@@ -3504,7 +3504,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.header_body_transform`
 
 Optional:
 
@@ -3512,7 +3512,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.transformation_template`
 
 Optional:
 
@@ -3530,7 +3530,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.body`
 
 Optional:
 
@@ -3538,7 +3538,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.dynamic_metadata_values`
 
 Optional:
 
@@ -3556,7 +3556,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.extractors`
 
 Optional:
 
@@ -3569,7 +3569,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.headers`
 
 Optional:
 
@@ -3577,7 +3577,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.headers_to_append`
 
 Optional:
 
@@ -3616,7 +3616,7 @@ Optional:
 - `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--response_transforms--response_transformation))
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--response_transforms--matchers"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.response_transformation`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.matchers`
 
 Optional:
 
@@ -3637,7 +3637,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
@@ -3645,7 +3645,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
@@ -3663,7 +3663,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.body`
 
 Optional:
 
@@ -3671,7 +3671,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.dynamic_metadata_values`
 
 Optional:
 
@@ -3689,7 +3689,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.extractors`
 
 Optional:
 
@@ -3702,7 +3702,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.headers`
 
 Optional:
 
@@ -3710,7 +3710,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.headers_to_append`
 
 Optional:
 
@@ -3759,7 +3759,7 @@ Optional:
 - `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation))
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--matcher"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.matcher`
 
 Optional:
 
@@ -3773,7 +3773,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--headers"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.regex`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.headers`
 
 Optional:
 
@@ -3784,7 +3784,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--query_parameters"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.regex`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.query_parameters`
 
 Optional:
 
@@ -3795,7 +3795,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--request_transformation"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.request_transformation`
 
 Optional:
 
@@ -3805,7 +3805,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.header_body_transform`
 
 Optional:
 
@@ -3813,7 +3813,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.transformation_template`
 
 Optional:
 
@@ -3831,7 +3831,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.body`
 
 Optional:
 
@@ -3839,7 +3839,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.dynamic_metadata_values`
 
 Optional:
 
@@ -3857,7 +3857,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.extractors`
 
 Optional:
 
@@ -3870,7 +3870,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.headers`
 
 Optional:
 
@@ -3878,7 +3878,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.headers_to_append`
 
 Optional:
 
@@ -3917,7 +3917,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.header_body_transform`
 
 Optional:
 
@@ -3925,7 +3925,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.transformation_template`
 
 Optional:
 
@@ -3943,7 +3943,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.body`
 
 Optional:
 
@@ -3951,7 +3951,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.dynamic_metadata_values`
 
 Optional:
 
@@ -3969,7 +3969,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.extractors`
 
 Optional:
 
@@ -3982,7 +3982,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.headers`
 
 Optional:
 
@@ -3990,7 +3990,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--request_transforms--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.request_transforms.response_transformation.xslt_transformation.headers_to_append`
 
 Optional:
 
@@ -4029,7 +4029,7 @@ Optional:
 - `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--response_transforms--response_transformation))
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--response_transforms--matchers"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.response_transformation`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.matchers`
 
 Optional:
 
@@ -4050,7 +4050,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
@@ -4058,7 +4058,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
@@ -4076,7 +4076,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.body`
 
 Optional:
 
@@ -4084,7 +4084,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.dynamic_metadata_values`
 
 Optional:
 
@@ -4102,7 +4102,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.extractors`
 
 Optional:
 
@@ -4115,7 +4115,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.headers`
 
 Optional:
 
@@ -4123,7 +4123,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.headers_to_append`
 
 Optional:
 
@@ -4164,7 +4164,7 @@ Optional:
 - `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--response_transformation))
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--request_transformation"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.response_transformation`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.request_transformation`
 
 Optional:
 
@@ -4200,7 +4200,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--response_transformation--transformation_template--body"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.response_transformation.transformation_template.body`
 
 Optional:
 
@@ -4208,7 +4208,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--response_transformation--transformation_template--dynamic_metadata_values"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.response_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
@@ -4226,7 +4226,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--response_transformation--transformation_template--extractors"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.response_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -4239,7 +4239,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--response_transformation--transformation_template--headers"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.response_transformation.transformation_template.headers`
 
 Optional:
 
@@ -4247,7 +4247,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--response_transformation--transformation_template--headers_to_append"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.response_transformation.transformation_template.headers_to_append`
 
 Optional:
 
@@ -4312,7 +4312,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--response_transformation--transformation_template--body"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.response_transformation.transformation_template.body`
 
 Optional:
 
@@ -4320,7 +4320,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--response_transformation--transformation_template--dynamic_metadata_values"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.response_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
@@ -4338,7 +4338,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--response_transformation--transformation_template--extractors"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.response_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -4351,7 +4351,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--response_transformation--transformation_template--headers"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.response_transformation.transformation_template.headers`
 
 Optional:
 
@@ -4359,7 +4359,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destinations--weight--transformations--response_transformation--transformation_template--headers_to_append"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destinations.weight.transformations.response_transformation.transformation_template.headers_to_append`
 
 Optional:
 
@@ -4392,7 +4392,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--single"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group`
+### Nested Schema for `spec.routes.route_action.single`
 
 Optional:
 
@@ -4423,7 +4423,7 @@ Optional:
 - `rest` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--route_action--upstream_group--destination_spec--rest))
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destination_spec--aws"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destination_spec.rest`
+### Nested Schema for `spec.routes.route_action.upstream_group.destination_spec.aws`
 
 Optional:
 
@@ -4437,7 +4437,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destination_spec--azure"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destination_spec.rest`
+### Nested Schema for `spec.routes.route_action.upstream_group.destination_spec.azure`
 
 Optional:
 
@@ -4445,7 +4445,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destination_spec--grpc"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destination_spec.rest`
+### Nested Schema for `spec.routes.route_action.upstream_group.destination_spec.grpc`
 
 Optional:
 
@@ -4455,7 +4455,7 @@ Optional:
 - `service` (String)
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destination_spec--rest--parameters"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destination_spec.rest.service`
+### Nested Schema for `spec.routes.route_action.upstream_group.destination_spec.rest.parameters`
 
 Optional:
 
@@ -4474,7 +4474,7 @@ Optional:
 - `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--route_action--upstream_group--destination_spec--rest--response_transformation))
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destination_spec--rest--parameters"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destination_spec.rest.response_transformation`
+### Nested Schema for `spec.routes.route_action.upstream_group.destination_spec.rest.parameters`
 
 Optional:
 
@@ -4501,7 +4501,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destination_spec--rest--response_transformation--body"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destination_spec.rest.response_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destination_spec.rest.response_transformation.body`
 
 Optional:
 
@@ -4509,7 +4509,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destination_spec--rest--response_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destination_spec.rest.response_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destination_spec.rest.response_transformation.dynamic_metadata_values`
 
 Optional:
 
@@ -4527,7 +4527,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destination_spec--rest--response_transformation--extractors"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destination_spec.rest.response_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destination_spec.rest.response_transformation.extractors`
 
 Optional:
 
@@ -4540,7 +4540,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destination_spec--rest--response_transformation--headers"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destination_spec.rest.response_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destination_spec.rest.response_transformation.headers`
 
 Optional:
 
@@ -4548,7 +4548,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--route_action--upstream_group--destination_spec--rest--response_transformation--headers_to_append"></a>
-### Nested Schema for `spec.routes.route_action.upstream_group.destination_spec.rest.response_transformation.passthrough`
+### Nested Schema for `spec.routes.route_action.upstream_group.destination_spec.rest.response_transformation.headers_to_append`
 
 Optional:
 

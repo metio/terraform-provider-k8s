@@ -108,7 +108,7 @@ Optional:
 - `validation_context_name` (String)
 
 <a id="nestedatt--spec--ssl_config--sds--call_credentials"></a>
-### Nested Schema for `spec.ssl_config.sds.validation_context_name`
+### Nested Schema for `spec.ssl_config.sds.call_credentials`
 
 Optional:
 
@@ -188,7 +188,7 @@ Optional:
 - `waf` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf))
 
 <a id="nestedatt--spec--virtual_host--options--buffer_per_route"></a>
-### Nested Schema for `spec.virtual_host.options.waf`
+### Nested Schema for `spec.virtual_host.options.buffer_per_route`
 
 Optional:
 
@@ -205,7 +205,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--cors"></a>
-### Nested Schema for `spec.virtual_host.options.waf`
+### Nested Schema for `spec.virtual_host.options.cors`
 
 Optional:
 
@@ -220,7 +220,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--csrf"></a>
-### Nested Schema for `spec.virtual_host.options.waf`
+### Nested Schema for `spec.virtual_host.options.csrf`
 
 Optional:
 
@@ -240,7 +240,7 @@ Optional:
 - `suffix` (String)
 
 <a id="nestedatt--spec--virtual_host--options--waf--additional_origins--safe_regex"></a>
-### Nested Schema for `spec.virtual_host.options.waf.additional_origins.suffix`
+### Nested Schema for `spec.virtual_host.options.waf.additional_origins.safe_regex`
 
 Optional:
 
@@ -248,7 +248,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--virtual_host--options--waf--additional_origins--suffix--google_re2"></a>
-### Nested Schema for `spec.virtual_host.options.waf.additional_origins.suffix.regex`
+### Nested Schema for `spec.virtual_host.options.waf.additional_origins.suffix.google_re2`
 
 Optional:
 
@@ -266,7 +266,7 @@ Optional:
 - `runtime_key` (String)
 
 <a id="nestedatt--spec--virtual_host--options--waf--filter_enabled--default_value"></a>
-### Nested Schema for `spec.virtual_host.options.waf.filter_enabled.runtime_key`
+### Nested Schema for `spec.virtual_host.options.waf.filter_enabled.default_value`
 
 Optional:
 
@@ -284,7 +284,7 @@ Optional:
 - `runtime_key` (String)
 
 <a id="nestedatt--spec--virtual_host--options--waf--shadow_enabled--default_value"></a>
-### Nested Schema for `spec.virtual_host.options.waf.shadow_enabled.runtime_key`
+### Nested Schema for `spec.virtual_host.options.waf.shadow_enabled.default_value`
 
 Optional:
 
@@ -295,7 +295,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--dlp"></a>
-### Nested Schema for `spec.virtual_host.options.waf`
+### Nested Schema for `spec.virtual_host.options.dlp`
 
 Optional:
 
@@ -313,7 +313,7 @@ Optional:
 - `shadow` (Boolean)
 
 <a id="nestedatt--spec--virtual_host--options--waf--actions--custom_action"></a>
-### Nested Schema for `spec.virtual_host.options.waf.actions.shadow`
+### Nested Schema for `spec.virtual_host.options.waf.actions.custom_action`
 
 Optional:
 
@@ -324,7 +324,7 @@ Optional:
 - `regex_actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--actions--shadow--regex_actions))
 
 <a id="nestedatt--spec--virtual_host--options--waf--actions--shadow--percent"></a>
-### Nested Schema for `spec.virtual_host.options.waf.actions.shadow.regex_actions`
+### Nested Schema for `spec.virtual_host.options.waf.actions.shadow.percent`
 
 Optional:
 
@@ -342,7 +342,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--actions--key_value_action"></a>
-### Nested Schema for `spec.virtual_host.options.waf.actions.shadow`
+### Nested Schema for `spec.virtual_host.options.waf.actions.key_value_action`
 
 Optional:
 
@@ -363,7 +363,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--ext_proc"></a>
-### Nested Schema for `spec.virtual_host.options.waf`
+### Nested Schema for `spec.virtual_host.options.ext_proc`
 
 Optional:
 
@@ -384,7 +384,7 @@ Optional:
 - `typed_metadata_context_namespaces` (List of String)
 
 <a id="nestedatt--spec--virtual_host--options--waf--overrides--grpc_service"></a>
-### Nested Schema for `spec.virtual_host.options.waf.overrides.typed_metadata_context_namespaces`
+### Nested Schema for `spec.virtual_host.options.waf.overrides.grpc_service`
 
 Optional:
 
@@ -395,7 +395,7 @@ Optional:
 - `timeout` (String)
 
 <a id="nestedatt--spec--virtual_host--options--waf--overrides--typed_metadata_context_namespaces--ext_proc_server_ref"></a>
-### Nested Schema for `spec.virtual_host.options.waf.overrides.typed_metadata_context_namespaces.timeout`
+### Nested Schema for `spec.virtual_host.options.waf.overrides.typed_metadata_context_namespaces.ext_proc_server_ref`
 
 Optional:
 
@@ -404,7 +404,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--overrides--typed_metadata_context_namespaces--initial_metadata"></a>
-### Nested Schema for `spec.virtual_host.options.waf.overrides.typed_metadata_context_namespaces.timeout`
+### Nested Schema for `spec.virtual_host.options.waf.overrides.typed_metadata_context_namespaces.initial_metadata`
 
 Optional:
 
@@ -413,7 +413,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--overrides--typed_metadata_context_namespaces--retry_policy"></a>
-### Nested Schema for `spec.virtual_host.options.waf.overrides.typed_metadata_context_namespaces.timeout`
+### Nested Schema for `spec.virtual_host.options.waf.overrides.typed_metadata_context_namespaces.retry_policy`
 
 Optional:
 
@@ -432,7 +432,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--overrides--processing_mode"></a>
-### Nested Schema for `spec.virtual_host.options.waf.overrides.typed_metadata_context_namespaces`
+### Nested Schema for `spec.virtual_host.options.waf.overrides.processing_mode`
 
 Optional:
 
@@ -447,7 +447,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--extauth"></a>
-### Nested Schema for `spec.virtual_host.options.waf`
+### Nested Schema for `spec.virtual_host.options.extauth`
 
 Optional:
 
@@ -475,7 +475,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--extensions"></a>
-### Nested Schema for `spec.virtual_host.options.waf`
+### Nested Schema for `spec.virtual_host.options.extensions`
 
 Optional:
 
@@ -483,7 +483,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--header_manipulation"></a>
-### Nested Schema for `spec.virtual_host.options.waf`
+### Nested Schema for `spec.virtual_host.options.header_manipulation`
 
 Optional:
 
@@ -502,7 +502,7 @@ Optional:
 - `header_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--request_headers_to_add--header_secret_ref))
 
 <a id="nestedatt--spec--virtual_host--options--waf--request_headers_to_add--header"></a>
-### Nested Schema for `spec.virtual_host.options.waf.request_headers_to_add.header_secret_ref`
+### Nested Schema for `spec.virtual_host.options.waf.request_headers_to_add.header`
 
 Optional:
 
@@ -540,7 +540,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--jwt"></a>
-### Nested Schema for `spec.virtual_host.options.waf`
+### Nested Schema for `spec.virtual_host.options.jwt`
 
 Optional:
 
@@ -561,7 +561,7 @@ Optional:
 - `token_source` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--providers--token_source))
 
 <a id="nestedatt--spec--virtual_host--options--waf--providers--claims_to_headers"></a>
-### Nested Schema for `spec.virtual_host.options.waf.providers.token_source`
+### Nested Schema for `spec.virtual_host.options.waf.providers.claims_to_headers`
 
 Optional:
 
@@ -571,7 +571,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--providers--jwks"></a>
-### Nested Schema for `spec.virtual_host.options.waf.providers.token_source`
+### Nested Schema for `spec.virtual_host.options.waf.providers.jwks`
 
 Optional:
 
@@ -579,7 +579,7 @@ Optional:
 - `remote` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--providers--token_source--remote))
 
 <a id="nestedatt--spec--virtual_host--options--waf--providers--token_source--local"></a>
-### Nested Schema for `spec.virtual_host.options.waf.providers.token_source.remote`
+### Nested Schema for `spec.virtual_host.options.waf.providers.token_source.local`
 
 Optional:
 
@@ -597,7 +597,7 @@ Optional:
 - `url` (String)
 
 <a id="nestedatt--spec--virtual_host--options--waf--providers--token_source--remote--async_fetch"></a>
-### Nested Schema for `spec.virtual_host.options.waf.providers.token_source.remote.url`
+### Nested Schema for `spec.virtual_host.options.waf.providers.token_source.remote.async_fetch`
 
 Optional:
 
@@ -605,7 +605,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--providers--token_source--remote--upstream_ref"></a>
-### Nested Schema for `spec.virtual_host.options.waf.providers.token_source.remote.url`
+### Nested Schema for `spec.virtual_host.options.waf.providers.token_source.remote.upstream_ref`
 
 Optional:
 
@@ -624,7 +624,7 @@ Optional:
 - `query_params` (List of String)
 
 <a id="nestedatt--spec--virtual_host--options--waf--providers--token_source--headers"></a>
-### Nested Schema for `spec.virtual_host.options.waf.providers.token_source.query_params`
+### Nested Schema for `spec.virtual_host.options.waf.providers.token_source.headers`
 
 Optional:
 
@@ -636,7 +636,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--jwt_staged"></a>
-### Nested Schema for `spec.virtual_host.options.waf`
+### Nested Schema for `spec.virtual_host.options.jwt_staged`
 
 Optional:
 
@@ -665,7 +665,7 @@ Optional:
 - `token_source` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--after_ext_auth--providers--token_source))
 
 <a id="nestedatt--spec--virtual_host--options--waf--after_ext_auth--providers--claims_to_headers"></a>
-### Nested Schema for `spec.virtual_host.options.waf.after_ext_auth.providers.token_source`
+### Nested Schema for `spec.virtual_host.options.waf.after_ext_auth.providers.claims_to_headers`
 
 Optional:
 
@@ -675,7 +675,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--after_ext_auth--providers--jwks"></a>
-### Nested Schema for `spec.virtual_host.options.waf.after_ext_auth.providers.token_source`
+### Nested Schema for `spec.virtual_host.options.waf.after_ext_auth.providers.jwks`
 
 Optional:
 
@@ -683,7 +683,7 @@ Optional:
 - `remote` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--after_ext_auth--providers--token_source--remote))
 
 <a id="nestedatt--spec--virtual_host--options--waf--after_ext_auth--providers--token_source--local"></a>
-### Nested Schema for `spec.virtual_host.options.waf.after_ext_auth.providers.token_source.remote`
+### Nested Schema for `spec.virtual_host.options.waf.after_ext_auth.providers.token_source.local`
 
 Optional:
 
@@ -728,7 +728,7 @@ Optional:
 - `query_params` (List of String)
 
 <a id="nestedatt--spec--virtual_host--options--waf--after_ext_auth--providers--token_source--headers"></a>
-### Nested Schema for `spec.virtual_host.options.waf.after_ext_auth.providers.token_source.query_params`
+### Nested Schema for `spec.virtual_host.options.waf.after_ext_auth.providers.token_source.headers`
 
 Optional:
 
@@ -761,7 +761,7 @@ Optional:
 - `token_source` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--before_ext_auth--providers--token_source))
 
 <a id="nestedatt--spec--virtual_host--options--waf--before_ext_auth--providers--claims_to_headers"></a>
-### Nested Schema for `spec.virtual_host.options.waf.before_ext_auth.providers.token_source`
+### Nested Schema for `spec.virtual_host.options.waf.before_ext_auth.providers.claims_to_headers`
 
 Optional:
 
@@ -771,7 +771,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--before_ext_auth--providers--jwks"></a>
-### Nested Schema for `spec.virtual_host.options.waf.before_ext_auth.providers.token_source`
+### Nested Schema for `spec.virtual_host.options.waf.before_ext_auth.providers.jwks`
 
 Optional:
 
@@ -779,7 +779,7 @@ Optional:
 - `remote` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--before_ext_auth--providers--token_source--remote))
 
 <a id="nestedatt--spec--virtual_host--options--waf--before_ext_auth--providers--token_source--local"></a>
-### Nested Schema for `spec.virtual_host.options.waf.before_ext_auth.providers.token_source.remote`
+### Nested Schema for `spec.virtual_host.options.waf.before_ext_auth.providers.token_source.local`
 
 Optional:
 
@@ -824,7 +824,7 @@ Optional:
 - `query_params` (List of String)
 
 <a id="nestedatt--spec--virtual_host--options--waf--before_ext_auth--providers--token_source--headers"></a>
-### Nested Schema for `spec.virtual_host.options.waf.before_ext_auth.providers.token_source.query_params`
+### Nested Schema for `spec.virtual_host.options.waf.before_ext_auth.providers.token_source.headers`
 
 Optional:
 
@@ -837,7 +837,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--rate_limit_configs"></a>
-### Nested Schema for `spec.virtual_host.options.waf`
+### Nested Schema for `spec.virtual_host.options.rate_limit_configs`
 
 Optional:
 
@@ -854,7 +854,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--rate_limit_early_configs"></a>
-### Nested Schema for `spec.virtual_host.options.waf`
+### Nested Schema for `spec.virtual_host.options.rate_limit_early_configs`
 
 Optional:
 
@@ -871,7 +871,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--rate_limit_regular_configs"></a>
-### Nested Schema for `spec.virtual_host.options.waf`
+### Nested Schema for `spec.virtual_host.options.rate_limit_regular_configs`
 
 Optional:
 
@@ -888,7 +888,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--ratelimit"></a>
-### Nested Schema for `spec.virtual_host.options.waf`
+### Nested Schema for `spec.virtual_host.options.ratelimit`
 
 Optional:
 
@@ -915,7 +915,7 @@ Optional:
 - `set_actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions))
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--actions"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.actions`
 
 Optional:
 
@@ -928,7 +928,7 @@ Optional:
 - `source_cluster` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions--generic_key"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.generic_key`
 
 Optional:
 
@@ -936,7 +936,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions--header_value_match"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.header_value_match`
 
 Optional:
 
@@ -970,7 +970,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions--metadata"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.metadata`
 
 Optional:
 
@@ -980,7 +980,7 @@ Optional:
 - `source` (String)
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions--source_cluster--metadata_key"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster.source`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster.metadata_key`
 
 Optional:
 
@@ -998,7 +998,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions--request_headers"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.request_headers`
 
 Optional:
 
@@ -1008,7 +1008,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--limit"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.limit`
 
 Optional:
 
@@ -1054,7 +1054,7 @@ Optional:
 - `source_cluster` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions--generic_key"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.generic_key`
 
 Optional:
 
@@ -1062,7 +1062,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions--header_value_match"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.header_value_match`
 
 Optional:
 
@@ -1096,7 +1096,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions--metadata"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.metadata`
 
 Optional:
 
@@ -1106,7 +1106,7 @@ Optional:
 - `source` (String)
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions--source_cluster--metadata_key"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster.source`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster.metadata_key`
 
 Optional:
 
@@ -1124,7 +1124,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions--request_headers"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.request_headers`
 
 Optional:
 
@@ -1136,7 +1136,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--ratelimit_basic"></a>
-### Nested Schema for `spec.virtual_host.options.waf`
+### Nested Schema for `spec.virtual_host.options.ratelimit_basic`
 
 Optional:
 
@@ -1163,7 +1163,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--ratelimit_early"></a>
-### Nested Schema for `spec.virtual_host.options.waf`
+### Nested Schema for `spec.virtual_host.options.ratelimit_early`
 
 Optional:
 
@@ -1190,7 +1190,7 @@ Optional:
 - `set_actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions))
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--actions"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.actions`
 
 Optional:
 
@@ -1203,7 +1203,7 @@ Optional:
 - `source_cluster` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions--generic_key"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.generic_key`
 
 Optional:
 
@@ -1211,7 +1211,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions--header_value_match"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.header_value_match`
 
 Optional:
 
@@ -1245,7 +1245,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions--metadata"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.metadata`
 
 Optional:
 
@@ -1255,7 +1255,7 @@ Optional:
 - `source` (String)
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions--source_cluster--metadata_key"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster.source`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster.metadata_key`
 
 Optional:
 
@@ -1273,7 +1273,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions--request_headers"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.request_headers`
 
 Optional:
 
@@ -1283,7 +1283,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--limit"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.limit`
 
 Optional:
 
@@ -1329,7 +1329,7 @@ Optional:
 - `source_cluster` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions--generic_key"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.generic_key`
 
 Optional:
 
@@ -1337,7 +1337,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions--header_value_match"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.header_value_match`
 
 Optional:
 
@@ -1371,7 +1371,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions--metadata"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.metadata`
 
 Optional:
 
@@ -1381,7 +1381,7 @@ Optional:
 - `source` (String)
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions--source_cluster--metadata_key"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster.source`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster.metadata_key`
 
 Optional:
 
@@ -1399,7 +1399,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions--request_headers"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.request_headers`
 
 Optional:
 
@@ -1411,7 +1411,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--ratelimit_regular"></a>
-### Nested Schema for `spec.virtual_host.options.waf`
+### Nested Schema for `spec.virtual_host.options.ratelimit_regular`
 
 Optional:
 
@@ -1438,7 +1438,7 @@ Optional:
 - `set_actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions))
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--actions"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.actions`
 
 Optional:
 
@@ -1451,7 +1451,7 @@ Optional:
 - `source_cluster` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions--generic_key"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.generic_key`
 
 Optional:
 
@@ -1459,7 +1459,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions--header_value_match"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.header_value_match`
 
 Optional:
 
@@ -1493,7 +1493,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions--metadata"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.metadata`
 
 Optional:
 
@@ -1503,7 +1503,7 @@ Optional:
 - `source` (String)
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions--source_cluster--metadata_key"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster.source`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster.metadata_key`
 
 Optional:
 
@@ -1521,7 +1521,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions--request_headers"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.request_headers`
 
 Optional:
 
@@ -1531,7 +1531,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--limit"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.limit`
 
 Optional:
 
@@ -1577,7 +1577,7 @@ Optional:
 - `source_cluster` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions--generic_key"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.generic_key`
 
 Optional:
 
@@ -1585,7 +1585,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions--header_value_match"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.header_value_match`
 
 Optional:
 
@@ -1619,7 +1619,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions--metadata"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.metadata`
 
 Optional:
 
@@ -1629,7 +1629,7 @@ Optional:
 - `source` (String)
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions--source_cluster--metadata_key"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster.source`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster.metadata_key`
 
 Optional:
 
@@ -1647,7 +1647,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits--set_actions--request_headers"></a>
-### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.options.waf.rate_limits.set_actions.request_headers`
 
 Optional:
 
@@ -1659,7 +1659,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--rbac"></a>
-### Nested Schema for `spec.virtual_host.options.waf`
+### Nested Schema for `spec.virtual_host.options.rbac`
 
 Optional:
 
@@ -1676,7 +1676,7 @@ Optional:
 - `principals` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--policies--principals))
 
 <a id="nestedatt--spec--virtual_host--options--waf--policies--permissions"></a>
-### Nested Schema for `spec.virtual_host.options.waf.policies.principals`
+### Nested Schema for `spec.virtual_host.options.waf.policies.permissions`
 
 Optional:
 
@@ -1705,7 +1705,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--retries"></a>
-### Nested Schema for `spec.virtual_host.options.waf`
+### Nested Schema for `spec.virtual_host.options.retries`
 
 Optional:
 
@@ -1725,7 +1725,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--staged_transformations"></a>
-### Nested Schema for `spec.virtual_host.options.waf`
+### Nested Schema for `spec.virtual_host.options.staged_transformations`
 
 Optional:
 
@@ -1744,7 +1744,7 @@ Optional:
 - `response_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--early--response_transforms))
 
 <a id="nestedatt--spec--virtual_host--options--waf--early--request_transforms"></a>
-### Nested Schema for `spec.virtual_host.options.waf.early.response_transforms`
+### Nested Schema for `spec.virtual_host.options.waf.early.request_transforms`
 
 Optional:
 
@@ -1754,7 +1754,7 @@ Optional:
 - `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--early--response_transforms--response_transformation))
 
 <a id="nestedatt--spec--virtual_host--options--waf--early--response_transforms--matcher"></a>
-### Nested Schema for `spec.virtual_host.options.waf.early.response_transforms.response_transformation`
+### Nested Schema for `spec.virtual_host.options.waf.early.response_transforms.matcher`
 
 Optional:
 
@@ -1768,7 +1768,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--virtual_host--options--waf--early--response_transforms--response_transformation--headers"></a>
-### Nested Schema for `spec.virtual_host.options.waf.early.response_transforms.response_transformation.regex`
+### Nested Schema for `spec.virtual_host.options.waf.early.response_transforms.response_transformation.headers`
 
 Optional:
 
@@ -1779,7 +1779,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--early--response_transforms--response_transformation--query_parameters"></a>
-### Nested Schema for `spec.virtual_host.options.waf.early.response_transforms.response_transformation.regex`
+### Nested Schema for `spec.virtual_host.options.waf.early.response_transforms.response_transformation.query_parameters`
 
 Optional:
 
@@ -1790,7 +1790,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--early--response_transforms--request_transformation"></a>
-### Nested Schema for `spec.virtual_host.options.waf.early.response_transforms.response_transformation`
+### Nested Schema for `spec.virtual_host.options.waf.early.response_transforms.request_transformation`
 
 Optional:
 
@@ -1800,7 +1800,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--early--response_transforms--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--virtual_host--options--waf--early--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.virtual_host.options.waf.early.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.options.waf.early.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
@@ -1808,7 +1808,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--early--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.virtual_host.options.waf.early.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.options.waf.early.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
@@ -1912,7 +1912,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--early--response_transforms--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--virtual_host--options--waf--early--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.virtual_host.options.waf.early.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.options.waf.early.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
@@ -1920,7 +1920,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--early--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.virtual_host.options.waf.early.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.options.waf.early.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
@@ -2024,7 +2024,7 @@ Optional:
 - `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--early--response_transforms--response_transformation))
 
 <a id="nestedatt--spec--virtual_host--options--waf--early--response_transforms--matchers"></a>
-### Nested Schema for `spec.virtual_host.options.waf.early.response_transforms.response_transformation`
+### Nested Schema for `spec.virtual_host.options.waf.early.response_transforms.matchers`
 
 Optional:
 
@@ -2045,7 +2045,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--early--response_transforms--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--virtual_host--options--waf--early--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.virtual_host.options.waf.early.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.options.waf.early.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
@@ -2053,7 +2053,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--early--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.virtual_host.options.waf.early.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.options.waf.early.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
@@ -2157,7 +2157,7 @@ Optional:
 - `response_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--regular--response_transforms))
 
 <a id="nestedatt--spec--virtual_host--options--waf--regular--request_transforms"></a>
-### Nested Schema for `spec.virtual_host.options.waf.regular.response_transforms`
+### Nested Schema for `spec.virtual_host.options.waf.regular.request_transforms`
 
 Optional:
 
@@ -2167,7 +2167,7 @@ Optional:
 - `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--regular--response_transforms--response_transformation))
 
 <a id="nestedatt--spec--virtual_host--options--waf--regular--response_transforms--matcher"></a>
-### Nested Schema for `spec.virtual_host.options.waf.regular.response_transforms.response_transformation`
+### Nested Schema for `spec.virtual_host.options.waf.regular.response_transforms.matcher`
 
 Optional:
 
@@ -2181,7 +2181,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--virtual_host--options--waf--regular--response_transforms--response_transformation--headers"></a>
-### Nested Schema for `spec.virtual_host.options.waf.regular.response_transforms.response_transformation.regex`
+### Nested Schema for `spec.virtual_host.options.waf.regular.response_transforms.response_transformation.headers`
 
 Optional:
 
@@ -2192,7 +2192,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--regular--response_transforms--response_transformation--query_parameters"></a>
-### Nested Schema for `spec.virtual_host.options.waf.regular.response_transforms.response_transformation.regex`
+### Nested Schema for `spec.virtual_host.options.waf.regular.response_transforms.response_transformation.query_parameters`
 
 Optional:
 
@@ -2203,7 +2203,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--regular--response_transforms--request_transformation"></a>
-### Nested Schema for `spec.virtual_host.options.waf.regular.response_transforms.response_transformation`
+### Nested Schema for `spec.virtual_host.options.waf.regular.response_transforms.request_transformation`
 
 Optional:
 
@@ -2213,7 +2213,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--regular--response_transforms--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--virtual_host--options--waf--regular--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.virtual_host.options.waf.regular.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.options.waf.regular.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
@@ -2221,7 +2221,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--regular--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.virtual_host.options.waf.regular.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.options.waf.regular.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
@@ -2325,7 +2325,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--regular--response_transforms--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--virtual_host--options--waf--regular--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.virtual_host.options.waf.regular.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.options.waf.regular.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
@@ -2333,7 +2333,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--regular--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.virtual_host.options.waf.regular.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.options.waf.regular.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
@@ -2437,7 +2437,7 @@ Optional:
 - `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--regular--response_transforms--response_transformation))
 
 <a id="nestedatt--spec--virtual_host--options--waf--regular--response_transforms--matchers"></a>
-### Nested Schema for `spec.virtual_host.options.waf.regular.response_transforms.response_transformation`
+### Nested Schema for `spec.virtual_host.options.waf.regular.response_transforms.matchers`
 
 Optional:
 
@@ -2458,7 +2458,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--regular--response_transforms--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--virtual_host--options--waf--regular--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.virtual_host.options.waf.regular.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.options.waf.regular.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
@@ -2466,7 +2466,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--regular--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.virtual_host.options.waf.regular.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.options.waf.regular.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
@@ -2563,7 +2563,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--stats"></a>
-### Nested Schema for `spec.virtual_host.options.waf`
+### Nested Schema for `spec.virtual_host.options.stats`
 
 Optional:
 
@@ -2581,7 +2581,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--transformations"></a>
-### Nested Schema for `spec.virtual_host.options.waf`
+### Nested Schema for `spec.virtual_host.options.transformations`
 
 Optional:
 
@@ -2600,7 +2600,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--request_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--virtual_host--options--waf--request_transformation--header_body_transform"></a>
-### Nested Schema for `spec.virtual_host.options.waf.request_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.options.waf.request_transformation.header_body_transform`
 
 Optional:
 
@@ -2608,7 +2608,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--request_transformation--transformation_template"></a>
-### Nested Schema for `spec.virtual_host.options.waf.request_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.options.waf.request_transformation.transformation_template`
 
 Optional:
 
@@ -2626,7 +2626,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--options--waf--request_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.virtual_host.options.waf.request_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.options.waf.request_transformation.xslt_transformation.body`
 
 Optional:
 
@@ -2634,7 +2634,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--request_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.virtual_host.options.waf.request_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.options.waf.request_transformation.xslt_transformation.dynamic_metadata_values`
 
 Optional:
 
@@ -2652,7 +2652,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--request_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.virtual_host.options.waf.request_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.options.waf.request_transformation.xslt_transformation.extractors`
 
 Optional:
 
@@ -2665,7 +2665,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--request_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.virtual_host.options.waf.request_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.options.waf.request_transformation.xslt_transformation.headers`
 
 Optional:
 
@@ -2673,7 +2673,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--request_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.virtual_host.options.waf.request_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.options.waf.request_transformation.xslt_transformation.headers_to_append`
 
 Optional:
 
@@ -2712,7 +2712,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--virtual_host--options--waf--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.virtual_host.options.waf.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.options.waf.response_transformation.header_body_transform`
 
 Optional:
 
@@ -2720,7 +2720,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.virtual_host.options.waf.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.options.waf.response_transformation.transformation_template`
 
 Optional:
 
@@ -2738,7 +2738,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--options--waf--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.virtual_host.options.waf.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.options.waf.response_transformation.xslt_transformation.body`
 
 Optional:
 
@@ -2746,7 +2746,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.virtual_host.options.waf.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.options.waf.response_transformation.xslt_transformation.dynamic_metadata_values`
 
 Optional:
 
@@ -2764,7 +2764,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.virtual_host.options.waf.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.options.waf.response_transformation.xslt_transformation.extractors`
 
 Optional:
 
@@ -2777,7 +2777,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.virtual_host.options.waf.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.options.waf.response_transformation.xslt_transformation.headers`
 
 Optional:
 
@@ -2785,7 +2785,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.virtual_host.options.waf.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.options.waf.response_transformation.xslt_transformation.headers_to_append`
 
 Optional:
 
@@ -2846,7 +2846,7 @@ Optional:
 - `data_map_keys` (List of String)
 
 <a id="nestedatt--spec--virtual_host--options--waf--config_map_rule_sets--config_map_ref"></a>
-### Nested Schema for `spec.virtual_host.options.waf.config_map_rule_sets.data_map_keys`
+### Nested Schema for `spec.virtual_host.options.waf.config_map_rule_sets.config_map_ref`
 
 Optional:
 
@@ -2911,7 +2911,7 @@ Optional:
 - `route_action` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action))
 
 <a id="nestedatt--spec--virtual_host--routes--delegate_action"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action`
+### Nested Schema for `spec.virtual_host.routes.delegate_action`
 
 Optional:
 
@@ -2939,7 +2939,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--selector--expressions"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.selector.namespaces`
+### Nested Schema for `spec.virtual_host.routes.route_action.selector.expressions`
 
 Optional:
 
@@ -2951,7 +2951,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--direct_response_action"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action`
+### Nested Schema for `spec.virtual_host.routes.direct_response_action`
 
 Optional:
 
@@ -2960,7 +2960,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--graphql_api_ref"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action`
+### Nested Schema for `spec.virtual_host.routes.graphql_api_ref`
 
 Optional:
 
@@ -2969,7 +2969,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--matchers"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action`
+### Nested Schema for `spec.virtual_host.routes.matchers`
 
 Optional:
 
@@ -3005,7 +3005,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--options"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action`
+### Nested Schema for `spec.virtual_host.routes.options`
 
 Optional:
 
@@ -3056,7 +3056,7 @@ Optional:
 - `disabled` (Boolean)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--buffer_per_route--buffer"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.buffer_per_route.disabled`
+### Nested Schema for `spec.virtual_host.routes.route_action.buffer_per_route.buffer`
 
 Optional:
 
@@ -3089,7 +3089,7 @@ Optional:
 - `shadow_enabled` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--csrf--shadow_enabled))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--csrf--additional_origins"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.csrf.shadow_enabled`
+### Nested Schema for `spec.virtual_host.routes.route_action.csrf.additional_origins`
 
 Optional:
 
@@ -3100,7 +3100,7 @@ Optional:
 - `suffix` (String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--csrf--shadow_enabled--safe_regex"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.csrf.shadow_enabled.suffix`
+### Nested Schema for `spec.virtual_host.routes.route_action.csrf.shadow_enabled.safe_regex`
 
 Optional:
 
@@ -3108,7 +3108,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--csrf--shadow_enabled--suffix--google_re2"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.csrf.shadow_enabled.suffix.regex`
+### Nested Schema for `spec.virtual_host.routes.route_action.csrf.shadow_enabled.suffix.google_re2`
 
 Optional:
 
@@ -3118,7 +3118,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--csrf--filter_enabled"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.csrf.shadow_enabled`
+### Nested Schema for `spec.virtual_host.routes.route_action.csrf.filter_enabled`
 
 Optional:
 
@@ -3126,7 +3126,7 @@ Optional:
 - `runtime_key` (String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--csrf--shadow_enabled--default_value"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.csrf.shadow_enabled.runtime_key`
+### Nested Schema for `spec.virtual_host.routes.route_action.csrf.shadow_enabled.default_value`
 
 Optional:
 
@@ -3144,7 +3144,7 @@ Optional:
 - `runtime_key` (String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--csrf--shadow_enabled--default_value"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.csrf.shadow_enabled.runtime_key`
+### Nested Schema for `spec.virtual_host.routes.route_action.csrf.shadow_enabled.default_value`
 
 Optional:
 
@@ -3163,7 +3163,7 @@ Optional:
 - `enabled_for` (String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--dlp--actions"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.dlp.enabled_for`
+### Nested Schema for `spec.virtual_host.routes.route_action.dlp.actions`
 
 Optional:
 
@@ -3173,7 +3173,7 @@ Optional:
 - `shadow` (Boolean)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--dlp--enabled_for--custom_action"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.dlp.enabled_for.shadow`
+### Nested Schema for `spec.virtual_host.routes.route_action.dlp.enabled_for.custom_action`
 
 Optional:
 
@@ -3184,7 +3184,7 @@ Optional:
 - `regex_actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--dlp--enabled_for--shadow--regex_actions))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--dlp--enabled_for--shadow--percent"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.dlp.enabled_for.shadow.regex_actions`
+### Nested Schema for `spec.virtual_host.routes.route_action.dlp.enabled_for.shadow.percent`
 
 Optional:
 
@@ -3202,7 +3202,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--dlp--enabled_for--key_value_action"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.dlp.enabled_for.shadow`
+### Nested Schema for `spec.virtual_host.routes.route_action.dlp.enabled_for.key_value_action`
 
 Optional:
 
@@ -3244,7 +3244,7 @@ Optional:
 - `typed_metadata_context_namespaces` (List of String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ext_proc--overrides--grpc_service"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ext_proc.overrides.typed_metadata_context_namespaces`
+### Nested Schema for `spec.virtual_host.routes.route_action.ext_proc.overrides.grpc_service`
 
 Optional:
 
@@ -3255,7 +3255,7 @@ Optional:
 - `timeout` (String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ext_proc--overrides--typed_metadata_context_namespaces--ext_proc_server_ref"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ext_proc.overrides.typed_metadata_context_namespaces.timeout`
+### Nested Schema for `spec.virtual_host.routes.route_action.ext_proc.overrides.typed_metadata_context_namespaces.ext_proc_server_ref`
 
 Optional:
 
@@ -3264,7 +3264,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ext_proc--overrides--typed_metadata_context_namespaces--initial_metadata"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ext_proc.overrides.typed_metadata_context_namespaces.timeout`
+### Nested Schema for `spec.virtual_host.routes.route_action.ext_proc.overrides.typed_metadata_context_namespaces.initial_metadata`
 
 Optional:
 
@@ -3273,7 +3273,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ext_proc--overrides--typed_metadata_context_namespaces--retry_policy"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ext_proc.overrides.typed_metadata_context_namespaces.timeout`
+### Nested Schema for `spec.virtual_host.routes.route_action.ext_proc.overrides.typed_metadata_context_namespaces.retry_policy`
 
 Optional:
 
@@ -3292,7 +3292,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ext_proc--overrides--processing_mode"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ext_proc.overrides.typed_metadata_context_namespaces`
+### Nested Schema for `spec.virtual_host.routes.route_action.ext_proc.overrides.processing_mode`
 
 Optional:
 
@@ -3316,7 +3316,7 @@ Optional:
 - `disable` (Boolean)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--extauth--config_ref"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.extauth.disable`
+### Nested Schema for `spec.virtual_host.routes.route_action.extauth.config_ref`
 
 Optional:
 
@@ -3325,7 +3325,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--extauth--custom_auth"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.extauth.disable`
+### Nested Schema for `spec.virtual_host.routes.route_action.extauth.custom_auth`
 
 Optional:
 
@@ -3351,7 +3351,7 @@ Optional:
 - `delay` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--faults--delay))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--faults--abort"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.faults.delay`
+### Nested Schema for `spec.virtual_host.routes.route_action.faults.abort`
 
 Optional:
 
@@ -3380,7 +3380,7 @@ Optional:
 - `response_headers_to_remove` (List of String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--header_manipulation--request_headers_to_add"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.header_manipulation.response_headers_to_remove`
+### Nested Schema for `spec.virtual_host.routes.route_action.header_manipulation.request_headers_to_add`
 
 Optional:
 
@@ -3389,7 +3389,7 @@ Optional:
 - `header_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--header_manipulation--response_headers_to_remove--header_secret_ref))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--header_manipulation--response_headers_to_remove--header"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.header_manipulation.response_headers_to_remove.header_secret_ref`
+### Nested Schema for `spec.virtual_host.routes.route_action.header_manipulation.response_headers_to_remove.header`
 
 Optional:
 
@@ -3408,7 +3408,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--header_manipulation--response_headers_to_add"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.header_manipulation.response_headers_to_remove`
+### Nested Schema for `spec.virtual_host.routes.route_action.header_manipulation.response_headers_to_add`
 
 Optional:
 
@@ -3435,7 +3435,7 @@ Optional:
 - `substitution` (String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--host_rewrite_path_regex--pattern"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.host_rewrite_path_regex.substitution`
+### Nested Schema for `spec.virtual_host.routes.route_action.host_rewrite_path_regex.pattern`
 
 Optional:
 
@@ -3443,7 +3443,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--host_rewrite_path_regex--substitution--google_re2"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.host_rewrite_path_regex.substitution.regex`
+### Nested Schema for `spec.virtual_host.routes.route_action.host_rewrite_path_regex.substitution.google_re2`
 
 Optional:
 
@@ -3469,7 +3469,7 @@ Optional:
 - `before_ext_auth` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--jwt_staged--before_ext_auth))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--jwt_staged--after_ext_auth"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.jwt_staged.before_ext_auth`
+### Nested Schema for `spec.virtual_host.routes.route_action.jwt_staged.after_ext_auth`
 
 Optional:
 
@@ -3503,7 +3503,7 @@ Optional:
 - `terminal` (Boolean)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--lb_hash--hash_policies--cookie"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.lb_hash.hash_policies.terminal`
+### Nested Schema for `spec.virtual_host.routes.route_action.lb_hash.hash_policies.cookie`
 
 Optional:
 
@@ -3585,7 +3585,7 @@ Optional:
 - `rate_limits` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--ratelimit--rate_limits))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit--local_ratelimit"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit.rate_limits`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit.local_ratelimit`
 
 Optional:
 
@@ -3604,7 +3604,7 @@ Optional:
 - `set_actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--ratelimit--rate_limits--set_actions))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit--rate_limits--actions"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit.rate_limits.set_actions`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit.rate_limits.actions`
 
 Optional:
 
@@ -3617,7 +3617,7 @@ Optional:
 - `source_cluster` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit--rate_limits--set_actions--generic_key"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit.rate_limits.set_actions.generic_key`
 
 Optional:
 
@@ -3625,7 +3625,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit--rate_limits--set_actions--header_value_match"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit.rate_limits.set_actions.header_value_match`
 
 Optional:
 
@@ -3648,7 +3648,7 @@ Optional:
 - `suffix_match` (String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit--rate_limits--set_actions--source_cluster--headers--range_match"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit.rate_limits.set_actions.source_cluster.headers.suffix_match`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit.rate_limits.set_actions.source_cluster.headers.range_match`
 
 Optional:
 
@@ -3659,7 +3659,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit--rate_limits--set_actions--metadata"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit.rate_limits.set_actions.metadata`
 
 Optional:
 
@@ -3687,7 +3687,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit--rate_limits--set_actions--request_headers"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit.rate_limits.set_actions.request_headers`
 
 Optional:
 
@@ -3697,7 +3697,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit--rate_limits--limit"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit.rate_limits.set_actions`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit.rate_limits.limit`
 
 Optional:
 
@@ -3743,7 +3743,7 @@ Optional:
 - `source_cluster` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit--rate_limits--set_actions--generic_key"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit.rate_limits.set_actions.generic_key`
 
 Optional:
 
@@ -3751,7 +3751,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit--rate_limits--set_actions--header_value_match"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit.rate_limits.set_actions.header_value_match`
 
 Optional:
 
@@ -3774,7 +3774,7 @@ Optional:
 - `suffix_match` (String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit--rate_limits--set_actions--source_cluster--headers--range_match"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit.rate_limits.set_actions.source_cluster.headers.suffix_match`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit.rate_limits.set_actions.source_cluster.headers.range_match`
 
 Optional:
 
@@ -3785,7 +3785,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit--rate_limits--set_actions--metadata"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit.rate_limits.set_actions.metadata`
 
 Optional:
 
@@ -3813,7 +3813,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit--rate_limits--set_actions--request_headers"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit.rate_limits.set_actions.request_headers`
 
 Optional:
 
@@ -3833,7 +3833,7 @@ Optional:
 - `authorized_limits` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--ratelimit_basic--authorized_limits))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_basic--anonymous_limits"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_basic.authorized_limits`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_basic.anonymous_limits`
 
 Optional:
 
@@ -3861,7 +3861,7 @@ Optional:
 - `rate_limits` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--ratelimit_early--rate_limits))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_early--local_ratelimit"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_early.rate_limits`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_early.local_ratelimit`
 
 Optional:
 
@@ -3880,7 +3880,7 @@ Optional:
 - `set_actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--ratelimit_early--rate_limits--set_actions))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_early--rate_limits--actions"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_early.rate_limits.set_actions`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_early.rate_limits.actions`
 
 Optional:
 
@@ -3893,7 +3893,7 @@ Optional:
 - `source_cluster` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_early--rate_limits--set_actions--generic_key"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_early.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_early.rate_limits.set_actions.generic_key`
 
 Optional:
 
@@ -3901,7 +3901,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_early--rate_limits--set_actions--header_value_match"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_early.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_early.rate_limits.set_actions.header_value_match`
 
 Optional:
 
@@ -3924,7 +3924,7 @@ Optional:
 - `suffix_match` (String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_early--rate_limits--set_actions--source_cluster--headers--range_match"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_early.rate_limits.set_actions.source_cluster.headers.suffix_match`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_early.rate_limits.set_actions.source_cluster.headers.range_match`
 
 Optional:
 
@@ -3935,7 +3935,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_early--rate_limits--set_actions--metadata"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_early.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_early.rate_limits.set_actions.metadata`
 
 Optional:
 
@@ -3963,7 +3963,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_early--rate_limits--set_actions--request_headers"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_early.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_early.rate_limits.set_actions.request_headers`
 
 Optional:
 
@@ -3973,7 +3973,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_early--rate_limits--limit"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_early.rate_limits.set_actions`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_early.rate_limits.limit`
 
 Optional:
 
@@ -4019,7 +4019,7 @@ Optional:
 - `source_cluster` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_early--rate_limits--set_actions--generic_key"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_early.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_early.rate_limits.set_actions.generic_key`
 
 Optional:
 
@@ -4027,7 +4027,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_early--rate_limits--set_actions--header_value_match"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_early.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_early.rate_limits.set_actions.header_value_match`
 
 Optional:
 
@@ -4050,7 +4050,7 @@ Optional:
 - `suffix_match` (String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_early--rate_limits--set_actions--source_cluster--headers--range_match"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_early.rate_limits.set_actions.source_cluster.headers.suffix_match`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_early.rate_limits.set_actions.source_cluster.headers.range_match`
 
 Optional:
 
@@ -4061,7 +4061,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_early--rate_limits--set_actions--metadata"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_early.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_early.rate_limits.set_actions.metadata`
 
 Optional:
 
@@ -4089,7 +4089,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_early--rate_limits--set_actions--request_headers"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_early.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_early.rate_limits.set_actions.request_headers`
 
 Optional:
 
@@ -4110,7 +4110,7 @@ Optional:
 - `rate_limits` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--ratelimit_regular--rate_limits))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_regular--local_ratelimit"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_regular.rate_limits`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_regular.local_ratelimit`
 
 Optional:
 
@@ -4129,7 +4129,7 @@ Optional:
 - `set_actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--ratelimit_regular--rate_limits--set_actions))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_regular--rate_limits--actions"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_regular.rate_limits.set_actions`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_regular.rate_limits.actions`
 
 Optional:
 
@@ -4142,7 +4142,7 @@ Optional:
 - `source_cluster` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_regular--rate_limits--set_actions--generic_key"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_regular.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_regular.rate_limits.set_actions.generic_key`
 
 Optional:
 
@@ -4150,7 +4150,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_regular--rate_limits--set_actions--header_value_match"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_regular.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_regular.rate_limits.set_actions.header_value_match`
 
 Optional:
 
@@ -4173,7 +4173,7 @@ Optional:
 - `suffix_match` (String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_regular--rate_limits--set_actions--source_cluster--headers--range_match"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_regular.rate_limits.set_actions.source_cluster.headers.suffix_match`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_regular.rate_limits.set_actions.source_cluster.headers.range_match`
 
 Optional:
 
@@ -4184,7 +4184,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_regular--rate_limits--set_actions--metadata"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_regular.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_regular.rate_limits.set_actions.metadata`
 
 Optional:
 
@@ -4212,7 +4212,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_regular--rate_limits--set_actions--request_headers"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_regular.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_regular.rate_limits.set_actions.request_headers`
 
 Optional:
 
@@ -4222,7 +4222,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_regular--rate_limits--limit"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_regular.rate_limits.set_actions`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_regular.rate_limits.limit`
 
 Optional:
 
@@ -4268,7 +4268,7 @@ Optional:
 - `source_cluster` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_regular--rate_limits--set_actions--generic_key"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_regular.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_regular.rate_limits.set_actions.generic_key`
 
 Optional:
 
@@ -4276,7 +4276,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_regular--rate_limits--set_actions--header_value_match"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_regular.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_regular.rate_limits.set_actions.header_value_match`
 
 Optional:
 
@@ -4299,7 +4299,7 @@ Optional:
 - `suffix_match` (String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_regular--rate_limits--set_actions--source_cluster--headers--range_match"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_regular.rate_limits.set_actions.source_cluster.headers.suffix_match`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_regular.rate_limits.set_actions.source_cluster.headers.range_match`
 
 Optional:
 
@@ -4310,7 +4310,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_regular--rate_limits--set_actions--metadata"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_regular.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_regular.rate_limits.set_actions.metadata`
 
 Optional:
 
@@ -4338,7 +4338,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_regular--rate_limits--set_actions--request_headers"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_regular.rate_limits.set_actions.source_cluster`
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_regular.rate_limits.set_actions.request_headers`
 
 Optional:
 
@@ -4367,7 +4367,7 @@ Optional:
 - `principals` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--rbac--policies--principals))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--rbac--policies--permissions"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.rbac.policies.principals`
+### Nested Schema for `spec.virtual_host.routes.route_action.rbac.policies.permissions`
 
 Optional:
 
@@ -4404,7 +4404,7 @@ Optional:
 - `substitution` (String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--regex_rewrite--pattern"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.regex_rewrite.substitution`
+### Nested Schema for `spec.virtual_host.routes.route_action.regex_rewrite.pattern`
 
 Optional:
 
@@ -4412,7 +4412,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--regex_rewrite--substitution--google_re2"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.regex_rewrite.substitution.regex`
+### Nested Schema for `spec.virtual_host.routes.route_action.regex_rewrite.substitution.google_re2`
 
 Optional:
 
@@ -4432,7 +4432,7 @@ Optional:
 - `retry_on` (String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--retries--retry_back_off"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.retries.retry_on`
+### Nested Schema for `spec.virtual_host.routes.route_action.retries.retry_back_off`
 
 Optional:
 
@@ -4471,7 +4471,7 @@ Optional:
 - `regular` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--early"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.early`
 
 Optional:
 
@@ -4479,7 +4479,7 @@ Optional:
 - `response_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--request_transforms"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.request_transforms`
 
 Optional:
 
@@ -4489,7 +4489,7 @@ Optional:
 - `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--matcher"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.matcher`
 
 Optional:
 
@@ -4525,7 +4525,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--request_transformation"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.request_transformation`
 
 Optional:
 
@@ -4561,7 +4561,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation--transformation_template--body"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.body`
 
 Optional:
 
@@ -4569,7 +4569,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation--transformation_template--dynamic_metadata_values"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
@@ -4587,7 +4587,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation--transformation_template--extractors"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -4600,7 +4600,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation--transformation_template--headers"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.headers`
 
 Optional:
 
@@ -4608,7 +4608,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation--transformation_template--headers_to_append"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.headers_to_append`
 
 Optional:
 
@@ -4673,7 +4673,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation--transformation_template--body"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.body`
 
 Optional:
 
@@ -4681,7 +4681,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation--transformation_template--dynamic_metadata_values"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
@@ -4699,7 +4699,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation--transformation_template--extractors"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -4712,7 +4712,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation--transformation_template--headers"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.headers`
 
 Optional:
 
@@ -4720,7 +4720,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation--transformation_template--headers_to_append"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.headers_to_append`
 
 Optional:
 
@@ -4759,7 +4759,7 @@ Optional:
 - `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--matchers"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.matchers`
 
 Optional:
 
@@ -4806,7 +4806,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation--transformation_template--body"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.body`
 
 Optional:
 
@@ -4814,7 +4814,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation--transformation_template--dynamic_metadata_values"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
@@ -4832,7 +4832,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation--transformation_template--extractors"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -4845,7 +4845,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation--transformation_template--headers"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.headers`
 
 Optional:
 
@@ -4853,7 +4853,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation--transformation_template--headers_to_append"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.headers_to_append`
 
 Optional:
 
@@ -4892,7 +4892,7 @@ Optional:
 - `response_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--request_transforms"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.request_transforms`
 
 Optional:
 
@@ -4902,7 +4902,7 @@ Optional:
 - `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--matcher"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.matcher`
 
 Optional:
 
@@ -4938,7 +4938,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--request_transformation"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.request_transformation`
 
 Optional:
 
@@ -4974,7 +4974,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation--transformation_template--body"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.body`
 
 Optional:
 
@@ -4982,7 +4982,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation--transformation_template--dynamic_metadata_values"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
@@ -5000,7 +5000,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation--transformation_template--extractors"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -5013,7 +5013,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation--transformation_template--headers"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.headers`
 
 Optional:
 
@@ -5021,7 +5021,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation--transformation_template--headers_to_append"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.headers_to_append`
 
 Optional:
 
@@ -5086,7 +5086,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation--transformation_template--body"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.body`
 
 Optional:
 
@@ -5094,7 +5094,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation--transformation_template--dynamic_metadata_values"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
@@ -5112,7 +5112,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation--transformation_template--extractors"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -5125,7 +5125,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation--transformation_template--headers"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.headers`
 
 Optional:
 
@@ -5133,7 +5133,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation--transformation_template--headers_to_append"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.headers_to_append`
 
 Optional:
 
@@ -5172,7 +5172,7 @@ Optional:
 - `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--matchers"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.matchers`
 
 Optional:
 
@@ -5219,7 +5219,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation--transformation_template--body"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.body`
 
 Optional:
 
@@ -5227,7 +5227,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation--transformation_template--dynamic_metadata_values"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
@@ -5245,7 +5245,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation--transformation_template--extractors"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -5258,7 +5258,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation--transformation_template--headers"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.headers`
 
 Optional:
 
@@ -5266,7 +5266,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--staged_transformations--regular--response_transforms--response_transformation--transformation_template--headers_to_append"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.staged_transformations.regular.response_transforms.response_transformation.transformation_template.headers_to_append`
 
 Optional:
 
@@ -5327,7 +5327,7 @@ Optional:
 - `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--transformations--response_transformation))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--transformations--request_transformation"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.transformations.response_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.transformations.request_transformation`
 
 Optional:
 
@@ -5337,7 +5337,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--transformations--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--transformations--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.transformations.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.transformations.response_transformation.header_body_transform`
 
 Optional:
 
@@ -5345,7 +5345,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--transformations--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.transformations.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.transformations.response_transformation.transformation_template`
 
 Optional:
 
@@ -5363,7 +5363,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--transformations--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.transformations.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.transformations.response_transformation.xslt_transformation.body`
 
 Optional:
 
@@ -5371,7 +5371,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--transformations--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.transformations.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.transformations.response_transformation.xslt_transformation.dynamic_metadata_values`
 
 Optional:
 
@@ -5389,7 +5389,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--transformations--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.transformations.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.transformations.response_transformation.xslt_transformation.extractors`
 
 Optional:
 
@@ -5402,7 +5402,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--transformations--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.transformations.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.transformations.response_transformation.xslt_transformation.headers`
 
 Optional:
 
@@ -5410,7 +5410,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--transformations--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.transformations.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.transformations.response_transformation.xslt_transformation.headers_to_append`
 
 Optional:
 
@@ -5449,7 +5449,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--transformations--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--transformations--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.transformations.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.transformations.response_transformation.header_body_transform`
 
 Optional:
 
@@ -5457,7 +5457,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--transformations--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.transformations.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.transformations.response_transformation.transformation_template`
 
 Optional:
 
@@ -5475,7 +5475,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--transformations--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.transformations.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.transformations.response_transformation.xslt_transformation.body`
 
 Optional:
 
@@ -5483,7 +5483,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--transformations--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.transformations.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.transformations.response_transformation.xslt_transformation.dynamic_metadata_values`
 
 Optional:
 
@@ -5501,7 +5501,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--transformations--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.transformations.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.transformations.response_transformation.xslt_transformation.extractors`
 
 Optional:
 
@@ -5514,7 +5514,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--transformations--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.transformations.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.transformations.response_transformation.xslt_transformation.headers`
 
 Optional:
 
@@ -5522,7 +5522,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--transformations--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.transformations.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.transformations.response_transformation.xslt_transformation.headers_to_append`
 
 Optional:
 
@@ -5560,7 +5560,7 @@ Optional:
 - `websocket` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--upgrades--websocket))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--upgrades--connect"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.upgrades.websocket`
+### Nested Schema for `spec.virtual_host.routes.route_action.upgrades.connect`
 
 Optional:
 
@@ -5591,7 +5591,7 @@ Optional:
 - `rule_sets` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--waf--rule_sets))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--waf--audit_logging"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.waf.rule_sets`
+### Nested Schema for `spec.virtual_host.routes.route_action.waf.audit_logging`
 
 Optional:
 
@@ -5600,7 +5600,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--waf--config_map_rule_sets"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.waf.rule_sets`
+### Nested Schema for `spec.virtual_host.routes.route_action.waf.config_map_rule_sets`
 
 Optional:
 
@@ -5608,7 +5608,7 @@ Optional:
 - `data_map_keys` (List of String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--waf--rule_sets--config_map_ref"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.waf.rule_sets.data_map_keys`
+### Nested Schema for `spec.virtual_host.routes.route_action.waf.rule_sets.config_map_ref`
 
 Optional:
 
@@ -5618,7 +5618,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--waf--core_rule_set"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.waf.rule_sets`
+### Nested Schema for `spec.virtual_host.routes.route_action.waf.core_rule_set`
 
 Optional:
 
@@ -5639,7 +5639,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--options_config_refs"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action`
+### Nested Schema for `spec.virtual_host.routes.options_config_refs`
 
 Optional:
 
@@ -5656,7 +5656,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--redirect_action"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action`
+### Nested Schema for `spec.virtual_host.routes.redirect_action`
 
 Optional:
 
@@ -5678,7 +5678,7 @@ Optional:
 - `substitution` (String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--regex_rewrite--pattern"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.regex_rewrite.substitution`
+### Nested Schema for `spec.virtual_host.routes.route_action.regex_rewrite.pattern`
 
 Optional:
 
@@ -5686,7 +5686,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--regex_rewrite--substitution--google_re2"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.regex_rewrite.substitution.regex`
+### Nested Schema for `spec.virtual_host.routes.route_action.regex_rewrite.substitution.google_re2`
 
 Optional:
 
@@ -5733,7 +5733,7 @@ Optional:
 - `weight` (Number)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--destination"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.destination`
 
 Optional:
 
@@ -5744,7 +5744,7 @@ Optional:
 - `upstream` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--upstream))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--consul"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.upstream`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.consul`
 
 Optional:
 
@@ -5754,7 +5754,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--destination_spec"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.upstream`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.destination_spec`
 
 Optional:
 
@@ -5796,7 +5796,7 @@ Optional:
 - `service` (String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--upstream--grpc--parameters"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.upstream.grpc.service`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.upstream.grpc.parameters`
 
 Optional:
 
@@ -5815,7 +5815,7 @@ Optional:
 - `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--upstream--rest--response_transformation))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--upstream--rest--parameters"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.upstream.rest.response_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.upstream.rest.parameters`
 
 Optional:
 
@@ -5842,7 +5842,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--upstream--rest--response_transformation--body"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.upstream.rest.response_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.upstream.rest.response_transformation.body`
 
 Optional:
 
@@ -5850,7 +5850,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--upstream--rest--response_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.upstream.rest.response_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.upstream.rest.response_transformation.dynamic_metadata_values`
 
 Optional:
 
@@ -5868,7 +5868,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--upstream--rest--response_transformation--extractors"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.upstream.rest.response_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.upstream.rest.response_transformation.extractors`
 
 Optional:
 
@@ -5881,7 +5881,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--upstream--rest--response_transformation--headers"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.upstream.rest.response_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.upstream.rest.response_transformation.headers`
 
 Optional:
 
@@ -5889,7 +5889,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--upstream--rest--response_transformation--headers_to_append"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.upstream.rest.response_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.upstream.rest.response_transformation.headers_to_append`
 
 Optional:
 
@@ -5909,7 +5909,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--kube"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.upstream`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.kube`
 
 Optional:
 
@@ -5927,7 +5927,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--subset"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.upstream`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.subset`
 
 Optional:
 
@@ -5945,7 +5945,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--options"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.options`
 
 Optional:
 
@@ -5958,7 +5958,7 @@ Optional:
 - `transformations` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--buffer_per_route"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.buffer_per_route`
 
 Optional:
 
@@ -5975,7 +5975,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--csrf"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.csrf`
 
 Optional:
 
@@ -5995,7 +5995,7 @@ Optional:
 - `suffix` (String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--additional_origins--safe_regex"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.additional_origins.suffix`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.additional_origins.safe_regex`
 
 Optional:
 
@@ -6003,7 +6003,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--additional_origins--suffix--google_re2"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.additional_origins.suffix.regex`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.additional_origins.suffix.google_re2`
 
 Optional:
 
@@ -6021,7 +6021,7 @@ Optional:
 - `runtime_key` (String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--filter_enabled--default_value"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.filter_enabled.runtime_key`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.filter_enabled.default_value`
 
 Optional:
 
@@ -6039,7 +6039,7 @@ Optional:
 - `runtime_key` (String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--shadow_enabled--default_value"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.shadow_enabled.runtime_key`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.shadow_enabled.default_value`
 
 Optional:
 
@@ -6050,7 +6050,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--extauth"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.extauth`
 
 Optional:
 
@@ -6078,7 +6078,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--extensions"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.extensions`
 
 Optional:
 
@@ -6086,7 +6086,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--header_manipulation"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.header_manipulation`
 
 Optional:
 
@@ -6105,7 +6105,7 @@ Optional:
 - `header_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--request_headers_to_add--header_secret_ref))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--request_headers_to_add--header"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.request_headers_to_add.header_secret_ref`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.request_headers_to_add.header`
 
 Optional:
 
@@ -6143,7 +6143,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--staged_transformations"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.staged_transformations`
 
 Optional:
 
@@ -6162,7 +6162,7 @@ Optional:
 - `response_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--request_transforms"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.request_transforms`
 
 Optional:
 
@@ -6172,7 +6172,7 @@ Optional:
 - `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--response_transformation))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--matcher"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.matcher`
 
 Optional:
 
@@ -6186,7 +6186,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--response_transformation--headers"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.regex`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.headers`
 
 Optional:
 
@@ -6197,7 +6197,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--response_transformation--query_parameters"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.regex`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.query_parameters`
 
 Optional:
 
@@ -6208,7 +6208,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--request_transformation"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.request_transformation`
 
 Optional:
 
@@ -6218,7 +6218,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
@@ -6226,7 +6226,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
@@ -6244,7 +6244,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.body`
 
 Optional:
 
@@ -6252,7 +6252,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.dynamic_metadata_values`
 
 Optional:
 
@@ -6270,7 +6270,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.extractors`
 
 Optional:
 
@@ -6283,7 +6283,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.headers`
 
 Optional:
 
@@ -6291,7 +6291,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.headers_to_append`
 
 Optional:
 
@@ -6330,7 +6330,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
@@ -6338,7 +6338,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
@@ -6356,7 +6356,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.body`
 
 Optional:
 
@@ -6364,7 +6364,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.dynamic_metadata_values`
 
 Optional:
 
@@ -6382,7 +6382,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.extractors`
 
 Optional:
 
@@ -6395,7 +6395,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.headers`
 
 Optional:
 
@@ -6403,7 +6403,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.headers_to_append`
 
 Optional:
 
@@ -6442,7 +6442,7 @@ Optional:
 - `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--response_transformation))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--matchers"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.matchers`
 
 Optional:
 
@@ -6463,7 +6463,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
@@ -6471,7 +6471,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
@@ -6489,7 +6489,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.body`
 
 Optional:
 
@@ -6497,7 +6497,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.dynamic_metadata_values`
 
 Optional:
 
@@ -6515,7 +6515,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.extractors`
 
 Optional:
 
@@ -6528,7 +6528,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.headers`
 
 Optional:
 
@@ -6536,7 +6536,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.headers_to_append`
 
 Optional:
 
@@ -6575,7 +6575,7 @@ Optional:
 - `response_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--request_transforms"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.request_transforms`
 
 Optional:
 
@@ -6585,7 +6585,7 @@ Optional:
 - `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--response_transformation))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--matcher"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.matcher`
 
 Optional:
 
@@ -6599,7 +6599,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--headers"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.regex`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.headers`
 
 Optional:
 
@@ -6610,7 +6610,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--query_parameters"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.regex`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.query_parameters`
 
 Optional:
 
@@ -6621,7 +6621,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--request_transformation"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.request_transformation`
 
 Optional:
 
@@ -6631,7 +6631,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
@@ -6639,7 +6639,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
@@ -6657,7 +6657,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.body`
 
 Optional:
 
@@ -6665,7 +6665,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.dynamic_metadata_values`
 
 Optional:
 
@@ -6683,7 +6683,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.extractors`
 
 Optional:
 
@@ -6696,7 +6696,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.headers`
 
 Optional:
 
@@ -6704,7 +6704,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.headers_to_append`
 
 Optional:
 
@@ -6743,7 +6743,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
@@ -6751,7 +6751,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
@@ -6769,7 +6769,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.body`
 
 Optional:
 
@@ -6777,7 +6777,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.dynamic_metadata_values`
 
 Optional:
 
@@ -6795,7 +6795,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.extractors`
 
 Optional:
 
@@ -6808,7 +6808,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.headers`
 
 Optional:
 
@@ -6816,7 +6816,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.headers_to_append`
 
 Optional:
 
@@ -6855,7 +6855,7 @@ Optional:
 - `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--response_transformation))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--matchers"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.matchers`
 
 Optional:
 
@@ -6876,7 +6876,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
@@ -6884,7 +6884,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
@@ -6902,7 +6902,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.body`
 
 Optional:
 
@@ -6910,7 +6910,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.dynamic_metadata_values`
 
 Optional:
 
@@ -6928,7 +6928,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.extractors`
 
 Optional:
 
@@ -6941,7 +6941,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.headers`
 
 Optional:
 
@@ -6949,7 +6949,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.headers_to_append`
 
 Optional:
 
@@ -7000,7 +7000,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--request_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--request_transformation--header_body_transform"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.request_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.request_transformation.header_body_transform`
 
 Optional:
 
@@ -7008,7 +7008,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--request_transformation--transformation_template"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.request_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.request_transformation.transformation_template`
 
 Optional:
 
@@ -7026,7 +7026,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--request_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.request_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.request_transformation.xslt_transformation.body`
 
 Optional:
 
@@ -7034,7 +7034,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--request_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.request_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.request_transformation.xslt_transformation.dynamic_metadata_values`
 
 Optional:
 
@@ -7052,7 +7052,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--request_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.request_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.request_transformation.xslt_transformation.extractors`
 
 Optional:
 
@@ -7065,7 +7065,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--request_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.request_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.request_transformation.xslt_transformation.headers`
 
 Optional:
 
@@ -7073,7 +7073,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--request_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.request_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.request_transformation.xslt_transformation.headers_to_append`
 
 Optional:
 
@@ -7112,7 +7112,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.response_transformation.header_body_transform`
 
 Optional:
 
@@ -7120,7 +7120,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.response_transformation.xslt_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.response_transformation.transformation_template`
 
 Optional:
 
@@ -7138,7 +7138,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.response_transformation.xslt_transformation.body`
 
 Optional:
 
@@ -7146,7 +7146,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.response_transformation.xslt_transformation.dynamic_metadata_values`
 
 Optional:
 
@@ -7164,7 +7164,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.response_transformation.xslt_transformation.extractors`
 
 Optional:
 
@@ -7177,7 +7177,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.response_transformation.xslt_transformation.headers`
 
 Optional:
 
@@ -7185,7 +7185,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--multi--destinations--weight--transformations--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.virtual_host.routes.route_action.multi.destinations.weight.transformations.response_transformation.xslt_transformation.headers_to_append`
 
 Optional:
 
@@ -7229,7 +7229,7 @@ Optional:
 - `upstream` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--single--upstream))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--single--consul"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.single.upstream`
+### Nested Schema for `spec.virtual_host.routes.route_action.single.consul`
 
 Optional:
 
@@ -7239,7 +7239,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--single--destination_spec"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.single.upstream`
+### Nested Schema for `spec.virtual_host.routes.route_action.single.destination_spec`
 
 Optional:
 
@@ -7249,7 +7249,7 @@ Optional:
 - `rest` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--single--upstream--rest))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--single--upstream--aws"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.single.upstream.rest`
+### Nested Schema for `spec.virtual_host.routes.route_action.single.upstream.aws`
 
 Optional:
 
@@ -7263,7 +7263,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--single--upstream--azure"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.single.upstream.rest`
+### Nested Schema for `spec.virtual_host.routes.route_action.single.upstream.azure`
 
 Optional:
 
@@ -7271,7 +7271,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--single--upstream--grpc"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.single.upstream.rest`
+### Nested Schema for `spec.virtual_host.routes.route_action.single.upstream.grpc`
 
 Optional:
 
@@ -7281,7 +7281,7 @@ Optional:
 - `service` (String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--single--upstream--rest--parameters"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.single.upstream.rest.service`
+### Nested Schema for `spec.virtual_host.routes.route_action.single.upstream.rest.parameters`
 
 Optional:
 
@@ -7300,7 +7300,7 @@ Optional:
 - `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--single--upstream--rest--response_transformation))
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--single--upstream--rest--parameters"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.single.upstream.rest.response_transformation`
+### Nested Schema for `spec.virtual_host.routes.route_action.single.upstream.rest.parameters`
 
 Optional:
 
@@ -7394,7 +7394,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--single--kube"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.single.upstream`
+### Nested Schema for `spec.virtual_host.routes.route_action.single.kube`
 
 Optional:
 
@@ -7412,7 +7412,7 @@ Optional:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--single--subset"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.single.upstream`
+### Nested Schema for `spec.virtual_host.routes.route_action.single.subset`
 
 Optional:
 

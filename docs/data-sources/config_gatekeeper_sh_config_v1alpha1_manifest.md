@@ -112,7 +112,7 @@ Optional:
 - `user` (String) Only trace requests from the specified user
 
 <a id="nestedatt--spec--validation--traces--kind"></a>
-### Nested Schema for `spec.validation.traces.user`
+### Nested Schema for `spec.validation.traces.kind`
 
 Optional:
 

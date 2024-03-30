@@ -139,7 +139,7 @@ Optional:
 - `service` (Attributes) service references a service as a backend. This is a mutually exclusive setting with 'Resource'. (see [below for nested schema](#nestedatt--spec--rules--http--paths--backend--service))
 
 <a id="nestedatt--spec--rules--http--paths--backend--resource"></a>
-### Nested Schema for `spec.rules.http.paths.backend.service`
+### Nested Schema for `spec.rules.http.paths.backend.resource`
 
 Required:
 

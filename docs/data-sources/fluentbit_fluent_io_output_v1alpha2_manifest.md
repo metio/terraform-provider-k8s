@@ -149,7 +149,7 @@ Optional:
 - `vhost` (String) Hostname to be used for TLS SNI extension
 
 <a id="nestedatt--spec--azure_blob--tls--key_password"></a>
-### Nested Schema for `spec.azure_blob.tls.vhost`
+### Nested Schema for `spec.azure_blob.tls.key_password`
 
 Optional:
 
@@ -421,7 +421,7 @@ Optional:
 - `vhost` (String) Hostname to be used for TLS SNI extension
 
 <a id="nestedatt--spec--es--tls--key_password"></a>
-### Nested Schema for `spec.es.tls.vhost`
+### Nested Schema for `spec.es.tls.key_password`
 
 Optional:
 
@@ -545,7 +545,7 @@ Optional:
 - `vhost` (String) Hostname to be used for TLS SNI extension
 
 <a id="nestedatt--spec--forward--tls--key_password"></a>
-### Nested Schema for `spec.forward.tls.vhost`
+### Nested Schema for `spec.forward.tls.key_password`
 
 Optional:
 
@@ -636,7 +636,7 @@ Optional:
 - `vhost` (String) Hostname to be used for TLS SNI extension
 
 <a id="nestedatt--spec--gelf--tls--key_password"></a>
-### Nested Schema for `spec.gelf.tls.vhost`
+### Nested Schema for `spec.gelf.tls.key_password`
 
 Optional:
 
@@ -764,7 +764,7 @@ Optional:
 - `vhost` (String) Hostname to be used for TLS SNI extension
 
 <a id="nestedatt--spec--http--tls--key_password"></a>
-### Nested Schema for `spec.http.tls.vhost`
+### Nested Schema for `spec.http.tls.key_password`
 
 Optional:
 
@@ -919,7 +919,7 @@ Optional:
 - `vhost` (String) Hostname to be used for TLS SNI extension
 
 <a id="nestedatt--spec--influx_db--tls--key_password"></a>
-### Nested Schema for `spec.influx_db.tls.vhost`
+### Nested Schema for `spec.influx_db.tls.key_password`
 
 Optional:
 
@@ -1112,7 +1112,7 @@ Optional:
 - `vhost` (String) Hostname to be used for TLS SNI extension
 
 <a id="nestedatt--spec--loki--tls--key_password"></a>
-### Nested Schema for `spec.loki.tls.vhost`
+### Nested Schema for `spec.loki.tls.key_password`
 
 Optional:
 
@@ -1255,7 +1255,7 @@ Optional:
 - `vhost` (String) Hostname to be used for TLS SNI extension
 
 <a id="nestedatt--spec--opensearch--tls--key_password"></a>
-### Nested Schema for `spec.opensearch.tls.vhost`
+### Nested Schema for `spec.opensearch.tls.key_password`
 
 Optional:
 
@@ -1376,7 +1376,7 @@ Optional:
 - `vhost` (String) Hostname to be used for TLS SNI extension
 
 <a id="nestedatt--spec--opentelemetry--tls--key_password"></a>
-### Nested Schema for `spec.opentelemetry.tls.vhost`
+### Nested Schema for `spec.opentelemetry.tls.key_password`
 
 Optional:
 
@@ -1512,7 +1512,7 @@ Optional:
 - `vhost` (String) Hostname to be used for TLS SNI extension
 
 <a id="nestedatt--spec--prometheus_remote_write--tls--key_password"></a>
-### Nested Schema for `spec.prometheus_remote_write.tls.vhost`
+### Nested Schema for `spec.prometheus_remote_write.tls.key_password`
 
 Optional:
 
@@ -1593,7 +1593,7 @@ Optional:
 - `vhost` (String) Hostname to be used for TLS SNI extension
 
 <a id="nestedatt--spec--s3--tls--key_password"></a>
-### Nested Schema for `spec.s3.tls.vhost`
+### Nested Schema for `spec.s3.tls.key_password`
 
 Optional:
 
@@ -1751,7 +1751,7 @@ Optional:
 - `vhost` (String) Hostname to be used for TLS SNI extension
 
 <a id="nestedatt--spec--splunk--tls--key_password"></a>
-### Nested Schema for `spec.splunk.tls.vhost`
+### Nested Schema for `spec.splunk.tls.key_password`
 
 Optional:
 
@@ -1913,7 +1913,7 @@ Optional:
 - `vhost` (String) Hostname to be used for TLS SNI extension
 
 <a id="nestedatt--spec--syslog--tls--key_password"></a>
-### Nested Schema for `spec.syslog.tls.vhost`
+### Nested Schema for `spec.syslog.tls.key_password`
 
 Optional:
 
@@ -1970,7 +1970,7 @@ Optional:
 - `vhost` (String) Hostname to be used for TLS SNI extension
 
 <a id="nestedatt--spec--tcp--tls--key_password"></a>
-### Nested Schema for `spec.tcp.tls.vhost`
+### Nested Schema for `spec.tcp.tls.key_password`
 
 Optional:
 

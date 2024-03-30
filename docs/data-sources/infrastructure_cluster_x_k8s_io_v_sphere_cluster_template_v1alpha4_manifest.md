@@ -75,7 +75,7 @@ Optional:
 - `thumbprint` (String) Thumbprint is the colon-separated SHA-1 checksum of the given vCenter server's host certificate
 
 <a id="nestedatt--spec--template--spec--control_plane_endpoint"></a>
-### Nested Schema for `spec.template.spec.thumbprint`
+### Nested Schema for `spec.template.spec.control_plane_endpoint`
 
 Required:
 
@@ -84,7 +84,7 @@ Required:
 
 
 <a id="nestedatt--spec--template--spec--identity_ref"></a>
-### Nested Schema for `spec.template.spec.thumbprint`
+### Nested Schema for `spec.template.spec.identity_ref`
 
 Required:
 

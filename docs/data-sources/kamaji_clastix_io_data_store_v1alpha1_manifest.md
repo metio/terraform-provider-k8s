@@ -82,7 +82,7 @@ Optional:
 - `private_key` (Attributes) (see [below for nested schema](#nestedatt--spec--tls_config--certificate_authority--private_key))
 
 <a id="nestedatt--spec--tls_config--certificate_authority--certificate"></a>
-### Nested Schema for `spec.tls_config.certificate_authority.private_key`
+### Nested Schema for `spec.tls_config.certificate_authority.certificate`
 
 Optional:
 
@@ -135,7 +135,7 @@ Required:
 - `private_key` (Attributes) (see [below for nested schema](#nestedatt--spec--tls_config--client_certificate--private_key))
 
 <a id="nestedatt--spec--tls_config--client_certificate--certificate"></a>
-### Nested Schema for `spec.tls_config.client_certificate.private_key`
+### Nested Schema for `spec.tls_config.client_certificate.certificate`
 
 Optional:
 

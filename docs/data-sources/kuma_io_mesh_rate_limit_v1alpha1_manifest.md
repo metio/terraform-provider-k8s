@@ -122,7 +122,7 @@ Optional:
 - `request_rate` (Attributes) Defines how many requests are allowed per interval. (see [below for nested schema](#nestedatt--spec--from--default--local--http--request_rate))
 
 <a id="nestedatt--spec--from--default--local--http--on_rate_limit"></a>
-### Nested Schema for `spec.from.default.local.http.request_rate`
+### Nested Schema for `spec.from.default.local.http.on_rate_limit`
 
 Optional:
 
@@ -130,7 +130,7 @@ Optional:
 - `status` (Number) The HTTP status code to be set on a rate limit event
 
 <a id="nestedatt--spec--from--default--local--http--request_rate--headers"></a>
-### Nested Schema for `spec.from.default.local.http.request_rate.status`
+### Nested Schema for `spec.from.default.local.http.request_rate.headers`
 
 Optional:
 
@@ -138,7 +138,7 @@ Optional:
 - `set` (Attributes List) (see [below for nested schema](#nestedatt--spec--from--default--local--http--request_rate--status--set))
 
 <a id="nestedatt--spec--from--default--local--http--request_rate--status--add"></a>
-### Nested Schema for `spec.from.default.local.http.request_rate.status.set`
+### Nested Schema for `spec.from.default.local.http.request_rate.status.add`
 
 Required:
 
@@ -176,7 +176,7 @@ Optional:
 - `disabled` (Boolean) Define if rate limiting should be disabled.Default: false
 
 <a id="nestedatt--spec--from--default--local--tcp--connection_rate"></a>
-### Nested Schema for `spec.from.default.local.tcp.disabled`
+### Nested Schema for `spec.from.default.local.tcp.connection_rate`
 
 Required:
 
@@ -236,7 +236,7 @@ Optional:
 - `request_rate` (Attributes) Defines how many requests are allowed per interval. (see [below for nested schema](#nestedatt--spec--to--default--local--http--request_rate))
 
 <a id="nestedatt--spec--to--default--local--http--on_rate_limit"></a>
-### Nested Schema for `spec.to.default.local.http.request_rate`
+### Nested Schema for `spec.to.default.local.http.on_rate_limit`
 
 Optional:
 
@@ -244,7 +244,7 @@ Optional:
 - `status` (Number) The HTTP status code to be set on a rate limit event
 
 <a id="nestedatt--spec--to--default--local--http--request_rate--headers"></a>
-### Nested Schema for `spec.to.default.local.http.request_rate.status`
+### Nested Schema for `spec.to.default.local.http.request_rate.headers`
 
 Optional:
 
@@ -252,7 +252,7 @@ Optional:
 - `set` (Attributes List) (see [below for nested schema](#nestedatt--spec--to--default--local--http--request_rate--status--set))
 
 <a id="nestedatt--spec--to--default--local--http--request_rate--status--add"></a>
-### Nested Schema for `spec.to.default.local.http.request_rate.status.set`
+### Nested Schema for `spec.to.default.local.http.request_rate.status.add`
 
 Required:
 
@@ -290,7 +290,7 @@ Optional:
 - `disabled` (Boolean) Define if rate limiting should be disabled.Default: false
 
 <a id="nestedatt--spec--to--default--local--tcp--connection_rate"></a>
-### Nested Schema for `spec.to.default.local.tcp.disabled`
+### Nested Schema for `spec.to.default.local.tcp.connection_rate`
 
 Required:
 

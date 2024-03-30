@@ -98,7 +98,7 @@ Optional:
 - `store_ref` (Attributes) SecretStoreRef defines which SecretStore to fetch the ExternalSecret data. (see [below for nested schema](#nestedatt--spec--data--source_ref--store_ref))
 
 <a id="nestedatt--spec--data--source_ref--generator_ref"></a>
-### Nested Schema for `spec.data.source_ref.store_ref`
+### Nested Schema for `spec.data.source_ref.generator_ref`
 
 Required:
 
@@ -162,7 +162,7 @@ Optional:
 - `tags` (Map of String) Find secrets based on tags.
 
 <a id="nestedatt--spec--data_from--find--name"></a>
-### Nested Schema for `spec.data_from.find.tags`
+### Nested Schema for `spec.data_from.find.name`
 
 Optional:
 
@@ -179,7 +179,7 @@ Optional:
 - `transform` (Attributes) Used to apply string transformation on the secrets.The resulting key will be the output of the template applied by the operation. (see [below for nested schema](#nestedatt--spec--data_from--rewrite--transform))
 
 <a id="nestedatt--spec--data_from--rewrite--regexp"></a>
-### Nested Schema for `spec.data_from.rewrite.transform`
+### Nested Schema for `spec.data_from.rewrite.regexp`
 
 Required:
 
@@ -205,7 +205,7 @@ Optional:
 - `store_ref` (Attributes) SecretStoreRef defines which SecretStore to fetch the ExternalSecret data. (see [below for nested schema](#nestedatt--spec--data_from--source_ref--store_ref))
 
 <a id="nestedatt--spec--data_from--source_ref--generator_ref"></a>
-### Nested Schema for `spec.data_from.source_ref.store_ref`
+### Nested Schema for `spec.data_from.source_ref.generator_ref`
 
 Required:
 
@@ -267,7 +267,7 @@ Optional:
 - `type` (String)
 
 <a id="nestedatt--spec--target--template--metadata"></a>
-### Nested Schema for `spec.target.template.type`
+### Nested Schema for `spec.target.template.metadata`
 
 Optional:
 
@@ -276,7 +276,7 @@ Optional:
 
 
 <a id="nestedatt--spec--target--template--template_from"></a>
-### Nested Schema for `spec.target.template.type`
+### Nested Schema for `spec.target.template.template_from`
 
 Optional:
 
@@ -294,7 +294,7 @@ Required:
 - `name` (String)
 
 <a id="nestedatt--spec--target--template--type--config_map--items"></a>
-### Nested Schema for `spec.target.template.type.config_map.name`
+### Nested Schema for `spec.target.template.type.config_map.items`
 
 Required:
 
@@ -315,7 +315,7 @@ Required:
 - `name` (String)
 
 <a id="nestedatt--spec--target--template--type--secret--items"></a>
-### Nested Schema for `spec.target.template.type.secret.name`
+### Nested Schema for `spec.target.template.type.secret.items`
 
 Required:
 

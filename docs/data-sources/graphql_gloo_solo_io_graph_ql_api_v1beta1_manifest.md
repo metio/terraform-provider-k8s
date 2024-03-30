@@ -81,7 +81,7 @@ Optional:
 - `remote` (Attributes) (see [below for nested schema](#nestedatt--spec--executable_schema--executor--remote))
 
 <a id="nestedatt--spec--executable_schema--executor--local"></a>
-### Nested Schema for `spec.executable_schema.executor.remote`
+### Nested Schema for `spec.executable_schema.executor.local`
 
 Optional:
 
@@ -108,7 +108,7 @@ Optional:
 - `stat_prefix` (String)
 
 <a id="nestedatt--spec--executable_schema--executor--remote--resolutions--grpc_resolver"></a>
-### Nested Schema for `spec.executable_schema.executor.remote.resolutions.stat_prefix`
+### Nested Schema for `spec.executable_schema.executor.remote.resolutions.grpc_resolver`
 
 Optional:
 
@@ -118,7 +118,7 @@ Optional:
 - `upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--executable_schema--executor--remote--resolutions--stat_prefix--upstream_ref))
 
 <a id="nestedatt--spec--executable_schema--executor--remote--resolutions--stat_prefix--request_transform"></a>
-### Nested Schema for `spec.executable_schema.executor.remote.resolutions.stat_prefix.upstream_ref`
+### Nested Schema for `spec.executable_schema.executor.remote.resolutions.stat_prefix.request_transform`
 
 Optional:
 
@@ -139,7 +139,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executable_schema--executor--remote--resolutions--mock_resolver"></a>
-### Nested Schema for `spec.executable_schema.executor.remote.resolutions.stat_prefix`
+### Nested Schema for `spec.executable_schema.executor.remote.resolutions.mock_resolver`
 
 Optional:
 
@@ -148,7 +148,7 @@ Optional:
 - `sync_response` (Map of String)
 
 <a id="nestedatt--spec--executable_schema--executor--remote--resolutions--stat_prefix--async_response"></a>
-### Nested Schema for `spec.executable_schema.executor.remote.resolutions.stat_prefix.sync_response`
+### Nested Schema for `spec.executable_schema.executor.remote.resolutions.stat_prefix.async_response`
 
 Optional:
 
@@ -158,7 +158,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executable_schema--executor--remote--resolutions--rest_resolver"></a>
-### Nested Schema for `spec.executable_schema.executor.remote.resolutions.stat_prefix`
+### Nested Schema for `spec.executable_schema.executor.remote.resolutions.rest_resolver`
 
 Optional:
 
@@ -169,7 +169,7 @@ Optional:
 - `upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--executable_schema--executor--remote--resolutions--stat_prefix--upstream_ref))
 
 <a id="nestedatt--spec--executable_schema--executor--remote--resolutions--stat_prefix--request"></a>
-### Nested Schema for `spec.executable_schema.executor.remote.resolutions.stat_prefix.upstream_ref`
+### Nested Schema for `spec.executable_schema.executor.remote.resolutions.stat_prefix.request`
 
 Optional:
 
@@ -179,7 +179,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executable_schema--executor--remote--resolutions--stat_prefix--response"></a>
-### Nested Schema for `spec.executable_schema.executor.remote.resolutions.stat_prefix.upstream_ref`
+### Nested Schema for `spec.executable_schema.executor.remote.resolutions.stat_prefix.response`
 
 Optional:
 

@@ -123,7 +123,7 @@ Optional:
 - `service_account` (Attributes) Select all Pods with the ServiceAccount matched by this field, as workloads in AppliedTo fields. Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--clusternetworkpolicy--applied_to--service_account))
 
 <a id="nestedatt--spec--clusternetworkpolicy--applied_to--external_entity_selector"></a>
-### Nested Schema for `spec.clusternetworkpolicy.applied_to.service_account`
+### Nested Schema for `spec.clusternetworkpolicy.applied_to.external_entity_selector`
 
 Optional:
 
@@ -145,7 +145,7 @@ Optional:
 
 
 <a id="nestedatt--spec--clusternetworkpolicy--applied_to--namespace_selector"></a>
-### Nested Schema for `spec.clusternetworkpolicy.applied_to.service_account`
+### Nested Schema for `spec.clusternetworkpolicy.applied_to.namespace_selector`
 
 Optional:
 
@@ -167,7 +167,7 @@ Optional:
 
 
 <a id="nestedatt--spec--clusternetworkpolicy--applied_to--node_selector"></a>
-### Nested Schema for `spec.clusternetworkpolicy.applied_to.service_account`
+### Nested Schema for `spec.clusternetworkpolicy.applied_to.node_selector`
 
 Optional:
 
@@ -189,7 +189,7 @@ Optional:
 
 
 <a id="nestedatt--spec--clusternetworkpolicy--applied_to--pod_selector"></a>
-### Nested Schema for `spec.clusternetworkpolicy.applied_to.service_account`
+### Nested Schema for `spec.clusternetworkpolicy.applied_to.pod_selector`
 
 Optional:
 
@@ -211,7 +211,7 @@ Optional:
 
 
 <a id="nestedatt--spec--clusternetworkpolicy--applied_to--service"></a>
-### Nested Schema for `spec.clusternetworkpolicy.applied_to.service_account`
+### Nested Schema for `spec.clusternetworkpolicy.applied_to.service`
 
 Optional:
 
@@ -250,7 +250,7 @@ Optional:
 - `to_services` (Attributes List) Rule is matched if traffic is intended for a Service listed in this field. Currently, only ClusterIP types Services are supported in this field. When scope is set to ClusterSet, it matches traffic intended for a multi-cluster Service listed in this field. Service name and Namespace provided should match the original exported Service. This field can only be used when AntreaProxy is enabled. This field can't be used with To or Ports. If this field and To are both empty or missing, this rule matches all destinations. (see [below for nested schema](#nestedatt--spec--clusternetworkpolicy--egress--to_services))
 
 <a id="nestedatt--spec--clusternetworkpolicy--egress--applied_to"></a>
-### Nested Schema for `spec.clusternetworkpolicy.egress.to_services`
+### Nested Schema for `spec.clusternetworkpolicy.egress.applied_to`
 
 Optional:
 
@@ -271,7 +271,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--clusternetworkpolicy--egress--to_services--external_entity_selector--match_expressions"></a>
-### Nested Schema for `spec.clusternetworkpolicy.egress.to_services.external_entity_selector.match_labels`
+### Nested Schema for `spec.clusternetworkpolicy.egress.to_services.external_entity_selector.match_expressions`
 
 Required:
 
@@ -293,7 +293,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--clusternetworkpolicy--egress--to_services--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.clusternetworkpolicy.egress.to_services.namespace_selector.match_labels`
+### Nested Schema for `spec.clusternetworkpolicy.egress.to_services.namespace_selector.match_expressions`
 
 Required:
 
@@ -315,7 +315,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--clusternetworkpolicy--egress--to_services--node_selector--match_expressions"></a>
-### Nested Schema for `spec.clusternetworkpolicy.egress.to_services.node_selector.match_labels`
+### Nested Schema for `spec.clusternetworkpolicy.egress.to_services.node_selector.match_expressions`
 
 Required:
 
@@ -337,7 +337,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--clusternetworkpolicy--egress--to_services--pod_selector--match_expressions"></a>
-### Nested Schema for `spec.clusternetworkpolicy.egress.to_services.pod_selector.match_labels`
+### Nested Schema for `spec.clusternetworkpolicy.egress.to_services.pod_selector.match_expressions`
 
 Required:
 
@@ -370,7 +370,7 @@ Optional:
 
 
 <a id="nestedatt--spec--clusternetworkpolicy--egress--from"></a>
-### Nested Schema for `spec.clusternetworkpolicy.egress.to_services`
+### Nested Schema for `spec.clusternetworkpolicy.egress.from`
 
 Optional:
 
@@ -394,7 +394,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--clusternetworkpolicy--egress--to_services--external_entity_selector--match_expressions"></a>
-### Nested Schema for `spec.clusternetworkpolicy.egress.to_services.external_entity_selector.match_labels`
+### Nested Schema for `spec.clusternetworkpolicy.egress.to_services.external_entity_selector.match_expressions`
 
 Required:
 
@@ -424,7 +424,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--clusternetworkpolicy--egress--to_services--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.clusternetworkpolicy.egress.to_services.namespace_selector.match_labels`
+### Nested Schema for `spec.clusternetworkpolicy.egress.to_services.namespace_selector.match_expressions`
 
 Required:
 
@@ -454,7 +454,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--clusternetworkpolicy--egress--to_services--node_selector--match_expressions"></a>
-### Nested Schema for `spec.clusternetworkpolicy.egress.to_services.node_selector.match_labels`
+### Nested Schema for `spec.clusternetworkpolicy.egress.to_services.node_selector.match_expressions`
 
 Required:
 
@@ -476,7 +476,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--clusternetworkpolicy--egress--to_services--pod_selector--match_expressions"></a>
-### Nested Schema for `spec.clusternetworkpolicy.egress.to_services.pod_selector.match_labels`
+### Nested Schema for `spec.clusternetworkpolicy.egress.to_services.pod_selector.match_expressions`
 
 Required:
 
@@ -500,7 +500,7 @@ Optional:
 
 
 <a id="nestedatt--spec--clusternetworkpolicy--egress--l7_protocols"></a>
-### Nested Schema for `spec.clusternetworkpolicy.egress.to_services`
+### Nested Schema for `spec.clusternetworkpolicy.egress.l7_protocols`
 
 Optional:
 
@@ -527,7 +527,7 @@ Optional:
 
 
 <a id="nestedatt--spec--clusternetworkpolicy--egress--ports"></a>
-### Nested Schema for `spec.clusternetworkpolicy.egress.to_services`
+### Nested Schema for `spec.clusternetworkpolicy.egress.ports`
 
 Optional:
 
@@ -539,7 +539,7 @@ Optional:
 
 
 <a id="nestedatt--spec--clusternetworkpolicy--egress--protocols"></a>
-### Nested Schema for `spec.clusternetworkpolicy.egress.to_services`
+### Nested Schema for `spec.clusternetworkpolicy.egress.protocols`
 
 Optional:
 
@@ -566,7 +566,7 @@ Optional:
 
 
 <a id="nestedatt--spec--clusternetworkpolicy--egress--to"></a>
-### Nested Schema for `spec.clusternetworkpolicy.egress.to_services`
+### Nested Schema for `spec.clusternetworkpolicy.egress.to`
 
 Optional:
 
@@ -590,7 +590,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--clusternetworkpolicy--egress--to_services--external_entity_selector--match_expressions"></a>
-### Nested Schema for `spec.clusternetworkpolicy.egress.to_services.external_entity_selector.match_labels`
+### Nested Schema for `spec.clusternetworkpolicy.egress.to_services.external_entity_selector.match_expressions`
 
 Required:
 
@@ -620,7 +620,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--clusternetworkpolicy--egress--to_services--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.clusternetworkpolicy.egress.to_services.namespace_selector.match_labels`
+### Nested Schema for `spec.clusternetworkpolicy.egress.to_services.namespace_selector.match_expressions`
 
 Required:
 
@@ -650,7 +650,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--clusternetworkpolicy--egress--to_services--node_selector--match_expressions"></a>
-### Nested Schema for `spec.clusternetworkpolicy.egress.to_services.node_selector.match_labels`
+### Nested Schema for `spec.clusternetworkpolicy.egress.to_services.node_selector.match_expressions`
 
 Required:
 
@@ -672,7 +672,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--clusternetworkpolicy--egress--to_services--pod_selector--match_expressions"></a>
-### Nested Schema for `spec.clusternetworkpolicy.egress.to_services.pod_selector.match_labels`
+### Nested Schema for `spec.clusternetworkpolicy.egress.to_services.pod_selector.match_expressions`
 
 Required:
 
@@ -727,7 +727,7 @@ Optional:
 - `to_services` (Attributes List) Rule is matched if traffic is intended for a Service listed in this field. Currently, only ClusterIP types Services are supported in this field. When scope is set to ClusterSet, it matches traffic intended for a multi-cluster Service listed in this field. Service name and Namespace provided should match the original exported Service. This field can only be used when AntreaProxy is enabled. This field can't be used with To or Ports. If this field and To are both empty or missing, this rule matches all destinations. (see [below for nested schema](#nestedatt--spec--clusternetworkpolicy--ingress--to_services))
 
 <a id="nestedatt--spec--clusternetworkpolicy--ingress--applied_to"></a>
-### Nested Schema for `spec.clusternetworkpolicy.ingress.to_services`
+### Nested Schema for `spec.clusternetworkpolicy.ingress.applied_to`
 
 Optional:
 
@@ -748,7 +748,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--clusternetworkpolicy--ingress--to_services--external_entity_selector--match_expressions"></a>
-### Nested Schema for `spec.clusternetworkpolicy.ingress.to_services.external_entity_selector.match_labels`
+### Nested Schema for `spec.clusternetworkpolicy.ingress.to_services.external_entity_selector.match_expressions`
 
 Required:
 
@@ -770,7 +770,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--clusternetworkpolicy--ingress--to_services--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.clusternetworkpolicy.ingress.to_services.namespace_selector.match_labels`
+### Nested Schema for `spec.clusternetworkpolicy.ingress.to_services.namespace_selector.match_expressions`
 
 Required:
 
@@ -792,7 +792,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--clusternetworkpolicy--ingress--to_services--node_selector--match_expressions"></a>
-### Nested Schema for `spec.clusternetworkpolicy.ingress.to_services.node_selector.match_labels`
+### Nested Schema for `spec.clusternetworkpolicy.ingress.to_services.node_selector.match_expressions`
 
 Required:
 
@@ -814,7 +814,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--clusternetworkpolicy--ingress--to_services--pod_selector--match_expressions"></a>
-### Nested Schema for `spec.clusternetworkpolicy.ingress.to_services.pod_selector.match_labels`
+### Nested Schema for `spec.clusternetworkpolicy.ingress.to_services.pod_selector.match_expressions`
 
 Required:
 
@@ -847,7 +847,7 @@ Optional:
 
 
 <a id="nestedatt--spec--clusternetworkpolicy--ingress--from"></a>
-### Nested Schema for `spec.clusternetworkpolicy.ingress.to_services`
+### Nested Schema for `spec.clusternetworkpolicy.ingress.from`
 
 Optional:
 
@@ -871,7 +871,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--clusternetworkpolicy--ingress--to_services--external_entity_selector--match_expressions"></a>
-### Nested Schema for `spec.clusternetworkpolicy.ingress.to_services.external_entity_selector.match_labels`
+### Nested Schema for `spec.clusternetworkpolicy.ingress.to_services.external_entity_selector.match_expressions`
 
 Required:
 
@@ -901,7 +901,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--clusternetworkpolicy--ingress--to_services--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.clusternetworkpolicy.ingress.to_services.namespace_selector.match_labels`
+### Nested Schema for `spec.clusternetworkpolicy.ingress.to_services.namespace_selector.match_expressions`
 
 Required:
 
@@ -931,7 +931,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--clusternetworkpolicy--ingress--to_services--node_selector--match_expressions"></a>
-### Nested Schema for `spec.clusternetworkpolicy.ingress.to_services.node_selector.match_labels`
+### Nested Schema for `spec.clusternetworkpolicy.ingress.to_services.node_selector.match_expressions`
 
 Required:
 
@@ -953,7 +953,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--clusternetworkpolicy--ingress--to_services--pod_selector--match_expressions"></a>
-### Nested Schema for `spec.clusternetworkpolicy.ingress.to_services.pod_selector.match_labels`
+### Nested Schema for `spec.clusternetworkpolicy.ingress.to_services.pod_selector.match_expressions`
 
 Required:
 
@@ -977,7 +977,7 @@ Optional:
 
 
 <a id="nestedatt--spec--clusternetworkpolicy--ingress--l7_protocols"></a>
-### Nested Schema for `spec.clusternetworkpolicy.ingress.to_services`
+### Nested Schema for `spec.clusternetworkpolicy.ingress.l7_protocols`
 
 Optional:
 
@@ -1004,7 +1004,7 @@ Optional:
 
 
 <a id="nestedatt--spec--clusternetworkpolicy--ingress--ports"></a>
-### Nested Schema for `spec.clusternetworkpolicy.ingress.to_services`
+### Nested Schema for `spec.clusternetworkpolicy.ingress.ports`
 
 Optional:
 
@@ -1016,7 +1016,7 @@ Optional:
 
 
 <a id="nestedatt--spec--clusternetworkpolicy--ingress--protocols"></a>
-### Nested Schema for `spec.clusternetworkpolicy.ingress.to_services`
+### Nested Schema for `spec.clusternetworkpolicy.ingress.protocols`
 
 Optional:
 
@@ -1043,7 +1043,7 @@ Optional:
 
 
 <a id="nestedatt--spec--clusternetworkpolicy--ingress--to"></a>
-### Nested Schema for `spec.clusternetworkpolicy.ingress.to_services`
+### Nested Schema for `spec.clusternetworkpolicy.ingress.to`
 
 Optional:
 
@@ -1067,7 +1067,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--clusternetworkpolicy--ingress--to_services--external_entity_selector--match_expressions"></a>
-### Nested Schema for `spec.clusternetworkpolicy.ingress.to_services.external_entity_selector.match_labels`
+### Nested Schema for `spec.clusternetworkpolicy.ingress.to_services.external_entity_selector.match_expressions`
 
 Required:
 
@@ -1097,7 +1097,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--clusternetworkpolicy--ingress--to_services--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.clusternetworkpolicy.ingress.to_services.namespace_selector.match_labels`
+### Nested Schema for `spec.clusternetworkpolicy.ingress.to_services.namespace_selector.match_expressions`
 
 Required:
 
@@ -1127,7 +1127,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--clusternetworkpolicy--ingress--to_services--node_selector--match_expressions"></a>
-### Nested Schema for `spec.clusternetworkpolicy.ingress.to_services.node_selector.match_labels`
+### Nested Schema for `spec.clusternetworkpolicy.ingress.to_services.node_selector.match_expressions`
 
 Required:
 
@@ -1149,7 +1149,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--clusternetworkpolicy--ingress--to_services--pod_selector--match_expressions"></a>
-### Nested Schema for `spec.clusternetworkpolicy.ingress.to_services.pod_selector.match_labels`
+### Nested Schema for `spec.clusternetworkpolicy.ingress.to_services.pod_selector.match_expressions`
 
 Required:
 
@@ -1201,7 +1201,7 @@ Optional:
 - `ports` (Attributes List) Port numbers available on the related IP addresses. (see [below for nested schema](#nestedatt--spec--endpoints--subsets--ports))
 
 <a id="nestedatt--spec--endpoints--subsets--addresses"></a>
-### Nested Schema for `spec.endpoints.subsets.ports`
+### Nested Schema for `spec.endpoints.subsets.addresses`
 
 Required:
 
@@ -1229,7 +1229,7 @@ Optional:
 
 
 <a id="nestedatt--spec--endpoints--subsets--not_ready_addresses"></a>
-### Nested Schema for `spec.endpoints.subsets.ports`
+### Nested Schema for `spec.endpoints.subsets.not_ready_addresses`
 
 Required:
 
@@ -1289,7 +1289,7 @@ Optional:
 - `ports` (Attributes List) Ports maintain the list of named ports. (see [below for nested schema](#nestedatt--spec--externalentity--externalentityspec--ports))
 
 <a id="nestedatt--spec--externalentity--externalentityspec--endpoints"></a>
-### Nested Schema for `spec.externalentity.externalentityspec.ports`
+### Nested Schema for `spec.externalentity.externalentityspec.endpoints`
 
 Optional:
 
@@ -1352,7 +1352,7 @@ Optional:
 - `session_affinity_config` (Attributes) sessionAffinityConfig contains session affinity configuration. (see [below for nested schema](#nestedatt--spec--service_import--spec--session_affinity_config))
 
 <a id="nestedatt--spec--service_import--spec--ports"></a>
-### Nested Schema for `spec.service_import.spec.session_affinity_config`
+### Nested Schema for `spec.service_import.spec.ports`
 
 Required:
 

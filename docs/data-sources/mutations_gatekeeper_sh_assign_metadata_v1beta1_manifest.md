@@ -90,7 +90,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--match--label_selector--match_expressions"></a>
-### Nested Schema for `spec.match.label_selector.match_labels`
+### Nested Schema for `spec.match.label_selector.match_expressions`
 
 Required:
 
@@ -112,7 +112,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--match--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.match.namespace_selector.match_labels`
+### Nested Schema for `spec.match.namespace_selector.match_expressions`
 
 Required:
 
@@ -143,7 +143,7 @@ Optional:
 - `value` (Map of String) Value is a constant value that will be assigned to 'location'
 
 <a id="nestedatt--spec--parameters--assign--external_data"></a>
-### Nested Schema for `spec.parameters.assign.value`
+### Nested Schema for `spec.parameters.assign.external_data`
 
 Optional:
 
@@ -154,7 +154,7 @@ Optional:
 
 
 <a id="nestedatt--spec--parameters--assign--from_metadata"></a>
-### Nested Schema for `spec.parameters.assign.value`
+### Nested Schema for `spec.parameters.assign.from_metadata`
 
 Optional:
 

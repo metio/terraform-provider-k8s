@@ -114,7 +114,7 @@ Optional:
 - `resource_arn` (String)
 
 <a id="nestedatt--spec--firewall_policy--stateful_rule_group_references--override"></a>
-### Nested Schema for `spec.firewall_policy.stateful_rule_group_references.resource_arn`
+### Nested Schema for `spec.firewall_policy.stateful_rule_group_references.override`
 
 Optional:
 
@@ -131,7 +131,7 @@ Optional:
 - `action_name` (String)
 
 <a id="nestedatt--spec--firewall_policy--stateless_custom_actions--action_definition"></a>
-### Nested Schema for `spec.firewall_policy.stateless_custom_actions.action_name`
+### Nested Schema for `spec.firewall_policy.stateless_custom_actions.action_definition`
 
 Optional:
 

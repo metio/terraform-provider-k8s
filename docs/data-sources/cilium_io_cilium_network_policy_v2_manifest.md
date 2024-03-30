@@ -131,7 +131,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--egress--to_endpoints--match_expressions"></a>
-### Nested Schema for `spec.egress.to_endpoints.match_labels`
+### Nested Schema for `spec.egress.to_endpoints.match_expressions`
 
 Required:
 
@@ -181,7 +181,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--egress--to_nodes--match_expressions"></a>
-### Nested Schema for `spec.egress.to_nodes.match_labels`
+### Nested Schema for `spec.egress.to_nodes.match_expressions`
 
 Required:
 
@@ -207,7 +207,7 @@ Optional:
 - `terminating_tls` (Attributes) TerminatingTLS is the TLS context for the connection terminated by the L7 proxy.  For egress policy this specifies the server-side TLS parameters to be applied on the connections originated from the local endpoint and terminated by the L7 proxy. For ingress policy this specifies the server-side TLS parameters to be applied on the connections originated from a remote source and terminated by the L7 proxy. (see [below for nested schema](#nestedatt--spec--egress--to_ports--terminating_tls))
 
 <a id="nestedatt--spec--egress--to_ports--listener"></a>
-### Nested Schema for `spec.egress.to_ports.terminating_tls`
+### Nested Schema for `spec.egress.to_ports.listener`
 
 Required:
 
@@ -232,7 +232,7 @@ Optional:
 
 
 <a id="nestedatt--spec--egress--to_ports--originating_tls"></a>
-### Nested Schema for `spec.egress.to_ports.terminating_tls`
+### Nested Schema for `spec.egress.to_ports.originating_tls`
 
 Required:
 
@@ -258,7 +258,7 @@ Optional:
 
 
 <a id="nestedatt--spec--egress--to_ports--ports"></a>
-### Nested Schema for `spec.egress.to_ports.terminating_tls`
+### Nested Schema for `spec.egress.to_ports.ports`
 
 Required:
 
@@ -270,7 +270,7 @@ Optional:
 
 
 <a id="nestedatt--spec--egress--to_ports--rules"></a>
-### Nested Schema for `spec.egress.to_ports.terminating_tls`
+### Nested Schema for `spec.egress.to_ports.rules`
 
 Optional:
 
@@ -301,7 +301,7 @@ Optional:
 - `path` (String) Path is an extended POSIX regex matched against the path of a request. Currently it can contain characters disallowed from the conventional 'path' part of a URL as defined by RFC 3986.  If omitted or empty, all paths are all allowed.
 
 <a id="nestedatt--spec--egress--to_ports--terminating_tls--http--header_matches"></a>
-### Nested Schema for `spec.egress.to_ports.terminating_tls.http.path`
+### Nested Schema for `spec.egress.to_ports.terminating_tls.http.header_matches`
 
 Required:
 
@@ -314,7 +314,7 @@ Optional:
 - `value` (String) Value matches the exact value of the header. Can be specified either alone or together with 'Secret'; will be used as the header value if the secret can not be found in the latter case.
 
 <a id="nestedatt--spec--egress--to_ports--terminating_tls--http--path--secret"></a>
-### Nested Schema for `spec.egress.to_ports.terminating_tls.http.path.value`
+### Nested Schema for `spec.egress.to_ports.terminating_tls.http.path.secret`
 
 Required:
 
@@ -376,7 +376,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--egress--to_requires--match_expressions"></a>
-### Nested Schema for `spec.egress.to_requires.match_labels`
+### Nested Schema for `spec.egress.to_requires.match_expressions`
 
 Required:
 
@@ -398,7 +398,7 @@ Optional:
 - `k8s_service_selector` (Attributes) K8sServiceSelector selects services by k8s labels and namespace (see [below for nested schema](#nestedatt--spec--egress--to_services--k8s_service_selector))
 
 <a id="nestedatt--spec--egress--to_services--k8s_service"></a>
-### Nested Schema for `spec.egress.to_services.k8s_service_selector`
+### Nested Schema for `spec.egress.to_services.k8s_service`
 
 Optional:
 
@@ -426,7 +426,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--egress--to_services--k8s_service_selector--selector--match_expressions"></a>
-### Nested Schema for `spec.egress.to_services.k8s_service_selector.selector.match_labels`
+### Nested Schema for `spec.egress.to_services.k8s_service_selector.selector.match_expressions`
 
 Required:
 
@@ -497,7 +497,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--egress_deny--to_endpoints--match_expressions"></a>
-### Nested Schema for `spec.egress_deny.to_endpoints.match_labels`
+### Nested Schema for `spec.egress_deny.to_endpoints.match_expressions`
 
 Required:
 
@@ -538,7 +538,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--egress_deny--to_nodes--match_expressions"></a>
-### Nested Schema for `spec.egress_deny.to_nodes.match_labels`
+### Nested Schema for `spec.egress_deny.to_nodes.match_expressions`
 
 Required:
 
@@ -580,7 +580,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--egress_deny--to_requires--match_expressions"></a>
-### Nested Schema for `spec.egress_deny.to_requires.match_labels`
+### Nested Schema for `spec.egress_deny.to_requires.match_expressions`
 
 Required:
 
@@ -602,7 +602,7 @@ Optional:
 - `k8s_service_selector` (Attributes) K8sServiceSelector selects services by k8s labels and namespace (see [below for nested schema](#nestedatt--spec--egress_deny--to_services--k8s_service_selector))
 
 <a id="nestedatt--spec--egress_deny--to_services--k8s_service"></a>
-### Nested Schema for `spec.egress_deny.to_services.k8s_service_selector`
+### Nested Schema for `spec.egress_deny.to_services.k8s_service`
 
 Optional:
 
@@ -630,7 +630,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--egress_deny--to_services--k8s_service_selector--selector--match_expressions"></a>
-### Nested Schema for `spec.egress_deny.to_services.k8s_service_selector.selector.match_labels`
+### Nested Schema for `spec.egress_deny.to_services.k8s_service_selector.selector.match_expressions`
 
 Required:
 
@@ -720,7 +720,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--ingress--from_endpoints--match_expressions"></a>
-### Nested Schema for `spec.ingress.from_endpoints.match_labels`
+### Nested Schema for `spec.ingress.from_endpoints.match_expressions`
 
 Required:
 
@@ -761,7 +761,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--ingress--from_nodes--match_expressions"></a>
-### Nested Schema for `spec.ingress.from_nodes.match_labels`
+### Nested Schema for `spec.ingress.from_nodes.match_expressions`
 
 Required:
 
@@ -783,7 +783,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--ingress--from_requires--match_expressions"></a>
-### Nested Schema for `spec.ingress.from_requires.match_labels`
+### Nested Schema for `spec.ingress.from_requires.match_expressions`
 
 Required:
 
@@ -829,7 +829,7 @@ Optional:
 - `terminating_tls` (Attributes) TerminatingTLS is the TLS context for the connection terminated by the L7 proxy.  For egress policy this specifies the server-side TLS parameters to be applied on the connections originated from the local endpoint and terminated by the L7 proxy. For ingress policy this specifies the server-side TLS parameters to be applied on the connections originated from a remote source and terminated by the L7 proxy. (see [below for nested schema](#nestedatt--spec--ingress--to_ports--terminating_tls))
 
 <a id="nestedatt--spec--ingress--to_ports--listener"></a>
-### Nested Schema for `spec.ingress.to_ports.terminating_tls`
+### Nested Schema for `spec.ingress.to_ports.listener`
 
 Required:
 
@@ -854,7 +854,7 @@ Optional:
 
 
 <a id="nestedatt--spec--ingress--to_ports--originating_tls"></a>
-### Nested Schema for `spec.ingress.to_ports.terminating_tls`
+### Nested Schema for `spec.ingress.to_ports.originating_tls`
 
 Required:
 
@@ -880,7 +880,7 @@ Optional:
 
 
 <a id="nestedatt--spec--ingress--to_ports--ports"></a>
-### Nested Schema for `spec.ingress.to_ports.terminating_tls`
+### Nested Schema for `spec.ingress.to_ports.ports`
 
 Required:
 
@@ -892,7 +892,7 @@ Optional:
 
 
 <a id="nestedatt--spec--ingress--to_ports--rules"></a>
-### Nested Schema for `spec.ingress.to_ports.terminating_tls`
+### Nested Schema for `spec.ingress.to_ports.rules`
 
 Optional:
 
@@ -923,7 +923,7 @@ Optional:
 - `path` (String) Path is an extended POSIX regex matched against the path of a request. Currently it can contain characters disallowed from the conventional 'path' part of a URL as defined by RFC 3986.  If omitted or empty, all paths are all allowed.
 
 <a id="nestedatt--spec--ingress--to_ports--terminating_tls--http--header_matches"></a>
-### Nested Schema for `spec.ingress.to_ports.terminating_tls.http.path`
+### Nested Schema for `spec.ingress.to_ports.terminating_tls.http.header_matches`
 
 Required:
 
@@ -936,7 +936,7 @@ Optional:
 - `value` (String) Value matches the exact value of the header. Can be specified either alone or together with 'Secret'; will be used as the header value if the secret can not be found in the latter case.
 
 <a id="nestedatt--spec--ingress--to_ports--terminating_tls--http--path--secret"></a>
-### Nested Schema for `spec.ingress.to_ports.terminating_tls.http.path.value`
+### Nested Schema for `spec.ingress.to_ports.terminating_tls.http.path.secret`
 
 Required:
 
@@ -1024,7 +1024,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--ingress_deny--from_endpoints--match_expressions"></a>
-### Nested Schema for `spec.ingress_deny.from_endpoints.match_labels`
+### Nested Schema for `spec.ingress_deny.from_endpoints.match_expressions`
 
 Required:
 
@@ -1065,7 +1065,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--ingress_deny--from_nodes--match_expressions"></a>
-### Nested Schema for `spec.ingress_deny.from_nodes.match_labels`
+### Nested Schema for `spec.ingress_deny.from_nodes.match_expressions`
 
 Required:
 
@@ -1087,7 +1087,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--ingress_deny--from_requires--match_expressions"></a>
-### Nested Schema for `spec.ingress_deny.from_requires.match_labels`
+### Nested Schema for `spec.ingress_deny.from_requires.match_expressions`
 
 Required:
 
@@ -1257,7 +1257,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--specs--egress--to_endpoints--match_expressions"></a>
-### Nested Schema for `specs.egress.to_endpoints.match_labels`
+### Nested Schema for `specs.egress.to_endpoints.match_expressions`
 
 Required:
 
@@ -1307,7 +1307,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--specs--egress--to_nodes--match_expressions"></a>
-### Nested Schema for `specs.egress.to_nodes.match_labels`
+### Nested Schema for `specs.egress.to_nodes.match_expressions`
 
 Required:
 
@@ -1333,7 +1333,7 @@ Optional:
 - `terminating_tls` (Attributes) TerminatingTLS is the TLS context for the connection terminated by the L7 proxy.  For egress policy this specifies the server-side TLS parameters to be applied on the connections originated from the local endpoint and terminated by the L7 proxy. For ingress policy this specifies the server-side TLS parameters to be applied on the connections originated from a remote source and terminated by the L7 proxy. (see [below for nested schema](#nestedatt--specs--egress--to_ports--terminating_tls))
 
 <a id="nestedatt--specs--egress--to_ports--listener"></a>
-### Nested Schema for `specs.egress.to_ports.terminating_tls`
+### Nested Schema for `specs.egress.to_ports.listener`
 
 Required:
 
@@ -1358,7 +1358,7 @@ Optional:
 
 
 <a id="nestedatt--specs--egress--to_ports--originating_tls"></a>
-### Nested Schema for `specs.egress.to_ports.terminating_tls`
+### Nested Schema for `specs.egress.to_ports.originating_tls`
 
 Required:
 
@@ -1384,7 +1384,7 @@ Optional:
 
 
 <a id="nestedatt--specs--egress--to_ports--ports"></a>
-### Nested Schema for `specs.egress.to_ports.terminating_tls`
+### Nested Schema for `specs.egress.to_ports.ports`
 
 Required:
 
@@ -1396,7 +1396,7 @@ Optional:
 
 
 <a id="nestedatt--specs--egress--to_ports--rules"></a>
-### Nested Schema for `specs.egress.to_ports.terminating_tls`
+### Nested Schema for `specs.egress.to_ports.rules`
 
 Optional:
 
@@ -1427,7 +1427,7 @@ Optional:
 - `path` (String) Path is an extended POSIX regex matched against the path of a request. Currently it can contain characters disallowed from the conventional 'path' part of a URL as defined by RFC 3986.  If omitted or empty, all paths are all allowed.
 
 <a id="nestedatt--specs--egress--to_ports--terminating_tls--http--header_matches"></a>
-### Nested Schema for `specs.egress.to_ports.terminating_tls.http.path`
+### Nested Schema for `specs.egress.to_ports.terminating_tls.http.header_matches`
 
 Required:
 
@@ -1440,7 +1440,7 @@ Optional:
 - `value` (String) Value matches the exact value of the header. Can be specified either alone or together with 'Secret'; will be used as the header value if the secret can not be found in the latter case.
 
 <a id="nestedatt--specs--egress--to_ports--terminating_tls--http--path--secret"></a>
-### Nested Schema for `specs.egress.to_ports.terminating_tls.http.path.value`
+### Nested Schema for `specs.egress.to_ports.terminating_tls.http.path.secret`
 
 Required:
 
@@ -1502,7 +1502,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--specs--egress--to_requires--match_expressions"></a>
-### Nested Schema for `specs.egress.to_requires.match_labels`
+### Nested Schema for `specs.egress.to_requires.match_expressions`
 
 Required:
 
@@ -1524,7 +1524,7 @@ Optional:
 - `k8s_service_selector` (Attributes) K8sServiceSelector selects services by k8s labels and namespace (see [below for nested schema](#nestedatt--specs--egress--to_services--k8s_service_selector))
 
 <a id="nestedatt--specs--egress--to_services--k8s_service"></a>
-### Nested Schema for `specs.egress.to_services.k8s_service_selector`
+### Nested Schema for `specs.egress.to_services.k8s_service`
 
 Optional:
 
@@ -1552,7 +1552,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--specs--egress--to_services--k8s_service_selector--selector--match_expressions"></a>
-### Nested Schema for `specs.egress.to_services.k8s_service_selector.selector.match_labels`
+### Nested Schema for `specs.egress.to_services.k8s_service_selector.selector.match_expressions`
 
 Required:
 
@@ -1623,7 +1623,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--specs--egress_deny--to_endpoints--match_expressions"></a>
-### Nested Schema for `specs.egress_deny.to_endpoints.match_labels`
+### Nested Schema for `specs.egress_deny.to_endpoints.match_expressions`
 
 Required:
 
@@ -1664,7 +1664,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--specs--egress_deny--to_nodes--match_expressions"></a>
-### Nested Schema for `specs.egress_deny.to_nodes.match_labels`
+### Nested Schema for `specs.egress_deny.to_nodes.match_expressions`
 
 Required:
 
@@ -1706,7 +1706,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--specs--egress_deny--to_requires--match_expressions"></a>
-### Nested Schema for `specs.egress_deny.to_requires.match_labels`
+### Nested Schema for `specs.egress_deny.to_requires.match_expressions`
 
 Required:
 
@@ -1728,7 +1728,7 @@ Optional:
 - `k8s_service_selector` (Attributes) K8sServiceSelector selects services by k8s labels and namespace (see [below for nested schema](#nestedatt--specs--egress_deny--to_services--k8s_service_selector))
 
 <a id="nestedatt--specs--egress_deny--to_services--k8s_service"></a>
-### Nested Schema for `specs.egress_deny.to_services.k8s_service_selector`
+### Nested Schema for `specs.egress_deny.to_services.k8s_service`
 
 Optional:
 
@@ -1756,7 +1756,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--specs--egress_deny--to_services--k8s_service_selector--selector--match_expressions"></a>
-### Nested Schema for `specs.egress_deny.to_services.k8s_service_selector.selector.match_labels`
+### Nested Schema for `specs.egress_deny.to_services.k8s_service_selector.selector.match_expressions`
 
 Required:
 
@@ -1846,7 +1846,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--specs--ingress--from_endpoints--match_expressions"></a>
-### Nested Schema for `specs.ingress.from_endpoints.match_labels`
+### Nested Schema for `specs.ingress.from_endpoints.match_expressions`
 
 Required:
 
@@ -1887,7 +1887,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--specs--ingress--from_nodes--match_expressions"></a>
-### Nested Schema for `specs.ingress.from_nodes.match_labels`
+### Nested Schema for `specs.ingress.from_nodes.match_expressions`
 
 Required:
 
@@ -1909,7 +1909,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--specs--ingress--from_requires--match_expressions"></a>
-### Nested Schema for `specs.ingress.from_requires.match_labels`
+### Nested Schema for `specs.ingress.from_requires.match_expressions`
 
 Required:
 
@@ -1955,7 +1955,7 @@ Optional:
 - `terminating_tls` (Attributes) TerminatingTLS is the TLS context for the connection terminated by the L7 proxy.  For egress policy this specifies the server-side TLS parameters to be applied on the connections originated from the local endpoint and terminated by the L7 proxy. For ingress policy this specifies the server-side TLS parameters to be applied on the connections originated from a remote source and terminated by the L7 proxy. (see [below for nested schema](#nestedatt--specs--ingress--to_ports--terminating_tls))
 
 <a id="nestedatt--specs--ingress--to_ports--listener"></a>
-### Nested Schema for `specs.ingress.to_ports.terminating_tls`
+### Nested Schema for `specs.ingress.to_ports.listener`
 
 Required:
 
@@ -1980,7 +1980,7 @@ Optional:
 
 
 <a id="nestedatt--specs--ingress--to_ports--originating_tls"></a>
-### Nested Schema for `specs.ingress.to_ports.terminating_tls`
+### Nested Schema for `specs.ingress.to_ports.originating_tls`
 
 Required:
 
@@ -2006,7 +2006,7 @@ Optional:
 
 
 <a id="nestedatt--specs--ingress--to_ports--ports"></a>
-### Nested Schema for `specs.ingress.to_ports.terminating_tls`
+### Nested Schema for `specs.ingress.to_ports.ports`
 
 Required:
 
@@ -2018,7 +2018,7 @@ Optional:
 
 
 <a id="nestedatt--specs--ingress--to_ports--rules"></a>
-### Nested Schema for `specs.ingress.to_ports.terminating_tls`
+### Nested Schema for `specs.ingress.to_ports.rules`
 
 Optional:
 
@@ -2049,7 +2049,7 @@ Optional:
 - `path` (String) Path is an extended POSIX regex matched against the path of a request. Currently it can contain characters disallowed from the conventional 'path' part of a URL as defined by RFC 3986.  If omitted or empty, all paths are all allowed.
 
 <a id="nestedatt--specs--ingress--to_ports--terminating_tls--http--header_matches"></a>
-### Nested Schema for `specs.ingress.to_ports.terminating_tls.http.path`
+### Nested Schema for `specs.ingress.to_ports.terminating_tls.http.header_matches`
 
 Required:
 
@@ -2062,7 +2062,7 @@ Optional:
 - `value` (String) Value matches the exact value of the header. Can be specified either alone or together with 'Secret'; will be used as the header value if the secret can not be found in the latter case.
 
 <a id="nestedatt--specs--ingress--to_ports--terminating_tls--http--path--secret"></a>
-### Nested Schema for `specs.ingress.to_ports.terminating_tls.http.path.value`
+### Nested Schema for `specs.ingress.to_ports.terminating_tls.http.path.secret`
 
 Required:
 
@@ -2150,7 +2150,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--specs--ingress_deny--from_endpoints--match_expressions"></a>
-### Nested Schema for `specs.ingress_deny.from_endpoints.match_labels`
+### Nested Schema for `specs.ingress_deny.from_endpoints.match_expressions`
 
 Required:
 
@@ -2191,7 +2191,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--specs--ingress_deny--from_nodes--match_expressions"></a>
-### Nested Schema for `specs.ingress_deny.from_nodes.match_labels`
+### Nested Schema for `specs.ingress_deny.from_nodes.match_expressions`
 
 Required:
 
@@ -2213,7 +2213,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--specs--ingress_deny--from_requires--match_expressions"></a>
-### Nested Schema for `specs.ingress_deny.from_requires.match_labels`
+### Nested Schema for `specs.ingress_deny.from_requires.match_expressions`
 
 Required:
 

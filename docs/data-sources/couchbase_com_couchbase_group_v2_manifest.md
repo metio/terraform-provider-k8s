@@ -84,7 +84,7 @@ Optional:
 - `selector` (Attributes) Selector allows resources to be implicitly considered for inclusion in this role.  More info: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#labelselector-v1-meta (see [below for nested schema](#nestedatt--spec--roles--buckets--selector))
 
 <a id="nestedatt--spec--roles--buckets--resources"></a>
-### Nested Schema for `spec.roles.buckets.selector`
+### Nested Schema for `spec.roles.buckets.resources`
 
 Required:
 
@@ -127,7 +127,7 @@ Optional:
 - `selector` (Attributes) Selector allows resources to be implicitly considered for inclusion in this collection or collections.  More info: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#labelselector-v1-meta (see [below for nested schema](#nestedatt--spec--roles--collections--selector))
 
 <a id="nestedatt--spec--roles--collections--resources"></a>
-### Nested Schema for `spec.roles.collections.selector`
+### Nested Schema for `spec.roles.collections.resources`
 
 Required:
 
@@ -170,7 +170,7 @@ Optional:
 - `selector` (Attributes) Selector allows resources to be implicitly considered for inclusion in this scope or scopes.  More info: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#labelselector-v1-meta (see [below for nested schema](#nestedatt--spec--roles--scopes--selector))
 
 <a id="nestedatt--spec--roles--scopes--resources"></a>
-### Nested Schema for `spec.roles.scopes.selector`
+### Nested Schema for `spec.roles.scopes.resources`
 
 Required:
 

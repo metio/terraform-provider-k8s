@@ -80,7 +80,7 @@ Optional:
 - `string` (Attributes) (see [below for nested schema](#nestedatt--spec--properties--type--string))
 
 <a id="nestedatt--spec--properties--type--boolean"></a>
-### Nested Schema for `spec.properties.type.string`
+### Nested Schema for `spec.properties.type.boolean`
 
 Optional:
 
@@ -89,7 +89,7 @@ Optional:
 
 
 <a id="nestedatt--spec--properties--type--bytes"></a>
-### Nested Schema for `spec.properties.type.string`
+### Nested Schema for `spec.properties.type.bytes`
 
 Optional:
 
@@ -97,7 +97,7 @@ Optional:
 
 
 <a id="nestedatt--spec--properties--type--double"></a>
-### Nested Schema for `spec.properties.type.string`
+### Nested Schema for `spec.properties.type.double`
 
 Optional:
 
@@ -109,7 +109,7 @@ Optional:
 
 
 <a id="nestedatt--spec--properties--type--float"></a>
-### Nested Schema for `spec.properties.type.string`
+### Nested Schema for `spec.properties.type.float`
 
 Optional:
 
@@ -121,7 +121,7 @@ Optional:
 
 
 <a id="nestedatt--spec--properties--type--int"></a>
-### Nested Schema for `spec.properties.type.string`
+### Nested Schema for `spec.properties.type.int`
 
 Optional:
 

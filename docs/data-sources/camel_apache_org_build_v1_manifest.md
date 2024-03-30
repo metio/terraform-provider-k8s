@@ -109,7 +109,7 @@ Optional:
 - `verbose` (Boolean) log more information
 
 <a id="nestedatt--spec--tasks--buildah--configuration"></a>
-### Nested Schema for `spec.tasks.buildah.verbose`
+### Nested Schema for `spec.tasks.buildah.configuration`
 
 Optional:
 
@@ -126,7 +126,7 @@ Optional:
 
 
 <a id="nestedatt--spec--tasks--buildah--registry"></a>
-### Nested Schema for `spec.tasks.buildah.verbose`
+### Nested Schema for `spec.tasks.buildah.registry`
 
 Optional:
 
@@ -154,7 +154,7 @@ Optional:
 - `steps` (List of String) the list of steps to execute (see pkg/builder/)
 
 <a id="nestedatt--spec--tasks--builder--configuration"></a>
-### Nested Schema for `spec.tasks.builder.steps`
+### Nested Schema for `spec.tasks.builder.configuration`
 
 Optional:
 
@@ -171,7 +171,7 @@ Optional:
 
 
 <a id="nestedatt--spec--tasks--builder--maven"></a>
-### Nested Schema for `spec.tasks.builder.steps`
+### Nested Schema for `spec.tasks.builder.maven`
 
 Optional:
 
@@ -223,7 +223,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret. (see [below for nested schema](#nestedatt--spec--tasks--builder--steps--profiles--secret_key_ref))
 
 <a id="nestedatt--spec--tasks--builder--steps--profiles--config_map_key_ref"></a>
-### Nested Schema for `spec.tasks.builder.steps.profiles.secret_key_ref`
+### Nested Schema for `spec.tasks.builder.steps.profiles.config_map_key_ref`
 
 Required:
 
@@ -264,7 +264,7 @@ Optional:
 - `snapshots` (Attributes) can use snapshot (see [below for nested schema](#nestedatt--spec--tasks--builder--steps--repositories--snapshots))
 
 <a id="nestedatt--spec--tasks--builder--steps--repositories--releases"></a>
-### Nested Schema for `spec.tasks.builder.steps.repositories.snapshots`
+### Nested Schema for `spec.tasks.builder.steps.repositories.releases`
 
 Required:
 
@@ -310,7 +310,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret. (see [below for nested schema](#nestedatt--spec--tasks--builder--steps--settings--secret_key_ref))
 
 <a id="nestedatt--spec--tasks--builder--steps--settings--config_map_key_ref"></a>
-### Nested Schema for `spec.tasks.builder.steps.settings.secret_key_ref`
+### Nested Schema for `spec.tasks.builder.steps.settings.config_map_key_ref`
 
 Required:
 
@@ -345,7 +345,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret. (see [below for nested schema](#nestedatt--spec--tasks--builder--steps--settings_security--secret_key_ref))
 
 <a id="nestedatt--spec--tasks--builder--steps--settings_security--config_map_key_ref"></a>
-### Nested Schema for `spec.tasks.builder.steps.settings_security.secret_key_ref`
+### Nested Schema for `spec.tasks.builder.steps.settings_security.config_map_key_ref`
 
 Required:
 
@@ -373,7 +373,7 @@ Optional:
 
 
 <a id="nestedatt--spec--tasks--builder--runtime"></a>
-### Nested Schema for `spec.tasks.builder.steps`
+### Nested Schema for `spec.tasks.builder.runtime`
 
 Required:
 
@@ -427,7 +427,7 @@ Optional:
 
 
 <a id="nestedatt--spec--tasks--builder--sources"></a>
-### Nested Schema for `spec.tasks.builder.steps`
+### Nested Schema for `spec.tasks.builder.sources`
 
 Optional:
 
@@ -462,7 +462,7 @@ Optional:
 - `user_id` (Number) the user id used to run the container
 
 <a id="nestedatt--spec--tasks--custom--configuration"></a>
-### Nested Schema for `spec.tasks.custom.user_id`
+### Nested Schema for `spec.tasks.custom.configuration`
 
 Optional:
 
@@ -492,7 +492,7 @@ Optional:
 - `registry` (Attributes) where to publish the final image (see [below for nested schema](#nestedatt--spec--tasks--jib--registry))
 
 <a id="nestedatt--spec--tasks--jib--configuration"></a>
-### Nested Schema for `spec.tasks.jib.registry`
+### Nested Schema for `spec.tasks.jib.configuration`
 
 Optional:
 
@@ -537,7 +537,7 @@ Optional:
 - `verbose` (Boolean) log more information
 
 <a id="nestedatt--spec--tasks--kaniko--cache"></a>
-### Nested Schema for `spec.tasks.kaniko.verbose`
+### Nested Schema for `spec.tasks.kaniko.cache`
 
 Optional:
 
@@ -546,7 +546,7 @@ Optional:
 
 
 <a id="nestedatt--spec--tasks--kaniko--configuration"></a>
-### Nested Schema for `spec.tasks.kaniko.verbose`
+### Nested Schema for `spec.tasks.kaniko.configuration`
 
 Optional:
 
@@ -563,7 +563,7 @@ Optional:
 
 
 <a id="nestedatt--spec--tasks--kaniko--registry"></a>
-### Nested Schema for `spec.tasks.kaniko.verbose`
+### Nested Schema for `spec.tasks.kaniko.registry`
 
 Optional:
 
@@ -591,7 +591,7 @@ Optional:
 - `steps` (List of String) the list of steps to execute (see pkg/builder/)
 
 <a id="nestedatt--spec--tasks--package--configuration"></a>
-### Nested Schema for `spec.tasks.package.steps`
+### Nested Schema for `spec.tasks.package.configuration`
 
 Optional:
 
@@ -608,7 +608,7 @@ Optional:
 
 
 <a id="nestedatt--spec--tasks--package--maven"></a>
-### Nested Schema for `spec.tasks.package.steps`
+### Nested Schema for `spec.tasks.package.maven`
 
 Optional:
 
@@ -660,7 +660,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret. (see [below for nested schema](#nestedatt--spec--tasks--package--steps--profiles--secret_key_ref))
 
 <a id="nestedatt--spec--tasks--package--steps--profiles--config_map_key_ref"></a>
-### Nested Schema for `spec.tasks.package.steps.profiles.secret_key_ref`
+### Nested Schema for `spec.tasks.package.steps.profiles.config_map_key_ref`
 
 Required:
 
@@ -701,7 +701,7 @@ Optional:
 - `snapshots` (Attributes) can use snapshot (see [below for nested schema](#nestedatt--spec--tasks--package--steps--repositories--snapshots))
 
 <a id="nestedatt--spec--tasks--package--steps--repositories--releases"></a>
-### Nested Schema for `spec.tasks.package.steps.repositories.snapshots`
+### Nested Schema for `spec.tasks.package.steps.repositories.releases`
 
 Required:
 
@@ -747,7 +747,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret. (see [below for nested schema](#nestedatt--spec--tasks--package--steps--settings--secret_key_ref))
 
 <a id="nestedatt--spec--tasks--package--steps--settings--config_map_key_ref"></a>
-### Nested Schema for `spec.tasks.package.steps.settings.secret_key_ref`
+### Nested Schema for `spec.tasks.package.steps.settings.config_map_key_ref`
 
 Required:
 
@@ -782,7 +782,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret. (see [below for nested schema](#nestedatt--spec--tasks--package--steps--settings_security--secret_key_ref))
 
 <a id="nestedatt--spec--tasks--package--steps--settings_security--config_map_key_ref"></a>
-### Nested Schema for `spec.tasks.package.steps.settings_security.secret_key_ref`
+### Nested Schema for `spec.tasks.package.steps.settings_security.config_map_key_ref`
 
 Required:
 
@@ -810,7 +810,7 @@ Optional:
 
 
 <a id="nestedatt--spec--tasks--package--runtime"></a>
-### Nested Schema for `spec.tasks.package.steps`
+### Nested Schema for `spec.tasks.package.runtime`
 
 Required:
 
@@ -864,7 +864,7 @@ Optional:
 
 
 <a id="nestedatt--spec--tasks--package--sources"></a>
-### Nested Schema for `spec.tasks.package.steps`
+### Nested Schema for `spec.tasks.package.sources`
 
 Optional:
 
@@ -896,7 +896,7 @@ Optional:
 - `tag` (String) used by the ImageStream
 
 <a id="nestedatt--spec--tasks--s2i--configuration"></a>
-### Nested Schema for `spec.tasks.s2i.tag`
+### Nested Schema for `spec.tasks.s2i.configuration`
 
 Optional:
 
@@ -926,7 +926,7 @@ Optional:
 - `registry` (Attributes) where to publish the final image (see [below for nested schema](#nestedatt--spec--tasks--spectrum--registry))
 
 <a id="nestedatt--spec--tasks--spectrum--configuration"></a>
-### Nested Schema for `spec.tasks.spectrum.registry`
+### Nested Schema for `spec.tasks.spectrum.configuration`
 
 Optional:
 

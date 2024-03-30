@@ -96,7 +96,7 @@ Optional:
 - `thumbprint` (String) Thumbprint is the colon-separated SHA-1 checksum of the given vCenter server's host certificate When this is set to empty, this VirtualMachine would be created without TLS certificate validation of the communication between Cluster API Provider vSphere and the VMware vCenter server.
 
 <a id="nestedatt--spec--template--spec--network"></a>
-### Nested Schema for `spec.template.spec.thumbprint`
+### Nested Schema for `spec.template.spec.network`
 
 Required:
 
@@ -129,7 +129,7 @@ Optional:
 - `search_domains` (List of String) SearchDomains is a list of search domains used when resolving IP addresses with DNS.
 
 <a id="nestedatt--spec--template--spec--thumbprint--devices--routes"></a>
-### Nested Schema for `spec.template.spec.thumbprint.devices.search_domains`
+### Nested Schema for `spec.template.spec.thumbprint.devices.routes`
 
 Required:
 

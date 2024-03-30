@@ -177,7 +177,7 @@ Optional:
 - `verify_ssl` (Boolean)
 
 <a id="nestedatt--spec--filters--enhance_k8s--ca_file"></a>
-### Nested Schema for `spec.filters.enhance_k8s.verify_ssl`
+### Nested Schema for `spec.filters.enhance_k8s.ca_file`
 
 Optional:
 
@@ -229,7 +229,7 @@ Optional:
 
 
 <a id="nestedatt--spec--filters--enhance_k8s--client_cert"></a>
-### Nested Schema for `spec.filters.enhance_k8s.verify_ssl`
+### Nested Schema for `spec.filters.enhance_k8s.client_cert`
 
 Optional:
 
@@ -281,7 +281,7 @@ Optional:
 
 
 <a id="nestedatt--spec--filters--enhance_k8s--client_key"></a>
-### Nested Schema for `spec.filters.enhance_k8s.verify_ssl`
+### Nested Schema for `spec.filters.enhance_k8s.client_key`
 
 Optional:
 
@@ -357,7 +357,7 @@ Optional:
 - `regexp` (Attributes List) (see [below for nested schema](#nestedatt--spec--filters--grep--regexp))
 
 <a id="nestedatt--spec--filters--grep--and"></a>
-### Nested Schema for `spec.filters.grep.regexp`
+### Nested Schema for `spec.filters.grep.and`
 
 Optional:
 
@@ -384,7 +384,7 @@ Required:
 
 
 <a id="nestedatt--spec--filters--grep--exclude"></a>
-### Nested Schema for `spec.filters.grep.regexp`
+### Nested Schema for `spec.filters.grep.exclude`
 
 Required:
 
@@ -393,7 +393,7 @@ Required:
 
 
 <a id="nestedatt--spec--filters--grep--or"></a>
-### Nested Schema for `spec.filters.grep.regexp`
+### Nested Schema for `spec.filters.grep.or`
 
 Optional:
 
@@ -455,7 +455,7 @@ Optional:
 - `reserve_time` (Boolean)
 
 <a id="nestedatt--spec--filters--parser--parse"></a>
-### Nested Schema for `spec.filters.parser.reserve_time`
+### Nested Schema for `spec.filters.parser.parse`
 
 Optional:
 
@@ -497,7 +497,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--custom_pattern_path--value_from))
 
 <a id="nestedatt--spec--filters--parser--reserve_time--custom_pattern_path--mount_from"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.custom_pattern_path.value_from`
+### Nested Schema for `spec.filters.parser.reserve_time.custom_pattern_path.mount_from`
 
 Optional:
 
@@ -582,7 +582,7 @@ Optional:
 - `utc` (Boolean)
 
 <a id="nestedatt--spec--filters--parser--reserve_time--patterns--custom_pattern_path"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.patterns.utc`
+### Nested Schema for `spec.filters.parser.reserve_time.patterns.custom_pattern_path`
 
 Optional:
 
@@ -591,7 +591,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--patterns--utc--value_from))
 
 <a id="nestedatt--spec--filters--parser--reserve_time--patterns--utc--mount_from"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.patterns.utc.value_from`
+### Nested Schema for `spec.filters.parser.reserve_time.patterns.utc.mount_from`
 
 Optional:
 
@@ -634,7 +634,7 @@ Optional:
 
 
 <a id="nestedatt--spec--filters--parser--reserve_time--patterns--grok_patterns"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.patterns.utc`
+### Nested Schema for `spec.filters.parser.reserve_time.patterns.grok_patterns`
 
 Required:
 
@@ -652,7 +652,7 @@ Optional:
 
 
 <a id="nestedatt--spec--filters--parser--parsers"></a>
-### Nested Schema for `spec.filters.parser.reserve_time`
+### Nested Schema for `spec.filters.parser.parsers`
 
 Optional:
 
@@ -694,7 +694,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--custom_pattern_path--value_from))
 
 <a id="nestedatt--spec--filters--parser--reserve_time--custom_pattern_path--mount_from"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.custom_pattern_path.value_from`
+### Nested Schema for `spec.filters.parser.reserve_time.custom_pattern_path.mount_from`
 
 Optional:
 
@@ -779,7 +779,7 @@ Optional:
 - `utc` (Boolean)
 
 <a id="nestedatt--spec--filters--parser--reserve_time--patterns--custom_pattern_path"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.patterns.utc`
+### Nested Schema for `spec.filters.parser.reserve_time.patterns.custom_pattern_path`
 
 Optional:
 
@@ -788,7 +788,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--patterns--utc--value_from))
 
 <a id="nestedatt--spec--filters--parser--reserve_time--patterns--utc--mount_from"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.patterns.utc.value_from`
+### Nested Schema for `spec.filters.parser.reserve_time.patterns.utc.mount_from`
 
 Optional:
 
@@ -831,7 +831,7 @@ Optional:
 
 
 <a id="nestedatt--spec--filters--parser--reserve_time--patterns--grok_patterns"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.patterns.utc`
+### Nested Schema for `spec.filters.parser.reserve_time.patterns.grok_patterns`
 
 Required:
 
@@ -887,7 +887,7 @@ Optional:
 - `whitelist_keys` (String)
 
 <a id="nestedatt--spec--filters--record_modifier--replaces"></a>
-### Nested Schema for `spec.filters.record_modifier.whitelist_keys`
+### Nested Schema for `spec.filters.record_modifier.replaces`
 
 Required:
 

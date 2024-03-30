@@ -159,7 +159,7 @@ Optional:
 - `violations` (Attributes List) (see [below for nested schema](#nestedatt--spec--policy--blocking_settings--violations))
 
 <a id="nestedatt--spec--policy--blocking_settings--evasions"></a>
-### Nested Schema for `spec.policy.blocking_settings.violations`
+### Nested Schema for `spec.policy.blocking_settings.evasions`
 
 Optional:
 
@@ -169,7 +169,7 @@ Optional:
 
 
 <a id="nestedatt--spec--policy--blocking_settings--http_protocols"></a>
-### Nested Schema for `spec.policy.blocking_settings.violations`
+### Nested Schema for `spec.policy.blocking_settings.http_protocols`
 
 Optional:
 
@@ -201,7 +201,7 @@ Optional:
 - `settings` (Attributes) (see [below for nested schema](#nestedatt--spec--policy--bot_defense--settings))
 
 <a id="nestedatt--spec--policy--bot_defense--mitigations"></a>
-### Nested Schema for `spec.policy.bot_defense.settings`
+### Nested Schema for `spec.policy.bot_defense.mitigations`
 
 Optional:
 
@@ -292,7 +292,7 @@ Optional:
 - `character_set_type` (String)
 
 <a id="nestedatt--spec--policy--character_sets--character_set"></a>
-### Nested Schema for `spec.policy.character_sets.character_set_type`
+### Nested Schema for `spec.policy.character_sets.character_set`
 
 Optional:
 
@@ -344,7 +344,7 @@ Optional:
 - `wildcard_order` (Number)
 
 <a id="nestedatt--spec--policy--cookies--signature_overrides"></a>
-### Nested Schema for `spec.policy.cookies.wildcard_order`
+### Nested Schema for `spec.policy.cookies.signature_overrides`
 
 Optional:
 
@@ -483,7 +483,7 @@ Optional:
 - `signature_overrides` (Attributes List) (see [below for nested schema](#nestedatt--spec--policy--graphql_profiles--signature_overrides))
 
 <a id="nestedatt--spec--policy--graphql_profiles--defense_attributes"></a>
-### Nested Schema for `spec.policy.graphql_profiles.signature_overrides`
+### Nested Schema for `spec.policy.graphql_profiles.defense_attributes`
 
 Optional:
 
@@ -497,7 +497,7 @@ Optional:
 
 
 <a id="nestedatt--spec--policy--graphql_profiles--metachar_overrides"></a>
-### Nested Schema for `spec.policy.graphql_profiles.signature_overrides`
+### Nested Schema for `spec.policy.graphql_profiles.metachar_overrides`
 
 Optional:
 
@@ -506,7 +506,7 @@ Optional:
 
 
 <a id="nestedatt--spec--policy--graphql_profiles--response_enforcement"></a>
-### Nested Schema for `spec.policy.graphql_profiles.signature_overrides`
+### Nested Schema for `spec.policy.graphql_profiles.response_enforcement`
 
 Optional:
 
@@ -515,7 +515,7 @@ Optional:
 
 
 <a id="nestedatt--spec--policy--graphql_profiles--sensetive_data"></a>
-### Nested Schema for `spec.policy.graphql_profiles.signature_overrides`
+### Nested Schema for `spec.policy.graphql_profiles.sensetive_data`
 
 Optional:
 
@@ -553,7 +553,7 @@ Optional:
 - `signature_overrides` (Attributes List) (see [below for nested schema](#nestedatt--spec--policy--grpc_profiles--signature_overrides))
 
 <a id="nestedatt--spec--policy--grpc_profiles--defense_attributes"></a>
-### Nested Schema for `spec.policy.grpc_profiles.signature_overrides`
+### Nested Schema for `spec.policy.grpc_profiles.defense_attributes`
 
 Optional:
 
@@ -562,7 +562,7 @@ Optional:
 
 
 <a id="nestedatt--spec--policy--grpc_profiles--idl_files"></a>
-### Nested Schema for `spec.policy.grpc_profiles.signature_overrides`
+### Nested Schema for `spec.policy.grpc_profiles.idl_files`
 
 Optional:
 
@@ -640,7 +640,7 @@ Optional:
 - `wildcard_order` (Number)
 
 <a id="nestedatt--spec--policy--headers--signature_overrides"></a>
-### Nested Schema for `spec.policy.headers.wildcard_order`
+### Nested Schema for `spec.policy.headers.signature_overrides`
 
 Optional:
 
@@ -696,7 +696,7 @@ Optional:
 - `validation_files` (Attributes List) (see [below for nested schema](#nestedatt--spec--policy--json_profiles--validation_files))
 
 <a id="nestedatt--spec--policy--json_profiles--defense_attributes"></a>
-### Nested Schema for `spec.policy.json_profiles.validation_files`
+### Nested Schema for `spec.policy.json_profiles.defense_attributes`
 
 Optional:
 
@@ -708,7 +708,7 @@ Optional:
 
 
 <a id="nestedatt--spec--policy--json_profiles--metachar_overrides"></a>
-### Nested Schema for `spec.policy.json_profiles.validation_files`
+### Nested Schema for `spec.policy.json_profiles.metachar_overrides`
 
 Optional:
 
@@ -717,7 +717,7 @@ Optional:
 
 
 <a id="nestedatt--spec--policy--json_profiles--signature_overrides"></a>
-### Nested Schema for `spec.policy.json_profiles.validation_files`
+### Nested Schema for `spec.policy.json_profiles.signature_overrides`
 
 Optional:
 
@@ -851,7 +851,7 @@ Optional:
 - `wildcard_order` (Number)
 
 <a id="nestedatt--spec--policy--parameters--content_profile"></a>
-### Nested Schema for `spec.policy.parameters.wildcard_order`
+### Nested Schema for `spec.policy.parameters.content_profile`
 
 Optional:
 
@@ -859,7 +859,7 @@ Optional:
 
 
 <a id="nestedatt--spec--policy--parameters--name_metachar_overrides"></a>
-### Nested Schema for `spec.policy.parameters.wildcard_order`
+### Nested Schema for `spec.policy.parameters.name_metachar_overrides`
 
 Optional:
 
@@ -868,7 +868,7 @@ Optional:
 
 
 <a id="nestedatt--spec--policy--parameters--signature_overrides"></a>
-### Nested Schema for `spec.policy.parameters.wildcard_order`
+### Nested Schema for `spec.policy.parameters.signature_overrides`
 
 Optional:
 
@@ -879,7 +879,7 @@ Optional:
 
 
 <a id="nestedatt--spec--policy--parameters--url"></a>
-### Nested Schema for `spec.policy.parameters.wildcard_order`
+### Nested Schema for `spec.policy.parameters.url`
 
 Optional:
 
@@ -890,7 +890,7 @@ Optional:
 
 
 <a id="nestedatt--spec--policy--parameters--value_metachar_overrides"></a>
-### Nested Schema for `spec.policy.parameters.wildcard_order`
+### Nested Schema for `spec.policy.parameters.value_metachar_overrides`
 
 Optional:
 
@@ -1076,7 +1076,7 @@ Optional:
 - `wildcard_order` (Number)
 
 <a id="nestedatt--spec--policy--urls--html5_cross_origin_requests_enforcement"></a>
-### Nested Schema for `spec.policy.urls.wildcard_order`
+### Nested Schema for `spec.policy.urls.html5_cross_origin_requests_enforcement`
 
 Optional:
 
@@ -1098,7 +1098,7 @@ Optional:
 
 
 <a id="nestedatt--spec--policy--urls--metachar_overrides"></a>
-### Nested Schema for `spec.policy.urls.wildcard_order`
+### Nested Schema for `spec.policy.urls.metachar_overrides`
 
 Optional:
 
@@ -1107,7 +1107,7 @@ Optional:
 
 
 <a id="nestedatt--spec--policy--urls--method_overrides"></a>
-### Nested Schema for `spec.policy.urls.wildcard_order`
+### Nested Schema for `spec.policy.urls.method_overrides`
 
 Optional:
 
@@ -1116,7 +1116,7 @@ Optional:
 
 
 <a id="nestedatt--spec--policy--urls--positional_parameters"></a>
-### Nested Schema for `spec.policy.urls.wildcard_order`
+### Nested Schema for `spec.policy.urls.positional_parameters`
 
 Optional:
 
@@ -1173,7 +1173,7 @@ Optional:
 - `wildcard_order` (Number)
 
 <a id="nestedatt--spec--policy--urls--wildcard_order--parameter--content_profile"></a>
-### Nested Schema for `spec.policy.urls.wildcard_order.parameter.wildcard_order`
+### Nested Schema for `spec.policy.urls.wildcard_order.parameter.content_profile`
 
 Optional:
 
@@ -1181,7 +1181,7 @@ Optional:
 
 
 <a id="nestedatt--spec--policy--urls--wildcard_order--parameter--name_metachar_overrides"></a>
-### Nested Schema for `spec.policy.urls.wildcard_order.parameter.wildcard_order`
+### Nested Schema for `spec.policy.urls.wildcard_order.parameter.name_metachar_overrides`
 
 Optional:
 
@@ -1190,7 +1190,7 @@ Optional:
 
 
 <a id="nestedatt--spec--policy--urls--wildcard_order--parameter--signature_overrides"></a>
-### Nested Schema for `spec.policy.urls.wildcard_order.parameter.wildcard_order`
+### Nested Schema for `spec.policy.urls.wildcard_order.parameter.signature_overrides`
 
 Optional:
 
@@ -1201,7 +1201,7 @@ Optional:
 
 
 <a id="nestedatt--spec--policy--urls--wildcard_order--parameter--url"></a>
-### Nested Schema for `spec.policy.urls.wildcard_order.parameter.wildcard_order`
+### Nested Schema for `spec.policy.urls.wildcard_order.parameter.url`
 
 Optional:
 
@@ -1212,7 +1212,7 @@ Optional:
 
 
 <a id="nestedatt--spec--policy--urls--wildcard_order--parameter--value_metachar_overrides"></a>
-### Nested Schema for `spec.policy.urls.wildcard_order.parameter.wildcard_order`
+### Nested Schema for `spec.policy.urls.wildcard_order.parameter.value_metachar_overrides`
 
 Optional:
 
@@ -1223,7 +1223,7 @@ Optional:
 
 
 <a id="nestedatt--spec--policy--urls--signature_overrides"></a>
-### Nested Schema for `spec.policy.urls.wildcard_order`
+### Nested Schema for `spec.policy.urls.signature_overrides`
 
 Optional:
 
@@ -1234,7 +1234,7 @@ Optional:
 
 
 <a id="nestedatt--spec--policy--urls--url_content_profiles"></a>
-### Nested Schema for `spec.policy.urls.wildcard_order`
+### Nested Schema for `spec.policy.urls.url_content_profiles`
 
 Optional:
 
@@ -1299,7 +1299,7 @@ Optional:
 - `use_xml_response_page` (Boolean)
 
 <a id="nestedatt--spec--policy--xml_profiles--defense_attributes"></a>
-### Nested Schema for `spec.policy.xml_profiles.use_xml_response_page`
+### Nested Schema for `spec.policy.xml_profiles.defense_attributes`
 
 Optional:
 
@@ -1322,7 +1322,7 @@ Optional:
 
 
 <a id="nestedatt--spec--policy--xml_profiles--signature_overrides"></a>
-### Nested Schema for `spec.policy.xml_profiles.use_xml_response_page`
+### Nested Schema for `spec.policy.xml_profiles.signature_overrides`
 
 Optional:
 

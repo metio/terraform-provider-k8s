@@ -194,7 +194,7 @@ Optional:
 - `size_gibibytes` (Number) Size (Integer) of the logical disk to be created in GiB. If unspecified or set be 0, the maximum capacity of disk will be used for logical disk.
 
 <a id="nestedatt--spec--raid--software_raid_volumes--physical_disks"></a>
-### Nested Schema for `spec.raid.software_raid_volumes.size_gibibytes`
+### Nested Schema for `spec.raid.software_raid_volumes.physical_disks`
 
 Optional:
 

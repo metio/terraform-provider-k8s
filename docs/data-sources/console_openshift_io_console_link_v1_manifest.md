@@ -89,7 +89,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--namespace_dashboard--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.namespace_dashboard.namespace_selector.match_labels`
+### Nested Schema for `spec.namespace_dashboard.namespace_selector.match_expressions`
 
 Required:
 

@@ -98,7 +98,7 @@ Optional:
 - `type` (String)
 
 <a id="nestedatt--spec--target--template--metadata"></a>
-### Nested Schema for `spec.target.template.type`
+### Nested Schema for `spec.target.template.metadata`
 
 Optional:
 
@@ -107,7 +107,7 @@ Optional:
 
 
 <a id="nestedatt--spec--target--template--template_from"></a>
-### Nested Schema for `spec.target.template.type`
+### Nested Schema for `spec.target.template.template_from`
 
 Optional:
 
@@ -123,7 +123,7 @@ Required:
 - `name` (String)
 
 <a id="nestedatt--spec--target--template--type--config_map--items"></a>
-### Nested Schema for `spec.target.template.type.config_map.name`
+### Nested Schema for `spec.target.template.type.config_map.items`
 
 Required:
 
@@ -140,7 +140,7 @@ Required:
 - `name` (String)
 
 <a id="nestedatt--spec--target--template--type--secret--items"></a>
-### Nested Schema for `spec.target.template.type.secret.name`
+### Nested Schema for `spec.target.template.type.secret.items`
 
 Required:
 

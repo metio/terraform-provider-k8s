@@ -95,7 +95,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.env.value_from.secret_key_ref`
+### Nested Schema for `spec.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -108,7 +108,7 @@ Optional:
 
 
 <a id="nestedatt--spec--env--value_from--field_ref"></a>
-### Nested Schema for `spec.env.value_from.secret_key_ref`
+### Nested Schema for `spec.env.value_from.field_ref`
 
 Required:
 
@@ -120,7 +120,7 @@ Optional:
 
 
 <a id="nestedatt--spec--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.env.value_from.secret_key_ref`
+### Nested Schema for `spec.env.value_from.resource_field_ref`
 
 Required:
 
@@ -182,7 +182,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--probes--liveness_probe--exec"></a>
-### Nested Schema for `spec.probes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.probes.liveness_probe.exec`
 
 Optional:
 
@@ -190,7 +190,7 @@ Optional:
 
 
 <a id="nestedatt--spec--probes--liveness_probe--grpc"></a>
-### Nested Schema for `spec.probes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.probes.liveness_probe.grpc`
 
 Required:
 
@@ -202,7 +202,7 @@ Optional:
 
 
 <a id="nestedatt--spec--probes--liveness_probe--http_get"></a>
-### Nested Schema for `spec.probes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.probes.liveness_probe.http_get`
 
 Required:
 
@@ -226,7 +226,7 @@ Required:
 
 
 <a id="nestedatt--spec--probes--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.probes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.probes.liveness_probe.tcp_socket`
 
 Required:
 
@@ -255,7 +255,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--probes--readiness_probe--exec"></a>
-### Nested Schema for `spec.probes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.probes.readiness_probe.exec`
 
 Optional:
 
@@ -263,7 +263,7 @@ Optional:
 
 
 <a id="nestedatt--spec--probes--readiness_probe--grpc"></a>
-### Nested Schema for `spec.probes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.probes.readiness_probe.grpc`
 
 Required:
 
@@ -275,7 +275,7 @@ Optional:
 
 
 <a id="nestedatt--spec--probes--readiness_probe--http_get"></a>
-### Nested Schema for `spec.probes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.probes.readiness_probe.http_get`
 
 Required:
 
@@ -299,7 +299,7 @@ Required:
 
 
 <a id="nestedatt--spec--probes--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.probes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.probes.readiness_probe.tcp_socket`
 
 Required:
 
@@ -328,7 +328,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--probes--startup_probe--exec"></a>
-### Nested Schema for `spec.probes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.probes.startup_probe.exec`
 
 Optional:
 
@@ -336,7 +336,7 @@ Optional:
 
 
 <a id="nestedatt--spec--probes--startup_probe--grpc"></a>
-### Nested Schema for `spec.probes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.probes.startup_probe.grpc`
 
 Required:
 
@@ -348,7 +348,7 @@ Optional:
 
 
 <a id="nestedatt--spec--probes--startup_probe--http_get"></a>
-### Nested Schema for `spec.probes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.probes.startup_probe.http_get`
 
 Required:
 
@@ -372,7 +372,7 @@ Required:
 
 
 <a id="nestedatt--spec--probes--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.probes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.probes.startup_probe.tcp_socket`
 
 Required:
 

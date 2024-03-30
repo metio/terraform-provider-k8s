@@ -94,7 +94,7 @@ Optional:
 - `target_volumes` (Attributes) Specifies which volumes from the target should be mounted in the backup workload. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--target_volumes))
 
 <a id="nestedatt--spec--backup_policies--backup_methods--env"></a>
-### Nested Schema for `spec.backup_policies.backup_methods.target_volumes`
+### Nested Schema for `spec.backup_policies.backup_methods.env`
 
 Required:
 
@@ -116,7 +116,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--target_volumes--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--backup_policies--backup_methods--target_volumes--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.backup_policies.backup_methods.target_volumes.value_from.secret_key_ref`
+### Nested Schema for `spec.backup_policies.backup_methods.target_volumes.value_from.config_map_key_ref`
 
 Required:
 
@@ -129,7 +129,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backup_policies--backup_methods--target_volumes--value_from--field_ref"></a>
-### Nested Schema for `spec.backup_policies.backup_methods.target_volumes.value_from.secret_key_ref`
+### Nested Schema for `spec.backup_policies.backup_methods.target_volumes.value_from.field_ref`
 
 Required:
 
@@ -141,7 +141,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backup_policies--backup_methods--target_volumes--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.backup_policies.backup_methods.target_volumes.value_from.secret_key_ref`
+### Nested Schema for `spec.backup_policies.backup_methods.target_volumes.value_from.resource_field_ref`
 
 Required:
 
@@ -169,7 +169,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backup_policies--backup_methods--env_mapping"></a>
-### Nested Schema for `spec.backup_policies.backup_methods.target_volumes`
+### Nested Schema for `spec.backup_policies.backup_methods.env_mapping`
 
 Required:
 
@@ -185,7 +185,7 @@ Optional:
 - `component_def` (Attributes List) Maps to the environment value. This is also an optional field. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--target_volumes--value_from--component_def))
 
 <a id="nestedatt--spec--backup_policies--backup_methods--target_volumes--value_from--cluster_version_ref"></a>
-### Nested Schema for `spec.backup_policies.backup_methods.target_volumes.value_from.component_def`
+### Nested Schema for `spec.backup_policies.backup_methods.target_volumes.value_from.cluster_version_ref`
 
 Required:
 
@@ -205,7 +205,7 @@ Required:
 
 
 <a id="nestedatt--spec--backup_policies--backup_methods--runtime_settings"></a>
-### Nested Schema for `spec.backup_policies.backup_methods.target_volumes`
+### Nested Schema for `spec.backup_policies.backup_methods.runtime_settings`
 
 Optional:
 
@@ -221,7 +221,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--backup_policies--backup_methods--target_volumes--resources--claims"></a>
-### Nested Schema for `spec.backup_policies.backup_methods.target_volumes.resources.requests`
+### Nested Schema for `spec.backup_policies.backup_methods.target_volumes.resources.claims`
 
 Required:
 
@@ -231,7 +231,7 @@ Required:
 
 
 <a id="nestedatt--spec--backup_policies--backup_methods--target"></a>
-### Nested Schema for `spec.backup_policies.backup_methods.target_volumes`
+### Nested Schema for `spec.backup_policies.backup_methods.target`
 
 Required:
 
@@ -283,7 +283,7 @@ Optional:
 - `strategy` (String) Specifies the strategy to select the target pod when multiple pods are selected. Valid values are: Any: select any one pod that match the labelsSelector.  - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector.
 
 <a id="nestedatt--spec--backup_policies--backup_methods--target_volumes--pod_selector--match_expressions"></a>
-### Nested Schema for `spec.backup_policies.backup_methods.target_volumes.pod_selector.strategy`
+### Nested Schema for `spec.backup_policies.backup_methods.target_volumes.pod_selector.match_expressions`
 
 Required:
 
@@ -314,7 +314,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--backup_policies--backup_methods--target_volumes--resources--selector--match_expressions"></a>
-### Nested Schema for `spec.backup_policies.backup_methods.target_volumes.resources.selector.match_labels`
+### Nested Schema for `spec.backup_policies.backup_methods.target_volumes.resources.selector.match_expressions`
 
 Required:
 
@@ -383,7 +383,7 @@ Optional:
 - `strategy` (String) Specifies the PodSelectionStrategy to use when multiple pods are selected for the backup target. Valid values are:  - Any: Selects any one pod that matches the labelsSelector. - All: Selects all pods that match the labelsSelector.
 
 <a id="nestedatt--spec--backup_policies--target--connection_credential_key"></a>
-### Nested Schema for `spec.backup_policies.target.strategy`
+### Nested Schema for `spec.backup_policies.target.connection_credential_key`
 
 Optional:
 

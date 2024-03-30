@@ -102,7 +102,7 @@ Optional:
 - `wasm` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm))
 
 <a id="nestedatt--spec--http_gateway--options--buffer"></a>
-### Nested Schema for `spec.http_gateway.options.wasm`
+### Nested Schema for `spec.http_gateway.options.buffer`
 
 Optional:
 
@@ -110,7 +110,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--caching"></a>
-### Nested Schema for `spec.http_gateway.options.wasm`
+### Nested Schema for `spec.http_gateway.options.caching`
 
 Optional:
 
@@ -131,7 +131,7 @@ Optional:
 - `suffix` (String)
 
 <a id="nestedatt--spec--http_gateway--options--wasm--allowed_vary_headers--safe_regex"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.allowed_vary_headers.suffix`
+### Nested Schema for `spec.http_gateway.options.wasm.allowed_vary_headers.safe_regex`
 
 Optional:
 
@@ -139,7 +139,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--http_gateway--options--wasm--allowed_vary_headers--suffix--google_re2"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.allowed_vary_headers.suffix.regex`
+### Nested Schema for `spec.http_gateway.options.wasm.allowed_vary_headers.suffix.google_re2`
 
 Optional:
 
@@ -159,7 +159,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--connection_limit"></a>
-### Nested Schema for `spec.http_gateway.options.wasm`
+### Nested Schema for `spec.http_gateway.options.connection_limit`
 
 Optional:
 
@@ -168,7 +168,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--csrf"></a>
-### Nested Schema for `spec.http_gateway.options.wasm`
+### Nested Schema for `spec.http_gateway.options.csrf`
 
 Optional:
 
@@ -188,7 +188,7 @@ Optional:
 - `suffix` (String)
 
 <a id="nestedatt--spec--http_gateway--options--wasm--additional_origins--safe_regex"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.additional_origins.suffix`
+### Nested Schema for `spec.http_gateway.options.wasm.additional_origins.safe_regex`
 
 Optional:
 
@@ -196,7 +196,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--http_gateway--options--wasm--additional_origins--suffix--google_re2"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.additional_origins.suffix.regex`
+### Nested Schema for `spec.http_gateway.options.wasm.additional_origins.suffix.google_re2`
 
 Optional:
 
@@ -214,7 +214,7 @@ Optional:
 - `runtime_key` (String)
 
 <a id="nestedatt--spec--http_gateway--options--wasm--filter_enabled--default_value"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.filter_enabled.runtime_key`
+### Nested Schema for `spec.http_gateway.options.wasm.filter_enabled.default_value`
 
 Optional:
 
@@ -232,7 +232,7 @@ Optional:
 - `runtime_key` (String)
 
 <a id="nestedatt--spec--http_gateway--options--wasm--shadow_enabled--default_value"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.shadow_enabled.runtime_key`
+### Nested Schema for `spec.http_gateway.options.wasm.shadow_enabled.default_value`
 
 Optional:
 
@@ -243,7 +243,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--dlp"></a>
-### Nested Schema for `spec.http_gateway.options.wasm`
+### Nested Schema for `spec.http_gateway.options.dlp`
 
 Optional:
 
@@ -259,7 +259,7 @@ Optional:
 - `matcher` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher))
 
 <a id="nestedatt--spec--http_gateway--options--wasm--dlp_rules--actions"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules.matcher`
+### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules.actions`
 
 Optional:
 
@@ -269,7 +269,7 @@ Optional:
 - `shadow` (Boolean)
 
 <a id="nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--custom_action"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules.matcher.shadow`
+### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules.matcher.custom_action`
 
 Optional:
 
@@ -280,7 +280,7 @@ Optional:
 - `regex_actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--shadow--regex_actions))
 
 <a id="nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--shadow--percent"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules.matcher.shadow.regex_actions`
+### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules.matcher.shadow.percent`
 
 Optional:
 
@@ -298,7 +298,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--key_value_action"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules.matcher.shadow`
+### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules.matcher.key_value_action`
 
 Optional:
 
@@ -332,7 +332,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--headers"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules.matcher.regex`
+### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules.matcher.headers`
 
 Optional:
 
@@ -343,7 +343,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--query_parameters"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules.matcher.regex`
+### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules.matcher.query_parameters`
 
 Optional:
 
@@ -356,7 +356,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy"></a>
-### Nested Schema for `spec.http_gateway.options.wasm`
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy`
 
 Optional:
 
@@ -381,7 +381,7 @@ Optional:
 - `preresolve_hostnames` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dns_cache_config--preresolve_hostnames))
 
 <a id="nestedatt--spec--http_gateway--options--wasm--dns_cache_config--cares_dns"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dns_cache_config.preresolve_hostnames`
+### Nested Schema for `spec.http_gateway.options.wasm.dns_cache_config.cares_dns`
 
 Optional:
 
@@ -389,7 +389,7 @@ Optional:
 - `resolvers` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dns_cache_config--preresolve_hostnames--resolvers))
 
 <a id="nestedatt--spec--http_gateway--options--wasm--dns_cache_config--preresolve_hostnames--dns_resolver_options"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dns_cache_config.preresolve_hostnames.resolvers`
+### Nested Schema for `spec.http_gateway.options.wasm.dns_cache_config.preresolve_hostnames.dns_resolver_options`
 
 Optional:
 
@@ -406,7 +406,7 @@ Optional:
 - `socket_address` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dns_cache_config--preresolve_hostnames--resolvers--socket_address))
 
 <a id="nestedatt--spec--http_gateway--options--wasm--dns_cache_config--preresolve_hostnames--resolvers--pipe"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dns_cache_config.preresolve_hostnames.resolvers.socket_address`
+### Nested Schema for `spec.http_gateway.options.wasm.dns_cache_config.preresolve_hostnames.resolvers.pipe`
 
 Optional:
 
@@ -430,7 +430,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--wasm--dns_cache_config--dns_cache_circuit_breaker"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dns_cache_config.preresolve_hostnames`
+### Nested Schema for `spec.http_gateway.options.wasm.dns_cache_config.dns_cache_circuit_breaker`
 
 Optional:
 
@@ -438,7 +438,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--wasm--dns_cache_config--dns_failure_refresh_rate"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dns_cache_config.preresolve_hostnames`
+### Nested Schema for `spec.http_gateway.options.wasm.dns_cache_config.dns_failure_refresh_rate`
 
 Optional:
 
@@ -475,7 +475,7 @@ Optional:
 - `verify_subject_alt_name` (List of String)
 
 <a id="nestedatt--spec--http_gateway--options--wasm--ssl_config--parameters"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.ssl_config.verify_subject_alt_name`
+### Nested Schema for `spec.http_gateway.options.wasm.ssl_config.parameters`
 
 Optional:
 
@@ -486,7 +486,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--wasm--ssl_config--sds"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.ssl_config.verify_subject_alt_name`
+### Nested Schema for `spec.http_gateway.options.wasm.ssl_config.sds`
 
 Optional:
 
@@ -497,7 +497,7 @@ Optional:
 - `validation_context_name` (String)
 
 <a id="nestedatt--spec--http_gateway--options--wasm--ssl_config--verify_subject_alt_name--call_credentials"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.ssl_config.verify_subject_alt_name.validation_context_name`
+### Nested Schema for `spec.http_gateway.options.wasm.ssl_config.verify_subject_alt_name.call_credentials`
 
 Optional:
 
@@ -515,7 +515,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--wasm--ssl_config--secret_ref"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.ssl_config.verify_subject_alt_name`
+### Nested Schema for `spec.http_gateway.options.wasm.ssl_config.secret_ref`
 
 Optional:
 
@@ -524,7 +524,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--wasm--ssl_config--ssl_files"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.ssl_config.verify_subject_alt_name`
+### Nested Schema for `spec.http_gateway.options.wasm.ssl_config.ssl_files`
 
 Optional:
 
@@ -537,7 +537,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--ext_proc"></a>
-### Nested Schema for `spec.http_gateway.options.wasm`
+### Nested Schema for `spec.http_gateway.options.ext_proc`
 
 Optional:
 
@@ -577,7 +577,7 @@ Optional:
 - `disallowed_headers` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers))
 
 <a id="nestedatt--spec--http_gateway--options--wasm--forward_rules--allowed_headers"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.forward_rules.disallowed_headers`
+### Nested Schema for `spec.http_gateway.options.wasm.forward_rules.allowed_headers`
 
 Optional:
 
@@ -595,7 +595,7 @@ Optional:
 - `suffix` (String)
 
 <a id="nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers--patterns--safe_regex"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.forward_rules.disallowed_headers.patterns.suffix`
+### Nested Schema for `spec.http_gateway.options.wasm.forward_rules.disallowed_headers.patterns.safe_regex`
 
 Optional:
 
@@ -632,7 +632,7 @@ Optional:
 - `suffix` (String)
 
 <a id="nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers--patterns--safe_regex"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.forward_rules.disallowed_headers.patterns.suffix`
+### Nested Schema for `spec.http_gateway.options.wasm.forward_rules.disallowed_headers.patterns.safe_regex`
 
 Optional:
 
@@ -663,7 +663,7 @@ Optional:
 - `timeout` (String)
 
 <a id="nestedatt--spec--http_gateway--options--wasm--grpc_service--ext_proc_server_ref"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.grpc_service.timeout`
+### Nested Schema for `spec.http_gateway.options.wasm.grpc_service.ext_proc_server_ref`
 
 Optional:
 
@@ -672,7 +672,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--wasm--grpc_service--initial_metadata"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.grpc_service.timeout`
+### Nested Schema for `spec.http_gateway.options.wasm.grpc_service.initial_metadata`
 
 Optional:
 
@@ -681,7 +681,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--wasm--grpc_service--retry_policy"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.grpc_service.timeout`
+### Nested Schema for `spec.http_gateway.options.wasm.grpc_service.retry_policy`
 
 Optional:
 
@@ -713,7 +713,7 @@ Optional:
 - `disallow_system` (Boolean)
 
 <a id="nestedatt--spec--http_gateway--options--wasm--mutation_rules--allow_expression"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.mutation_rules.disallow_system`
+### Nested Schema for `spec.http_gateway.options.wasm.mutation_rules.allow_expression`
 
 Optional:
 
@@ -721,7 +721,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--http_gateway--options--wasm--mutation_rules--disallow_system--google_re2"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.mutation_rules.disallow_system.regex`
+### Nested Schema for `spec.http_gateway.options.wasm.mutation_rules.disallow_system.google_re2`
 
 Optional:
 
@@ -730,7 +730,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--wasm--mutation_rules--disallow_expression"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.mutation_rules.disallow_system`
+### Nested Schema for `spec.http_gateway.options.wasm.mutation_rules.disallow_expression`
 
 Optional:
 
@@ -738,7 +738,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--http_gateway--options--wasm--mutation_rules--disallow_system--google_re2"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.mutation_rules.disallow_system.regex`
+### Nested Schema for `spec.http_gateway.options.wasm.mutation_rules.disallow_system.google_re2`
 
 Optional:
 
@@ -762,7 +762,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--extauth"></a>
-### Nested Schema for `spec.http_gateway.options.wasm`
+### Nested Schema for `spec.http_gateway.options.extauth`
 
 Optional:
 
@@ -805,7 +805,7 @@ Optional:
 - `response` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--http_service--response))
 
 <a id="nestedatt--spec--http_gateway--options--wasm--http_service--request"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.http_service.response`
+### Nested Schema for `spec.http_gateway.options.wasm.http_service.request`
 
 Optional:
 
@@ -837,7 +837,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--extensions"></a>
-### Nested Schema for `spec.http_gateway.options.wasm`
+### Nested Schema for `spec.http_gateway.options.extensions`
 
 Optional:
 
@@ -845,7 +845,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--grpc_json_transcoder"></a>
-### Nested Schema for `spec.http_gateway.options.wasm`
+### Nested Schema for `spec.http_gateway.options.grpc_json_transcoder`
 
 Optional:
 
@@ -880,7 +880,7 @@ Optional:
 - `key` (String)
 
 <a id="nestedatt--spec--http_gateway--options--wasm--proto_descriptor_config_map--config_map_ref"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.proto_descriptor_config_map.key`
+### Nested Schema for `spec.http_gateway.options.wasm.proto_descriptor_config_map.config_map_ref`
 
 Optional:
 
@@ -891,7 +891,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--grpc_web"></a>
-### Nested Schema for `spec.http_gateway.options.wasm`
+### Nested Schema for `spec.http_gateway.options.grpc_web`
 
 Optional:
 
@@ -899,7 +899,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--gzip"></a>
-### Nested Schema for `spec.http_gateway.options.wasm`
+### Nested Schema for `spec.http_gateway.options.gzip`
 
 Optional:
 
@@ -914,7 +914,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--health_check"></a>
-### Nested Schema for `spec.http_gateway.options.wasm`
+### Nested Schema for `spec.http_gateway.options.health_check`
 
 Optional:
 
@@ -922,7 +922,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings"></a>
-### Nested Schema for `spec.http_gateway.options.wasm`
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings`
 
 Optional:
 
@@ -987,7 +987,7 @@ Optional:
 - `unix_sockets` (Boolean)
 
 <a id="nestedatt--spec--http_gateway--options--wasm--internal_address_config--cidr_ranges"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.internal_address_config.unix_sockets`
+### Nested Schema for `spec.http_gateway.options.wasm.internal_address_config.cidr_ranges`
 
 Optional:
 
@@ -1024,7 +1024,7 @@ Optional:
 - `zipkin_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config))
 
 <a id="nestedatt--spec--http_gateway--options--wasm--tracing--datadog_config"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config`
+### Nested Schema for `spec.http_gateway.options.wasm.tracing.datadog_config`
 
 Optional:
 
@@ -1033,7 +1033,7 @@ Optional:
 - `service_name` (String)
 
 <a id="nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--collector_upstream_ref"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config.service_name`
+### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config.collector_upstream_ref`
 
 Optional:
 
@@ -1043,7 +1043,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--wasm--tracing--environment_variables_for_tags"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config`
+### Nested Schema for `spec.http_gateway.options.wasm.tracing.environment_variables_for_tags`
 
 Optional:
 
@@ -1053,7 +1053,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--wasm--tracing--literals_for_tags"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config`
+### Nested Schema for `spec.http_gateway.options.wasm.tracing.literals_for_tags`
 
 Optional:
 
@@ -1062,7 +1062,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--wasm--tracing--open_census_config"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config`
+### Nested Schema for `spec.http_gateway.options.wasm.tracing.open_census_config`
 
 Optional:
 
@@ -1074,7 +1074,7 @@ Optional:
 - `trace_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--trace_config))
 
 <a id="nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--grpc_address"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config.trace_config`
+### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config.grpc_address`
 
 Optional:
 
@@ -1096,7 +1096,7 @@ Optional:
 - `rate_limiting_sampler` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--trace_config--rate_limiting_sampler))
 
 <a id="nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--trace_config--constant_sampler"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config.trace_config.rate_limiting_sampler`
+### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config.trace_config.constant_sampler`
 
 Optional:
 
@@ -1104,7 +1104,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--trace_config--probability_sampler"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config.trace_config.rate_limiting_sampler`
+### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config.trace_config.probability_sampler`
 
 Optional:
 
@@ -1122,7 +1122,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--wasm--tracing--open_telemetry_config"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config`
+### Nested Schema for `spec.http_gateway.options.wasm.tracing.open_telemetry_config`
 
 Optional:
 
@@ -1140,7 +1140,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--wasm--tracing--trace_percentages"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config`
+### Nested Schema for `spec.http_gateway.options.wasm.tracing.trace_percentages`
 
 Optional:
 
@@ -1162,7 +1162,7 @@ Optional:
 - `trace_id128bit` (Boolean)
 
 <a id="nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--collector_upstream_ref"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config.trace_id128bit`
+### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config.collector_upstream_ref`
 
 Optional:
 
@@ -1181,7 +1181,7 @@ Optional:
 - `websocket` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--upgrades--websocket))
 
 <a id="nestedatt--spec--http_gateway--options--wasm--upgrades--connect"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.upgrades.websocket`
+### Nested Schema for `spec.http_gateway.options.wasm.upgrades.connect`
 
 Optional:
 
@@ -1208,7 +1208,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--http_local_ratelimit"></a>
-### Nested Schema for `spec.http_gateway.options.wasm`
+### Nested Schema for `spec.http_gateway.options.http_local_ratelimit`
 
 Optional:
 
@@ -1228,7 +1228,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--network_local_ratelimit"></a>
-### Nested Schema for `spec.http_gateway.options.wasm`
+### Nested Schema for `spec.http_gateway.options.network_local_ratelimit`
 
 Optional:
 
@@ -1238,7 +1238,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--proxy_latency"></a>
-### Nested Schema for `spec.http_gateway.options.wasm`
+### Nested Schema for `spec.http_gateway.options.proxy_latency`
 
 Optional:
 
@@ -1251,7 +1251,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--ratelimit_server"></a>
-### Nested Schema for `spec.http_gateway.options.wasm`
+### Nested Schema for `spec.http_gateway.options.ratelimit_server`
 
 Optional:
 
@@ -1281,7 +1281,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--router"></a>
-### Nested Schema for `spec.http_gateway.options.wasm`
+### Nested Schema for `spec.http_gateway.options.router`
 
 Optional:
 
@@ -1289,7 +1289,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--tap"></a>
-### Nested Schema for `spec.http_gateway.options.wasm`
+### Nested Schema for `spec.http_gateway.options.tap`
 
 Optional:
 
@@ -1304,7 +1304,7 @@ Optional:
 - `http_service` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--sinks--http_service))
 
 <a id="nestedatt--spec--http_gateway--options--wasm--sinks--grpc_service"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.sinks.http_service`
+### Nested Schema for `spec.http_gateway.options.wasm.sinks.grpc_service`
 
 Optional:
 
@@ -1329,7 +1329,7 @@ Optional:
 - `timeout` (String)
 
 <a id="nestedatt--spec--http_gateway--options--wasm--sinks--http_service--tap_server"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.sinks.http_service.timeout`
+### Nested Schema for `spec.http_gateway.options.wasm.sinks.http_service.tap_server`
 
 Optional:
 
@@ -1341,7 +1341,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_gateway--options--waf"></a>
-### Nested Schema for `spec.http_gateway.options.wasm`
+### Nested Schema for `spec.http_gateway.options.waf`
 
 Optional:
 
@@ -1372,7 +1372,7 @@ Optional:
 - `data_map_keys` (List of String)
 
 <a id="nestedatt--spec--http_gateway--options--wasm--config_map_rule_sets--config_map_ref"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.config_map_rule_sets.data_map_keys`
+### Nested Schema for `spec.http_gateway.options.wasm.config_map_rule_sets.config_map_ref`
 
 Optional:
 
@@ -1423,7 +1423,7 @@ Optional:
 - `vm_type` (String)
 
 <a id="nestedatt--spec--http_gateway--options--wasm--filters--filter_stage"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.filters.vm_type`
+### Nested Schema for `spec.http_gateway.options.wasm.filters.filter_stage`
 
 Optional:
 
@@ -1497,7 +1497,7 @@ Optional:
 - `verify_subject_alt_name` (List of String)
 
 <a id="nestedatt--spec--matcher--ssl_config--parameters"></a>
-### Nested Schema for `spec.matcher.ssl_config.verify_subject_alt_name`
+### Nested Schema for `spec.matcher.ssl_config.parameters`
 
 Optional:
 
@@ -1508,7 +1508,7 @@ Optional:
 
 
 <a id="nestedatt--spec--matcher--ssl_config--sds"></a>
-### Nested Schema for `spec.matcher.ssl_config.verify_subject_alt_name`
+### Nested Schema for `spec.matcher.ssl_config.sds`
 
 Optional:
 
@@ -1537,7 +1537,7 @@ Optional:
 
 
 <a id="nestedatt--spec--matcher--ssl_config--secret_ref"></a>
-### Nested Schema for `spec.matcher.ssl_config.verify_subject_alt_name`
+### Nested Schema for `spec.matcher.ssl_config.secret_ref`
 
 Optional:
 
@@ -1546,7 +1546,7 @@ Optional:
 
 
 <a id="nestedatt--spec--matcher--ssl_config--ssl_files"></a>
-### Nested Schema for `spec.matcher.ssl_config.verify_subject_alt_name`
+### Nested Schema for `spec.matcher.ssl_config.ssl_files`
 
 Optional:
 

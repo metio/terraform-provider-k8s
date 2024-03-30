@@ -136,7 +136,7 @@ Optional:
 - `workflow_job` (Map of String) https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#workflow_job
 
 <a id="nestedatt--spec--scale_up_triggers--github_event--check_run"></a>
-### Nested Schema for `spec.scale_up_triggers.github_event.workflow_job`
+### Nested Schema for `spec.scale_up_triggers.github_event.check_run`
 
 Optional:
 
@@ -147,7 +147,7 @@ Optional:
 
 
 <a id="nestedatt--spec--scale_up_triggers--github_event--pull_request"></a>
-### Nested Schema for `spec.scale_up_triggers.github_event.workflow_job`
+### Nested Schema for `spec.scale_up_triggers.github_event.pull_request`
 
 Optional:
 

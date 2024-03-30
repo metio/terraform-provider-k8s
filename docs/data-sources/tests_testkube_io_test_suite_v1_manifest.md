@@ -169,7 +169,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--variables--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--variables--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.variables.value_from.secret_key_ref`
+### Nested Schema for `spec.variables.value_from.config_map_key_ref`
 
 Required:
 
@@ -182,7 +182,7 @@ Optional:
 
 
 <a id="nestedatt--spec--variables--value_from--field_ref"></a>
-### Nested Schema for `spec.variables.value_from.secret_key_ref`
+### Nested Schema for `spec.variables.value_from.field_ref`
 
 Required:
 
@@ -194,7 +194,7 @@ Optional:
 
 
 <a id="nestedatt--spec--variables--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.variables.value_from.secret_key_ref`
+### Nested Schema for `spec.variables.value_from.resource_field_ref`
 
 Required:
 

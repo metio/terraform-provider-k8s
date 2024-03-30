@@ -101,7 +101,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -117,7 +117,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--preference--match_fields))
 
 <a id="nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
-### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.preference.match_fields`
+### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Required:
 
@@ -160,7 +160,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -197,7 +197,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -220,7 +220,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
@@ -228,7 +228,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -242,7 +242,7 @@ Optional:
 
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
@@ -250,7 +250,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -289,7 +289,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_labels`
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -311,7 +311,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_labels`
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -335,7 +335,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -358,7 +358,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
@@ -366,7 +366,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -380,7 +380,7 @@ Optional:
 
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
@@ -388,7 +388,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -427,7 +427,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_labels`
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -449,7 +449,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_labels`
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -488,7 +488,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.env.value_from.secret_key_ref`
+### Nested Schema for `spec.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -501,7 +501,7 @@ Optional:
 
 
 <a id="nestedatt--spec--env--value_from--field_ref"></a>
-### Nested Schema for `spec.env.value_from.secret_key_ref`
+### Nested Schema for `spec.env.value_from.field_ref`
 
 Required:
 
@@ -513,7 +513,7 @@ Optional:
 
 
 <a id="nestedatt--spec--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.env.value_from.secret_key_ref`
+### Nested Schema for `spec.env.value_from.resource_field_ref`
 
 Required:
 
@@ -761,7 +761,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--topology_spread_constraints--label_selector--match_expressions"></a>
-### Nested Schema for `spec.topology_spread_constraints.label_selector.match_labels`
+### Nested Schema for `spec.topology_spread_constraints.label_selector.match_expressions`
 
 Required:
 
@@ -889,7 +889,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--volumes--cephfs--secret_ref"></a>
-### Nested Schema for `spec.volumes.cephfs.user`
+### Nested Schema for `spec.volumes.cephfs.secret_ref`
 
 Optional:
 
@@ -930,7 +930,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--volumes--config_map--items"></a>
-### Nested Schema for `spec.volumes.config_map.optional`
+### Nested Schema for `spec.volumes.config_map.items`
 
 Required:
 
@@ -958,7 +958,7 @@ Optional:
 - `volume_attributes` (Map of String)
 
 <a id="nestedatt--spec--volumes--csi--node_publish_secret_ref"></a>
-### Nested Schema for `spec.volumes.csi.volume_attributes`
+### Nested Schema for `spec.volumes.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -1057,7 +1057,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--volumes--ephemeral--volume_claim_template--spec--data_source"></a>
-### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.volume_name`
+### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.data_source`
 
 Required:
 
@@ -1070,7 +1070,7 @@ Optional:
 
 
 <a id="nestedatt--spec--volumes--ephemeral--volume_claim_template--spec--data_source_ref"></a>
-### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.volume_name`
+### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.data_source_ref`
 
 Required:
 
@@ -1084,7 +1084,7 @@ Optional:
 
 
 <a id="nestedatt--spec--volumes--ephemeral--volume_claim_template--spec--resources"></a>
-### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.volume_name`
+### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.resources`
 
 Optional:
 
@@ -1093,7 +1093,7 @@ Optional:
 
 
 <a id="nestedatt--spec--volumes--ephemeral--volume_claim_template--spec--selector"></a>
-### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.volume_name`
+### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.selector`
 
 Optional:
 
@@ -1101,7 +1101,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--volumes--ephemeral--volume_claim_template--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.volume_name.match_labels`
+### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.volume_name.match_expressions`
 
 Required:
 
@@ -1338,7 +1338,7 @@ Optional:
 - `signer_name` (String)
 
 <a id="nestedatt--spec--volumes--projected--sources--cluster_trust_bundle--label_selector"></a>
-### Nested Schema for `spec.volumes.projected.sources.cluster_trust_bundle.signer_name`
+### Nested Schema for `spec.volumes.projected.sources.cluster_trust_bundle.label_selector`
 
 Optional:
 
@@ -1346,7 +1346,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--volumes--projected--sources--cluster_trust_bundle--signer_name--match_expressions"></a>
-### Nested Schema for `spec.volumes.projected.sources.cluster_trust_bundle.signer_name.match_labels`
+### Nested Schema for `spec.volumes.projected.sources.cluster_trust_bundle.signer_name.match_expressions`
 
 Required:
 
@@ -1370,7 +1370,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--volumes--projected--sources--config_map--items"></a>
-### Nested Schema for `spec.volumes.projected.sources.config_map.optional`
+### Nested Schema for `spec.volumes.projected.sources.config_map.items`
 
 Required:
 
@@ -1404,7 +1404,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--volumes--projected--sources--downward_api--items--resource_field_ref))
 
 <a id="nestedatt--spec--volumes--projected--sources--downward_api--items--field_ref"></a>
-### Nested Schema for `spec.volumes.projected.sources.downward_api.items.resource_field_ref`
+### Nested Schema for `spec.volumes.projected.sources.downward_api.items.field_ref`
 
 Required:
 
@@ -1440,7 +1440,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--volumes--projected--sources--secret--items"></a>
-### Nested Schema for `spec.volumes.projected.sources.secret.optional`
+### Nested Schema for `spec.volumes.projected.sources.secret.items`
 
 Required:
 
@@ -1502,7 +1502,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--volumes--rbd--secret_ref"></a>
-### Nested Schema for `spec.volumes.rbd.user`
+### Nested Schema for `spec.volumes.rbd.secret_ref`
 
 Optional:
 
@@ -1530,7 +1530,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--volumes--scale_io--secret_ref"></a>
-### Nested Schema for `spec.volumes.scale_io.volume_name`
+### Nested Schema for `spec.volumes.scale_io.secret_ref`
 
 Optional:
 
@@ -1549,7 +1549,7 @@ Optional:
 - `secret_name` (String)
 
 <a id="nestedatt--spec--volumes--secret--items"></a>
-### Nested Schema for `spec.volumes.secret.secret_name`
+### Nested Schema for `spec.volumes.secret.items`
 
 Required:
 
@@ -1574,7 +1574,7 @@ Optional:
 - `volume_namespace` (String)
 
 <a id="nestedatt--spec--volumes--storageos--secret_ref"></a>
-### Nested Schema for `spec.volumes.storageos.volume_namespace`
+### Nested Schema for `spec.volumes.storageos.secret_ref`
 
 Optional:
 

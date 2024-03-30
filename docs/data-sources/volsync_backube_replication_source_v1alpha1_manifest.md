@@ -113,7 +113,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--rclone--mover_resources--claims"></a>
-### Nested Schema for `spec.rclone.mover_resources.requests`
+### Nested Schema for `spec.rclone.mover_resources.claims`
 
 Required:
 
@@ -138,7 +138,7 @@ Optional:
 - `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--rclone--mover_security_context--windows_options))
 
 <a id="nestedatt--spec--rclone--mover_security_context--se_linux_options"></a>
-### Nested Schema for `spec.rclone.mover_security_context.windows_options`
+### Nested Schema for `spec.rclone.mover_security_context.se_linux_options`
 
 Optional:
 
@@ -149,7 +149,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rclone--mover_security_context--seccomp_profile"></a>
-### Nested Schema for `spec.rclone.mover_security_context.windows_options`
+### Nested Schema for `spec.rclone.mover_security_context.seccomp_profile`
 
 Required:
 
@@ -161,7 +161,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rclone--mover_security_context--sysctls"></a>
-### Nested Schema for `spec.rclone.mover_security_context.windows_options`
+### Nested Schema for `spec.rclone.mover_security_context.sysctls`
 
 Required:
 
@@ -225,7 +225,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--restic--mover_resources--claims"></a>
-### Nested Schema for `spec.restic.mover_resources.requests`
+### Nested Schema for `spec.restic.mover_resources.claims`
 
 Required:
 
@@ -250,7 +250,7 @@ Optional:
 - `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--restic--mover_security_context--windows_options))
 
 <a id="nestedatt--spec--restic--mover_security_context--se_linux_options"></a>
-### Nested Schema for `spec.restic.mover_security_context.windows_options`
+### Nested Schema for `spec.restic.mover_security_context.se_linux_options`
 
 Optional:
 
@@ -261,7 +261,7 @@ Optional:
 
 
 <a id="nestedatt--spec--restic--mover_security_context--seccomp_profile"></a>
-### Nested Schema for `spec.restic.mover_security_context.windows_options`
+### Nested Schema for `spec.restic.mover_security_context.seccomp_profile`
 
 Required:
 
@@ -273,7 +273,7 @@ Optional:
 
 
 <a id="nestedatt--spec--restic--mover_security_context--sysctls"></a>
-### Nested Schema for `spec.restic.mover_security_context.windows_options`
+### Nested Schema for `spec.restic.mover_security_context.sysctls`
 
 Required:
 
@@ -338,7 +338,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--rsync--mover_resources--claims"></a>
-### Nested Schema for `spec.rsync.mover_resources.requests`
+### Nested Schema for `spec.rsync.mover_resources.claims`
 
 Required:
 
@@ -375,7 +375,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--rsync_tls--mover_resources--claims"></a>
-### Nested Schema for `spec.rsync_tls.mover_resources.requests`
+### Nested Schema for `spec.rsync_tls.mover_resources.claims`
 
 Required:
 
@@ -400,7 +400,7 @@ Optional:
 - `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--rsync_tls--mover_security_context--windows_options))
 
 <a id="nestedatt--spec--rsync_tls--mover_security_context--se_linux_options"></a>
-### Nested Schema for `spec.rsync_tls.mover_security_context.windows_options`
+### Nested Schema for `spec.rsync_tls.mover_security_context.se_linux_options`
 
 Optional:
 
@@ -411,7 +411,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rsync_tls--mover_security_context--seccomp_profile"></a>
-### Nested Schema for `spec.rsync_tls.mover_security_context.windows_options`
+### Nested Schema for `spec.rsync_tls.mover_security_context.seccomp_profile`
 
 Required:
 
@@ -423,7 +423,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rsync_tls--mover_security_context--sysctls"></a>
-### Nested Schema for `spec.rsync_tls.mover_security_context.windows_options`
+### Nested Schema for `spec.rsync_tls.mover_security_context.sysctls`
 
 Required:
 
@@ -469,7 +469,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--syncthing--mover_resources--claims"></a>
-### Nested Schema for `spec.syncthing.mover_resources.requests`
+### Nested Schema for `spec.syncthing.mover_resources.claims`
 
 Required:
 
@@ -494,7 +494,7 @@ Optional:
 - `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--syncthing--mover_security_context--windows_options))
 
 <a id="nestedatt--spec--syncthing--mover_security_context--se_linux_options"></a>
-### Nested Schema for `spec.syncthing.mover_security_context.windows_options`
+### Nested Schema for `spec.syncthing.mover_security_context.se_linux_options`
 
 Optional:
 
@@ -505,7 +505,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syncthing--mover_security_context--seccomp_profile"></a>
-### Nested Schema for `spec.syncthing.mover_security_context.windows_options`
+### Nested Schema for `spec.syncthing.mover_security_context.seccomp_profile`
 
 Required:
 
@@ -517,7 +517,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syncthing--mover_security_context--sysctls"></a>
-### Nested Schema for `spec.syncthing.mover_security_context.windows_options`
+### Nested Schema for `spec.syncthing.mover_security_context.sysctls`
 
 Required:
 

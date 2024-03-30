@@ -91,7 +91,7 @@ Optional:
 - `working_dir` (String) if provided we checkout the whole repository and run test from this directory
 
 <a id="nestedatt--spec--content--repository--token_secret"></a>
-### Nested Schema for `spec.content.repository.working_dir`
+### Nested Schema for `spec.content.repository.token_secret`
 
 Required:
 
@@ -100,7 +100,7 @@ Required:
 
 
 <a id="nestedatt--spec--content--repository--username_secret"></a>
-### Nested Schema for `spec.content.repository.working_dir`
+### Nested Schema for `spec.content.repository.username_secret`
 
 Required:
 
@@ -183,7 +183,7 @@ Optional:
 - `mount_path` (String) where we shoud mount resource
 
 <a id="nestedatt--spec--execution_request--env_config_maps--reference"></a>
-### Nested Schema for `spec.execution_request.env_config_maps.mount_path`
+### Nested Schema for `spec.execution_request.env_config_maps.reference`
 
 Optional:
 
@@ -205,7 +205,7 @@ Optional:
 - `mount_path` (String) where we shoud mount resource
 
 <a id="nestedatt--spec--execution_request--env_secrets--reference"></a>
-### Nested Schema for `spec.execution_request.env_secrets.mount_path`
+### Nested Schema for `spec.execution_request.env_secrets.reference`
 
 Optional:
 

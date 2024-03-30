@@ -162,7 +162,7 @@ Required:
 - `step` (String) Pipeline step.
 
 <a id="nestedatt--spec--vms--hooks--hook"></a>
-### Nested Schema for `spec.vms.hooks.step`
+### Nested Schema for `spec.vms.hooks.hook`
 
 Optional:
 
