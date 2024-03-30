@@ -30,7 +30,6 @@ func NewSchedulingK8SIoPriorityClassV1Manifest() datasource.DataSource {
 type SchedulingK8SIoPriorityClassV1Manifest struct{}
 
 type SchedulingK8SIoPriorityClassV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -57,14 +56,6 @@ func (r *SchedulingK8SIoPriorityClassV1Manifest) Schema(_ context.Context, _ dat
 		Description:         "PriorityClass defines mapping from a priority class name to the priority integer value. The value can be any valid integer.",
 		MarkdownDescription: "PriorityClass defines mapping from a priority class name to the priority integer value. The value can be any valid integer.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -161,7 +152,6 @@ func (r *SchedulingK8SIoPriorityClassV1Manifest) Read(ctx context.Context, reque
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("scheduling.k8s.io/v1")
 	model.Kind = pointer.String("PriorityClass")
 

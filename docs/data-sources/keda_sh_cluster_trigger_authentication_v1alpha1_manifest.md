@@ -31,7 +31,6 @@ data "k8s_keda_sh_cluster_trigger_authentication_v1alpha1_manifest" "example" {
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

@@ -38,7 +38,6 @@ data "k8s_kyverno_io_cluster_admission_report_v2_manifest" "example" {
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

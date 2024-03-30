@@ -30,7 +30,6 @@ func NewKueueXK8SIoClusterQueueV1Beta1Manifest() datasource.DataSource {
 type KueueXK8SIoClusterQueueV1Beta1Manifest struct{}
 
 type KueueXK8SIoClusterQueueV1Beta1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -91,14 +90,6 @@ func (r *KueueXK8SIoClusterQueueV1Beta1Manifest) Schema(_ context.Context, _ dat
 		Description:         "ClusterQueue is the Schema for the clusterQueue API.",
 		MarkdownDescription: "ClusterQueue is the Schema for the clusterQueue API.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -437,7 +428,6 @@ func (r *KueueXK8SIoClusterQueueV1Beta1Manifest) Read(ctx context.Context, reque
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("kueue.x-k8s.io/v1beta1")
 	model.Kind = pointer.String("ClusterQueue")
 

@@ -7,7 +7,6 @@ package isindir_github_com_v1alpha3
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewIsindirGithubComSopsSecretV1Alpha3Manifest() datasource.DataSource {
 type IsindirGithubComSopsSecretV1Alpha3Manifest struct{}
 
 type IsindirGithubComSopsSecretV1Alpha3ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -108,14 +106,6 @@ func (r *IsindirGithubComSopsSecretV1Alpha3Manifest) Schema(_ context.Context, _
 		Description:         "SopsSecret is the Schema for the sopssecrets API",
 		MarkdownDescription: "SopsSecret is the Schema for the sopssecrets API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -571,7 +561,6 @@ func (r *IsindirGithubComSopsSecretV1Alpha3Manifest) Read(ctx context.Context, r
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("isindir.github.com/v1alpha3")
 	model.Kind = pointer.String("SopsSecret")
 

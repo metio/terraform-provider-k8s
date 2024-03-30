@@ -31,7 +31,6 @@ func NewTheketchIoAppV1Beta1Manifest() datasource.DataSource {
 type TheketchIoAppV1Beta1Manifest struct{}
 
 type TheketchIoAppV1Beta1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -618,14 +617,6 @@ func (r *TheketchIoAppV1Beta1Manifest) Schema(_ context.Context, _ datasource.Sc
 		Description:         "App is the Schema for the apps API.",
 		MarkdownDescription: "App is the Schema for the apps API.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -4498,7 +4489,6 @@ func (r *TheketchIoAppV1Beta1Manifest) Read(ctx context.Context, request datasou
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("theketch.io/v1beta1")
 	model.Kind = pointer.String("App")
 

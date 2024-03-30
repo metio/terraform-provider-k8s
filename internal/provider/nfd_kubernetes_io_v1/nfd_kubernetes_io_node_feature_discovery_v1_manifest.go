@@ -7,7 +7,6 @@ package nfd_kubernetes_io_v1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -32,7 +31,6 @@ func NewNfdKubernetesIoNodeFeatureDiscoveryV1Manifest() datasource.DataSource {
 type NfdKubernetesIoNodeFeatureDiscoveryV1Manifest struct{}
 
 type NfdKubernetesIoNodeFeatureDiscoveryV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -72,14 +70,6 @@ func (r *NfdKubernetesIoNodeFeatureDiscoveryV1Manifest) Schema(_ context.Context
 		Description:         "NodeFeatureDiscovery is the Schema for the nodefeaturediscoveries API",
 		MarkdownDescription: "NodeFeatureDiscovery is the Schema for the nodefeaturediscoveries API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -268,7 +258,6 @@ func (r *NfdKubernetesIoNodeFeatureDiscoveryV1Manifest) Read(ctx context.Context
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("nfd.kubernetes.io/v1")
 	model.Kind = pointer.String("NodeFeatureDiscovery")
 

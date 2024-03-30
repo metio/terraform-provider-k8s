@@ -31,7 +31,6 @@ func NewConfigOpenshiftIoImageContentPolicyV1Manifest() datasource.DataSource {
 type ConfigOpenshiftIoImageContentPolicyV1Manifest struct{}
 
 type ConfigOpenshiftIoImageContentPolicyV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -61,14 +60,6 @@ func (r *ConfigOpenshiftIoImageContentPolicyV1Manifest) Schema(_ context.Context
 		Description:         "ImageContentPolicy holds cluster-wide information about how to handle registry mirror rules. When multiple policies are defined, the outcome of the behavior is defined on each field.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
 		MarkdownDescription: "ImageContentPolicy holds cluster-wide information about how to handle registry mirror rules. When multiple policies are defined, the outcome of the behavior is defined on each field.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -181,7 +172,6 @@ func (r *ConfigOpenshiftIoImageContentPolicyV1Manifest) Read(ctx context.Context
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("config.openshift.io/v1")
 	model.Kind = pointer.String("ImageContentPolicy")
 

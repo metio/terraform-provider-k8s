@@ -32,7 +32,6 @@ func NewConfigOpenshiftIoNetworkV1Manifest() datasource.DataSource {
 type ConfigOpenshiftIoNetworkV1Manifest struct{}
 
 type ConfigOpenshiftIoNetworkV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -71,14 +70,6 @@ func (r *ConfigOpenshiftIoNetworkV1Manifest) Schema(_ context.Context, _ datasou
 		Description:         "Network holds cluster-wide information about Network. The canonical name is 'cluster'. It is used to configure the desired network configuration, such as: IP address pools for services/pod IPs, network plugin, etc. Please view network.spec for an explanation on what applies when configuring this resource.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
 		MarkdownDescription: "Network holds cluster-wide information about Network. The canonical name is 'cluster'. It is used to configure the desired network configuration, such as: IP address pools for services/pod IPs, network plugin, etc. Please view network.spec for an explanation on what applies when configuring this resource.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -255,7 +246,6 @@ func (r *ConfigOpenshiftIoNetworkV1Manifest) Read(ctx context.Context, request d
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("config.openshift.io/v1")
 	model.Kind = pointer.String("Network")
 

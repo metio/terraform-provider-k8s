@@ -7,7 +7,6 @@ package infrastructure_cluster_x_k8s_io_v1alpha3
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewInfrastructureClusterXK8SIoVsphereMachineTemplateV1Alpha3Manifest() data
 type InfrastructureClusterXK8SIoVsphereMachineTemplateV1Alpha3Manifest struct{}
 
 type InfrastructureClusterXK8SIoVsphereMachineTemplateV1Alpha3ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -119,14 +117,6 @@ func (r *InfrastructureClusterXK8SIoVsphereMachineTemplateV1Alpha3Manifest) Sche
 		Description:         "VSphereMachineTemplate is the Schema for the vspheremachinetemplates API  Deprecated: This type will be removed in one of the next releases.",
 		MarkdownDescription: "VSphereMachineTemplate is the Schema for the vspheremachinetemplates API  Deprecated: This type will be removed in one of the next releases.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -669,7 +659,6 @@ func (r *InfrastructureClusterXK8SIoVsphereMachineTemplateV1Alpha3Manifest) Read
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("infrastructure.cluster.x-k8s.io/v1alpha3")
 	model.Kind = pointer.String("VSphereMachineTemplate")
 

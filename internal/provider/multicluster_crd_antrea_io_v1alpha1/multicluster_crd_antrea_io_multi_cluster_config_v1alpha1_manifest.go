@@ -7,7 +7,6 @@ package multicluster_crd_antrea_io_v1alpha1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewMulticlusterCrdAntreaIoMultiClusterConfigV1Alpha1Manifest() datasource.D
 type MulticlusterCrdAntreaIoMultiClusterConfigV1Alpha1Manifest struct{}
 
 type MulticlusterCrdAntreaIoMultiClusterConfigV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -58,14 +56,6 @@ func (r *MulticlusterCrdAntreaIoMultiClusterConfigV1Alpha1Manifest) Schema(_ con
 		Description:         "MultiClusterConfig is the Schema for the multiclusterconfigs API",
 		MarkdownDescription: "MultiClusterConfig is the Schema for the multiclusterconfigs API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -159,7 +149,6 @@ func (r *MulticlusterCrdAntreaIoMultiClusterConfigV1Alpha1Manifest) Read(ctx con
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("multicluster.crd.antrea.io/v1alpha1")
 	model.Kind = pointer.String("MultiClusterConfig")
 

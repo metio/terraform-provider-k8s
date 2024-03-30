@@ -34,7 +34,6 @@ data "k8s_imaging_ingestion_alvearie_org_dicom_instance_binding_v1alpha1_manifes
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

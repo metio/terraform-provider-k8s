@@ -7,7 +7,6 @@ package couchbase_com_v2
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -32,7 +31,6 @@ func NewCouchbaseComCouchbaseCollectionV2Manifest() datasource.DataSource {
 type CouchbaseComCouchbaseCollectionV2Manifest struct{}
 
 type CouchbaseComCouchbaseCollectionV2ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -60,14 +58,6 @@ func (r *CouchbaseComCouchbaseCollectionV2Manifest) Schema(_ context.Context, _ 
 		Description:         "CouchbaseCollection represent the finest grained size of data storage in Couchbase. Collections contain all documents and indexes in the system.  Collections also form the finest grain basis for role-based access control (RBAC) and cross-datacenter replication (XDCR).  In order to be considered by the Operator, every collection must be referenced by a 'CouchbaseScope' or 'CouchbaseScopeGroup' resource.",
 		MarkdownDescription: "CouchbaseCollection represent the finest grained size of data storage in Couchbase. Collections contain all documents and indexes in the system.  Collections also form the finest grain basis for role-based access control (RBAC) and cross-datacenter replication (XDCR).  In order to be considered by the Operator, every collection must be referenced by a 'CouchbaseScope' or 'CouchbaseScopeGroup' resource.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -174,7 +164,6 @@ func (r *CouchbaseComCouchbaseCollectionV2Manifest) Read(ctx context.Context, re
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("couchbase.com/v2")
 	model.Kind = pointer.String("CouchbaseCollection")
 

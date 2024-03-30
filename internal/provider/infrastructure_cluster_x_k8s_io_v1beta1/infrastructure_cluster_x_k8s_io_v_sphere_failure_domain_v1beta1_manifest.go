@@ -30,7 +30,6 @@ func NewInfrastructureClusterXK8SIoVsphereFailureDomainV1Beta1Manifest() datasou
 type InfrastructureClusterXK8SIoVsphereFailureDomainV1Beta1Manifest struct{}
 
 type InfrastructureClusterXK8SIoVsphereFailureDomainV1Beta1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -77,14 +76,6 @@ func (r *InfrastructureClusterXK8SIoVsphereFailureDomainV1Beta1Manifest) Schema(
 		Description:         "VSphereFailureDomain is the Schema for the vspherefailuredomains API.",
 		MarkdownDescription: "VSphereFailureDomain is the Schema for the vspherefailuredomains API.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -313,7 +304,6 @@ func (r *InfrastructureClusterXK8SIoVsphereFailureDomainV1Beta1Manifest) Read(ct
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("infrastructure.cluster.x-k8s.io/v1beta1")
 	model.Kind = pointer.String("VSphereFailureDomain")
 

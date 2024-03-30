@@ -34,7 +34,6 @@ data "k8s_b3scale_infra_run_bbb_frontend_v1_manifest" "example" {
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

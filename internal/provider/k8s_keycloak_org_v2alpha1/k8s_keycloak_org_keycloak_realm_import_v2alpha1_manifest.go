@@ -7,7 +7,6 @@ package k8s_keycloak_org_v2alpha1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewK8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest() datasource.DataSourc
 type K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest struct{}
 
 type K8SKeycloakOrgKeycloakRealmImportV2Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -883,14 +881,6 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 		Description:         "",
 		MarkdownDescription: "",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -7366,7 +7356,6 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Read(ctx context.Con
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("k8s.keycloak.org/v2alpha1")
 	model.Kind = pointer.String("KeycloakRealmImport")
 

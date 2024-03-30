@@ -40,7 +40,6 @@ data "k8s_network_openshift_io_cluster_network_v1_manifest" "example" {
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--cluster_networks"></a>

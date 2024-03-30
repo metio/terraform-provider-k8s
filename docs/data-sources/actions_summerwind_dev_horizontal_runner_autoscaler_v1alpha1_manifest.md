@@ -34,7 +34,6 @@ data "k8s_actions_summerwind_dev_horizontal_runner_autoscaler_v1alpha1_manifest"
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

@@ -32,7 +32,6 @@ func NewCertManagerIoClusterIssuerV1Manifest() datasource.DataSource {
 type CertManagerIoClusterIssuerV1Manifest struct{}
 
 type CertManagerIoClusterIssuerV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -427,14 +426,6 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 		Description:         "A ClusterIssuer represents a certificate issuing authority which can bereferenced as part of 'issuerRef' fields.It is similar to an Issuer, however it is cluster-scoped and therefore canbe referenced by resources that exist in *any* namespace, not just the samenamespace as the referent.",
 		MarkdownDescription: "A ClusterIssuer represents a certificate issuing authority which can bereferenced as part of 'issuerRef' fields.It is similar to an Issuer, however it is cluster-scoped and therefore canbe referenced by resources that exist in *any* namespace, not just the samenamespace as the referent.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -2963,7 +2954,6 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Read(ctx context.Context, request
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("cert-manager.io/v1")
 	model.Kind = pointer.String("ClusterIssuer")
 

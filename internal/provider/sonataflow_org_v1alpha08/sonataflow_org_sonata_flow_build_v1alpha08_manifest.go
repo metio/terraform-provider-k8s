@@ -7,7 +7,6 @@ package sonataflow_org_v1alpha08
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewSonataflowOrgSonataFlowBuildV1Alpha08Manifest() datasource.DataSource {
 type SonataflowOrgSonataFlowBuildV1Alpha08Manifest struct{}
 
 type SonataflowOrgSonataFlowBuildV1Alpha08ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -116,14 +114,6 @@ func (r *SonataflowOrgSonataFlowBuildV1Alpha08Manifest) Schema(_ context.Context
 		Description:         "SonataFlowBuild is an internal custom resource to control workflow build instances in the target platform",
 		MarkdownDescription: "SonataFlowBuild is an internal custom resource to control workflow build instances in the target platform",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -592,7 +582,6 @@ func (r *SonataflowOrgSonataFlowBuildV1Alpha08Manifest) Read(ctx context.Context
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("sonataflow.org/v1alpha08")
 	model.Kind = pointer.String("SonataFlowBuild")
 

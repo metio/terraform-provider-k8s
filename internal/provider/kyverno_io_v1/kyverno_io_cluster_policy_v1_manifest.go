@@ -31,7 +31,6 @@ func NewKyvernoIoClusterPolicyV1Manifest() datasource.DataSource {
 type KyvernoIoClusterPolicyV1Manifest struct{}
 
 type KyvernoIoClusterPolicyV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -782,14 +781,6 @@ func (r *KyvernoIoClusterPolicyV1Manifest) Schema(_ context.Context, _ datasourc
 		Description:         "ClusterPolicy declares validation, mutation, and generation behaviors for matching resources.",
 		MarkdownDescription: "ClusterPolicy declares validation, mutation, and generation behaviors for matching resources.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -5927,7 +5918,6 @@ func (r *KyvernoIoClusterPolicyV1Manifest) Read(ctx context.Context, request dat
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("kyverno.io/v1")
 	model.Kind = pointer.String("ClusterPolicy")
 

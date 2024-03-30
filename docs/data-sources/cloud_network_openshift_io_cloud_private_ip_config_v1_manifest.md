@@ -31,7 +31,6 @@ data "k8s_cloud_network_openshift_io_cloud_private_ip_config_v1_manifest" "examp
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

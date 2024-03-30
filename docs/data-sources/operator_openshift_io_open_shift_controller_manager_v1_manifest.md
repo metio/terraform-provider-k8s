@@ -31,7 +31,6 @@ data "k8s_operator_openshift_io_open_shift_controller_manager_v1_manifest" "exam
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

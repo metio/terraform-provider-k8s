@@ -7,7 +7,6 @@ package secrets_hashicorp_com_v1beta1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -33,7 +32,6 @@ func NewSecretsHashicorpComVaultStaticSecretV1Beta1Manifest() datasource.DataSou
 type SecretsHashicorpComVaultStaticSecretV1Beta1Manifest struct{}
 
 type SecretsHashicorpComVaultStaticSecretV1Beta1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -98,14 +96,6 @@ func (r *SecretsHashicorpComVaultStaticSecretV1Beta1Manifest) Schema(_ context.C
 		Description:         "VaultStaticSecret is the Schema for the vaultstaticsecrets API",
 		MarkdownDescription: "VaultStaticSecret is the Schema for the vaultstaticsecrets API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -483,7 +473,6 @@ func (r *SecretsHashicorpComVaultStaticSecretV1Beta1Manifest) Read(ctx context.C
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("secrets.hashicorp.com/v1beta1")
 	model.Kind = pointer.String("VaultStaticSecret")
 

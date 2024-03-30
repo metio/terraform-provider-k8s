@@ -7,7 +7,6 @@ package registry_devfile_io_v1alpha1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewRegistryDevfileIoDevfileRegistriesListV1Alpha1Manifest() datasource.Data
 type RegistryDevfileIoDevfileRegistriesListV1Alpha1Manifest struct{}
 
 type RegistryDevfileIoDevfileRegistriesListV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -62,14 +60,6 @@ func (r *RegistryDevfileIoDevfileRegistriesListV1Alpha1Manifest) Schema(_ contex
 		Description:         "DevfileRegistriesList is a custom resource where namespace users can add a list of Devfile Registries to allow devfiles to be visible at the namespace level.  In order to be added to the list, the Devfile Registries must be reachable, supports the Devfile v2.0 spec and above, and is not using the default namespace.",
 		MarkdownDescription: "DevfileRegistriesList is a custom resource where namespace users can add a list of Devfile Registries to allow devfiles to be visible at the namespace level.  In order to be added to the list, the Devfile Registries must be reachable, supports the Devfile v2.0 spec and above, and is not using the default namespace.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -190,7 +180,6 @@ func (r *RegistryDevfileIoDevfileRegistriesListV1Alpha1Manifest) Read(ctx contex
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("registry.devfile.io/v1alpha1")
 	model.Kind = pointer.String("DevfileRegistriesList")
 

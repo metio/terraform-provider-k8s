@@ -31,7 +31,6 @@ func NewGatewayNetworkingK8SIoGatewayClassV1Manifest() datasource.DataSource {
 type GatewayNetworkingK8SIoGatewayClassV1Manifest struct{}
 
 type GatewayNetworkingK8SIoGatewayClassV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -64,14 +63,6 @@ func (r *GatewayNetworkingK8SIoGatewayClassV1Manifest) Schema(_ context.Context,
 		Description:         "GatewayClass describes a class of Gateways available to the user for creatingGateway resources.It is recommended that this resource be used as a template for Gateways. Thismeans that a Gateway is based on the state of the GatewayClass at the time itwas created and changes to the GatewayClass or associated parameters are notpropagated down to existing Gateways. This recommendation is intended tolimit the blast radius of changes to GatewayClass or associated parameters.If implementations choose to propagate GatewayClass changes to existingGateways, that MUST be clearly documented by the implementation.Whenever one or more Gateways are using a GatewayClass, implementations SHOULDadd the 'gateway-exists-finalizer.gateway.networking.k8s.io' finalizer on theassociated GatewayClass. This ensures that a GatewayClass associated with aGateway is not deleted while in use.GatewayClass is a Cluster level resource.",
 		MarkdownDescription: "GatewayClass describes a class of Gateways available to the user for creatingGateway resources.It is recommended that this resource be used as a template for Gateways. Thismeans that a Gateway is based on the state of the GatewayClass at the time itwas created and changes to the GatewayClass or associated parameters are notpropagated down to existing Gateways. This recommendation is intended tolimit the blast radius of changes to GatewayClass or associated parameters.If implementations choose to propagate GatewayClass changes to existingGateways, that MUST be clearly documented by the implementation.Whenever one or more Gateways are using a GatewayClass, implementations SHOULDadd the 'gateway-exists-finalizer.gateway.networking.k8s.io' finalizer on theassociated GatewayClass. This ensures that a GatewayClass associated with aGateway is not deleted while in use.GatewayClass is a Cluster level resource.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -228,7 +219,6 @@ func (r *GatewayNetworkingK8SIoGatewayClassV1Manifest) Read(ctx context.Context,
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("gateway.networking.k8s.io/v1")
 	model.Kind = pointer.String("GatewayClass")
 

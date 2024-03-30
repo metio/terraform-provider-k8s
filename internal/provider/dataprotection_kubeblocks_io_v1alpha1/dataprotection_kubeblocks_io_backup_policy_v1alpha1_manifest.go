@@ -7,7 +7,6 @@ package dataprotection_kubeblocks_io_v1alpha1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -33,7 +32,6 @@ func NewDataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest() datasource.Data
 type DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest struct{}
 
 type DataprotectionKubeblocksIoBackupPolicyV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -183,14 +181,6 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 		Description:         "BackupPolicy is the Schema for the backuppolicies API.",
 		MarkdownDescription: "BackupPolicy is the Schema for the backuppolicies API.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -1128,7 +1118,6 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Read(ctx contex
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("dataprotection.kubeblocks.io/v1alpha1")
 	model.Kind = pointer.String("BackupPolicy")
 

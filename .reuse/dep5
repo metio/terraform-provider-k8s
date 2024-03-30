@@ -19,7 +19,7 @@ Files: templates/*
 Copyright: The terraform-provider-k8s Authors
 License: 0BSD
 
-Files: tools/internal/generator/templates/*
+Files: generators/templates/*.tmpl
 Copyright: The terraform-provider-k8s Authors
 License: 0BSD
 

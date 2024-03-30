@@ -7,7 +7,6 @@ package core_openfeature_dev_v1alpha1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewCoreOpenfeatureDevFeatureFlagConfigurationV1Alpha1Manifest() datasource.
 type CoreOpenfeatureDevFeatureFlagConfigurationV1Alpha1Manifest struct{}
 
 type CoreOpenfeatureDevFeatureFlagConfigurationV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -105,14 +103,6 @@ func (r *CoreOpenfeatureDevFeatureFlagConfigurationV1Alpha1Manifest) Schema(_ co
 		Description:         "FeatureFlagConfiguration is the Schema for the featureflagconfigurations API",
 		MarkdownDescription: "FeatureFlagConfiguration is the Schema for the featureflagconfigurations API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -510,7 +500,6 @@ func (r *CoreOpenfeatureDevFeatureFlagConfigurationV1Alpha1Manifest) Read(ctx co
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("core.openfeature.dev/v1alpha1")
 	model.Kind = pointer.String("FeatureFlagConfiguration")
 

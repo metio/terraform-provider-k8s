@@ -30,7 +30,6 @@ func NewAppsKubeblocksIoComponentResourceConstraintV1Alpha1Manifest() datasource
 type AppsKubeblocksIoComponentResourceConstraintV1Alpha1Manifest struct{}
 
 type AppsKubeblocksIoComponentResourceConstraintV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -84,14 +83,6 @@ func (r *AppsKubeblocksIoComponentResourceConstraintV1Alpha1Manifest) Schema(_ c
 		Description:         "ComponentResourceConstraint is the Schema for the componentresourceconstraints API",
 		MarkdownDescription: "ComponentResourceConstraint is the Schema for the componentresourceconstraints API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -359,7 +350,6 @@ func (r *AppsKubeblocksIoComponentResourceConstraintV1Alpha1Manifest) Read(ctx c
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("apps.kubeblocks.io/v1alpha1")
 	model.Kind = pointer.String("ComponentResourceConstraint")
 

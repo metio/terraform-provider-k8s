@@ -32,7 +32,6 @@ data "k8s_core_kubeadmiral_io_collected_status_v1alpha1_manifest" "example" {
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--clusters"></a>

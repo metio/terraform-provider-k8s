@@ -30,7 +30,6 @@ func NewInfrastructureClusterXK8SIoVsphereDeploymentZoneV1Alpha4Manifest() datas
 type InfrastructureClusterXK8SIoVsphereDeploymentZoneV1Alpha4Manifest struct{}
 
 type InfrastructureClusterXK8SIoVsphereDeploymentZoneV1Alpha4ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -62,14 +61,6 @@ func (r *InfrastructureClusterXK8SIoVsphereDeploymentZoneV1Alpha4Manifest) Schem
 		Description:         "VSphereDeploymentZone is the Schema for the vspheredeploymentzones API  Deprecated: This type will be removed in one of the next releases.",
 		MarkdownDescription: "VSphereDeploymentZone is the Schema for the vspheredeploymentzones API  Deprecated: This type will be removed in one of the next releases.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -192,7 +183,6 @@ func (r *InfrastructureClusterXK8SIoVsphereDeploymentZoneV1Alpha4Manifest) Read(
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("infrastructure.cluster.x-k8s.io/v1alpha4")
 	model.Kind = pointer.String("VSphereDeploymentZone")
 

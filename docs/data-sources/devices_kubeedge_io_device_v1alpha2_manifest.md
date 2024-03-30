@@ -34,7 +34,6 @@ data "k8s_devices_kubeedge_io_device_v1alpha2_manifest" "example" {
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

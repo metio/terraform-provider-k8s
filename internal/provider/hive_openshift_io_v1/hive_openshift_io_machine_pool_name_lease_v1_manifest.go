@@ -7,7 +7,6 @@ package hive_openshift_io_v1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewHiveOpenshiftIoMachinePoolNameLeaseV1Manifest() datasource.DataSource {
 type HiveOpenshiftIoMachinePoolNameLeaseV1Manifest struct{}
 
 type HiveOpenshiftIoMachinePoolNameLeaseV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -56,14 +54,6 @@ func (r *HiveOpenshiftIoMachinePoolNameLeaseV1Manifest) Schema(_ context.Context
 		Description:         "MachinePoolNameLease is the Schema for the MachinePoolNameLeases API. This resource is mostly empty as we're primarily relying on the name to determine if a lease is available. Note that not all cloud providers require the use of a lease for naming, at present this is only required for GCP where we're extremely restricted on name lengths.",
 		MarkdownDescription: "MachinePoolNameLease is the Schema for the MachinePoolNameLeases API. This resource is mostly empty as we're primarily relying on the name to determine if a lease is available. Note that not all cloud providers require the use of a lease for naming, at present this is only required for GCP where we're extremely restricted on name lengths.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -149,7 +139,6 @@ func (r *HiveOpenshiftIoMachinePoolNameLeaseV1Manifest) Read(ctx context.Context
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("hive.openshift.io/v1")
 	model.Kind = pointer.String("MachinePoolNameLease")
 

@@ -7,7 +7,6 @@ package apicodegen_apimatic_io_v1beta1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/listvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/mapvalidator"
@@ -36,7 +35,6 @@ func NewApicodegenApimaticIoApimaticV1Beta1Manifest() datasource.DataSource {
 type ApicodegenApimaticIoApimaticV1Beta1Manifest struct{}
 
 type ApicodegenApimaticIoApimaticV1Beta1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -247,14 +245,6 @@ func (r *ApicodegenApimaticIoApimaticV1Beta1Manifest) Schema(_ context.Context, 
 		Description:         "APIMatic is the Schema for the apimatics API",
 		MarkdownDescription: "APIMatic is the Schema for the apimatics API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -1681,7 +1671,6 @@ func (r *ApicodegenApimaticIoApimaticV1Beta1Manifest) Read(ctx context.Context, 
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("apicodegen.apimatic.io/v1beta1")
 	model.Kind = pointer.String("APIMatic")
 

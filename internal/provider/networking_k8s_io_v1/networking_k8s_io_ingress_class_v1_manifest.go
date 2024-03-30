@@ -30,7 +30,6 @@ func NewNetworkingK8SIoIngressClassV1Manifest() datasource.DataSource {
 type NetworkingK8SIoIngressClassV1Manifest struct{}
 
 type NetworkingK8SIoIngressClassV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -63,14 +62,6 @@ func (r *NetworkingK8SIoIngressClassV1Manifest) Schema(_ context.Context, _ data
 		Description:         "IngressClass represents the class of the Ingress, referenced by the Ingress Spec. The 'ingressclass.kubernetes.io/is-default-class' annotation can be used to indicate that an IngressClass should be considered default. When a single IngressClass resource has this annotation set to true, new Ingress resources without a class specified will be assigned this default class.",
 		MarkdownDescription: "IngressClass represents the class of the Ingress, referenced by the Ingress Spec. The 'ingressclass.kubernetes.io/is-default-class' annotation can be used to indicate that an IngressClass should be considered default. When a single IngressClass resource has this annotation set to true, new Ingress resources without a class specified will be assigned this default class.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -201,7 +192,6 @@ func (r *NetworkingK8SIoIngressClassV1Manifest) Read(ctx context.Context, reques
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("networking.k8s.io/v1")
 	model.Kind = pointer.String("IngressClass")
 

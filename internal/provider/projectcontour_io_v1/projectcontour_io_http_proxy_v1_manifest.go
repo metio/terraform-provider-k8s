@@ -7,7 +7,6 @@ package projectcontour_io_v1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -33,7 +32,6 @@ func NewProjectcontourIoHttpproxyV1Manifest() datasource.DataSource {
 type ProjectcontourIoHttpproxyV1Manifest struct{}
 
 type ProjectcontourIoHttpproxyV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -503,14 +501,6 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 		Description:         "HTTPProxy is an Ingress CRD specification.",
 		MarkdownDescription: "HTTPProxy is an Ingress CRD specification.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -3922,7 +3912,6 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Read(ctx context.Context, request 
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("projectcontour.io/v1")
 	model.Kind = pointer.String("HTTPProxy")
 

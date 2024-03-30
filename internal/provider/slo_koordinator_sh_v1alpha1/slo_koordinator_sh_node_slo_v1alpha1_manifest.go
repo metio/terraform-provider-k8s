@@ -31,7 +31,6 @@ func NewSloKoordinatorShNodeSloV1Alpha1Manifest() datasource.DataSource {
 type SloKoordinatorShNodeSloV1Alpha1Manifest struct{}
 
 type SloKoordinatorShNodeSloV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -389,14 +388,6 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 		Description:         "NodeSLO is the Schema for the nodeslos API",
 		MarkdownDescription: "NodeSLO is the Schema for the nodeslos API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -3210,7 +3201,6 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Read(ctx context.Context, requ
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("slo.koordinator.sh/v1alpha1")
 	model.Kind = pointer.String("NodeSLO")
 

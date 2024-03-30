@@ -7,7 +7,6 @@ package wildfly_org_v1alpha1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -32,7 +31,6 @@ func NewWildflyOrgWildFlyServerV1Alpha1Manifest() datasource.DataSource {
 type WildflyOrgWildFlyServerV1Alpha1Manifest struct{}
 
 type WildflyOrgWildFlyServerV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -253,14 +251,6 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 		Description:         "WildFlyServer is the Schema for the wildflyservers API",
 		MarkdownDescription: "WildFlyServer is the Schema for the wildflyservers API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -1719,7 +1709,6 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Read(ctx context.Context, requ
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("wildfly.org/v1alpha1")
 	model.Kind = pointer.String("WildFlyServer")
 

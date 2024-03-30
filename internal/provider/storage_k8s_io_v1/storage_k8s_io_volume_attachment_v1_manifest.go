@@ -30,7 +30,6 @@ func NewStorageK8SIoVolumeAttachmentV1Manifest() datasource.DataSource {
 type StorageK8SIoVolumeAttachmentV1Manifest struct{}
 
 type StorageK8SIoVolumeAttachmentV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -288,14 +287,6 @@ func (r *StorageK8SIoVolumeAttachmentV1Manifest) Schema(_ context.Context, _ dat
 		Description:         "VolumeAttachment captures the intent to attach or detach the specified volume to/from the specified node.VolumeAttachment objects are non-namespaced.",
 		MarkdownDescription: "VolumeAttachment captures the intent to attach or detach the specified volume to/from the specified node.VolumeAttachment objects are non-namespaced.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -1957,7 +1948,6 @@ func (r *StorageK8SIoVolumeAttachmentV1Manifest) Read(ctx context.Context, reque
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("storage.k8s.io/v1")
 	model.Kind = pointer.String("VolumeAttachment")
 

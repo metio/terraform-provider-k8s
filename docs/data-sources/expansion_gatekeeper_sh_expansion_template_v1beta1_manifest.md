@@ -34,7 +34,6 @@ data "k8s_expansion_gatekeeper_sh_expansion_template_v1beta1_manifest" "example"
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

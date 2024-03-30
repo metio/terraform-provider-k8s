@@ -35,7 +35,6 @@ data "k8s_metacontroller_k8s_io_controller_revision_v1alpha1_manifest" "example"
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

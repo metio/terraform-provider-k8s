@@ -30,7 +30,6 @@ func NewMulticlusterXK8SIoAppliedWorkV1Alpha1Manifest() datasource.DataSource {
 type MulticlusterXK8SIoAppliedWorkV1Alpha1Manifest struct{}
 
 type MulticlusterXK8SIoAppliedWorkV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -57,14 +56,6 @@ func (r *MulticlusterXK8SIoAppliedWorkV1Alpha1Manifest) Schema(_ context.Context
 		Description:         "AppliedWork represents an applied work on managed cluster that is placed on a managed cluster. An appliedwork links to a work on a hub recording resources deployed in the managed cluster. When the agent is removed from managed cluster, cluster-admin on managed cluster can delete appliedwork to remove resources deployed by the agent. The name of the appliedwork must be the same as {work name} The namespace of the appliedwork should be the same as the resource applied on the managed cluster.",
 		MarkdownDescription: "AppliedWork represents an applied work on managed cluster that is placed on a managed cluster. An appliedwork links to a work on a hub recording resources deployed in the managed cluster. When the agent is removed from managed cluster, cluster-admin on managed cluster can delete appliedwork to remove resources deployed by the agent. The name of the appliedwork must be the same as {work name} The namespace of the appliedwork should be the same as the resource applied on the managed cluster.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -154,7 +145,6 @@ func (r *MulticlusterXK8SIoAppliedWorkV1Alpha1Manifest) Read(ctx context.Context
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("multicluster.x-k8s.io/v1alpha1")
 	model.Kind = pointer.String("AppliedWork")
 

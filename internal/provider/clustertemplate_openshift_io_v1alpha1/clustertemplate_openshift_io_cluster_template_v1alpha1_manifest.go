@@ -31,7 +31,6 @@ func NewClustertemplateOpenshiftIoClusterTemplateV1Alpha1Manifest() datasource.D
 type ClustertemplateOpenshiftIoClusterTemplateV1Alpha1Manifest struct{}
 
 type ClustertemplateOpenshiftIoClusterTemplateV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -60,14 +59,6 @@ func (r *ClustertemplateOpenshiftIoClusterTemplateV1Alpha1Manifest) Schema(_ con
 		Description:         "Template of a cluster - both installation and post-install setup are defined as ArgoCD application spec. Any application source is supported - typically a Helm chart",
 		MarkdownDescription: "Template of a cluster - both installation and post-install setup are defined as ArgoCD application spec. Any application source is supported - typically a Helm chart",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -177,7 +168,6 @@ func (r *ClustertemplateOpenshiftIoClusterTemplateV1Alpha1Manifest) Read(ctx con
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("clustertemplate.openshift.io/v1alpha1")
 	model.Kind = pointer.String("ClusterTemplate")
 

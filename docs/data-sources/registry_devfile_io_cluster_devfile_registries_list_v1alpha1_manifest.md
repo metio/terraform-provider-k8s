@@ -34,7 +34,6 @@ data "k8s_registry_devfile_io_cluster_devfile_registries_list_v1alpha1_manifest"
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

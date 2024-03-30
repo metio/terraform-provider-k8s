@@ -30,7 +30,6 @@ func NewHiveOpenshiftIoSelectorSyncSetV1Manifest() datasource.DataSource {
 type HiveOpenshiftIoSelectorSyncSetV1Manifest struct{}
 
 type HiveOpenshiftIoSelectorSyncSetV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -85,14 +84,6 @@ func (r *HiveOpenshiftIoSelectorSyncSetV1Manifest) Schema(_ context.Context, _ d
 		Description:         "SelectorSyncSet is the Schema for the SelectorSyncSet API",
 		MarkdownDescription: "SelectorSyncSet is the Schema for the SelectorSyncSet API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -376,7 +367,6 @@ func (r *HiveOpenshiftIoSelectorSyncSetV1Manifest) Read(ctx context.Context, req
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("hive.openshift.io/v1")
 	model.Kind = pointer.String("SelectorSyncSet")
 

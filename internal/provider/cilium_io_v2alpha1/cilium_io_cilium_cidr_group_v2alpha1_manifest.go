@@ -30,7 +30,6 @@ func NewCiliumIoCiliumCidrgroupV2Alpha1Manifest() datasource.DataSource {
 type CiliumIoCiliumCidrgroupV2Alpha1Manifest struct{}
 
 type CiliumIoCiliumCidrgroupV2Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -56,14 +55,6 @@ func (r *CiliumIoCiliumCidrgroupV2Alpha1Manifest) Schema(_ context.Context, _ da
 		Description:         "CiliumCIDRGroup is a list of external CIDRs (i.e: CIDRs selecting peers outside the clusters) that can be referenced as a single entity from CiliumNetworkPolicies.",
 		MarkdownDescription: "CiliumCIDRGroup is a list of external CIDRs (i.e: CIDRs selecting peers outside the clusters) that can be referenced as a single entity from CiliumNetworkPolicies.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -146,7 +137,6 @@ func (r *CiliumIoCiliumCidrgroupV2Alpha1Manifest) Read(ctx context.Context, requ
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("cilium.io/v2alpha1")
 	model.Kind = pointer.String("CiliumCIDRGroup")
 

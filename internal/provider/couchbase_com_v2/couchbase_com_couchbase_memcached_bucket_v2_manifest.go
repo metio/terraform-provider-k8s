@@ -7,7 +7,6 @@ package couchbase_com_v2
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -32,7 +31,6 @@ func NewCouchbaseComCouchbaseMemcachedBucketV2Manifest() datasource.DataSource {
 type CouchbaseComCouchbaseMemcachedBucketV2Manifest struct{}
 
 type CouchbaseComCouchbaseMemcachedBucketV2ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -61,14 +59,6 @@ func (r *CouchbaseComCouchbaseMemcachedBucketV2Manifest) Schema(_ context.Contex
 		Description:         "The CouchbaseMemcachedBucket resource defines a set of documents in Couchbase server. A Couchbase client connects to and operates on a bucket, which provides independent management of a set documents and a security boundary for role based access control. A CouchbaseEphemeralBucket provides in-memory only storage for documents contained by it.",
 		MarkdownDescription: "The CouchbaseMemcachedBucket resource defines a set of documents in Couchbase server. A Couchbase client connects to and operates on a bucket, which provides independent management of a set documents and a security boundary for role based access control. A CouchbaseEphemeralBucket provides in-memory only storage for documents contained by it.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -185,7 +175,6 @@ func (r *CouchbaseComCouchbaseMemcachedBucketV2Manifest) Read(ctx context.Contex
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("couchbase.com/v2")
 	model.Kind = pointer.String("CouchbaseMemcachedBucket")
 

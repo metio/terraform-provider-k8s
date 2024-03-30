@@ -33,7 +33,6 @@ data "k8s_nfd_k8s_sigs_io_node_feature_rule_v1alpha1_manifest" "example" {
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

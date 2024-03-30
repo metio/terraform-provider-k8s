@@ -7,7 +7,6 @@ package tinkerbell_org_v1alpha1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewTinkerbellOrgStackV1Alpha1Manifest() datasource.DataSource {
 type TinkerbellOrgStackV1Alpha1Manifest struct{}
 
 type TinkerbellOrgStackV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -135,14 +133,6 @@ func (r *TinkerbellOrgStackV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 		Description:         "Stack represents the tinkerbell stack that is being deployed in the kubernetes where the operator is deployed. Tinkerbell operator watches for different resources such as deployment, services, serviceAccounts, etc. One of those CRs is Stack which the operator will install the tink-stack based on its specs. Once the CR is deleted, the operator will delete all tinkerbell resources.",
 		MarkdownDescription: "Stack represents the tinkerbell stack that is being deployed in the kubernetes where the operator is deployed. Tinkerbell operator watches for different resources such as deployment, services, serviceAccounts, etc. One of those CRs is Stack which the operator will install the tink-stack based on its specs. Once the CR is deleted, the operator will delete all tinkerbell resources.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -729,7 +719,6 @@ func (r *TinkerbellOrgStackV1Alpha1Manifest) Read(ctx context.Context, request d
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("tinkerbell.org/v1alpha1")
 	model.Kind = pointer.String("Stack")
 

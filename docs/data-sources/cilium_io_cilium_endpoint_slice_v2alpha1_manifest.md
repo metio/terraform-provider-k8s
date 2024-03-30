@@ -35,7 +35,6 @@ data "k8s_cilium_io_cilium_endpoint_slice_v2alpha1_manifest" "example" {
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--endpoints"></a>

@@ -30,7 +30,6 @@ func NewMulticlusterCrdAntreaIoLabelIdentityV1Alpha1Manifest() datasource.DataSo
 type MulticlusterCrdAntreaIoLabelIdentityV1Alpha1Manifest struct{}
 
 type MulticlusterCrdAntreaIoLabelIdentityV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -57,14 +56,6 @@ func (r *MulticlusterCrdAntreaIoLabelIdentityV1Alpha1Manifest) Schema(_ context.
 		Description:         "LabelIdentity is an imported label identity from the ClusterSet. For each unique label identity, a LabelIdentity will be created in the member cluster.",
 		MarkdownDescription: "LabelIdentity is an imported label identity from the ClusterSet. For each unique label identity, a LabelIdentity will be created in the member cluster.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -154,7 +145,6 @@ func (r *MulticlusterCrdAntreaIoLabelIdentityV1Alpha1Manifest) Read(ctx context.
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("multicluster.crd.antrea.io/v1alpha1")
 	model.Kind = pointer.String("LabelIdentity")
 

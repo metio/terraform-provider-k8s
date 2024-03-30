@@ -7,7 +7,6 @@ package controlplane_operator_openshift_io_v1alpha1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -32,7 +31,6 @@ func NewControlplaneOperatorOpenshiftIoPodNetworkConnectivityCheckV1Alpha1Manife
 type ControlplaneOperatorOpenshiftIoPodNetworkConnectivityCheckV1Alpha1Manifest struct{}
 
 type ControlplaneOperatorOpenshiftIoPodNetworkConnectivityCheckV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -63,14 +61,6 @@ func (r *ControlplaneOperatorOpenshiftIoPodNetworkConnectivityCheckV1Alpha1Manif
 		Description:         "PodNetworkConnectivityCheck  Compatibility level 4: No compatibility is provided, the API can change at any point for any reason. These capabilities should not be used by applications needing long term support.",
 		MarkdownDescription: "PodNetworkConnectivityCheck  Compatibility level 4: No compatibility is provided, the API can change at any point for any reason. These capabilities should not be used by applications needing long term support.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -195,7 +185,6 @@ func (r *ControlplaneOperatorOpenshiftIoPodNetworkConnectivityCheckV1Alpha1Manif
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("controlplane.operator.openshift.io/v1alpha1")
 	model.Kind = pointer.String("PodNetworkConnectivityCheck")
 

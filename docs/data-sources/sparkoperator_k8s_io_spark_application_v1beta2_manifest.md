@@ -37,7 +37,6 @@ data "k8s_sparkoperator_k8s_io_spark_application_v1beta2_manifest" "example" {
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

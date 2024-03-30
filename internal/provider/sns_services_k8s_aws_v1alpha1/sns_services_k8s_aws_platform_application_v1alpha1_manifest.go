@@ -7,7 +7,6 @@ package sns_services_k8s_aws_v1alpha1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewSnsServicesK8SAwsPlatformApplicationV1Alpha1Manifest() datasource.DataSo
 type SnsServicesK8SAwsPlatformApplicationV1Alpha1Manifest struct{}
 
 type SnsServicesK8SAwsPlatformApplicationV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -93,14 +91,6 @@ func (r *SnsServicesK8SAwsPlatformApplicationV1Alpha1Manifest) Schema(_ context.
 		Description:         "PlatformApplication is the Schema for the PlatformApplications API",
 		MarkdownDescription: "PlatformApplication is the Schema for the PlatformApplications API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -404,7 +394,6 @@ func (r *SnsServicesK8SAwsPlatformApplicationV1Alpha1Manifest) Read(ctx context.
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("sns.services.k8s.aws/v1alpha1")
 	model.Kind = pointer.String("PlatformApplication")
 

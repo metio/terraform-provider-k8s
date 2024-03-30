@@ -34,7 +34,6 @@ data "k8s_core_openfeature_dev_feature_flag_configuration_v1alpha2_manifest" "ex
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

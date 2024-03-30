@@ -34,7 +34,6 @@ data "k8s_clusters_clusternet_io_cluster_registration_request_v1beta1_manifest" 
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

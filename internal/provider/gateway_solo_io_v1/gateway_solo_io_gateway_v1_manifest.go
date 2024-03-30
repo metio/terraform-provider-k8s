@@ -7,7 +7,6 @@ package gateway_solo_io_v1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -32,7 +31,6 @@ func NewGatewaySoloIoGatewayV1Manifest() datasource.DataSource {
 type GatewaySoloIoGatewayV1Manifest struct{}
 
 type GatewaySoloIoGatewayV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -3189,14 +3187,6 @@ func (r *GatewaySoloIoGatewayV1Manifest) Schema(_ context.Context, _ datasource.
 		Description:         "",
 		MarkdownDescription: "",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -24075,7 +24065,6 @@ func (r *GatewaySoloIoGatewayV1Manifest) Read(ctx context.Context, request datas
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("gateway.solo.io/v1")
 	model.Kind = pointer.String("Gateway")
 

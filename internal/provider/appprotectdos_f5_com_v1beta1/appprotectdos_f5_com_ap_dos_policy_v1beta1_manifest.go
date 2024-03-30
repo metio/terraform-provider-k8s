@@ -7,7 +7,6 @@ package appprotectdos_f5_com_v1beta1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewAppprotectdosF5ComApdosPolicyV1Beta1Manifest() datasource.DataSource {
 type AppprotectdosF5ComApdosPolicyV1Beta1Manifest struct{}
 
 type AppprotectdosF5ComApdosPolicyV1Beta1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -62,14 +60,6 @@ func (r *AppprotectdosF5ComApdosPolicyV1Beta1Manifest) Schema(_ context.Context,
 		Description:         "APDosPolicy is the Schema for the APDosPolicy API",
 		MarkdownDescription: "APDosPolicy is the Schema for the APDosPolicy API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -210,7 +200,6 @@ func (r *AppprotectdosF5ComApdosPolicyV1Beta1Manifest) Read(ctx context.Context,
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("appprotectdos.f5.com/v1beta1")
 	model.Kind = pointer.String("APDosPolicy")
 

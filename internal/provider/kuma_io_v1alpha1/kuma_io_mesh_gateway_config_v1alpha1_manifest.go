@@ -31,7 +31,6 @@ func NewKumaIoMeshGatewayConfigV1Alpha1Manifest() datasource.DataSource {
 type KumaIoMeshGatewayConfigV1Alpha1Manifest struct{}
 
 type KumaIoMeshGatewayConfigV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -93,14 +92,6 @@ func (r *KumaIoMeshGatewayConfigV1Alpha1Manifest) Schema(_ context.Context, _ da
 		Description:         "MeshGatewayConfig holds the configuration of a MeshGateway. AGatewayClass can refer to a MeshGatewayConfig via parametersRef.",
 		MarkdownDescription: "MeshGatewayConfig holds the configuration of a MeshGateway. AGatewayClass can refer to a MeshGatewayConfig via parametersRef.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -408,7 +399,6 @@ func (r *KumaIoMeshGatewayConfigV1Alpha1Manifest) Read(ctx context.Context, requ
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("kuma.io/v1alpha1")
 	model.Kind = pointer.String("MeshGatewayConfig")
 

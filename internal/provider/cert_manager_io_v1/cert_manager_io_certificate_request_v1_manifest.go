@@ -7,7 +7,6 @@ package cert_manager_io_v1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewCertManagerIoCertificateRequestV1Manifest() datasource.DataSource {
 type CertManagerIoCertificateRequestV1Manifest struct{}
 
 type CertManagerIoCertificateRequestV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -70,14 +68,6 @@ func (r *CertManagerIoCertificateRequestV1Manifest) Schema(_ context.Context, _ 
 		Description:         "A CertificateRequest is used to request a signed certificate from one of theconfigured issuers.All fields within the CertificateRequest's 'spec' are immutable after creation.A CertificateRequest will either succeed or fail, as denoted by its 'Ready' statuscondition and its 'status.failureTime' field.A CertificateRequest is a one-shot resource, meaning it represents a singlepoint in time request for a certificate and cannot be re-used.",
 		MarkdownDescription: "A CertificateRequest is used to request a signed certificate from one of theconfigured issuers.All fields within the CertificateRequest's 'spec' are immutable after creation.A CertificateRequest will either succeed or fail, as denoted by its 'Ready' statuscondition and its 'status.failureTime' field.A CertificateRequest is a one-shot resource, meaning it represents a singlepoint in time request for a certificate and cannot be re-used.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -266,7 +256,6 @@ func (r *CertManagerIoCertificateRequestV1Manifest) Read(ctx context.Context, re
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("cert-manager.io/v1")
 	model.Kind = pointer.String("CertificateRequest")
 

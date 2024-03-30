@@ -7,7 +7,6 @@ package gateway_networking_k8s_io_v1alpha2
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -33,7 +32,6 @@ func NewGatewayNetworkingK8SIoGrpcrouteV1Alpha2Manifest() datasource.DataSource 
 type GatewayNetworkingK8SIoGrpcrouteV1Alpha2Manifest struct{}
 
 type GatewayNetworkingK8SIoGrpcrouteV1Alpha2ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -168,14 +166,6 @@ func (r *GatewayNetworkingK8SIoGrpcrouteV1Alpha2Manifest) Schema(_ context.Conte
 		Description:         "GRPCRoute provides a way to route gRPC requests. This includes the capabilityto match requests by hostname, gRPC service, gRPC method, or HTTP/2 header.Filters can be used to specify additional processing steps. Backends specifywhere matching requests will be routed.GRPCRoute falls under extended support within the Gateway API. Within thefollowing specification, the word 'MUST' indicates that an implementationsupporting GRPCRoute must conform to the indicated requirement, but animplementation not supporting this route type need not follow the requirementunless explicitly indicated.Implementations supporting 'GRPCRoute' with the 'HTTPS' 'ProtocolType' MUSTaccept HTTP/2 connections without an initial upgrade from HTTP/1.1, i.e. viaALPN. If the implementation does not support this, then it MUST set the'Accepted' condition to 'False' for the affected listener with a reason of'UnsupportedProtocol'.  Implementations MAY also accept HTTP/2 connectionswith an upgrade from HTTP/1.Implementations supporting 'GRPCRoute' with the 'HTTP' 'ProtocolType' MUSTsupport HTTP/2 over cleartext TCP (h2c,https://www.rfc-editor.org/rfc/rfc7540#section-3.1) without an initialupgrade from HTTP/1.1, i.e. with prior knowledge(https://www.rfc-editor.org/rfc/rfc7540#section-3.4). If the implementationdoes not support this, then it MUST set the 'Accepted' condition to 'False'for the affected listener with a reason of 'UnsupportedProtocol'.Implementations MAY also accept HTTP/2 connections with an upgrade fromHTTP/1, i.e. without prior knowledge.",
 		MarkdownDescription: "GRPCRoute provides a way to route gRPC requests. This includes the capabilityto match requests by hostname, gRPC service, gRPC method, or HTTP/2 header.Filters can be used to specify additional processing steps. Backends specifywhere matching requests will be routed.GRPCRoute falls under extended support within the Gateway API. Within thefollowing specification, the word 'MUST' indicates that an implementationsupporting GRPCRoute must conform to the indicated requirement, but animplementation not supporting this route type need not follow the requirementunless explicitly indicated.Implementations supporting 'GRPCRoute' with the 'HTTPS' 'ProtocolType' MUSTaccept HTTP/2 connections without an initial upgrade from HTTP/1.1, i.e. viaALPN. If the implementation does not support this, then it MUST set the'Accepted' condition to 'False' for the affected listener with a reason of'UnsupportedProtocol'.  Implementations MAY also accept HTTP/2 connectionswith an upgrade from HTTP/1.Implementations supporting 'GRPCRoute' with the 'HTTP' 'ProtocolType' MUSTsupport HTTP/2 over cleartext TCP (h2c,https://www.rfc-editor.org/rfc/rfc7540#section-3.1) without an initialupgrade from HTTP/1.1, i.e. with prior knowledge(https://www.rfc-editor.org/rfc/rfc7540#section-3.4). If the implementationdoes not support this, then it MUST set the 'Accepted' condition to 'False'for the affected listener with a reason of 'UnsupportedProtocol'.Implementations MAY also accept HTTP/2 connections with an upgrade fromHTTP/1, i.e. without prior knowledge.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -1208,7 +1198,6 @@ func (r *GatewayNetworkingK8SIoGrpcrouteV1Alpha2Manifest) Read(ctx context.Conte
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("gateway.networking.k8s.io/v1alpha2")
 	model.Kind = pointer.String("GRPCRoute")
 

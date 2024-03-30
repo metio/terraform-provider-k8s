@@ -7,7 +7,6 @@ package imaging_ingestion_alvearie_org_v1alpha1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewImagingIngestionAlvearieOrgDicomEventBridgeV1Alpha1Manifest() datasource
 type ImagingIngestionAlvearieOrgDicomEventBridgeV1Alpha1Manifest struct{}
 
 type ImagingIngestionAlvearieOrgDicomEventBridgeV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -71,14 +69,6 @@ func (r *ImagingIngestionAlvearieOrgDicomEventBridgeV1Alpha1Manifest) Schema(_ c
 		Description:         "DicomEventBridge is the Schema for the dicomeventbridges API",
 		MarkdownDescription: "DicomEventBridge is the Schema for the dicomeventbridges API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -264,7 +254,6 @@ func (r *ImagingIngestionAlvearieOrgDicomEventBridgeV1Alpha1Manifest) Read(ctx c
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("imaging-ingestion.alvearie.org/v1alpha1")
 	model.Kind = pointer.String("DicomEventBridge")
 

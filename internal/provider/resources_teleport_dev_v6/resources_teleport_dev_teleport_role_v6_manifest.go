@@ -7,7 +7,6 @@ package resources_teleport_dev_v6
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewResourcesTeleportDevTeleportRoleV6Manifest() datasource.DataSource {
 type ResourcesTeleportDevTeleportRoleV6Manifest struct{}
 
 type ResourcesTeleportDevTeleportRoleV6ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -302,14 +300,6 @@ func (r *ResourcesTeleportDevTeleportRoleV6Manifest) Schema(_ context.Context, _
 		Description:         "Role is the Schema for the roles API",
 		MarkdownDescription: "Role is the Schema for the roles API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -2267,7 +2257,6 @@ func (r *ResourcesTeleportDevTeleportRoleV6Manifest) Read(ctx context.Context, r
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("resources.teleport.dev/v6")
 	model.Kind = pointer.String("TeleportRole")
 

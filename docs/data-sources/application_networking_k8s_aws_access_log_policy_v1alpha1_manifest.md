@@ -31,7 +31,6 @@ data "k8s_application_networking_k8s_aws_access_log_policy_v1alpha1_manifest" "e
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

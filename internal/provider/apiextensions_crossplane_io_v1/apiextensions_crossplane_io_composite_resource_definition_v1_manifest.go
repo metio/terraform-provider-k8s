@@ -30,7 +30,6 @@ func NewApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest() datasou
 type ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest struct{}
 
 type ApiextensionsCrossplaneIoCompositeResourceDefinitionV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -119,14 +118,6 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Schema(
 		Description:         "A CompositeResourceDefinition defines a new kind of composite infrastructureresource. The new resource is composed of other composite or managedinfrastructure resources.",
 		MarkdownDescription: "A CompositeResourceDefinition defines a new kind of composite infrastructureresource. The new resource is composed of other composite or managedinfrastructure resources.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -653,7 +644,6 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Read(ct
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("apiextensions.crossplane.io/v1")
 	model.Kind = pointer.String("CompositeResourceDefinition")
 

@@ -32,7 +32,6 @@ func NewOperatorOpenshiftIoDnsV1Manifest() datasource.DataSource {
 type OperatorOpenshiftIoDnsV1Manifest struct{}
 
 type OperatorOpenshiftIoDnsV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -110,14 +109,6 @@ func (r *OperatorOpenshiftIoDnsV1Manifest) Schema(_ context.Context, _ datasourc
 		Description:         "DNS manages the CoreDNS component to provide a name resolution service for pods and services in the cluster.  This supports the DNS-based service discovery specification: https://github.com/kubernetes/dns/blob/master/docs/specification.md  More details: https://kubernetes.io/docs/tasks/administer-cluster/coredns  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
 		MarkdownDescription: "DNS manages the CoreDNS component to provide a name resolution service for pods and services in the cluster.  This supports the DNS-based service discovery specification: https://github.com/kubernetes/dns/blob/master/docs/specification.md  More details: https://kubernetes.io/docs/tasks/administer-cluster/coredns  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -581,7 +572,6 @@ func (r *OperatorOpenshiftIoDnsV1Manifest) Read(ctx context.Context, request dat
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("operator.openshift.io/v1")
 	model.Kind = pointer.String("DNS")
 

@@ -30,7 +30,6 @@ func NewCrdProjectcalicoOrgGlobalNetworkSetV1Manifest() datasource.DataSource {
 type CrdProjectcalicoOrgGlobalNetworkSetV1Manifest struct{}
 
 type CrdProjectcalicoOrgGlobalNetworkSetV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -56,14 +55,6 @@ func (r *CrdProjectcalicoOrgGlobalNetworkSetV1Manifest) Schema(_ context.Context
 		Description:         "GlobalNetworkSet contains a set of arbitrary IP sub-networks/CIDRs that share labels to allow rules to refer to them via selectors.  The labels of GlobalNetworkSet are not namespaced.",
 		MarkdownDescription: "GlobalNetworkSet contains a set of arbitrary IP sub-networks/CIDRs that share labels to allow rules to refer to them via selectors.  The labels of GlobalNetworkSet are not namespaced.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -146,7 +137,6 @@ func (r *CrdProjectcalicoOrgGlobalNetworkSetV1Manifest) Read(ctx context.Context
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("crd.projectcalico.org/v1")
 	model.Kind = pointer.String("GlobalNetworkSet")
 

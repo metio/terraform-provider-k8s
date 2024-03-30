@@ -35,7 +35,6 @@ data "k8s_rbac_authorization_k8s_io_cluster_role_v1_manifest" "example" {
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

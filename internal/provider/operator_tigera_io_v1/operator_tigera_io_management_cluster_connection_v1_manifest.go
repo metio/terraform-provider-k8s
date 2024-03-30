@@ -30,7 +30,6 @@ func NewOperatorTigeraIoManagementClusterConnectionV1Manifest() datasource.DataS
 type OperatorTigeraIoManagementClusterConnectionV1Manifest struct{}
 
 type OperatorTigeraIoManagementClusterConnectionV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -87,14 +86,6 @@ func (r *OperatorTigeraIoManagementClusterConnectionV1Manifest) Schema(_ context
 		Description:         "ManagementClusterConnection represents a link between a managed cluster and a management cluster. At most one instance of this resource is supported. It must be named 'tigera-secure'.",
 		MarkdownDescription: "ManagementClusterConnection represents a link between a managed cluster and a management cluster. At most one instance of this resource is supported. It must be named 'tigera-secure'.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -365,7 +356,6 @@ func (r *OperatorTigeraIoManagementClusterConnectionV1Manifest) Read(ctx context
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("operator.tigera.io/v1")
 	model.Kind = pointer.String("ManagementClusterConnection")
 

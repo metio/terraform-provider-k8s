@@ -7,7 +7,6 @@ package oracle_db_anthosapis_com_v1alpha1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -33,7 +32,6 @@ func NewOracleDbAnthosapisComBackupScheduleV1Alpha1Manifest() datasource.DataSou
 type OracleDbAnthosapisComBackupScheduleV1Alpha1Manifest struct{}
 
 type OracleDbAnthosapisComBackupScheduleV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -86,14 +84,6 @@ func (r *OracleDbAnthosapisComBackupScheduleV1Alpha1Manifest) Schema(_ context.C
 		Description:         "BackupSchedule is the Schema for the backupschedules API.",
 		MarkdownDescription: "BackupSchedule is the Schema for the backupschedules API.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -406,7 +396,6 @@ func (r *OracleDbAnthosapisComBackupScheduleV1Alpha1Manifest) Read(ctx context.C
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("oracle.db.anthosapis.com/v1alpha1")
 	model.Kind = pointer.String("BackupSchedule")
 

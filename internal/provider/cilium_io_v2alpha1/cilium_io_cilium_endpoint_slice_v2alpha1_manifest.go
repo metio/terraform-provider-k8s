@@ -30,7 +30,6 @@ func NewCiliumIoCiliumEndpointSliceV2Alpha1Manifest() datasource.DataSource {
 type CiliumIoCiliumEndpointSliceV2Alpha1Manifest struct{}
 
 type CiliumIoCiliumEndpointSliceV2Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -73,14 +72,6 @@ func (r *CiliumIoCiliumEndpointSliceV2Alpha1Manifest) Schema(_ context.Context, 
 		Description:         "CiliumEndpointSlice contains a group of CoreCiliumendpoints.",
 		MarkdownDescription: "CiliumEndpointSlice contains a group of CoreCiliumendpoints.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -276,7 +267,6 @@ func (r *CiliumIoCiliumEndpointSliceV2Alpha1Manifest) Read(ctx context.Context, 
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("cilium.io/v2alpha1")
 	model.Kind = pointer.String("CiliumEndpointSlice")
 

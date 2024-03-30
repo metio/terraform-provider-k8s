@@ -30,7 +30,6 @@ func NewLoggingExtensionsBanzaicloudIoEventTailerV1Alpha1Manifest() datasource.D
 type LoggingExtensionsBanzaicloudIoEventTailerV1Alpha1Manifest struct{}
 
 type LoggingExtensionsBanzaicloudIoEventTailerV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -925,14 +924,6 @@ func (r *LoggingExtensionsBanzaicloudIoEventTailerV1Alpha1Manifest) Schema(_ con
 		Description:         "",
 		MarkdownDescription: "",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -6851,7 +6842,6 @@ func (r *LoggingExtensionsBanzaicloudIoEventTailerV1Alpha1Manifest) Read(ctx con
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("logging-extensions.banzaicloud.io/v1alpha1")
 	model.Kind = pointer.String("EventTailer")
 

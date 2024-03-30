@@ -7,7 +7,6 @@ package cilium_io_v2alpha1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewCiliumIoCiliumNodeConfigV2Alpha1Manifest() datasource.DataSource {
 type CiliumIoCiliumNodeConfigV2Alpha1Manifest struct{}
 
 type CiliumIoCiliumNodeConfigV2Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -66,14 +64,6 @@ func (r *CiliumIoCiliumNodeConfigV2Alpha1Manifest) Schema(_ context.Context, _ d
 		Description:         "CiliumNodeConfig is a list of configuration key-value pairs. It is applied to nodes indicated by a label selector.  If multiple overrides apply to the same node, they will be ordered by name with later Overrides overwriting any conflicting keys.",
 		MarkdownDescription: "CiliumNodeConfig is a list of configuration key-value pairs. It is applied to nodes indicated by a label selector.  If multiple overrides apply to the same node, they will be ordered by name with later Overrides overwriting any conflicting keys.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -222,7 +212,6 @@ func (r *CiliumIoCiliumNodeConfigV2Alpha1Manifest) Read(ctx context.Context, req
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("cilium.io/v2alpha1")
 	model.Kind = pointer.String("CiliumNodeConfig")
 

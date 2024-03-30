@@ -7,7 +7,6 @@ package stunner_l7mp_io_v1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -32,7 +31,6 @@ func NewStunnerL7MpIoGatewayConfigV1Manifest() datasource.DataSource {
 type StunnerL7MpIoGatewayConfigV1Manifest struct{}
 
 type StunnerL7MpIoGatewayConfigV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -73,14 +71,6 @@ func (r *StunnerL7MpIoGatewayConfigV1Manifest) Schema(_ context.Context, _ datas
 		Description:         "GatewayConfig is the Schema for the gatewayconfigs API",
 		MarkdownDescription: "GatewayConfig is the Schema for the gatewayconfigs API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -310,7 +300,6 @@ func (r *StunnerL7MpIoGatewayConfigV1Manifest) Read(ctx context.Context, request
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("stunner.l7mp.io/v1")
 	model.Kind = pointer.String("GatewayConfig")
 

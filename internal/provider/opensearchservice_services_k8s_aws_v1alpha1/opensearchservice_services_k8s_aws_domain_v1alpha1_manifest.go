@@ -7,7 +7,6 @@ package opensearchservice_services_k8s_aws_v1alpha1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewOpensearchserviceServicesK8SAwsDomainV1Alpha1Manifest() datasource.DataS
 type OpensearchserviceServicesK8SAwsDomainV1Alpha1Manifest struct{}
 
 type OpensearchserviceServicesK8SAwsDomainV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -154,14 +152,6 @@ func (r *OpensearchserviceServicesK8SAwsDomainV1Alpha1Manifest) Schema(_ context
 		Description:         "Domain is the Schema for the Domains API",
 		MarkdownDescription: "Domain is the Schema for the Domains API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -900,7 +890,6 @@ func (r *OpensearchserviceServicesK8SAwsDomainV1Alpha1Manifest) Read(ctx context
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("opensearchservice.services.k8s.aws/v1alpha1")
 	model.Kind = pointer.String("Domain")
 

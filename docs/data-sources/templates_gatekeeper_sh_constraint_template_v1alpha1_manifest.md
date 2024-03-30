@@ -34,7 +34,6 @@ data "k8s_templates_gatekeeper_sh_constraint_template_v1alpha1_manifest" "exampl
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

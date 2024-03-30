@@ -30,7 +30,6 @@ func NewPkgCrossplaneIoConfigurationRevisionV1Manifest() datasource.DataSource {
 type PkgCrossplaneIoConfigurationRevisionV1Manifest struct{}
 
 type PkgCrossplaneIoConfigurationRevisionV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -65,14 +64,6 @@ func (r *PkgCrossplaneIoConfigurationRevisionV1Manifest) Schema(_ context.Contex
 		Description:         "A ConfigurationRevision that has been added to Crossplane.",
 		MarkdownDescription: "A ConfigurationRevision that has been added to Crossplane.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -222,7 +213,6 @@ func (r *PkgCrossplaneIoConfigurationRevisionV1Manifest) Read(ctx context.Contex
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("pkg.crossplane.io/v1")
 	model.Kind = pointer.String("ConfigurationRevision")
 

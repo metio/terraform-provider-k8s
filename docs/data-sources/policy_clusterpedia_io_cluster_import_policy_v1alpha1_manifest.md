@@ -34,7 +34,6 @@ data "k8s_policy_clusterpedia_io_cluster_import_policy_v1alpha1_manifest" "examp
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

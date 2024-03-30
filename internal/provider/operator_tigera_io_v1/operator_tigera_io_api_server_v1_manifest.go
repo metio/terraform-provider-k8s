@@ -31,7 +31,6 @@ func NewOperatorTigeraIoApiserverV1Manifest() datasource.DataSource {
 type OperatorTigeraIoApiserverV1Manifest struct{}
 
 type OperatorTigeraIoApiserverV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -241,14 +240,6 @@ func (r *OperatorTigeraIoApiserverV1Manifest) Schema(_ context.Context, _ dataso
 		Description:         "APIServer installs the Tigera API server and related resources. At most one instance of this resource is supported. It must be named 'default' or 'tigera-secure'.",
 		MarkdownDescription: "APIServer installs the Tigera API server and related resources. At most one instance of this resource is supported. It must be named 'default' or 'tigera-secure'.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -1548,7 +1539,6 @@ func (r *OperatorTigeraIoApiserverV1Manifest) Read(ctx context.Context, request 
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("operator.tigera.io/v1")
 	model.Kind = pointer.String("APIServer")
 

@@ -7,7 +7,6 @@ package stunner_l7mp_io_v1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -33,7 +32,6 @@ func NewStunnerL7MpIoUdprouteV1Manifest() datasource.DataSource {
 type StunnerL7MpIoUdprouteV1Manifest struct{}
 
 type StunnerL7MpIoUdprouteV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -77,14 +75,6 @@ func (r *StunnerL7MpIoUdprouteV1Manifest) Schema(_ context.Context, _ datasource
 		Description:         "UDPRoute provides a way to route UDP traffic. When combined with a Gateway listener, it can be used to forward traffic on the port specified by the listener to a set of backends specified by the UDPRoute.  Differences from Gateway API UDPRoutes - port-ranges are correctly handled ([port, endPort]) - port is not mandatory - backend weight is not supported",
 		MarkdownDescription: "UDPRoute provides a way to route UDP traffic. When combined with a Gateway listener, it can be used to forward traffic on the port specified by the listener to a set of backends specified by the UDPRoute.  Differences from Gateway API UDPRoutes - port-ranges are correctly handled ([port, endPort]) - port is not mandatory - backend weight is not supported",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -352,7 +342,6 @@ func (r *StunnerL7MpIoUdprouteV1Manifest) Read(ctx context.Context, request data
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("stunner.l7mp.io/v1")
 	model.Kind = pointer.String("UDPRoute")
 

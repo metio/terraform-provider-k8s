@@ -31,7 +31,6 @@ func NewMutationsGatekeeperShAssignMetadataV1Beta1Manifest() datasource.DataSour
 type MutationsGatekeeperShAssignMetadataV1Beta1Manifest struct{}
 
 type MutationsGatekeeperShAssignMetadataV1Beta1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -98,14 +97,6 @@ func (r *MutationsGatekeeperShAssignMetadataV1Beta1Manifest) Schema(_ context.Co
 		Description:         "AssignMetadata is the Schema for the assignmetadata API.",
 		MarkdownDescription: "AssignMetadata is the Schema for the assignmetadata API.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -472,7 +463,6 @@ func (r *MutationsGatekeeperShAssignMetadataV1Beta1Manifest) Read(ctx context.Co
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("mutations.gatekeeper.sh/v1beta1")
 	model.Kind = pointer.String("AssignMetadata")
 

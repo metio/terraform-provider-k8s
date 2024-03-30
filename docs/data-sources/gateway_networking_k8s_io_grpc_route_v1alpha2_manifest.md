@@ -34,7 +34,6 @@ data "k8s_gateway_networking_k8s_io_grpc_route_v1alpha2_manifest" "example" {
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

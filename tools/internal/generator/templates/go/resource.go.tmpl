@@ -72,7 +72,6 @@ type {{ .ResourceTypeStruct }} struct{
 }
 
 type {{ .ResourceDataStruct }} struct {
-	ID                  types.String {{ .BT }}tfsdk:"id" json:"-"{{ .BT }}
 	ForceConflicts      types.Bool   {{ .BT }}tfsdk:"force_conflicts" json:"-"{{ .BT }}
 	FieldManager        types.String {{ .BT }}tfsdk:"field_manager" json:"-"{{ .BT }}
 	DeletionPropagation types.String {{ .BT }}tfsdk:"deletion_propagation" json:"-"{{ .BT }}
@@ -105,19 +104,6 @@ func (r *{{ .ResourceTypeStruct }}) Schema(_ context.Context, _ resource.SchemaR
 		Description:         "{{ .Description }}",
 		MarkdownDescription: "{{ .Description }}",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				{{ if .Namespaced -}}
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				{{ else -}}
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				{{ end -}}
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"force_conflicts": schema.BoolAttribute{
 				Description:         "If 'true', server-side apply will force the changes against conflicts. If not specified uses the value from the provider configuration.",
 				MarkdownDescription: "If `true`, server-side apply will force the changes against conflicts. If not specified uses the value from the provider configuration.",
@@ -326,11 +312,6 @@ func (r *{{ .ResourceTypeStruct }}) Create(ctx context.Context, request resource
 		return
 	}
 
-	{{ if .Namespaced -}}
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
-	{{ else -}}
-	model.ID = types.StringValue(model.Metadata.Name)
-	{{ end -}}
 	model.ApiVersion = pointer.String("{{ .Group }}/{{ .Version }}")
 	model.Kind = pointer.String("{{ .Kind }}")
 
@@ -621,7 +602,6 @@ func (r *{{ .ResourceTypeStruct }}) ImportState(ctx context.Context, request res
 	}
 	{{ end -}}
 
-	resource.ImportStatePassthroughID(ctx, path.Root("id"), request, response)
 	{{ if .Namespaced -}}
 	response.Diagnostics.Append(response.State.SetAttribute(ctx, path.Root("metadata").AtName("namespace"), namespace)...)
 	response.Diagnostics.Append(response.State.SetAttribute(ctx, path.Root("metadata").AtName("name"), name)...)

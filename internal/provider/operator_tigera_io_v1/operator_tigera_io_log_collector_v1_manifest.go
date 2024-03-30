@@ -30,7 +30,6 @@ func NewOperatorTigeraIoLogCollectorV1Manifest() datasource.DataSource {
 type OperatorTigeraIoLogCollectorV1Manifest struct{}
 
 type OperatorTigeraIoLogCollectorV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -137,14 +136,6 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 		Description:         "LogCollector installs the components required for Tigera flow and DNS log collection. At most one instance of this resource is supported. It must be named 'tigera-secure'. When created, this installs fluentd on all nodes configured to collect Tigera log data and export it to Tigera's Elasticsearch cluster as well as any additionally configured destinations.",
 		MarkdownDescription: "LogCollector installs the components required for Tigera flow and DNS log collection. At most one instance of this resource is supported. It must be named 'tigera-secure'. When created, this installs fluentd on all nodes configured to collect Tigera log data and export it to Tigera's Elasticsearch cluster as well as any additionally configured destinations.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -735,7 +726,6 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Read(ctx context.Context, reque
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("operator.tigera.io/v1")
 	model.Kind = pointer.String("LogCollector")
 

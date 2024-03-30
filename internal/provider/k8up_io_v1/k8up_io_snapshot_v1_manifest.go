@@ -7,7 +7,6 @@ package k8up_io_v1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewK8UpIoSnapshotV1Manifest() datasource.DataSource {
 type K8UpIoSnapshotV1Manifest struct{}
 
 type K8UpIoSnapshotV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -61,14 +59,6 @@ func (r *K8UpIoSnapshotV1Manifest) Schema(_ context.Context, _ datasource.Schema
 		Description:         "Snapshot is the Schema for the snapshots API",
 		MarkdownDescription: "Snapshot is the Schema for the snapshots API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -190,7 +180,6 @@ func (r *K8UpIoSnapshotV1Manifest) Read(ctx context.Context, request datasource.
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("k8up.io/v1")
 	model.Kind = pointer.String("Snapshot")
 

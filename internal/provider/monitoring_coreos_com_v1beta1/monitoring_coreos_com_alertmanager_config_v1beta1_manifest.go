@@ -7,7 +7,6 @@ package monitoring_coreos_com_v1beta1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -33,7 +32,6 @@ func NewMonitoringCoreosComAlertmanagerConfigV1Beta1Manifest() datasource.DataSo
 type MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest struct{}
 
 type MonitoringCoreosComAlertmanagerConfigV1Beta1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -1389,14 +1387,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 		Description:         "AlertmanagerConfig configures the Prometheus Alertmanager, specifying how alerts should be grouped, inhibited and notified to external systems.",
 		MarkdownDescription: "AlertmanagerConfig configures the Prometheus Alertmanager, specifying how alerts should be grouped, inhibited and notified to external systems.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -10396,7 +10386,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Read(ctx context.
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("monitoring.coreos.com/v1beta1")
 	model.Kind = pointer.String("AlertmanagerConfig")
 

@@ -7,7 +7,6 @@ package azure_microsoft_com_v1beta1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -32,7 +31,6 @@ func NewAzureMicrosoftComAzureSqlFirewallRuleV1Beta1Manifest() datasource.DataSo
 type AzureMicrosoftComAzureSqlFirewallRuleV1Beta1Manifest struct{}
 
 type AzureMicrosoftComAzureSqlFirewallRuleV1Beta1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -63,14 +61,6 @@ func (r *AzureMicrosoftComAzureSqlFirewallRuleV1Beta1Manifest) Schema(_ context.
 		Description:         "AzureSqlFirewallRule is the Schema for the azuresqlfirewallrules API",
 		MarkdownDescription: "AzureSqlFirewallRule is the Schema for the azuresqlfirewallrules API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -203,7 +193,6 @@ func (r *AzureMicrosoftComAzureSqlFirewallRuleV1Beta1Manifest) Read(ctx context.
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("azure.microsoft.com/v1beta1")
 	model.Kind = pointer.String("AzureSqlFirewallRule")
 

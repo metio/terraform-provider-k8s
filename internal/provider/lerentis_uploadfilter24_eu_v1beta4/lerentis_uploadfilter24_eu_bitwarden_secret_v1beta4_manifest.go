@@ -7,7 +7,6 @@ package lerentis_uploadfilter24_eu_v1beta4
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewLerentisUploadfilter24EuBitwardenSecretV1Beta4Manifest() datasource.Data
 type LerentisUploadfilter24EuBitwardenSecretV1Beta4Manifest struct{}
 
 type LerentisUploadfilter24EuBitwardenSecretV1Beta4ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -67,14 +65,6 @@ func (r *LerentisUploadfilter24EuBitwardenSecretV1Beta4Manifest) Schema(_ contex
 		Description:         "",
 		MarkdownDescription: "",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -228,7 +218,6 @@ func (r *LerentisUploadfilter24EuBitwardenSecretV1Beta4Manifest) Read(ctx contex
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("lerentis.uploadfilter24.eu/v1beta4")
 	model.Kind = pointer.String("BitwardenSecret")
 

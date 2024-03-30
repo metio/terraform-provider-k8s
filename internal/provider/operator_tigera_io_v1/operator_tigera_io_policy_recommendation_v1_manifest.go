@@ -30,7 +30,6 @@ func NewOperatorTigeraIoPolicyRecommendationV1Manifest() datasource.DataSource {
 type OperatorTigeraIoPolicyRecommendationV1Manifest struct{}
 
 type OperatorTigeraIoPolicyRecommendationV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -83,14 +82,6 @@ func (r *OperatorTigeraIoPolicyRecommendationV1Manifest) Schema(_ context.Contex
 		Description:         "PolicyRecommendation is the Schema for the policy recommendation API. At most one instance of this resource is supported. It must be named 'tigera-secure'.",
 		MarkdownDescription: "PolicyRecommendation is the Schema for the policy recommendation API. At most one instance of this resource is supported. It must be named 'tigera-secure'.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -336,7 +327,6 @@ func (r *OperatorTigeraIoPolicyRecommendationV1Manifest) Read(ctx context.Contex
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("operator.tigera.io/v1")
 	model.Kind = pointer.String("PolicyRecommendation")
 

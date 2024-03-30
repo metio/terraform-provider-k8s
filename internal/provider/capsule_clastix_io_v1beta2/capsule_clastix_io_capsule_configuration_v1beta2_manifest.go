@@ -30,7 +30,6 @@ func NewCapsuleClastixIoCapsuleConfigurationV1Beta2Manifest() datasource.DataSou
 type CapsuleClastixIoCapsuleConfigurationV1Beta2Manifest struct{}
 
 type CapsuleClastixIoCapsuleConfigurationV1Beta2ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -74,14 +73,6 @@ func (r *CapsuleClastixIoCapsuleConfigurationV1Beta2Manifest) Schema(_ context.C
 		Description:         "CapsuleConfiguration is the Schema for the Capsule configuration API.",
 		MarkdownDescription: "CapsuleConfiguration is the Schema for the Capsule configuration API.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -282,7 +273,6 @@ func (r *CapsuleClastixIoCapsuleConfigurationV1Beta2Manifest) Read(ctx context.C
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("capsule.clastix.io/v1beta2")
 	model.Kind = pointer.String("CapsuleConfiguration")
 

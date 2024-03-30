@@ -30,7 +30,6 @@ func NewGroupsnapshotStorageK8SIoVolumeGroupSnapshotContentV1Alpha1Manifest() da
 type GroupsnapshotStorageK8SIoVolumeGroupSnapshotContentV1Alpha1Manifest struct{}
 
 type GroupsnapshotStorageK8SIoVolumeGroupSnapshotContentV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -74,14 +73,6 @@ func (r *GroupsnapshotStorageK8SIoVolumeGroupSnapshotContentV1Alpha1Manifest) Sc
 		Description:         "VolumeGroupSnapshotContent represents the actual 'on-disk' group snapshot object in the underlying storage system",
 		MarkdownDescription: "VolumeGroupSnapshotContent represents the actual 'on-disk' group snapshot object in the underlying storage system",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -291,7 +282,6 @@ func (r *GroupsnapshotStorageK8SIoVolumeGroupSnapshotContentV1Alpha1Manifest) Re
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("groupsnapshot.storage.k8s.io/v1alpha1")
 	model.Kind = pointer.String("VolumeGroupSnapshotContent")
 

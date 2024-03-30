@@ -31,7 +31,6 @@ data "k8s_core_kubeadmiral_io_cluster_federated_object_v1alpha1_manifest" "examp
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

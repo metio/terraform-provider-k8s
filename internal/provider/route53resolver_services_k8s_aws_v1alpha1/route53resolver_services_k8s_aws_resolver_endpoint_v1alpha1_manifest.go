@@ -7,7 +7,6 @@ package route53resolver_services_k8s_aws_v1alpha1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewRoute53ResolverServicesK8SAwsResolverEndpointV1Alpha1Manifest() datasour
 type Route53ResolverServicesK8SAwsResolverEndpointV1Alpha1Manifest struct{}
 
 type Route53ResolverServicesK8SAwsResolverEndpointV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -80,14 +78,6 @@ func (r *Route53ResolverServicesK8SAwsResolverEndpointV1Alpha1Manifest) Schema(_
 		Description:         "ResolverEndpoint is the Schema for the ResolverEndpoints API",
 		MarkdownDescription: "ResolverEndpoint is the Schema for the ResolverEndpoints API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -322,7 +312,6 @@ func (r *Route53ResolverServicesK8SAwsResolverEndpointV1Alpha1Manifest) Read(ctx
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("route53resolver.services.k8s.aws/v1alpha1")
 	model.Kind = pointer.String("ResolverEndpoint")
 

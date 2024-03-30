@@ -7,7 +7,6 @@ package stunner_l7mp_io_v1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewStunnerL7MpIoStaticServiceV1Manifest() datasource.DataSource {
 type StunnerL7MpIoStaticServiceV1Manifest struct{}
 
 type StunnerL7MpIoStaticServiceV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -58,14 +56,6 @@ func (r *StunnerL7MpIoStaticServiceV1Manifest) Schema(_ context.Context, _ datas
 		Description:         "StaticService is a set of static IP address prefixes STUNner allows access to via a UDPRoute (or TCPRoute in the future). In contrast to Kubernetes Services, StaticServices expose all ports on the given IPs. See also https://github.com/kubernetes/enhancements/pull/2611.",
 		MarkdownDescription: "StaticService is a set of static IP address prefixes STUNner allows access to via a UDPRoute (or TCPRoute in the future). In contrast to Kubernetes Services, StaticServices expose all ports on the given IPs. See also https://github.com/kubernetes/enhancements/pull/2611.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -160,7 +150,6 @@ func (r *StunnerL7MpIoStaticServiceV1Manifest) Read(ctx context.Context, request
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("stunner.l7mp.io/v1")
 	model.Kind = pointer.String("StaticService")
 

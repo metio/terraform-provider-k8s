@@ -31,7 +31,6 @@ func NewOperatorTigeraIoMonitorV1Manifest() datasource.DataSource {
 type OperatorTigeraIoMonitorV1Manifest struct{}
 
 type OperatorTigeraIoMonitorV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -126,14 +125,6 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 		Description:         "Monitor is the Schema for the monitor API. At most one instance of this resource is supported. It must be named 'tigera-secure'.",
 		MarkdownDescription: "Monitor is the Schema for the monitor API. At most one instance of this resource is supported. It must be named 'tigera-secure'.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -680,7 +671,6 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Read(ctx context.Context, request da
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("operator.tigera.io/v1")
 	model.Kind = pointer.String("Monitor")
 

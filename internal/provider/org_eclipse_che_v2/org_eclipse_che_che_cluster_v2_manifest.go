@@ -7,7 +7,6 @@ package org_eclipse_che_v2
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -33,7 +32,6 @@ func NewOrgEclipseCheCheClusterV2Manifest() datasource.DataSource {
 type OrgEclipseCheCheClusterV2Manifest struct{}
 
 type OrgEclipseCheCheClusterV2ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -858,14 +856,6 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 		Description:         "The 'CheCluster' custom resource allows defining and managing Eclipse Che server installation. Based on these settings, the  Operator automatically creates and maintains several ConfigMaps: 'che', 'plugin-registry', 'devfile-registry' that will contain the appropriate environment variables of the various components of the installation. These generated ConfigMaps must NOT be updated manually.",
 		MarkdownDescription: "The 'CheCluster' custom resource allows defining and managing Eclipse Che server installation. Based on these settings, the  Operator automatically creates and maintains several ConfigMaps: 'che', 'plugin-registry', 'devfile-registry' that will contain the appropriate environment variables of the various components of the installation. These generated ConfigMaps must NOT be updated manually.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -6434,7 +6424,6 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Read(ctx context.Context, request da
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("org.eclipse.che/v2")
 	model.Kind = pointer.String("CheCluster")
 

@@ -7,7 +7,6 @@ package operator_victoriametrics_com_v1beta1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewOperatorVictoriametricsComVmuserV1Beta1Manifest() datasource.DataSource 
 type OperatorVictoriametricsComVmuserV1Beta1Manifest struct{}
 
 type OperatorVictoriametricsComVmuserV1Beta1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -105,14 +103,6 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 		Description:         "VMUser is the Schema for the vmusers API",
 		MarkdownDescription: "VMUser is the Schema for the vmusers API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -561,7 +551,6 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Read(ctx context.Conte
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("operator.victoriametrics.com/v1beta1")
 	model.Kind = pointer.String("VMUser")
 

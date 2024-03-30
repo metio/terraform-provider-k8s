@@ -31,7 +31,6 @@ func NewCiliumIoCiliumNodeV2Manifest() datasource.DataSource {
 type CiliumIoCiliumNodeV2Manifest struct{}
 
 type CiliumIoCiliumNodeV2ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -129,14 +128,6 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 		Description:         "CiliumNode represents a node managed by Cilium. It contains a specification to control various node specific configuration aspects and a status section to represent the status of the node.",
 		MarkdownDescription: "CiliumNode represents a node managed by Cilium. It contains a specification to control various node specific configuration aspects and a status section to represent the status of the node.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -750,7 +741,6 @@ func (r *CiliumIoCiliumNodeV2Manifest) Read(ctx context.Context, request datasou
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("cilium.io/v2")
 	model.Kind = pointer.String("CiliumNode")
 

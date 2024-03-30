@@ -34,7 +34,6 @@ data "k8s_logging_extensions_banzaicloud_io_event_tailer_v1alpha1_manifest" "exa
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

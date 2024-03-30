@@ -30,7 +30,6 @@ func NewNativestorAlaudaIoRawDeviceV1Manifest() datasource.DataSource {
 type NativestorAlaudaIoRawDeviceV1Manifest struct{}
 
 type NativestorAlaudaIoRawDeviceV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -63,14 +62,6 @@ func (r *NativestorAlaudaIoRawDeviceV1Manifest) Schema(_ context.Context, _ data
 		Description:         "RawDevice is the Schema for the rawdevices API",
 		MarkdownDescription: "RawDevice is the Schema for the rawdevices API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -208,7 +199,6 @@ func (r *NativestorAlaudaIoRawDeviceV1Manifest) Read(ctx context.Context, reques
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("nativestor.alauda.io/v1")
 	model.Kind = pointer.String("RawDevice")
 

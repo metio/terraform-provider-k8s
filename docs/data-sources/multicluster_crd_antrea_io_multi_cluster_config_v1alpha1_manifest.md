@@ -34,7 +34,6 @@ data "k8s_multicluster_crd_antrea_io_multi_cluster_config_v1alpha1_manifest" "ex
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

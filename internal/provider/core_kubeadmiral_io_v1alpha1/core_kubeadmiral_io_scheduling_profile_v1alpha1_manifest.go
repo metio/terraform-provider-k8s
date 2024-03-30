@@ -31,7 +31,6 @@ func NewCoreKubeadmiralIoSchedulingProfileV1Alpha1Manifest() datasource.DataSour
 type CoreKubeadmiralIoSchedulingProfileV1Alpha1Manifest struct{}
 
 type CoreKubeadmiralIoSchedulingProfileV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -98,14 +97,6 @@ func (r *CoreKubeadmiralIoSchedulingProfileV1Alpha1Manifest) Schema(_ context.Co
 		Description:         "SchedulingProfile configures the plugins to use when scheduling a resource",
 		MarkdownDescription: "SchedulingProfile configures the plugins to use when scheduling a resource",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -489,7 +480,6 @@ func (r *CoreKubeadmiralIoSchedulingProfileV1Alpha1Manifest) Read(ctx context.Co
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("core.kubeadmiral.io/v1alpha1")
 	model.Kind = pointer.String("SchedulingProfile")
 

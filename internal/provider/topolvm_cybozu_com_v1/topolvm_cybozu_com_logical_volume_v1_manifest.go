@@ -30,7 +30,6 @@ func NewTopolvmCybozuComLogicalVolumeV1Manifest() datasource.DataSource {
 type TopolvmCybozuComLogicalVolumeV1Manifest struct{}
 
 type TopolvmCybozuComLogicalVolumeV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -59,14 +58,6 @@ func (r *TopolvmCybozuComLogicalVolumeV1Manifest) Schema(_ context.Context, _ da
 		Description:         "LogicalVolume is the Schema for the logicalvolumes API",
 		MarkdownDescription: "LogicalVolume is the Schema for the logicalvolumes API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -172,7 +163,6 @@ func (r *TopolvmCybozuComLogicalVolumeV1Manifest) Read(ctx context.Context, requ
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("topolvm.cybozu.com/v1")
 	model.Kind = pointer.String("LogicalVolume")
 

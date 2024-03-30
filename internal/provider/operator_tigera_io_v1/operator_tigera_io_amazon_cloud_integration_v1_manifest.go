@@ -30,7 +30,6 @@ func NewOperatorTigeraIoAmazonCloudIntegrationV1Manifest() datasource.DataSource
 type OperatorTigeraIoAmazonCloudIntegrationV1Manifest struct{}
 
 type OperatorTigeraIoAmazonCloudIntegrationV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -63,14 +62,6 @@ func (r *OperatorTigeraIoAmazonCloudIntegrationV1Manifest) Schema(_ context.Cont
 		Description:         "AmazonCloudIntegration is the Schema for the amazoncloudintegrations API",
 		MarkdownDescription: "AmazonCloudIntegration is the Schema for the amazoncloudintegrations API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -213,7 +204,6 @@ func (r *OperatorTigeraIoAmazonCloudIntegrationV1Manifest) Read(ctx context.Cont
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("operator.tigera.io/v1")
 	model.Kind = pointer.String("AmazonCloudIntegration")
 

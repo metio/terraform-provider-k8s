@@ -7,7 +7,6 @@ package getambassador_io_v2
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewGetambassadorIoHostV2Manifest() datasource.DataSource {
 type GetambassadorIoHostV2Manifest struct{}
 
 type GetambassadorIoHostV2ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -107,14 +105,6 @@ func (r *GetambassadorIoHostV2Manifest) Schema(_ context.Context, _ datasource.S
 		Description:         "Host is the Schema for the hosts API",
 		MarkdownDescription: "Host is the Schema for the hosts API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -543,7 +533,6 @@ func (r *GetambassadorIoHostV2Manifest) Read(ctx context.Context, request dataso
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("getambassador.io/v2")
 	model.Kind = pointer.String("Host")
 

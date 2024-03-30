@@ -7,7 +7,6 @@ package infrastructure_cluster_x_k8s_io_v1beta1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -32,7 +31,6 @@ func NewInfrastructureClusterXK8SIoIbmpowerVsmachineV1Beta1Manifest() datasource
 type InfrastructureClusterXK8SIoIbmpowerVsmachineV1Beta1Manifest struct{}
 
 type InfrastructureClusterXK8SIoIbmpowerVsmachineV1Beta1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -78,14 +76,6 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsmachineV1Beta1Manifest) Schema(_ c
 		Description:         "IBMPowerVSMachine is the Schema for the ibmpowervsmachines API.",
 		MarkdownDescription: "IBMPowerVSMachine is the Schema for the ibmpowervsmachines API.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -334,7 +324,6 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsmachineV1Beta1Manifest) Read(ctx c
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("infrastructure.cluster.x-k8s.io/v1beta1")
 	model.Kind = pointer.String("IBMPowerVSMachine")
 

@@ -30,7 +30,6 @@ func NewRegistryDevfileIoClusterDevfileRegistriesListV1Alpha1Manifest() datasour
 type RegistryDevfileIoClusterDevfileRegistriesListV1Alpha1Manifest struct{}
 
 type RegistryDevfileIoClusterDevfileRegistriesListV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -60,14 +59,6 @@ func (r *RegistryDevfileIoClusterDevfileRegistriesListV1Alpha1Manifest) Schema(_
 		Description:         "ClusterDevfileRegistriesList is a custom resource where cluster admins can add a list of Devfile Registries to allow devfiles to be visible at the cluster level.  In order to be added to the list, the Devfile Registries must be reachable, supports the Devfile v2.0 spec and above, and is not using the default namespace.",
 		MarkdownDescription: "ClusterDevfileRegistriesList is a custom resource where cluster admins can add a list of Devfile Registries to allow devfiles to be visible at the cluster level.  In order to be added to the list, the Devfile Registries must be reachable, supports the Devfile v2.0 spec and above, and is not using the default namespace.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -176,7 +167,6 @@ func (r *RegistryDevfileIoClusterDevfileRegistriesListV1Alpha1Manifest) Read(ctx
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("registry.devfile.io/v1alpha1")
 	model.Kind = pointer.String("ClusterDevfileRegistriesList")
 

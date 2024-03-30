@@ -30,7 +30,6 @@ func NewScyllaScylladbComScyllaOperatorConfigV1Alpha1Manifest() datasource.DataS
 type ScyllaScylladbComScyllaOperatorConfigV1Alpha1Manifest struct{}
 
 type ScyllaScylladbComScyllaOperatorConfigV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -56,14 +55,6 @@ func (r *ScyllaScylladbComScyllaOperatorConfigV1Alpha1Manifest) Schema(_ context
 		Description:         "ScyllaOperatorConfig describes the Scylla Operator configuration.",
 		MarkdownDescription: "ScyllaOperatorConfig describes the Scylla Operator configuration.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -148,7 +139,6 @@ func (r *ScyllaScylladbComScyllaOperatorConfigV1Alpha1Manifest) Read(ctx context
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("scylla.scylladb.com/v1alpha1")
 	model.Kind = pointer.String("ScyllaOperatorConfig")
 

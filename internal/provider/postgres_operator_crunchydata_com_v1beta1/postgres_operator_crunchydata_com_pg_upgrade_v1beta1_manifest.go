@@ -7,7 +7,6 @@ package postgres_operator_crunchydata_com_v1beta1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -32,7 +31,6 @@ func NewPostgresOperatorCrunchydataComPgupgradeV1Beta1Manifest() datasource.Data
 type PostgresOperatorCrunchydataComPgupgradeV1Beta1Manifest struct{}
 
 type PostgresOperatorCrunchydataComPgupgradeV1Beta1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -206,14 +204,6 @@ func (r *PostgresOperatorCrunchydataComPgupgradeV1Beta1Manifest) Schema(_ contex
 		Description:         "PGUpgrade is the Schema for the pgupgrades API",
 		MarkdownDescription: "PGUpgrade is the Schema for the pgupgrades API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -1299,7 +1289,6 @@ func (r *PostgresOperatorCrunchydataComPgupgradeV1Beta1Manifest) Read(ctx contex
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("postgres-operator.crunchydata.com/v1beta1")
 	model.Kind = pointer.String("PGUpgrade")
 

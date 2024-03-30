@@ -7,7 +7,6 @@ package pgv2_percona_com_v2
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -32,7 +31,6 @@ func NewPgv2PerconaComPerconaPgrestoreV2Manifest() datasource.DataSource {
 type Pgv2PerconaComPerconaPgrestoreV2Manifest struct{}
 
 type Pgv2PerconaComPerconaPgrestoreV2ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -61,14 +59,6 @@ func (r *Pgv2PerconaComPerconaPgrestoreV2Manifest) Schema(_ context.Context, _ d
 		Description:         "PerconaPGRestore is the CRD that defines a Percona PostgreSQL Restore",
 		MarkdownDescription: "PerconaPGRestore is the CRD that defines a Percona PostgreSQL Restore",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -182,7 +172,6 @@ func (r *Pgv2PerconaComPerconaPgrestoreV2Manifest) Read(ctx context.Context, req
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("pgv2.percona.com/v2")
 	model.Kind = pointer.String("PerconaPGRestore")
 

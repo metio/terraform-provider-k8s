@@ -7,7 +7,6 @@ package helm_toolkit_fluxcd_io_v2beta2
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -32,7 +31,6 @@ func NewHelmToolkitFluxcdIoHelmReleaseV2Beta2Manifest() datasource.DataSource {
 type HelmToolkitFluxcdIoHelmReleaseV2Beta2Manifest struct{}
 
 type HelmToolkitFluxcdIoHelmReleaseV2Beta2ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -224,14 +222,6 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta2Manifest) Schema(_ context.Context
 		Description:         "HelmRelease is the Schema for the helmreleases API",
 		MarkdownDescription: "HelmRelease is the Schema for the helmreleases API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -1565,7 +1555,6 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta2Manifest) Read(ctx context.Context
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("helm.toolkit.fluxcd.io/v2beta2")
 	model.Kind = pointer.String("HelmRelease")
 

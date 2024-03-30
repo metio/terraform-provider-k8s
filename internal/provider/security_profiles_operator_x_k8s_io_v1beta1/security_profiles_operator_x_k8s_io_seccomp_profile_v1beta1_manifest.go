@@ -7,7 +7,6 @@ package security_profiles_operator_x_k8s_io_v1beta1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -32,7 +31,6 @@ func NewSecurityProfilesOperatorXK8SIoSeccompProfileV1Beta1Manifest() datasource
 type SecurityProfilesOperatorXK8SIoSeccompProfileV1Beta1Manifest struct{}
 
 type SecurityProfilesOperatorXK8SIoSeccompProfileV1Beta1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -76,14 +74,6 @@ func (r *SecurityProfilesOperatorXK8SIoSeccompProfileV1Beta1Manifest) Schema(_ c
 		Description:         "SeccompProfile is a cluster level specification for a seccomp profile.See https://github.com/opencontainers/runtime-spec/blob/master/config-linux.md#seccomp",
 		MarkdownDescription: "SeccompProfile is a cluster level specification for a seccomp profile.See https://github.com/opencontainers/runtime-spec/blob/master/config-linux.md#seccomp",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -324,7 +314,6 @@ func (r *SecurityProfilesOperatorXK8SIoSeccompProfileV1Beta1Manifest) Read(ctx c
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("security-profiles-operator.x-k8s.io/v1beta1")
 	model.Kind = pointer.String("SeccompProfile")
 

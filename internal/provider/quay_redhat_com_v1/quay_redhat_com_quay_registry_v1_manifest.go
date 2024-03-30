@@ -7,7 +7,6 @@ package quay_redhat_com_v1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewQuayRedhatComQuayRegistryV1Manifest() datasource.DataSource {
 type QuayRedhatComQuayRegistryV1Manifest struct{}
 
 type QuayRedhatComQuayRegistryV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -220,14 +218,6 @@ func (r *QuayRedhatComQuayRegistryV1Manifest) Schema(_ context.Context, _ dataso
 		Description:         "QuayRegistry is the Schema for the quayregistries API.",
 		MarkdownDescription: "QuayRegistry is the Schema for the quayregistries API.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -1384,7 +1374,6 @@ func (r *QuayRedhatComQuayRegistryV1Manifest) Read(ctx context.Context, request 
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("quay.redhat.com/v1")
 	model.Kind = pointer.String("QuayRegistry")
 

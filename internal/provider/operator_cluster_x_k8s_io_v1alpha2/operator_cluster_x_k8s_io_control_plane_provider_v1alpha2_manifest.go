@@ -7,7 +7,6 @@ package operator_cluster_x_k8s_io_v1alpha2
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -32,7 +31,6 @@ func NewOperatorClusterXK8SIoControlPlaneProviderV1Alpha2Manifest() datasource.D
 type OperatorClusterXK8SIoControlPlaneProviderV1Alpha2Manifest struct{}
 
 type OperatorClusterXK8SIoControlPlaneProviderV1Alpha2ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -291,14 +289,6 @@ func (r *OperatorClusterXK8SIoControlPlaneProviderV1Alpha2Manifest) Schema(_ con
 		Description:         "ControlPlaneProvider is the Schema for the controlplaneproviders API.",
 		MarkdownDescription: "ControlPlaneProvider is the Schema for the controlplaneproviders API.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -1940,7 +1930,6 @@ func (r *OperatorClusterXK8SIoControlPlaneProviderV1Alpha2Manifest) Read(ctx con
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("operator.cluster.x-k8s.io/v1alpha2")
 	model.Kind = pointer.String("ControlPlaneProvider")
 

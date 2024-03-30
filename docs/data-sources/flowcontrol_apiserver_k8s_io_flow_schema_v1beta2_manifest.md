@@ -34,7 +34,6 @@ data "k8s_flowcontrol_apiserver_k8s_io_flow_schema_v1beta2_manifest" "example" {
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

@@ -30,7 +30,6 @@ func NewConfigKoordinatorShClusterColocationProfileV1Alpha1Manifest() datasource
 type ConfigKoordinatorShClusterColocationProfileV1Alpha1Manifest struct{}
 
 type ConfigKoordinatorShClusterColocationProfileV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -81,14 +80,6 @@ func (r *ConfigKoordinatorShClusterColocationProfileV1Alpha1Manifest) Schema(_ c
 		Description:         "ClusterColocationProfile is the Schema for the ClusterColocationProfile API",
 		MarkdownDescription: "ClusterColocationProfile is the Schema for the ClusterColocationProfile API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -358,7 +349,6 @@ func (r *ConfigKoordinatorShClusterColocationProfileV1Alpha1Manifest) Read(ctx c
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("config.koordinator.sh/v1alpha1")
 	model.Kind = pointer.String("ClusterColocationProfile")
 

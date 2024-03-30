@@ -31,7 +31,6 @@ func NewCiliumIoCiliumPodIppoolV2Alpha1Manifest() datasource.DataSource {
 type CiliumIoCiliumPodIppoolV2Alpha1Manifest struct{}
 
 type CiliumIoCiliumPodIppoolV2Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -64,14 +63,6 @@ func (r *CiliumIoCiliumPodIppoolV2Alpha1Manifest) Schema(_ context.Context, _ da
 		Description:         "CiliumPodIPPool defines an IP pool that can be used for pooled IPAM (i.e. the multi-pool IPAM mode).",
 		MarkdownDescription: "CiliumPodIPPool defines an IP pool that can be used for pooled IPAM (i.e. the multi-pool IPAM mode).",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -205,7 +196,6 @@ func (r *CiliumIoCiliumPodIppoolV2Alpha1Manifest) Read(ctx context.Context, requ
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("cilium.io/v2alpha1")
 	model.Kind = pointer.String("CiliumPodIPPool")
 

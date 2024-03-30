@@ -7,7 +7,6 @@ package couchbase_com_v2
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewCouchbaseComCouchbaseCollectionGroupV2Manifest() datasource.DataSource {
 type CouchbaseComCouchbaseCollectionGroupV2Manifest struct{}
 
 type CouchbaseComCouchbaseCollectionGroupV2ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -59,14 +57,6 @@ func (r *CouchbaseComCouchbaseCollectionGroupV2Manifest) Schema(_ context.Contex
 		Description:         "CouchbaseCollectionGroup represent the finest grained size of data storage in Couchbase. Collections contain all documents and indexes in the system.  Collections also form the finest grain basis for role-based access control (RBAC) and cross-datacenter replication (XDCR).  In order to be considered by the Operator, every collection group must be referenced by a 'CouchbaseScope' or 'CouchbaseScopeGroup' resource.  Unlike the CouchbaseCollection resource, a collection group represents multiple collections, with common configuration parameters, to be expressed as a single resource, minimizing required configuration and Kubernetes API traffic.  It also forms the basis of Couchbase RBAC security boundaries.",
 		MarkdownDescription: "CouchbaseCollectionGroup represent the finest grained size of data storage in Couchbase. Collections contain all documents and indexes in the system.  Collections also form the finest grain basis for role-based access control (RBAC) and cross-datacenter replication (XDCR).  In order to be considered by the Operator, every collection group must be referenced by a 'CouchbaseScope' or 'CouchbaseScopeGroup' resource.  Unlike the CouchbaseCollection resource, a collection group represents multiple collections, with common configuration parameters, to be expressed as a single resource, minimizing required configuration and Kubernetes API traffic.  It also forms the basis of Couchbase RBAC security boundaries.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -169,7 +159,6 @@ func (r *CouchbaseComCouchbaseCollectionGroupV2Manifest) Read(ctx context.Contex
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("couchbase.com/v2")
 	model.Kind = pointer.String("CouchbaseCollectionGroup")
 
