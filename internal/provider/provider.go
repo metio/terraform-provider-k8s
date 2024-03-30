@@ -90,8 +90,8 @@ func (p *K8sProvider) Schema(_ context.Context, _ provider.SchemaRequest, resp *
 				Sensitive:           false,
 			},
 			"offline": schema.BoolAttribute{
-				Description:         "Enable offline mode for this provider. In offline mode, no connection to a kubernetes cluster will be performed, therefore no resource or data source can be created except manifest data sources (those ending with _manifest). Can be specified with the 'TF_K8S_OFFLINE' environment variable. Defaults to 'false'.",
-				MarkdownDescription: "Enable offline mode for this provider. In offline mode, no connection to a kubernetes cluster will be performed, therefore no resource or data source can be created except manifest data sources (those ending with _manifest). Can be specified with the `TF_K8S_OFFLINE` environment variable. Defaults to `false`.",
+				Description:         "Enable offline mode for this provider. In offline mode, no connection to a kubernetes cluster will be performed, therefore no resource or data source can be created except manifest data sources (those ending with _manifest). Can be specified with the 'TF_K8S_OFFLINE' environment variable. Defaults to 'true'.",
+				MarkdownDescription: "Enable offline mode for this provider. In offline mode, no connection to a kubernetes cluster will be performed, therefore no resource or data source can be created except manifest data sources (those ending with _manifest). Can be specified with the `TF_K8S_OFFLINE` environment variable. Defaults to `true`.",
 				Required:            false,
 				Optional:            true,
 				Sensitive:           false,
