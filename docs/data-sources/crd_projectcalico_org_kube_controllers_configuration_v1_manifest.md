@@ -94,7 +94,7 @@ Optional:
 - `sync_labels` (String) SyncLabels controls whether to copy Kubernetes node labels to Calico nodes. [Default: Enabled]
 
 <a id="nestedatt--spec--controllers--node--host_endpoint"></a>
-### Nested Schema for `spec.controllers.node.sync_labels`
+### Nested Schema for `spec.controllers.node.host_endpoint`
 
 Optional:
 

@@ -92,7 +92,7 @@ Optional:
 - `label_selector` (Map of String)
 
 <a id="nestedatt--spec--configs--api_key_auth--aerospike_apikey_storage"></a>
-### Nested Schema for `spec.configs.api_key_auth.label_selector`
+### Nested Schema for `spec.configs.api_key_auth.aerospike_apikey_storage`
 
 Optional:
 
@@ -147,7 +147,7 @@ Optional:
 
 
 <a id="nestedatt--spec--configs--api_key_auth--api_key_secret_refs"></a>
-### Nested Schema for `spec.configs.api_key_auth.label_selector`
+### Nested Schema for `spec.configs.api_key_auth.api_key_secret_refs`
 
 Optional:
 
@@ -156,7 +156,7 @@ Optional:
 
 
 <a id="nestedatt--spec--configs--api_key_auth--headers_from_metadata"></a>
-### Nested Schema for `spec.configs.api_key_auth.label_selector`
+### Nested Schema for `spec.configs.api_key_auth.headers_from_metadata`
 
 Optional:
 
@@ -165,7 +165,7 @@ Optional:
 
 
 <a id="nestedatt--spec--configs--api_key_auth--headers_from_metadata_entry"></a>
-### Nested Schema for `spec.configs.api_key_auth.label_selector`
+### Nested Schema for `spec.configs.api_key_auth.headers_from_metadata_entry`
 
 Optional:
 
@@ -174,7 +174,7 @@ Optional:
 
 
 <a id="nestedatt--spec--configs--api_key_auth--k8s_secret_apikey_storage"></a>
-### Nested Schema for `spec.configs.api_key_auth.label_selector`
+### Nested Schema for `spec.configs.api_key_auth.k8s_secret_apikey_storage`
 
 Optional:
 
@@ -203,7 +203,7 @@ Optional:
 - `user_list` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--basic_auth--user_list))
 
 <a id="nestedatt--spec--configs--basic_auth--apr"></a>
-### Nested Schema for `spec.configs.basic_auth.user_list`
+### Nested Schema for `spec.configs.basic_auth.apr`
 
 Optional:
 
@@ -220,7 +220,7 @@ Optional:
 
 
 <a id="nestedatt--spec--configs--basic_auth--encryption"></a>
-### Nested Schema for `spec.configs.basic_auth.user_list`
+### Nested Schema for `spec.configs.basic_auth.encryption`
 
 Optional:
 
@@ -287,7 +287,7 @@ Optional:
 - `user_dn_template` (String)
 
 <a id="nestedatt--spec--configs--ldap--group_lookup_settings"></a>
-### Nested Schema for `spec.configs.ldap.user_dn_template`
+### Nested Schema for `spec.configs.ldap.group_lookup_settings`
 
 Optional:
 
@@ -305,7 +305,7 @@ Optional:
 
 
 <a id="nestedatt--spec--configs--ldap--pool"></a>
-### Nested Schema for `spec.configs.ldap.user_dn_template`
+### Nested Schema for `spec.configs.ldap.pool`
 
 Optional:
 
@@ -328,7 +328,7 @@ Optional:
 - `scopes` (List of String)
 
 <a id="nestedatt--spec--configs--oauth--client_secret_ref"></a>
-### Nested Schema for `spec.configs.oauth.scopes`
+### Nested Schema for `spec.configs.oauth.client_secret_ref`
 
 Optional:
 
@@ -347,7 +347,7 @@ Optional:
 - `oidc_authorization_code` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--oauth2--oidc_authorization_code))
 
 <a id="nestedatt--spec--configs--oauth2--access_token_validation"></a>
-### Nested Schema for `spec.configs.oauth2.oidc_authorization_code`
+### Nested Schema for `spec.configs.oauth2.access_token_validation`
 
 Optional:
 
@@ -371,7 +371,7 @@ Optional:
 - `user_id_attribute_name` (String)
 
 <a id="nestedatt--spec--configs--oauth2--oidc_authorization_code--introspection--client_secret_ref"></a>
-### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.introspection.user_id_attribute_name`
+### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.introspection.client_secret_ref`
 
 Optional:
 
@@ -390,7 +390,7 @@ Optional:
 - `remote_jwks` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--oauth2--oidc_authorization_code--jwt--remote_jwks))
 
 <a id="nestedatt--spec--configs--oauth2--oidc_authorization_code--jwt--local_jwks"></a>
-### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.jwt.remote_jwks`
+### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.jwt.local_jwks`
 
 Optional:
 
@@ -417,7 +417,7 @@ Optional:
 
 
 <a id="nestedatt--spec--configs--oauth2--oauth2"></a>
-### Nested Schema for `spec.configs.oauth2.oidc_authorization_code`
+### Nested Schema for `spec.configs.oauth2.oauth2`
 
 Optional:
 
@@ -457,7 +457,7 @@ Optional:
 - `redis` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--oauth2--oidc_authorization_code--session--redis))
 
 <a id="nestedatt--spec--configs--oauth2--oidc_authorization_code--session--cipher_config"></a>
-### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.session.redis`
+### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.session.cipher_config`
 
 Optional:
 
@@ -474,7 +474,7 @@ Optional:
 
 
 <a id="nestedatt--spec--configs--oauth2--oidc_authorization_code--session--cookie"></a>
-### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.session.redis`
+### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.session.cookie`
 
 Optional:
 
@@ -484,7 +484,7 @@ Optional:
 
 
 <a id="nestedatt--spec--configs--oauth2--oidc_authorization_code--session--cookie_options"></a>
-### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.session.redis`
+### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.session.cookie_options`
 
 Optional:
 
@@ -510,7 +510,7 @@ Optional:
 - `target_domain` (String)
 
 <a id="nestedatt--spec--configs--oauth2--oidc_authorization_code--session--redis--options"></a>
-### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.session.redis.target_domain`
+### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.session.redis.options`
 
 Optional:
 
@@ -593,7 +593,7 @@ Optional:
 - `tenant_id` (String)
 
 <a id="nestedatt--spec--configs--oauth2--oidc_authorization_code--azure--claims_caching_options"></a>
-### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.azure.tenant_id`
+### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.azure.claims_caching_options`
 
 Optional:
 
@@ -605,7 +605,7 @@ Optional:
 
 
 <a id="nestedatt--spec--configs--oauth2--oidc_authorization_code--azure--client_secret"></a>
-### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.azure.tenant_id`
+### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.azure.client_secret`
 
 Optional:
 
@@ -623,7 +623,7 @@ Optional:
 - `private_key_jwt` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--oauth2--oidc_authorization_code--client_authentication--private_key_jwt))
 
 <a id="nestedatt--spec--configs--oauth2--oidc_authorization_code--client_authentication--client_secret"></a>
-### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.client_authentication.private_key_jwt`
+### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.client_authentication.client_secret`
 
 Optional:
 
@@ -631,7 +631,7 @@ Optional:
 - `disable_client_secret` (Boolean)
 
 <a id="nestedatt--spec--configs--oauth2--oidc_authorization_code--client_authentication--private_key_jwt--client_secret_ref"></a>
-### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.client_authentication.private_key_jwt.disable_client_secret`
+### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.client_authentication.private_key_jwt.client_secret_ref`
 
 Optional:
 
@@ -649,7 +649,7 @@ Optional:
 - `valid_for` (String)
 
 <a id="nestedatt--spec--configs--oauth2--oidc_authorization_code--client_authentication--private_key_jwt--signing_key_ref"></a>
-### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.client_authentication.private_key_jwt.valid_for`
+### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.client_authentication.private_key_jwt.signing_key_ref`
 
 Optional:
 
@@ -744,7 +744,7 @@ Optional:
 - `redis` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--oauth2--oidc_authorization_code--session--redis))
 
 <a id="nestedatt--spec--configs--oauth2--oidc_authorization_code--session--cipher_config"></a>
-### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.session.redis`
+### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.session.cipher_config`
 
 Optional:
 
@@ -761,7 +761,7 @@ Optional:
 
 
 <a id="nestedatt--spec--configs--oauth2--oidc_authorization_code--session--cookie"></a>
-### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.session.redis`
+### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.session.cookie`
 
 Optional:
 
@@ -771,7 +771,7 @@ Optional:
 
 
 <a id="nestedatt--spec--configs--oauth2--oidc_authorization_code--session--cookie_options"></a>
-### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.session.redis`
+### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.session.cookie_options`
 
 Optional:
 
@@ -797,7 +797,7 @@ Optional:
 - `target_domain` (String)
 
 <a id="nestedatt--spec--configs--oauth2--oidc_authorization_code--session--redis--options"></a>
-### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.session.redis.target_domain`
+### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.session.redis.options`
 
 Optional:
 
@@ -822,7 +822,7 @@ Optional:
 - `query` (String)
 
 <a id="nestedatt--spec--configs--opa_auth--modules"></a>
-### Nested Schema for `spec.configs.opa_auth.query`
+### Nested Schema for `spec.configs.opa_auth.modules`
 
 Optional:
 
@@ -831,7 +831,7 @@ Optional:
 
 
 <a id="nestedatt--spec--configs--opa_auth--options"></a>
-### Nested Schema for `spec.configs.opa_auth.query`
+### Nested Schema for `spec.configs.opa_auth.options`
 
 Optional:
 
@@ -851,7 +851,7 @@ Optional:
 - `server_addr` (String)
 
 <a id="nestedatt--spec--configs--opa_server_auth--options"></a>
-### Nested Schema for `spec.configs.opa_server_auth.server_addr`
+### Nested Schema for `spec.configs.opa_server_auth.options`
 
 Optional:
 
@@ -871,7 +871,7 @@ Optional:
 - `http` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--pass_through_auth--http))
 
 <a id="nestedatt--spec--configs--pass_through_auth--grpc"></a>
-### Nested Schema for `spec.configs.pass_through_auth.http`
+### Nested Schema for `spec.configs.pass_through_auth.grpc`
 
 Optional:
 

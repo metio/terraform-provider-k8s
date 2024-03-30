@@ -93,7 +93,7 @@ Optional:
 - `mtu` (Number) mtu is the mtu to use for the macvlan interface. if unset, host's kernel will select the value.
 
 <a id="nestedatt--spec--additional_networks--simple_macvlan_config--ipam_config"></a>
-### Nested Schema for `spec.additional_networks.simple_macvlan_config.mtu`
+### Nested Schema for `spec.additional_networks.simple_macvlan_config.ipam_config`
 
 Optional:
 
@@ -110,7 +110,7 @@ Optional:
 - `routes` (Attributes List) Routes configures IP routes for the interface (see [below for nested schema](#nestedatt--spec--additional_networks--simple_macvlan_config--mtu--static_ipam_config--routes))
 
 <a id="nestedatt--spec--additional_networks--simple_macvlan_config--mtu--static_ipam_config--addresses"></a>
-### Nested Schema for `spec.additional_networks.simple_macvlan_config.mtu.static_ipam_config.routes`
+### Nested Schema for `spec.additional_networks.simple_macvlan_config.mtu.static_ipam_config.addresses`
 
 Optional:
 
@@ -119,7 +119,7 @@ Optional:
 
 
 <a id="nestedatt--spec--additional_networks--simple_macvlan_config--mtu--static_ipam_config--dns"></a>
-### Nested Schema for `spec.additional_networks.simple_macvlan_config.mtu.static_ipam_config.routes`
+### Nested Schema for `spec.additional_networks.simple_macvlan_config.mtu.static_ipam_config.dns`
 
 Optional:
 
@@ -187,7 +187,7 @@ Optional:
 - `v6_internal_subnet` (String) v6InternalSubnet is a v6 subnet used internally by ovn-kubernetes in case the default one is being already used by something else. It must not overlap with any other subnet being used by OpenShift or by the node network. The size of the subnet must be larger than the number of nodes. The value cannot be changed after installation. Default is fd98::/48
 
 <a id="nestedatt--spec--default_network--ovn_kubernetes_config--egress_ip_config"></a>
-### Nested Schema for `spec.default_network.ovn_kubernetes_config.v6_internal_subnet`
+### Nested Schema for `spec.default_network.ovn_kubernetes_config.egress_ip_config`
 
 Optional:
 
@@ -195,7 +195,7 @@ Optional:
 
 
 <a id="nestedatt--spec--default_network--ovn_kubernetes_config--gateway_config"></a>
-### Nested Schema for `spec.default_network.ovn_kubernetes_config.v6_internal_subnet`
+### Nested Schema for `spec.default_network.ovn_kubernetes_config.gateway_config`
 
 Optional:
 
@@ -222,7 +222,7 @@ Optional:
 
 
 <a id="nestedatt--spec--default_network--ovn_kubernetes_config--hybrid_overlay_config"></a>
-### Nested Schema for `spec.default_network.ovn_kubernetes_config.v6_internal_subnet`
+### Nested Schema for `spec.default_network.ovn_kubernetes_config.hybrid_overlay_config`
 
 Optional:
 
@@ -240,7 +240,7 @@ Optional:
 
 
 <a id="nestedatt--spec--default_network--ovn_kubernetes_config--ipsec_config"></a>
-### Nested Schema for `spec.default_network.ovn_kubernetes_config.v6_internal_subnet`
+### Nested Schema for `spec.default_network.ovn_kubernetes_config.ipsec_config`
 
 Optional:
 
@@ -248,7 +248,7 @@ Optional:
 
 
 <a id="nestedatt--spec--default_network--ovn_kubernetes_config--policy_audit_config"></a>
-### Nested Schema for `spec.default_network.ovn_kubernetes_config.v6_internal_subnet`
+### Nested Schema for `spec.default_network.ovn_kubernetes_config.policy_audit_config`
 
 Optional:
 
@@ -334,7 +334,7 @@ Optional:
 - `network` (Attributes) network contains information about MTU migration for the default network. Migrations are only allowed to MTU values lower than the machine's uplink MTU by the minimum appropriate offset. (see [below for nested schema](#nestedatt--spec--migration--mtu--network))
 
 <a id="nestedatt--spec--migration--mtu--machine"></a>
-### Nested Schema for `spec.migration.mtu.network`
+### Nested Schema for `spec.migration.mtu.machine`
 
 Optional:
 

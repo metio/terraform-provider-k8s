@@ -115,7 +115,7 @@ Optional:
 - `unhealthy` (Attributes) (see [below for nested schema](#nestedatt--spec--health_check--active--unhealthy))
 
 <a id="nestedatt--spec--health_check--active--healthy"></a>
-### Nested Schema for `spec.health_check.active.unhealthy`
+### Nested Schema for `spec.health_check.active.healthy`
 
 Optional:
 
@@ -147,7 +147,7 @@ Optional:
 - `unhealthy` (Attributes) (see [below for nested schema](#nestedatt--spec--health_check--passive--unhealthy))
 
 <a id="nestedatt--spec--health_check--passive--healthy"></a>
-### Nested Schema for `spec.health_check.passive.unhealthy`
+### Nested Schema for `spec.health_check.passive.healthy`
 
 Optional:
 
@@ -202,7 +202,7 @@ Optional:
 - `passive` (Attributes) (see [below for nested schema](#nestedatt--spec--port_level_settings--health_check--passive))
 
 <a id="nestedatt--spec--port_level_settings--health_check--active"></a>
-### Nested Schema for `spec.port_level_settings.health_check.passive`
+### Nested Schema for `spec.port_level_settings.health_check.active`
 
 Optional:
 

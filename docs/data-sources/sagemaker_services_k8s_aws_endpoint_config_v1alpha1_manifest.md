@@ -153,7 +153,7 @@ Optional:
 - `s3_output_path` (String)
 
 <a id="nestedatt--spec--async_inference_config--output_config--notification_config"></a>
-### Nested Schema for `spec.async_inference_config.output_config.s3_output_path`
+### Nested Schema for `spec.async_inference_config.output_config.notification_config`
 
 Optional:
 

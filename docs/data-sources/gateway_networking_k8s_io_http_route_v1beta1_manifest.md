@@ -102,7 +102,7 @@ Optional:
 - `weight` (Number) Weight specifies the proportion of requests forwarded to the referencedbackend. This is computed as weight/(sum of all weights in thisBackendRefs list). For non-zero values, there may be some epsilon fromthe exact proportion defined here depending on the precision animplementation supports. Weight is not a percentage and the sum ofweights does not need to equal 100.If only one backend is specified and it has a weight greater than 0, 100%of the traffic is forwarded to that backend. If weight is set to 0, notraffic should be forwarded for this entry. If unspecified, weightdefaults to 1.Support for this field varies based on the context where used.
 
 <a id="nestedatt--spec--rules--backend_refs--filters"></a>
-### Nested Schema for `spec.rules.backend_refs.weight`
+### Nested Schema for `spec.rules.backend_refs.filters`
 
 Required:
 
@@ -137,7 +137,7 @@ Optional:
 - `set` (Attributes List) Set overwrites the request with the given header (name, value)before the action.Input:  GET /foo HTTP/1.1  my-header: fooConfig:  set:  - name: 'my-header'    value: 'bar'Output:  GET /foo HTTP/1.1  my-header: bar (see [below for nested schema](#nestedatt--spec--rules--backend_refs--weight--request_header_modifier--set))
 
 <a id="nestedatt--spec--rules--backend_refs--weight--request_header_modifier--add"></a>
-### Nested Schema for `spec.rules.backend_refs.weight.request_header_modifier.set`
+### Nested Schema for `spec.rules.backend_refs.weight.request_header_modifier.add`
 
 Required:
 
@@ -190,7 +190,7 @@ Optional:
 - `status_code` (Number) StatusCode is the HTTP status code to be used in response.Note that values may be added to this enum, implementationsmust ensure that unknown values will not cause a crash.Unknown values here must result in the implementation setting theAccepted Condition for the Route to 'status: False', with aReason of 'UnsupportedValue'.Support: Core
 
 <a id="nestedatt--spec--rules--backend_refs--weight--request_redirect--path"></a>
-### Nested Schema for `spec.rules.backend_refs.weight.request_redirect.status_code`
+### Nested Schema for `spec.rules.backend_refs.weight.request_redirect.path`
 
 Required:
 
@@ -213,7 +213,7 @@ Optional:
 - `set` (Attributes List) Set overwrites the request with the given header (name, value)before the action.Input:  GET /foo HTTP/1.1  my-header: fooConfig:  set:  - name: 'my-header'    value: 'bar'Output:  GET /foo HTTP/1.1  my-header: bar (see [below for nested schema](#nestedatt--spec--rules--backend_refs--weight--response_header_modifier--set))
 
 <a id="nestedatt--spec--rules--backend_refs--weight--response_header_modifier--add"></a>
-### Nested Schema for `spec.rules.backend_refs.weight.response_header_modifier.set`
+### Nested Schema for `spec.rules.backend_refs.weight.response_header_modifier.add`
 
 Required:
 
@@ -272,7 +272,7 @@ Optional:
 - `url_rewrite` (Attributes) URLRewrite defines a schema for a filter that modifies a request during forwarding.Support: Extended (see [below for nested schema](#nestedatt--spec--rules--filters--url_rewrite))
 
 <a id="nestedatt--spec--rules--filters--extension_ref"></a>
-### Nested Schema for `spec.rules.filters.url_rewrite`
+### Nested Schema for `spec.rules.filters.extension_ref`
 
 Required:
 
@@ -282,7 +282,7 @@ Required:
 
 
 <a id="nestedatt--spec--rules--filters--request_header_modifier"></a>
-### Nested Schema for `spec.rules.filters.url_rewrite`
+### Nested Schema for `spec.rules.filters.request_header_modifier`
 
 Optional:
 
@@ -310,7 +310,7 @@ Required:
 
 
 <a id="nestedatt--spec--rules--filters--request_mirror"></a>
-### Nested Schema for `spec.rules.filters.url_rewrite`
+### Nested Schema for `spec.rules.filters.request_mirror`
 
 Required:
 
@@ -333,7 +333,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--filters--request_redirect"></a>
-### Nested Schema for `spec.rules.filters.url_rewrite`
+### Nested Schema for `spec.rules.filters.request_redirect`
 
 Optional:
 
@@ -358,7 +358,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--filters--response_header_modifier"></a>
-### Nested Schema for `spec.rules.filters.url_rewrite`
+### Nested Schema for `spec.rules.filters.response_header_modifier`
 
 Optional:
 
@@ -419,7 +419,7 @@ Optional:
 - `query_params` (Attributes List) QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended (see [below for nested schema](#nestedatt--spec--rules--matches--query_params))
 
 <a id="nestedatt--spec--rules--matches--headers"></a>
-### Nested Schema for `spec.rules.matches.query_params`
+### Nested Schema for `spec.rules.matches.headers`
 
 Required:
 
@@ -432,7 +432,7 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--matches--path"></a>
-### Nested Schema for `spec.rules.matches.query_params`
+### Nested Schema for `spec.rules.matches.path`
 
 Optional:
 

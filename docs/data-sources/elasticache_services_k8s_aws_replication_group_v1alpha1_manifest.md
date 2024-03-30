@@ -158,7 +158,7 @@ Optional:
 - `kinesis_firehose_details` (Attributes) The configuration details of the Kinesis Data Firehose destination. (see [below for nested schema](#nestedatt--spec--log_delivery_configurations--destination_details--kinesis_firehose_details))
 
 <a id="nestedatt--spec--log_delivery_configurations--destination_details--cloud_watch_logs_details"></a>
-### Nested Schema for `spec.log_delivery_configurations.destination_details.kinesis_firehose_details`
+### Nested Schema for `spec.log_delivery_configurations.destination_details.cloud_watch_logs_details`
 
 Optional:
 

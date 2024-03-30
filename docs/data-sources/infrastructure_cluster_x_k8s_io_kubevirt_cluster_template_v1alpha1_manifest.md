@@ -79,7 +79,7 @@ Optional:
 - `ssh_keys` (Attributes) SSHKeys is a reference to a local struct for SSH keys persistence. (see [below for nested schema](#nestedatt--spec--template--spec--ssh_keys))
 
 <a id="nestedatt--spec--template--spec--control_plane_endpoint"></a>
-### Nested Schema for `spec.template.spec.ssh_keys`
+### Nested Schema for `spec.template.spec.control_plane_endpoint`
 
 Required:
 
@@ -88,7 +88,7 @@ Required:
 
 
 <a id="nestedatt--spec--template--spec--control_plane_service_template"></a>
-### Nested Schema for `spec.template.spec.ssh_keys`
+### Nested Schema for `spec.template.spec.control_plane_service_template`
 
 Optional:
 
@@ -105,7 +105,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--infra_cluster_secret_ref"></a>
-### Nested Schema for `spec.template.spec.ssh_keys`
+### Nested Schema for `spec.template.spec.infra_cluster_secret_ref`
 
 Optional:
 

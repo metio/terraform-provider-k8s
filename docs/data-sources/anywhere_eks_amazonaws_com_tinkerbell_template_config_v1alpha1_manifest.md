@@ -83,7 +83,7 @@ Optional:
 - `volumes` (List of String)
 
 <a id="nestedatt--spec--template--tasks--actions"></a>
-### Nested Schema for `spec.template.tasks.volumes`
+### Nested Schema for `spec.template.tasks.actions`
 
 Required:
 

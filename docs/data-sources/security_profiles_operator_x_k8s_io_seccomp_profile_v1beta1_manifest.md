@@ -3,7 +3,7 @@
 page_title: "k8s_security_profiles_operator_x_k8s_io_seccomp_profile_v1beta1_manifest Data Source - terraform-provider-k8s"
 subcategory: "security-profiles-operator.x-k8s.io"
 description: |-
-  SeccompProfile is a cluster level specification for a seccomp profile.See https://github.com/opencontainers/runtime-spec/blob/master/config-linux.md#seccomp
+  SeccompProfile is a cluster level specification for a seccomp profile.See
 ---
 
 # k8s_security_profiles_operator_x_k8s_io_seccomp_profile_v1beta1_manifest (Data Source)

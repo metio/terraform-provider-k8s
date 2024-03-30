@@ -157,7 +157,7 @@ Optional:
 - `vhost` (String) Hostname to be used for TLS SNI extension
 
 <a id="nestedatt--spec--http--tls--key_password"></a>
-### Nested Schema for `spec.http.tls.vhost`
+### Nested Schema for `spec.http.tls.key_password`
 
 Optional:
 

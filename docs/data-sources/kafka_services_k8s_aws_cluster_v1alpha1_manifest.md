@@ -144,7 +144,7 @@ Optional:
 - `scram` (Attributes) (see [below for nested schema](#nestedatt--spec--client_authentication--sasl--scram))
 
 <a id="nestedatt--spec--client_authentication--sasl--iam"></a>
-### Nested Schema for `spec.client_authentication.sasl.scram`
+### Nested Schema for `spec.client_authentication.sasl.iam`
 
 Optional:
 
@@ -230,7 +230,7 @@ Optional:
 - `s3` (Attributes) The details of the Amazon S3 destination for broker logs. (see [below for nested schema](#nestedatt--spec--logging_info--broker_logs--s3))
 
 <a id="nestedatt--spec--logging_info--broker_logs--cloud_watch_logs"></a>
-### Nested Schema for `spec.logging_info.broker_logs.s3`
+### Nested Schema for `spec.logging_info.broker_logs.cloud_watch_logs`
 
 Optional:
 
@@ -239,7 +239,7 @@ Optional:
 
 
 <a id="nestedatt--spec--logging_info--broker_logs--firehose"></a>
-### Nested Schema for `spec.logging_info.broker_logs.s3`
+### Nested Schema for `spec.logging_info.broker_logs.firehose`
 
 Optional:
 
@@ -275,7 +275,7 @@ Optional:
 - `node_exporter` (Attributes) Indicates whether you want to enable or disable the Node Exporter. (see [below for nested schema](#nestedatt--spec--open_monitoring--prometheus--node_exporter))
 
 <a id="nestedatt--spec--open_monitoring--prometheus--jmx_exporter"></a>
-### Nested Schema for `spec.open_monitoring.prometheus.node_exporter`
+### Nested Schema for `spec.open_monitoring.prometheus.jmx_exporter`
 
 Optional:
 

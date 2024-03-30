@@ -90,7 +90,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--resource_selectors--label_selector--match_expressions"></a>
-### Nested Schema for `spec.resource_selectors.label_selector.match_labels`
+### Nested Schema for `spec.resource_selectors.label_selector.match_expressions`
 
 Required:
 
@@ -124,7 +124,7 @@ Optional:
 - `purge_mode` (String) PurgeMode represents how to deal with the legacy applications on the cluster from which the application is migrated. Valid options are 'Immediately', 'Graciously' and 'Never'. Defaults to 'Graciously'.
 
 <a id="nestedatt--spec--failover--application--decision_conditions"></a>
-### Nested Schema for `spec.failover.application.purge_mode`
+### Nested Schema for `spec.failover.application.decision_conditions`
 
 Optional:
 
@@ -159,7 +159,7 @@ Optional:
 - `label_selector` (Attributes) LabelSelector is a filter to select member clusters by labels. If non-nil and non-empty, only the clusters match this filter will be selected. (see [below for nested schema](#nestedatt--spec--placement--cluster_affinities--label_selector))
 
 <a id="nestedatt--spec--placement--cluster_affinities--field_selector"></a>
-### Nested Schema for `spec.placement.cluster_affinities.label_selector`
+### Nested Schema for `spec.placement.cluster_affinities.field_selector`
 
 Optional:
 
@@ -213,7 +213,7 @@ Optional:
 - `label_selector` (Attributes) LabelSelector is a filter to select member clusters by labels. If non-nil and non-empty, only the clusters match this filter will be selected. (see [below for nested schema](#nestedatt--spec--placement--cluster_affinity--label_selector))
 
 <a id="nestedatt--spec--placement--cluster_affinity--field_selector"></a>
-### Nested Schema for `spec.placement.cluster_affinity.label_selector`
+### Nested Schema for `spec.placement.cluster_affinity.field_selector`
 
 Optional:
 
@@ -294,7 +294,7 @@ Required:
 - `weight` (Number) Weight expressing the preference to the cluster(s) specified by 'TargetCluster'.
 
 <a id="nestedatt--spec--placement--replica_scheduling--weight_preference--static_weight_list--target_cluster"></a>
-### Nested Schema for `spec.placement.replica_scheduling.weight_preference.static_weight_list.weight`
+### Nested Schema for `spec.placement.replica_scheduling.weight_preference.static_weight_list.target_cluster`
 
 Optional:
 
@@ -304,7 +304,7 @@ Optional:
 - `label_selector` (Attributes) LabelSelector is a filter to select member clusters by labels. If non-nil and non-empty, only the clusters match this filter will be selected. (see [below for nested schema](#nestedatt--spec--placement--replica_scheduling--weight_preference--static_weight_list--weight--label_selector))
 
 <a id="nestedatt--spec--placement--replica_scheduling--weight_preference--static_weight_list--weight--field_selector"></a>
-### Nested Schema for `spec.placement.replica_scheduling.weight_preference.static_weight_list.weight.label_selector`
+### Nested Schema for `spec.placement.replica_scheduling.weight_preference.static_weight_list.weight.field_selector`
 
 Optional:
 
@@ -333,7 +333,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--placement--replica_scheduling--weight_preference--static_weight_list--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.placement.replica_scheduling.weight_preference.static_weight_list.weight.label_selector.match_labels`
+### Nested Schema for `spec.placement.replica_scheduling.weight_preference.static_weight_list.weight.label_selector.match_expressions`
 
 Required:
 

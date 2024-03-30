@@ -175,7 +175,7 @@ Optional:
 - `requested` (Attributes List) Requested contains a list of IPAM pool requests, i.e. indicates how many addresses this node requests out of each pool listed here. This field is owned and written to by cilium-agent and read by the operator. (see [below for nested schema](#nestedatt--spec--ipam--pools--requested))
 
 <a id="nestedatt--spec--ipam--pools--allocated"></a>
-### Nested Schema for `spec.ipam.pools.requested`
+### Nested Schema for `spec.ipam.pools.allocated`
 
 Required:
 

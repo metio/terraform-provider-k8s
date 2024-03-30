@@ -118,7 +118,7 @@ Optional:
 - `socket_options` (Attributes List) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options))
 
 <a id="nestedatt--spec--listeners--options--access_logging_service"></a>
-### Nested Schema for `spec.listeners.options.socket_options`
+### Nested Schema for `spec.listeners.options.access_logging_service`
 
 Optional:
 
@@ -134,7 +134,7 @@ Optional:
 - `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--listeners--options--socket_options--access_log--grpc_service))
 
 <a id="nestedatt--spec--listeners--options--socket_options--access_log--file_sink"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service`
+### Nested Schema for `spec.listeners.options.socket_options.access_log.file_sink`
 
 Optional:
 
@@ -144,7 +144,7 @@ Optional:
 
 
 <a id="nestedatt--spec--listeners--options--socket_options--access_log--filter"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service`
+### Nested Schema for `spec.listeners.options.socket_options.access_log.filter`
 
 Optional:
 
@@ -160,7 +160,7 @@ Optional:
 - `traceable_filter` (Map of String)
 
 <a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--duration_filter"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.traceable_filter`
+### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.duration_filter`
 
 Optional:
 
@@ -186,7 +186,7 @@ Optional:
 
 
 <a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--grpc_status_filter"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.traceable_filter`
+### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.grpc_status_filter`
 
 Optional:
 
@@ -195,7 +195,7 @@ Optional:
 
 
 <a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--header_filter"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.traceable_filter`
+### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.header_filter`
 
 Optional:
 
@@ -233,7 +233,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--header--safe_regex_match--google_re2"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.traceable_filter.header.safe_regex_match.regex`
+### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.traceable_filter.header.safe_regex_match.google_re2`
 
 Optional:
 
@@ -244,7 +244,7 @@ Optional:
 
 
 <a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--response_flag_filter"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.traceable_filter`
+### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.response_flag_filter`
 
 Optional:
 
@@ -252,7 +252,7 @@ Optional:
 
 
 <a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--runtime_filter"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.traceable_filter`
+### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.runtime_filter`
 
 Optional:
 
@@ -261,7 +261,7 @@ Optional:
 - `use_independent_randomness` (Boolean)
 
 <a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--traceable_filter--percent_sampled"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.traceable_filter.use_independent_randomness`
+### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.traceable_filter.percent_sampled`
 
 Optional:
 
@@ -271,7 +271,7 @@ Optional:
 
 
 <a id="nestedatt--spec--listeners--options--socket_options--access_log--grpc_service--status_code_filter"></a>
-### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.traceable_filter`
+### Nested Schema for `spec.listeners.options.socket_options.access_log.grpc_service.status_code_filter`
 
 Optional:
 
@@ -312,7 +312,7 @@ Optional:
 
 
 <a id="nestedatt--spec--listeners--options--connection_balance_config"></a>
-### Nested Schema for `spec.listeners.options.socket_options`
+### Nested Schema for `spec.listeners.options.connection_balance_config`
 
 Optional:
 
@@ -320,7 +320,7 @@ Optional:
 
 
 <a id="nestedatt--spec--listeners--options--extensions"></a>
-### Nested Schema for `spec.listeners.options.socket_options`
+### Nested Schema for `spec.listeners.options.extensions`
 
 Optional:
 
@@ -328,7 +328,7 @@ Optional:
 
 
 <a id="nestedatt--spec--listeners--options--proxy_protocol"></a>
-### Nested Schema for `spec.listeners.options.socket_options`
+### Nested Schema for `spec.listeners.options.proxy_protocol`
 
 Optional:
 
@@ -344,7 +344,7 @@ Optional:
 - `tlv_type` (Number)
 
 <a id="nestedatt--spec--listeners--options--socket_options--rules--on_tlv_present"></a>
-### Nested Schema for `spec.listeners.options.socket_options.rules.tlv_type`
+### Nested Schema for `spec.listeners.options.socket_options.rules.on_tlv_present`
 
 Optional:
 
@@ -395,7 +395,7 @@ Optional:
 - `verify_subject_alt_name` (List of String)
 
 <a id="nestedatt--spec--listeners--ssl_configurations--parameters"></a>
-### Nested Schema for `spec.listeners.ssl_configurations.verify_subject_alt_name`
+### Nested Schema for `spec.listeners.ssl_configurations.parameters`
 
 Optional:
 
@@ -406,7 +406,7 @@ Optional:
 
 
 <a id="nestedatt--spec--listeners--ssl_configurations--sds"></a>
-### Nested Schema for `spec.listeners.ssl_configurations.verify_subject_alt_name`
+### Nested Schema for `spec.listeners.ssl_configurations.sds`
 
 Optional:
 
@@ -435,7 +435,7 @@ Optional:
 
 
 <a id="nestedatt--spec--listeners--ssl_configurations--secret_ref"></a>
-### Nested Schema for `spec.listeners.ssl_configurations.verify_subject_alt_name`
+### Nested Schema for `spec.listeners.ssl_configurations.secret_ref`
 
 Optional:
 
@@ -444,7 +444,7 @@ Optional:
 
 
 <a id="nestedatt--spec--listeners--ssl_configurations--ssl_files"></a>
-### Nested Schema for `spec.listeners.ssl_configurations.verify_subject_alt_name`
+### Nested Schema for `spec.listeners.ssl_configurations.ssl_files`
 
 Optional:
 

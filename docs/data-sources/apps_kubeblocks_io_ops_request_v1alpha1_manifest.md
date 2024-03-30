@@ -151,7 +151,7 @@ Optional:
 - `service_type` (String) Determines how the Service is exposed. Defaults to ClusterIP. Valid options are ExternalName, ClusterIP, NodePort, and LoadBalancer. - 'ClusterIP' allocates a cluster-internal IP address for load-balancing to endpoints. - 'NodePort' builds on ClusterIP and allocates a port on every node which routes to the same endpoints as the clusterIP. - 'LoadBalancer' builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the clusterIP. More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types.
 
 <a id="nestedatt--spec--expose--services--ports"></a>
-### Nested Schema for `spec.expose.services.service_type`
+### Nested Schema for `spec.expose.services.ports`
 
 Required:
 
@@ -203,7 +203,7 @@ Optional:
 - `policy` (String) Defines the upgrade policy for the configuration. This field is optional.
 
 <a id="nestedatt--spec--reconfigure--configurations--keys"></a>
-### Nested Schema for `spec.reconfigure.configurations.policy`
+### Nested Schema for `spec.reconfigure.configurations.keys`
 
 Required:
 
@@ -250,7 +250,7 @@ Optional:
 - `policy` (String) Defines the upgrade policy for the configuration. This field is optional.
 
 <a id="nestedatt--spec--reconfigures--configurations--keys"></a>
-### Nested Schema for `spec.reconfigures.configurations.policy`
+### Nested Schema for `spec.reconfigures.configurations.keys`
 
 Required:
 
@@ -318,7 +318,7 @@ Optional:
 - `time` (String) Refers to the specific time point for restoration, with UTC as the time zone.
 
 <a id="nestedatt--spec--restore_from--point_in_time--ref"></a>
-### Nested Schema for `spec.restore_from.point_in_time.time`
+### Nested Schema for `spec.restore_from.point_in_time.ref`
 
 Optional:
 
@@ -366,7 +366,7 @@ Optional:
 - `secret_ref` (Attributes List) Specifies the secret that is to be executed. (see [below for nested schema](#nestedatt--spec--script_spec--script_from--secret_ref))
 
 <a id="nestedatt--spec--script_spec--script_from--config_map_ref"></a>
-### Nested Schema for `spec.script_spec.script_from.secret_ref`
+### Nested Schema for `spec.script_spec.script_from.config_map_ref`
 
 Required:
 
@@ -414,7 +414,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--script_spec--selector--match_expressions"></a>
-### Nested Schema for `spec.script_spec.selector.match_labels`
+### Nested Schema for `spec.script_spec.selector.match_expressions`
 
 Required:
 

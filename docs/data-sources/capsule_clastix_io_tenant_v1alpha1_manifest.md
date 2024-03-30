@@ -194,7 +194,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--network_policies--pod_selector--match_expressions"></a>
-### Nested Schema for `spec.network_policies.pod_selector.match_labels`
+### Nested Schema for `spec.network_policies.pod_selector.match_expressions`
 
 Required:
 
@@ -216,7 +216,7 @@ Optional:
 - `to` (Attributes List) to is a list of destinations for outgoing traffic of pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all destinations (traffic not restricted by destination). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the to list. (see [below for nested schema](#nestedatt--spec--network_policies--egress--to))
 
 <a id="nestedatt--spec--network_policies--egress--ports"></a>
-### Nested Schema for `spec.network_policies.egress.to`
+### Nested Schema for `spec.network_policies.egress.ports`
 
 Optional:
 
@@ -255,7 +255,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--network_policies--egress--to--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.network_policies.egress.to.namespace_selector.match_labels`
+### Nested Schema for `spec.network_policies.egress.to.namespace_selector.match_expressions`
 
 Required:
 
@@ -277,7 +277,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--network_policies--egress--to--pod_selector--match_expressions"></a>
-### Nested Schema for `spec.network_policies.egress.to.pod_selector.match_labels`
+### Nested Schema for `spec.network_policies.egress.to.pod_selector.match_expressions`
 
 Required:
 
@@ -301,7 +301,7 @@ Optional:
 - `ports` (Attributes List) ports is a list of ports which should be made accessible on the pods selected for this rule. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list. (see [below for nested schema](#nestedatt--spec--network_policies--ingress--ports))
 
 <a id="nestedatt--spec--network_policies--ingress--from"></a>
-### Nested Schema for `spec.network_policies.ingress.ports`
+### Nested Schema for `spec.network_policies.ingress.from`
 
 Optional:
 
@@ -330,7 +330,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--network_policies--ingress--ports--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.network_policies.ingress.ports.namespace_selector.match_labels`
+### Nested Schema for `spec.network_policies.ingress.ports.namespace_selector.match_expressions`
 
 Required:
 
@@ -352,7 +352,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--network_policies--ingress--ports--pod_selector--match_expressions"></a>
-### Nested Schema for `spec.network_policies.ingress.ports.pod_selector.match_labels`
+### Nested Schema for `spec.network_policies.ingress.ports.pod_selector.match_expressions`
 
 Required:
 

@@ -131,7 +131,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--environment_variables--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--environment_variables--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.environment_variables.value_from.secret_key_ref`
+### Nested Schema for `spec.environment_variables.value_from.config_map_key_ref`
 
 Required:
 
@@ -291,7 +291,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--terraform_variables--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--terraform_variables--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.terraform_variables.value_from.secret_key_ref`
+### Nested Schema for `spec.terraform_variables.value_from.config_map_key_ref`
 
 Required:
 

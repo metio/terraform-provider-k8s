@@ -130,7 +130,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--container_resource_overrides--controller_beegfs--claims"></a>
-### Nested Schema for `spec.container_resource_overrides.controller_beegfs.requests`
+### Nested Schema for `spec.container_resource_overrides.controller_beegfs.claims`
 
 Required:
 
@@ -148,7 +148,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--container_resource_overrides--controller_csi_provisioner--claims"></a>
-### Nested Schema for `spec.container_resource_overrides.controller_csi_provisioner.requests`
+### Nested Schema for `spec.container_resource_overrides.controller_csi_provisioner.claims`
 
 Required:
 
@@ -166,7 +166,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--container_resource_overrides--node_beegfs--claims"></a>
-### Nested Schema for `spec.container_resource_overrides.node_beegfs.requests`
+### Nested Schema for `spec.container_resource_overrides.node_beegfs.claims`
 
 Required:
 
@@ -184,7 +184,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--container_resource_overrides--node_driver_registrar--claims"></a>
-### Nested Schema for `spec.container_resource_overrides.node_driver_registrar.requests`
+### Nested Schema for `spec.container_resource_overrides.node_driver_registrar.claims`
 
 Required:
 
@@ -202,7 +202,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--container_resource_overrides--node_liveness_probe--claims"></a>
-### Nested Schema for `spec.container_resource_overrides.node_liveness_probe.requests`
+### Nested Schema for `spec.container_resource_overrides.node_liveness_probe.claims`
 
 Required:
 
@@ -228,7 +228,7 @@ Required:
 - `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
 
 <a id="nestedatt--spec--node_affinity_controller_service--preferred_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.node_affinity_controller_service.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.node_affinity_controller_service.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -324,7 +324,7 @@ Required:
 - `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
 
 <a id="nestedatt--spec--node_affinity_node_service--preferred_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.node_affinity_node_service.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.node_affinity_node_service.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -461,7 +461,7 @@ Optional:
 - `file_system_specific_configs` (Attributes List) A list of file system specific configurations that override the default configuration for specific file systemson these nodes. (see [below for nested schema](#nestedatt--spec--plugin_config--node_specific_configs--file_system_specific_configs))
 
 <a id="nestedatt--spec--plugin_config--node_specific_configs--config"></a>
-### Nested Schema for `spec.plugin_config.node_specific_configs.file_system_specific_configs`
+### Nested Schema for `spec.plugin_config.node_specific_configs.config`
 
 Optional:
 

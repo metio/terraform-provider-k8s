@@ -119,7 +119,7 @@ Optional:
 - `trusted_proxies` (List of String) TrustedProxies comma separated allowed CIDRs subnets to be used as trusted proxies
 
 <a id="nestedatt--spec--services--hegel--image"></a>
-### Nested Schema for `spec.services.hegel.trusted_proxies`
+### Nested Schema for `spec.services.hegel.image`
 
 Optional:
 
@@ -162,7 +162,7 @@ Optional:
 - `tftp_configs` (Attributes) TFTPConfigs contains the configurations of Tinkerbell TFTP server. (see [below for nested schema](#nestedatt--spec--services--smee--tftp_configs))
 
 <a id="nestedatt--spec--services--smee--backend_configs"></a>
-### Nested Schema for `spec.services.smee.tftp_configs`
+### Nested Schema for `spec.services.smee.backend_configs`
 
 Optional:
 
@@ -189,7 +189,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services--smee--image"></a>
-### Nested Schema for `spec.services.smee.tftp_configs`
+### Nested Schema for `spec.services.smee.image`
 
 Optional:
 
@@ -198,7 +198,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services--smee--dhcp_configs"></a>
-### Nested Schema for `spec.services.smee.tftp_configs`
+### Nested Schema for `spec.services.smee.dhcp_configs`
 
 Required:
 
@@ -215,7 +215,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services--smee--ipxe_configs"></a>
-### Nested Schema for `spec.services.smee.tftp_configs`
+### Nested Schema for `spec.services.smee.ipxe_configs`
 
 Required:
 
@@ -233,7 +233,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services--smee--syslog_configs"></a>
-### Nested Schema for `spec.services.smee.tftp_configs`
+### Nested Schema for `spec.services.smee.syslog_configs`
 
 Required:
 

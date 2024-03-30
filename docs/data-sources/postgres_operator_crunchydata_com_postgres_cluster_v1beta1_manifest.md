@@ -126,7 +126,7 @@ Optional:
 - `sidecars` (Attributes) Configuration for pgBackRest sidecar containers (see [below for nested schema](#nestedatt--spec--backups--pgbackrest--sidecars))
 
 <a id="nestedatt--spec--backups--pgbackrest--repos"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars`
+### Nested Schema for `spec.backups.pgbackrest.repos`
 
 Required:
 
@@ -201,7 +201,7 @@ Optional:
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--volume--volume_claim_spec--resources"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.volume.volume_claim_spec.volume_name`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.volume.volume_claim_spec.resources`
 
 Required:
 
@@ -213,7 +213,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--volume--volume_claim_spec--data_source"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.volume.volume_claim_spec.volume_name`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.volume.volume_claim_spec.data_source`
 
 Required:
 
@@ -226,7 +226,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--volume--volume_claim_spec--data_source_ref"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.volume.volume_claim_spec.volume_name`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.volume.volume_claim_spec.data_source_ref`
 
 Required:
 
@@ -239,7 +239,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--volume--volume_claim_spec--selector"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.volume.volume_claim_spec.volume_name`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.volume.volume_claim_spec.selector`
 
 Optional:
 
@@ -247,7 +247,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--volume--volume_claim_spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.volume.volume_claim_spec.volume_name.match_labels`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.volume.volume_claim_spec.volume_name.match_expressions`
 
 Required:
 
@@ -264,7 +264,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backups--pgbackrest--configuration"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars`
+### Nested Schema for `spec.backups.pgbackrest.configuration`
 
 Optional:
 
@@ -283,7 +283,7 @@ Optional:
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--config_map--items"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.config_map.optional`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.config_map.items`
 
 Required:
 
@@ -317,7 +317,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--backups--pgbackrest--sidecars--downward_api--items--resource_field_ref))
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--downward_api--items--field_ref"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.downward_api.items.resource_field_ref`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.downward_api.items.field_ref`
 
 Required:
 
@@ -353,7 +353,7 @@ Optional:
 - `optional` (Boolean) optional field specify whether the Secret or its key must be defined
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--secret--items"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.secret.optional`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.secret.items`
 
 Required:
 
@@ -381,7 +381,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backups--pgbackrest--jobs"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars`
+### Nested Schema for `spec.backups.pgbackrest.jobs`
 
 Optional:
 
@@ -401,7 +401,7 @@ Optional:
 - `pod_anti_affinity` (Attributes) Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity))
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--node_affinity"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.node_affinity`
 
 Optional:
 
@@ -409,7 +409,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -417,7 +417,7 @@ Required:
 - `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -497,7 +497,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_affinity"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_affinity`
 
 Optional:
 
@@ -505,7 +505,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -513,7 +513,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -534,7 +534,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_labels`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
 
 Required:
 
@@ -556,7 +556,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_labels`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
 
 Required:
 
@@ -585,7 +585,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -607,7 +607,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -639,7 +639,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -647,7 +647,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -668,7 +668,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_labels`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
 
 Required:
 
@@ -690,7 +690,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_labels`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
 
 Required:
 
@@ -719,7 +719,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -741,7 +741,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -788,7 +788,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backups--pgbackrest--manual"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars`
+### Nested Schema for `spec.backups.pgbackrest.manual`
 
 Required:
 
@@ -800,7 +800,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backups--pgbackrest--metadata"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars`
+### Nested Schema for `spec.backups.pgbackrest.metadata`
 
 Optional:
 
@@ -809,7 +809,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backups--pgbackrest--repo_host"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars`
+### Nested Schema for `spec.backups.pgbackrest.repo_host`
 
 Optional:
 
@@ -831,7 +831,7 @@ Optional:
 - `pod_anti_affinity` (Attributes) Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity))
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--node_affinity"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.node_affinity`
 
 Optional:
 
@@ -839,7 +839,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -847,7 +847,7 @@ Required:
 - `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -927,7 +927,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_affinity"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_affinity`
 
 Optional:
 
@@ -935,7 +935,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -943,7 +943,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -964,7 +964,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_labels`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
 
 Required:
 
@@ -986,7 +986,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_labels`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
 
 Required:
 
@@ -1015,7 +1015,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -1037,7 +1037,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -1069,7 +1069,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -1077,7 +1077,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -1098,7 +1098,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_labels`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
 
 Required:
 
@@ -1120,7 +1120,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_labels`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
 
 Required:
 
@@ -1149,7 +1149,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -1171,7 +1171,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -1214,7 +1214,7 @@ Optional:
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--ssh_config_map--items"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.ssh_config_map.optional`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.ssh_config_map.items`
 
 Required:
 
@@ -1237,7 +1237,7 @@ Optional:
 - `optional` (Boolean) optional field specify whether the Secret or its key must be defined
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--ssh_secret--items"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.ssh_secret.optional`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.ssh_secret.items`
 
 Required:
 
@@ -1277,7 +1277,7 @@ Optional:
 - `min_domains` (Number) MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.  For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.  This is an alpha field and requires enabling MinDomainsInPodTopologySpread feature gate.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--topology_spread_constraints--label_selector"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.topology_spread_constraints.min_domains`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.topology_spread_constraints.label_selector`
 
 Optional:
 
@@ -1285,7 +1285,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--topology_spread_constraints--min_domains--match_expressions"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.topology_spread_constraints.min_domains.match_labels`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.topology_spread_constraints.min_domains.match_expressions`
 
 Required:
 
@@ -1301,7 +1301,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backups--pgbackrest--restore"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars`
+### Nested Schema for `spec.backups.pgbackrest.restore`
 
 Required:
 
@@ -1328,7 +1328,7 @@ Optional:
 - `pod_anti_affinity` (Attributes) Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity))
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--node_affinity"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.node_affinity`
 
 Optional:
 
@@ -1336,7 +1336,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -1344,7 +1344,7 @@ Required:
 - `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -1424,7 +1424,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_affinity"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_affinity`
 
 Optional:
 
@@ -1432,7 +1432,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -1440,7 +1440,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -1461,7 +1461,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_labels`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
 
 Required:
 
@@ -1483,7 +1483,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_labels`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
 
 Required:
 
@@ -1512,7 +1512,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -1534,7 +1534,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -1566,7 +1566,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -1574,7 +1574,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -1595,7 +1595,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_labels`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
 
 Required:
 
@@ -1617,7 +1617,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_labels`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
 
 Required:
 
@@ -1646,7 +1646,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -1668,7 +1668,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backups--pgbackrest--sidecars--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.backups.pgbackrest.sidecars.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -1800,7 +1800,7 @@ Optional:
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--instances--data_volume_claim_spec--resources"></a>
-### Nested Schema for `spec.instances.data_volume_claim_spec.volume_name`
+### Nested Schema for `spec.instances.data_volume_claim_spec.resources`
 
 Required:
 
@@ -1812,7 +1812,7 @@ Optional:
 
 
 <a id="nestedatt--spec--instances--data_volume_claim_spec--data_source"></a>
-### Nested Schema for `spec.instances.data_volume_claim_spec.volume_name`
+### Nested Schema for `spec.instances.data_volume_claim_spec.data_source`
 
 Required:
 
@@ -1825,7 +1825,7 @@ Optional:
 
 
 <a id="nestedatt--spec--instances--data_volume_claim_spec--data_source_ref"></a>
-### Nested Schema for `spec.instances.data_volume_claim_spec.volume_name`
+### Nested Schema for `spec.instances.data_volume_claim_spec.data_source_ref`
 
 Required:
 
@@ -1838,7 +1838,7 @@ Optional:
 
 
 <a id="nestedatt--spec--instances--data_volume_claim_spec--selector"></a>
-### Nested Schema for `spec.instances.data_volume_claim_spec.volume_name`
+### Nested Schema for `spec.instances.data_volume_claim_spec.selector`
 
 Optional:
 
@@ -1870,7 +1870,7 @@ Optional:
 - `pod_anti_affinity` (Attributes) Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--instances--affinity--pod_anti_affinity))
 
 <a id="nestedatt--spec--instances--affinity--node_affinity"></a>
-### Nested Schema for `spec.instances.affinity.pod_anti_affinity`
+### Nested Schema for `spec.instances.affinity.node_affinity`
 
 Optional:
 
@@ -1886,7 +1886,7 @@ Required:
 - `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
 
 <a id="nestedatt--spec--instances--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.instances.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.instances.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -1894,7 +1894,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--instances--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--instances--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.instances.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.instances.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -1937,7 +1937,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--instances--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--instances--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.instances.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.instances.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -1966,7 +1966,7 @@ Optional:
 
 
 <a id="nestedatt--spec--instances--affinity--pod_affinity"></a>
-### Nested Schema for `spec.instances.affinity.pod_anti_affinity`
+### Nested Schema for `spec.instances.affinity.pod_affinity`
 
 Optional:
 
@@ -1982,7 +1982,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--instances--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.instances.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.instances.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -1995,7 +1995,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--instances--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.instances.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.instances.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -2003,7 +2003,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--instances--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.instances.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.instances.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -2017,7 +2017,7 @@ Optional:
 
 
 <a id="nestedatt--spec--instances--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.instances.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.instances.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -2025,7 +2025,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--instances--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.instances.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.instances.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -2054,7 +2054,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--instances--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.instances.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.instances.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -2062,7 +2062,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--instances--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.instances.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.instances.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -2076,7 +2076,7 @@ Optional:
 
 
 <a id="nestedatt--spec--instances--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.instances.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.instances.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -2084,7 +2084,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--instances--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.instances.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.instances.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -2116,7 +2116,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--instances--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.instances.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.instances.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -2129,7 +2129,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--instances--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.instances.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.instances.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -2137,7 +2137,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--instances--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.instances.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.instances.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -2151,7 +2151,7 @@ Optional:
 
 
 <a id="nestedatt--spec--instances--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.instances.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.instances.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -2159,7 +2159,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--instances--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.instances.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.instances.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -2188,7 +2188,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--instances--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.instances.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.instances.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -2196,7 +2196,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--instances--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.instances.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.instances.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -2210,7 +2210,7 @@ Optional:
 
 
 <a id="nestedatt--spec--instances--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.instances.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.instances.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -2218,7 +2218,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--instances--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.instances.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.instances.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -2266,7 +2266,7 @@ Optional:
 - `working_dir` (String) Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.
 
 <a id="nestedatt--spec--instances--containers--env"></a>
-### Nested Schema for `spec.instances.containers.working_dir`
+### Nested Schema for `spec.instances.containers.env`
 
 Required:
 
@@ -2288,7 +2288,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--instances--containers--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--instances--containers--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.instances.containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.instances.containers.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -2301,7 +2301,7 @@ Optional:
 
 
 <a id="nestedatt--spec--instances--containers--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.instances.containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.instances.containers.working_dir.value_from.field_ref`
 
 Required:
 
@@ -2313,7 +2313,7 @@ Optional:
 
 
 <a id="nestedatt--spec--instances--containers--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.instances.containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.instances.containers.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -2341,7 +2341,7 @@ Optional:
 
 
 <a id="nestedatt--spec--instances--containers--env_from"></a>
-### Nested Schema for `spec.instances.containers.working_dir`
+### Nested Schema for `spec.instances.containers.env_from`
 
 Optional:
 
@@ -2369,7 +2369,7 @@ Optional:
 
 
 <a id="nestedatt--spec--instances--containers--lifecycle"></a>
-### Nested Schema for `spec.instances.containers.working_dir`
+### Nested Schema for `spec.instances.containers.lifecycle`
 
 Optional:
 
@@ -2386,7 +2386,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--instances--containers--working_dir--post_start--tcp_socket))
 
 <a id="nestedatt--spec--instances--containers--working_dir--post_start--exec"></a>
-### Nested Schema for `spec.instances.containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.instances.containers.working_dir.post_start.exec`
 
 Optional:
 
@@ -2394,7 +2394,7 @@ Optional:
 
 
 <a id="nestedatt--spec--instances--containers--working_dir--post_start--http_get"></a>
-### Nested Schema for `spec.instances.containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.instances.containers.working_dir.post_start.http_get`
 
 Required:
 
@@ -2408,7 +2408,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--instances--containers--working_dir--post_start--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.instances.containers.working_dir.post_start.tcp_socket.scheme`
+### Nested Schema for `spec.instances.containers.working_dir.post_start.tcp_socket.http_headers`
 
 Required:
 
@@ -2440,7 +2440,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--instances--containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--instances--containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.instances.containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.instances.containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -2448,7 +2448,7 @@ Optional:
 
 
 <a id="nestedatt--spec--instances--containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.instances.containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.instances.containers.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -2462,7 +2462,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--instances--containers--working_dir--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.instances.containers.working_dir.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.instances.containers.working_dir.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -2486,7 +2486,7 @@ Optional:
 
 
 <a id="nestedatt--spec--instances--containers--liveness_probe"></a>
-### Nested Schema for `spec.instances.containers.working_dir`
+### Nested Schema for `spec.instances.containers.liveness_probe`
 
 Optional:
 
@@ -2536,7 +2536,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--instances--containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.instances.containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.instances.containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -2559,7 +2559,7 @@ Optional:
 
 
 <a id="nestedatt--spec--instances--containers--ports"></a>
-### Nested Schema for `spec.instances.containers.working_dir`
+### Nested Schema for `spec.instances.containers.ports`
 
 Required:
 
@@ -2574,7 +2574,7 @@ Optional:
 
 
 <a id="nestedatt--spec--instances--containers--readiness_probe"></a>
-### Nested Schema for `spec.instances.containers.working_dir`
+### Nested Schema for `spec.instances.containers.readiness_probe`
 
 Optional:
 
@@ -2624,7 +2624,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--instances--containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.instances.containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.instances.containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -2647,7 +2647,7 @@ Optional:
 
 
 <a id="nestedatt--spec--instances--containers--resources"></a>
-### Nested Schema for `spec.instances.containers.working_dir`
+### Nested Schema for `spec.instances.containers.resources`
 
 Optional:
 
@@ -2656,7 +2656,7 @@ Optional:
 
 
 <a id="nestedatt--spec--instances--containers--security_context"></a>
-### Nested Schema for `spec.instances.containers.working_dir`
+### Nested Schema for `spec.instances.containers.security_context`
 
 Optional:
 
@@ -2717,7 +2717,7 @@ Optional:
 
 
 <a id="nestedatt--spec--instances--containers--startup_probe"></a>
-### Nested Schema for `spec.instances.containers.working_dir`
+### Nested Schema for `spec.instances.containers.startup_probe`
 
 Optional:
 
@@ -2767,7 +2767,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--instances--containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.instances.containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.instances.containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -2790,7 +2790,7 @@ Optional:
 
 
 <a id="nestedatt--spec--instances--containers--volume_devices"></a>
-### Nested Schema for `spec.instances.containers.working_dir`
+### Nested Schema for `spec.instances.containers.volume_devices`
 
 Required:
 
@@ -2799,7 +2799,7 @@ Required:
 
 
 <a id="nestedatt--spec--instances--containers--volume_mounts"></a>
-### Nested Schema for `spec.instances.containers.working_dir`
+### Nested Schema for `spec.instances.containers.volume_mounts`
 
 Required:
 
@@ -2867,7 +2867,7 @@ Required:
 - `name` (String) The name for the tablespace, used as the path name for the volume. Must be unique in the instance set since they become the directory names.
 
 <a id="nestedatt--spec--instances--tablespace_volumes--data_volume_claim_spec"></a>
-### Nested Schema for `spec.instances.tablespace_volumes.name`
+### Nested Schema for `spec.instances.tablespace_volumes.data_volume_claim_spec`
 
 Optional:
 
@@ -2924,7 +2924,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--instances--tablespace_volumes--name--selector--match_expressions"></a>
-### Nested Schema for `spec.instances.tablespace_volumes.name.selector.match_labels`
+### Nested Schema for `spec.instances.tablespace_volumes.name.selector.match_expressions`
 
 Required:
 
@@ -2966,7 +2966,7 @@ Optional:
 - `min_domains` (Number) MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.  For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.  This is an alpha field and requires enabling MinDomainsInPodTopologySpread feature gate.
 
 <a id="nestedatt--spec--instances--topology_spread_constraints--label_selector"></a>
-### Nested Schema for `spec.instances.topology_spread_constraints.min_domains`
+### Nested Schema for `spec.instances.topology_spread_constraints.label_selector`
 
 Optional:
 
@@ -3006,7 +3006,7 @@ Optional:
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--instances--wal_volume_claim_spec--resources"></a>
-### Nested Schema for `spec.instances.wal_volume_claim_spec.volume_name`
+### Nested Schema for `spec.instances.wal_volume_claim_spec.resources`
 
 Required:
 
@@ -3018,7 +3018,7 @@ Optional:
 
 
 <a id="nestedatt--spec--instances--wal_volume_claim_spec--data_source"></a>
-### Nested Schema for `spec.instances.wal_volume_claim_spec.volume_name`
+### Nested Schema for `spec.instances.wal_volume_claim_spec.data_source`
 
 Required:
 
@@ -3031,7 +3031,7 @@ Optional:
 
 
 <a id="nestedatt--spec--instances--wal_volume_claim_spec--data_source_ref"></a>
-### Nested Schema for `spec.instances.wal_volume_claim_spec.volume_name`
+### Nested Schema for `spec.instances.wal_volume_claim_spec.data_source_ref`
 
 Required:
 
@@ -3044,7 +3044,7 @@ Optional:
 
 
 <a id="nestedatt--spec--instances--wal_volume_claim_spec--selector"></a>
-### Nested Schema for `spec.instances.wal_volume_claim_spec.volume_name`
+### Nested Schema for `spec.instances.wal_volume_claim_spec.selector`
 
 Optional:
 
@@ -3085,7 +3085,7 @@ Optional:
 - `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--config--files--service_account_token))
 
 <a id="nestedatt--spec--config--files--config_map"></a>
-### Nested Schema for `spec.config.files.service_account_token`
+### Nested Schema for `spec.config.files.config_map`
 
 Optional:
 
@@ -3108,7 +3108,7 @@ Optional:
 
 
 <a id="nestedatt--spec--config--files--downward_api"></a>
-### Nested Schema for `spec.config.files.service_account_token`
+### Nested Schema for `spec.config.files.downward_api`
 
 Optional:
 
@@ -3128,7 +3128,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--config--files--service_account_token--items--resource_field_ref))
 
 <a id="nestedatt--spec--config--files--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.config.files.service_account_token.items.resource_field_ref`
+### Nested Schema for `spec.config.files.service_account_token.items.field_ref`
 
 Required:
 
@@ -3155,7 +3155,7 @@ Optional:
 
 
 <a id="nestedatt--spec--config--files--secret"></a>
-### Nested Schema for `spec.config.files.service_account_token`
+### Nested Schema for `spec.config.files.secret`
 
 Optional:
 
@@ -3266,7 +3266,7 @@ Optional:
 - `tolerations` (Attributes List) Tolerations of the pgBackRest restore Job. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration (see [below for nested schema](#nestedatt--spec--data_source--pgbackrest--tolerations))
 
 <a id="nestedatt--spec--data_source--pgbackrest--repo"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations`
+### Nested Schema for `spec.data_source.pgbackrest.repo`
 
 Required:
 
@@ -3338,7 +3338,7 @@ Optional:
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--data_source--pgbackrest--tolerations--volume--volume_claim_spec--data_source"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations.volume.volume_claim_spec.volume_name`
+### Nested Schema for `spec.data_source.pgbackrest.tolerations.volume.volume_claim_spec.data_source`
 
 Required:
 
@@ -3351,7 +3351,7 @@ Optional:
 
 
 <a id="nestedatt--spec--data_source--pgbackrest--tolerations--volume--volume_claim_spec--data_source_ref"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations.volume.volume_claim_spec.volume_name`
+### Nested Schema for `spec.data_source.pgbackrest.tolerations.volume.volume_claim_spec.data_source_ref`
 
 Required:
 
@@ -3364,7 +3364,7 @@ Optional:
 
 
 <a id="nestedatt--spec--data_source--pgbackrest--tolerations--volume--volume_claim_spec--resources"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations.volume.volume_claim_spec.volume_name`
+### Nested Schema for `spec.data_source.pgbackrest.tolerations.volume.volume_claim_spec.resources`
 
 Optional:
 
@@ -3373,7 +3373,7 @@ Optional:
 
 
 <a id="nestedatt--spec--data_source--pgbackrest--tolerations--volume--volume_claim_spec--selector"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations.volume.volume_claim_spec.volume_name`
+### Nested Schema for `spec.data_source.pgbackrest.tolerations.volume.volume_claim_spec.selector`
 
 Optional:
 
@@ -3381,7 +3381,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--data_source--pgbackrest--tolerations--volume--volume_claim_spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations.volume.volume_claim_spec.volume_name.match_labels`
+### Nested Schema for `spec.data_source.pgbackrest.tolerations.volume.volume_claim_spec.volume_name.match_expressions`
 
 Required:
 
@@ -3398,7 +3398,7 @@ Optional:
 
 
 <a id="nestedatt--spec--data_source--pgbackrest--affinity"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations`
+### Nested Schema for `spec.data_source.pgbackrest.affinity`
 
 Optional:
 
@@ -3415,7 +3415,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--data_source--pgbackrest--tolerations--node_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--data_source--pgbackrest--tolerations--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations.node_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.data_source.pgbackrest.tolerations.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -3423,7 +3423,7 @@ Required:
 - `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
 
 <a id="nestedatt--spec--data_source--pgbackrest--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations.node_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.data_source.pgbackrest.tolerations.node_affinity.required_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -3431,7 +3431,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--data_source--pgbackrest--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--data_source--pgbackrest--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.data_source.pgbackrest.tolerations.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -3474,7 +3474,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--data_source--pgbackrest--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--data_source--pgbackrest--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.data_source.pgbackrest.tolerations.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -3511,7 +3511,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--data_source--pgbackrest--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--data_source--pgbackrest--tolerations--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -3519,7 +3519,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--data_source--pgbackrest--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -3532,7 +3532,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--data_source--pgbackrest--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -3554,7 +3554,7 @@ Optional:
 
 
 <a id="nestedatt--spec--data_source--pgbackrest--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -3591,7 +3591,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--data_source--pgbackrest--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -3599,7 +3599,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--data_source--pgbackrest--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -3613,7 +3613,7 @@ Optional:
 
 
 <a id="nestedatt--spec--data_source--pgbackrest--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -3621,7 +3621,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--data_source--pgbackrest--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -3645,7 +3645,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--data_source--pgbackrest--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--data_source--pgbackrest--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -3653,7 +3653,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--data_source--pgbackrest--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -3666,7 +3666,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--data_source--pgbackrest--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -3688,7 +3688,7 @@ Optional:
 
 
 <a id="nestedatt--spec--data_source--pgbackrest--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -3725,7 +3725,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--data_source--pgbackrest--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -3733,7 +3733,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--data_source--pgbackrest--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -3747,7 +3747,7 @@ Optional:
 
 
 <a id="nestedatt--spec--data_source--pgbackrest--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -3755,7 +3755,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--data_source--pgbackrest--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.data_source.pgbackrest.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -3772,7 +3772,7 @@ Optional:
 
 
 <a id="nestedatt--spec--data_source--pgbackrest--configuration"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations`
+### Nested Schema for `spec.data_source.pgbackrest.configuration`
 
 Optional:
 
@@ -3791,7 +3791,7 @@ Optional:
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--data_source--pgbackrest--tolerations--config_map--items"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations.config_map.optional`
+### Nested Schema for `spec.data_source.pgbackrest.tolerations.config_map.items`
 
 Required:
 
@@ -3825,7 +3825,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--data_source--pgbackrest--tolerations--downward_api--items--resource_field_ref))
 
 <a id="nestedatt--spec--data_source--pgbackrest--tolerations--downward_api--items--field_ref"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations.downward_api.items.resource_field_ref`
+### Nested Schema for `spec.data_source.pgbackrest.tolerations.downward_api.items.field_ref`
 
 Required:
 
@@ -3861,7 +3861,7 @@ Optional:
 - `optional` (Boolean) optional field specify whether the Secret or its key must be defined
 
 <a id="nestedatt--spec--data_source--pgbackrest--tolerations--secret--items"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations.secret.optional`
+### Nested Schema for `spec.data_source.pgbackrest.tolerations.secret.items`
 
 Required:
 
@@ -3889,7 +3889,7 @@ Optional:
 
 
 <a id="nestedatt--spec--data_source--pgbackrest--resources"></a>
-### Nested Schema for `spec.data_source.pgbackrest.tolerations`
+### Nested Schema for `spec.data_source.pgbackrest.resources`
 
 Optional:
 
@@ -3928,7 +3928,7 @@ Optional:
 - `tolerations` (Attributes List) Tolerations of the pgBackRest restore Job. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration (see [below for nested schema](#nestedatt--spec--data_source--postgres_cluster--tolerations))
 
 <a id="nestedatt--spec--data_source--postgres_cluster--affinity"></a>
-### Nested Schema for `spec.data_source.postgres_cluster.tolerations`
+### Nested Schema for `spec.data_source.postgres_cluster.affinity`
 
 Optional:
 
@@ -3945,7 +3945,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--data_source--postgres_cluster--tolerations--node_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--data_source--postgres_cluster--tolerations--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.data_source.postgres_cluster.tolerations.node_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.data_source.postgres_cluster.tolerations.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -3953,7 +3953,7 @@ Required:
 - `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
 
 <a id="nestedatt--spec--data_source--postgres_cluster--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.data_source.postgres_cluster.tolerations.node_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.data_source.postgres_cluster.tolerations.node_affinity.required_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -3961,7 +3961,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--data_source--postgres_cluster--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--data_source--postgres_cluster--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.data_source.postgres_cluster.tolerations.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.data_source.postgres_cluster.tolerations.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -4004,7 +4004,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--data_source--postgres_cluster--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--data_source--postgres_cluster--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.data_source.postgres_cluster.tolerations.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.data_source.postgres_cluster.tolerations.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -4041,7 +4041,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--data_source--postgres_cluster--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--data_source--postgres_cluster--tolerations--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -4049,7 +4049,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--data_source--postgres_cluster--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -4062,7 +4062,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--data_source--postgres_cluster--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -4084,7 +4084,7 @@ Optional:
 
 
 <a id="nestedatt--spec--data_source--postgres_cluster--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -4121,7 +4121,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--data_source--postgres_cluster--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -4129,7 +4129,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--data_source--postgres_cluster--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -4143,7 +4143,7 @@ Optional:
 
 
 <a id="nestedatt--spec--data_source--postgres_cluster--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -4151,7 +4151,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--data_source--postgres_cluster--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -4175,7 +4175,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--data_source--postgres_cluster--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--data_source--postgres_cluster--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -4183,7 +4183,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--data_source--postgres_cluster--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -4196,7 +4196,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--data_source--postgres_cluster--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -4218,7 +4218,7 @@ Optional:
 
 
 <a id="nestedatt--spec--data_source--postgres_cluster--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -4255,7 +4255,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--data_source--postgres_cluster--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -4263,7 +4263,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--data_source--postgres_cluster--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -4277,7 +4277,7 @@ Optional:
 
 
 <a id="nestedatt--spec--data_source--postgres_cluster--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -4285,7 +4285,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--data_source--postgres_cluster--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.data_source.postgres_cluster.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -4302,7 +4302,7 @@ Optional:
 
 
 <a id="nestedatt--spec--data_source--postgres_cluster--resources"></a>
-### Nested Schema for `spec.data_source.postgres_cluster.tolerations`
+### Nested Schema for `spec.data_source.postgres_cluster.resources`
 
 Optional:
 
@@ -4333,7 +4333,7 @@ Optional:
 - `pg_wal_volume` (Attributes) Defines the existing pg_wal volume and directory to use in the current PostgresCluster. Note that a defined pg_wal volume MUST be accompanied by a pgData volume. (see [below for nested schema](#nestedatt--spec--data_source--volumes--pg_wal_volume))
 
 <a id="nestedatt--spec--data_source--volumes--pg_back_rest_volume"></a>
-### Nested Schema for `spec.data_source.volumes.pg_wal_volume`
+### Nested Schema for `spec.data_source.volumes.pg_back_rest_volume`
 
 Required:
 
@@ -4345,7 +4345,7 @@ Optional:
 
 
 <a id="nestedatt--spec--data_source--volumes--pg_data_volume"></a>
-### Nested Schema for `spec.data_source.volumes.pg_wal_volume`
+### Nested Schema for `spec.data_source.volumes.pg_data_volume`
 
 Required:
 
@@ -4431,7 +4431,7 @@ Optional:
 - `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--monitoring--pgmonitor--exporter--configuration--service_account_token))
 
 <a id="nestedatt--spec--monitoring--pgmonitor--exporter--configuration--config_map"></a>
-### Nested Schema for `spec.monitoring.pgmonitor.exporter.configuration.service_account_token`
+### Nested Schema for `spec.monitoring.pgmonitor.exporter.configuration.config_map`
 
 Optional:
 
@@ -4440,7 +4440,7 @@ Optional:
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--monitoring--pgmonitor--exporter--configuration--service_account_token--items"></a>
-### Nested Schema for `spec.monitoring.pgmonitor.exporter.configuration.service_account_token.optional`
+### Nested Schema for `spec.monitoring.pgmonitor.exporter.configuration.service_account_token.items`
 
 Required:
 
@@ -4454,7 +4454,7 @@ Optional:
 
 
 <a id="nestedatt--spec--monitoring--pgmonitor--exporter--configuration--downward_api"></a>
-### Nested Schema for `spec.monitoring.pgmonitor.exporter.configuration.service_account_token`
+### Nested Schema for `spec.monitoring.pgmonitor.exporter.configuration.downward_api`
 
 Optional:
 
@@ -4474,7 +4474,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--monitoring--pgmonitor--exporter--configuration--service_account_token--items--resource_field_ref))
 
 <a id="nestedatt--spec--monitoring--pgmonitor--exporter--configuration--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.monitoring.pgmonitor.exporter.configuration.service_account_token.items.resource_field_ref`
+### Nested Schema for `spec.monitoring.pgmonitor.exporter.configuration.service_account_token.items.field_ref`
 
 Required:
 
@@ -4501,7 +4501,7 @@ Optional:
 
 
 <a id="nestedatt--spec--monitoring--pgmonitor--exporter--configuration--secret"></a>
-### Nested Schema for `spec.monitoring.pgmonitor.exporter.configuration.service_account_token`
+### Nested Schema for `spec.monitoring.pgmonitor.exporter.configuration.secret`
 
 Optional:
 
@@ -4510,7 +4510,7 @@ Optional:
 - `optional` (Boolean) optional field specify whether the Secret or its key must be defined
 
 <a id="nestedatt--spec--monitoring--pgmonitor--exporter--configuration--service_account_token--items"></a>
-### Nested Schema for `spec.monitoring.pgmonitor.exporter.configuration.service_account_token.optional`
+### Nested Schema for `spec.monitoring.pgmonitor.exporter.configuration.service_account_token.items`
 
 Required:
 
@@ -4547,7 +4547,7 @@ Optional:
 - `optional` (Boolean) optional field specify whether the Secret or its key must be defined
 
 <a id="nestedatt--spec--monitoring--pgmonitor--exporter--custom_tls_secret--items"></a>
-### Nested Schema for `spec.monitoring.pgmonitor.exporter.custom_tls_secret.optional`
+### Nested Schema for `spec.monitoring.pgmonitor.exporter.custom_tls_secret.items`
 
 Required:
 
@@ -4626,7 +4626,7 @@ Optional:
 - `topology_spread_constraints` (Attributes List) Topology spread constraints of a PgBouncer pod. Changing this value causes PgBouncer to restart. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/ (see [below for nested schema](#nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints))
 
 <a id="nestedatt--spec--proxy--pg_bouncer--affinity"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints`
+### Nested Schema for `spec.proxy.pg_bouncer.affinity`
 
 Optional:
 
@@ -4643,7 +4643,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -4651,7 +4651,7 @@ Required:
 - `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -4659,7 +4659,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -4702,7 +4702,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -4739,7 +4739,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -4747,7 +4747,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -4760,7 +4760,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -4782,7 +4782,7 @@ Optional:
 
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -4819,7 +4819,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -4827,7 +4827,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -4841,7 +4841,7 @@ Optional:
 
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -4849,7 +4849,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -4873,7 +4873,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -4881,7 +4881,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -4894,7 +4894,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -4916,7 +4916,7 @@ Optional:
 
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -4953,7 +4953,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -4961,7 +4961,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -4975,7 +4975,7 @@ Optional:
 
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -4983,7 +4983,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -5000,7 +5000,7 @@ Optional:
 
 
 <a id="nestedatt--spec--proxy--pg_bouncer--config"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints`
+### Nested Schema for `spec.proxy.pg_bouncer.config`
 
 Optional:
 
@@ -5020,7 +5020,7 @@ Optional:
 - `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--files--service_account_token))
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--files--config_map"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.files.service_account_token`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.files.config_map`
 
 Optional:
 
@@ -5029,7 +5029,7 @@ Optional:
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--files--service_account_token--items"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.files.service_account_token.optional`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.files.service_account_token.items`
 
 Required:
 
@@ -5043,7 +5043,7 @@ Optional:
 
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--files--downward_api"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.files.service_account_token`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.files.downward_api`
 
 Optional:
 
@@ -5063,7 +5063,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--files--service_account_token--items--resource_field_ref))
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--files--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.files.service_account_token.items.resource_field_ref`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.files.service_account_token.items.field_ref`
 
 Required:
 
@@ -5090,7 +5090,7 @@ Optional:
 
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--files--secret"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.files.service_account_token`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.files.secret`
 
 Optional:
 
@@ -5099,7 +5099,7 @@ Optional:
 - `optional` (Boolean) optional field specify whether the Secret or its key must be defined
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--files--service_account_token--items"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.files.service_account_token.optional`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.files.service_account_token.items`
 
 Required:
 
@@ -5128,7 +5128,7 @@ Optional:
 
 
 <a id="nestedatt--spec--proxy--pg_bouncer--containers"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints`
+### Nested Schema for `spec.proxy.pg_bouncer.containers`
 
 Required:
 
@@ -5181,7 +5181,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.env.value_from.secret_key_ref`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -5194,7 +5194,7 @@ Optional:
 
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--env--value_from--field_ref"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.env.value_from.secret_key_ref`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.env.value_from.field_ref`
 
 Required:
 
@@ -5206,7 +5206,7 @@ Optional:
 
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.env.value_from.secret_key_ref`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.env.value_from.resource_field_ref`
 
 Required:
 
@@ -5243,7 +5243,7 @@ Optional:
 - `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--env_from--secret_ref))
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--env_from--config_map_ref"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.env_from.secret_ref`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.env_from.config_map_ref`
 
 Optional:
 
@@ -5270,7 +5270,7 @@ Optional:
 - `pre_stop` (Attributes) PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The Pod's termination grace period countdown begins before the PreStop hook is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period (unless delayed by finalizers). Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks (see [below for nested schema](#nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--lifecycle--pre_stop))
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--lifecycle--post_start"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.lifecycle.pre_stop`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.lifecycle.post_start`
 
 Optional:
 
@@ -5279,7 +5279,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -5287,7 +5287,7 @@ Optional:
 
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -5301,7 +5301,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -5333,7 +5333,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -5341,7 +5341,7 @@ Optional:
 
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -5355,7 +5355,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -5395,7 +5395,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--liveness_probe--exec"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.liveness_probe.exec`
 
 Optional:
 
@@ -5403,7 +5403,7 @@ Optional:
 
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--liveness_probe--grpc"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.liveness_probe.grpc`
 
 Required:
 
@@ -5415,7 +5415,7 @@ Optional:
 
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--liveness_probe--http_get"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.liveness_probe.http_get`
 
 Required:
 
@@ -5429,7 +5429,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.liveness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.liveness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -5439,7 +5439,7 @@ Required:
 
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.liveness_probe.tcp_socket`
 
 Required:
 
@@ -5483,7 +5483,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--readiness_probe--exec"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.readiness_probe.exec`
 
 Optional:
 
@@ -5491,7 +5491,7 @@ Optional:
 
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--readiness_probe--grpc"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.readiness_probe.grpc`
 
 Required:
 
@@ -5503,7 +5503,7 @@ Optional:
 
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--readiness_probe--http_get"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.readiness_probe.http_get`
 
 Required:
 
@@ -5517,7 +5517,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.readiness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.readiness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -5527,7 +5527,7 @@ Required:
 
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.readiness_probe.tcp_socket`
 
 Required:
 
@@ -5566,7 +5566,7 @@ Optional:
 - `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--security_context--windows_options))
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--security_context--capabilities"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.security_context.windows_options`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.security_context.capabilities`
 
 Optional:
 
@@ -5575,7 +5575,7 @@ Optional:
 
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--security_context--se_linux_options"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.security_context.windows_options`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.security_context.se_linux_options`
 
 Optional:
 
@@ -5586,7 +5586,7 @@ Optional:
 
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.security_context.windows_options`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.security_context.seccomp_profile`
 
 Required:
 
@@ -5626,7 +5626,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--startup_probe--exec"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.startup_probe.timeout_seconds`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.startup_probe.exec`
 
 Optional:
 
@@ -5634,7 +5634,7 @@ Optional:
 
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--startup_probe--grpc"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.startup_probe.timeout_seconds`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.startup_probe.grpc`
 
 Required:
 
@@ -5646,7 +5646,7 @@ Optional:
 
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--startup_probe--http_get"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.startup_probe.timeout_seconds`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.startup_probe.http_get`
 
 Required:
 
@@ -5660,7 +5660,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--startup_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.startup_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.startup_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -5670,7 +5670,7 @@ Required:
 
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.startup_probe.timeout_seconds`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.startup_probe.tcp_socket`
 
 Required:
 
@@ -5709,7 +5709,7 @@ Optional:
 
 
 <a id="nestedatt--spec--proxy--pg_bouncer--custom_tls_secret"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints`
+### Nested Schema for `spec.proxy.pg_bouncer.custom_tls_secret`
 
 Optional:
 
@@ -5732,7 +5732,7 @@ Optional:
 
 
 <a id="nestedatt--spec--proxy--pg_bouncer--metadata"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints`
+### Nested Schema for `spec.proxy.pg_bouncer.metadata`
 
 Optional:
 
@@ -5741,7 +5741,7 @@ Optional:
 
 
 <a id="nestedatt--spec--proxy--pg_bouncer--resources"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints`
+### Nested Schema for `spec.proxy.pg_bouncer.resources`
 
 Optional:
 
@@ -5750,7 +5750,7 @@ Optional:
 
 
 <a id="nestedatt--spec--proxy--pg_bouncer--service"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints`
+### Nested Schema for `spec.proxy.pg_bouncer.service`
 
 Optional:
 
@@ -5769,7 +5769,7 @@ Optional:
 
 
 <a id="nestedatt--spec--proxy--pg_bouncer--sidecars"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints`
+### Nested Schema for `spec.proxy.pg_bouncer.sidecars`
 
 Optional:
 
@@ -5794,7 +5794,7 @@ Optional:
 
 
 <a id="nestedatt--spec--proxy--pg_bouncer--tolerations"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints`
+### Nested Schema for `spec.proxy.pg_bouncer.tolerations`
 
 Optional:
 
@@ -5828,7 +5828,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--proxy--pg_bouncer--topology_spread_constraints--label_selector--match_expressions"></a>
-### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.label_selector.match_labels`
+### Nested Schema for `spec.proxy.pg_bouncer.topology_spread_constraints.label_selector.match_expressions`
 
 Required:
 
@@ -5921,7 +5921,7 @@ Optional:
 - `topology_spread_constraints` (Attributes List) Topology spread constraints of a pgAdmin pod. Changing this value causes pgAdmin to restart. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/ (see [below for nested schema](#nestedatt--spec--user_interface--pg_admin--topology_spread_constraints))
 
 <a id="nestedatt--spec--user_interface--pg_admin--data_volume_claim_spec"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints`
+### Nested Schema for `spec.user_interface.pg_admin.data_volume_claim_spec`
 
 Optional:
 
@@ -5978,7 +5978,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--selector--match_expressions"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.selector.match_labels`
+### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.selector.match_expressions`
 
 Required:
 
@@ -5993,7 +5993,7 @@ Optional:
 
 
 <a id="nestedatt--spec--user_interface--pg_admin--affinity"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints`
+### Nested Schema for `spec.user_interface.pg_admin.affinity`
 
 Optional:
 
@@ -6010,7 +6010,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -6018,7 +6018,7 @@ Required:
 - `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
 
 <a id="nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -6026,7 +6026,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -6069,7 +6069,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -6106,7 +6106,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -6114,7 +6114,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -6127,7 +6127,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -6149,7 +6149,7 @@ Optional:
 
 
 <a id="nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -6186,7 +6186,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -6194,7 +6194,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -6208,7 +6208,7 @@ Optional:
 
 
 <a id="nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -6216,7 +6216,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -6240,7 +6240,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -6248,7 +6248,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -6261,7 +6261,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -6283,7 +6283,7 @@ Optional:
 
 
 <a id="nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -6320,7 +6320,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -6328,7 +6328,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -6342,7 +6342,7 @@ Optional:
 
 
 <a id="nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -6350,7 +6350,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -6367,7 +6367,7 @@ Optional:
 
 
 <a id="nestedatt--spec--user_interface--pg_admin--config"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints`
+### Nested Schema for `spec.user_interface.pg_admin.config`
 
 Optional:
 
@@ -6386,7 +6386,7 @@ Optional:
 - `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--files--service_account_token))
 
 <a id="nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--files--config_map"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.files.service_account_token`
+### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.files.config_map`
 
 Optional:
 
@@ -6395,7 +6395,7 @@ Optional:
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--files--service_account_token--items"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.files.service_account_token.optional`
+### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.files.service_account_token.items`
 
 Required:
 
@@ -6409,7 +6409,7 @@ Optional:
 
 
 <a id="nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--files--downward_api"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.files.service_account_token`
+### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.files.downward_api`
 
 Optional:
 
@@ -6429,7 +6429,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--files--service_account_token--items--resource_field_ref))
 
 <a id="nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--files--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.files.service_account_token.items.resource_field_ref`
+### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.files.service_account_token.items.field_ref`
 
 Required:
 
@@ -6456,7 +6456,7 @@ Optional:
 
 
 <a id="nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--files--secret"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.files.service_account_token`
+### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.files.secret`
 
 Optional:
 
@@ -6465,7 +6465,7 @@ Optional:
 - `optional` (Boolean) optional field specify whether the Secret or its key must be defined
 
 <a id="nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--files--service_account_token--items"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.files.service_account_token.optional`
+### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.files.service_account_token.items`
 
 Required:
 
@@ -6507,7 +6507,7 @@ Optional:
 
 
 <a id="nestedatt--spec--user_interface--pg_admin--metadata"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints`
+### Nested Schema for `spec.user_interface.pg_admin.metadata`
 
 Optional:
 
@@ -6516,7 +6516,7 @@ Optional:
 
 
 <a id="nestedatt--spec--user_interface--pg_admin--resources"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints`
+### Nested Schema for `spec.user_interface.pg_admin.resources`
 
 Optional:
 
@@ -6525,7 +6525,7 @@ Optional:
 
 
 <a id="nestedatt--spec--user_interface--pg_admin--service"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints`
+### Nested Schema for `spec.user_interface.pg_admin.service`
 
 Optional:
 
@@ -6544,7 +6544,7 @@ Optional:
 
 
 <a id="nestedatt--spec--user_interface--pg_admin--tolerations"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints`
+### Nested Schema for `spec.user_interface.pg_admin.tolerations`
 
 Optional:
 
@@ -6578,7 +6578,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--label_selector--match_expressions"></a>
-### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.label_selector.match_labels`
+### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.label_selector.match_expressions`
 
 Required:
 

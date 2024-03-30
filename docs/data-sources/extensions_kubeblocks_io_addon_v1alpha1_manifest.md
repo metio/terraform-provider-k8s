@@ -97,7 +97,7 @@ Optional:
 - `tolerations` (String) Specifies the tolerations in a JSON array string format.
 
 <a id="nestedatt--spec--default_install_values--extras--resources"></a>
-### Nested Schema for `spec.default_install_values.extras.tolerations`
+### Nested Schema for `spec.default_install_values.extras.resources`
 
 Optional:
 
@@ -169,7 +169,7 @@ Optional:
 - `urls` (List of String) Specifies the URL location of the values file.
 
 <a id="nestedatt--spec--helm--install_values--config_map_refs"></a>
-### Nested Schema for `spec.helm.install_values.urls`
+### Nested Schema for `spec.helm.install_values.config_map_refs`
 
 Required:
 
@@ -178,7 +178,7 @@ Required:
 
 
 <a id="nestedatt--spec--helm--install_values--secret_refs"></a>
-### Nested Schema for `spec.helm.install_values.urls`
+### Nested Schema for `spec.helm.install_values.secret_refs`
 
 Required:
 
@@ -198,7 +198,7 @@ Optional:
 - `value_map` (Attributes) Defines the 'key' mapping values. Valid keys include 'replicaCount', 'persistentVolumeEnabled', and 'storageClass'. Enum values explained:  - 'replicaCount' sets the replicaCount value mapping key. - 'persistentVolumeEnabled' sets the persistent volume enabled mapping key. - 'storageClass' sets the storageClass mapping key. (see [below for nested schema](#nestedatt--spec--helm--values_mapping--value_map))
 
 <a id="nestedatt--spec--helm--values_mapping--extras"></a>
-### Nested Schema for `spec.helm.values_mapping.value_map`
+### Nested Schema for `spec.helm.values_mapping.extras`
 
 Required:
 
@@ -228,7 +228,7 @@ Optional:
 - `storage` (String) Specifies the key used for mapping the storage size value.
 
 <a id="nestedatt--spec--helm--values_mapping--value_map--resources--cpu"></a>
-### Nested Schema for `spec.helm.values_mapping.value_map.resources.storage`
+### Nested Schema for `spec.helm.values_mapping.value_map.resources.cpu`
 
 Optional:
 
@@ -237,7 +237,7 @@ Optional:
 
 
 <a id="nestedatt--spec--helm--values_mapping--value_map--resources--memory"></a>
-### Nested Schema for `spec.helm.values_mapping.value_map.resources.storage`
+### Nested Schema for `spec.helm.values_mapping.value_map.resources.memory`
 
 Optional:
 
@@ -258,7 +258,7 @@ Optional:
 
 
 <a id="nestedatt--spec--helm--values_mapping--json_map"></a>
-### Nested Schema for `spec.helm.values_mapping.value_map`
+### Nested Schema for `spec.helm.values_mapping.json_map`
 
 Optional:
 
@@ -266,7 +266,7 @@ Optional:
 
 
 <a id="nestedatt--spec--helm--values_mapping--resources"></a>
-### Nested Schema for `spec.helm.values_mapping.value_map`
+### Nested Schema for `spec.helm.values_mapping.resources`
 
 Optional:
 
@@ -334,7 +334,7 @@ Optional:
 - `tolerations` (String) Specifies the tolerations in a JSON array string format.
 
 <a id="nestedatt--spec--install--extras--resources"></a>
-### Nested Schema for `spec.install.extras.tolerations`
+### Nested Schema for `spec.install.extras.resources`
 
 Optional:
 

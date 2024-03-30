@@ -89,7 +89,7 @@ Optional:
 - `storage` (Attributes) QuantityRange models a resource limit range for resources which can be expressed with resource.Quantity. (see [below for nested schema](#nestedatt--spec--policies--resources--storage))
 
 <a id="nestedatt--spec--policies--resources--node_count"></a>
-### Nested Schema for `spec.policies.resources.storage`
+### Nested Schema for `spec.policies.resources.node_count`
 
 Required:
 
@@ -98,7 +98,7 @@ Required:
 
 
 <a id="nestedatt--spec--policies--resources--cpu"></a>
-### Nested Schema for `spec.policies.resources.storage`
+### Nested Schema for `spec.policies.resources.cpu`
 
 Required:
 
@@ -111,7 +111,7 @@ Optional:
 
 
 <a id="nestedatt--spec--policies--resources--memory"></a>
-### Nested Schema for `spec.policies.resources.storage`
+### Nested Schema for `spec.policies.resources.memory`
 
 Required:
 

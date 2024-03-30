@@ -385,7 +385,7 @@ Optional:
 - `url` (String) The URL that Kiali uses when integrating with Grafana. This URL must be accessible to clients external to the cluster in order for the integration to work properly. If empty, an attempt to auto-discover it is made. This URL can contain query parameters if needed, such as '?orgId=1'.
 
 <a id="nestedatt--spec--external_services--grafana--auth"></a>
-### Nested Schema for `spec.external_services.grafana.url`
+### Nested Schema for `spec.external_services.grafana.auth`
 
 Optional:
 
@@ -399,7 +399,7 @@ Optional:
 
 
 <a id="nestedatt--spec--external_services--grafana--dashboards"></a>
-### Nested Schema for `spec.external_services.grafana.url`
+### Nested Schema for `spec.external_services.grafana.dashboards`
 
 Optional:
 
@@ -440,7 +440,7 @@ Optional:
 - `url_service_version` (String) The Istio service used to determine the Istio version. If empty, assumes the URL for the well-known Istio version endpoint.
 
 <a id="nestedatt--spec--external_services--istio--component_status"></a>
-### Nested Schema for `spec.external_services.istio.url_service_version`
+### Nested Schema for `spec.external_services.istio.component_status`
 
 Optional:
 
@@ -460,7 +460,7 @@ Optional:
 
 
 <a id="nestedatt--spec--external_services--istio--gateway_api_classes"></a>
-### Nested Schema for `spec.external_services.istio.url_service_version`
+### Nested Schema for `spec.external_services.istio.gateway_api_classes`
 
 Optional:
 
@@ -469,7 +469,7 @@ Optional:
 
 
 <a id="nestedatt--spec--external_services--istio--istio_canary_revision"></a>
-### Nested Schema for `spec.external_services.istio.url_service_version`
+### Nested Schema for `spec.external_services.istio.istio_canary_revision`
 
 Optional:
 
@@ -495,7 +495,7 @@ Optional:
 - `url` (String) The URL used to query the Prometheus Server. This URL must be accessible from the Kiali pod. If empty, the default will assume Prometheus is in the Istio control plane namespace; e.g. 'http://prometheus.<istio_namespace>:9090'.
 
 <a id="nestedatt--spec--external_services--prometheus--auth"></a>
-### Nested Schema for `spec.external_services.prometheus.url`
+### Nested Schema for `spec.external_services.prometheus.auth`
 
 Optional:
 
@@ -509,7 +509,7 @@ Optional:
 
 
 <a id="nestedatt--spec--external_services--prometheus--thanos_proxy"></a>
-### Nested Schema for `spec.external_services.prometheus.url`
+### Nested Schema for `spec.external_services.prometheus.thanos_proxy`
 
 Optional:
 
@@ -539,7 +539,7 @@ Optional:
 - `whitelist_istio_system` (List of String) Kiali will get the traces of these services found in the Istio control plane namespace.
 
 <a id="nestedatt--spec--external_services--tracing--auth"></a>
-### Nested Schema for `spec.external_services.tracing.whitelist_istio_system`
+### Nested Schema for `spec.external_services.tracing.auth`
 
 Optional:
 
@@ -638,7 +638,7 @@ Optional:
 - `kiali_urls` (Attributes List) A map between cluster name, instance name and namespace to a Kiali URL. Will be used showing the Mesh page's Kiali URLs. The Kiali service's 'kiali.io/external-url' annotation will be overridden when this property is set. (see [below for nested schema](#nestedatt--spec--kiali_feature_flags--clustering--kiali_urls))
 
 <a id="nestedatt--spec--kiali_feature_flags--clustering--autodetect_secrets"></a>
-### Nested Schema for `spec.kiali_feature_flags.clustering.kiali_urls`
+### Nested Schema for `spec.kiali_feature_flags.clustering.autodetect_secrets`
 
 Optional:
 
@@ -647,7 +647,7 @@ Optional:
 
 
 <a id="nestedatt--spec--kiali_feature_flags--clustering--clusters"></a>
-### Nested Schema for `spec.kiali_feature_flags.clustering.kiali_urls`
+### Nested Schema for `spec.kiali_feature_flags.clustering.clusters`
 
 Optional:
 
@@ -682,7 +682,7 @@ Optional:
 - `refresh_interval` (String) The automatic refresh interval for pages offering automatic refresh. Value must be one of: 'pause', '10s', '15s', '30s', '1m', '5m' or '15m'
 
 <a id="nestedatt--spec--kiali_feature_flags--ui_defaults--graph"></a>
-### Nested Schema for `spec.kiali_feature_flags.ui_defaults.refresh_interval`
+### Nested Schema for `spec.kiali_feature_flags.ui_defaults.graph`
 
 Optional:
 
@@ -722,7 +722,7 @@ Optional:
 
 
 <a id="nestedatt--spec--kiali_feature_flags--ui_defaults--i18n"></a>
-### Nested Schema for `spec.kiali_feature_flags.ui_defaults.refresh_interval`
+### Nested Schema for `spec.kiali_feature_flags.ui_defaults.i18n`
 
 Optional:
 
@@ -731,7 +731,7 @@ Optional:
 
 
 <a id="nestedatt--spec--kiali_feature_flags--ui_defaults--list"></a>
-### Nested Schema for `spec.kiali_feature_flags.ui_defaults.refresh_interval`
+### Nested Schema for `spec.kiali_feature_flags.ui_defaults.list`
 
 Optional:
 
@@ -742,7 +742,7 @@ Optional:
 
 
 <a id="nestedatt--spec--kiali_feature_flags--ui_defaults--metrics_inbound"></a>
-### Nested Schema for `spec.kiali_feature_flags.ui_defaults.refresh_interval`
+### Nested Schema for `spec.kiali_feature_flags.ui_defaults.metrics_inbound`
 
 Optional:
 
@@ -759,7 +759,7 @@ Optional:
 
 
 <a id="nestedatt--spec--kiali_feature_flags--ui_defaults--metrics_outbound"></a>
-### Nested Schema for `spec.kiali_feature_flags.ui_defaults.refresh_interval`
+### Nested Schema for `spec.kiali_feature_flags.ui_defaults.metrics_outbound`
 
 Optional:
 
@@ -836,7 +836,7 @@ Optional:
 - `tracing` (Attributes) Settings that control how the Kiali server itself emits its own tracing data. (see [below for nested schema](#nestedatt--spec--server--observability--tracing))
 
 <a id="nestedatt--spec--server--observability--metrics"></a>
-### Nested Schema for `spec.server.observability.tracing`
+### Nested Schema for `spec.server.observability.metrics`
 
 Optional:
 

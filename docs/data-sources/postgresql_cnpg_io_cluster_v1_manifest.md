@@ -127,7 +127,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--affinity--additional_pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.affinity.additional_pod_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.affinity.additional_pod_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -150,7 +150,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--affinity--additional_pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
-### Nested Schema for `spec.affinity.additional_pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.affinity.additional_pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
@@ -158,7 +158,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--additional_pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.affinity.additional_pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.affinity.additional_pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -172,7 +172,7 @@ Optional:
 
 
 <a id="nestedatt--spec--affinity--additional_pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
-### Nested Schema for `spec.affinity.additional_pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.affinity.additional_pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
@@ -180,7 +180,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--additional_pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.affinity.additional_pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.affinity.additional_pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -219,7 +219,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--additional_pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
-### Nested Schema for `spec.affinity.additional_pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_labels`
+### Nested Schema for `spec.affinity.additional_pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -241,7 +241,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--additional_pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.affinity.additional_pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_labels`
+### Nested Schema for `spec.affinity.additional_pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -265,7 +265,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--affinity--additional_pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.affinity.additional_pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.affinity.additional_pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -288,7 +288,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--affinity--additional_pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
-### Nested Schema for `spec.affinity.additional_pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.affinity.additional_pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
@@ -296,7 +296,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--additional_pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.affinity.additional_pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.affinity.additional_pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -310,7 +310,7 @@ Optional:
 
 
 <a id="nestedatt--spec--affinity--additional_pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
-### Nested Schema for `spec.affinity.additional_pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.affinity.additional_pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
@@ -318,7 +318,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--additional_pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.affinity.additional_pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.affinity.additional_pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -357,7 +357,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--additional_pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
-### Nested Schema for `spec.affinity.additional_pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_labels`
+### Nested Schema for `spec.affinity.additional_pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -379,7 +379,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--additional_pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.affinity.additional_pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_labels`
+### Nested Schema for `spec.affinity.additional_pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -403,7 +403,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -419,7 +419,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--preference--match_fields))
 
 <a id="nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
-### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.preference.match_fields`
+### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Required:
 
@@ -462,7 +462,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -534,7 +534,7 @@ Optional:
 - `wal` (Attributes) The configuration for the backup of the WAL stream.When not defined, WAL files will be stored uncompressed and may beunencrypted in the object store, according to the bucket default policy. (see [below for nested schema](#nestedatt--spec--backup--barman_object_store--wal))
 
 <a id="nestedatt--spec--backup--barman_object_store--azure_credentials"></a>
-### Nested Schema for `spec.backup.barman_object_store.wal`
+### Nested Schema for `spec.backup.barman_object_store.azure_credentials`
 
 Optional:
 
@@ -582,7 +582,7 @@ Required:
 
 
 <a id="nestedatt--spec--backup--barman_object_store--data"></a>
-### Nested Schema for `spec.backup.barman_object_store.wal`
+### Nested Schema for `spec.backup.barman_object_store.data`
 
 Optional:
 
@@ -594,7 +594,7 @@ Optional:
 
 
 <a id="nestedatt--spec--backup--barman_object_store--endpoint_ca"></a>
-### Nested Schema for `spec.backup.barman_object_store.wal`
+### Nested Schema for `spec.backup.barman_object_store.endpoint_ca`
 
 Required:
 
@@ -603,7 +603,7 @@ Required:
 
 
 <a id="nestedatt--spec--backup--barman_object_store--google_credentials"></a>
-### Nested Schema for `spec.backup.barman_object_store.wal`
+### Nested Schema for `spec.backup.barman_object_store.google_credentials`
 
 Optional:
 
@@ -621,7 +621,7 @@ Required:
 
 
 <a id="nestedatt--spec--backup--barman_object_store--s3_credentials"></a>
-### Nested Schema for `spec.backup.barman_object_store.wal`
+### Nested Schema for `spec.backup.barman_object_store.s3_credentials`
 
 Optional:
 
@@ -694,7 +694,7 @@ Optional:
 - `wal_class_name` (String) WalClassName specifies the Snapshot Class to be used for the PG_WAL PersistentVolumeClaim.
 
 <a id="nestedatt--spec--backup--volume_snapshot--online_configuration"></a>
-### Nested Schema for `spec.backup.volume_snapshot.wal_class_name`
+### Nested Schema for `spec.backup.volume_snapshot.online_configuration`
 
 Optional:
 
@@ -734,7 +734,7 @@ Optional:
 - `wal_segment_size` (Number) The value in megabytes (1 to 1024) to be passed to the '--wal-segsize'option for initdb (default: empty, resulting in PostgreSQL default: 16MB)
 
 <a id="nestedatt--spec--bootstrap--initdb--import"></a>
-### Nested Schema for `spec.bootstrap.initdb.wal_segment_size`
+### Nested Schema for `spec.bootstrap.initdb.import`
 
 Required:
 
@@ -758,7 +758,7 @@ Required:
 
 
 <a id="nestedatt--spec--bootstrap--initdb--post_init_application_sql_refs"></a>
-### Nested Schema for `spec.bootstrap.initdb.wal_segment_size`
+### Nested Schema for `spec.bootstrap.initdb.post_init_application_sql_refs`
 
 Optional:
 
@@ -785,7 +785,7 @@ Required:
 
 
 <a id="nestedatt--spec--bootstrap--initdb--secret"></a>
-### Nested Schema for `spec.bootstrap.initdb.wal_segment_size`
+### Nested Schema for `spec.bootstrap.initdb.secret`
 
 Required:
 
@@ -829,7 +829,7 @@ Optional:
 - `volume_snapshots` (Attributes) The static PVC data source(s) from which to initiate therecovery procedure. Currently supporting 'VolumeSnapshot'and 'PersistentVolumeClaim' resources that map an existingPVC group, compatible with CloudNativePG, and taken witha cold backup copy on a fenced Postgres instance (limitationwhich will be removed in the future when online backupwill be implemented).Mutually exclusive with 'backup'. (see [below for nested schema](#nestedatt--spec--bootstrap--recovery--volume_snapshots))
 
 <a id="nestedatt--spec--bootstrap--recovery--backup"></a>
-### Nested Schema for `spec.bootstrap.recovery.volume_snapshots`
+### Nested Schema for `spec.bootstrap.recovery.backup`
 
 Required:
 
@@ -850,7 +850,7 @@ Required:
 
 
 <a id="nestedatt--spec--bootstrap--recovery--recovery_target"></a>
-### Nested Schema for `spec.bootstrap.recovery.volume_snapshots`
+### Nested Schema for `spec.bootstrap.recovery.recovery_target`
 
 Optional:
 
@@ -865,7 +865,7 @@ Optional:
 
 
 <a id="nestedatt--spec--bootstrap--recovery--secret"></a>
-### Nested Schema for `spec.bootstrap.recovery.volume_snapshots`
+### Nested Schema for `spec.bootstrap.recovery.secret`
 
 Required:
 
@@ -961,7 +961,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.env.value_from.secret_key_ref`
+### Nested Schema for `spec.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -974,7 +974,7 @@ Optional:
 
 
 <a id="nestedatt--spec--env--value_from--field_ref"></a>
-### Nested Schema for `spec.env.value_from.secret_key_ref`
+### Nested Schema for `spec.env.value_from.field_ref`
 
 Required:
 
@@ -986,7 +986,7 @@ Optional:
 
 
 <a id="nestedatt--spec--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.env.value_from.secret_key_ref`
+### Nested Schema for `spec.env.value_from.resource_field_ref`
 
 Required:
 
@@ -1060,7 +1060,7 @@ Optional:
 - `metadata` (Map of String) May contain labels and annotations that will be copied into the PVCwhen creating it. No other fields are allowed and will be rejected duringvalidation.
 
 <a id="nestedatt--spec--ephemeral_volume_source--volume_claim_template--spec"></a>
-### Nested Schema for `spec.ephemeral_volume_source.volume_claim_template.metadata`
+### Nested Schema for `spec.ephemeral_volume_source.volume_claim_template.spec`
 
 Optional:
 
@@ -1119,7 +1119,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--ephemeral_volume_source--volume_claim_template--metadata--selector--match_expressions"></a>
-### Nested Schema for `spec.ephemeral_volume_source.volume_claim_template.metadata.selector.match_labels`
+### Nested Schema for `spec.ephemeral_volume_source.volume_claim_template.metadata.selector.match_expressions`
 
 Required:
 
@@ -1181,7 +1181,7 @@ Optional:
 - `wal` (Attributes) The configuration for the backup of the WAL stream.When not defined, WAL files will be stored uncompressed and may beunencrypted in the object store, according to the bucket default policy. (see [below for nested schema](#nestedatt--spec--external_clusters--barman_object_store--wal))
 
 <a id="nestedatt--spec--external_clusters--barman_object_store--azure_credentials"></a>
-### Nested Schema for `spec.external_clusters.barman_object_store.wal`
+### Nested Schema for `spec.external_clusters.barman_object_store.azure_credentials`
 
 Optional:
 
@@ -1229,7 +1229,7 @@ Required:
 
 
 <a id="nestedatt--spec--external_clusters--barman_object_store--data"></a>
-### Nested Schema for `spec.external_clusters.barman_object_store.wal`
+### Nested Schema for `spec.external_clusters.barman_object_store.data`
 
 Optional:
 
@@ -1241,7 +1241,7 @@ Optional:
 
 
 <a id="nestedatt--spec--external_clusters--barman_object_store--endpoint_ca"></a>
-### Nested Schema for `spec.external_clusters.barman_object_store.wal`
+### Nested Schema for `spec.external_clusters.barman_object_store.endpoint_ca`
 
 Required:
 
@@ -1250,7 +1250,7 @@ Required:
 
 
 <a id="nestedatt--spec--external_clusters--barman_object_store--google_credentials"></a>
-### Nested Schema for `spec.external_clusters.barman_object_store.wal`
+### Nested Schema for `spec.external_clusters.barman_object_store.google_credentials`
 
 Optional:
 
@@ -1268,7 +1268,7 @@ Required:
 
 
 <a id="nestedatt--spec--external_clusters--barman_object_store--s3_credentials"></a>
-### Nested Schema for `spec.external_clusters.barman_object_store.wal`
+### Nested Schema for `spec.external_clusters.barman_object_store.s3_credentials`
 
 Optional:
 
@@ -1442,7 +1442,7 @@ Optional:
 - `valid_until` (String) Date and time after which the role's password is no longer valid.When omitted, the password will never expire (default).
 
 <a id="nestedatt--spec--managed--roles--password_secret"></a>
-### Nested Schema for `spec.managed.roles.valid_until`
+### Nested Schema for `spec.managed.roles.password_secret`
 
 Required:
 
@@ -1558,7 +1558,7 @@ Optional:
 - `tls` (Boolean) Set to 'true' to enable LDAP over TLS. 'false' is default
 
 <a id="nestedatt--spec--postgresql--ldap--bind_as_auth"></a>
-### Nested Schema for `spec.postgresql.ldap.tls`
+### Nested Schema for `spec.postgresql.ldap.bind_as_auth`
 
 Optional:
 
@@ -1567,7 +1567,7 @@ Optional:
 
 
 <a id="nestedatt--spec--postgresql--ldap--bind_search_auth"></a>
-### Nested Schema for `spec.postgresql.ldap.tls`
+### Nested Schema for `spec.postgresql.ldap.bind_search_auth`
 
 Optional:
 
@@ -1625,7 +1625,7 @@ Optional:
 - `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--projected_volume_template--sources--service_account_token))
 
 <a id="nestedatt--spec--projected_volume_template--sources--cluster_trust_bundle"></a>
-### Nested Schema for `spec.projected_volume_template.sources.service_account_token`
+### Nested Schema for `spec.projected_volume_template.sources.cluster_trust_bundle`
 
 Required:
 
@@ -1647,7 +1647,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--projected_volume_template--sources--service_account_token--label_selector--match_expressions"></a>
-### Nested Schema for `spec.projected_volume_template.sources.service_account_token.label_selector.match_labels`
+### Nested Schema for `spec.projected_volume_template.sources.service_account_token.label_selector.match_expressions`
 
 Required:
 
@@ -1662,7 +1662,7 @@ Optional:
 
 
 <a id="nestedatt--spec--projected_volume_template--sources--config_map"></a>
-### Nested Schema for `spec.projected_volume_template.sources.service_account_token`
+### Nested Schema for `spec.projected_volume_template.sources.config_map`
 
 Optional:
 
@@ -1685,7 +1685,7 @@ Optional:
 
 
 <a id="nestedatt--spec--projected_volume_template--sources--downward_api"></a>
-### Nested Schema for `spec.projected_volume_template.sources.service_account_token`
+### Nested Schema for `spec.projected_volume_template.sources.downward_api`
 
 Optional:
 
@@ -1705,7 +1705,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--projected_volume_template--sources--service_account_token--items--resource_field_ref))
 
 <a id="nestedatt--spec--projected_volume_template--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.projected_volume_template.sources.service_account_token.items.resource_field_ref`
+### Nested Schema for `spec.projected_volume_template.sources.service_account_token.items.field_ref`
 
 Required:
 
@@ -1732,7 +1732,7 @@ Optional:
 
 
 <a id="nestedatt--spec--projected_volume_template--sources--secret"></a>
-### Nested Schema for `spec.projected_volume_template.sources.service_account_token`
+### Nested Schema for `spec.projected_volume_template.sources.secret`
 
 Optional:
 
@@ -1882,7 +1882,7 @@ Optional:
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--storage--pvc_template--data_source"></a>
-### Nested Schema for `spec.storage.pvc_template.volume_name`
+### Nested Schema for `spec.storage.pvc_template.data_source`
 
 Required:
 
@@ -1895,7 +1895,7 @@ Optional:
 
 
 <a id="nestedatt--spec--storage--pvc_template--data_source_ref"></a>
-### Nested Schema for `spec.storage.pvc_template.volume_name`
+### Nested Schema for `spec.storage.pvc_template.data_source_ref`
 
 Required:
 
@@ -1909,7 +1909,7 @@ Optional:
 
 
 <a id="nestedatt--spec--storage--pvc_template--resources"></a>
-### Nested Schema for `spec.storage.pvc_template.volume_name`
+### Nested Schema for `spec.storage.pvc_template.resources`
 
 Optional:
 
@@ -1918,7 +1918,7 @@ Optional:
 
 
 <a id="nestedatt--spec--storage--pvc_template--selector"></a>
-### Nested Schema for `spec.storage.pvc_template.volume_name`
+### Nested Schema for `spec.storage.pvc_template.selector`
 
 Optional:
 
@@ -1973,7 +1973,7 @@ Optional:
 - `storage_class` (String) StorageClass to use for PVCs. Applied afterevaluating the PVC template, if available.If not specified, the generated PVCs will use thedefault storage class
 
 <a id="nestedatt--spec--tablespaces--storage--pvc_template"></a>
-### Nested Schema for `spec.tablespaces.storage.storage_class`
+### Nested Schema for `spec.tablespaces.storage.pvc_template`
 
 Optional:
 
@@ -2032,7 +2032,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--tablespaces--storage--storage_class--selector--match_expressions"></a>
-### Nested Schema for `spec.tablespaces.storage.storage_class.selector.match_labels`
+### Nested Schema for `spec.tablespaces.storage.storage_class.selector.match_expressions`
 
 Required:
 
@@ -2082,7 +2082,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--topology_spread_constraints--label_selector--match_expressions"></a>
-### Nested Schema for `spec.topology_spread_constraints.label_selector.match_labels`
+### Nested Schema for `spec.topology_spread_constraints.label_selector.match_expressions`
 
 Required:
 
@@ -2122,7 +2122,7 @@ Optional:
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--wal_storage--pvc_template--data_source"></a>
-### Nested Schema for `spec.wal_storage.pvc_template.volume_name`
+### Nested Schema for `spec.wal_storage.pvc_template.data_source`
 
 Required:
 
@@ -2135,7 +2135,7 @@ Optional:
 
 
 <a id="nestedatt--spec--wal_storage--pvc_template--data_source_ref"></a>
-### Nested Schema for `spec.wal_storage.pvc_template.volume_name`
+### Nested Schema for `spec.wal_storage.pvc_template.data_source_ref`
 
 Required:
 
@@ -2149,7 +2149,7 @@ Optional:
 
 
 <a id="nestedatt--spec--wal_storage--pvc_template--resources"></a>
-### Nested Schema for `spec.wal_storage.pvc_template.volume_name`
+### Nested Schema for `spec.wal_storage.pvc_template.resources`
 
 Optional:
 
@@ -2158,7 +2158,7 @@ Optional:
 
 
 <a id="nestedatt--spec--wal_storage--pvc_template--selector"></a>
-### Nested Schema for `spec.wal_storage.pvc_template.volume_name`
+### Nested Schema for `spec.wal_storage.pvc_template.selector`
 
 Optional:
 

@@ -88,7 +88,7 @@ Optional:
 - `namespaces` (Attributes) Namespaces indicates namespaces from which Routes may be attached to thisListener. This is restricted to the namespace of this Gateway by default.Support: Core (see [below for nested schema](#nestedatt--spec--listeners--allowed_routes--namespaces))
 
 <a id="nestedatt--spec--listeners--allowed_routes--kinds"></a>
-### Nested Schema for `spec.listeners.allowed_routes.namespaces`
+### Nested Schema for `spec.listeners.allowed_routes.kinds`
 
 Required:
 
@@ -116,7 +116,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--listeners--allowed_routes--namespaces--selector--match_expressions"></a>
-### Nested Schema for `spec.listeners.allowed_routes.namespaces.selector.match_labels`
+### Nested Schema for `spec.listeners.allowed_routes.namespaces.selector.match_expressions`
 
 Required:
 
@@ -141,7 +141,7 @@ Optional:
 - `options` (Map of String) Options are a list of key/value pairs to enable extended TLSconfiguration for each implementation. For example, configuring theminimum TLS version or supported cipher suites.A set of common keys MAY be defined by the API in the future. To avoidany ambiguity, implementation-specific definitions MUST usedomain-prefixed names, such as 'example.com/my-custom-option'.Un-prefixed names are reserved for key names defined by Gateway API.Support: Implementation-specific
 
 <a id="nestedatt--spec--listeners--tls--certificate_refs"></a>
-### Nested Schema for `spec.listeners.tls.options`
+### Nested Schema for `spec.listeners.tls.certificate_refs`
 
 Required:
 

@@ -85,7 +85,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -101,7 +101,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--preference--match_fields))
 
 <a id="nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
-### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.preference.match_fields`
+### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Required:
 
@@ -144,7 +144,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -181,7 +181,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -202,7 +202,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
@@ -210,7 +210,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -224,7 +224,7 @@ Optional:
 
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
@@ -232,7 +232,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -269,7 +269,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_labels`
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -291,7 +291,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_labels`
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -315,7 +315,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -336,7 +336,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
@@ -344,7 +344,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -358,7 +358,7 @@ Optional:
 
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
@@ -366,7 +366,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -403,7 +403,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_labels`
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -425,7 +425,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_labels`
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -521,7 +521,7 @@ Optional:
 - `vsphere_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--emqx_template--extra_volumes--vsphere_volume))
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--aws_elastic_block_store"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.emqx_template.extra_volumes.aws_elastic_block_store`
 
 Required:
 
@@ -535,7 +535,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--azure_disk"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.emqx_template.extra_volumes.azure_disk`
 
 Required:
 
@@ -551,7 +551,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--azure_file"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.emqx_template.extra_volumes.azure_file`
 
 Required:
 
@@ -564,7 +564,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--cephfs"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.emqx_template.extra_volumes.cephfs`
 
 Required:
 
@@ -588,7 +588,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--cinder"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.emqx_template.extra_volumes.cinder`
 
 Required:
 
@@ -610,7 +610,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--config_map"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.emqx_template.extra_volumes.config_map`
 
 Optional:
 
@@ -634,7 +634,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--csi"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.emqx_template.extra_volumes.csi`
 
 Required:
 
@@ -657,7 +657,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--downward_api"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.emqx_template.extra_volumes.downward_api`
 
 Optional:
 
@@ -678,7 +678,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--items--resource_field_ref))
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume.items.resource_field_ref`
+### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume.items.field_ref`
 
 Required:
 
@@ -705,7 +705,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--empty_dir"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.emqx_template.extra_volumes.empty_dir`
 
 Optional:
 
@@ -714,7 +714,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--ephemeral"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.emqx_template.extra_volumes.ephemeral`
 
 Optional:
 
@@ -732,7 +732,7 @@ Optional:
 - `metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--volume_claim_template--metadata))
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume.volume_claim_template.metadata`
+### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume.volume_claim_template.spec`
 
 Optional:
 
@@ -746,7 +746,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume.volume_claim_template.metadata.data_source`
 
 Required:
 
@@ -759,7 +759,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume.volume_claim_template.metadata.data_source_ref`
 
 Required:
 
@@ -772,7 +772,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume.volume_claim_template.metadata.resources`
 
 Optional:
 
@@ -781,7 +781,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume.volume_claim_template.metadata.selector`
 
 Optional:
 
@@ -789,7 +789,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--volume_claim_template--metadata--volume_name--match_expressions"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_labels`
+### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_expressions`
 
 Required:
 
@@ -818,7 +818,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--fc"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.emqx_template.extra_volumes.fc`
 
 Optional:
 
@@ -830,7 +830,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--flex_volume"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.emqx_template.extra_volumes.flex_volume`
 
 Required:
 
@@ -853,7 +853,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--flocker"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.emqx_template.extra_volumes.flocker`
 
 Optional:
 
@@ -862,7 +862,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--gce_persistent_disk"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.emqx_template.extra_volumes.gce_persistent_disk`
 
 Required:
 
@@ -876,7 +876,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--git_repo"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.emqx_template.extra_volumes.git_repo`
 
 Required:
 
@@ -889,7 +889,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--glusterfs"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.emqx_template.extra_volumes.glusterfs`
 
 Required:
 
@@ -902,7 +902,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--host_path"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.emqx_template.extra_volumes.host_path`
 
 Required:
 
@@ -914,7 +914,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--iscsi"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.emqx_template.extra_volumes.iscsi`
 
 Required:
 
@@ -943,7 +943,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--nfs"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.emqx_template.extra_volumes.nfs`
 
 Required:
 
@@ -956,7 +956,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--persistent_volume_claim"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.emqx_template.extra_volumes.persistent_volume_claim`
 
 Required:
 
@@ -968,7 +968,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--photon_persistent_disk"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.emqx_template.extra_volumes.photon_persistent_disk`
 
 Required:
 
@@ -980,7 +980,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--portworx_volume"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.emqx_template.extra_volumes.portworx_volume`
 
 Required:
 
@@ -993,7 +993,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--projected"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.emqx_template.extra_volumes.projected`
 
 Optional:
 
@@ -1011,7 +1011,7 @@ Optional:
 - `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--sources--service_account_token))
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume.sources.config_map`
 
 Optional:
 
@@ -1020,7 +1020,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume.sources.service_account_token.optional`
+### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume.sources.service_account_token.items`
 
 Required:
 
@@ -1034,7 +1034,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume.sources.downward_api`
 
 Optional:
 
@@ -1054,7 +1054,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume.sources.service_account_token.items.field_ref`
 
 Required:
 
@@ -1081,7 +1081,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume.sources.secret`
 
 Optional:
 
@@ -1090,7 +1090,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume.sources.service_account_token.optional`
+### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume.sources.service_account_token.items`
 
 Required:
 
@@ -1119,7 +1119,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--quobyte"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.emqx_template.extra_volumes.quobyte`
 
 Required:
 
@@ -1135,7 +1135,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--rbd"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.emqx_template.extra_volumes.rbd`
 
 Required:
 
@@ -1161,7 +1161,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--scale_io"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.emqx_template.extra_volumes.scale_io`
 
 Required:
 
@@ -1189,7 +1189,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--secret"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.emqx_template.extra_volumes.secret`
 
 Optional:
 
@@ -1213,7 +1213,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--storageos"></a>
-### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.emqx_template.extra_volumes.storageos`
 
 Optional:
 
@@ -1274,7 +1274,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--emqx_template--liveness_probe--exec"></a>
-### Nested Schema for `spec.emqx_template.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.emqx_template.liveness_probe.exec`
 
 Optional:
 
@@ -1282,7 +1282,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--liveness_probe--grpc"></a>
-### Nested Schema for `spec.emqx_template.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.emqx_template.liveness_probe.grpc`
 
 Required:
 
@@ -1294,7 +1294,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--liveness_probe--http_get"></a>
-### Nested Schema for `spec.emqx_template.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.emqx_template.liveness_probe.http_get`
 
 Required:
 
@@ -1318,7 +1318,7 @@ Required:
 
 
 <a id="nestedatt--spec--emqx_template--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.emqx_template.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.emqx_template.liveness_probe.tcp_socket`
 
 Required:
 
@@ -1357,7 +1357,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--emqx_template--readiness_probe--exec"></a>
-### Nested Schema for `spec.emqx_template.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.emqx_template.readiness_probe.exec`
 
 Optional:
 
@@ -1365,7 +1365,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--readiness_probe--grpc"></a>
-### Nested Schema for `spec.emqx_template.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.emqx_template.readiness_probe.grpc`
 
 Required:
 
@@ -1377,7 +1377,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--readiness_probe--http_get"></a>
-### Nested Schema for `spec.emqx_template.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.emqx_template.readiness_probe.http_get`
 
 Required:
 
@@ -1401,7 +1401,7 @@ Required:
 
 
 <a id="nestedatt--spec--emqx_template--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.emqx_template.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.emqx_template.readiness_probe.tcp_socket`
 
 Required:
 
@@ -1439,7 +1439,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--emqx_template--security_context--windows_options))
 
 <a id="nestedatt--spec--emqx_template--security_context--se_linux_options"></a>
-### Nested Schema for `spec.emqx_template.security_context.windows_options`
+### Nested Schema for `spec.emqx_template.security_context.se_linux_options`
 
 Optional:
 
@@ -1450,7 +1450,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.emqx_template.security_context.windows_options`
+### Nested Schema for `spec.emqx_template.security_context.seccomp_profile`
 
 Required:
 
@@ -1462,7 +1462,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--security_context--sysctls"></a>
-### Nested Schema for `spec.emqx_template.security_context.windows_options`
+### Nested Schema for `spec.emqx_template.security_context.sysctls`
 
 Required:
 
@@ -1491,7 +1491,7 @@ Optional:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--emqx_template--service_template--spec))
 
 <a id="nestedatt--spec--emqx_template--service_template--metadata"></a>
-### Nested Schema for `spec.emqx_template.service_template.spec`
+### Nested Schema for `spec.emqx_template.service_template.metadata`
 
 Optional:
 
@@ -1578,7 +1578,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--emqx_template--startup_probe--exec"></a>
-### Nested Schema for `spec.emqx_template.startup_probe.timeout_seconds`
+### Nested Schema for `spec.emqx_template.startup_probe.exec`
 
 Optional:
 
@@ -1586,7 +1586,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--startup_probe--grpc"></a>
-### Nested Schema for `spec.emqx_template.startup_probe.timeout_seconds`
+### Nested Schema for `spec.emqx_template.startup_probe.grpc`
 
 Required:
 
@@ -1598,7 +1598,7 @@ Optional:
 
 
 <a id="nestedatt--spec--emqx_template--startup_probe--http_get"></a>
-### Nested Schema for `spec.emqx_template.startup_probe.timeout_seconds`
+### Nested Schema for `spec.emqx_template.startup_probe.http_get`
 
 Required:
 
@@ -1622,7 +1622,7 @@ Required:
 
 
 <a id="nestedatt--spec--emqx_template--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.emqx_template.startup_probe.timeout_seconds`
+### Nested Schema for `spec.emqx_template.startup_probe.tcp_socket`
 
 Required:
 
@@ -1658,7 +1658,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.env.value_from.secret_key_ref`
+### Nested Schema for `spec.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -1671,7 +1671,7 @@ Optional:
 
 
 <a id="nestedatt--spec--env--value_from--field_ref"></a>
-### Nested Schema for `spec.env.value_from.secret_key_ref`
+### Nested Schema for `spec.env.value_from.field_ref`
 
 Required:
 
@@ -1683,7 +1683,7 @@ Optional:
 
 
 <a id="nestedatt--spec--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.env.value_from.secret_key_ref`
+### Nested Schema for `spec.env.value_from.resource_field_ref`
 
 Required:
 
@@ -1826,7 +1826,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--extra_containers--env_from--secret_ref))
 
 <a id="nestedatt--spec--extra_containers--env_from--config_map_ref"></a>
-### Nested Schema for `spec.extra_containers.env_from.secret_ref`
+### Nested Schema for `spec.extra_containers.env_from.config_map_ref`
 
 Optional:
 
@@ -1853,7 +1853,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--extra_containers--lifecycle--pre_stop))
 
 <a id="nestedatt--spec--extra_containers--lifecycle--post_start"></a>
-### Nested Schema for `spec.extra_containers.lifecycle.pre_stop`
+### Nested Schema for `spec.extra_containers.lifecycle.post_start`
 
 Optional:
 
@@ -1884,7 +1884,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--extra_containers--lifecycle--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.extra_containers.lifecycle.pre_stop.http_get.scheme`
+### Nested Schema for `spec.extra_containers.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -1938,7 +1938,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--extra_containers--lifecycle--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.extra_containers.lifecycle.pre_stop.http_get.scheme`
+### Nested Schema for `spec.extra_containers.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -1978,7 +1978,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--extra_containers--liveness_probe--exec"></a>
-### Nested Schema for `spec.extra_containers.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.extra_containers.liveness_probe.exec`
 
 Optional:
 
@@ -1986,7 +1986,7 @@ Optional:
 
 
 <a id="nestedatt--spec--extra_containers--liveness_probe--grpc"></a>
-### Nested Schema for `spec.extra_containers.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.extra_containers.liveness_probe.grpc`
 
 Required:
 
@@ -1998,7 +1998,7 @@ Optional:
 
 
 <a id="nestedatt--spec--extra_containers--liveness_probe--http_get"></a>
-### Nested Schema for `spec.extra_containers.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.extra_containers.liveness_probe.http_get`
 
 Required:
 
@@ -2022,7 +2022,7 @@ Required:
 
 
 <a id="nestedatt--spec--extra_containers--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.extra_containers.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.extra_containers.liveness_probe.tcp_socket`
 
 Required:
 
@@ -2066,7 +2066,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--extra_containers--readiness_probe--exec"></a>
-### Nested Schema for `spec.extra_containers.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.extra_containers.readiness_probe.exec`
 
 Optional:
 
@@ -2074,7 +2074,7 @@ Optional:
 
 
 <a id="nestedatt--spec--extra_containers--readiness_probe--grpc"></a>
-### Nested Schema for `spec.extra_containers.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.extra_containers.readiness_probe.grpc`
 
 Required:
 
@@ -2086,7 +2086,7 @@ Optional:
 
 
 <a id="nestedatt--spec--extra_containers--readiness_probe--http_get"></a>
-### Nested Schema for `spec.extra_containers.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.extra_containers.readiness_probe.http_get`
 
 Required:
 
@@ -2110,7 +2110,7 @@ Required:
 
 
 <a id="nestedatt--spec--extra_containers--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.extra_containers.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.extra_containers.readiness_probe.tcp_socket`
 
 Required:
 
@@ -2149,7 +2149,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--extra_containers--security_context--windows_options))
 
 <a id="nestedatt--spec--extra_containers--security_context--capabilities"></a>
-### Nested Schema for `spec.extra_containers.security_context.windows_options`
+### Nested Schema for `spec.extra_containers.security_context.capabilities`
 
 Optional:
 
@@ -2158,7 +2158,7 @@ Optional:
 
 
 <a id="nestedatt--spec--extra_containers--security_context--se_linux_options"></a>
-### Nested Schema for `spec.extra_containers.security_context.windows_options`
+### Nested Schema for `spec.extra_containers.security_context.se_linux_options`
 
 Optional:
 
@@ -2169,7 +2169,7 @@ Optional:
 
 
 <a id="nestedatt--spec--extra_containers--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.extra_containers.security_context.windows_options`
+### Nested Schema for `spec.extra_containers.security_context.seccomp_profile`
 
 Required:
 
@@ -2209,7 +2209,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--extra_containers--startup_probe--exec"></a>
-### Nested Schema for `spec.extra_containers.startup_probe.timeout_seconds`
+### Nested Schema for `spec.extra_containers.startup_probe.exec`
 
 Optional:
 
@@ -2217,7 +2217,7 @@ Optional:
 
 
 <a id="nestedatt--spec--extra_containers--startup_probe--grpc"></a>
-### Nested Schema for `spec.extra_containers.startup_probe.timeout_seconds`
+### Nested Schema for `spec.extra_containers.startup_probe.grpc`
 
 Required:
 
@@ -2229,7 +2229,7 @@ Optional:
 
 
 <a id="nestedatt--spec--extra_containers--startup_probe--http_get"></a>
-### Nested Schema for `spec.extra_containers.startup_probe.timeout_seconds`
+### Nested Schema for `spec.extra_containers.startup_probe.http_get`
 
 Required:
 
@@ -2253,7 +2253,7 @@ Required:
 
 
 <a id="nestedatt--spec--extra_containers--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.extra_containers.startup_probe.timeout_seconds`
+### Nested Schema for `spec.extra_containers.startup_probe.tcp_socket`
 
 Required:
 
@@ -2415,7 +2415,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--init_containers--env_from--secret_ref))
 
 <a id="nestedatt--spec--init_containers--env_from--config_map_ref"></a>
-### Nested Schema for `spec.init_containers.env_from.secret_ref`
+### Nested Schema for `spec.init_containers.env_from.config_map_ref`
 
 Optional:
 
@@ -2442,7 +2442,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--init_containers--lifecycle--pre_stop))
 
 <a id="nestedatt--spec--init_containers--lifecycle--post_start"></a>
-### Nested Schema for `spec.init_containers.lifecycle.pre_stop`
+### Nested Schema for `spec.init_containers.lifecycle.post_start`
 
 Optional:
 
@@ -2473,7 +2473,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--init_containers--lifecycle--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.init_containers.lifecycle.pre_stop.http_get.scheme`
+### Nested Schema for `spec.init_containers.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -2527,7 +2527,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--init_containers--lifecycle--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.init_containers.lifecycle.pre_stop.http_get.scheme`
+### Nested Schema for `spec.init_containers.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -2567,7 +2567,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--init_containers--liveness_probe--exec"></a>
-### Nested Schema for `spec.init_containers.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.liveness_probe.exec`
 
 Optional:
 
@@ -2575,7 +2575,7 @@ Optional:
 
 
 <a id="nestedatt--spec--init_containers--liveness_probe--grpc"></a>
-### Nested Schema for `spec.init_containers.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.liveness_probe.grpc`
 
 Required:
 
@@ -2587,7 +2587,7 @@ Optional:
 
 
 <a id="nestedatt--spec--init_containers--liveness_probe--http_get"></a>
-### Nested Schema for `spec.init_containers.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.liveness_probe.http_get`
 
 Required:
 
@@ -2611,7 +2611,7 @@ Required:
 
 
 <a id="nestedatt--spec--init_containers--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.init_containers.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.liveness_probe.tcp_socket`
 
 Required:
 
@@ -2655,7 +2655,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--init_containers--readiness_probe--exec"></a>
-### Nested Schema for `spec.init_containers.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.readiness_probe.exec`
 
 Optional:
 
@@ -2663,7 +2663,7 @@ Optional:
 
 
 <a id="nestedatt--spec--init_containers--readiness_probe--grpc"></a>
-### Nested Schema for `spec.init_containers.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.readiness_probe.grpc`
 
 Required:
 
@@ -2675,7 +2675,7 @@ Optional:
 
 
 <a id="nestedatt--spec--init_containers--readiness_probe--http_get"></a>
-### Nested Schema for `spec.init_containers.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.readiness_probe.http_get`
 
 Required:
 
@@ -2699,7 +2699,7 @@ Required:
 
 
 <a id="nestedatt--spec--init_containers--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.init_containers.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.readiness_probe.tcp_socket`
 
 Required:
 
@@ -2738,7 +2738,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--init_containers--security_context--windows_options))
 
 <a id="nestedatt--spec--init_containers--security_context--capabilities"></a>
-### Nested Schema for `spec.init_containers.security_context.windows_options`
+### Nested Schema for `spec.init_containers.security_context.capabilities`
 
 Optional:
 
@@ -2747,7 +2747,7 @@ Optional:
 
 
 <a id="nestedatt--spec--init_containers--security_context--se_linux_options"></a>
-### Nested Schema for `spec.init_containers.security_context.windows_options`
+### Nested Schema for `spec.init_containers.security_context.se_linux_options`
 
 Optional:
 
@@ -2758,7 +2758,7 @@ Optional:
 
 
 <a id="nestedatt--spec--init_containers--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.init_containers.security_context.windows_options`
+### Nested Schema for `spec.init_containers.security_context.seccomp_profile`
 
 Required:
 
@@ -2798,7 +2798,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--init_containers--startup_probe--exec"></a>
-### Nested Schema for `spec.init_containers.startup_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.startup_probe.exec`
 
 Optional:
 
@@ -2806,7 +2806,7 @@ Optional:
 
 
 <a id="nestedatt--spec--init_containers--startup_probe--grpc"></a>
-### Nested Schema for `spec.init_containers.startup_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.startup_probe.grpc`
 
 Required:
 
@@ -2818,7 +2818,7 @@ Optional:
 
 
 <a id="nestedatt--spec--init_containers--startup_probe--http_get"></a>
-### Nested Schema for `spec.init_containers.startup_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.startup_probe.http_get`
 
 Required:
 
@@ -2842,7 +2842,7 @@ Required:
 
 
 <a id="nestedatt--spec--init_containers--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.init_containers.startup_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.startup_probe.tcp_socket`
 
 Required:
 
@@ -2938,7 +2938,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--persistent--selector--match_expressions"></a>
-### Nested Schema for `spec.persistent.selector.match_labels`
+### Nested Schema for `spec.persistent.selector.match_expressions`
 
 Required:
 

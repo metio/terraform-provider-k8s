@@ -88,7 +88,7 @@ Optional:
 - `tls` (Attributes) TLS configuration for reaching the alertmanager endpoints. (see [below for nested schema](#nestedatt--spec--alertmanager--client--tls))
 
 <a id="nestedatt--spec--alertmanager--client--basic_auth"></a>
-### Nested Schema for `spec.alertmanager.client.tls`
+### Nested Schema for `spec.alertmanager.client.basic_auth`
 
 Optional:
 
@@ -97,7 +97,7 @@ Optional:
 
 
 <a id="nestedatt--spec--alertmanager--client--header_auth"></a>
-### Nested Schema for `spec.alertmanager.client.tls`
+### Nested Schema for `spec.alertmanager.client.header_auth`
 
 Optional:
 
@@ -182,7 +182,7 @@ Optional:
 - `relabel_configs` (Attributes List) List of alert relabel configurations. (see [below for nested schema](#nestedatt--spec--overrides--alertmanager--relabel_configs))
 
 <a id="nestedatt--spec--overrides--alertmanager--client"></a>
-### Nested Schema for `spec.overrides.alertmanager.relabel_configs`
+### Nested Schema for `spec.overrides.alertmanager.client`
 
 Optional:
 
@@ -222,7 +222,7 @@ Optional:
 
 
 <a id="nestedatt--spec--overrides--alertmanager--discovery"></a>
-### Nested Schema for `spec.overrides.alertmanager.relabel_configs`
+### Nested Schema for `spec.overrides.alertmanager.discovery`
 
 Optional:
 
@@ -231,7 +231,7 @@ Optional:
 
 
 <a id="nestedatt--spec--overrides--alertmanager--notification_queue"></a>
-### Nested Schema for `spec.overrides.alertmanager.relabel_configs`
+### Nested Schema for `spec.overrides.alertmanager.notification_queue`
 
 Optional:
 
@@ -290,7 +290,7 @@ Optional:
 - `timeout` (String) Timeout for requests to the remote write endpoint.
 
 <a id="nestedatt--spec--remote_write--client--relabel_configs"></a>
-### Nested Schema for `spec.remote_write.client.timeout`
+### Nested Schema for `spec.remote_write.client.relabel_configs`
 
 Required:
 

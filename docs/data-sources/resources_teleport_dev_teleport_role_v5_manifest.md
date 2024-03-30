@@ -160,7 +160,7 @@ Optional:
 - `thresholds` (Attributes List) Thresholds is a list of thresholds, one of which must be met in order for reviews to trigger a state-transition.  If no thresholds are provided, a default threshold of 1 for approval and denial is used. (see [below for nested schema](#nestedatt--spec--allow--request--thresholds))
 
 <a id="nestedatt--spec--allow--request--claims_to_roles"></a>
-### Nested Schema for `spec.allow.request.thresholds`
+### Nested Schema for `spec.allow.request.claims_to_roles`
 
 Optional:
 
@@ -205,7 +205,7 @@ Optional:
 - `where` (String) Where is an optional predicate which further limits which requests are reviewable.
 
 <a id="nestedatt--spec--allow--review_requests--claims_to_roles"></a>
-### Nested Schema for `spec.allow.review_requests.where`
+### Nested Schema for `spec.allow.review_requests.claims_to_roles`
 
 Optional:
 
@@ -338,7 +338,7 @@ Optional:
 - `thresholds` (Attributes List) Thresholds is a list of thresholds, one of which must be met in order for reviews to trigger a state-transition.  If no thresholds are provided, a default threshold of 1 for approval and denial is used. (see [below for nested schema](#nestedatt--spec--deny--request--thresholds))
 
 <a id="nestedatt--spec--deny--request--claims_to_roles"></a>
-### Nested Schema for `spec.deny.request.thresholds`
+### Nested Schema for `spec.deny.request.claims_to_roles`
 
 Optional:
 
@@ -383,7 +383,7 @@ Optional:
 - `where` (String) Where is an optional predicate which further limits which requests are reviewable.
 
 <a id="nestedatt--spec--deny--review_requests--claims_to_roles"></a>
-### Nested Schema for `spec.deny.review_requests.where`
+### Nested Schema for `spec.deny.review_requests.claims_to_roles`
 
 Optional:
 

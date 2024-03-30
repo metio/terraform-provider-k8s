@@ -411,7 +411,7 @@ Optional:
 - `request` (Attributes) Requests describes the minimum amount of compute resources required. (see [below for nested schema](#nestedatt--spec--auth--identity_provider_container_resources--request))
 
 <a id="nestedatt--spec--auth--identity_provider_container_resources--limits"></a>
-### Nested Schema for `spec.auth.identity_provider_container_resources.request`
+### Nested Schema for `spec.auth.identity_provider_container_resources.limits`
 
 Optional:
 
@@ -485,7 +485,7 @@ Optional:
 - `request` (Attributes) Requests describes the minimum amount of compute resources required. (see [below for nested schema](#nestedatt--spec--database--che_postgres_container_resources--request))
 
 <a id="nestedatt--spec--database--che_postgres_container_resources--limits"></a>
-### Nested Schema for `spec.database.che_postgres_container_resources.request`
+### Nested Schema for `spec.database.che_postgres_container_resources.limits`
 
 Optional:
 
@@ -1257,7 +1257,7 @@ Optional:
 - `volume` (Attributes) Allows specifying the definition of a volume shared by several other components (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume))
 
 <a id="nestedatt--spec--server--workspace_default_components--container"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume`
+### Nested Schema for `spec.server.workspace_default_components.container`
 
 Required:
 
@@ -1329,7 +1329,7 @@ Optional:
 
 
 <a id="nestedatt--spec--server--workspace_default_components--custom"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume`
+### Nested Schema for `spec.server.workspace_default_components.custom`
 
 Required:
 
@@ -1338,7 +1338,7 @@ Required:
 
 
 <a id="nestedatt--spec--server--workspace_default_components--image"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume`
+### Nested Schema for `spec.server.workspace_default_components.image`
 
 Required:
 
@@ -1364,7 +1364,7 @@ Optional:
 - `uri` (String) URI Reference of a Dockerfile. It can be a full URL or a relative URI from the current devfile as the base URI.
 
 <a id="nestedatt--spec--server--workspace_default_components--volume--dockerfile--devfile_registry"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.dockerfile.uri`
+### Nested Schema for `spec.server.workspace_default_components.volume.dockerfile.devfile_registry`
 
 Required:
 
@@ -1376,7 +1376,7 @@ Optional:
 
 
 <a id="nestedatt--spec--server--workspace_default_components--volume--dockerfile--git"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.dockerfile.uri`
+### Nested Schema for `spec.server.workspace_default_components.volume.dockerfile.git`
 
 Required:
 
@@ -1388,7 +1388,7 @@ Optional:
 - `file_location` (String) Location of the Dockerfile in the Git repository when using git as Dockerfile src. Defaults to Dockerfile.
 
 <a id="nestedatt--spec--server--workspace_default_components--volume--dockerfile--uri--checkout_from"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.dockerfile.uri.file_location`
+### Nested Schema for `spec.server.workspace_default_components.volume.dockerfile.uri.checkout_from`
 
 Optional:
 
@@ -1400,7 +1400,7 @@ Optional:
 
 
 <a id="nestedatt--spec--server--workspace_default_components--kubernetes"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume`
+### Nested Schema for `spec.server.workspace_default_components.kubernetes`
 
 Optional:
 
@@ -1430,7 +1430,7 @@ Optional:
 
 
 <a id="nestedatt--spec--server--workspace_default_components--openshift"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume`
+### Nested Schema for `spec.server.workspace_default_components.openshift`
 
 Optional:
 
@@ -1460,7 +1460,7 @@ Optional:
 
 
 <a id="nestedatt--spec--server--workspace_default_components--plugin"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume`
+### Nested Schema for `spec.server.workspace_default_components.plugin`
 
 Optional:
 
@@ -1489,7 +1489,7 @@ Optional:
 - `exec` (Attributes) CLI Command executed in an existing component container (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--commands--exec))
 
 <a id="nestedatt--spec--server--workspace_default_components--volume--commands--apply"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.commands.exec`
+### Nested Schema for `spec.server.workspace_default_components.volume.commands.apply`
 
 Optional:
 
@@ -1498,7 +1498,7 @@ Optional:
 - `label` (String) Optional label that provides a label for this command to be used in Editor UI menus for example
 
 <a id="nestedatt--spec--server--workspace_default_components--volume--commands--exec--group"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.commands.exec.label`
+### Nested Schema for `spec.server.workspace_default_components.volume.commands.exec.group`
 
 Optional:
 
@@ -1508,7 +1508,7 @@ Optional:
 
 
 <a id="nestedatt--spec--server--workspace_default_components--volume--commands--composite"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.commands.exec`
+### Nested Schema for `spec.server.workspace_default_components.volume.commands.composite`
 
 Optional:
 
@@ -1518,7 +1518,7 @@ Optional:
 - `parallel` (Boolean) Indicates if the sub-commands should be executed concurrently
 
 <a id="nestedatt--spec--server--workspace_default_components--volume--commands--exec--group"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.commands.exec.parallel`
+### Nested Schema for `spec.server.workspace_default_components.volume.commands.exec.group`
 
 Optional:
 
@@ -1541,7 +1541,7 @@ Optional:
 - `working_dir` (String) Working directory where the command should be executed  Special variables that can be used:   - '$PROJECTS_ROOT': A path where projects sources are mounted as defined by container component's sourceMapping.   - '$PROJECT_SOURCE': A path to a project source ($PROJECTS_ROOT/<project-name>). If there are multiple projects, this will point to the directory of the first one.
 
 <a id="nestedatt--spec--server--workspace_default_components--volume--commands--exec--env"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.commands.exec.working_dir`
+### Nested Schema for `spec.server.workspace_default_components.volume.commands.exec.env`
 
 Required:
 
@@ -1553,7 +1553,7 @@ Optional:
 
 
 <a id="nestedatt--spec--server--workspace_default_components--volume--commands--exec--group"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.commands.exec.working_dir`
+### Nested Schema for `spec.server.workspace_default_components.volume.commands.exec.group`
 
 Optional:
 
@@ -1581,7 +1581,7 @@ Optional:
 - `volume` (Attributes) Allows specifying the definition of a volume shared by several other components (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--components--volume))
 
 <a id="nestedatt--spec--server--workspace_default_components--volume--components--container"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.components.volume`
+### Nested Schema for `spec.server.workspace_default_components.volume.components.container`
 
 Optional:
 
@@ -1601,7 +1601,7 @@ Optional:
 - `volume_mounts` (Attributes List) List of volumes mounts that should be mounted is this container. (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--components--volume--volume_mounts))
 
 <a id="nestedatt--spec--server--workspace_default_components--volume--components--volume--annotation"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.components.volume.volume_mounts`
+### Nested Schema for `spec.server.workspace_default_components.volume.components.volume.annotation`
 
 Optional:
 
@@ -1610,7 +1610,7 @@ Optional:
 
 
 <a id="nestedatt--spec--server--workspace_default_components--volume--components--volume--endpoints"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.components.volume.volume_mounts`
+### Nested Schema for `spec.server.workspace_default_components.volume.components.volume.endpoints`
 
 Required:
 
@@ -1628,7 +1628,7 @@ Optional:
 
 
 <a id="nestedatt--spec--server--workspace_default_components--volume--components--volume--env"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.components.volume.volume_mounts`
+### Nested Schema for `spec.server.workspace_default_components.volume.components.volume.env`
 
 Required:
 
@@ -1653,7 +1653,7 @@ Optional:
 
 
 <a id="nestedatt--spec--server--workspace_default_components--volume--components--image"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.components.volume`
+### Nested Schema for `spec.server.workspace_default_components.volume.components.image`
 
 Optional:
 
@@ -1663,7 +1663,7 @@ Optional:
 - `image_type` (String) Type of image
 
 <a id="nestedatt--spec--server--workspace_default_components--volume--components--volume--dockerfile"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.components.volume.image_type`
+### Nested Schema for `spec.server.workspace_default_components.volume.components.volume.dockerfile`
 
 Optional:
 
@@ -1676,7 +1676,7 @@ Optional:
 - `uri` (String) URI Reference of a Dockerfile. It can be a full URL or a relative URI from the current devfile as the base URI.
 
 <a id="nestedatt--spec--server--workspace_default_components--volume--components--volume--image_type--devfile_registry"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.components.volume.image_type.uri`
+### Nested Schema for `spec.server.workspace_default_components.volume.components.volume.image_type.devfile_registry`
 
 Optional:
 
@@ -1685,7 +1685,7 @@ Optional:
 
 
 <a id="nestedatt--spec--server--workspace_default_components--volume--components--volume--image_type--git"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.components.volume.image_type.uri`
+### Nested Schema for `spec.server.workspace_default_components.volume.components.volume.image_type.git`
 
 Optional:
 
@@ -1706,7 +1706,7 @@ Optional:
 
 
 <a id="nestedatt--spec--server--workspace_default_components--volume--components--kubernetes"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.components.volume`
+### Nested Schema for `spec.server.workspace_default_components.volume.components.kubernetes`
 
 Optional:
 
@@ -1717,7 +1717,7 @@ Optional:
 - `uri` (String) Location in a file fetched from a uri.
 
 <a id="nestedatt--spec--server--workspace_default_components--volume--components--volume--endpoints"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.components.volume.uri`
+### Nested Schema for `spec.server.workspace_default_components.volume.components.volume.endpoints`
 
 Required:
 
@@ -1736,7 +1736,7 @@ Optional:
 
 
 <a id="nestedatt--spec--server--workspace_default_components--volume--components--openshift"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.components.volume`
+### Nested Schema for `spec.server.workspace_default_components.volume.components.openshift`
 
 Optional:
 
@@ -1747,7 +1747,7 @@ Optional:
 - `uri` (String) Location in a file fetched from a uri.
 
 <a id="nestedatt--spec--server--workspace_default_components--volume--components--volume--endpoints"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.components.volume.uri`
+### Nested Schema for `spec.server.workspace_default_components.volume.components.volume.endpoints`
 
 Required:
 

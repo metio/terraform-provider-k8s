@@ -122,7 +122,7 @@ Optional:
 - `skip_ip_allocation` (Boolean) SkipIPAllocation allows the device to not have IP address or DHCP configured. This is suitable for devices for which IP allocation is handled externally, eg. using Multus CNI. If true, CAPV will not verify IP address allocation.
 
 <a id="nestedatt--spec--network--devices--addresses_from_pools"></a>
-### Nested Schema for `spec.network.devices.skip_ip_allocation`
+### Nested Schema for `spec.network.devices.addresses_from_pools`
 
 Required:
 
@@ -135,7 +135,7 @@ Optional:
 
 
 <a id="nestedatt--spec--network--devices--dhcp4_overrides"></a>
-### Nested Schema for `spec.network.devices.skip_ip_allocation`
+### Nested Schema for `spec.network.devices.dhcp4_overrides`
 
 Optional:
 
@@ -151,7 +151,7 @@ Optional:
 
 
 <a id="nestedatt--spec--network--devices--dhcp6_overrides"></a>
-### Nested Schema for `spec.network.devices.skip_ip_allocation`
+### Nested Schema for `spec.network.devices.dhcp6_overrides`
 
 Optional:
 
@@ -167,7 +167,7 @@ Optional:
 
 
 <a id="nestedatt--spec--network--devices--routes"></a>
-### Nested Schema for `spec.network.devices.skip_ip_allocation`
+### Nested Schema for `spec.network.devices.routes`
 
 Required:
 

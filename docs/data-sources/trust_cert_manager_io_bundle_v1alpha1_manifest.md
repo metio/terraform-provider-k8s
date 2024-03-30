@@ -154,7 +154,7 @@ Optional:
 - `pkcs12` (Attributes) PKCS12 requests a PKCS12-formatted binary trust bundle to be written to the target.The bundle is by default created without a password. (see [below for nested schema](#nestedatt--spec--target--additional_formats--pkcs12))
 
 <a id="nestedatt--spec--target--additional_formats--jks"></a>
-### Nested Schema for `spec.target.additional_formats.pkcs12`
+### Nested Schema for `spec.target.additional_formats.jks`
 
 Required:
 

@@ -78,7 +78,7 @@ Required:
 - `version` (String) Version should be defined in format vX.Y. In terms of supported versions of Kubernetes, Claudie follows kubeone releases and their supported versions. The current kubeone version used in Claudie is 1.5. To see the list of supported versions, please refer to kubeone documentation. https://docs.kubermatic.com/kubeone/v1.5/architecture/compatibility/supported-versions/#supported-kubernetes-versions
 
 <a id="nestedatt--spec--kubernetes--clusters--pools"></a>
-### Nested Schema for `spec.kubernetes.clusters.version`
+### Nested Schema for `spec.kubernetes.clusters.pools`
 
 Required:
 
@@ -166,7 +166,7 @@ Optional:
 - `taints` (Attributes List) User defined taints for this nodepool. (see [below for nested schema](#nestedatt--spec--node_pools--dynamic--taints))
 
 <a id="nestedatt--spec--node_pools--dynamic--provider_spec"></a>
-### Nested Schema for `spec.node_pools.dynamic.taints`
+### Nested Schema for `spec.node_pools.dynamic.provider_spec`
 
 Required:
 
@@ -179,7 +179,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_pools--dynamic--autoscaler"></a>
-### Nested Schema for `spec.node_pools.dynamic.taints`
+### Nested Schema for `spec.node_pools.dynamic.autoscaler`
 
 Optional:
 
@@ -188,7 +188,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_pools--dynamic--machine_spec"></a>
-### Nested Schema for `spec.node_pools.dynamic.taints`
+### Nested Schema for `spec.node_pools.dynamic.machine_spec`
 
 Required:
 
@@ -226,7 +226,7 @@ Optional:
 - `taints` (Attributes List) (see [below for nested schema](#nestedatt--spec--node_pools--static--taints))
 
 <a id="nestedatt--spec--node_pools--static--nodes"></a>
-### Nested Schema for `spec.node_pools.static.taints`
+### Nested Schema for `spec.node_pools.static.nodes`
 
 Required:
 

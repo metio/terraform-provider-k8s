@@ -111,7 +111,7 @@ Optional:
 - `settings_security` (Attributes) A reference to the ConfigMap or Secret key that contains the security of the Maven settings. (see [below for nested schema](#nestedatt--spec--build--maven--settings_security))
 
 <a id="nestedatt--spec--build--maven--ca_secrets"></a>
-### Nested Schema for `spec.build.maven.settings_security`
+### Nested Schema for `spec.build.maven.ca_secrets`
 
 Required:
 
@@ -124,7 +124,7 @@ Optional:
 
 
 <a id="nestedatt--spec--build--maven--extension"></a>
-### Nested Schema for `spec.build.maven.settings_security`
+### Nested Schema for `spec.build.maven.extension`
 
 Required:
 
@@ -139,7 +139,7 @@ Optional:
 
 
 <a id="nestedatt--spec--build--maven--profiles"></a>
-### Nested Schema for `spec.build.maven.settings_security`
+### Nested Schema for `spec.build.maven.profiles`
 
 Optional:
 
@@ -174,7 +174,7 @@ Optional:
 
 
 <a id="nestedatt--spec--build--maven--settings"></a>
-### Nested Schema for `spec.build.maven.settings_security`
+### Nested Schema for `spec.build.maven.settings`
 
 Optional:
 

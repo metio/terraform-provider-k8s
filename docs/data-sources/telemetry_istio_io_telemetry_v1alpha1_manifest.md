@@ -115,7 +115,7 @@ Optional:
 - `tag_overrides` (Attributes) Optional. (see [below for nested schema](#nestedatt--spec--metrics--overrides--tag_overrides))
 
 <a id="nestedatt--spec--metrics--overrides--match"></a>
-### Nested Schema for `spec.metrics.overrides.tag_overrides`
+### Nested Schema for `spec.metrics.overrides.match`
 
 Optional:
 
@@ -184,7 +184,7 @@ Optional:
 - `literal` (Attributes) Literal adds the same, hard-coded value to each span. (see [below for nested schema](#nestedatt--spec--tracing--custom_tags--literal))
 
 <a id="nestedatt--spec--tracing--custom_tags--environment"></a>
-### Nested Schema for `spec.tracing.custom_tags.literal`
+### Nested Schema for `spec.tracing.custom_tags.environment`
 
 Required:
 
@@ -196,7 +196,7 @@ Optional:
 
 
 <a id="nestedatt--spec--tracing--custom_tags--header"></a>
-### Nested Schema for `spec.tracing.custom_tags.literal`
+### Nested Schema for `spec.tracing.custom_tags.header`
 
 Required:
 

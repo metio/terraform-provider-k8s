@@ -131,7 +131,7 @@ Optional:
 - `storage` (Attributes) (see [below for nested schema](#nestedatt--spec--cloud_provider_configuration--provider_config--storage))
 
 <a id="nestedatt--spec--cloud_provider_configuration--provider_config--cloud"></a>
-### Nested Schema for `spec.cloud_provider_configuration.provider_config.storage`
+### Nested Schema for `spec.cloud_provider_configuration.provider_config.cloud`
 
 Optional:
 

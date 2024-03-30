@@ -126,7 +126,7 @@ Optional:
 - `pod_anti_affinity` (Attributes) Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--redis--affinity--pod_anti_affinity))
 
 <a id="nestedatt--spec--redis--affinity--node_affinity"></a>
-### Nested Schema for `spec.redis.affinity.pod_anti_affinity`
+### Nested Schema for `spec.redis.affinity.node_affinity`
 
 Optional:
 
@@ -142,7 +142,7 @@ Required:
 - `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
 
 <a id="nestedatt--spec--redis--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.redis.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.redis.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -150,7 +150,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--redis--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--redis--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.redis.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.redis.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -193,7 +193,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--redis--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--redis--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.redis.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.redis.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -222,7 +222,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--affinity--pod_affinity"></a>
-### Nested Schema for `spec.redis.affinity.pod_anti_affinity`
+### Nested Schema for `spec.redis.affinity.pod_affinity`
 
 Optional:
 
@@ -238,7 +238,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--redis--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.redis.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.redis.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -251,7 +251,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--redis--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.redis.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.redis.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -259,7 +259,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--redis--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.redis.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.redis.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -273,7 +273,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.redis.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.redis.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -281,7 +281,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--redis--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.redis.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.redis.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -310,7 +310,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--redis--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.redis.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.redis.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -318,7 +318,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--redis--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.redis.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.redis.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -332,7 +332,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.redis.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.redis.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -340,7 +340,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--redis--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.redis.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.redis.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -372,7 +372,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--redis--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.redis.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.redis.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -385,7 +385,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--redis--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.redis.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.redis.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -393,7 +393,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--redis--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.redis.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.redis.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -407,7 +407,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.redis.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.redis.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -415,7 +415,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--redis--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.redis.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.redis.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -444,7 +444,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--redis--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.redis.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.redis.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -452,7 +452,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--redis--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.redis.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.redis.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -466,7 +466,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.redis.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.redis.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -474,7 +474,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--redis--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.redis.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.redis.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -508,7 +508,7 @@ Optional:
 - `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--redis--container_security_context--windows_options))
 
 <a id="nestedatt--spec--redis--container_security_context--capabilities"></a>
-### Nested Schema for `spec.redis.container_security_context.windows_options`
+### Nested Schema for `spec.redis.container_security_context.capabilities`
 
 Optional:
 
@@ -517,7 +517,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--container_security_context--se_linux_options"></a>
-### Nested Schema for `spec.redis.container_security_context.windows_options`
+### Nested Schema for `spec.redis.container_security_context.se_linux_options`
 
 Optional:
 
@@ -528,7 +528,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--container_security_context--seccomp_profile"></a>
-### Nested Schema for `spec.redis.container_security_context.windows_options`
+### Nested Schema for `spec.redis.container_security_context.seccomp_profile`
 
 Required:
 
@@ -577,7 +577,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--redis--custom_liveness_probe--exec"></a>
-### Nested Schema for `spec.redis.custom_liveness_probe.timeout_seconds`
+### Nested Schema for `spec.redis.custom_liveness_probe.exec`
 
 Optional:
 
@@ -585,7 +585,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--custom_liveness_probe--grpc"></a>
-### Nested Schema for `spec.redis.custom_liveness_probe.timeout_seconds`
+### Nested Schema for `spec.redis.custom_liveness_probe.grpc`
 
 Required:
 
@@ -597,7 +597,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--custom_liveness_probe--http_get"></a>
-### Nested Schema for `spec.redis.custom_liveness_probe.timeout_seconds`
+### Nested Schema for `spec.redis.custom_liveness_probe.http_get`
 
 Required:
 
@@ -621,7 +621,7 @@ Required:
 
 
 <a id="nestedatt--spec--redis--custom_liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.redis.custom_liveness_probe.timeout_seconds`
+### Nested Schema for `spec.redis.custom_liveness_probe.tcp_socket`
 
 Required:
 
@@ -650,7 +650,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--redis--custom_readiness_probe--exec"></a>
-### Nested Schema for `spec.redis.custom_readiness_probe.timeout_seconds`
+### Nested Schema for `spec.redis.custom_readiness_probe.exec`
 
 Optional:
 
@@ -658,7 +658,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--custom_readiness_probe--grpc"></a>
-### Nested Schema for `spec.redis.custom_readiness_probe.timeout_seconds`
+### Nested Schema for `spec.redis.custom_readiness_probe.grpc`
 
 Required:
 
@@ -670,7 +670,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--custom_readiness_probe--http_get"></a>
-### Nested Schema for `spec.redis.custom_readiness_probe.timeout_seconds`
+### Nested Schema for `spec.redis.custom_readiness_probe.http_get`
 
 Required:
 
@@ -694,7 +694,7 @@ Required:
 
 
 <a id="nestedatt--spec--redis--custom_readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.redis.custom_readiness_probe.timeout_seconds`
+### Nested Schema for `spec.redis.custom_readiness_probe.tcp_socket`
 
 Required:
 
@@ -723,7 +723,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--redis--custom_startup_probe--exec"></a>
-### Nested Schema for `spec.redis.custom_startup_probe.timeout_seconds`
+### Nested Schema for `spec.redis.custom_startup_probe.exec`
 
 Optional:
 
@@ -731,7 +731,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--custom_startup_probe--grpc"></a>
-### Nested Schema for `spec.redis.custom_startup_probe.timeout_seconds`
+### Nested Schema for `spec.redis.custom_startup_probe.grpc`
 
 Required:
 
@@ -743,7 +743,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--custom_startup_probe--http_get"></a>
-### Nested Schema for `spec.redis.custom_startup_probe.timeout_seconds`
+### Nested Schema for `spec.redis.custom_startup_probe.http_get`
 
 Required:
 
@@ -767,7 +767,7 @@ Required:
 
 
 <a id="nestedatt--spec--redis--custom_startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.redis.custom_startup_probe.timeout_seconds`
+### Nested Schema for `spec.redis.custom_startup_probe.tcp_socket`
 
 Required:
 
@@ -793,7 +793,7 @@ Optional:
 - `resources` (Attributes) ResourceRequirements describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--redis--exporter--resources))
 
 <a id="nestedatt--spec--redis--exporter--container_security_context"></a>
-### Nested Schema for `spec.redis.exporter.resources`
+### Nested Schema for `spec.redis.exporter.container_security_context`
 
 Optional:
 
@@ -854,7 +854,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--exporter--env"></a>
-### Nested Schema for `spec.redis.exporter.resources`
+### Nested Schema for `spec.redis.exporter.env`
 
 Required:
 
@@ -876,7 +876,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--redis--exporter--resources--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--redis--exporter--resources--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.redis.exporter.resources.value_from.secret_key_ref`
+### Nested Schema for `spec.redis.exporter.resources.value_from.config_map_key_ref`
 
 Required:
 
@@ -889,7 +889,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--exporter--resources--value_from--field_ref"></a>
-### Nested Schema for `spec.redis.exporter.resources.value_from.secret_key_ref`
+### Nested Schema for `spec.redis.exporter.resources.value_from.field_ref`
 
 Required:
 
@@ -901,7 +901,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--exporter--resources--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.redis.exporter.resources.value_from.secret_key_ref`
+### Nested Schema for `spec.redis.exporter.resources.value_from.resource_field_ref`
 
 Required:
 
@@ -980,7 +980,7 @@ Optional:
 - `working_dir` (String) Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.
 
 <a id="nestedatt--spec--redis--extra_containers--env"></a>
-### Nested Schema for `spec.redis.extra_containers.working_dir`
+### Nested Schema for `spec.redis.extra_containers.env`
 
 Required:
 
@@ -1002,7 +1002,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--redis--extra_containers--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--redis--extra_containers--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.redis.extra_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.redis.extra_containers.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -1015,7 +1015,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_containers--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.redis.extra_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.redis.extra_containers.working_dir.value_from.field_ref`
 
 Required:
 
@@ -1027,7 +1027,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_containers--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.redis.extra_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.redis.extra_containers.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -1055,7 +1055,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_containers--env_from"></a>
-### Nested Schema for `spec.redis.extra_containers.working_dir`
+### Nested Schema for `spec.redis.extra_containers.env_from`
 
 Optional:
 
@@ -1083,7 +1083,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_containers--lifecycle"></a>
-### Nested Schema for `spec.redis.extra_containers.working_dir`
+### Nested Schema for `spec.redis.extra_containers.lifecycle`
 
 Optional:
 
@@ -1100,7 +1100,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--redis--extra_containers--working_dir--post_start--tcp_socket))
 
 <a id="nestedatt--spec--redis--extra_containers--working_dir--post_start--exec"></a>
-### Nested Schema for `spec.redis.extra_containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.redis.extra_containers.working_dir.post_start.exec`
 
 Optional:
 
@@ -1108,7 +1108,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_containers--working_dir--post_start--http_get"></a>
-### Nested Schema for `spec.redis.extra_containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.redis.extra_containers.working_dir.post_start.http_get`
 
 Required:
 
@@ -1122,7 +1122,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--redis--extra_containers--working_dir--post_start--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.redis.extra_containers.working_dir.post_start.tcp_socket.scheme`
+### Nested Schema for `spec.redis.extra_containers.working_dir.post_start.tcp_socket.http_headers`
 
 Required:
 
@@ -1154,7 +1154,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--redis--extra_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--redis--extra_containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.redis.extra_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.redis.extra_containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -1162,7 +1162,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.redis.extra_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.redis.extra_containers.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -1176,7 +1176,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--redis--extra_containers--working_dir--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.redis.extra_containers.working_dir.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.redis.extra_containers.working_dir.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -1200,7 +1200,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_containers--liveness_probe"></a>
-### Nested Schema for `spec.redis.extra_containers.working_dir`
+### Nested Schema for `spec.redis.extra_containers.liveness_probe`
 
 Optional:
 
@@ -1250,7 +1250,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--redis--extra_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.redis.extra_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.redis.extra_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -1273,7 +1273,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_containers--ports"></a>
-### Nested Schema for `spec.redis.extra_containers.working_dir`
+### Nested Schema for `spec.redis.extra_containers.ports`
 
 Required:
 
@@ -1288,7 +1288,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_containers--readiness_probe"></a>
-### Nested Schema for `spec.redis.extra_containers.working_dir`
+### Nested Schema for `spec.redis.extra_containers.readiness_probe`
 
 Optional:
 
@@ -1338,7 +1338,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--redis--extra_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.redis.extra_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.redis.extra_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -1361,7 +1361,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_containers--resize_policy"></a>
-### Nested Schema for `spec.redis.extra_containers.working_dir`
+### Nested Schema for `spec.redis.extra_containers.resize_policy`
 
 Required:
 
@@ -1370,7 +1370,7 @@ Required:
 
 
 <a id="nestedatt--spec--redis--extra_containers--resources"></a>
-### Nested Schema for `spec.redis.extra_containers.working_dir`
+### Nested Schema for `spec.redis.extra_containers.resources`
 
 Optional:
 
@@ -1388,7 +1388,7 @@ Required:
 
 
 <a id="nestedatt--spec--redis--extra_containers--security_context"></a>
-### Nested Schema for `spec.redis.extra_containers.working_dir`
+### Nested Schema for `spec.redis.extra_containers.security_context`
 
 Optional:
 
@@ -1449,7 +1449,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_containers--startup_probe"></a>
-### Nested Schema for `spec.redis.extra_containers.working_dir`
+### Nested Schema for `spec.redis.extra_containers.startup_probe`
 
 Optional:
 
@@ -1499,7 +1499,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--redis--extra_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.redis.extra_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.redis.extra_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -1522,7 +1522,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_containers--volume_devices"></a>
-### Nested Schema for `spec.redis.extra_containers.working_dir`
+### Nested Schema for `spec.redis.extra_containers.volume_devices`
 
 Required:
 
@@ -1531,7 +1531,7 @@ Required:
 
 
 <a id="nestedatt--spec--redis--extra_containers--volume_mounts"></a>
-### Nested Schema for `spec.redis.extra_containers.working_dir`
+### Nested Schema for `spec.redis.extra_containers.volume_mounts`
 
 Required:
 
@@ -1603,7 +1603,7 @@ Optional:
 - `vsphere_volume` (Attributes) vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--redis--extra_volumes--vsphere_volume))
 
 <a id="nestedatt--spec--redis--extra_volumes--aws_elastic_block_store"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.redis.extra_volumes.aws_elastic_block_store`
 
 Required:
 
@@ -1617,7 +1617,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--azure_disk"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.redis.extra_volumes.azure_disk`
 
 Required:
 
@@ -1633,7 +1633,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--azure_file"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.redis.extra_volumes.azure_file`
 
 Required:
 
@@ -1646,7 +1646,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--cephfs"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.redis.extra_volumes.cephfs`
 
 Required:
 
@@ -1670,7 +1670,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--cinder"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.redis.extra_volumes.cinder`
 
 Required:
 
@@ -1692,7 +1692,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--config_map"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.redis.extra_volumes.config_map`
 
 Optional:
 
@@ -1716,7 +1716,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--csi"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.redis.extra_volumes.csi`
 
 Required:
 
@@ -1739,7 +1739,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--downward_api"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.redis.extra_volumes.downward_api`
 
 Optional:
 
@@ -1760,7 +1760,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--redis--extra_volumes--vsphere_volume--items--resource_field_ref))
 
 <a id="nestedatt--spec--redis--extra_volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume.items.resource_field_ref`
+### Nested Schema for `spec.redis.extra_volumes.vsphere_volume.items.field_ref`
 
 Required:
 
@@ -1787,7 +1787,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--empty_dir"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.redis.extra_volumes.empty_dir`
 
 Optional:
 
@@ -1796,7 +1796,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--ephemeral"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.redis.extra_volumes.ephemeral`
 
 Optional:
 
@@ -1814,7 +1814,7 @@ Optional:
 - `metadata` (Map of String) May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation.
 
 <a id="nestedatt--spec--redis--extra_volumes--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume.volume_claim_template.metadata`
+### Nested Schema for `spec.redis.extra_volumes.vsphere_volume.volume_claim_template.spec`
 
 Optional:
 
@@ -1828,7 +1828,7 @@ Optional:
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--redis--extra_volumes--vsphere_volume--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.redis.extra_volumes.vsphere_volume.volume_claim_template.metadata.data_source`
 
 Required:
 
@@ -1841,7 +1841,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--vsphere_volume--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.redis.extra_volumes.vsphere_volume.volume_claim_template.metadata.data_source_ref`
 
 Required:
 
@@ -1855,7 +1855,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--vsphere_volume--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.redis.extra_volumes.vsphere_volume.volume_claim_template.metadata.resources`
 
 Optional:
 
@@ -1864,7 +1864,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--redis--extra_volumes--vsphere_volume--volume_claim_template--metadata--volume_name--claims"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name.requests`
+### Nested Schema for `spec.redis.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name.claims`
 
 Required:
 
@@ -1873,7 +1873,7 @@ Required:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--vsphere_volume--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.redis.extra_volumes.vsphere_volume.volume_claim_template.metadata.selector`
 
 Optional:
 
@@ -1881,7 +1881,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--redis--extra_volumes--vsphere_volume--volume_claim_template--metadata--volume_name--match_expressions"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_labels`
+### Nested Schema for `spec.redis.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_expressions`
 
 Required:
 
@@ -1898,7 +1898,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--fc"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.redis.extra_volumes.fc`
 
 Optional:
 
@@ -1910,7 +1910,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--flex_volume"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.redis.extra_volumes.flex_volume`
 
 Required:
 
@@ -1933,7 +1933,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--flocker"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.redis.extra_volumes.flocker`
 
 Optional:
 
@@ -1942,7 +1942,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--gce_persistent_disk"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.redis.extra_volumes.gce_persistent_disk`
 
 Required:
 
@@ -1956,7 +1956,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--git_repo"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.redis.extra_volumes.git_repo`
 
 Required:
 
@@ -1969,7 +1969,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--glusterfs"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.redis.extra_volumes.glusterfs`
 
 Required:
 
@@ -1982,7 +1982,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--host_path"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.redis.extra_volumes.host_path`
 
 Required:
 
@@ -1994,7 +1994,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--iscsi"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.redis.extra_volumes.iscsi`
 
 Required:
 
@@ -2023,7 +2023,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--nfs"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.redis.extra_volumes.nfs`
 
 Required:
 
@@ -2036,7 +2036,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--persistent_volume_claim"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.redis.extra_volumes.persistent_volume_claim`
 
 Required:
 
@@ -2048,7 +2048,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--photon_persistent_disk"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.redis.extra_volumes.photon_persistent_disk`
 
 Required:
 
@@ -2060,7 +2060,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--portworx_volume"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.redis.extra_volumes.portworx_volume`
 
 Required:
 
@@ -2073,7 +2073,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--projected"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.redis.extra_volumes.projected`
 
 Optional:
 
@@ -2091,7 +2091,7 @@ Optional:
 - `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--redis--extra_volumes--vsphere_volume--sources--service_account_token))
 
 <a id="nestedatt--spec--redis--extra_volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.redis.extra_volumes.vsphere_volume.sources.config_map`
 
 Optional:
 
@@ -2100,7 +2100,7 @@ Optional:
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--redis--extra_volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume.sources.service_account_token.optional`
+### Nested Schema for `spec.redis.extra_volumes.vsphere_volume.sources.service_account_token.items`
 
 Required:
 
@@ -2114,7 +2114,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.redis.extra_volumes.vsphere_volume.sources.downward_api`
 
 Optional:
 
@@ -2134,7 +2134,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--redis--extra_volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
 
 <a id="nestedatt--spec--redis--extra_volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+### Nested Schema for `spec.redis.extra_volumes.vsphere_volume.sources.service_account_token.items.field_ref`
 
 Required:
 
@@ -2161,7 +2161,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.redis.extra_volumes.vsphere_volume.sources.secret`
 
 Optional:
 
@@ -2170,7 +2170,7 @@ Optional:
 - `optional` (Boolean) optional field specify whether the Secret or its key must be defined
 
 <a id="nestedatt--spec--redis--extra_volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume.sources.service_account_token.optional`
+### Nested Schema for `spec.redis.extra_volumes.vsphere_volume.sources.service_account_token.items`
 
 Required:
 
@@ -2199,7 +2199,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--quobyte"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.redis.extra_volumes.quobyte`
 
 Required:
 
@@ -2215,7 +2215,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--rbd"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.redis.extra_volumes.rbd`
 
 Required:
 
@@ -2241,7 +2241,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--scale_io"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.redis.extra_volumes.scale_io`
 
 Required:
 
@@ -2269,7 +2269,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--secret"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.redis.extra_volumes.secret`
 
 Optional:
 
@@ -2293,7 +2293,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--extra_volumes--storageos"></a>
-### Nested Schema for `spec.redis.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.redis.extra_volumes.storageos`
 
 Optional:
 
@@ -2368,7 +2368,7 @@ Optional:
 - `working_dir` (String) Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.
 
 <a id="nestedatt--spec--redis--init_containers--env"></a>
-### Nested Schema for `spec.redis.init_containers.working_dir`
+### Nested Schema for `spec.redis.init_containers.env`
 
 Required:
 
@@ -2390,7 +2390,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--redis--init_containers--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--redis--init_containers--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.redis.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.redis.init_containers.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -2403,7 +2403,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--init_containers--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.redis.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.redis.init_containers.working_dir.value_from.field_ref`
 
 Required:
 
@@ -2415,7 +2415,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--init_containers--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.redis.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.redis.init_containers.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -2443,7 +2443,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--init_containers--env_from"></a>
-### Nested Schema for `spec.redis.init_containers.working_dir`
+### Nested Schema for `spec.redis.init_containers.env_from`
 
 Optional:
 
@@ -2471,7 +2471,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--init_containers--lifecycle"></a>
-### Nested Schema for `spec.redis.init_containers.working_dir`
+### Nested Schema for `spec.redis.init_containers.lifecycle`
 
 Optional:
 
@@ -2488,7 +2488,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--redis--init_containers--working_dir--post_start--tcp_socket))
 
 <a id="nestedatt--spec--redis--init_containers--working_dir--post_start--exec"></a>
-### Nested Schema for `spec.redis.init_containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.redis.init_containers.working_dir.post_start.exec`
 
 Optional:
 
@@ -2496,7 +2496,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--init_containers--working_dir--post_start--http_get"></a>
-### Nested Schema for `spec.redis.init_containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.redis.init_containers.working_dir.post_start.http_get`
 
 Required:
 
@@ -2510,7 +2510,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--redis--init_containers--working_dir--post_start--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.redis.init_containers.working_dir.post_start.tcp_socket.scheme`
+### Nested Schema for `spec.redis.init_containers.working_dir.post_start.tcp_socket.http_headers`
 
 Required:
 
@@ -2542,7 +2542,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--redis--init_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--redis--init_containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.redis.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.redis.init_containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -2550,7 +2550,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--init_containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.redis.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.redis.init_containers.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -2564,7 +2564,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--redis--init_containers--working_dir--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.redis.init_containers.working_dir.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.redis.init_containers.working_dir.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -2588,7 +2588,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--init_containers--liveness_probe"></a>
-### Nested Schema for `spec.redis.init_containers.working_dir`
+### Nested Schema for `spec.redis.init_containers.liveness_probe`
 
 Optional:
 
@@ -2638,7 +2638,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--redis--init_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.redis.init_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.redis.init_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -2661,7 +2661,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--init_containers--ports"></a>
-### Nested Schema for `spec.redis.init_containers.working_dir`
+### Nested Schema for `spec.redis.init_containers.ports`
 
 Required:
 
@@ -2676,7 +2676,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--init_containers--readiness_probe"></a>
-### Nested Schema for `spec.redis.init_containers.working_dir`
+### Nested Schema for `spec.redis.init_containers.readiness_probe`
 
 Optional:
 
@@ -2726,7 +2726,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--redis--init_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.redis.init_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.redis.init_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -2749,7 +2749,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--init_containers--resize_policy"></a>
-### Nested Schema for `spec.redis.init_containers.working_dir`
+### Nested Schema for `spec.redis.init_containers.resize_policy`
 
 Required:
 
@@ -2758,7 +2758,7 @@ Required:
 
 
 <a id="nestedatt--spec--redis--init_containers--resources"></a>
-### Nested Schema for `spec.redis.init_containers.working_dir`
+### Nested Schema for `spec.redis.init_containers.resources`
 
 Optional:
 
@@ -2776,7 +2776,7 @@ Required:
 
 
 <a id="nestedatt--spec--redis--init_containers--security_context"></a>
-### Nested Schema for `spec.redis.init_containers.working_dir`
+### Nested Schema for `spec.redis.init_containers.security_context`
 
 Optional:
 
@@ -2837,7 +2837,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--init_containers--startup_probe"></a>
-### Nested Schema for `spec.redis.init_containers.working_dir`
+### Nested Schema for `spec.redis.init_containers.startup_probe`
 
 Optional:
 
@@ -2887,7 +2887,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--redis--init_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.redis.init_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.redis.init_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -2910,7 +2910,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--init_containers--volume_devices"></a>
-### Nested Schema for `spec.redis.init_containers.working_dir`
+### Nested Schema for `spec.redis.init_containers.volume_devices`
 
 Required:
 
@@ -2919,7 +2919,7 @@ Required:
 
 
 <a id="nestedatt--spec--redis--init_containers--volume_mounts"></a>
-### Nested Schema for `spec.redis.init_containers.working_dir`
+### Nested Schema for `spec.redis.init_containers.volume_mounts`
 
 Required:
 
@@ -2945,7 +2945,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--redis--resources--claims"></a>
-### Nested Schema for `spec.redis.resources.requests`
+### Nested Schema for `spec.redis.resources.claims`
 
 Required:
 
@@ -2970,7 +2970,7 @@ Optional:
 - `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--redis--security_context--windows_options))
 
 <a id="nestedatt--spec--redis--security_context--se_linux_options"></a>
-### Nested Schema for `spec.redis.security_context.windows_options`
+### Nested Schema for `spec.redis.security_context.se_linux_options`
 
 Optional:
 
@@ -2981,7 +2981,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.redis.security_context.windows_options`
+### Nested Schema for `spec.redis.security_context.seccomp_profile`
 
 Required:
 
@@ -2993,7 +2993,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--security_context--sysctls"></a>
-### Nested Schema for `spec.redis.security_context.windows_options`
+### Nested Schema for `spec.redis.security_context.sysctls`
 
 Required:
 
@@ -3023,7 +3023,7 @@ Optional:
 - `persistent_volume_claim` (Attributes) EmbeddedPersistentVolumeClaim is an embedded version of k8s.io/api/core/v1.PersistentVolumeClaim. It contains TypeMeta and a reduced ObjectMeta. (see [below for nested schema](#nestedatt--spec--redis--storage--persistent_volume_claim))
 
 <a id="nestedatt--spec--redis--storage--empty_dir"></a>
-### Nested Schema for `spec.redis.storage.persistent_volume_claim`
+### Nested Schema for `spec.redis.storage.empty_dir`
 
 Optional:
 
@@ -3067,7 +3067,7 @@ Optional:
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--redis--storage--persistent_volume_claim--spec--data_source"></a>
-### Nested Schema for `spec.redis.storage.persistent_volume_claim.spec.volume_name`
+### Nested Schema for `spec.redis.storage.persistent_volume_claim.spec.data_source`
 
 Required:
 
@@ -3080,7 +3080,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--storage--persistent_volume_claim--spec--data_source_ref"></a>
-### Nested Schema for `spec.redis.storage.persistent_volume_claim.spec.volume_name`
+### Nested Schema for `spec.redis.storage.persistent_volume_claim.spec.data_source_ref`
 
 Required:
 
@@ -3094,7 +3094,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis--storage--persistent_volume_claim--spec--resources"></a>
-### Nested Schema for `spec.redis.storage.persistent_volume_claim.spec.volume_name`
+### Nested Schema for `spec.redis.storage.persistent_volume_claim.spec.resources`
 
 Optional:
 
@@ -3103,7 +3103,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--redis--storage--persistent_volume_claim--spec--volume_name--claims"></a>
-### Nested Schema for `spec.redis.storage.persistent_volume_claim.spec.volume_name.requests`
+### Nested Schema for `spec.redis.storage.persistent_volume_claim.spec.volume_name.claims`
 
 Required:
 
@@ -3112,7 +3112,7 @@ Required:
 
 
 <a id="nestedatt--spec--redis--storage--persistent_volume_claim--spec--selector"></a>
-### Nested Schema for `spec.redis.storage.persistent_volume_claim.spec.volume_name`
+### Nested Schema for `spec.redis.storage.persistent_volume_claim.spec.selector`
 
 Optional:
 
@@ -3120,7 +3120,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--redis--storage--persistent_volume_claim--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.redis.storage.persistent_volume_claim.spec.volume_name.match_labels`
+### Nested Schema for `spec.redis.storage.persistent_volume_claim.spec.volume_name.match_expressions`
 
 Required:
 
@@ -3147,7 +3147,7 @@ Optional:
 - `resize_status` (String) resizeStatus stores status of resize operation. ResizeStatus is not set by default but when expansion is complete resizeStatus is set to empty string by resize controller or kubelet. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
 
 <a id="nestedatt--spec--redis--storage--persistent_volume_claim--status--conditions"></a>
-### Nested Schema for `spec.redis.storage.persistent_volume_claim.status.resize_status`
+### Nested Schema for `spec.redis.storage.persistent_volume_claim.status.conditions`
 
 Required:
 
@@ -3195,7 +3195,7 @@ Optional:
 - `node_taints_policy` (String) NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
 
 <a id="nestedatt--spec--redis--topology_spread_constraints--label_selector"></a>
-### Nested Schema for `spec.redis.topology_spread_constraints.node_taints_policy`
+### Nested Schema for `spec.redis.topology_spread_constraints.label_selector`
 
 Optional:
 
@@ -3264,7 +3264,7 @@ Optional:
 - `pod_anti_affinity` (Attributes) Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--sentinel--affinity--pod_anti_affinity))
 
 <a id="nestedatt--spec--sentinel--affinity--node_affinity"></a>
-### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity`
+### Nested Schema for `spec.sentinel.affinity.node_affinity`
 
 Optional:
 
@@ -3280,7 +3280,7 @@ Required:
 - `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
 
 <a id="nestedatt--spec--sentinel--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -3288,7 +3288,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--sentinel--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--sentinel--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -3331,7 +3331,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--sentinel--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--sentinel--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -3360,7 +3360,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--affinity--pod_affinity"></a>
-### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity`
+### Nested Schema for `spec.sentinel.affinity.pod_affinity`
 
 Optional:
 
@@ -3376,7 +3376,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--sentinel--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -3389,7 +3389,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--sentinel--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -3397,7 +3397,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--sentinel--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -3411,7 +3411,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -3419,7 +3419,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--sentinel--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -3448,7 +3448,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--sentinel--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -3456,7 +3456,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--sentinel--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -3470,7 +3470,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -3478,7 +3478,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--sentinel--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -3510,7 +3510,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--sentinel--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -3523,7 +3523,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--sentinel--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -3531,7 +3531,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--sentinel--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -3545,7 +3545,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -3553,7 +3553,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--sentinel--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -3582,7 +3582,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--sentinel--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -3590,7 +3590,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--sentinel--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -3604,7 +3604,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -3612,7 +3612,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--sentinel--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.sentinel.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -3715,7 +3715,7 @@ Optional:
 - `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--sentinel--container_security_context--windows_options))
 
 <a id="nestedatt--spec--sentinel--container_security_context--capabilities"></a>
-### Nested Schema for `spec.sentinel.container_security_context.windows_options`
+### Nested Schema for `spec.sentinel.container_security_context.capabilities`
 
 Optional:
 
@@ -3724,7 +3724,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--container_security_context--se_linux_options"></a>
-### Nested Schema for `spec.sentinel.container_security_context.windows_options`
+### Nested Schema for `spec.sentinel.container_security_context.se_linux_options`
 
 Optional:
 
@@ -3735,7 +3735,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--container_security_context--seccomp_profile"></a>
-### Nested Schema for `spec.sentinel.container_security_context.windows_options`
+### Nested Schema for `spec.sentinel.container_security_context.seccomp_profile`
 
 Required:
 
@@ -3775,7 +3775,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--sentinel--custom_liveness_probe--exec"></a>
-### Nested Schema for `spec.sentinel.custom_liveness_probe.timeout_seconds`
+### Nested Schema for `spec.sentinel.custom_liveness_probe.exec`
 
 Optional:
 
@@ -3783,7 +3783,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--custom_liveness_probe--grpc"></a>
-### Nested Schema for `spec.sentinel.custom_liveness_probe.timeout_seconds`
+### Nested Schema for `spec.sentinel.custom_liveness_probe.grpc`
 
 Required:
 
@@ -3795,7 +3795,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--custom_liveness_probe--http_get"></a>
-### Nested Schema for `spec.sentinel.custom_liveness_probe.timeout_seconds`
+### Nested Schema for `spec.sentinel.custom_liveness_probe.http_get`
 
 Required:
 
@@ -3819,7 +3819,7 @@ Required:
 
 
 <a id="nestedatt--spec--sentinel--custom_liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.sentinel.custom_liveness_probe.timeout_seconds`
+### Nested Schema for `spec.sentinel.custom_liveness_probe.tcp_socket`
 
 Required:
 
@@ -3848,7 +3848,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--sentinel--custom_readiness_probe--exec"></a>
-### Nested Schema for `spec.sentinel.custom_readiness_probe.timeout_seconds`
+### Nested Schema for `spec.sentinel.custom_readiness_probe.exec`
 
 Optional:
 
@@ -3856,7 +3856,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--custom_readiness_probe--grpc"></a>
-### Nested Schema for `spec.sentinel.custom_readiness_probe.timeout_seconds`
+### Nested Schema for `spec.sentinel.custom_readiness_probe.grpc`
 
 Required:
 
@@ -3868,7 +3868,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--custom_readiness_probe--http_get"></a>
-### Nested Schema for `spec.sentinel.custom_readiness_probe.timeout_seconds`
+### Nested Schema for `spec.sentinel.custom_readiness_probe.http_get`
 
 Required:
 
@@ -3892,7 +3892,7 @@ Required:
 
 
 <a id="nestedatt--spec--sentinel--custom_readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.sentinel.custom_readiness_probe.timeout_seconds`
+### Nested Schema for `spec.sentinel.custom_readiness_probe.tcp_socket`
 
 Required:
 
@@ -3921,7 +3921,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--sentinel--custom_startup_probe--exec"></a>
-### Nested Schema for `spec.sentinel.custom_startup_probe.timeout_seconds`
+### Nested Schema for `spec.sentinel.custom_startup_probe.exec`
 
 Optional:
 
@@ -3929,7 +3929,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--custom_startup_probe--grpc"></a>
-### Nested Schema for `spec.sentinel.custom_startup_probe.timeout_seconds`
+### Nested Schema for `spec.sentinel.custom_startup_probe.grpc`
 
 Required:
 
@@ -3941,7 +3941,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--custom_startup_probe--http_get"></a>
-### Nested Schema for `spec.sentinel.custom_startup_probe.timeout_seconds`
+### Nested Schema for `spec.sentinel.custom_startup_probe.http_get`
 
 Required:
 
@@ -3965,7 +3965,7 @@ Required:
 
 
 <a id="nestedatt--spec--sentinel--custom_startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.sentinel.custom_startup_probe.timeout_seconds`
+### Nested Schema for `spec.sentinel.custom_startup_probe.tcp_socket`
 
 Required:
 
@@ -3991,7 +3991,7 @@ Optional:
 - `resources` (Attributes) ResourceRequirements describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--sentinel--exporter--resources))
 
 <a id="nestedatt--spec--sentinel--exporter--container_security_context"></a>
-### Nested Schema for `spec.sentinel.exporter.resources`
+### Nested Schema for `spec.sentinel.exporter.container_security_context`
 
 Optional:
 
@@ -4052,7 +4052,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--exporter--env"></a>
-### Nested Schema for `spec.sentinel.exporter.resources`
+### Nested Schema for `spec.sentinel.exporter.env`
 
 Required:
 
@@ -4074,7 +4074,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--sentinel--exporter--resources--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--sentinel--exporter--resources--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.sentinel.exporter.resources.value_from.secret_key_ref`
+### Nested Schema for `spec.sentinel.exporter.resources.value_from.config_map_key_ref`
 
 Required:
 
@@ -4087,7 +4087,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--exporter--resources--value_from--field_ref"></a>
-### Nested Schema for `spec.sentinel.exporter.resources.value_from.secret_key_ref`
+### Nested Schema for `spec.sentinel.exporter.resources.value_from.field_ref`
 
 Required:
 
@@ -4099,7 +4099,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--exporter--resources--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.sentinel.exporter.resources.value_from.secret_key_ref`
+### Nested Schema for `spec.sentinel.exporter.resources.value_from.resource_field_ref`
 
 Required:
 
@@ -4178,7 +4178,7 @@ Optional:
 - `working_dir` (String) Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.
 
 <a id="nestedatt--spec--sentinel--extra_containers--env"></a>
-### Nested Schema for `spec.sentinel.extra_containers.working_dir`
+### Nested Schema for `spec.sentinel.extra_containers.env`
 
 Required:
 
@@ -4200,7 +4200,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--sentinel--extra_containers--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--sentinel--extra_containers--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.sentinel.extra_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.sentinel.extra_containers.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -4213,7 +4213,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_containers--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.sentinel.extra_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.sentinel.extra_containers.working_dir.value_from.field_ref`
 
 Required:
 
@@ -4225,7 +4225,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_containers--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.sentinel.extra_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.sentinel.extra_containers.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -4253,7 +4253,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_containers--env_from"></a>
-### Nested Schema for `spec.sentinel.extra_containers.working_dir`
+### Nested Schema for `spec.sentinel.extra_containers.env_from`
 
 Optional:
 
@@ -4281,7 +4281,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_containers--lifecycle"></a>
-### Nested Schema for `spec.sentinel.extra_containers.working_dir`
+### Nested Schema for `spec.sentinel.extra_containers.lifecycle`
 
 Optional:
 
@@ -4298,7 +4298,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--sentinel--extra_containers--working_dir--post_start--tcp_socket))
 
 <a id="nestedatt--spec--sentinel--extra_containers--working_dir--post_start--exec"></a>
-### Nested Schema for `spec.sentinel.extra_containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.sentinel.extra_containers.working_dir.post_start.exec`
 
 Optional:
 
@@ -4306,7 +4306,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_containers--working_dir--post_start--http_get"></a>
-### Nested Schema for `spec.sentinel.extra_containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.sentinel.extra_containers.working_dir.post_start.http_get`
 
 Required:
 
@@ -4320,7 +4320,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--sentinel--extra_containers--working_dir--post_start--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.sentinel.extra_containers.working_dir.post_start.tcp_socket.scheme`
+### Nested Schema for `spec.sentinel.extra_containers.working_dir.post_start.tcp_socket.http_headers`
 
 Required:
 
@@ -4352,7 +4352,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--sentinel--extra_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--sentinel--extra_containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.sentinel.extra_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.sentinel.extra_containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -4360,7 +4360,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.sentinel.extra_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.sentinel.extra_containers.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -4374,7 +4374,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--sentinel--extra_containers--working_dir--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.sentinel.extra_containers.working_dir.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.sentinel.extra_containers.working_dir.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -4398,7 +4398,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_containers--liveness_probe"></a>
-### Nested Schema for `spec.sentinel.extra_containers.working_dir`
+### Nested Schema for `spec.sentinel.extra_containers.liveness_probe`
 
 Optional:
 
@@ -4448,7 +4448,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--sentinel--extra_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.sentinel.extra_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.sentinel.extra_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -4471,7 +4471,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_containers--ports"></a>
-### Nested Schema for `spec.sentinel.extra_containers.working_dir`
+### Nested Schema for `spec.sentinel.extra_containers.ports`
 
 Required:
 
@@ -4486,7 +4486,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_containers--readiness_probe"></a>
-### Nested Schema for `spec.sentinel.extra_containers.working_dir`
+### Nested Schema for `spec.sentinel.extra_containers.readiness_probe`
 
 Optional:
 
@@ -4536,7 +4536,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--sentinel--extra_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.sentinel.extra_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.sentinel.extra_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -4559,7 +4559,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_containers--resize_policy"></a>
-### Nested Schema for `spec.sentinel.extra_containers.working_dir`
+### Nested Schema for `spec.sentinel.extra_containers.resize_policy`
 
 Required:
 
@@ -4568,7 +4568,7 @@ Required:
 
 
 <a id="nestedatt--spec--sentinel--extra_containers--resources"></a>
-### Nested Schema for `spec.sentinel.extra_containers.working_dir`
+### Nested Schema for `spec.sentinel.extra_containers.resources`
 
 Optional:
 
@@ -4586,7 +4586,7 @@ Required:
 
 
 <a id="nestedatt--spec--sentinel--extra_containers--security_context"></a>
-### Nested Schema for `spec.sentinel.extra_containers.working_dir`
+### Nested Schema for `spec.sentinel.extra_containers.security_context`
 
 Optional:
 
@@ -4647,7 +4647,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_containers--startup_probe"></a>
-### Nested Schema for `spec.sentinel.extra_containers.working_dir`
+### Nested Schema for `spec.sentinel.extra_containers.startup_probe`
 
 Optional:
 
@@ -4697,7 +4697,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--sentinel--extra_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.sentinel.extra_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.sentinel.extra_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -4720,7 +4720,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_containers--volume_devices"></a>
-### Nested Schema for `spec.sentinel.extra_containers.working_dir`
+### Nested Schema for `spec.sentinel.extra_containers.volume_devices`
 
 Required:
 
@@ -4729,7 +4729,7 @@ Required:
 
 
 <a id="nestedatt--spec--sentinel--extra_containers--volume_mounts"></a>
-### Nested Schema for `spec.sentinel.extra_containers.working_dir`
+### Nested Schema for `spec.sentinel.extra_containers.volume_mounts`
 
 Required:
 
@@ -4801,7 +4801,7 @@ Optional:
 - `vsphere_volume` (Attributes) vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--sentinel--extra_volumes--vsphere_volume))
 
 <a id="nestedatt--spec--sentinel--extra_volumes--aws_elastic_block_store"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.sentinel.extra_volumes.aws_elastic_block_store`
 
 Required:
 
@@ -4815,7 +4815,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--azure_disk"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.sentinel.extra_volumes.azure_disk`
 
 Required:
 
@@ -4831,7 +4831,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--azure_file"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.sentinel.extra_volumes.azure_file`
 
 Required:
 
@@ -4844,7 +4844,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--cephfs"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.sentinel.extra_volumes.cephfs`
 
 Required:
 
@@ -4868,7 +4868,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--cinder"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.sentinel.extra_volumes.cinder`
 
 Required:
 
@@ -4890,7 +4890,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--config_map"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.sentinel.extra_volumes.config_map`
 
 Optional:
 
@@ -4914,7 +4914,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--csi"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.sentinel.extra_volumes.csi`
 
 Required:
 
@@ -4937,7 +4937,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--downward_api"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.sentinel.extra_volumes.downward_api`
 
 Optional:
 
@@ -4958,7 +4958,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--sentinel--extra_volumes--vsphere_volume--items--resource_field_ref))
 
 <a id="nestedatt--spec--sentinel--extra_volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume.items.resource_field_ref`
+### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume.items.field_ref`
 
 Required:
 
@@ -4985,7 +4985,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--empty_dir"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.sentinel.extra_volumes.empty_dir`
 
 Optional:
 
@@ -4994,7 +4994,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--ephemeral"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.sentinel.extra_volumes.ephemeral`
 
 Optional:
 
@@ -5012,7 +5012,7 @@ Optional:
 - `metadata` (Map of String) May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation.
 
 <a id="nestedatt--spec--sentinel--extra_volumes--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume.volume_claim_template.metadata`
+### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume.volume_claim_template.spec`
 
 Optional:
 
@@ -5026,7 +5026,7 @@ Optional:
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--sentinel--extra_volumes--vsphere_volume--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume.volume_claim_template.metadata.data_source`
 
 Required:
 
@@ -5039,7 +5039,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--vsphere_volume--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume.volume_claim_template.metadata.data_source_ref`
 
 Required:
 
@@ -5053,7 +5053,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--vsphere_volume--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume.volume_claim_template.metadata.resources`
 
 Optional:
 
@@ -5062,7 +5062,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--sentinel--extra_volumes--vsphere_volume--volume_claim_template--metadata--volume_name--claims"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name.requests`
+### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name.claims`
 
 Required:
 
@@ -5071,7 +5071,7 @@ Required:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--vsphere_volume--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume.volume_claim_template.metadata.selector`
 
 Optional:
 
@@ -5079,7 +5079,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--sentinel--extra_volumes--vsphere_volume--volume_claim_template--metadata--volume_name--match_expressions"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_labels`
+### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_expressions`
 
 Required:
 
@@ -5096,7 +5096,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--fc"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.sentinel.extra_volumes.fc`
 
 Optional:
 
@@ -5108,7 +5108,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--flex_volume"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.sentinel.extra_volumes.flex_volume`
 
 Required:
 
@@ -5131,7 +5131,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--flocker"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.sentinel.extra_volumes.flocker`
 
 Optional:
 
@@ -5140,7 +5140,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--gce_persistent_disk"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.sentinel.extra_volumes.gce_persistent_disk`
 
 Required:
 
@@ -5154,7 +5154,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--git_repo"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.sentinel.extra_volumes.git_repo`
 
 Required:
 
@@ -5167,7 +5167,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--glusterfs"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.sentinel.extra_volumes.glusterfs`
 
 Required:
 
@@ -5180,7 +5180,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--host_path"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.sentinel.extra_volumes.host_path`
 
 Required:
 
@@ -5192,7 +5192,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--iscsi"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.sentinel.extra_volumes.iscsi`
 
 Required:
 
@@ -5221,7 +5221,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--nfs"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.sentinel.extra_volumes.nfs`
 
 Required:
 
@@ -5234,7 +5234,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--persistent_volume_claim"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.sentinel.extra_volumes.persistent_volume_claim`
 
 Required:
 
@@ -5246,7 +5246,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--photon_persistent_disk"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.sentinel.extra_volumes.photon_persistent_disk`
 
 Required:
 
@@ -5258,7 +5258,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--portworx_volume"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.sentinel.extra_volumes.portworx_volume`
 
 Required:
 
@@ -5271,7 +5271,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--projected"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.sentinel.extra_volumes.projected`
 
 Optional:
 
@@ -5289,7 +5289,7 @@ Optional:
 - `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--sentinel--extra_volumes--vsphere_volume--sources--service_account_token))
 
 <a id="nestedatt--spec--sentinel--extra_volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume.sources.config_map`
 
 Optional:
 
@@ -5298,7 +5298,7 @@ Optional:
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--sentinel--extra_volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume.sources.service_account_token.optional`
+### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume.sources.service_account_token.items`
 
 Required:
 
@@ -5312,7 +5312,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume.sources.downward_api`
 
 Optional:
 
@@ -5332,7 +5332,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--sentinel--extra_volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
 
 <a id="nestedatt--spec--sentinel--extra_volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume.sources.service_account_token.items.field_ref`
 
 Required:
 
@@ -5359,7 +5359,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume.sources.secret`
 
 Optional:
 
@@ -5368,7 +5368,7 @@ Optional:
 - `optional` (Boolean) optional field specify whether the Secret or its key must be defined
 
 <a id="nestedatt--spec--sentinel--extra_volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume.sources.service_account_token.optional`
+### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume.sources.service_account_token.items`
 
 Required:
 
@@ -5397,7 +5397,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--quobyte"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.sentinel.extra_volumes.quobyte`
 
 Required:
 
@@ -5413,7 +5413,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--rbd"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.sentinel.extra_volumes.rbd`
 
 Required:
 
@@ -5439,7 +5439,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--scale_io"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.sentinel.extra_volumes.scale_io`
 
 Required:
 
@@ -5467,7 +5467,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--secret"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.sentinel.extra_volumes.secret`
 
 Optional:
 
@@ -5491,7 +5491,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--extra_volumes--storageos"></a>
-### Nested Schema for `spec.sentinel.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.sentinel.extra_volumes.storageos`
 
 Optional:
 
@@ -5566,7 +5566,7 @@ Optional:
 - `working_dir` (String) Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.
 
 <a id="nestedatt--spec--sentinel--init_containers--env"></a>
-### Nested Schema for `spec.sentinel.init_containers.working_dir`
+### Nested Schema for `spec.sentinel.init_containers.env`
 
 Required:
 
@@ -5588,7 +5588,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--sentinel--init_containers--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--sentinel--init_containers--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.sentinel.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.sentinel.init_containers.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -5601,7 +5601,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--init_containers--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.sentinel.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.sentinel.init_containers.working_dir.value_from.field_ref`
 
 Required:
 
@@ -5613,7 +5613,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--init_containers--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.sentinel.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.sentinel.init_containers.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -5641,7 +5641,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--init_containers--env_from"></a>
-### Nested Schema for `spec.sentinel.init_containers.working_dir`
+### Nested Schema for `spec.sentinel.init_containers.env_from`
 
 Optional:
 
@@ -5669,7 +5669,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--init_containers--lifecycle"></a>
-### Nested Schema for `spec.sentinel.init_containers.working_dir`
+### Nested Schema for `spec.sentinel.init_containers.lifecycle`
 
 Optional:
 
@@ -5686,7 +5686,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--sentinel--init_containers--working_dir--post_start--tcp_socket))
 
 <a id="nestedatt--spec--sentinel--init_containers--working_dir--post_start--exec"></a>
-### Nested Schema for `spec.sentinel.init_containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.sentinel.init_containers.working_dir.post_start.exec`
 
 Optional:
 
@@ -5694,7 +5694,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--init_containers--working_dir--post_start--http_get"></a>
-### Nested Schema for `spec.sentinel.init_containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.sentinel.init_containers.working_dir.post_start.http_get`
 
 Required:
 
@@ -5708,7 +5708,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--sentinel--init_containers--working_dir--post_start--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.sentinel.init_containers.working_dir.post_start.tcp_socket.scheme`
+### Nested Schema for `spec.sentinel.init_containers.working_dir.post_start.tcp_socket.http_headers`
 
 Required:
 
@@ -5740,7 +5740,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--sentinel--init_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--sentinel--init_containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.sentinel.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.sentinel.init_containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -5748,7 +5748,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--init_containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.sentinel.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.sentinel.init_containers.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -5762,7 +5762,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--sentinel--init_containers--working_dir--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.sentinel.init_containers.working_dir.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.sentinel.init_containers.working_dir.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -5786,7 +5786,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--init_containers--liveness_probe"></a>
-### Nested Schema for `spec.sentinel.init_containers.working_dir`
+### Nested Schema for `spec.sentinel.init_containers.liveness_probe`
 
 Optional:
 
@@ -5836,7 +5836,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--sentinel--init_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.sentinel.init_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.sentinel.init_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -5859,7 +5859,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--init_containers--ports"></a>
-### Nested Schema for `spec.sentinel.init_containers.working_dir`
+### Nested Schema for `spec.sentinel.init_containers.ports`
 
 Required:
 
@@ -5874,7 +5874,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--init_containers--readiness_probe"></a>
-### Nested Schema for `spec.sentinel.init_containers.working_dir`
+### Nested Schema for `spec.sentinel.init_containers.readiness_probe`
 
 Optional:
 
@@ -5924,7 +5924,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--sentinel--init_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.sentinel.init_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.sentinel.init_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -5947,7 +5947,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--init_containers--resize_policy"></a>
-### Nested Schema for `spec.sentinel.init_containers.working_dir`
+### Nested Schema for `spec.sentinel.init_containers.resize_policy`
 
 Required:
 
@@ -5956,7 +5956,7 @@ Required:
 
 
 <a id="nestedatt--spec--sentinel--init_containers--resources"></a>
-### Nested Schema for `spec.sentinel.init_containers.working_dir`
+### Nested Schema for `spec.sentinel.init_containers.resources`
 
 Optional:
 
@@ -5974,7 +5974,7 @@ Required:
 
 
 <a id="nestedatt--spec--sentinel--init_containers--security_context"></a>
-### Nested Schema for `spec.sentinel.init_containers.working_dir`
+### Nested Schema for `spec.sentinel.init_containers.security_context`
 
 Optional:
 
@@ -6035,7 +6035,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--init_containers--startup_probe"></a>
-### Nested Schema for `spec.sentinel.init_containers.working_dir`
+### Nested Schema for `spec.sentinel.init_containers.startup_probe`
 
 Optional:
 
@@ -6085,7 +6085,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--sentinel--init_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.sentinel.init_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.sentinel.init_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -6108,7 +6108,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--init_containers--volume_devices"></a>
-### Nested Schema for `spec.sentinel.init_containers.working_dir`
+### Nested Schema for `spec.sentinel.init_containers.volume_devices`
 
 Required:
 
@@ -6117,7 +6117,7 @@ Required:
 
 
 <a id="nestedatt--spec--sentinel--init_containers--volume_mounts"></a>
-### Nested Schema for `spec.sentinel.init_containers.working_dir`
+### Nested Schema for `spec.sentinel.init_containers.volume_mounts`
 
 Required:
 
@@ -6143,7 +6143,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--sentinel--resources--claims"></a>
-### Nested Schema for `spec.sentinel.resources.requests`
+### Nested Schema for `spec.sentinel.resources.claims`
 
 Required:
 
@@ -6168,7 +6168,7 @@ Optional:
 - `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--sentinel--security_context--windows_options))
 
 <a id="nestedatt--spec--sentinel--security_context--se_linux_options"></a>
-### Nested Schema for `spec.sentinel.security_context.windows_options`
+### Nested Schema for `spec.sentinel.security_context.se_linux_options`
 
 Optional:
 
@@ -6179,7 +6179,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.sentinel.security_context.windows_options`
+### Nested Schema for `spec.sentinel.security_context.seccomp_profile`
 
 Required:
 
@@ -6191,7 +6191,7 @@ Optional:
 
 
 <a id="nestedatt--spec--sentinel--security_context--sysctls"></a>
-### Nested Schema for `spec.sentinel.security_context.windows_options`
+### Nested Schema for `spec.sentinel.security_context.sysctls`
 
 Required:
 
@@ -6241,7 +6241,7 @@ Optional:
 - `node_taints_policy` (String) NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
 
 <a id="nestedatt--spec--sentinel--topology_spread_constraints--label_selector"></a>
-### Nested Schema for `spec.sentinel.topology_spread_constraints.node_taints_policy`
+### Nested Schema for `spec.sentinel.topology_spread_constraints.label_selector`
 
 Optional:
 

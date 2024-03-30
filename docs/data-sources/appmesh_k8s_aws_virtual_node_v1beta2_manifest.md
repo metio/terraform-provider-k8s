@@ -104,7 +104,7 @@ Optional:
 - `subject_alternative_names` (Attributes) Possible Alternative names to consider (see [below for nested schema](#nestedatt--spec--backend_defaults--client_policy--tls--validation--subject_alternative_names))
 
 <a id="nestedatt--spec--backend_defaults--client_policy--tls--validation--trust"></a>
-### Nested Schema for `spec.backend_defaults.client_policy.tls.validation.subject_alternative_names`
+### Nested Schema for `spec.backend_defaults.client_policy.tls.validation.trust`
 
 Optional:
 
@@ -113,7 +113,7 @@ Optional:
 - `sds` (Attributes) An object that represents a TLS validation context trust for a SDS. (see [below for nested schema](#nestedatt--spec--backend_defaults--client_policy--tls--validation--subject_alternative_names--sds))
 
 <a id="nestedatt--spec--backend_defaults--client_policy--tls--validation--subject_alternative_names--acm"></a>
-### Nested Schema for `spec.backend_defaults.client_policy.tls.validation.subject_alternative_names.sds`
+### Nested Schema for `spec.backend_defaults.client_policy.tls.validation.subject_alternative_names.acm`
 
 Required:
 
@@ -121,7 +121,7 @@ Required:
 
 
 <a id="nestedatt--spec--backend_defaults--client_policy--tls--validation--subject_alternative_names--file"></a>
-### Nested Schema for `spec.backend_defaults.client_policy.tls.validation.subject_alternative_names.sds`
+### Nested Schema for `spec.backend_defaults.client_policy.tls.validation.subject_alternative_names.file`
 
 Required:
 
@@ -163,7 +163,7 @@ Optional:
 - `sds` (Attributes) An object that represents a TLS cert via SDS entry (see [below for nested schema](#nestedatt--spec--backend_defaults--client_policy--tls--certificate--sds))
 
 <a id="nestedatt--spec--backend_defaults--client_policy--tls--certificate--file"></a>
-### Nested Schema for `spec.backend_defaults.client_policy.tls.certificate.sds`
+### Nested Schema for `spec.backend_defaults.client_policy.tls.certificate.file`
 
 Required:
 
@@ -212,7 +212,7 @@ Optional:
 - `virtual_service_ref` (Attributes) Reference to Kubernetes VirtualService CR in cluster that is acting as a virtual node backend. Exactly one of 'virtualServiceRef' or 'virtualServiceARN' must be specified. (see [below for nested schema](#nestedatt--spec--backends--virtual_service--virtual_service_ref))
 
 <a id="nestedatt--spec--backends--virtual_service--client_policy"></a>
-### Nested Schema for `spec.backends.virtual_service.virtual_service_ref`
+### Nested Schema for `spec.backends.virtual_service.client_policy`
 
 Optional:
 
@@ -232,7 +232,7 @@ Optional:
 - `ports` (List of String) The range of ports that the policy is enforced for.
 
 <a id="nestedatt--spec--backends--virtual_service--virtual_service_ref--tls--validation"></a>
-### Nested Schema for `spec.backends.virtual_service.virtual_service_ref.tls.ports`
+### Nested Schema for `spec.backends.virtual_service.virtual_service_ref.tls.validation`
 
 Required:
 
@@ -243,7 +243,7 @@ Optional:
 - `subject_alternative_names` (Attributes) Possible Alternative names to consider (see [below for nested schema](#nestedatt--spec--backends--virtual_service--virtual_service_ref--tls--ports--subject_alternative_names))
 
 <a id="nestedatt--spec--backends--virtual_service--virtual_service_ref--tls--ports--trust"></a>
-### Nested Schema for `spec.backends.virtual_service.virtual_service_ref.tls.ports.subject_alternative_names`
+### Nested Schema for `spec.backends.virtual_service.virtual_service_ref.tls.ports.trust`
 
 Optional:
 
@@ -252,7 +252,7 @@ Optional:
 - `sds` (Attributes) An object that represents a TLS validation context trust for a SDS. (see [below for nested schema](#nestedatt--spec--backends--virtual_service--virtual_service_ref--tls--ports--subject_alternative_names--sds))
 
 <a id="nestedatt--spec--backends--virtual_service--virtual_service_ref--tls--ports--subject_alternative_names--acm"></a>
-### Nested Schema for `spec.backends.virtual_service.virtual_service_ref.tls.ports.subject_alternative_names.sds`
+### Nested Schema for `spec.backends.virtual_service.virtual_service_ref.tls.ports.subject_alternative_names.acm`
 
 Required:
 
@@ -260,7 +260,7 @@ Required:
 
 
 <a id="nestedatt--spec--backends--virtual_service--virtual_service_ref--tls--ports--subject_alternative_names--file"></a>
-### Nested Schema for `spec.backends.virtual_service.virtual_service_ref.tls.ports.subject_alternative_names.sds`
+### Nested Schema for `spec.backends.virtual_service.virtual_service_ref.tls.ports.subject_alternative_names.file`
 
 Required:
 
@@ -294,7 +294,7 @@ Required:
 
 
 <a id="nestedatt--spec--backends--virtual_service--virtual_service_ref--tls--certificate"></a>
-### Nested Schema for `spec.backends.virtual_service.virtual_service_ref.tls.ports`
+### Nested Schema for `spec.backends.virtual_service.virtual_service_ref.tls.certificate`
 
 Optional:
 
@@ -302,7 +302,7 @@ Optional:
 - `sds` (Attributes) An object that represents a TLS cert via SDS entry (see [below for nested schema](#nestedatt--spec--backends--virtual_service--virtual_service_ref--tls--ports--sds))
 
 <a id="nestedatt--spec--backends--virtual_service--virtual_service_ref--tls--ports--file"></a>
-### Nested Schema for `spec.backends.virtual_service.virtual_service_ref.tls.ports.sds`
+### Nested Schema for `spec.backends.virtual_service.virtual_service_ref.tls.ports.file`
 
 Required:
 
@@ -370,7 +370,7 @@ Optional:
 - `tcp` (Attributes) Specifies tcp connection pool settings for the virtual node listener (see [below for nested schema](#nestedatt--spec--listeners--connection_pool--tcp))
 
 <a id="nestedatt--spec--listeners--connection_pool--grpc"></a>
-### Nested Schema for `spec.listeners.connection_pool.tcp`
+### Nested Schema for `spec.listeners.connection_pool.grpc`
 
 Required:
 
@@ -378,7 +378,7 @@ Required:
 
 
 <a id="nestedatt--spec--listeners--connection_pool--http"></a>
-### Nested Schema for `spec.listeners.connection_pool.tcp`
+### Nested Schema for `spec.listeners.connection_pool.http`
 
 Required:
 
@@ -390,7 +390,7 @@ Optional:
 
 
 <a id="nestedatt--spec--listeners--connection_pool--http2"></a>
-### Nested Schema for `spec.listeners.connection_pool.tcp`
+### Nested Schema for `spec.listeners.connection_pool.http2`
 
 Required:
 
@@ -434,7 +434,7 @@ Required:
 - `max_server_errors` (Number) The threshold for the number of server errors returned by a given host during an outlier detection interval. If the server error count meets/exceeds this threshold the host is ejected. A server error is defined as any HTTP 5xx response (or the equivalent for gRPC and TCP connections)
 
 <a id="nestedatt--spec--listeners--outlier_detection--base_ejection_duration"></a>
-### Nested Schema for `spec.listeners.outlier_detection.max_server_errors`
+### Nested Schema for `spec.listeners.outlier_detection.base_ejection_duration`
 
 Required:
 
@@ -443,7 +443,7 @@ Required:
 
 
 <a id="nestedatt--spec--listeners--outlier_detection--interval"></a>
-### Nested Schema for `spec.listeners.outlier_detection.max_server_errors`
+### Nested Schema for `spec.listeners.outlier_detection.interval`
 
 Required:
 
@@ -463,7 +463,7 @@ Optional:
 - `tcp` (Attributes) Specifies tcp timeout information for the virtual node. (see [below for nested schema](#nestedatt--spec--listeners--timeout--tcp))
 
 <a id="nestedatt--spec--listeners--timeout--grpc"></a>
-### Nested Schema for `spec.listeners.timeout.tcp`
+### Nested Schema for `spec.listeners.timeout.grpc`
 
 Optional:
 
@@ -490,7 +490,7 @@ Required:
 
 
 <a id="nestedatt--spec--listeners--timeout--http"></a>
-### Nested Schema for `spec.listeners.timeout.tcp`
+### Nested Schema for `spec.listeners.timeout.http`
 
 Optional:
 
@@ -517,7 +517,7 @@ Required:
 
 
 <a id="nestedatt--spec--listeners--timeout--http2"></a>
-### Nested Schema for `spec.listeners.timeout.tcp`
+### Nested Schema for `spec.listeners.timeout.http2`
 
 Optional:
 
@@ -574,7 +574,7 @@ Optional:
 - `validation` (Attributes) A reference to an object that represents an SDS Trust Domain (see [below for nested schema](#nestedatt--spec--listeners--tls--validation))
 
 <a id="nestedatt--spec--listeners--tls--certificate"></a>
-### Nested Schema for `spec.listeners.tls.validation`
+### Nested Schema for `spec.listeners.tls.certificate`
 
 Optional:
 
@@ -628,7 +628,7 @@ Optional:
 - `sds` (Attributes) An object that represents a TLS validation context trust for an SDS server (see [below for nested schema](#nestedatt--spec--listeners--tls--validation--trust--sds))
 
 <a id="nestedatt--spec--listeners--tls--validation--trust--file"></a>
-### Nested Schema for `spec.listeners.tls.validation.trust.sds`
+### Nested Schema for `spec.listeners.tls.validation.trust.file`
 
 Required:
 
@@ -697,7 +697,7 @@ Optional:
 - `text` (String) Custom format string
 
 <a id="nestedatt--spec--logging--access_log--file--format--json"></a>
-### Nested Schema for `spec.logging.access_log.file.format.text`
+### Nested Schema for `spec.logging.access_log.file.format.json`
 
 Required:
 

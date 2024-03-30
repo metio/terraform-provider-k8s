@@ -81,7 +81,7 @@ Optional:
 - `plaintext` (Attributes List) Plaintext represents override rules defined with plaintext overriders. (see [below for nested schema](#nestedatt--spec--override_rules--overriders--plaintext))
 
 <a id="nestedatt--spec--override_rules--overriders--annotations_overrider"></a>
-### Nested Schema for `spec.override_rules.overriders.plaintext`
+### Nested Schema for `spec.override_rules.overriders.annotations_overrider`
 
 Required:
 
@@ -93,7 +93,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override_rules--overriders--args_overrider"></a>
-### Nested Schema for `spec.override_rules.overriders.plaintext`
+### Nested Schema for `spec.override_rules.overriders.args_overrider`
 
 Required:
 
@@ -106,7 +106,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override_rules--overriders--command_overrider"></a>
-### Nested Schema for `spec.override_rules.overriders.plaintext`
+### Nested Schema for `spec.override_rules.overriders.command_overrider`
 
 Required:
 
@@ -119,7 +119,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override_rules--overriders--image_overrider"></a>
-### Nested Schema for `spec.override_rules.overriders.plaintext`
+### Nested Schema for `spec.override_rules.overriders.image_overrider`
 
 Required:
 
@@ -141,7 +141,7 @@ Required:
 
 
 <a id="nestedatt--spec--override_rules--overriders--labels_overrider"></a>
-### Nested Schema for `spec.override_rules.overriders.plaintext`
+### Nested Schema for `spec.override_rules.overriders.labels_overrider`
 
 Required:
 
@@ -177,7 +177,7 @@ Optional:
 - `label_selector` (Attributes) LabelSelector is a filter to select member clusters by labels. If non-nil and non-empty, only the clusters match this filter will be selected. (see [below for nested schema](#nestedatt--spec--override_rules--target_cluster--label_selector))
 
 <a id="nestedatt--spec--override_rules--target_cluster--field_selector"></a>
-### Nested Schema for `spec.override_rules.target_cluster.label_selector`
+### Nested Schema for `spec.override_rules.target_cluster.field_selector`
 
 Optional:
 
@@ -285,7 +285,7 @@ Optional:
 - `value` (String) Value to be applied to image. Must not be empty when operator is 'add' or 'replace'. Defaults to empty and ignored when operator is 'remove'.
 
 <a id="nestedatt--spec--overriders--image_overrider--predicate"></a>
-### Nested Schema for `spec.overriders.image_overrider.value`
+### Nested Schema for `spec.overriders.image_overrider.predicate`
 
 Required:
 
@@ -342,7 +342,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--resource_selectors--label_selector--match_expressions"></a>
-### Nested Schema for `spec.resource_selectors.label_selector.match_labels`
+### Nested Schema for `spec.resource_selectors.label_selector.match_expressions`
 
 Required:
 
@@ -396,7 +396,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--target_cluster--label_selector--match_expressions"></a>
-### Nested Schema for `spec.target_cluster.label_selector.match_labels`
+### Nested Schema for `spec.target_cluster.label_selector.match_expressions`
 
 Required:
 

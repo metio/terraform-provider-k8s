@@ -101,7 +101,7 @@ Optional:
 - `access_token` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_secret_manager--credentials--access_token))
 
 <a id="nestedatt--spec--aws_secret_manager--credentials--access_key"></a>
-### Nested Schema for `spec.aws_secret_manager.credentials.access_token`
+### Nested Schema for `spec.aws_secret_manager.credentials.access_key`
 
 Required:
 
@@ -126,7 +126,7 @@ Required:
 
 
 <a id="nestedatt--spec--aws_secret_manager--credentials--access_secret_key"></a>
-### Nested Schema for `spec.aws_secret_manager.credentials.access_token`
+### Nested Schema for `spec.aws_secret_manager.credentials.access_secret_key`
 
 Required:
 
@@ -243,7 +243,7 @@ Required:
 - `tenant_id` (String)
 
 <a id="nestedatt--spec--azure_key_vault--credentials--client_secret"></a>
-### Nested Schema for `spec.azure_key_vault.credentials.tenant_id`
+### Nested Schema for `spec.azure_key_vault.credentials.client_secret`
 
 Required:
 
@@ -414,7 +414,7 @@ Optional:
 - `type` (String) VaultSecretType defines the type of vault secret
 
 <a id="nestedatt--spec--hashi_corp_vault--secrets--pki_data"></a>
-### Nested Schema for `spec.hashi_corp_vault.secrets.type`
+### Nested Schema for `spec.hashi_corp_vault.secrets.pki_data`
 
 Optional:
 

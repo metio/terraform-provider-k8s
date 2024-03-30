@@ -99,7 +99,7 @@ Optional:
 - `lifecycle_config_ar_ns` (List of String)
 
 <a id="nestedatt--spec--default_user_settings--code_editor_app_settings--default_resource_spec"></a>
-### Nested Schema for `spec.default_user_settings.code_editor_app_settings.lifecycle_config_ar_ns`
+### Nested Schema for `spec.default_user_settings.code_editor_app_settings.default_resource_spec`
 
 Optional:
 
@@ -147,7 +147,7 @@ Optional:
 - `lifecycle_config_ar_ns` (List of String)
 
 <a id="nestedatt--spec--default_user_settings--jupyter_lab_app_settings--custom_images"></a>
-### Nested Schema for `spec.default_user_settings.jupyter_lab_app_settings.lifecycle_config_ar_ns`
+### Nested Schema for `spec.default_user_settings.jupyter_lab_app_settings.custom_images`
 
 Optional:
 
@@ -157,7 +157,7 @@ Optional:
 
 
 <a id="nestedatt--spec--default_user_settings--jupyter_lab_app_settings--default_resource_spec"></a>
-### Nested Schema for `spec.default_user_settings.jupyter_lab_app_settings.lifecycle_config_ar_ns`
+### Nested Schema for `spec.default_user_settings.jupyter_lab_app_settings.default_resource_spec`
 
 Optional:
 
@@ -178,7 +178,7 @@ Optional:
 - `lifecycle_config_ar_ns` (List of String)
 
 <a id="nestedatt--spec--default_user_settings--jupyter_server_app_settings--default_resource_spec"></a>
-### Nested Schema for `spec.default_user_settings.jupyter_server_app_settings.lifecycle_config_ar_ns`
+### Nested Schema for `spec.default_user_settings.jupyter_server_app_settings.default_resource_spec`
 
 Optional:
 
@@ -200,7 +200,7 @@ Optional:
 - `lifecycle_config_ar_ns` (List of String)
 
 <a id="nestedatt--spec--default_user_settings--kernel_gateway_app_settings--custom_images"></a>
-### Nested Schema for `spec.default_user_settings.kernel_gateway_app_settings.lifecycle_config_ar_ns`
+### Nested Schema for `spec.default_user_settings.kernel_gateway_app_settings.custom_images`
 
 Optional:
 
@@ -210,7 +210,7 @@ Optional:
 
 
 <a id="nestedatt--spec--default_user_settings--kernel_gateway_app_settings--default_resource_spec"></a>
-### Nested Schema for `spec.default_user_settings.kernel_gateway_app_settings.lifecycle_config_ar_ns`
+### Nested Schema for `spec.default_user_settings.kernel_gateway_app_settings.default_resource_spec`
 
 Optional:
 
@@ -308,7 +308,7 @@ Optional:
 - `r_studio_package_manager_url` (String)
 
 <a id="nestedatt--spec--domain_settings--r_studio_server_pro_domain_settings--default_resource_spec"></a>
-### Nested Schema for `spec.domain_settings.r_studio_server_pro_domain_settings.r_studio_package_manager_url`
+### Nested Schema for `spec.domain_settings.r_studio_server_pro_domain_settings.default_resource_spec`
 
 Optional:
 

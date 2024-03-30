@@ -113,7 +113,7 @@ Optional:
 - `pod_selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects. (see [below for nested schema](#nestedatt--spec--egress--to--pod_selector))
 
 <a id="nestedatt--spec--egress--to--ip_block"></a>
-### Nested Schema for `spec.egress.to.pod_selector`
+### Nested Schema for `spec.egress.to.ip_block`
 
 Required:
 
@@ -125,7 +125,7 @@ Optional:
 
 
 <a id="nestedatt--spec--egress--to--namespace_selector"></a>
-### Nested Schema for `spec.egress.to.pod_selector`
+### Nested Schema for `spec.egress.to.namespace_selector`
 
 Optional:
 
@@ -188,7 +188,7 @@ Optional:
 - `pod_selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects. (see [below for nested schema](#nestedatt--spec--ingress--from--pod_selector))
 
 <a id="nestedatt--spec--ingress--from--ip_block"></a>
-### Nested Schema for `spec.ingress.from.pod_selector`
+### Nested Schema for `spec.ingress.from.ip_block`
 
 Required:
 
@@ -200,7 +200,7 @@ Optional:
 
 
 <a id="nestedatt--spec--ingress--from--namespace_selector"></a>
-### Nested Schema for `spec.ingress.from.pod_selector`
+### Nested Schema for `spec.ingress.from.namespace_selector`
 
 Optional:
 

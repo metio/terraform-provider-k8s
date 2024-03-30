@@ -3,7 +3,7 @@
 page_title: "k8s_operator_openshift_io_ingress_controller_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "operator.openshift.io"
 description: |-
-  IngressController describes a managed ingress controller for the cluster. The controller can service OpenShift Route and Kubernetes Ingress resources.  When an IngressController is created, a new ingress controller deployment is created to allow external traffic to reach the services that expose Ingress or Route resources. Updating this resource may lead to disruption for public facing network connections as a new ingress controller revision may be rolled out.  https://kubernetes.io/docs/concepts/services-networking/ingress-controllers  Whenever possible, sensible defaults for the platform are used. See each field for more details.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).
+  IngressController describes a managed ingress controller for the cluster. The controller can service OpenShift Route and Kubernetes Ingress resources.  When an IngressController is created, a new ingress controller deployment is created to allow external traffic to reach the services that expose Ingress or Route resources. Updating this resource may lead to disruption for public facing network connections as a new ingress controller revision may be rolled out.    Whenever possible, sensible defaults for the platform are used. See each field for more details.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).
 ---
 
 # k8s_operator_openshift_io_ingress_controller_v1_manifest (Data Source)
@@ -166,7 +166,7 @@ Optional:
 - `network_load_balancer` (Map of String) networkLoadBalancerParameters holds configuration parameters for an AWS network load balancer. Present only if type is NLB.
 
 <a id="nestedatt--spec--endpoint_publishing_strategy--load_balancer--provider_parameters--aws--classic_load_balancer"></a>
-### Nested Schema for `spec.endpoint_publishing_strategy.load_balancer.provider_parameters.aws.network_load_balancer`
+### Nested Schema for `spec.endpoint_publishing_strategy.load_balancer.provider_parameters.aws.classic_load_balancer`
 
 Optional:
 
@@ -244,7 +244,7 @@ Optional:
 - `response` (Attributes List) response is a list of HTTP response headers to modify. Actions defined here will modify the response headers of all requests passing through an ingress controller. These actions are applied to all Routes i.e. for all connections handled by the ingress controller defined within a cluster. IngressController actions for response headers will be executed after Route actions. Currently, actions may define to either 'Set' or 'Delete' headers values. Actions are applied in sequence as defined in this list. A maximum of 20 response header actions may be configured. Sample fetchers allowed are 'res.hdr' and 'ssl_c_der'. Converters allowed are 'lower' and 'base64'. Example header values: '%[res.hdr(X-target),lower]', '%{+Q}[ssl_c_der,base64]'. (see [below for nested schema](#nestedatt--spec--http_headers--actions--response))
 
 <a id="nestedatt--spec--http_headers--actions--request"></a>
-### Nested Schema for `spec.http_headers.actions.response`
+### Nested Schema for `spec.http_headers.actions.request`
 
 Required:
 
@@ -334,7 +334,7 @@ Optional:
 - `log_empty_requests` (String) logEmptyRequests specifies how connections on which no request is received should be logged.  Typically, these empty requests come from load balancers' health probes or Web browsers' speculative connections ('preconnect'), in which case logging these requests may be undesirable.  However, these requests may also be caused by network errors, in which case logging empty requests may be useful for diagnosing the errors.  In addition, these requests may be caused by port scans, in which case logging empty requests may aid in detecting intrusion attempts.  Allowed values for this field are 'Log' and 'Ignore'.  The default value is 'Log'.
 
 <a id="nestedatt--spec--logging--access--destination"></a>
-### Nested Schema for `spec.logging.access.log_empty_requests`
+### Nested Schema for `spec.logging.access.destination`
 
 Required:
 
@@ -369,7 +369,7 @@ Optional:
 
 
 <a id="nestedatt--spec--logging--access--http_capture_cookies"></a>
-### Nested Schema for `spec.logging.access.log_empty_requests`
+### Nested Schema for `spec.logging.access.http_capture_cookies`
 
 Required:
 
@@ -383,7 +383,7 @@ Optional:
 
 
 <a id="nestedatt--spec--logging--access--http_capture_headers"></a>
-### Nested Schema for `spec.logging.access.log_empty_requests`
+### Nested Schema for `spec.logging.access.http_capture_headers`
 
 Optional:
 
@@ -450,7 +450,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--node_placement--node_selector--match_expressions"></a>
-### Nested Schema for `spec.node_placement.node_selector.match_labels`
+### Nested Schema for `spec.node_placement.node_selector.match_expressions`
 
 Required:
 

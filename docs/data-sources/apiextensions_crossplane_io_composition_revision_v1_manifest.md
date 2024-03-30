@@ -96,7 +96,7 @@ Optional:
 - `type` (String) Type specifies the way the EnvironmentConfig is selected.Default is 'Reference'
 
 <a id="nestedatt--spec--environment--environment_configs--ref"></a>
-### Nested Schema for `spec.environment.environment_configs.type`
+### Nested Schema for `spec.environment.environment_configs.ref`
 
 Required:
 
@@ -104,7 +104,7 @@ Required:
 
 
 <a id="nestedatt--spec--environment--environment_configs--selector"></a>
-### Nested Schema for `spec.environment.environment_configs.type`
+### Nested Schema for `spec.environment.environment_configs.selector`
 
 Optional:
 
@@ -144,7 +144,7 @@ Optional:
 - `type` (String) Type sets the patching behaviour to be used. Each patch type may requireits own fields to be set on the Patch object.
 
 <a id="nestedatt--spec--environment--patches--combine"></a>
-### Nested Schema for `spec.environment.patches.type`
+### Nested Schema for `spec.environment.patches.combine`
 
 Required:
 
@@ -173,7 +173,7 @@ Required:
 
 
 <a id="nestedatt--spec--environment--patches--policy"></a>
-### Nested Schema for `spec.environment.patches.type`
+### Nested Schema for `spec.environment.patches.policy`
 
 Optional:
 
@@ -191,7 +191,7 @@ Optional:
 
 
 <a id="nestedatt--spec--environment--patches--transforms"></a>
-### Nested Schema for `spec.environment.patches.type`
+### Nested Schema for `spec.environment.patches.transforms`
 
 Required:
 
@@ -265,7 +265,7 @@ Optional:
 - `type` (String) Type of the string transform to be run.
 
 <a id="nestedatt--spec--environment--patches--type--string--join"></a>
-### Nested Schema for `spec.environment.patches.type.string.type`
+### Nested Schema for `spec.environment.patches.type.string.join`
 
 Required:
 
@@ -273,7 +273,7 @@ Required:
 
 
 <a id="nestedatt--spec--environment--patches--type--string--regexp"></a>
-### Nested Schema for `spec.environment.patches.type.string.type`
+### Nested Schema for `spec.environment.patches.type.string.regexp`
 
 Required:
 
@@ -319,7 +319,7 @@ Optional:
 - `type` (String) Type sets the patching behaviour to be used. Each patch type may requireits own fields to be set on the Patch object.
 
 <a id="nestedatt--spec--patch_sets--patches--combine"></a>
-### Nested Schema for `spec.patch_sets.patches.type`
+### Nested Schema for `spec.patch_sets.patches.combine`
 
 Required:
 
@@ -348,7 +348,7 @@ Required:
 
 
 <a id="nestedatt--spec--patch_sets--patches--policy"></a>
-### Nested Schema for `spec.patch_sets.patches.type`
+### Nested Schema for `spec.patch_sets.patches.policy`
 
 Optional:
 
@@ -366,7 +366,7 @@ Optional:
 
 
 <a id="nestedatt--spec--patch_sets--patches--transforms"></a>
-### Nested Schema for `spec.patch_sets.patches.type`
+### Nested Schema for `spec.patch_sets.patches.transforms`
 
 Required:
 
@@ -440,7 +440,7 @@ Optional:
 - `type` (String) Type of the string transform to be run.
 
 <a id="nestedatt--spec--patch_sets--patches--type--string--join"></a>
-### Nested Schema for `spec.patch_sets.patches.type.string.type`
+### Nested Schema for `spec.patch_sets.patches.type.string.join`
 
 Required:
 
@@ -448,7 +448,7 @@ Required:
 
 
 <a id="nestedatt--spec--patch_sets--patches--type--string--regexp"></a>
-### Nested Schema for `spec.patch_sets.patches.type.string.type`
+### Nested Schema for `spec.patch_sets.patches.type.string.regexp`
 
 Required:
 
@@ -532,7 +532,7 @@ Optional:
 - `type` (String) Type sets the patching behaviour to be used. Each patch type may requireits own fields to be set on the Patch object.
 
 <a id="nestedatt--spec--resources--patches--combine"></a>
-### Nested Schema for `spec.resources.patches.type`
+### Nested Schema for `spec.resources.patches.combine`
 
 Required:
 
@@ -561,7 +561,7 @@ Required:
 
 
 <a id="nestedatt--spec--resources--patches--policy"></a>
-### Nested Schema for `spec.resources.patches.type`
+### Nested Schema for `spec.resources.patches.policy`
 
 Optional:
 
@@ -579,7 +579,7 @@ Optional:
 
 
 <a id="nestedatt--spec--resources--patches--transforms"></a>
-### Nested Schema for `spec.resources.patches.type`
+### Nested Schema for `spec.resources.patches.transforms`
 
 Required:
 
@@ -653,7 +653,7 @@ Optional:
 - `type` (String) Type of the string transform to be run.
 
 <a id="nestedatt--spec--resources--patches--type--string--join"></a>
-### Nested Schema for `spec.resources.patches.type.string.type`
+### Nested Schema for `spec.resources.patches.type.string.join`
 
 Required:
 
@@ -661,7 +661,7 @@ Required:
 
 
 <a id="nestedatt--spec--resources--patches--type--string--regexp"></a>
-### Nested Schema for `spec.resources.patches.type.string.type`
+### Nested Schema for `spec.resources.patches.type.string.regexp`
 
 Required:
 
@@ -690,7 +690,7 @@ Optional:
 - `match_string` (String) MatchString is the value you'd like to match if you're using 'MatchString' type.
 
 <a id="nestedatt--spec--resources--readiness_checks--match_condition"></a>
-### Nested Schema for `spec.resources.readiness_checks.match_string`
+### Nested Schema for `spec.resources.readiness_checks.match_condition`
 
 Required:
 

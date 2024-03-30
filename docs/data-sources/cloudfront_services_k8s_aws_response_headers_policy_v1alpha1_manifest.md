@@ -84,7 +84,7 @@ Optional:
 - `origin_override` (Boolean)
 
 <a id="nestedatt--spec--response_headers_policy_config--cors_config--access_control_allow_headers"></a>
-### Nested Schema for `spec.response_headers_policy_config.cors_config.origin_override`
+### Nested Schema for `spec.response_headers_policy_config.cors_config.access_control_allow_headers`
 
 Optional:
 
@@ -92,7 +92,7 @@ Optional:
 
 
 <a id="nestedatt--spec--response_headers_policy_config--cors_config--access_control_allow_methods"></a>
-### Nested Schema for `spec.response_headers_policy_config.cors_config.origin_override`
+### Nested Schema for `spec.response_headers_policy_config.cors_config.access_control_allow_methods`
 
 Optional:
 
@@ -100,7 +100,7 @@ Optional:
 
 
 <a id="nestedatt--spec--response_headers_policy_config--cors_config--access_control_allow_origins"></a>
-### Nested Schema for `spec.response_headers_policy_config.cors_config.origin_override`
+### Nested Schema for `spec.response_headers_policy_config.cors_config.access_control_allow_origins`
 
 Optional:
 
@@ -108,7 +108,7 @@ Optional:
 
 
 <a id="nestedatt--spec--response_headers_policy_config--cors_config--access_control_expose_headers"></a>
-### Nested Schema for `spec.response_headers_policy_config.cors_config.origin_override`
+### Nested Schema for `spec.response_headers_policy_config.cors_config.access_control_expose_headers`
 
 Optional:
 
@@ -163,7 +163,7 @@ Optional:
 - `x_ss_protection` (Attributes) Determines whether CloudFront includes the X-XSS-Protection HTTP responseheader and the header's value.For more information about the X-XSS-Protection HTTP response header, seeX-XSS-Protection (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection)in the MDN Web Docs. (see [below for nested schema](#nestedatt--spec--response_headers_policy_config--security_headers_config--x_ss_protection))
 
 <a id="nestedatt--spec--response_headers_policy_config--security_headers_config--content_security_policy"></a>
-### Nested Schema for `spec.response_headers_policy_config.security_headers_config.x_ss_protection`
+### Nested Schema for `spec.response_headers_policy_config.security_headers_config.content_security_policy`
 
 Optional:
 
@@ -172,7 +172,7 @@ Optional:
 
 
 <a id="nestedatt--spec--response_headers_policy_config--security_headers_config--content_type_options"></a>
-### Nested Schema for `spec.response_headers_policy_config.security_headers_config.x_ss_protection`
+### Nested Schema for `spec.response_headers_policy_config.security_headers_config.content_type_options`
 
 Optional:
 
@@ -180,7 +180,7 @@ Optional:
 
 
 <a id="nestedatt--spec--response_headers_policy_config--security_headers_config--frame_options"></a>
-### Nested Schema for `spec.response_headers_policy_config.security_headers_config.x_ss_protection`
+### Nested Schema for `spec.response_headers_policy_config.security_headers_config.frame_options`
 
 Optional:
 
@@ -189,7 +189,7 @@ Optional:
 
 
 <a id="nestedatt--spec--response_headers_policy_config--security_headers_config--referrer_policy"></a>
-### Nested Schema for `spec.response_headers_policy_config.security_headers_config.x_ss_protection`
+### Nested Schema for `spec.response_headers_policy_config.security_headers_config.referrer_policy`
 
 Optional:
 
@@ -198,7 +198,7 @@ Optional:
 
 
 <a id="nestedatt--spec--response_headers_policy_config--security_headers_config--strict_transport_security"></a>
-### Nested Schema for `spec.response_headers_policy_config.security_headers_config.x_ss_protection`
+### Nested Schema for `spec.response_headers_policy_config.security_headers_config.strict_transport_security`
 
 Optional:
 

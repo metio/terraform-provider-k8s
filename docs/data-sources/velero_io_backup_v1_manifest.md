@@ -107,7 +107,7 @@ Optional:
 - `pre` (Attributes List) PreHooks is a list of BackupResourceHooks to execute prior to storing the item in the backup. These are executed before any 'additional items' from item actions are processed. (see [below for nested schema](#nestedatt--spec--hooks--resources--pre))
 
 <a id="nestedatt--spec--hooks--resources--label_selector"></a>
-### Nested Schema for `spec.hooks.resources.pre`
+### Nested Schema for `spec.hooks.resources.label_selector`
 
 Optional:
 
@@ -129,7 +129,7 @@ Optional:
 
 
 <a id="nestedatt--spec--hooks--resources--post"></a>
-### Nested Schema for `spec.hooks.resources.pre`
+### Nested Schema for `spec.hooks.resources.post`
 
 Required:
 

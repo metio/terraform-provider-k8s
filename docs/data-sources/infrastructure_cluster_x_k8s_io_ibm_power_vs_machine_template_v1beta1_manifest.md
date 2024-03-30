@@ -84,7 +84,7 @@ Optional:
 - `sys_type` (String) SysType is the System type used to host the vsi.
 
 <a id="nestedatt--spec--template--spec--network"></a>
-### Nested Schema for `spec.template.spec.sys_type`
+### Nested Schema for `spec.template.spec.network`
 
 Optional:
 
@@ -94,7 +94,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--image"></a>
-### Nested Schema for `spec.template.spec.sys_type`
+### Nested Schema for `spec.template.spec.image`
 
 Optional:
 
@@ -104,7 +104,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--image_ref"></a>
-### Nested Schema for `spec.template.spec.sys_type`
+### Nested Schema for `spec.template.spec.image_ref`
 
 Optional:
 

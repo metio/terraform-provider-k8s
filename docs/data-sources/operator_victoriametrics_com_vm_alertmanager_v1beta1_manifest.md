@@ -137,7 +137,7 @@ Optional:
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--claim_templates--spec--data_source"></a>
-### Nested Schema for `spec.claim_templates.spec.volume_name`
+### Nested Schema for `spec.claim_templates.spec.data_source`
 
 Required:
 
@@ -150,7 +150,7 @@ Optional:
 
 
 <a id="nestedatt--spec--claim_templates--spec--data_source_ref"></a>
-### Nested Schema for `spec.claim_templates.spec.volume_name`
+### Nested Schema for `spec.claim_templates.spec.data_source_ref`
 
 Required:
 
@@ -164,7 +164,7 @@ Optional:
 
 
 <a id="nestedatt--spec--claim_templates--spec--resources"></a>
-### Nested Schema for `spec.claim_templates.spec.volume_name`
+### Nested Schema for `spec.claim_templates.spec.resources`
 
 Optional:
 
@@ -182,7 +182,7 @@ Required:
 
 
 <a id="nestedatt--spec--claim_templates--spec--selector"></a>
-### Nested Schema for `spec.claim_templates.spec.volume_name`
+### Nested Schema for `spec.claim_templates.spec.selector`
 
 Optional:
 
@@ -217,7 +217,7 @@ Optional:
 - `resize_status` (String) resizeStatus stores status of resize operation.ResizeStatus is not set by default but when expansion is complete resizeStatus is set to emptystring by resize controller or kubelet.This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
 
 <a id="nestedatt--spec--claim_templates--status--conditions"></a>
-### Nested Schema for `spec.claim_templates.status.resize_status`
+### Nested Schema for `spec.claim_templates.status.conditions`
 
 Required:
 
@@ -413,7 +413,7 @@ Optional:
 - `status` (Attributes) Status represents the current information/status of a persistent volume claim.Read-only.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template--status))
 
 <a id="nestedatt--spec--storage--volume_claim_template--metadata"></a>
-### Nested Schema for `spec.storage.volume_claim_template.status`
+### Nested Schema for `spec.storage.volume_claim_template.metadata`
 
 Optional:
 
@@ -423,7 +423,7 @@ Optional:
 
 
 <a id="nestedatt--spec--storage--volume_claim_template--spec"></a>
-### Nested Schema for `spec.storage.volume_claim_template.status`
+### Nested Schema for `spec.storage.volume_claim_template.spec`
 
 Optional:
 
@@ -473,7 +473,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--storage--volume_claim_template--status--resources--claims"></a>
-### Nested Schema for `spec.storage.volume_claim_template.status.resources.requests`
+### Nested Schema for `spec.storage.volume_claim_template.status.resources.claims`
 
 Required:
 
@@ -490,7 +490,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--storage--volume_claim_template--status--selector--match_expressions"></a>
-### Nested Schema for `spec.storage.volume_claim_template.status.selector.match_labels`
+### Nested Schema for `spec.storage.volume_claim_template.status.selector.match_expressions`
 
 Required:
 

@@ -107,7 +107,7 @@ Optional:
 - `syslog_parser` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--syslog_parser))
 
 <a id="nestedatt--spec--filters--parser--metrics_probe"></a>
-### Nested Schema for `spec.filters.parser.syslog_parser`
+### Nested Schema for `spec.filters.parser.metrics_probe`
 
 Optional:
 
@@ -117,7 +117,7 @@ Optional:
 
 
 <a id="nestedatt--spec--filters--parser--regexp"></a>
-### Nested Schema for `spec.filters.parser.syslog_parser`
+### Nested Schema for `spec.filters.parser.regexp`
 
 Required:
 
@@ -151,7 +151,7 @@ Optional:
 - `unset` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--rewrite--unset))
 
 <a id="nestedatt--spec--filters--rewrite--group_unset"></a>
-### Nested Schema for `spec.filters.rewrite.unset`
+### Nested Schema for `spec.filters.rewrite.group_unset`
 
 Required:
 
@@ -189,7 +189,7 @@ Optional:
 
 
 <a id="nestedatt--spec--filters--rewrite--rename"></a>
-### Nested Schema for `spec.filters.rewrite.unset`
+### Nested Schema for `spec.filters.rewrite.rename`
 
 Required:
 
@@ -228,7 +228,7 @@ Optional:
 
 
 <a id="nestedatt--spec--filters--rewrite--set"></a>
-### Nested Schema for `spec.filters.rewrite.unset`
+### Nested Schema for `spec.filters.rewrite.set`
 
 Required:
 
@@ -267,7 +267,7 @@ Optional:
 
 
 <a id="nestedatt--spec--filters--rewrite--subst"></a>
-### Nested Schema for `spec.filters.rewrite.unset`
+### Nested Schema for `spec.filters.rewrite.subst`
 
 Required:
 

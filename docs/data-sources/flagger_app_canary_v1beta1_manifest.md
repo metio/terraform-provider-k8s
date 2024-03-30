@@ -107,7 +107,7 @@ Optional:
 - `severity` (String) Severity level can be info, warn, error (default info)
 
 <a id="nestedatt--spec--analysis--alerts--provider_ref"></a>
-### Nested Schema for `spec.analysis.alerts.severity`
+### Nested Schema for `spec.analysis.alerts.provider_ref`
 
 Required:
 
@@ -129,7 +129,7 @@ Optional:
 - `source_labels` (Map of String) Applicable only when the 'mesh' gateway is included in the service.gateways list
 
 <a id="nestedatt--spec--analysis--match--headers"></a>
-### Nested Schema for `spec.analysis.match.source_labels`
+### Nested Schema for `spec.analysis.match.headers`
 
 Optional:
 
@@ -140,7 +140,7 @@ Optional:
 
 
 <a id="nestedatt--spec--analysis--match--query_params"></a>
-### Nested Schema for `spec.analysis.match.source_labels`
+### Nested Schema for `spec.analysis.match.query_params`
 
 Optional:
 
@@ -167,7 +167,7 @@ Optional:
 - `threshold_range` (Attributes) Range accepted for this metric (see [below for nested schema](#nestedatt--spec--analysis--metrics--threshold_range))
 
 <a id="nestedatt--spec--analysis--metrics--template_ref"></a>
-### Nested Schema for `spec.analysis.metrics.threshold_range`
+### Nested Schema for `spec.analysis.metrics.template_ref`
 
 Required:
 
@@ -282,7 +282,7 @@ Optional:
 - `max_age` (String)
 
 <a id="nestedatt--spec--service--cors_policy--allow_origins"></a>
-### Nested Schema for `spec.service.cors_policy.max_age`
+### Nested Schema for `spec.service.cors_policy.allow_origins`
 
 Optional:
 
@@ -317,7 +317,7 @@ Optional:
 - `response` (Attributes) (see [below for nested schema](#nestedatt--spec--service--headers--response))
 
 <a id="nestedatt--spec--service--headers--request"></a>
-### Nested Schema for `spec.service.headers.response`
+### Nested Schema for `spec.service.headers.request`
 
 Optional:
 
@@ -357,7 +357,7 @@ Optional:
 - `without_headers` (Attributes) withoutHeader has the same syntax with the header, but has opposite meaning. (see [below for nested schema](#nestedatt--spec--service--match--without_headers))
 
 <a id="nestedatt--spec--service--match--authority"></a>
-### Nested Schema for `spec.service.match.without_headers`
+### Nested Schema for `spec.service.match.authority`
 
 Optional:
 
@@ -367,7 +367,7 @@ Optional:
 
 
 <a id="nestedatt--spec--service--match--headers"></a>
-### Nested Schema for `spec.service.match.without_headers`
+### Nested Schema for `spec.service.match.headers`
 
 Optional:
 
@@ -377,7 +377,7 @@ Optional:
 
 
 <a id="nestedatt--spec--service--match--method"></a>
-### Nested Schema for `spec.service.match.without_headers`
+### Nested Schema for `spec.service.match.method`
 
 Optional:
 
@@ -387,7 +387,7 @@ Optional:
 
 
 <a id="nestedatt--spec--service--match--query_params"></a>
-### Nested Schema for `spec.service.match.without_headers`
+### Nested Schema for `spec.service.match.query_params`
 
 Optional:
 
@@ -397,7 +397,7 @@ Optional:
 
 
 <a id="nestedatt--spec--service--match--scheme"></a>
-### Nested Schema for `spec.service.match.without_headers`
+### Nested Schema for `spec.service.match.scheme`
 
 Optional:
 
@@ -407,7 +407,7 @@ Optional:
 
 
 <a id="nestedatt--spec--service--match--uri"></a>
-### Nested Schema for `spec.service.match.without_headers`
+### Nested Schema for `spec.service.match.uri`
 
 Optional:
 
@@ -490,7 +490,7 @@ Optional:
 - `tls` (Attributes) Istio TLS related settings for connections to the upstream service (see [below for nested schema](#nestedatt--spec--service--traffic_policy--tls))
 
 <a id="nestedatt--spec--service--traffic_policy--connection_pool"></a>
-### Nested Schema for `spec.service.traffic_policy.tls`
+### Nested Schema for `spec.service.traffic_policy.connection_pool`
 
 Optional:
 
@@ -511,7 +511,7 @@ Optional:
 
 
 <a id="nestedatt--spec--service--traffic_policy--load_balancer"></a>
-### Nested Schema for `spec.service.traffic_policy.tls`
+### Nested Schema for `spec.service.traffic_policy.load_balancer`
 
 Optional:
 
@@ -532,7 +532,7 @@ Optional:
 - `use_source_ip` (Boolean) Hash based on the source IP address.
 
 <a id="nestedatt--spec--service--traffic_policy--tls--consistent_hash--http_cookie"></a>
-### Nested Schema for `spec.service.traffic_policy.tls.consistent_hash.use_source_ip`
+### Nested Schema for `spec.service.traffic_policy.tls.consistent_hash.http_cookie`
 
 Optional:
 
@@ -552,7 +552,7 @@ Optional:
 - `failover` (Attributes List) Optional: only failover or distribute can be set. (see [below for nested schema](#nestedatt--spec--service--traffic_policy--tls--locality_lb_setting--failover))
 
 <a id="nestedatt--spec--service--traffic_policy--tls--locality_lb_setting--distribute"></a>
-### Nested Schema for `spec.service.traffic_policy.tls.locality_lb_setting.failover`
+### Nested Schema for `spec.service.traffic_policy.tls.locality_lb_setting.distribute`
 
 Optional:
 
@@ -572,7 +572,7 @@ Optional:
 
 
 <a id="nestedatt--spec--service--traffic_policy--outlier_detection"></a>
-### Nested Schema for `spec.service.traffic_policy.tls`
+### Nested Schema for `spec.service.traffic_policy.outlier_detection`
 
 Optional:
 

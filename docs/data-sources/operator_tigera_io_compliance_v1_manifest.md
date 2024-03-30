@@ -90,7 +90,7 @@ Optional:
 - `init_containers` (Attributes List) InitContainers is a list of Compliance benchmark init containers. If specified, this overrides the specified Compliance Benchmarker DaemonSet init containers. If omitted, the Compliance Benchmarker DaemonSet will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--compliance_benchmarker_daemon_set--spec--template--spec--init_containers))
 
 <a id="nestedatt--spec--compliance_benchmarker_daemon_set--spec--template--spec--containers"></a>
-### Nested Schema for `spec.compliance_benchmarker_daemon_set.spec.template.spec.init_containers`
+### Nested Schema for `spec.compliance_benchmarker_daemon_set.spec.template.spec.containers`
 
 Required:
 
@@ -110,7 +110,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--compliance_benchmarker_daemon_set--spec--template--spec--init_containers--resources--claims"></a>
-### Nested Schema for `spec.compliance_benchmarker_daemon_set.spec.template.spec.init_containers.resources.requests`
+### Nested Schema for `spec.compliance_benchmarker_daemon_set.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
@@ -140,7 +140,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--compliance_benchmarker_daemon_set--spec--template--spec--init_containers--resources--claims"></a>
-### Nested Schema for `spec.compliance_benchmarker_daemon_set.spec.template.spec.init_containers.resources.requests`
+### Nested Schema for `spec.compliance_benchmarker_daemon_set.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
@@ -183,7 +183,7 @@ Optional:
 - `init_containers` (Attributes List) InitContainers is a list of compliance controller init containers. If specified, this overrides the specified compliance controller Deployment init containers. If omitted, the compliance controller Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--compliance_controller_deployment--spec--template--spec--init_containers))
 
 <a id="nestedatt--spec--compliance_controller_deployment--spec--template--spec--containers"></a>
-### Nested Schema for `spec.compliance_controller_deployment.spec.template.spec.init_containers`
+### Nested Schema for `spec.compliance_controller_deployment.spec.template.spec.containers`
 
 Required:
 
@@ -203,7 +203,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--compliance_controller_deployment--spec--template--spec--init_containers--resources--claims"></a>
-### Nested Schema for `spec.compliance_controller_deployment.spec.template.spec.init_containers.resources.requests`
+### Nested Schema for `spec.compliance_controller_deployment.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
@@ -233,7 +233,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--compliance_controller_deployment--spec--template--spec--init_containers--resources--claims"></a>
-### Nested Schema for `spec.compliance_controller_deployment.spec.template.spec.init_containers.resources.requests`
+### Nested Schema for `spec.compliance_controller_deployment.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
@@ -289,7 +289,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--compliance_reporter_pod_template--template--spec--containers--resources--claims"></a>
-### Nested Schema for `spec.compliance_reporter_pod_template.template.spec.containers.resources.requests`
+### Nested Schema for `spec.compliance_reporter_pod_template.template.spec.containers.resources.claims`
 
 Required:
 
@@ -319,7 +319,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--compliance_reporter_pod_template--template--spec--init_containers--resources--claims"></a>
-### Nested Schema for `spec.compliance_reporter_pod_template.template.spec.init_containers.resources.requests`
+### Nested Schema for `spec.compliance_reporter_pod_template.template.spec.init_containers.resources.claims`
 
 Required:
 
@@ -361,7 +361,7 @@ Optional:
 - `init_containers` (Attributes List) InitContainers is a list of ComplianceServer init containers. If specified, this overrides the specified ComplianceServer Deployment init containers. If omitted, the ComplianceServer Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--compliance_server_deployment--spec--template--spec--init_containers))
 
 <a id="nestedatt--spec--compliance_server_deployment--spec--template--spec--containers"></a>
-### Nested Schema for `spec.compliance_server_deployment.spec.template.spec.init_containers`
+### Nested Schema for `spec.compliance_server_deployment.spec.template.spec.containers`
 
 Required:
 
@@ -381,7 +381,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--compliance_server_deployment--spec--template--spec--init_containers--resources--claims"></a>
-### Nested Schema for `spec.compliance_server_deployment.spec.template.spec.init_containers.resources.requests`
+### Nested Schema for `spec.compliance_server_deployment.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
@@ -411,7 +411,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--compliance_server_deployment--spec--template--spec--init_containers--resources--claims"></a>
-### Nested Schema for `spec.compliance_server_deployment.spec.template.spec.init_containers.resources.requests`
+### Nested Schema for `spec.compliance_server_deployment.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
@@ -454,7 +454,7 @@ Optional:
 - `init_containers` (Attributes List) InitContainers is a list of compliance snapshotter init containers. If specified, this overrides the specified compliance snapshotter Deployment init containers. If omitted, the compliance snapshotter Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--compliance_snapshotter_deployment--spec--template--spec--init_containers))
 
 <a id="nestedatt--spec--compliance_snapshotter_deployment--spec--template--spec--containers"></a>
-### Nested Schema for `spec.compliance_snapshotter_deployment.spec.template.spec.init_containers`
+### Nested Schema for `spec.compliance_snapshotter_deployment.spec.template.spec.containers`
 
 Required:
 
@@ -474,7 +474,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--compliance_snapshotter_deployment--spec--template--spec--init_containers--resources--claims"></a>
-### Nested Schema for `spec.compliance_snapshotter_deployment.spec.template.spec.init_containers.resources.requests`
+### Nested Schema for `spec.compliance_snapshotter_deployment.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
@@ -504,7 +504,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--compliance_snapshotter_deployment--spec--template--spec--init_containers--resources--claims"></a>
-### Nested Schema for `spec.compliance_snapshotter_deployment.spec.template.spec.init_containers.resources.requests`
+### Nested Schema for `spec.compliance_snapshotter_deployment.spec.template.spec.init_containers.resources.claims`
 
 Required:
 

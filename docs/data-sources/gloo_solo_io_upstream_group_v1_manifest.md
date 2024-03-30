@@ -79,7 +79,7 @@ Optional:
 - `upstream` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--destination--upstream))
 
 <a id="nestedatt--spec--destinations--destination--consul"></a>
-### Nested Schema for `spec.destinations.destination.upstream`
+### Nested Schema for `spec.destinations.destination.consul`
 
 Optional:
 
@@ -89,7 +89,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--destination--destination_spec"></a>
-### Nested Schema for `spec.destinations.destination.upstream`
+### Nested Schema for `spec.destinations.destination.destination_spec`
 
 Optional:
 
@@ -131,7 +131,7 @@ Optional:
 - `service` (String)
 
 <a id="nestedatt--spec--destinations--destination--upstream--grpc--parameters"></a>
-### Nested Schema for `spec.destinations.destination.upstream.grpc.service`
+### Nested Schema for `spec.destinations.destination.upstream.grpc.parameters`
 
 Optional:
 
@@ -150,7 +150,7 @@ Optional:
 - `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--destination--upstream--rest--response_transformation))
 
 <a id="nestedatt--spec--destinations--destination--upstream--rest--parameters"></a>
-### Nested Schema for `spec.destinations.destination.upstream.rest.response_transformation`
+### Nested Schema for `spec.destinations.destination.upstream.rest.parameters`
 
 Optional:
 
@@ -177,7 +177,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--destinations--destination--upstream--rest--response_transformation--body"></a>
-### Nested Schema for `spec.destinations.destination.upstream.rest.response_transformation.passthrough`
+### Nested Schema for `spec.destinations.destination.upstream.rest.response_transformation.body`
 
 Optional:
 
@@ -185,7 +185,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--destination--upstream--rest--response_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.destinations.destination.upstream.rest.response_transformation.passthrough`
+### Nested Schema for `spec.destinations.destination.upstream.rest.response_transformation.dynamic_metadata_values`
 
 Optional:
 
@@ -203,7 +203,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--destination--upstream--rest--response_transformation--extractors"></a>
-### Nested Schema for `spec.destinations.destination.upstream.rest.response_transformation.passthrough`
+### Nested Schema for `spec.destinations.destination.upstream.rest.response_transformation.extractors`
 
 Optional:
 
@@ -216,7 +216,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--destination--upstream--rest--response_transformation--headers"></a>
-### Nested Schema for `spec.destinations.destination.upstream.rest.response_transformation.passthrough`
+### Nested Schema for `spec.destinations.destination.upstream.rest.response_transformation.headers`
 
 Optional:
 
@@ -224,7 +224,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--destination--upstream--rest--response_transformation--headers_to_append"></a>
-### Nested Schema for `spec.destinations.destination.upstream.rest.response_transformation.passthrough`
+### Nested Schema for `spec.destinations.destination.upstream.rest.response_transformation.headers_to_append`
 
 Optional:
 
@@ -244,7 +244,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--destination--kube"></a>
-### Nested Schema for `spec.destinations.destination.upstream`
+### Nested Schema for `spec.destinations.destination.kube`
 
 Optional:
 
@@ -262,7 +262,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--destination--subset"></a>
-### Nested Schema for `spec.destinations.destination.upstream`
+### Nested Schema for `spec.destinations.destination.subset`
 
 Optional:
 
@@ -293,7 +293,7 @@ Optional:
 - `transformations` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--transformations))
 
 <a id="nestedatt--spec--destinations--options--buffer_per_route"></a>
-### Nested Schema for `spec.destinations.options.transformations`
+### Nested Schema for `spec.destinations.options.buffer_per_route`
 
 Optional:
 
@@ -310,7 +310,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--options--csrf"></a>
-### Nested Schema for `spec.destinations.options.transformations`
+### Nested Schema for `spec.destinations.options.csrf`
 
 Optional:
 
@@ -330,7 +330,7 @@ Optional:
 - `suffix` (String)
 
 <a id="nestedatt--spec--destinations--options--transformations--additional_origins--safe_regex"></a>
-### Nested Schema for `spec.destinations.options.transformations.additional_origins.suffix`
+### Nested Schema for `spec.destinations.options.transformations.additional_origins.safe_regex`
 
 Optional:
 
@@ -338,7 +338,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--destinations--options--transformations--additional_origins--suffix--google_re2"></a>
-### Nested Schema for `spec.destinations.options.transformations.additional_origins.suffix.regex`
+### Nested Schema for `spec.destinations.options.transformations.additional_origins.suffix.google_re2`
 
 Optional:
 
@@ -356,7 +356,7 @@ Optional:
 - `runtime_key` (String)
 
 <a id="nestedatt--spec--destinations--options--transformations--filter_enabled--default_value"></a>
-### Nested Schema for `spec.destinations.options.transformations.filter_enabled.runtime_key`
+### Nested Schema for `spec.destinations.options.transformations.filter_enabled.default_value`
 
 Optional:
 
@@ -374,7 +374,7 @@ Optional:
 - `runtime_key` (String)
 
 <a id="nestedatt--spec--destinations--options--transformations--shadow_enabled--default_value"></a>
-### Nested Schema for `spec.destinations.options.transformations.shadow_enabled.runtime_key`
+### Nested Schema for `spec.destinations.options.transformations.shadow_enabled.default_value`
 
 Optional:
 
@@ -385,7 +385,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--options--extauth"></a>
-### Nested Schema for `spec.destinations.options.transformations`
+### Nested Schema for `spec.destinations.options.extauth`
 
 Optional:
 
@@ -413,7 +413,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--options--extensions"></a>
-### Nested Schema for `spec.destinations.options.transformations`
+### Nested Schema for `spec.destinations.options.extensions`
 
 Optional:
 
@@ -421,7 +421,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--options--header_manipulation"></a>
-### Nested Schema for `spec.destinations.options.transformations`
+### Nested Schema for `spec.destinations.options.header_manipulation`
 
 Optional:
 
@@ -440,7 +440,7 @@ Optional:
 - `header_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--transformations--request_headers_to_add--header_secret_ref))
 
 <a id="nestedatt--spec--destinations--options--transformations--request_headers_to_add--header"></a>
-### Nested Schema for `spec.destinations.options.transformations.request_headers_to_add.header_secret_ref`
+### Nested Schema for `spec.destinations.options.transformations.request_headers_to_add.header`
 
 Optional:
 
@@ -478,7 +478,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--options--staged_transformations"></a>
-### Nested Schema for `spec.destinations.options.transformations`
+### Nested Schema for `spec.destinations.options.staged_transformations`
 
 Optional:
 
@@ -497,7 +497,7 @@ Optional:
 - `response_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--destinations--options--transformations--early--response_transforms))
 
 <a id="nestedatt--spec--destinations--options--transformations--early--request_transforms"></a>
-### Nested Schema for `spec.destinations.options.transformations.early.response_transforms`
+### Nested Schema for `spec.destinations.options.transformations.early.request_transforms`
 
 Optional:
 
@@ -507,7 +507,7 @@ Optional:
 - `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--transformations--early--response_transforms--response_transformation))
 
 <a id="nestedatt--spec--destinations--options--transformations--early--response_transforms--matcher"></a>
-### Nested Schema for `spec.destinations.options.transformations.early.response_transforms.response_transformation`
+### Nested Schema for `spec.destinations.options.transformations.early.response_transforms.matcher`
 
 Optional:
 
@@ -521,7 +521,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--destinations--options--transformations--early--response_transforms--response_transformation--headers"></a>
-### Nested Schema for `spec.destinations.options.transformations.early.response_transforms.response_transformation.regex`
+### Nested Schema for `spec.destinations.options.transformations.early.response_transforms.response_transformation.headers`
 
 Optional:
 
@@ -532,7 +532,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--options--transformations--early--response_transforms--response_transformation--query_parameters"></a>
-### Nested Schema for `spec.destinations.options.transformations.early.response_transforms.response_transformation.regex`
+### Nested Schema for `spec.destinations.options.transformations.early.response_transforms.response_transformation.query_parameters`
 
 Optional:
 
@@ -543,7 +543,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--options--transformations--early--response_transforms--request_transformation"></a>
-### Nested Schema for `spec.destinations.options.transformations.early.response_transforms.response_transformation`
+### Nested Schema for `spec.destinations.options.transformations.early.response_transforms.request_transformation`
 
 Optional:
 
@@ -553,7 +553,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--transformations--early--response_transforms--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--destinations--options--transformations--early--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.destinations.options.transformations.early.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.destinations.options.transformations.early.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
@@ -561,7 +561,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--options--transformations--early--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.destinations.options.transformations.early.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.destinations.options.transformations.early.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
@@ -665,7 +665,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--transformations--early--response_transforms--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--destinations--options--transformations--early--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.destinations.options.transformations.early.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.destinations.options.transformations.early.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
@@ -673,7 +673,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--options--transformations--early--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.destinations.options.transformations.early.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.destinations.options.transformations.early.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
@@ -777,7 +777,7 @@ Optional:
 - `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--transformations--early--response_transforms--response_transformation))
 
 <a id="nestedatt--spec--destinations--options--transformations--early--response_transforms--matchers"></a>
-### Nested Schema for `spec.destinations.options.transformations.early.response_transforms.response_transformation`
+### Nested Schema for `spec.destinations.options.transformations.early.response_transforms.matchers`
 
 Optional:
 
@@ -798,7 +798,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--transformations--early--response_transforms--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--destinations--options--transformations--early--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.destinations.options.transformations.early.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.destinations.options.transformations.early.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
@@ -806,7 +806,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--options--transformations--early--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.destinations.options.transformations.early.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.destinations.options.transformations.early.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
@@ -910,7 +910,7 @@ Optional:
 - `response_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--destinations--options--transformations--regular--response_transforms))
 
 <a id="nestedatt--spec--destinations--options--transformations--regular--request_transforms"></a>
-### Nested Schema for `spec.destinations.options.transformations.regular.response_transforms`
+### Nested Schema for `spec.destinations.options.transformations.regular.request_transforms`
 
 Optional:
 
@@ -920,7 +920,7 @@ Optional:
 - `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--transformations--regular--response_transforms--response_transformation))
 
 <a id="nestedatt--spec--destinations--options--transformations--regular--response_transforms--matcher"></a>
-### Nested Schema for `spec.destinations.options.transformations.regular.response_transforms.response_transformation`
+### Nested Schema for `spec.destinations.options.transformations.regular.response_transforms.matcher`
 
 Optional:
 
@@ -934,7 +934,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--destinations--options--transformations--regular--response_transforms--response_transformation--headers"></a>
-### Nested Schema for `spec.destinations.options.transformations.regular.response_transforms.response_transformation.regex`
+### Nested Schema for `spec.destinations.options.transformations.regular.response_transforms.response_transformation.headers`
 
 Optional:
 
@@ -945,7 +945,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--options--transformations--regular--response_transforms--response_transformation--query_parameters"></a>
-### Nested Schema for `spec.destinations.options.transformations.regular.response_transforms.response_transformation.regex`
+### Nested Schema for `spec.destinations.options.transformations.regular.response_transforms.response_transformation.query_parameters`
 
 Optional:
 
@@ -956,7 +956,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--options--transformations--regular--response_transforms--request_transformation"></a>
-### Nested Schema for `spec.destinations.options.transformations.regular.response_transforms.response_transformation`
+### Nested Schema for `spec.destinations.options.transformations.regular.response_transforms.request_transformation`
 
 Optional:
 
@@ -966,7 +966,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--destinations--options--transformations--regular--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.destinations.options.transformations.regular.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
@@ -974,7 +974,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--options--transformations--regular--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.destinations.options.transformations.regular.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
@@ -1078,7 +1078,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--destinations--options--transformations--regular--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.destinations.options.transformations.regular.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
@@ -1086,7 +1086,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--options--transformations--regular--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.destinations.options.transformations.regular.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
@@ -1190,7 +1190,7 @@ Optional:
 - `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--transformations--regular--response_transforms--response_transformation))
 
 <a id="nestedatt--spec--destinations--options--transformations--regular--response_transforms--matchers"></a>
-### Nested Schema for `spec.destinations.options.transformations.regular.response_transforms.response_transformation`
+### Nested Schema for `spec.destinations.options.transformations.regular.response_transforms.matchers`
 
 Optional:
 
@@ -1211,7 +1211,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--destinations--options--transformations--regular--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.destinations.options.transformations.regular.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
@@ -1219,7 +1219,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--options--transformations--regular--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation`
+### Nested Schema for `spec.destinations.options.transformations.regular.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
@@ -1335,7 +1335,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--transformations--request_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--destinations--options--transformations--request_transformation--header_body_transform"></a>
-### Nested Schema for `spec.destinations.options.transformations.request_transformation.xslt_transformation`
+### Nested Schema for `spec.destinations.options.transformations.request_transformation.header_body_transform`
 
 Optional:
 
@@ -1343,7 +1343,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--options--transformations--request_transformation--transformation_template"></a>
-### Nested Schema for `spec.destinations.options.transformations.request_transformation.xslt_transformation`
+### Nested Schema for `spec.destinations.options.transformations.request_transformation.transformation_template`
 
 Optional:
 
@@ -1361,7 +1361,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--destinations--options--transformations--request_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.destinations.options.transformations.request_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.destinations.options.transformations.request_transformation.xslt_transformation.body`
 
 Optional:
 
@@ -1369,7 +1369,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--options--transformations--request_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.destinations.options.transformations.request_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.destinations.options.transformations.request_transformation.xslt_transformation.dynamic_metadata_values`
 
 Optional:
 
@@ -1387,7 +1387,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--options--transformations--request_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.destinations.options.transformations.request_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.destinations.options.transformations.request_transformation.xslt_transformation.extractors`
 
 Optional:
 
@@ -1400,7 +1400,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--options--transformations--request_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.destinations.options.transformations.request_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.destinations.options.transformations.request_transformation.xslt_transformation.headers`
 
 Optional:
 
@@ -1408,7 +1408,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--options--transformations--request_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.destinations.options.transformations.request_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.destinations.options.transformations.request_transformation.xslt_transformation.headers_to_append`
 
 Optional:
 
@@ -1447,7 +1447,7 @@ Optional:
 - `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--destinations--options--transformations--response_transformation--xslt_transformation))
 
 <a id="nestedatt--spec--destinations--options--transformations--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.destinations.options.transformations.response_transformation.xslt_transformation`
+### Nested Schema for `spec.destinations.options.transformations.response_transformation.header_body_transform`
 
 Optional:
 
@@ -1455,7 +1455,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--options--transformations--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.destinations.options.transformations.response_transformation.xslt_transformation`
+### Nested Schema for `spec.destinations.options.transformations.response_transformation.transformation_template`
 
 Optional:
 
@@ -1473,7 +1473,7 @@ Optional:
 - `passthrough` (Map of String)
 
 <a id="nestedatt--spec--destinations--options--transformations--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.destinations.options.transformations.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.destinations.options.transformations.response_transformation.xslt_transformation.body`
 
 Optional:
 
@@ -1481,7 +1481,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--options--transformations--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.destinations.options.transformations.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.destinations.options.transformations.response_transformation.xslt_transformation.dynamic_metadata_values`
 
 Optional:
 
@@ -1499,7 +1499,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--options--transformations--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.destinations.options.transformations.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.destinations.options.transformations.response_transformation.xslt_transformation.extractors`
 
 Optional:
 
@@ -1512,7 +1512,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--options--transformations--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.destinations.options.transformations.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.destinations.options.transformations.response_transformation.xslt_transformation.headers`
 
 Optional:
 
@@ -1520,7 +1520,7 @@ Optional:
 
 
 <a id="nestedatt--spec--destinations--options--transformations--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.destinations.options.transformations.response_transformation.xslt_transformation.passthrough`
+### Nested Schema for `spec.destinations.options.transformations.response_transformation.xslt_transformation.headers_to_append`
 
 Optional:
 

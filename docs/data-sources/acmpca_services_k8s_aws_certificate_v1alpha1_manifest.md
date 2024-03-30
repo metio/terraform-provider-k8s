@@ -97,7 +97,7 @@ Optional:
 - `subject_alternative_names` (Attributes List) (see [below for nested schema](#nestedatt--spec--api_passthrough--extensions--subject_alternative_names))
 
 <a id="nestedatt--spec--api_passthrough--extensions--certificate_policies"></a>
-### Nested Schema for `spec.api_passthrough.extensions.subject_alternative_names`
+### Nested Schema for `spec.api_passthrough.extensions.certificate_policies`
 
 Optional:
 
@@ -123,7 +123,7 @@ Optional:
 
 
 <a id="nestedatt--spec--api_passthrough--extensions--custom_extensions"></a>
-### Nested Schema for `spec.api_passthrough.extensions.subject_alternative_names`
+### Nested Schema for `spec.api_passthrough.extensions.custom_extensions`
 
 Optional:
 
@@ -133,7 +133,7 @@ Optional:
 
 
 <a id="nestedatt--spec--api_passthrough--extensions--extended_key_usage"></a>
-### Nested Schema for `spec.api_passthrough.extensions.subject_alternative_names`
+### Nested Schema for `spec.api_passthrough.extensions.extended_key_usage`
 
 Optional:
 
@@ -142,7 +142,7 @@ Optional:
 
 
 <a id="nestedatt--spec--api_passthrough--extensions--key_usage"></a>
-### Nested Schema for `spec.api_passthrough.extensions.subject_alternative_names`
+### Nested Schema for `spec.api_passthrough.extensions.key_usage`
 
 Optional:
 
@@ -193,7 +193,7 @@ Optional:
 - `title` (String)
 
 <a id="nestedatt--spec--api_passthrough--extensions--subject_alternative_names--directory_name--custom_attributes"></a>
-### Nested Schema for `spec.api_passthrough.extensions.subject_alternative_names.directory_name.title`
+### Nested Schema for `spec.api_passthrough.extensions.subject_alternative_names.directory_name.custom_attributes`
 
 Optional:
 
@@ -244,7 +244,7 @@ Optional:
 - `title` (String)
 
 <a id="nestedatt--spec--api_passthrough--subject--custom_attributes"></a>
-### Nested Schema for `spec.api_passthrough.subject.title`
+### Nested Schema for `spec.api_passthrough.subject.custom_attributes`
 
 Optional:
 

@@ -113,7 +113,7 @@ Optional:
 - `suffix` (String)
 
 <a id="nestedatt--spec--caching_server--allowed_vary_headers--safe_regex"></a>
-### Nested Schema for `spec.caching_server.allowed_vary_headers.suffix`
+### Nested Schema for `spec.caching_server.allowed_vary_headers.safe_regex`
 
 Optional:
 
@@ -319,7 +319,7 @@ Optional:
 - `disallowed_headers` (Attributes) (see [below for nested schema](#nestedatt--spec--ext_proc--forward_rules--disallowed_headers))
 
 <a id="nestedatt--spec--ext_proc--forward_rules--allowed_headers"></a>
-### Nested Schema for `spec.ext_proc.forward_rules.disallowed_headers`
+### Nested Schema for `spec.ext_proc.forward_rules.allowed_headers`
 
 Optional:
 
@@ -337,7 +337,7 @@ Optional:
 - `suffix` (String)
 
 <a id="nestedatt--spec--ext_proc--forward_rules--disallowed_headers--patterns--safe_regex"></a>
-### Nested Schema for `spec.ext_proc.forward_rules.disallowed_headers.patterns.suffix`
+### Nested Schema for `spec.ext_proc.forward_rules.disallowed_headers.patterns.safe_regex`
 
 Optional:
 
@@ -345,7 +345,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--ext_proc--forward_rules--disallowed_headers--patterns--suffix--google_re2"></a>
-### Nested Schema for `spec.ext_proc.forward_rules.disallowed_headers.patterns.suffix.regex`
+### Nested Schema for `spec.ext_proc.forward_rules.disallowed_headers.patterns.suffix.google_re2`
 
 Optional:
 
@@ -374,7 +374,7 @@ Optional:
 - `suffix` (String)
 
 <a id="nestedatt--spec--ext_proc--forward_rules--disallowed_headers--patterns--safe_regex"></a>
-### Nested Schema for `spec.ext_proc.forward_rules.disallowed_headers.patterns.suffix`
+### Nested Schema for `spec.ext_proc.forward_rules.disallowed_headers.patterns.safe_regex`
 
 Optional:
 
@@ -382,7 +382,7 @@ Optional:
 - `regex` (String)
 
 <a id="nestedatt--spec--ext_proc--forward_rules--disallowed_headers--patterns--suffix--google_re2"></a>
-### Nested Schema for `spec.ext_proc.forward_rules.disallowed_headers.patterns.suffix.regex`
+### Nested Schema for `spec.ext_proc.forward_rules.disallowed_headers.patterns.suffix.google_re2`
 
 Optional:
 
@@ -405,7 +405,7 @@ Optional:
 - `timeout` (String)
 
 <a id="nestedatt--spec--ext_proc--grpc_service--ext_proc_server_ref"></a>
-### Nested Schema for `spec.ext_proc.grpc_service.timeout`
+### Nested Schema for `spec.ext_proc.grpc_service.ext_proc_server_ref`
 
 Optional:
 
@@ -414,7 +414,7 @@ Optional:
 
 
 <a id="nestedatt--spec--ext_proc--grpc_service--initial_metadata"></a>
-### Nested Schema for `spec.ext_proc.grpc_service.timeout`
+### Nested Schema for `spec.ext_proc.grpc_service.initial_metadata`
 
 Optional:
 
@@ -423,7 +423,7 @@ Optional:
 
 
 <a id="nestedatt--spec--ext_proc--grpc_service--retry_policy"></a>
-### Nested Schema for `spec.ext_proc.grpc_service.timeout`
+### Nested Schema for `spec.ext_proc.grpc_service.retry_policy`
 
 Optional:
 
@@ -455,7 +455,7 @@ Optional:
 - `disallow_system` (Boolean)
 
 <a id="nestedatt--spec--ext_proc--mutation_rules--allow_expression"></a>
-### Nested Schema for `spec.ext_proc.mutation_rules.disallow_system`
+### Nested Schema for `spec.ext_proc.mutation_rules.allow_expression`
 
 Optional:
 
@@ -472,7 +472,7 @@ Optional:
 
 
 <a id="nestedatt--spec--ext_proc--mutation_rules--disallow_expression"></a>
-### Nested Schema for `spec.ext_proc.mutation_rules.disallow_system`
+### Nested Schema for `spec.ext_proc.mutation_rules.disallow_expression`
 
 Optional:
 
@@ -547,7 +547,7 @@ Optional:
 - `response` (Attributes) (see [below for nested schema](#nestedatt--spec--extauth--http_service--response))
 
 <a id="nestedatt--spec--extauth--http_service--request"></a>
-### Nested Schema for `spec.extauth.http_service.response`
+### Nested Schema for `spec.extauth.http_service.request`
 
 Optional:
 
@@ -794,7 +794,7 @@ Optional:
 - `response` (Attributes) (see [below for nested schema](#nestedatt--spec--named_extauth--http_service--response))
 
 <a id="nestedatt--spec--named_extauth--http_service--request"></a>
-### Nested Schema for `spec.named_extauth.http_service.response`
+### Nested Schema for `spec.named_extauth.http_service.request`
 
 Optional:
 
@@ -878,7 +878,7 @@ Optional:
 - `simple_descriptors` (Attributes List) (see [below for nested schema](#nestedatt--spec--ratelimit--set_descriptors--simple_descriptors))
 
 <a id="nestedatt--spec--ratelimit--set_descriptors--rate_limit"></a>
-### Nested Schema for `spec.ratelimit.set_descriptors.simple_descriptors`
+### Nested Schema for `spec.ratelimit.set_descriptors.rate_limit`
 
 Optional:
 
@@ -952,7 +952,7 @@ Optional:
 - `vault` (Attributes) (see [below for nested schema](#nestedatt--spec--secret_options--sources--vault))
 
 <a id="nestedatt--spec--secret_options--sources--directory"></a>
-### Nested Schema for `spec.secret_options.sources.vault`
+### Nested Schema for `spec.secret_options.sources.directory`
 
 Optional:
 

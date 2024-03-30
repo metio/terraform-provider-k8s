@@ -115,7 +115,7 @@ Optional:
 - `values` (Map of String)
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--label_selector"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values`
+### Nested Schema for `spec.generators.cluster_decision_resource.label_selector`
 
 Optional:
 
@@ -137,7 +137,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--template"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values`
+### Nested Schema for `spec.generators.cluster_decision_resource.template`
 
 Required:
 
@@ -174,7 +174,7 @@ Optional:
 - `sync_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy))
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--destination"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy`
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.destination`
 
 Optional:
 
@@ -184,7 +184,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--ignore_differences"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy`
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.ignore_differences`
 
 Required:
 
@@ -201,7 +201,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--info"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy`
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.info`
 
 Required:
 
@@ -210,7 +210,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--source"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy`
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.source`
 
 Required:
 
@@ -228,7 +228,7 @@ Optional:
 - `target_revision` (String)
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--directory"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.directory`
 
 Optional:
 
@@ -238,7 +238,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--target_revision--jsonnet"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision.recurse`
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision.jsonnet`
 
 Optional:
 
@@ -275,7 +275,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--helm"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.helm`
 
 Optional:
 
@@ -291,7 +291,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--target_revision--file_parameters"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision.file_parameters`
 
 Optional:
 
@@ -300,7 +300,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--target_revision--parameters"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision.parameters`
 
 Optional:
 
@@ -311,7 +311,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--kustomize"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.kustomize`
 
 Optional:
 
@@ -330,7 +330,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--target_revision--patches"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision.patches`
 
 Optional:
 
@@ -355,7 +355,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--target_revision--replicas"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision.replicas`
 
 Required:
 
@@ -365,7 +365,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--plugin"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.plugin`
 
 Optional:
 
@@ -374,7 +374,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--target_revision--parameters))
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--target_revision--env"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision.parameters`
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision.env`
 
 Required:
 
@@ -396,7 +396,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sources"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy`
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sources`
 
 Required:
 
@@ -414,7 +414,7 @@ Optional:
 - `target_revision` (String)
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--directory"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.directory`
 
 Optional:
 
@@ -424,7 +424,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--target_revision--jsonnet"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision.recurse`
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision.jsonnet`
 
 Optional:
 
@@ -461,7 +461,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--helm"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.helm`
 
 Optional:
 
@@ -477,7 +477,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--target_revision--file_parameters"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision.file_parameters`
 
 Optional:
 
@@ -486,7 +486,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--target_revision--parameters"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision.parameters`
 
 Optional:
 
@@ -497,7 +497,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--kustomize"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.kustomize`
 
 Optional:
 
@@ -516,7 +516,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--target_revision--patches"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision.patches`
 
 Optional:
 
@@ -541,7 +541,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--target_revision--replicas"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision.replicas`
 
 Required:
 
@@ -551,7 +551,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--plugin"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.plugin`
 
 Optional:
 
@@ -560,7 +560,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--target_revision--parameters))
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--target_revision--env"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision.parameters`
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision.env`
 
 Required:
 
@@ -592,7 +592,7 @@ Optional:
 - `sync_options` (List of String)
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--automated"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.sync_options`
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.automated`
 
 Optional:
 
@@ -602,7 +602,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--managed_namespace_metadata"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.sync_options`
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.managed_namespace_metadata`
 
 Optional:
 
@@ -611,7 +611,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--retry"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.sync_options`
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.retry`
 
 Optional:
 
@@ -619,7 +619,7 @@ Optional:
 - `limit` (Number)
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--sync_options--backoff"></a>
-### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.sync_options.limit`
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.sync_options.backoff`
 
 Optional:
 
@@ -643,7 +643,7 @@ Optional:
 - `values` (Map of String)
 
 <a id="nestedatt--spec--generators--clusters--selector"></a>
-### Nested Schema for `spec.generators.clusters.values`
+### Nested Schema for `spec.generators.clusters.selector`
 
 Optional:
 
@@ -665,7 +665,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--clusters--template"></a>
-### Nested Schema for `spec.generators.clusters.values`
+### Nested Schema for `spec.generators.clusters.template`
 
 Required:
 
@@ -702,7 +702,7 @@ Optional:
 - `sync_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--clusters--values--spec--sync_policy))
 
 <a id="nestedatt--spec--generators--clusters--values--spec--destination"></a>
-### Nested Schema for `spec.generators.clusters.values.spec.sync_policy`
+### Nested Schema for `spec.generators.clusters.values.spec.destination`
 
 Optional:
 
@@ -712,7 +712,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--clusters--values--spec--ignore_differences"></a>
-### Nested Schema for `spec.generators.clusters.values.spec.sync_policy`
+### Nested Schema for `spec.generators.clusters.values.spec.ignore_differences`
 
 Required:
 
@@ -729,7 +729,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--clusters--values--spec--info"></a>
-### Nested Schema for `spec.generators.clusters.values.spec.sync_policy`
+### Nested Schema for `spec.generators.clusters.values.spec.info`
 
 Required:
 
@@ -738,7 +738,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--clusters--values--spec--source"></a>
-### Nested Schema for `spec.generators.clusters.values.spec.sync_policy`
+### Nested Schema for `spec.generators.clusters.values.spec.source`
 
 Required:
 
@@ -756,7 +756,7 @@ Optional:
 - `target_revision` (String)
 
 <a id="nestedatt--spec--generators--clusters--values--spec--sync_policy--directory"></a>
-### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.directory`
 
 Optional:
 
@@ -766,7 +766,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--clusters--values--spec--sync_policy--target_revision--jsonnet"></a>
-### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision.recurse`
+### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision.jsonnet`
 
 Optional:
 
@@ -803,7 +803,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--clusters--values--spec--sync_policy--helm"></a>
-### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.helm`
 
 Optional:
 
@@ -819,7 +819,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--clusters--values--spec--sync_policy--target_revision--file_parameters"></a>
-### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision.file_parameters`
 
 Optional:
 
@@ -828,7 +828,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--clusters--values--spec--sync_policy--target_revision--parameters"></a>
-### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision.parameters`
 
 Optional:
 
@@ -839,7 +839,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--clusters--values--spec--sync_policy--kustomize"></a>
-### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.kustomize`
 
 Optional:
 
@@ -858,7 +858,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--clusters--values--spec--sync_policy--target_revision--patches"></a>
-### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision.patches`
 
 Optional:
 
@@ -883,7 +883,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--clusters--values--spec--sync_policy--target_revision--replicas"></a>
-### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision.replicas`
 
 Required:
 
@@ -893,7 +893,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--clusters--values--spec--sync_policy--plugin"></a>
-### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.plugin`
 
 Optional:
 
@@ -902,7 +902,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--clusters--values--spec--sync_policy--target_revision--parameters))
 
 <a id="nestedatt--spec--generators--clusters--values--spec--sync_policy--target_revision--env"></a>
-### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision.parameters`
+### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision.env`
 
 Required:
 
@@ -924,7 +924,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--clusters--values--spec--sources"></a>
-### Nested Schema for `spec.generators.clusters.values.spec.sync_policy`
+### Nested Schema for `spec.generators.clusters.values.spec.sources`
 
 Required:
 
@@ -942,7 +942,7 @@ Optional:
 - `target_revision` (String)
 
 <a id="nestedatt--spec--generators--clusters--values--spec--sync_policy--directory"></a>
-### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.directory`
 
 Optional:
 
@@ -952,7 +952,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--clusters--values--spec--sync_policy--target_revision--jsonnet"></a>
-### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision.recurse`
+### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision.jsonnet`
 
 Optional:
 
@@ -989,7 +989,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--clusters--values--spec--sync_policy--helm"></a>
-### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.helm`
 
 Optional:
 
@@ -1005,7 +1005,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--clusters--values--spec--sync_policy--target_revision--file_parameters"></a>
-### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision.file_parameters`
 
 Optional:
 
@@ -1014,7 +1014,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--clusters--values--spec--sync_policy--target_revision--parameters"></a>
-### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision.parameters`
 
 Optional:
 
@@ -1025,7 +1025,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--clusters--values--spec--sync_policy--kustomize"></a>
-### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.kustomize`
 
 Optional:
 
@@ -1044,7 +1044,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--clusters--values--spec--sync_policy--target_revision--patches"></a>
-### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision.patches`
 
 Optional:
 
@@ -1069,7 +1069,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--clusters--values--spec--sync_policy--target_revision--replicas"></a>
-### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision.replicas`
 
 Required:
 
@@ -1079,7 +1079,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--clusters--values--spec--sync_policy--plugin"></a>
-### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.plugin`
 
 Optional:
 
@@ -1088,7 +1088,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--clusters--values--spec--sync_policy--target_revision--parameters))
 
 <a id="nestedatt--spec--generators--clusters--values--spec--sync_policy--target_revision--env"></a>
-### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision.parameters`
+### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision.env`
 
 Required:
 
@@ -1120,7 +1120,7 @@ Optional:
 - `sync_options` (List of String)
 
 <a id="nestedatt--spec--generators--clusters--values--spec--sync_policy--automated"></a>
-### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.sync_options`
+### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.automated`
 
 Optional:
 
@@ -1130,7 +1130,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--clusters--values--spec--sync_policy--managed_namespace_metadata"></a>
-### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.sync_options`
+### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.managed_namespace_metadata`
 
 Optional:
 
@@ -1139,7 +1139,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--clusters--values--spec--sync_policy--retry"></a>
-### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.sync_options`
+### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.retry`
 
 Optional:
 
@@ -1147,7 +1147,7 @@ Optional:
 - `limit` (Number)
 
 <a id="nestedatt--spec--generators--clusters--values--spec--sync_policy--sync_options--backoff"></a>
-### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.sync_options.limit`
+### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.sync_options.backoff`
 
 Optional:
 
@@ -1179,7 +1179,7 @@ Optional:
 - `values` (Map of String)
 
 <a id="nestedatt--spec--generators--git--directories"></a>
-### Nested Schema for `spec.generators.git.values`
+### Nested Schema for `spec.generators.git.directories`
 
 Required:
 
@@ -1191,7 +1191,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--git--files"></a>
-### Nested Schema for `spec.generators.git.values`
+### Nested Schema for `spec.generators.git.files`
 
 Required:
 
@@ -1199,7 +1199,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--git--template"></a>
-### Nested Schema for `spec.generators.git.values`
+### Nested Schema for `spec.generators.git.template`
 
 Required:
 
@@ -1236,7 +1236,7 @@ Optional:
 - `sync_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--git--values--spec--sync_policy))
 
 <a id="nestedatt--spec--generators--git--values--spec--destination"></a>
-### Nested Schema for `spec.generators.git.values.spec.sync_policy`
+### Nested Schema for `spec.generators.git.values.spec.destination`
 
 Optional:
 
@@ -1246,7 +1246,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--git--values--spec--ignore_differences"></a>
-### Nested Schema for `spec.generators.git.values.spec.sync_policy`
+### Nested Schema for `spec.generators.git.values.spec.ignore_differences`
 
 Required:
 
@@ -1263,7 +1263,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--git--values--spec--info"></a>
-### Nested Schema for `spec.generators.git.values.spec.sync_policy`
+### Nested Schema for `spec.generators.git.values.spec.info`
 
 Required:
 
@@ -1272,7 +1272,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--git--values--spec--source"></a>
-### Nested Schema for `spec.generators.git.values.spec.sync_policy`
+### Nested Schema for `spec.generators.git.values.spec.source`
 
 Required:
 
@@ -1290,7 +1290,7 @@ Optional:
 - `target_revision` (String)
 
 <a id="nestedatt--spec--generators--git--values--spec--sync_policy--directory"></a>
-### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.git.values.spec.sync_policy.directory`
 
 Optional:
 
@@ -1300,7 +1300,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--git--values--spec--sync_policy--target_revision--jsonnet"></a>
-### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision.recurse`
+### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision.jsonnet`
 
 Optional:
 
@@ -1337,7 +1337,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--git--values--spec--sync_policy--helm"></a>
-### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.git.values.spec.sync_policy.helm`
 
 Optional:
 
@@ -1353,7 +1353,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--git--values--spec--sync_policy--target_revision--file_parameters"></a>
-### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision.file_parameters`
 
 Optional:
 
@@ -1362,7 +1362,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--git--values--spec--sync_policy--target_revision--parameters"></a>
-### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision.parameters`
 
 Optional:
 
@@ -1373,7 +1373,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--git--values--spec--sync_policy--kustomize"></a>
-### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.git.values.spec.sync_policy.kustomize`
 
 Optional:
 
@@ -1392,7 +1392,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--git--values--spec--sync_policy--target_revision--patches"></a>
-### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision.patches`
 
 Optional:
 
@@ -1417,7 +1417,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--git--values--spec--sync_policy--target_revision--replicas"></a>
-### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision.replicas`
 
 Required:
 
@@ -1427,7 +1427,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--git--values--spec--sync_policy--plugin"></a>
-### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.git.values.spec.sync_policy.plugin`
 
 Optional:
 
@@ -1436,7 +1436,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--git--values--spec--sync_policy--target_revision--parameters))
 
 <a id="nestedatt--spec--generators--git--values--spec--sync_policy--target_revision--env"></a>
-### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision.parameters`
+### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision.env`
 
 Required:
 
@@ -1458,7 +1458,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--git--values--spec--sources"></a>
-### Nested Schema for `spec.generators.git.values.spec.sync_policy`
+### Nested Schema for `spec.generators.git.values.spec.sources`
 
 Required:
 
@@ -1476,7 +1476,7 @@ Optional:
 - `target_revision` (String)
 
 <a id="nestedatt--spec--generators--git--values--spec--sync_policy--directory"></a>
-### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.git.values.spec.sync_policy.directory`
 
 Optional:
 
@@ -1486,7 +1486,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--git--values--spec--sync_policy--target_revision--jsonnet"></a>
-### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision.recurse`
+### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision.jsonnet`
 
 Optional:
 
@@ -1523,7 +1523,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--git--values--spec--sync_policy--helm"></a>
-### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.git.values.spec.sync_policy.helm`
 
 Optional:
 
@@ -1539,7 +1539,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--git--values--spec--sync_policy--target_revision--file_parameters"></a>
-### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision.file_parameters`
 
 Optional:
 
@@ -1548,7 +1548,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--git--values--spec--sync_policy--target_revision--parameters"></a>
-### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision.parameters`
 
 Optional:
 
@@ -1559,7 +1559,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--git--values--spec--sync_policy--kustomize"></a>
-### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.git.values.spec.sync_policy.kustomize`
 
 Optional:
 
@@ -1578,7 +1578,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--git--values--spec--sync_policy--target_revision--patches"></a>
-### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision.patches`
 
 Optional:
 
@@ -1603,7 +1603,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--git--values--spec--sync_policy--target_revision--replicas"></a>
-### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision.replicas`
 
 Required:
 
@@ -1613,7 +1613,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--git--values--spec--sync_policy--plugin"></a>
-### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.git.values.spec.sync_policy.plugin`
 
 Optional:
 
@@ -1622,7 +1622,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--git--values--spec--sync_policy--target_revision--parameters))
 
 <a id="nestedatt--spec--generators--git--values--spec--sync_policy--target_revision--env"></a>
-### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision.parameters`
+### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision.env`
 
 Required:
 
@@ -1654,7 +1654,7 @@ Optional:
 - `sync_options` (List of String)
 
 <a id="nestedatt--spec--generators--git--values--spec--sync_policy--automated"></a>
-### Nested Schema for `spec.generators.git.values.spec.sync_policy.sync_options`
+### Nested Schema for `spec.generators.git.values.spec.sync_policy.automated`
 
 Optional:
 
@@ -1664,7 +1664,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--git--values--spec--sync_policy--managed_namespace_metadata"></a>
-### Nested Schema for `spec.generators.git.values.spec.sync_policy.sync_options`
+### Nested Schema for `spec.generators.git.values.spec.sync_policy.managed_namespace_metadata`
 
 Optional:
 
@@ -1673,7 +1673,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--git--values--spec--sync_policy--retry"></a>
-### Nested Schema for `spec.generators.git.values.spec.sync_policy.sync_options`
+### Nested Schema for `spec.generators.git.values.spec.sync_policy.retry`
 
 Optional:
 
@@ -1681,7 +1681,7 @@ Optional:
 - `limit` (Number)
 
 <a id="nestedatt--spec--generators--git--values--spec--sync_policy--sync_options--backoff"></a>
-### Nested Schema for `spec.generators.git.values.spec.sync_policy.sync_options.limit`
+### Nested Schema for `spec.generators.git.values.spec.sync_policy.sync_options.backoff`
 
 Optional:
 
@@ -1745,7 +1745,7 @@ Optional:
 - `sync_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--list--template--spec--sync_policy))
 
 <a id="nestedatt--spec--generators--list--template--spec--destination"></a>
-### Nested Schema for `spec.generators.list.template.spec.sync_policy`
+### Nested Schema for `spec.generators.list.template.spec.destination`
 
 Optional:
 
@@ -1755,7 +1755,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--list--template--spec--ignore_differences"></a>
-### Nested Schema for `spec.generators.list.template.spec.sync_policy`
+### Nested Schema for `spec.generators.list.template.spec.ignore_differences`
 
 Required:
 
@@ -1772,7 +1772,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--list--template--spec--info"></a>
-### Nested Schema for `spec.generators.list.template.spec.sync_policy`
+### Nested Schema for `spec.generators.list.template.spec.info`
 
 Required:
 
@@ -1781,7 +1781,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--list--template--spec--source"></a>
-### Nested Schema for `spec.generators.list.template.spec.sync_policy`
+### Nested Schema for `spec.generators.list.template.spec.source`
 
 Required:
 
@@ -1799,7 +1799,7 @@ Optional:
 - `target_revision` (String)
 
 <a id="nestedatt--spec--generators--list--template--spec--sync_policy--directory"></a>
-### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.list.template.spec.sync_policy.directory`
 
 Optional:
 
@@ -1809,7 +1809,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--list--template--spec--sync_policy--target_revision--jsonnet"></a>
-### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision.recurse`
+### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision.jsonnet`
 
 Optional:
 
@@ -1846,7 +1846,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--list--template--spec--sync_policy--helm"></a>
-### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.list.template.spec.sync_policy.helm`
 
 Optional:
 
@@ -1862,7 +1862,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--list--template--spec--sync_policy--target_revision--file_parameters"></a>
-### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision.file_parameters`
 
 Optional:
 
@@ -1871,7 +1871,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--list--template--spec--sync_policy--target_revision--parameters"></a>
-### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision.parameters`
 
 Optional:
 
@@ -1882,7 +1882,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--list--template--spec--sync_policy--kustomize"></a>
-### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.list.template.spec.sync_policy.kustomize`
 
 Optional:
 
@@ -1901,7 +1901,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--list--template--spec--sync_policy--target_revision--patches"></a>
-### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision.patches`
 
 Optional:
 
@@ -1926,7 +1926,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--list--template--spec--sync_policy--target_revision--replicas"></a>
-### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision.replicas`
 
 Required:
 
@@ -1936,7 +1936,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--list--template--spec--sync_policy--plugin"></a>
-### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.list.template.spec.sync_policy.plugin`
 
 Optional:
 
@@ -1945,7 +1945,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--list--template--spec--sync_policy--target_revision--parameters))
 
 <a id="nestedatt--spec--generators--list--template--spec--sync_policy--target_revision--env"></a>
-### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision.parameters`
+### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision.env`
 
 Required:
 
@@ -1967,7 +1967,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--list--template--spec--sources"></a>
-### Nested Schema for `spec.generators.list.template.spec.sync_policy`
+### Nested Schema for `spec.generators.list.template.spec.sources`
 
 Required:
 
@@ -1985,7 +1985,7 @@ Optional:
 - `target_revision` (String)
 
 <a id="nestedatt--spec--generators--list--template--spec--sync_policy--directory"></a>
-### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.list.template.spec.sync_policy.directory`
 
 Optional:
 
@@ -1995,7 +1995,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--list--template--spec--sync_policy--target_revision--jsonnet"></a>
-### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision.recurse`
+### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision.jsonnet`
 
 Optional:
 
@@ -2032,7 +2032,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--list--template--spec--sync_policy--helm"></a>
-### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.list.template.spec.sync_policy.helm`
 
 Optional:
 
@@ -2048,7 +2048,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--list--template--spec--sync_policy--target_revision--file_parameters"></a>
-### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision.file_parameters`
 
 Optional:
 
@@ -2057,7 +2057,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--list--template--spec--sync_policy--target_revision--parameters"></a>
-### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision.parameters`
 
 Optional:
 
@@ -2068,7 +2068,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--list--template--spec--sync_policy--kustomize"></a>
-### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.list.template.spec.sync_policy.kustomize`
 
 Optional:
 
@@ -2087,7 +2087,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--list--template--spec--sync_policy--target_revision--patches"></a>
-### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision.patches`
 
 Optional:
 
@@ -2112,7 +2112,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--list--template--spec--sync_policy--target_revision--replicas"></a>
-### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision.replicas`
 
 Required:
 
@@ -2122,7 +2122,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--list--template--spec--sync_policy--plugin"></a>
-### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.list.template.spec.sync_policy.plugin`
 
 Optional:
 
@@ -2131,7 +2131,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--list--template--spec--sync_policy--target_revision--parameters))
 
 <a id="nestedatt--spec--generators--list--template--spec--sync_policy--target_revision--env"></a>
-### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision.parameters`
+### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision.env`
 
 Required:
 
@@ -2163,7 +2163,7 @@ Optional:
 - `sync_options` (List of String)
 
 <a id="nestedatt--spec--generators--list--template--spec--sync_policy--automated"></a>
-### Nested Schema for `spec.generators.list.template.spec.sync_policy.sync_options`
+### Nested Schema for `spec.generators.list.template.spec.sync_policy.automated`
 
 Optional:
 
@@ -2173,7 +2173,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--list--template--spec--sync_policy--managed_namespace_metadata"></a>
-### Nested Schema for `spec.generators.list.template.spec.sync_policy.sync_options`
+### Nested Schema for `spec.generators.list.template.spec.sync_policy.managed_namespace_metadata`
 
 Optional:
 
@@ -2182,7 +2182,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--list--template--spec--sync_policy--retry"></a>
-### Nested Schema for `spec.generators.list.template.spec.sync_policy.sync_options`
+### Nested Schema for `spec.generators.list.template.spec.sync_policy.retry`
 
 Optional:
 
@@ -2190,7 +2190,7 @@ Optional:
 - `limit` (Number)
 
 <a id="nestedatt--spec--generators--list--template--spec--sync_policy--sync_options--backoff"></a>
-### Nested Schema for `spec.generators.list.template.spec.sync_policy.sync_options.limit`
+### Nested Schema for `spec.generators.list.template.spec.sync_policy.sync_options.backoff`
 
 Optional:
 
@@ -2216,7 +2216,7 @@ Optional:
 - `template` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template))
 
 <a id="nestedatt--spec--generators--matrix--generators"></a>
-### Nested Schema for `spec.generators.matrix.template`
+### Nested Schema for `spec.generators.matrix.generators`
 
 Optional:
 
@@ -2247,7 +2247,7 @@ Optional:
 - `values` (Map of String)
 
 <a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource--label_selector"></a>
-### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values`
+### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.label_selector`
 
 Optional:
 
@@ -2255,7 +2255,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--match_expressions"></a>
-### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.match_labels`
+### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.match_expressions`
 
 Required:
 
@@ -2269,7 +2269,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource--template"></a>
-### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values`
+### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.template`
 
 Required:
 
@@ -2277,7 +2277,7 @@ Required:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec))
 
 <a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--metadata"></a>
-### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec`
+### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.metadata`
 
 Optional:
 
@@ -2306,7 +2306,7 @@ Optional:
 - `sync_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy))
 
 <a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--destination"></a>
-### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.destination`
 
 Optional:
 
@@ -2316,7 +2316,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--ignore_differences"></a>
-### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.ignore_differences`
 
 Required:
 
@@ -2333,7 +2333,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--info"></a>
-### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.info`
 
 Required:
 
@@ -2342,7 +2342,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--source"></a>
-### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.source`
 
 Required:
 
@@ -2370,7 +2370,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--directory--jsonnet"></a>
-### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.directory.recurse`
+### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.directory.jsonnet`
 
 Optional:
 
@@ -2379,7 +2379,7 @@ Optional:
 - `tlas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--directory--recurse--tlas))
 
 <a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.directory.recurse.tlas`
+### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.directory.recurse.ext_vars`
 
 Required:
 
@@ -2423,7 +2423,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--helm--file_parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.helm.file_parameters`
 
 Optional:
 
@@ -2432,7 +2432,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--helm--parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.helm.parameters`
 
 Optional:
 
@@ -2462,7 +2462,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--kustomize--patches"></a>
-### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.kustomize.patches`
 
 Optional:
 
@@ -2487,7 +2487,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--kustomize--replicas"></a>
-### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.kustomize.replicas`
 
 Required:
 
@@ -2506,7 +2506,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--plugin--parameters))
 
 <a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--plugin--env"></a>
-### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.plugin.parameters`
+### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.plugin.env`
 
 Required:
 
@@ -2528,7 +2528,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sources"></a>
-### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sources`
 
 Required:
 
@@ -2556,7 +2556,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--directory--jsonnet"></a>
-### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.directory.recurse`
+### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.directory.jsonnet`
 
 Optional:
 
@@ -2565,7 +2565,7 @@ Optional:
 - `tlas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--directory--recurse--tlas))
 
 <a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.directory.recurse.tlas`
+### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.directory.recurse.ext_vars`
 
 Required:
 
@@ -2609,7 +2609,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--helm--file_parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.helm.file_parameters`
 
 Optional:
 
@@ -2618,7 +2618,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--helm--parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.helm.parameters`
 
 Optional:
 
@@ -2648,7 +2648,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--kustomize--patches"></a>
-### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.kustomize.patches`
 
 Optional:
 
@@ -2673,7 +2673,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--kustomize--replicas"></a>
-### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.kustomize.replicas`
 
 Required:
 
@@ -2692,7 +2692,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--plugin--parameters))
 
 <a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--plugin--env"></a>
-### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.plugin.parameters`
+### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.plugin.env`
 
 Required:
 
@@ -2751,7 +2751,7 @@ Optional:
 - `limit` (Number)
 
 <a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--retry--backoff"></a>
-### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.retry.limit`
+### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.retry.backoff`
 
 Optional:
 
@@ -2775,7 +2775,7 @@ Optional:
 - `values` (Map of String)
 
 <a id="nestedatt--spec--generators--matrix--template--clusters--selector"></a>
-### Nested Schema for `spec.generators.matrix.template.clusters.values`
+### Nested Schema for `spec.generators.matrix.template.clusters.selector`
 
 Optional:
 
@@ -2783,7 +2783,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--generators--matrix--template--clusters--values--match_expressions"></a>
-### Nested Schema for `spec.generators.matrix.template.clusters.values.match_labels`
+### Nested Schema for `spec.generators.matrix.template.clusters.values.match_expressions`
 
 Required:
 
@@ -2797,7 +2797,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--clusters--template"></a>
-### Nested Schema for `spec.generators.matrix.template.clusters.values`
+### Nested Schema for `spec.generators.matrix.template.clusters.template`
 
 Required:
 
@@ -2805,7 +2805,7 @@ Required:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--clusters--values--spec))
 
 <a id="nestedatt--spec--generators--matrix--template--clusters--values--metadata"></a>
-### Nested Schema for `spec.generators.matrix.template.clusters.values.spec`
+### Nested Schema for `spec.generators.matrix.template.clusters.values.metadata`
 
 Optional:
 
@@ -2834,7 +2834,7 @@ Optional:
 - `sync_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy))
 
 <a id="nestedatt--spec--generators--matrix--template--clusters--values--spec--destination"></a>
-### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.destination`
 
 Optional:
 
@@ -2844,7 +2844,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--clusters--values--spec--ignore_differences"></a>
-### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.ignore_differences`
 
 Required:
 
@@ -2861,7 +2861,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--clusters--values--spec--info"></a>
-### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.info`
 
 Required:
 
@@ -2870,7 +2870,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--matrix--template--clusters--values--spec--source"></a>
-### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.source`
 
 Required:
 
@@ -2898,7 +2898,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--directory--jsonnet"></a>
-### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.directory.recurse`
+### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.directory.jsonnet`
 
 Optional:
 
@@ -2907,7 +2907,7 @@ Optional:
 - `tlas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--directory--recurse--tlas))
 
 <a id="nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.directory.recurse.tlas`
+### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.directory.recurse.ext_vars`
 
 Required:
 
@@ -2951,7 +2951,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--helm--file_parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.helm.file_parameters`
 
 Optional:
 
@@ -2960,7 +2960,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--helm--parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.helm.parameters`
 
 Optional:
 
@@ -2990,7 +2990,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--kustomize--patches"></a>
-### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.kustomize.patches`
 
 Optional:
 
@@ -3015,7 +3015,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--kustomize--replicas"></a>
-### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.kustomize.replicas`
 
 Required:
 
@@ -3034,7 +3034,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--plugin--parameters))
 
 <a id="nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--plugin--env"></a>
-### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.plugin.parameters`
+### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.plugin.env`
 
 Required:
 
@@ -3056,7 +3056,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--clusters--values--spec--sources"></a>
-### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sources`
 
 Required:
 
@@ -3084,7 +3084,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--directory--jsonnet"></a>
-### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.directory.recurse`
+### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.directory.jsonnet`
 
 Optional:
 
@@ -3093,7 +3093,7 @@ Optional:
 - `tlas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--directory--recurse--tlas))
 
 <a id="nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.directory.recurse.tlas`
+### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.directory.recurse.ext_vars`
 
 Required:
 
@@ -3137,7 +3137,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--helm--file_parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.helm.file_parameters`
 
 Optional:
 
@@ -3146,7 +3146,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--helm--parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.helm.parameters`
 
 Optional:
 
@@ -3176,7 +3176,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--kustomize--patches"></a>
-### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.kustomize.patches`
 
 Optional:
 
@@ -3201,7 +3201,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--kustomize--replicas"></a>
-### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.kustomize.replicas`
 
 Required:
 
@@ -3220,7 +3220,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--plugin--parameters))
 
 <a id="nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--plugin--env"></a>
-### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.plugin.parameters`
+### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.plugin.env`
 
 Required:
 
@@ -3279,7 +3279,7 @@ Optional:
 - `limit` (Number)
 
 <a id="nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--retry--backoff"></a>
-### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.retry.limit`
+### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.retry.backoff`
 
 Optional:
 
@@ -3311,7 +3311,7 @@ Optional:
 - `values` (Map of String)
 
 <a id="nestedatt--spec--generators--matrix--template--git--directories"></a>
-### Nested Schema for `spec.generators.matrix.template.git.values`
+### Nested Schema for `spec.generators.matrix.template.git.directories`
 
 Required:
 
@@ -3323,7 +3323,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--git--files"></a>
-### Nested Schema for `spec.generators.matrix.template.git.values`
+### Nested Schema for `spec.generators.matrix.template.git.files`
 
 Required:
 
@@ -3331,7 +3331,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--matrix--template--git--template"></a>
-### Nested Schema for `spec.generators.matrix.template.git.values`
+### Nested Schema for `spec.generators.matrix.template.git.template`
 
 Required:
 
@@ -3339,7 +3339,7 @@ Required:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--git--values--spec))
 
 <a id="nestedatt--spec--generators--matrix--template--git--values--metadata"></a>
-### Nested Schema for `spec.generators.matrix.template.git.values.spec`
+### Nested Schema for `spec.generators.matrix.template.git.values.metadata`
 
 Optional:
 
@@ -3368,7 +3368,7 @@ Optional:
 - `sync_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy))
 
 <a id="nestedatt--spec--generators--matrix--template--git--values--spec--destination"></a>
-### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.git.values.spec.destination`
 
 Optional:
 
@@ -3378,7 +3378,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--git--values--spec--ignore_differences"></a>
-### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.git.values.spec.ignore_differences`
 
 Required:
 
@@ -3395,7 +3395,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--git--values--spec--info"></a>
-### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.git.values.spec.info`
 
 Required:
 
@@ -3404,7 +3404,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--matrix--template--git--values--spec--source"></a>
-### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.git.values.spec.source`
 
 Required:
 
@@ -3432,7 +3432,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--directory--jsonnet"></a>
-### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.directory.recurse`
+### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.directory.jsonnet`
 
 Optional:
 
@@ -3441,7 +3441,7 @@ Optional:
 - `tlas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--directory--recurse--tlas))
 
 <a id="nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.directory.recurse.tlas`
+### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.directory.recurse.ext_vars`
 
 Required:
 
@@ -3485,7 +3485,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--helm--file_parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.helm.file_parameters`
 
 Optional:
 
@@ -3494,7 +3494,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--helm--parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.helm.parameters`
 
 Optional:
 
@@ -3524,7 +3524,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--kustomize--patches"></a>
-### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.kustomize.patches`
 
 Optional:
 
@@ -3549,7 +3549,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--kustomize--replicas"></a>
-### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.kustomize.replicas`
 
 Required:
 
@@ -3568,7 +3568,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--plugin--parameters))
 
 <a id="nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--plugin--env"></a>
-### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.plugin.parameters`
+### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.plugin.env`
 
 Required:
 
@@ -3590,7 +3590,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--git--values--spec--sources"></a>
-### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.git.values.spec.sources`
 
 Required:
 
@@ -3618,7 +3618,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--directory--jsonnet"></a>
-### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.directory.recurse`
+### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.directory.jsonnet`
 
 Optional:
 
@@ -3627,7 +3627,7 @@ Optional:
 - `tlas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--directory--recurse--tlas))
 
 <a id="nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.directory.recurse.tlas`
+### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.directory.recurse.ext_vars`
 
 Required:
 
@@ -3671,7 +3671,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--helm--file_parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.helm.file_parameters`
 
 Optional:
 
@@ -3680,7 +3680,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--helm--parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.helm.parameters`
 
 Optional:
 
@@ -3710,7 +3710,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--kustomize--patches"></a>
-### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.kustomize.patches`
 
 Optional:
 
@@ -3735,7 +3735,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--kustomize--replicas"></a>
-### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.kustomize.replicas`
 
 Required:
 
@@ -3754,7 +3754,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--plugin--parameters))
 
 <a id="nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--plugin--env"></a>
-### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.plugin.parameters`
+### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.plugin.env`
 
 Required:
 
@@ -3813,7 +3813,7 @@ Optional:
 - `limit` (Number)
 
 <a id="nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--retry--backoff"></a>
-### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.retry.limit`
+### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.retry.backoff`
 
 Optional:
 
@@ -3848,7 +3848,7 @@ Required:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--list--template--spec))
 
 <a id="nestedatt--spec--generators--matrix--template--list--template--metadata"></a>
-### Nested Schema for `spec.generators.matrix.template.list.template.spec`
+### Nested Schema for `spec.generators.matrix.template.list.template.metadata`
 
 Optional:
 
@@ -3877,7 +3877,7 @@ Optional:
 - `sync_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy))
 
 <a id="nestedatt--spec--generators--matrix--template--list--template--spec--destination"></a>
-### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.list.template.spec.destination`
 
 Optional:
 
@@ -3887,7 +3887,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--list--template--spec--ignore_differences"></a>
-### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.list.template.spec.ignore_differences`
 
 Required:
 
@@ -3904,7 +3904,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--list--template--spec--info"></a>
-### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.list.template.spec.info`
 
 Required:
 
@@ -3913,7 +3913,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--matrix--template--list--template--spec--source"></a>
-### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.list.template.spec.source`
 
 Required:
 
@@ -3941,7 +3941,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--directory--jsonnet"></a>
-### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.directory.recurse`
+### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.directory.jsonnet`
 
 Optional:
 
@@ -3950,7 +3950,7 @@ Optional:
 - `tlas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--directory--recurse--tlas))
 
 <a id="nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.directory.recurse.tlas`
+### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.directory.recurse.ext_vars`
 
 Required:
 
@@ -3994,7 +3994,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--helm--file_parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.helm.file_parameters`
 
 Optional:
 
@@ -4003,7 +4003,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--helm--parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.helm.parameters`
 
 Optional:
 
@@ -4033,7 +4033,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--kustomize--patches"></a>
-### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.kustomize.patches`
 
 Optional:
 
@@ -4058,7 +4058,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--kustomize--replicas"></a>
-### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.kustomize.replicas`
 
 Required:
 
@@ -4077,7 +4077,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--plugin--parameters))
 
 <a id="nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--plugin--env"></a>
-### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.plugin.parameters`
+### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.plugin.env`
 
 Required:
 
@@ -4099,7 +4099,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--list--template--spec--sources"></a>
-### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.list.template.spec.sources`
 
 Required:
 
@@ -4127,7 +4127,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--directory--jsonnet"></a>
-### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.directory.recurse`
+### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.directory.jsonnet`
 
 Optional:
 
@@ -4136,7 +4136,7 @@ Optional:
 - `tlas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--directory--recurse--tlas))
 
 <a id="nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.directory.recurse.tlas`
+### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.directory.recurse.ext_vars`
 
 Required:
 
@@ -4180,7 +4180,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--helm--file_parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.helm.file_parameters`
 
 Optional:
 
@@ -4189,7 +4189,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--helm--parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.helm.parameters`
 
 Optional:
 
@@ -4219,7 +4219,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--kustomize--patches"></a>
-### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.kustomize.patches`
 
 Optional:
 
@@ -4244,7 +4244,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--kustomize--replicas"></a>
-### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.kustomize.replicas`
 
 Required:
 
@@ -4263,7 +4263,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--plugin--parameters))
 
 <a id="nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--plugin--env"></a>
-### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.plugin.parameters`
+### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.plugin.env`
 
 Required:
 
@@ -4322,7 +4322,7 @@ Optional:
 - `limit` (Number)
 
 <a id="nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--retry--backoff"></a>
-### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.retry.limit`
+### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.retry.backoff`
 
 Optional:
 
@@ -4351,7 +4351,7 @@ Optional:
 - `values` (Map of String)
 
 <a id="nestedatt--spec--generators--matrix--template--plugin--config_map_ref"></a>
-### Nested Schema for `spec.generators.matrix.template.plugin.values`
+### Nested Schema for `spec.generators.matrix.template.plugin.config_map_ref`
 
 Required:
 
@@ -4359,7 +4359,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--matrix--template--plugin--input"></a>
-### Nested Schema for `spec.generators.matrix.template.plugin.values`
+### Nested Schema for `spec.generators.matrix.template.plugin.input`
 
 Optional:
 
@@ -4367,7 +4367,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--plugin--template"></a>
-### Nested Schema for `spec.generators.matrix.template.plugin.values`
+### Nested Schema for `spec.generators.matrix.template.plugin.template`
 
 Required:
 
@@ -4375,7 +4375,7 @@ Required:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--plugin--values--spec))
 
 <a id="nestedatt--spec--generators--matrix--template--plugin--values--metadata"></a>
-### Nested Schema for `spec.generators.matrix.template.plugin.values.spec`
+### Nested Schema for `spec.generators.matrix.template.plugin.values.metadata`
 
 Optional:
 
@@ -4404,7 +4404,7 @@ Optional:
 - `sync_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy))
 
 <a id="nestedatt--spec--generators--matrix--template--plugin--values--spec--destination"></a>
-### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.destination`
 
 Optional:
 
@@ -4414,7 +4414,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--plugin--values--spec--ignore_differences"></a>
-### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.ignore_differences`
 
 Required:
 
@@ -4431,7 +4431,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--plugin--values--spec--info"></a>
-### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.info`
 
 Required:
 
@@ -4440,7 +4440,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--matrix--template--plugin--values--spec--source"></a>
-### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.source`
 
 Required:
 
@@ -4468,7 +4468,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--directory--jsonnet"></a>
-### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.directory.recurse`
+### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.directory.jsonnet`
 
 Optional:
 
@@ -4477,7 +4477,7 @@ Optional:
 - `tlas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--directory--recurse--tlas))
 
 <a id="nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.directory.recurse.tlas`
+### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.directory.recurse.ext_vars`
 
 Required:
 
@@ -4521,7 +4521,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--helm--file_parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.helm.file_parameters`
 
 Optional:
 
@@ -4530,7 +4530,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--helm--parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.helm.parameters`
 
 Optional:
 
@@ -4560,7 +4560,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--kustomize--patches"></a>
-### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.kustomize.patches`
 
 Optional:
 
@@ -4585,7 +4585,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--kustomize--replicas"></a>
-### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.kustomize.replicas`
 
 Required:
 
@@ -4604,7 +4604,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--plugin--parameters))
 
 <a id="nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--plugin--env"></a>
-### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.plugin.parameters`
+### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.plugin.env`
 
 Required:
 
@@ -4626,7 +4626,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--plugin--values--spec--sources"></a>
-### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sources`
 
 Required:
 
@@ -4654,7 +4654,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--directory--jsonnet"></a>
-### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.directory.recurse`
+### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.directory.jsonnet`
 
 Optional:
 
@@ -4663,7 +4663,7 @@ Optional:
 - `tlas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--directory--recurse--tlas))
 
 <a id="nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.directory.recurse.tlas`
+### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.directory.recurse.ext_vars`
 
 Required:
 
@@ -4707,7 +4707,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--helm--file_parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.helm.file_parameters`
 
 Optional:
 
@@ -4716,7 +4716,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--helm--parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.helm.parameters`
 
 Optional:
 
@@ -4746,7 +4746,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--kustomize--patches"></a>
-### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.kustomize.patches`
 
 Optional:
 
@@ -4771,7 +4771,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--kustomize--replicas"></a>
-### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.kustomize.replicas`
 
 Required:
 
@@ -4790,7 +4790,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--plugin--parameters))
 
 <a id="nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--plugin--env"></a>
-### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.plugin.parameters`
+### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.plugin.env`
 
 Required:
 
@@ -4849,7 +4849,7 @@ Optional:
 - `limit` (Number)
 
 <a id="nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--retry--backoff"></a>
-### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.retry.limit`
+### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.retry.backoff`
 
 Optional:
 
@@ -4879,7 +4879,7 @@ Optional:
 - `template` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--pull_request--template))
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--azuredevops"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template`
+### Nested Schema for `spec.generators.matrix.template.pull_request.azuredevops`
 
 Required:
 
@@ -4904,7 +4904,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--bitbucket"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template`
+### Nested Schema for `spec.generators.matrix.template.pull_request.bitbucket`
 
 Required:
 
@@ -4918,7 +4918,7 @@ Optional:
 - `bearer_token` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--pull_request--template--bearer_token))
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--template--basic_auth"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template.bearer_token`
+### Nested Schema for `spec.generators.matrix.template.pull_request.template.basic_auth`
 
 Required:
 
@@ -4926,7 +4926,7 @@ Required:
 - `username` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--template--bearer_token--password_ref"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template.bearer_token.username`
+### Nested Schema for `spec.generators.matrix.template.pull_request.template.bearer_token.password_ref`
 
 Required:
 
@@ -4954,7 +4954,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--bitbucket_server"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template`
+### Nested Schema for `spec.generators.matrix.template.pull_request.bitbucket_server`
 
 Required:
 
@@ -4975,7 +4975,7 @@ Required:
 - `username` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--template--basic_auth--password_ref"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template.basic_auth.username`
+### Nested Schema for `spec.generators.matrix.template.pull_request.template.basic_auth.password_ref`
 
 Required:
 
@@ -4986,7 +4986,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--filters"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template`
+### Nested Schema for `spec.generators.matrix.template.pull_request.filters`
 
 Optional:
 
@@ -4995,7 +4995,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--gitea"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template`
+### Nested Schema for `spec.generators.matrix.template.pull_request.gitea`
 
 Required:
 
@@ -5019,7 +5019,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--github"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template`
+### Nested Schema for `spec.generators.matrix.template.pull_request.github`
 
 Required:
 
@@ -5044,7 +5044,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--gitlab"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template`
+### Nested Schema for `spec.generators.matrix.template.pull_request.gitlab`
 
 Required:
 
@@ -5077,7 +5077,7 @@ Required:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--pull_request--template--spec))
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--template--metadata"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec`
+### Nested Schema for `spec.generators.matrix.template.pull_request.template.metadata`
 
 Optional:
 
@@ -5106,7 +5106,7 @@ Optional:
 - `sync_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy))
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--template--spec--destination"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.destination`
 
 Optional:
 
@@ -5116,7 +5116,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--template--spec--ignore_differences"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.ignore_differences`
 
 Required:
 
@@ -5133,7 +5133,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--template--spec--info"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.info`
 
 Required:
 
@@ -5142,7 +5142,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--template--spec--source"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.source`
 
 Required:
 
@@ -5170,7 +5170,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--directory--jsonnet"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.directory.recurse`
+### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.directory.jsonnet`
 
 Optional:
 
@@ -5179,7 +5179,7 @@ Optional:
 - `tlas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--directory--recurse--tlas))
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.directory.recurse.tlas`
+### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.directory.recurse.ext_vars`
 
 Required:
 
@@ -5223,7 +5223,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--helm--file_parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.helm.file_parameters`
 
 Optional:
 
@@ -5232,7 +5232,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--helm--parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.helm.parameters`
 
 Optional:
 
@@ -5262,7 +5262,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--kustomize--patches"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.kustomize.patches`
 
 Optional:
 
@@ -5287,7 +5287,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--kustomize--replicas"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.kustomize.replicas`
 
 Required:
 
@@ -5306,7 +5306,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--plugin--parameters))
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--plugin--env"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.plugin.parameters`
+### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.plugin.env`
 
 Required:
 
@@ -5328,7 +5328,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--template--spec--sources"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sources`
 
 Required:
 
@@ -5356,7 +5356,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--directory--jsonnet"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.directory.recurse`
+### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.directory.jsonnet`
 
 Optional:
 
@@ -5365,7 +5365,7 @@ Optional:
 - `tlas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--directory--recurse--tlas))
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.directory.recurse.tlas`
+### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.directory.recurse.ext_vars`
 
 Required:
 
@@ -5409,7 +5409,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--helm--file_parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.helm.file_parameters`
 
 Optional:
 
@@ -5418,7 +5418,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--helm--parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.helm.parameters`
 
 Optional:
 
@@ -5448,7 +5448,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--kustomize--patches"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.kustomize.patches`
 
 Optional:
 
@@ -5473,7 +5473,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--kustomize--replicas"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.kustomize.replicas`
 
 Required:
 
@@ -5492,7 +5492,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--plugin--parameters))
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--plugin--env"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.plugin.parameters`
+### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.plugin.env`
 
 Required:
 
@@ -5551,7 +5551,7 @@ Optional:
 - `limit` (Number)
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--retry--backoff"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.retry.limit`
+### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.retry.backoff`
 
 Optional:
 
@@ -5584,7 +5584,7 @@ Optional:
 - `values` (Map of String)
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--aws_code_commit"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.aws_code_commit`
 
 Optional:
 
@@ -5607,7 +5607,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--azure_dev_ops"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.azure_dev_ops`
 
 Required:
 
@@ -5621,7 +5621,7 @@ Optional:
 - `api` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--values--access_token_ref"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values.api`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.values.access_token_ref`
 
 Required:
 
@@ -5631,7 +5631,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--bitbucket"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.bitbucket`
 
 Required:
 
@@ -5644,7 +5644,7 @@ Optional:
 - `all_branches` (Boolean)
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--values--app_password_ref"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values.all_branches`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.values.app_password_ref`
 
 Required:
 
@@ -5654,7 +5654,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--bitbucket_server"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.bitbucket_server`
 
 Required:
 
@@ -5675,7 +5675,7 @@ Required:
 - `username` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--values--basic_auth--password_ref"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values.basic_auth.username`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.values.basic_auth.password_ref`
 
 Required:
 
@@ -5686,7 +5686,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--filters"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.filters`
 
 Optional:
 
@@ -5698,7 +5698,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--gitea"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.gitea`
 
 Required:
 
@@ -5722,7 +5722,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--github"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.github`
 
 Required:
 
@@ -5746,7 +5746,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--gitlab"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.gitlab`
 
 Required:
 
@@ -5763,7 +5763,7 @@ Optional:
 - `topic` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--values--token_ref"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values.topic`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.values.token_ref`
 
 Required:
 
@@ -5773,7 +5773,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--template"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.template`
 
 Required:
 
@@ -5781,7 +5781,7 @@ Required:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--scm_provider--values--spec))
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--values--metadata"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.values.metadata`
 
 Optional:
 
@@ -5810,7 +5810,7 @@ Optional:
 - `sync_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy))
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--values--spec--destination"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.destination`
 
 Optional:
 
@@ -5820,7 +5820,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--values--spec--ignore_differences"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.ignore_differences`
 
 Required:
 
@@ -5837,7 +5837,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--values--spec--info"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.info`
 
 Required:
 
@@ -5846,7 +5846,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--values--spec--source"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.source`
 
 Required:
 
@@ -5874,7 +5874,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--directory--jsonnet"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.directory.recurse`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.directory.jsonnet`
 
 Optional:
 
@@ -5883,7 +5883,7 @@ Optional:
 - `tlas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--directory--recurse--tlas))
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.directory.recurse.tlas`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.directory.recurse.ext_vars`
 
 Required:
 
@@ -5927,7 +5927,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--helm--file_parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.helm.file_parameters`
 
 Optional:
 
@@ -5936,7 +5936,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--helm--parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.helm.parameters`
 
 Optional:
 
@@ -5966,7 +5966,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--kustomize--patches"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.kustomize.patches`
 
 Optional:
 
@@ -5991,7 +5991,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--kustomize--replicas"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.kustomize.replicas`
 
 Required:
 
@@ -6010,7 +6010,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--plugin--parameters))
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--plugin--env"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.plugin.parameters`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.plugin.env`
 
 Required:
 
@@ -6032,7 +6032,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sources"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sources`
 
 Required:
 
@@ -6060,7 +6060,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--directory--jsonnet"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.directory.recurse`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.directory.jsonnet`
 
 Optional:
 
@@ -6069,7 +6069,7 @@ Optional:
 - `tlas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--directory--recurse--tlas))
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.directory.recurse.tlas`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.directory.recurse.ext_vars`
 
 Required:
 
@@ -6113,7 +6113,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--helm--file_parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.helm.file_parameters`
 
 Optional:
 
@@ -6122,7 +6122,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--helm--parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.helm.parameters`
 
 Optional:
 
@@ -6152,7 +6152,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--kustomize--patches"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.kustomize.patches`
 
 Optional:
 
@@ -6177,7 +6177,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--kustomize--replicas"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.kustomize.replicas`
 
 Required:
 
@@ -6196,7 +6196,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--plugin--parameters))
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--plugin--env"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.plugin.parameters`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.plugin.env`
 
 Required:
 
@@ -6255,7 +6255,7 @@ Optional:
 - `limit` (Number)
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--retry--backoff"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.retry.limit`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.retry.backoff`
 
 Optional:
 
@@ -6278,7 +6278,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--generators--matrix--template--selector--match_expressions"></a>
-### Nested Schema for `spec.generators.matrix.template.selector.match_labels`
+### Nested Schema for `spec.generators.matrix.template.selector.match_expressions`
 
 Required:
 
@@ -6330,7 +6330,7 @@ Optional:
 - `sync_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--spec--sync_policy))
 
 <a id="nestedatt--spec--generators--matrix--template--spec--destination"></a>
-### Nested Schema for `spec.generators.matrix.template.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.spec.destination`
 
 Optional:
 
@@ -6340,7 +6340,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--spec--ignore_differences"></a>
-### Nested Schema for `spec.generators.matrix.template.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.spec.ignore_differences`
 
 Required:
 
@@ -6357,7 +6357,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--spec--info"></a>
-### Nested Schema for `spec.generators.matrix.template.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.spec.info`
 
 Required:
 
@@ -6366,7 +6366,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--matrix--template--spec--source"></a>
-### Nested Schema for `spec.generators.matrix.template.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.spec.source`
 
 Required:
 
@@ -6384,7 +6384,7 @@ Optional:
 - `target_revision` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--spec--sync_policy--directory"></a>
-### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.directory`
 
 Optional:
 
@@ -6394,7 +6394,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--matrix--template--spec--sync_policy--target_revision--jsonnet"></a>
-### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision.recurse`
+### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision.jsonnet`
 
 Optional:
 
@@ -6431,7 +6431,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--spec--sync_policy--helm"></a>
-### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.helm`
 
 Optional:
 
@@ -6447,7 +6447,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--spec--sync_policy--target_revision--file_parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision.file_parameters`
 
 Optional:
 
@@ -6456,7 +6456,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--spec--sync_policy--target_revision--parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision.parameters`
 
 Optional:
 
@@ -6467,7 +6467,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--spec--sync_policy--kustomize"></a>
-### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.kustomize`
 
 Optional:
 
@@ -6486,7 +6486,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--spec--sync_policy--target_revision--patches"></a>
-### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision.patches`
 
 Optional:
 
@@ -6511,7 +6511,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--spec--sync_policy--target_revision--replicas"></a>
-### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision.replicas`
 
 Required:
 
@@ -6521,7 +6521,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--matrix--template--spec--sync_policy--plugin"></a>
-### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.plugin`
 
 Optional:
 
@@ -6530,7 +6530,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--spec--sync_policy--target_revision--parameters))
 
 <a id="nestedatt--spec--generators--matrix--template--spec--sync_policy--target_revision--env"></a>
-### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision.parameters`
+### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision.env`
 
 Required:
 
@@ -6552,7 +6552,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--spec--sources"></a>
-### Nested Schema for `spec.generators.matrix.template.spec.sync_policy`
+### Nested Schema for `spec.generators.matrix.template.spec.sources`
 
 Required:
 
@@ -6570,7 +6570,7 @@ Optional:
 - `target_revision` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--spec--sync_policy--directory"></a>
-### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.directory`
 
 Optional:
 
@@ -6580,7 +6580,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--matrix--template--spec--sync_policy--target_revision--jsonnet"></a>
-### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision.recurse`
+### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision.jsonnet`
 
 Optional:
 
@@ -6617,7 +6617,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--spec--sync_policy--helm"></a>
-### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.helm`
 
 Optional:
 
@@ -6633,7 +6633,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--spec--sync_policy--target_revision--file_parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision.file_parameters`
 
 Optional:
 
@@ -6642,7 +6642,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--spec--sync_policy--target_revision--parameters"></a>
-### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision.parameters`
 
 Optional:
 
@@ -6653,7 +6653,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--spec--sync_policy--kustomize"></a>
-### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.kustomize`
 
 Optional:
 
@@ -6672,7 +6672,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--spec--sync_policy--target_revision--patches"></a>
-### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision.patches`
 
 Optional:
 
@@ -6697,7 +6697,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--spec--sync_policy--target_revision--replicas"></a>
-### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision.replicas`
 
 Required:
 
@@ -6707,7 +6707,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--matrix--template--spec--sync_policy--plugin"></a>
-### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.plugin`
 
 Optional:
 
@@ -6716,7 +6716,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--spec--sync_policy--target_revision--parameters))
 
 <a id="nestedatt--spec--generators--matrix--template--spec--sync_policy--target_revision--env"></a>
-### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision.parameters`
+### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision.env`
 
 Required:
 
@@ -6748,7 +6748,7 @@ Optional:
 - `sync_options` (List of String)
 
 <a id="nestedatt--spec--generators--matrix--template--spec--sync_policy--automated"></a>
-### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.sync_options`
+### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.automated`
 
 Optional:
 
@@ -6758,7 +6758,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--spec--sync_policy--managed_namespace_metadata"></a>
-### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.sync_options`
+### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.managed_namespace_metadata`
 
 Optional:
 
@@ -6767,7 +6767,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--matrix--template--spec--sync_policy--retry"></a>
-### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.sync_options`
+### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.retry`
 
 Optional:
 
@@ -6775,7 +6775,7 @@ Optional:
 - `limit` (Number)
 
 <a id="nestedatt--spec--generators--matrix--template--spec--sync_policy--sync_options--backoff"></a>
-### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.sync_options.limit`
+### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.sync_options.backoff`
 
 Optional:
 
@@ -6802,7 +6802,7 @@ Optional:
 - `template` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template))
 
 <a id="nestedatt--spec--generators--merge--generators"></a>
-### Nested Schema for `spec.generators.merge.template`
+### Nested Schema for `spec.generators.merge.generators`
 
 Optional:
 
@@ -6833,7 +6833,7 @@ Optional:
 - `values` (Map of String)
 
 <a id="nestedatt--spec--generators--merge--template--cluster_decision_resource--label_selector"></a>
-### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values`
+### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.label_selector`
 
 Optional:
 
@@ -6841,7 +6841,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--generators--merge--template--cluster_decision_resource--values--match_expressions"></a>
-### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.match_labels`
+### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.match_expressions`
 
 Required:
 
@@ -6855,7 +6855,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--cluster_decision_resource--template"></a>
-### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values`
+### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.template`
 
 Required:
 
@@ -6863,7 +6863,7 @@ Required:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec))
 
 <a id="nestedatt--spec--generators--merge--template--cluster_decision_resource--values--metadata"></a>
-### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec`
+### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.metadata`
 
 Optional:
 
@@ -6892,7 +6892,7 @@ Optional:
 - `sync_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy))
 
 <a id="nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--destination"></a>
-### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.destination`
 
 Optional:
 
@@ -6902,7 +6902,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--ignore_differences"></a>
-### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.ignore_differences`
 
 Required:
 
@@ -6919,7 +6919,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--info"></a>
-### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.info`
 
 Required:
 
@@ -6928,7 +6928,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--source"></a>
-### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.source`
 
 Required:
 
@@ -6956,7 +6956,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--directory--jsonnet"></a>
-### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.directory.recurse`
+### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.directory.jsonnet`
 
 Optional:
 
@@ -6965,7 +6965,7 @@ Optional:
 - `tlas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--directory--recurse--tlas))
 
 <a id="nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.directory.recurse.tlas`
+### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.directory.recurse.ext_vars`
 
 Required:
 
@@ -7009,7 +7009,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--helm--file_parameters"></a>
-### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.helm.file_parameters`
 
 Optional:
 
@@ -7018,7 +7018,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--helm--parameters"></a>
-### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.helm.parameters`
 
 Optional:
 
@@ -7048,7 +7048,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--kustomize--patches"></a>
-### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.kustomize.patches`
 
 Optional:
 
@@ -7073,7 +7073,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--kustomize--replicas"></a>
-### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.kustomize.replicas`
 
 Required:
 
@@ -7092,7 +7092,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--plugin--parameters))
 
 <a id="nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--plugin--env"></a>
-### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.plugin.parameters`
+### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.plugin.env`
 
 Required:
 
@@ -7114,7 +7114,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sources"></a>
-### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sources`
 
 Required:
 
@@ -7142,7 +7142,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--directory--jsonnet"></a>
-### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.directory.recurse`
+### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.directory.jsonnet`
 
 Optional:
 
@@ -7151,7 +7151,7 @@ Optional:
 - `tlas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--directory--recurse--tlas))
 
 <a id="nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.directory.recurse.tlas`
+### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.directory.recurse.ext_vars`
 
 Required:
 
@@ -7195,7 +7195,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--helm--file_parameters"></a>
-### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.helm.file_parameters`
 
 Optional:
 
@@ -7204,7 +7204,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--helm--parameters"></a>
-### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.helm.parameters`
 
 Optional:
 
@@ -7234,7 +7234,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--kustomize--patches"></a>
-### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.kustomize.patches`
 
 Optional:
 
@@ -7259,7 +7259,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--kustomize--replicas"></a>
-### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.kustomize.replicas`
 
 Required:
 
@@ -7278,7 +7278,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--plugin--parameters))
 
 <a id="nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--plugin--env"></a>
-### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.plugin.parameters`
+### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.plugin.env`
 
 Required:
 
@@ -7337,7 +7337,7 @@ Optional:
 - `limit` (Number)
 
 <a id="nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--retry--backoff"></a>
-### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.retry.limit`
+### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.retry.backoff`
 
 Optional:
 
@@ -7361,7 +7361,7 @@ Optional:
 - `values` (Map of String)
 
 <a id="nestedatt--spec--generators--merge--template--clusters--selector"></a>
-### Nested Schema for `spec.generators.merge.template.clusters.values`
+### Nested Schema for `spec.generators.merge.template.clusters.selector`
 
 Optional:
 
@@ -7369,7 +7369,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--generators--merge--template--clusters--values--match_expressions"></a>
-### Nested Schema for `spec.generators.merge.template.clusters.values.match_labels`
+### Nested Schema for `spec.generators.merge.template.clusters.values.match_expressions`
 
 Required:
 
@@ -7383,7 +7383,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--clusters--template"></a>
-### Nested Schema for `spec.generators.merge.template.clusters.values`
+### Nested Schema for `spec.generators.merge.template.clusters.template`
 
 Required:
 
@@ -7391,7 +7391,7 @@ Required:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--clusters--values--spec))
 
 <a id="nestedatt--spec--generators--merge--template--clusters--values--metadata"></a>
-### Nested Schema for `spec.generators.merge.template.clusters.values.spec`
+### Nested Schema for `spec.generators.merge.template.clusters.values.metadata`
 
 Optional:
 
@@ -7420,7 +7420,7 @@ Optional:
 - `sync_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy))
 
 <a id="nestedatt--spec--generators--merge--template--clusters--values--spec--destination"></a>
-### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.clusters.values.spec.destination`
 
 Optional:
 
@@ -7430,7 +7430,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--clusters--values--spec--ignore_differences"></a>
-### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.clusters.values.spec.ignore_differences`
 
 Required:
 
@@ -7447,7 +7447,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--clusters--values--spec--info"></a>
-### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.clusters.values.spec.info`
 
 Required:
 
@@ -7456,7 +7456,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--merge--template--clusters--values--spec--source"></a>
-### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.clusters.values.spec.source`
 
 Required:
 
@@ -7484,7 +7484,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--directory--jsonnet"></a>
-### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.directory.recurse`
+### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.directory.jsonnet`
 
 Optional:
 
@@ -7493,7 +7493,7 @@ Optional:
 - `tlas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--directory--recurse--tlas))
 
 <a id="nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.directory.recurse.tlas`
+### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.directory.recurse.ext_vars`
 
 Required:
 
@@ -7537,7 +7537,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--helm--file_parameters"></a>
-### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.helm.file_parameters`
 
 Optional:
 
@@ -7546,7 +7546,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--helm--parameters"></a>
-### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.helm.parameters`
 
 Optional:
 
@@ -7576,7 +7576,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--kustomize--patches"></a>
-### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.kustomize.patches`
 
 Optional:
 
@@ -7601,7 +7601,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--kustomize--replicas"></a>
-### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.kustomize.replicas`
 
 Required:
 
@@ -7620,7 +7620,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--plugin--parameters))
 
 <a id="nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--plugin--env"></a>
-### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.plugin.parameters`
+### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.plugin.env`
 
 Required:
 
@@ -7642,7 +7642,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--clusters--values--spec--sources"></a>
-### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sources`
 
 Required:
 
@@ -7670,7 +7670,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--directory--jsonnet"></a>
-### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.directory.recurse`
+### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.directory.jsonnet`
 
 Optional:
 
@@ -7679,7 +7679,7 @@ Optional:
 - `tlas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--directory--recurse--tlas))
 
 <a id="nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.directory.recurse.tlas`
+### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.directory.recurse.ext_vars`
 
 Required:
 
@@ -7723,7 +7723,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--helm--file_parameters"></a>
-### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.helm.file_parameters`
 
 Optional:
 
@@ -7732,7 +7732,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--helm--parameters"></a>
-### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.helm.parameters`
 
 Optional:
 
@@ -7762,7 +7762,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--kustomize--patches"></a>
-### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.kustomize.patches`
 
 Optional:
 
@@ -7787,7 +7787,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--kustomize--replicas"></a>
-### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.kustomize.replicas`
 
 Required:
 
@@ -7806,7 +7806,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--plugin--parameters))
 
 <a id="nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--plugin--env"></a>
-### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.plugin.parameters`
+### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.plugin.env`
 
 Required:
 
@@ -7865,7 +7865,7 @@ Optional:
 - `limit` (Number)
 
 <a id="nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--retry--backoff"></a>
-### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.retry.limit`
+### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.retry.backoff`
 
 Optional:
 
@@ -7897,7 +7897,7 @@ Optional:
 - `values` (Map of String)
 
 <a id="nestedatt--spec--generators--merge--template--git--directories"></a>
-### Nested Schema for `spec.generators.merge.template.git.values`
+### Nested Schema for `spec.generators.merge.template.git.directories`
 
 Required:
 
@@ -7909,7 +7909,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--git--files"></a>
-### Nested Schema for `spec.generators.merge.template.git.values`
+### Nested Schema for `spec.generators.merge.template.git.files`
 
 Required:
 
@@ -7917,7 +7917,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--merge--template--git--template"></a>
-### Nested Schema for `spec.generators.merge.template.git.values`
+### Nested Schema for `spec.generators.merge.template.git.template`
 
 Required:
 
@@ -7925,7 +7925,7 @@ Required:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--git--values--spec))
 
 <a id="nestedatt--spec--generators--merge--template--git--values--metadata"></a>
-### Nested Schema for `spec.generators.merge.template.git.values.spec`
+### Nested Schema for `spec.generators.merge.template.git.values.metadata`
 
 Optional:
 
@@ -7954,7 +7954,7 @@ Optional:
 - `sync_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--git--values--spec--sync_policy))
 
 <a id="nestedatt--spec--generators--merge--template--git--values--spec--destination"></a>
-### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.git.values.spec.destination`
 
 Optional:
 
@@ -7964,7 +7964,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--git--values--spec--ignore_differences"></a>
-### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.git.values.spec.ignore_differences`
 
 Required:
 
@@ -7981,7 +7981,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--git--values--spec--info"></a>
-### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.git.values.spec.info`
 
 Required:
 
@@ -7990,7 +7990,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--merge--template--git--values--spec--source"></a>
-### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.git.values.spec.source`
 
 Required:
 
@@ -8018,7 +8018,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--directory--jsonnet"></a>
-### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.directory.recurse`
+### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.directory.jsonnet`
 
 Optional:
 
@@ -8027,7 +8027,7 @@ Optional:
 - `tlas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--directory--recurse--tlas))
 
 <a id="nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.directory.recurse.tlas`
+### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.directory.recurse.ext_vars`
 
 Required:
 
@@ -8071,7 +8071,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--helm--file_parameters"></a>
-### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.helm.file_parameters`
 
 Optional:
 
@@ -8080,7 +8080,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--helm--parameters"></a>
-### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.helm.parameters`
 
 Optional:
 
@@ -8110,7 +8110,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--kustomize--patches"></a>
-### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.kustomize.patches`
 
 Optional:
 
@@ -8135,7 +8135,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--kustomize--replicas"></a>
-### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.kustomize.replicas`
 
 Required:
 
@@ -8154,7 +8154,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--plugin--parameters))
 
 <a id="nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--plugin--env"></a>
-### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.plugin.parameters`
+### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.plugin.env`
 
 Required:
 
@@ -8176,7 +8176,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--git--values--spec--sources"></a>
-### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.git.values.spec.sources`
 
 Required:
 
@@ -8204,7 +8204,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--directory--jsonnet"></a>
-### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.directory.recurse`
+### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.directory.jsonnet`
 
 Optional:
 
@@ -8213,7 +8213,7 @@ Optional:
 - `tlas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--directory--recurse--tlas))
 
 <a id="nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.directory.recurse.tlas`
+### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.directory.recurse.ext_vars`
 
 Required:
 
@@ -8257,7 +8257,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--helm--file_parameters"></a>
-### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.helm.file_parameters`
 
 Optional:
 
@@ -8266,7 +8266,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--helm--parameters"></a>
-### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.helm.parameters`
 
 Optional:
 
@@ -8296,7 +8296,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--kustomize--patches"></a>
-### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.kustomize.patches`
 
 Optional:
 
@@ -8321,7 +8321,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--kustomize--replicas"></a>
-### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.kustomize.replicas`
 
 Required:
 
@@ -8340,7 +8340,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--plugin--parameters))
 
 <a id="nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--plugin--env"></a>
-### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.plugin.parameters`
+### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.plugin.env`
 
 Required:
 
@@ -8399,7 +8399,7 @@ Optional:
 - `limit` (Number)
 
 <a id="nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--retry--backoff"></a>
-### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.retry.limit`
+### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.retry.backoff`
 
 Optional:
 
@@ -8434,7 +8434,7 @@ Required:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--list--template--spec))
 
 <a id="nestedatt--spec--generators--merge--template--list--template--metadata"></a>
-### Nested Schema for `spec.generators.merge.template.list.template.spec`
+### Nested Schema for `spec.generators.merge.template.list.template.metadata`
 
 Optional:
 
@@ -8463,7 +8463,7 @@ Optional:
 - `sync_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--list--template--spec--sync_policy))
 
 <a id="nestedatt--spec--generators--merge--template--list--template--spec--destination"></a>
-### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.list.template.spec.destination`
 
 Optional:
 
@@ -8473,7 +8473,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--list--template--spec--ignore_differences"></a>
-### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.list.template.spec.ignore_differences`
 
 Required:
 
@@ -8490,7 +8490,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--list--template--spec--info"></a>
-### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.list.template.spec.info`
 
 Required:
 
@@ -8499,7 +8499,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--merge--template--list--template--spec--source"></a>
-### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.list.template.spec.source`
 
 Required:
 
@@ -8527,7 +8527,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--directory--jsonnet"></a>
-### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.directory.recurse`
+### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.directory.jsonnet`
 
 Optional:
 
@@ -8536,7 +8536,7 @@ Optional:
 - `tlas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--directory--recurse--tlas))
 
 <a id="nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.directory.recurse.tlas`
+### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.directory.recurse.ext_vars`
 
 Required:
 
@@ -8580,7 +8580,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--helm--file_parameters"></a>
-### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.helm.file_parameters`
 
 Optional:
 
@@ -8589,7 +8589,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--helm--parameters"></a>
-### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.helm.parameters`
 
 Optional:
 
@@ -8619,7 +8619,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--kustomize--patches"></a>
-### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.kustomize.patches`
 
 Optional:
 
@@ -8644,7 +8644,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--kustomize--replicas"></a>
-### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.kustomize.replicas`
 
 Required:
 
@@ -8663,7 +8663,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--plugin--parameters))
 
 <a id="nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--plugin--env"></a>
-### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.plugin.parameters`
+### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.plugin.env`
 
 Required:
 
@@ -8685,7 +8685,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--list--template--spec--sources"></a>
-### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.list.template.spec.sources`
 
 Required:
 
@@ -8713,7 +8713,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--directory--jsonnet"></a>
-### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.directory.recurse`
+### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.directory.jsonnet`
 
 Optional:
 
@@ -8722,7 +8722,7 @@ Optional:
 - `tlas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--directory--recurse--tlas))
 
 <a id="nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.directory.recurse.tlas`
+### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.directory.recurse.ext_vars`
 
 Required:
 
@@ -8766,7 +8766,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--helm--file_parameters"></a>
-### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.helm.file_parameters`
 
 Optional:
 
@@ -8775,7 +8775,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--helm--parameters"></a>
-### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.helm.parameters`
 
 Optional:
 
@@ -8805,7 +8805,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--kustomize--patches"></a>
-### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.kustomize.patches`
 
 Optional:
 
@@ -8830,7 +8830,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--kustomize--replicas"></a>
-### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.kustomize.replicas`
 
 Required:
 
@@ -8849,7 +8849,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--plugin--parameters))
 
 <a id="nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--plugin--env"></a>
-### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.plugin.parameters`
+### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.plugin.env`
 
 Required:
 
@@ -8908,7 +8908,7 @@ Optional:
 - `limit` (Number)
 
 <a id="nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--retry--backoff"></a>
-### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.retry.limit`
+### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.retry.backoff`
 
 Optional:
 
@@ -8937,7 +8937,7 @@ Optional:
 - `values` (Map of String)
 
 <a id="nestedatt--spec--generators--merge--template--plugin--config_map_ref"></a>
-### Nested Schema for `spec.generators.merge.template.plugin.values`
+### Nested Schema for `spec.generators.merge.template.plugin.config_map_ref`
 
 Required:
 
@@ -8945,7 +8945,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--merge--template--plugin--input"></a>
-### Nested Schema for `spec.generators.merge.template.plugin.values`
+### Nested Schema for `spec.generators.merge.template.plugin.input`
 
 Optional:
 
@@ -8953,7 +8953,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--plugin--template"></a>
-### Nested Schema for `spec.generators.merge.template.plugin.values`
+### Nested Schema for `spec.generators.merge.template.plugin.template`
 
 Required:
 
@@ -8961,7 +8961,7 @@ Required:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--plugin--values--spec))
 
 <a id="nestedatt--spec--generators--merge--template--plugin--values--metadata"></a>
-### Nested Schema for `spec.generators.merge.template.plugin.values.spec`
+### Nested Schema for `spec.generators.merge.template.plugin.values.metadata`
 
 Optional:
 
@@ -8990,7 +8990,7 @@ Optional:
 - `sync_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy))
 
 <a id="nestedatt--spec--generators--merge--template--plugin--values--spec--destination"></a>
-### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.plugin.values.spec.destination`
 
 Optional:
 
@@ -9000,7 +9000,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--plugin--values--spec--ignore_differences"></a>
-### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.plugin.values.spec.ignore_differences`
 
 Required:
 
@@ -9017,7 +9017,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--plugin--values--spec--info"></a>
-### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.plugin.values.spec.info`
 
 Required:
 
@@ -9026,7 +9026,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--merge--template--plugin--values--spec--source"></a>
-### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.plugin.values.spec.source`
 
 Required:
 
@@ -9054,7 +9054,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--directory--jsonnet"></a>
-### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.directory.recurse`
+### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.directory.jsonnet`
 
 Optional:
 
@@ -9063,7 +9063,7 @@ Optional:
 - `tlas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--directory--recurse--tlas))
 
 <a id="nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.directory.recurse.tlas`
+### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.directory.recurse.ext_vars`
 
 Required:
 
@@ -9107,7 +9107,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--helm--file_parameters"></a>
-### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.helm.file_parameters`
 
 Optional:
 
@@ -9116,7 +9116,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--helm--parameters"></a>
-### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.helm.parameters`
 
 Optional:
 
@@ -9146,7 +9146,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--kustomize--patches"></a>
-### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.kustomize.patches`
 
 Optional:
 
@@ -9171,7 +9171,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--kustomize--replicas"></a>
-### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.kustomize.replicas`
 
 Required:
 
@@ -9190,7 +9190,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--plugin--parameters))
 
 <a id="nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--plugin--env"></a>
-### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.plugin.parameters`
+### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.plugin.env`
 
 Required:
 
@@ -9212,7 +9212,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--plugin--values--spec--sources"></a>
-### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sources`
 
 Required:
 
@@ -9240,7 +9240,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--directory--jsonnet"></a>
-### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.directory.recurse`
+### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.directory.jsonnet`
 
 Optional:
 
@@ -9249,7 +9249,7 @@ Optional:
 - `tlas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--directory--recurse--tlas))
 
 <a id="nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.directory.recurse.tlas`
+### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.directory.recurse.ext_vars`
 
 Required:
 
@@ -9293,7 +9293,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--helm--file_parameters"></a>
-### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.helm.file_parameters`
 
 Optional:
 
@@ -9302,7 +9302,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--helm--parameters"></a>
-### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.helm.parameters`
 
 Optional:
 
@@ -9332,7 +9332,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--kustomize--patches"></a>
-### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.kustomize.patches`
 
 Optional:
 
@@ -9357,7 +9357,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--kustomize--replicas"></a>
-### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.kustomize.replicas`
 
 Required:
 
@@ -9376,7 +9376,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--plugin--parameters))
 
 <a id="nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--plugin--env"></a>
-### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.plugin.parameters`
+### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.plugin.env`
 
 Required:
 
@@ -9435,7 +9435,7 @@ Optional:
 - `limit` (Number)
 
 <a id="nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--retry--backoff"></a>
-### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.retry.limit`
+### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.retry.backoff`
 
 Optional:
 
@@ -9465,7 +9465,7 @@ Optional:
 - `template` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--pull_request--template))
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--azuredevops"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template`
+### Nested Schema for `spec.generators.merge.template.pull_request.azuredevops`
 
 Required:
 
@@ -9490,7 +9490,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--bitbucket"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template`
+### Nested Schema for `spec.generators.merge.template.pull_request.bitbucket`
 
 Required:
 
@@ -9504,7 +9504,7 @@ Optional:
 - `bearer_token` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--pull_request--template--bearer_token))
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--template--basic_auth"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template.bearer_token`
+### Nested Schema for `spec.generators.merge.template.pull_request.template.basic_auth`
 
 Required:
 
@@ -9512,7 +9512,7 @@ Required:
 - `username` (String)
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--template--bearer_token--password_ref"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template.bearer_token.username`
+### Nested Schema for `spec.generators.merge.template.pull_request.template.bearer_token.password_ref`
 
 Required:
 
@@ -9540,7 +9540,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--bitbucket_server"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template`
+### Nested Schema for `spec.generators.merge.template.pull_request.bitbucket_server`
 
 Required:
 
@@ -9561,7 +9561,7 @@ Required:
 - `username` (String)
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--template--basic_auth--password_ref"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template.basic_auth.username`
+### Nested Schema for `spec.generators.merge.template.pull_request.template.basic_auth.password_ref`
 
 Required:
 
@@ -9572,7 +9572,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--filters"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template`
+### Nested Schema for `spec.generators.merge.template.pull_request.filters`
 
 Optional:
 
@@ -9581,7 +9581,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--gitea"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template`
+### Nested Schema for `spec.generators.merge.template.pull_request.gitea`
 
 Required:
 
@@ -9605,7 +9605,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--github"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template`
+### Nested Schema for `spec.generators.merge.template.pull_request.github`
 
 Required:
 
@@ -9630,7 +9630,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--gitlab"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template`
+### Nested Schema for `spec.generators.merge.template.pull_request.gitlab`
 
 Required:
 
@@ -9663,7 +9663,7 @@ Required:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--pull_request--template--spec))
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--template--metadata"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template.spec`
+### Nested Schema for `spec.generators.merge.template.pull_request.template.metadata`
 
 Optional:
 
@@ -9692,7 +9692,7 @@ Optional:
 - `sync_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy))
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--template--spec--destination"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.destination`
 
 Optional:
 
@@ -9702,7 +9702,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--template--spec--ignore_differences"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.ignore_differences`
 
 Required:
 
@@ -9719,7 +9719,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--template--spec--info"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.info`
 
 Required:
 
@@ -9728,7 +9728,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--template--spec--source"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.source`
 
 Required:
 
@@ -9756,7 +9756,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--directory--jsonnet"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.directory.recurse`
+### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.directory.jsonnet`
 
 Optional:
 
@@ -9765,7 +9765,7 @@ Optional:
 - `tlas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--directory--recurse--tlas))
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.directory.recurse.tlas`
+### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.directory.recurse.ext_vars`
 
 Required:
 
@@ -9809,7 +9809,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--helm--file_parameters"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.helm.file_parameters`
 
 Optional:
 
@@ -9818,7 +9818,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--helm--parameters"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.helm.parameters`
 
 Optional:
 
@@ -9848,7 +9848,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--kustomize--patches"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.kustomize.patches`
 
 Optional:
 
@@ -9873,7 +9873,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--kustomize--replicas"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.kustomize.replicas`
 
 Required:
 
@@ -9892,7 +9892,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--plugin--parameters))
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--plugin--env"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.plugin.parameters`
+### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.plugin.env`
 
 Required:
 
@@ -9914,7 +9914,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--template--spec--sources"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sources`
 
 Required:
 
@@ -9942,7 +9942,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--directory--jsonnet"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.directory.recurse`
+### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.directory.jsonnet`
 
 Optional:
 
@@ -9951,7 +9951,7 @@ Optional:
 - `tlas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--directory--recurse--tlas))
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.directory.recurse.tlas`
+### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.directory.recurse.ext_vars`
 
 Required:
 
@@ -9995,7 +9995,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--helm--file_parameters"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.helm.file_parameters`
 
 Optional:
 
@@ -10004,7 +10004,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--helm--parameters"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.helm.parameters`
 
 Optional:
 
@@ -10034,7 +10034,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--kustomize--patches"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.kustomize.patches`
 
 Optional:
 
@@ -10059,7 +10059,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--kustomize--replicas"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.kustomize.replicas`
 
 Required:
 
@@ -10078,7 +10078,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--plugin--parameters))
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--plugin--env"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.plugin.parameters`
+### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.plugin.env`
 
 Required:
 
@@ -10137,7 +10137,7 @@ Optional:
 - `limit` (Number)
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--retry--backoff"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.retry.limit`
+### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.retry.backoff`
 
 Optional:
 
@@ -10170,7 +10170,7 @@ Optional:
 - `values` (Map of String)
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--aws_code_commit"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values`
+### Nested Schema for `spec.generators.merge.template.scm_provider.aws_code_commit`
 
 Optional:
 
@@ -10193,7 +10193,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--azure_dev_ops"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values`
+### Nested Schema for `spec.generators.merge.template.scm_provider.azure_dev_ops`
 
 Required:
 
@@ -10207,7 +10207,7 @@ Optional:
 - `api` (String)
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--values--access_token_ref"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values.api`
+### Nested Schema for `spec.generators.merge.template.scm_provider.values.access_token_ref`
 
 Required:
 
@@ -10217,7 +10217,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--bitbucket"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values`
+### Nested Schema for `spec.generators.merge.template.scm_provider.bitbucket`
 
 Required:
 
@@ -10230,7 +10230,7 @@ Optional:
 - `all_branches` (Boolean)
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--values--app_password_ref"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values.all_branches`
+### Nested Schema for `spec.generators.merge.template.scm_provider.values.app_password_ref`
 
 Required:
 
@@ -10240,7 +10240,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--bitbucket_server"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values`
+### Nested Schema for `spec.generators.merge.template.scm_provider.bitbucket_server`
 
 Required:
 
@@ -10261,7 +10261,7 @@ Required:
 - `username` (String)
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--values--basic_auth--password_ref"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values.basic_auth.username`
+### Nested Schema for `spec.generators.merge.template.scm_provider.values.basic_auth.password_ref`
 
 Required:
 
@@ -10272,7 +10272,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--filters"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values`
+### Nested Schema for `spec.generators.merge.template.scm_provider.filters`
 
 Optional:
 
@@ -10284,7 +10284,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--gitea"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values`
+### Nested Schema for `spec.generators.merge.template.scm_provider.gitea`
 
 Required:
 
@@ -10308,7 +10308,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--github"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values`
+### Nested Schema for `spec.generators.merge.template.scm_provider.github`
 
 Required:
 
@@ -10332,7 +10332,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--gitlab"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values`
+### Nested Schema for `spec.generators.merge.template.scm_provider.gitlab`
 
 Required:
 
@@ -10349,7 +10349,7 @@ Optional:
 - `topic` (String)
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--values--token_ref"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values.topic`
+### Nested Schema for `spec.generators.merge.template.scm_provider.values.token_ref`
 
 Required:
 
@@ -10359,7 +10359,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--template"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values`
+### Nested Schema for `spec.generators.merge.template.scm_provider.template`
 
 Required:
 
@@ -10367,7 +10367,7 @@ Required:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--scm_provider--values--spec))
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--values--metadata"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec`
+### Nested Schema for `spec.generators.merge.template.scm_provider.values.metadata`
 
 Optional:
 
@@ -10396,7 +10396,7 @@ Optional:
 - `sync_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy))
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--values--spec--destination"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.destination`
 
 Optional:
 
@@ -10406,7 +10406,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--values--spec--ignore_differences"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.ignore_differences`
 
 Required:
 
@@ -10423,7 +10423,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--values--spec--info"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.info`
 
 Required:
 
@@ -10432,7 +10432,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--values--spec--source"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.source`
 
 Required:
 
@@ -10460,7 +10460,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--directory--jsonnet"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.directory.recurse`
+### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.directory.jsonnet`
 
 Optional:
 
@@ -10469,7 +10469,7 @@ Optional:
 - `tlas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--directory--recurse--tlas))
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.directory.recurse.tlas`
+### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.directory.recurse.ext_vars`
 
 Required:
 
@@ -10513,7 +10513,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--helm--file_parameters"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.helm.file_parameters`
 
 Optional:
 
@@ -10522,7 +10522,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--helm--parameters"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.helm.parameters`
 
 Optional:
 
@@ -10552,7 +10552,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--kustomize--patches"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.kustomize.patches`
 
 Optional:
 
@@ -10577,7 +10577,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--kustomize--replicas"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.kustomize.replicas`
 
 Required:
 
@@ -10596,7 +10596,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--plugin--parameters))
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--plugin--env"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.plugin.parameters`
+### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.plugin.env`
 
 Required:
 
@@ -10618,7 +10618,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--values--spec--sources"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sources`
 
 Required:
 
@@ -10646,7 +10646,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--directory--jsonnet"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.directory.recurse`
+### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.directory.jsonnet`
 
 Optional:
 
@@ -10655,7 +10655,7 @@ Optional:
 - `tlas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--directory--recurse--tlas))
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.directory.recurse.tlas`
+### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.directory.recurse.ext_vars`
 
 Required:
 
@@ -10699,7 +10699,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--helm--file_parameters"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.helm.file_parameters`
 
 Optional:
 
@@ -10708,7 +10708,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--helm--parameters"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.helm.version`
+### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.helm.parameters`
 
 Optional:
 
@@ -10738,7 +10738,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--kustomize--patches"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.kustomize.patches`
 
 Optional:
 
@@ -10763,7 +10763,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--kustomize--replicas"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.kustomize.replicas`
 
 Required:
 
@@ -10782,7 +10782,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--plugin--parameters))
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--plugin--env"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.plugin.parameters`
+### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.plugin.env`
 
 Required:
 
@@ -10841,7 +10841,7 @@ Optional:
 - `limit` (Number)
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--retry--backoff"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.retry.limit`
+### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.retry.backoff`
 
 Optional:
 
@@ -10864,7 +10864,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--generators--merge--template--selector--match_expressions"></a>
-### Nested Schema for `spec.generators.merge.template.selector.match_labels`
+### Nested Schema for `spec.generators.merge.template.selector.match_expressions`
 
 Required:
 
@@ -10916,7 +10916,7 @@ Optional:
 - `sync_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--spec--sync_policy))
 
 <a id="nestedatt--spec--generators--merge--template--spec--destination"></a>
-### Nested Schema for `spec.generators.merge.template.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.spec.destination`
 
 Optional:
 
@@ -10926,7 +10926,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--spec--ignore_differences"></a>
-### Nested Schema for `spec.generators.merge.template.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.spec.ignore_differences`
 
 Required:
 
@@ -10943,7 +10943,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--spec--info"></a>
-### Nested Schema for `spec.generators.merge.template.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.spec.info`
 
 Required:
 
@@ -10952,7 +10952,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--merge--template--spec--source"></a>
-### Nested Schema for `spec.generators.merge.template.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.spec.source`
 
 Required:
 
@@ -10970,7 +10970,7 @@ Optional:
 - `target_revision` (String)
 
 <a id="nestedatt--spec--generators--merge--template--spec--sync_policy--directory"></a>
-### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.merge.template.spec.sync_policy.directory`
 
 Optional:
 
@@ -10980,7 +10980,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--merge--template--spec--sync_policy--target_revision--jsonnet"></a>
-### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision.recurse`
+### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision.jsonnet`
 
 Optional:
 
@@ -11017,7 +11017,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--spec--sync_policy--helm"></a>
-### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.merge.template.spec.sync_policy.helm`
 
 Optional:
 
@@ -11033,7 +11033,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--spec--sync_policy--target_revision--file_parameters"></a>
-### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision.file_parameters`
 
 Optional:
 
@@ -11042,7 +11042,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--spec--sync_policy--target_revision--parameters"></a>
-### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision.parameters`
 
 Optional:
 
@@ -11053,7 +11053,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--spec--sync_policy--kustomize"></a>
-### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.merge.template.spec.sync_policy.kustomize`
 
 Optional:
 
@@ -11072,7 +11072,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--spec--sync_policy--target_revision--patches"></a>
-### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision.patches`
 
 Optional:
 
@@ -11097,7 +11097,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--spec--sync_policy--target_revision--replicas"></a>
-### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision.replicas`
 
 Required:
 
@@ -11107,7 +11107,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--merge--template--spec--sync_policy--plugin"></a>
-### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.merge.template.spec.sync_policy.plugin`
 
 Optional:
 
@@ -11116,7 +11116,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--spec--sync_policy--target_revision--parameters))
 
 <a id="nestedatt--spec--generators--merge--template--spec--sync_policy--target_revision--env"></a>
-### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision.parameters`
+### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision.env`
 
 Required:
 
@@ -11138,7 +11138,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--spec--sources"></a>
-### Nested Schema for `spec.generators.merge.template.spec.sync_policy`
+### Nested Schema for `spec.generators.merge.template.spec.sources`
 
 Required:
 
@@ -11156,7 +11156,7 @@ Optional:
 - `target_revision` (String)
 
 <a id="nestedatt--spec--generators--merge--template--spec--sync_policy--directory"></a>
-### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.merge.template.spec.sync_policy.directory`
 
 Optional:
 
@@ -11166,7 +11166,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--merge--template--spec--sync_policy--target_revision--jsonnet"></a>
-### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision.recurse`
+### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision.jsonnet`
 
 Optional:
 
@@ -11203,7 +11203,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--spec--sync_policy--helm"></a>
-### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.merge.template.spec.sync_policy.helm`
 
 Optional:
 
@@ -11219,7 +11219,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--spec--sync_policy--target_revision--file_parameters"></a>
-### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision.file_parameters`
 
 Optional:
 
@@ -11228,7 +11228,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--spec--sync_policy--target_revision--parameters"></a>
-### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision.parameters`
 
 Optional:
 
@@ -11239,7 +11239,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--spec--sync_policy--kustomize"></a>
-### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.merge.template.spec.sync_policy.kustomize`
 
 Optional:
 
@@ -11258,7 +11258,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--merge--template--spec--sync_policy--target_revision--patches"></a>
-### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision.patches`
 
 Optional:
 
@@ -11283,7 +11283,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--spec--sync_policy--target_revision--replicas"></a>
-### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision.replicas`
 
 Required:
 
@@ -11293,7 +11293,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--merge--template--spec--sync_policy--plugin"></a>
-### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.merge.template.spec.sync_policy.plugin`
 
 Optional:
 
@@ -11302,7 +11302,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--spec--sync_policy--target_revision--parameters))
 
 <a id="nestedatt--spec--generators--merge--template--spec--sync_policy--target_revision--env"></a>
-### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision.parameters`
+### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision.env`
 
 Required:
 
@@ -11334,7 +11334,7 @@ Optional:
 - `sync_options` (List of String)
 
 <a id="nestedatt--spec--generators--merge--template--spec--sync_policy--automated"></a>
-### Nested Schema for `spec.generators.merge.template.spec.sync_policy.sync_options`
+### Nested Schema for `spec.generators.merge.template.spec.sync_policy.automated`
 
 Optional:
 
@@ -11344,7 +11344,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--spec--sync_policy--managed_namespace_metadata"></a>
-### Nested Schema for `spec.generators.merge.template.spec.sync_policy.sync_options`
+### Nested Schema for `spec.generators.merge.template.spec.sync_policy.managed_namespace_metadata`
 
 Optional:
 
@@ -11353,7 +11353,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--merge--template--spec--sync_policy--retry"></a>
-### Nested Schema for `spec.generators.merge.template.spec.sync_policy.sync_options`
+### Nested Schema for `spec.generators.merge.template.spec.sync_policy.retry`
 
 Optional:
 
@@ -11361,7 +11361,7 @@ Optional:
 - `limit` (Number)
 
 <a id="nestedatt--spec--generators--merge--template--spec--sync_policy--sync_options--backoff"></a>
-### Nested Schema for `spec.generators.merge.template.spec.sync_policy.sync_options.limit`
+### Nested Schema for `spec.generators.merge.template.spec.sync_policy.sync_options.backoff`
 
 Optional:
 
@@ -11390,7 +11390,7 @@ Optional:
 - `values` (Map of String)
 
 <a id="nestedatt--spec--generators--plugin--config_map_ref"></a>
-### Nested Schema for `spec.generators.plugin.values`
+### Nested Schema for `spec.generators.plugin.config_map_ref`
 
 Required:
 
@@ -11398,7 +11398,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--plugin--input"></a>
-### Nested Schema for `spec.generators.plugin.values`
+### Nested Schema for `spec.generators.plugin.input`
 
 Optional:
 
@@ -11406,7 +11406,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--plugin--template"></a>
-### Nested Schema for `spec.generators.plugin.values`
+### Nested Schema for `spec.generators.plugin.template`
 
 Required:
 
@@ -11443,7 +11443,7 @@ Optional:
 - `sync_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--plugin--values--spec--sync_policy))
 
 <a id="nestedatt--spec--generators--plugin--values--spec--destination"></a>
-### Nested Schema for `spec.generators.plugin.values.spec.sync_policy`
+### Nested Schema for `spec.generators.plugin.values.spec.destination`
 
 Optional:
 
@@ -11453,7 +11453,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--plugin--values--spec--ignore_differences"></a>
-### Nested Schema for `spec.generators.plugin.values.spec.sync_policy`
+### Nested Schema for `spec.generators.plugin.values.spec.ignore_differences`
 
 Required:
 
@@ -11470,7 +11470,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--plugin--values--spec--info"></a>
-### Nested Schema for `spec.generators.plugin.values.spec.sync_policy`
+### Nested Schema for `spec.generators.plugin.values.spec.info`
 
 Required:
 
@@ -11479,7 +11479,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--plugin--values--spec--source"></a>
-### Nested Schema for `spec.generators.plugin.values.spec.sync_policy`
+### Nested Schema for `spec.generators.plugin.values.spec.source`
 
 Required:
 
@@ -11497,7 +11497,7 @@ Optional:
 - `target_revision` (String)
 
 <a id="nestedatt--spec--generators--plugin--values--spec--sync_policy--directory"></a>
-### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.directory`
 
 Optional:
 
@@ -11507,7 +11507,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--plugin--values--spec--sync_policy--target_revision--jsonnet"></a>
-### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision.recurse`
+### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision.jsonnet`
 
 Optional:
 
@@ -11544,7 +11544,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--plugin--values--spec--sync_policy--helm"></a>
-### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.helm`
 
 Optional:
 
@@ -11560,7 +11560,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--plugin--values--spec--sync_policy--target_revision--file_parameters"></a>
-### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision.file_parameters`
 
 Optional:
 
@@ -11569,7 +11569,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--plugin--values--spec--sync_policy--target_revision--parameters"></a>
-### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision.parameters`
 
 Optional:
 
@@ -11580,7 +11580,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--plugin--values--spec--sync_policy--kustomize"></a>
-### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.kustomize`
 
 Optional:
 
@@ -11599,7 +11599,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--plugin--values--spec--sync_policy--target_revision--patches"></a>
-### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision.patches`
 
 Optional:
 
@@ -11624,7 +11624,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--plugin--values--spec--sync_policy--target_revision--replicas"></a>
-### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision.replicas`
 
 Required:
 
@@ -11634,7 +11634,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--plugin--values--spec--sync_policy--plugin"></a>
-### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.plugin`
 
 Optional:
 
@@ -11643,7 +11643,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--plugin--values--spec--sync_policy--target_revision--parameters))
 
 <a id="nestedatt--spec--generators--plugin--values--spec--sync_policy--target_revision--env"></a>
-### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision.parameters`
+### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision.env`
 
 Required:
 
@@ -11665,7 +11665,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--plugin--values--spec--sources"></a>
-### Nested Schema for `spec.generators.plugin.values.spec.sync_policy`
+### Nested Schema for `spec.generators.plugin.values.spec.sources`
 
 Required:
 
@@ -11683,7 +11683,7 @@ Optional:
 - `target_revision` (String)
 
 <a id="nestedatt--spec--generators--plugin--values--spec--sync_policy--directory"></a>
-### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.directory`
 
 Optional:
 
@@ -11693,7 +11693,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--plugin--values--spec--sync_policy--target_revision--jsonnet"></a>
-### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision.recurse`
+### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision.jsonnet`
 
 Optional:
 
@@ -11730,7 +11730,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--plugin--values--spec--sync_policy--helm"></a>
-### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.helm`
 
 Optional:
 
@@ -11746,7 +11746,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--plugin--values--spec--sync_policy--target_revision--file_parameters"></a>
-### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision.file_parameters`
 
 Optional:
 
@@ -11755,7 +11755,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--plugin--values--spec--sync_policy--target_revision--parameters"></a>
-### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision.parameters`
 
 Optional:
 
@@ -11766,7 +11766,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--plugin--values--spec--sync_policy--kustomize"></a>
-### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.kustomize`
 
 Optional:
 
@@ -11785,7 +11785,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--plugin--values--spec--sync_policy--target_revision--patches"></a>
-### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision.patches`
 
 Optional:
 
@@ -11810,7 +11810,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--plugin--values--spec--sync_policy--target_revision--replicas"></a>
-### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision.replicas`
 
 Required:
 
@@ -11820,7 +11820,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--plugin--values--spec--sync_policy--plugin"></a>
-### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.plugin`
 
 Optional:
 
@@ -11829,7 +11829,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--plugin--values--spec--sync_policy--target_revision--parameters))
 
 <a id="nestedatt--spec--generators--plugin--values--spec--sync_policy--target_revision--env"></a>
-### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision.parameters`
+### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision.env`
 
 Required:
 
@@ -11861,7 +11861,7 @@ Optional:
 - `sync_options` (List of String)
 
 <a id="nestedatt--spec--generators--plugin--values--spec--sync_policy--automated"></a>
-### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.sync_options`
+### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.automated`
 
 Optional:
 
@@ -11871,7 +11871,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--plugin--values--spec--sync_policy--managed_namespace_metadata"></a>
-### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.sync_options`
+### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.managed_namespace_metadata`
 
 Optional:
 
@@ -11880,7 +11880,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--plugin--values--spec--sync_policy--retry"></a>
-### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.sync_options`
+### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.retry`
 
 Optional:
 
@@ -11888,7 +11888,7 @@ Optional:
 - `limit` (Number)
 
 <a id="nestedatt--spec--generators--plugin--values--spec--sync_policy--sync_options--backoff"></a>
-### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.sync_options.limit`
+### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.sync_options.backoff`
 
 Optional:
 
@@ -11918,7 +11918,7 @@ Optional:
 - `template` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--pull_request--template))
 
 <a id="nestedatt--spec--generators--pull_request--azuredevops"></a>
-### Nested Schema for `spec.generators.pull_request.template`
+### Nested Schema for `spec.generators.pull_request.azuredevops`
 
 Required:
 
@@ -11943,7 +11943,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--pull_request--bitbucket"></a>
-### Nested Schema for `spec.generators.pull_request.template`
+### Nested Schema for `spec.generators.pull_request.bitbucket`
 
 Required:
 
@@ -11965,7 +11965,7 @@ Required:
 - `username` (String)
 
 <a id="nestedatt--spec--generators--pull_request--template--basic_auth--password_ref"></a>
-### Nested Schema for `spec.generators.pull_request.template.basic_auth.username`
+### Nested Schema for `spec.generators.pull_request.template.basic_auth.password_ref`
 
 Required:
 
@@ -11993,7 +11993,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--pull_request--bitbucket_server"></a>
-### Nested Schema for `spec.generators.pull_request.template`
+### Nested Schema for `spec.generators.pull_request.bitbucket_server`
 
 Required:
 
@@ -12014,7 +12014,7 @@ Required:
 - `username` (String)
 
 <a id="nestedatt--spec--generators--pull_request--template--basic_auth--password_ref"></a>
-### Nested Schema for `spec.generators.pull_request.template.basic_auth.username`
+### Nested Schema for `spec.generators.pull_request.template.basic_auth.password_ref`
 
 Required:
 
@@ -12025,7 +12025,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--pull_request--filters"></a>
-### Nested Schema for `spec.generators.pull_request.template`
+### Nested Schema for `spec.generators.pull_request.filters`
 
 Optional:
 
@@ -12034,7 +12034,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--pull_request--gitea"></a>
-### Nested Schema for `spec.generators.pull_request.template`
+### Nested Schema for `spec.generators.pull_request.gitea`
 
 Required:
 
@@ -12058,7 +12058,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--pull_request--github"></a>
-### Nested Schema for `spec.generators.pull_request.template`
+### Nested Schema for `spec.generators.pull_request.github`
 
 Required:
 
@@ -12083,7 +12083,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--pull_request--gitlab"></a>
-### Nested Schema for `spec.generators.pull_request.template`
+### Nested Schema for `spec.generators.pull_request.gitlab`
 
 Required:
 
@@ -12145,7 +12145,7 @@ Optional:
 - `sync_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--pull_request--template--spec--sync_policy))
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--destination"></a>
-### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy`
+### Nested Schema for `spec.generators.pull_request.template.spec.destination`
 
 Optional:
 
@@ -12155,7 +12155,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--ignore_differences"></a>
-### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy`
+### Nested Schema for `spec.generators.pull_request.template.spec.ignore_differences`
 
 Required:
 
@@ -12172,7 +12172,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--info"></a>
-### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy`
+### Nested Schema for `spec.generators.pull_request.template.spec.info`
 
 Required:
 
@@ -12181,7 +12181,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--source"></a>
-### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy`
+### Nested Schema for `spec.generators.pull_request.template.spec.source`
 
 Required:
 
@@ -12199,7 +12199,7 @@ Optional:
 - `target_revision` (String)
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--sync_policy--directory"></a>
-### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.directory`
 
 Optional:
 
@@ -12209,7 +12209,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--sync_policy--target_revision--jsonnet"></a>
-### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision.recurse`
+### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision.jsonnet`
 
 Optional:
 
@@ -12246,7 +12246,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--sync_policy--helm"></a>
-### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.helm`
 
 Optional:
 
@@ -12262,7 +12262,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--sync_policy--target_revision--file_parameters"></a>
-### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision.file_parameters`
 
 Optional:
 
@@ -12271,7 +12271,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--sync_policy--target_revision--parameters"></a>
-### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision.parameters`
 
 Optional:
 
@@ -12282,7 +12282,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--sync_policy--kustomize"></a>
-### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.kustomize`
 
 Optional:
 
@@ -12301,7 +12301,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--sync_policy--target_revision--patches"></a>
-### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision.patches`
 
 Optional:
 
@@ -12326,7 +12326,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--sync_policy--target_revision--replicas"></a>
-### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision.replicas`
 
 Required:
 
@@ -12336,7 +12336,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--sync_policy--plugin"></a>
-### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.plugin`
 
 Optional:
 
@@ -12345,7 +12345,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--pull_request--template--spec--sync_policy--target_revision--parameters))
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--sync_policy--target_revision--env"></a>
-### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision.parameters`
+### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision.env`
 
 Required:
 
@@ -12367,7 +12367,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--sources"></a>
-### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy`
+### Nested Schema for `spec.generators.pull_request.template.spec.sources`
 
 Required:
 
@@ -12385,7 +12385,7 @@ Optional:
 - `target_revision` (String)
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--sync_policy--directory"></a>
-### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.directory`
 
 Optional:
 
@@ -12395,7 +12395,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--sync_policy--target_revision--jsonnet"></a>
-### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision.recurse`
+### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision.jsonnet`
 
 Optional:
 
@@ -12432,7 +12432,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--sync_policy--helm"></a>
-### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.helm`
 
 Optional:
 
@@ -12448,7 +12448,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--sync_policy--target_revision--file_parameters"></a>
-### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision.file_parameters`
 
 Optional:
 
@@ -12457,7 +12457,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--sync_policy--target_revision--parameters"></a>
-### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision.parameters`
 
 Optional:
 
@@ -12468,7 +12468,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--sync_policy--kustomize"></a>
-### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.kustomize`
 
 Optional:
 
@@ -12487,7 +12487,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--sync_policy--target_revision--patches"></a>
-### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision.patches`
 
 Optional:
 
@@ -12512,7 +12512,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--sync_policy--target_revision--replicas"></a>
-### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision.replicas`
 
 Required:
 
@@ -12522,7 +12522,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--sync_policy--plugin"></a>
-### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.plugin`
 
 Optional:
 
@@ -12531,7 +12531,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--pull_request--template--spec--sync_policy--target_revision--parameters))
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--sync_policy--target_revision--env"></a>
-### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision.parameters`
+### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision.env`
 
 Required:
 
@@ -12563,7 +12563,7 @@ Optional:
 - `sync_options` (List of String)
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--sync_policy--automated"></a>
-### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.sync_options`
+### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.automated`
 
 Optional:
 
@@ -12573,7 +12573,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--sync_policy--managed_namespace_metadata"></a>
-### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.sync_options`
+### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.managed_namespace_metadata`
 
 Optional:
 
@@ -12582,7 +12582,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--sync_policy--retry"></a>
-### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.sync_options`
+### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.retry`
 
 Optional:
 
@@ -12590,7 +12590,7 @@ Optional:
 - `limit` (Number)
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--sync_policy--sync_options--backoff"></a>
-### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.sync_options.limit`
+### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.sync_options.backoff`
 
 Optional:
 
@@ -12623,7 +12623,7 @@ Optional:
 - `values` (Map of String)
 
 <a id="nestedatt--spec--generators--scm_provider--aws_code_commit"></a>
-### Nested Schema for `spec.generators.scm_provider.values`
+### Nested Schema for `spec.generators.scm_provider.aws_code_commit`
 
 Optional:
 
@@ -12646,7 +12646,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--scm_provider--azure_dev_ops"></a>
-### Nested Schema for `spec.generators.scm_provider.values`
+### Nested Schema for `spec.generators.scm_provider.azure_dev_ops`
 
 Required:
 
@@ -12670,7 +12670,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--scm_provider--bitbucket"></a>
-### Nested Schema for `spec.generators.scm_provider.values`
+### Nested Schema for `spec.generators.scm_provider.bitbucket`
 
 Required:
 
@@ -12693,7 +12693,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--scm_provider--bitbucket_server"></a>
-### Nested Schema for `spec.generators.scm_provider.values`
+### Nested Schema for `spec.generators.scm_provider.bitbucket_server`
 
 Required:
 
@@ -12714,7 +12714,7 @@ Required:
 - `username` (String)
 
 <a id="nestedatt--spec--generators--scm_provider--values--basic_auth--password_ref"></a>
-### Nested Schema for `spec.generators.scm_provider.values.basic_auth.username`
+### Nested Schema for `spec.generators.scm_provider.values.basic_auth.password_ref`
 
 Required:
 
@@ -12725,7 +12725,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--scm_provider--filters"></a>
-### Nested Schema for `spec.generators.scm_provider.values`
+### Nested Schema for `spec.generators.scm_provider.filters`
 
 Optional:
 
@@ -12737,7 +12737,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--scm_provider--gitea"></a>
-### Nested Schema for `spec.generators.scm_provider.values`
+### Nested Schema for `spec.generators.scm_provider.gitea`
 
 Required:
 
@@ -12761,7 +12761,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--scm_provider--github"></a>
-### Nested Schema for `spec.generators.scm_provider.values`
+### Nested Schema for `spec.generators.scm_provider.github`
 
 Required:
 
@@ -12785,7 +12785,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--scm_provider--gitlab"></a>
-### Nested Schema for `spec.generators.scm_provider.values`
+### Nested Schema for `spec.generators.scm_provider.gitlab`
 
 Required:
 
@@ -12812,7 +12812,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--scm_provider--template"></a>
-### Nested Schema for `spec.generators.scm_provider.values`
+### Nested Schema for `spec.generators.scm_provider.template`
 
 Required:
 
@@ -12849,7 +12849,7 @@ Optional:
 - `sync_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--scm_provider--values--spec--sync_policy))
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--destination"></a>
-### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy`
+### Nested Schema for `spec.generators.scm_provider.values.spec.destination`
 
 Optional:
 
@@ -12859,7 +12859,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--ignore_differences"></a>
-### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy`
+### Nested Schema for `spec.generators.scm_provider.values.spec.ignore_differences`
 
 Required:
 
@@ -12876,7 +12876,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--info"></a>
-### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy`
+### Nested Schema for `spec.generators.scm_provider.values.spec.info`
 
 Required:
 
@@ -12885,7 +12885,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--source"></a>
-### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy`
+### Nested Schema for `spec.generators.scm_provider.values.spec.source`
 
 Required:
 
@@ -12903,7 +12903,7 @@ Optional:
 - `target_revision` (String)
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--sync_policy--directory"></a>
-### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.directory`
 
 Optional:
 
@@ -12913,7 +12913,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--sync_policy--target_revision--jsonnet"></a>
-### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision.recurse`
+### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision.jsonnet`
 
 Optional:
 
@@ -12950,7 +12950,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--sync_policy--helm"></a>
-### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.helm`
 
 Optional:
 
@@ -12966,7 +12966,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--sync_policy--target_revision--file_parameters"></a>
-### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision.file_parameters`
 
 Optional:
 
@@ -12975,7 +12975,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--sync_policy--target_revision--parameters"></a>
-### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision.parameters`
 
 Optional:
 
@@ -12986,7 +12986,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--sync_policy--kustomize"></a>
-### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.kustomize`
 
 Optional:
 
@@ -13005,7 +13005,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--sync_policy--target_revision--patches"></a>
-### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision.patches`
 
 Optional:
 
@@ -13030,7 +13030,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--sync_policy--target_revision--replicas"></a>
-### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision.replicas`
 
 Required:
 
@@ -13040,7 +13040,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--sync_policy--plugin"></a>
-### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.plugin`
 
 Optional:
 
@@ -13049,7 +13049,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--scm_provider--values--spec--sync_policy--target_revision--parameters))
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--sync_policy--target_revision--env"></a>
-### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision.parameters`
+### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision.env`
 
 Required:
 
@@ -13071,7 +13071,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--sources"></a>
-### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy`
+### Nested Schema for `spec.generators.scm_provider.values.spec.sources`
 
 Required:
 
@@ -13089,7 +13089,7 @@ Optional:
 - `target_revision` (String)
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--sync_policy--directory"></a>
-### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.directory`
 
 Optional:
 
@@ -13099,7 +13099,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--sync_policy--target_revision--jsonnet"></a>
-### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision.recurse`
+### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision.jsonnet`
 
 Optional:
 
@@ -13136,7 +13136,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--sync_policy--helm"></a>
-### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.helm`
 
 Optional:
 
@@ -13152,7 +13152,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--sync_policy--target_revision--file_parameters"></a>
-### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision.file_parameters`
 
 Optional:
 
@@ -13161,7 +13161,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--sync_policy--target_revision--parameters"></a>
-### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision.parameters`
 
 Optional:
 
@@ -13172,7 +13172,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--sync_policy--kustomize"></a>
-### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.kustomize`
 
 Optional:
 
@@ -13191,7 +13191,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--sync_policy--target_revision--patches"></a>
-### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision.patches`
 
 Optional:
 
@@ -13216,7 +13216,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--sync_policy--target_revision--replicas"></a>
-### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision.version`
+### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision.replicas`
 
 Required:
 
@@ -13226,7 +13226,7 @@ Required:
 
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--sync_policy--plugin"></a>
-### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision`
+### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.plugin`
 
 Optional:
 
@@ -13235,7 +13235,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--scm_provider--values--spec--sync_policy--target_revision--parameters))
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--sync_policy--target_revision--env"></a>
-### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision.parameters`
+### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision.env`
 
 Required:
 
@@ -13267,7 +13267,7 @@ Optional:
 - `sync_options` (List of String)
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--sync_policy--automated"></a>
-### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.sync_options`
+### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.automated`
 
 Optional:
 
@@ -13277,7 +13277,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--sync_policy--managed_namespace_metadata"></a>
-### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.sync_options`
+### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.managed_namespace_metadata`
 
 Optional:
 
@@ -13286,7 +13286,7 @@ Optional:
 
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--sync_policy--retry"></a>
-### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.sync_options`
+### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.retry`
 
 Optional:
 
@@ -13294,7 +13294,7 @@ Optional:
 - `limit` (Number)
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--sync_policy--sync_options--backoff"></a>
-### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.sync_options.limit`
+### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.sync_options.backoff`
 
 Optional:
 
@@ -13317,7 +13317,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--generators--selector--match_expressions"></a>
-### Nested Schema for `spec.generators.selector.match_labels`
+### Nested Schema for `spec.generators.selector.match_expressions`
 
 Required:
 
@@ -13369,7 +13369,7 @@ Optional:
 - `sync_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--template--spec--sync_policy))
 
 <a id="nestedatt--spec--template--spec--destination"></a>
-### Nested Schema for `spec.template.spec.sync_policy`
+### Nested Schema for `spec.template.spec.destination`
 
 Optional:
 
@@ -13379,7 +13379,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--ignore_differences"></a>
-### Nested Schema for `spec.template.spec.sync_policy`
+### Nested Schema for `spec.template.spec.ignore_differences`
 
 Required:
 
@@ -13396,7 +13396,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--info"></a>
-### Nested Schema for `spec.template.spec.sync_policy`
+### Nested Schema for `spec.template.spec.info`
 
 Required:
 
@@ -13405,7 +13405,7 @@ Required:
 
 
 <a id="nestedatt--spec--template--spec--source"></a>
-### Nested Schema for `spec.template.spec.sync_policy`
+### Nested Schema for `spec.template.spec.source`
 
 Required:
 
@@ -13433,7 +13433,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--template--spec--sync_policy--directory--jsonnet"></a>
-### Nested Schema for `spec.template.spec.sync_policy.directory.recurse`
+### Nested Schema for `spec.template.spec.sync_policy.directory.jsonnet`
 
 Optional:
 
@@ -13442,7 +13442,7 @@ Optional:
 - `tlas` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--spec--sync_policy--directory--recurse--tlas))
 
 <a id="nestedatt--spec--template--spec--sync_policy--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.template.spec.sync_policy.directory.recurse.tlas`
+### Nested Schema for `spec.template.spec.sync_policy.directory.recurse.ext_vars`
 
 Required:
 
@@ -13486,7 +13486,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--template--spec--sync_policy--helm--file_parameters"></a>
-### Nested Schema for `spec.template.spec.sync_policy.helm.version`
+### Nested Schema for `spec.template.spec.sync_policy.helm.file_parameters`
 
 Optional:
 
@@ -13495,7 +13495,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--sync_policy--helm--parameters"></a>
-### Nested Schema for `spec.template.spec.sync_policy.helm.version`
+### Nested Schema for `spec.template.spec.sync_policy.helm.parameters`
 
 Optional:
 
@@ -13525,7 +13525,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--template--spec--sync_policy--kustomize--patches"></a>
-### Nested Schema for `spec.template.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.template.spec.sync_policy.kustomize.patches`
 
 Optional:
 
@@ -13550,7 +13550,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--sync_policy--kustomize--replicas"></a>
-### Nested Schema for `spec.template.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.template.spec.sync_policy.kustomize.replicas`
 
 Required:
 
@@ -13569,7 +13569,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--spec--sync_policy--plugin--parameters))
 
 <a id="nestedatt--spec--template--spec--sync_policy--plugin--env"></a>
-### Nested Schema for `spec.template.spec.sync_policy.plugin.parameters`
+### Nested Schema for `spec.template.spec.sync_policy.plugin.env`
 
 Required:
 
@@ -13591,7 +13591,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--sources"></a>
-### Nested Schema for `spec.template.spec.sync_policy`
+### Nested Schema for `spec.template.spec.sources`
 
 Required:
 
@@ -13619,7 +13619,7 @@ Optional:
 - `recurse` (Boolean)
 
 <a id="nestedatt--spec--template--spec--sync_policy--directory--jsonnet"></a>
-### Nested Schema for `spec.template.spec.sync_policy.directory.recurse`
+### Nested Schema for `spec.template.spec.sync_policy.directory.jsonnet`
 
 Optional:
 
@@ -13628,7 +13628,7 @@ Optional:
 - `tlas` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--spec--sync_policy--directory--recurse--tlas))
 
 <a id="nestedatt--spec--template--spec--sync_policy--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.template.spec.sync_policy.directory.recurse.tlas`
+### Nested Schema for `spec.template.spec.sync_policy.directory.recurse.ext_vars`
 
 Required:
 
@@ -13672,7 +13672,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--template--spec--sync_policy--helm--file_parameters"></a>
-### Nested Schema for `spec.template.spec.sync_policy.helm.version`
+### Nested Schema for `spec.template.spec.sync_policy.helm.file_parameters`
 
 Optional:
 
@@ -13681,7 +13681,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--sync_policy--helm--parameters"></a>
-### Nested Schema for `spec.template.spec.sync_policy.helm.version`
+### Nested Schema for `spec.template.spec.sync_policy.helm.parameters`
 
 Optional:
 
@@ -13711,7 +13711,7 @@ Optional:
 - `version` (String)
 
 <a id="nestedatt--spec--template--spec--sync_policy--kustomize--patches"></a>
-### Nested Schema for `spec.template.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.template.spec.sync_policy.kustomize.patches`
 
 Optional:
 
@@ -13736,7 +13736,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--sync_policy--kustomize--replicas"></a>
-### Nested Schema for `spec.template.spec.sync_policy.kustomize.version`
+### Nested Schema for `spec.template.spec.sync_policy.kustomize.replicas`
 
 Required:
 
@@ -13755,7 +13755,7 @@ Optional:
 - `parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--spec--sync_policy--plugin--parameters))
 
 <a id="nestedatt--spec--template--spec--sync_policy--plugin--env"></a>
-### Nested Schema for `spec.template.spec.sync_policy.plugin.parameters`
+### Nested Schema for `spec.template.spec.sync_policy.plugin.env`
 
 Required:
 
@@ -13814,7 +13814,7 @@ Optional:
 - `limit` (Number)
 
 <a id="nestedatt--spec--template--spec--sync_policy--retry--backoff"></a>
-### Nested Schema for `spec.template.spec.sync_policy.retry.limit`
+### Nested Schema for `spec.template.spec.sync_policy.retry.backoff`
 
 Optional:
 

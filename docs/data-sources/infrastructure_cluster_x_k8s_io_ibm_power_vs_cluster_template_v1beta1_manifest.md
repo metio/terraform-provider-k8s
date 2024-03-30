@@ -81,7 +81,7 @@ Optional:
 - `control_plane_endpoint` (Attributes) ControlPlaneEndpoint represents the endpoint used to communicate with the control plane. (see [below for nested schema](#nestedatt--spec--template--spec--control_plane_endpoint))
 
 <a id="nestedatt--spec--template--spec--network"></a>
-### Nested Schema for `spec.template.spec.control_plane_endpoint`
+### Nested Schema for `spec.template.spec.network`
 
 Optional:
 

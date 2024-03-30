@@ -88,7 +88,7 @@ Optional:
 - `stopping_condition` (Attributes) A time limit for how long the monitoring job is allowed to run before stopping. (see [below for nested schema](#nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--stopping_condition))
 
 <a id="nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--baseline_config"></a>
-### Nested Schema for `spec.monitoring_schedule_config.monitoring_job_definition.stopping_condition`
+### Nested Schema for `spec.monitoring_schedule_config.monitoring_job_definition.baseline_config`
 
 Optional:
 
@@ -114,7 +114,7 @@ Optional:
 
 
 <a id="nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--monitoring_app_specification"></a>
-### Nested Schema for `spec.monitoring_schedule_config.monitoring_job_definition.stopping_condition`
+### Nested Schema for `spec.monitoring_schedule_config.monitoring_job_definition.monitoring_app_specification`
 
 Optional:
 
@@ -126,7 +126,7 @@ Optional:
 
 
 <a id="nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--monitoring_inputs"></a>
-### Nested Schema for `spec.monitoring_schedule_config.monitoring_job_definition.stopping_condition`
+### Nested Schema for `spec.monitoring_schedule_config.monitoring_job_definition.monitoring_inputs`
 
 Optional:
 
@@ -152,7 +152,7 @@ Optional:
 
 
 <a id="nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--monitoring_output_config"></a>
-### Nested Schema for `spec.monitoring_schedule_config.monitoring_job_definition.stopping_condition`
+### Nested Schema for `spec.monitoring_schedule_config.monitoring_job_definition.monitoring_output_config`
 
 Optional:
 
@@ -179,7 +179,7 @@ Optional:
 
 
 <a id="nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--monitoring_resources"></a>
-### Nested Schema for `spec.monitoring_schedule_config.monitoring_job_definition.stopping_condition`
+### Nested Schema for `spec.monitoring_schedule_config.monitoring_job_definition.monitoring_resources`
 
 Optional:
 
@@ -198,7 +198,7 @@ Optional:
 
 
 <a id="nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--network_config"></a>
-### Nested Schema for `spec.monitoring_schedule_config.monitoring_job_definition.stopping_condition`
+### Nested Schema for `spec.monitoring_schedule_config.monitoring_job_definition.network_config`
 
 Optional:
 

@@ -85,7 +85,7 @@ Optional:
 - `system_type` (String) systemType is the System type used to host the instance. systemType determines the number of cores and memory that is available. Few of the supported SystemTypes are s922,e880,e980. e880 systemType available only in Dallas Datacenters. e980 systemType available in Datacenters except Dallas and Washington. When omitted, this means that the user has no opinion and the platform is left to choose a reasonable default, which is subject to change over time. The current default is s922 which is generally available.
 
 <a id="nestedatt--spec--template--spec--network"></a>
-### Nested Schema for `spec.template.spec.system_type`
+### Nested Schema for `spec.template.spec.network`
 
 Optional:
 
@@ -95,7 +95,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--image"></a>
-### Nested Schema for `spec.template.spec.system_type`
+### Nested Schema for `spec.template.spec.image`
 
 Optional:
 
@@ -105,7 +105,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--image_ref"></a>
-### Nested Schema for `spec.template.spec.system_type`
+### Nested Schema for `spec.template.spec.image_ref`
 
 Optional:
 
@@ -113,7 +113,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--service_instance"></a>
-### Nested Schema for `spec.template.spec.system_type`
+### Nested Schema for `spec.template.spec.service_instance`
 
 Optional:
 

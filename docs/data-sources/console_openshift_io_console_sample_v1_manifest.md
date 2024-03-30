@@ -107,7 +107,7 @@ Optional:
 - `service` (Attributes) service contains configuration for the Service resource created for this sample. (see [below for nested schema](#nestedatt--spec--source--git_import--service))
 
 <a id="nestedatt--spec--source--git_import--repository"></a>
-### Nested Schema for `spec.source.git_import.service`
+### Nested Schema for `spec.source.git_import.repository`
 
 Required:
 

@@ -110,7 +110,7 @@ Optional:
 - `failure_domains` (Attributes) FailureDomains is the list of failure domains (sometimes called availability zones) in which the ControlPlaneMachineSet should balance the Control Plane Machines. This will be merged into the ProviderSpec given in the template. This field is optional on platforms that do not require placement information. (see [below for nested schema](#nestedatt--spec--template--machines_v1beta1_machine_openshift_io--failure_domains))
 
 <a id="nestedatt--spec--template--machines_v1beta1_machine_openshift_io--metadata"></a>
-### Nested Schema for `spec.template.machines_v1beta1_machine_openshift_io.failure_domains`
+### Nested Schema for `spec.template.machines_v1beta1_machine_openshift_io.metadata`
 
 Required:
 
@@ -122,7 +122,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--machines_v1beta1_machine_openshift_io--spec"></a>
-### Nested Schema for `spec.template.machines_v1beta1_machine_openshift_io.failure_domains`
+### Nested Schema for `spec.template.machines_v1beta1_machine_openshift_io.spec`
 
 Optional:
 
@@ -141,7 +141,7 @@ Optional:
 - `pre_terminate` (Attributes List) PreTerminate hooks prevent the machine from being terminated. PreTerminate hooks be actioned after the Machine has been drained. (see [below for nested schema](#nestedatt--spec--template--machines_v1beta1_machine_openshift_io--failure_domains--lifecycle_hooks--pre_terminate))
 
 <a id="nestedatt--spec--template--machines_v1beta1_machine_openshift_io--failure_domains--lifecycle_hooks--pre_drain"></a>
-### Nested Schema for `spec.template.machines_v1beta1_machine_openshift_io.failure_domains.lifecycle_hooks.pre_terminate`
+### Nested Schema for `spec.template.machines_v1beta1_machine_openshift_io.failure_domains.lifecycle_hooks.pre_drain`
 
 Required:
 
@@ -236,7 +236,7 @@ Optional:
 - `subnet` (Attributes) Subnet is a reference to the subnet to use for this instance. (see [below for nested schema](#nestedatt--spec--template--machines_v1beta1_machine_openshift_io--failure_domains--aws--subnet))
 
 <a id="nestedatt--spec--template--machines_v1beta1_machine_openshift_io--failure_domains--aws--placement"></a>
-### Nested Schema for `spec.template.machines_v1beta1_machine_openshift_io.failure_domains.aws.subnet`
+### Nested Schema for `spec.template.machines_v1beta1_machine_openshift_io.failure_domains.aws.placement`
 
 Required:
 
@@ -257,7 +257,7 @@ Optional:
 - `id` (String) ID of resource.
 
 <a id="nestedatt--spec--template--machines_v1beta1_machine_openshift_io--failure_domains--aws--subnet--filters"></a>
-### Nested Schema for `spec.template.machines_v1beta1_machine_openshift_io.failure_domains.aws.subnet.id`
+### Nested Schema for `spec.template.machines_v1beta1_machine_openshift_io.failure_domains.aws.subnet.filters`
 
 Required:
 

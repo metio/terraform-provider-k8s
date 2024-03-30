@@ -158,7 +158,7 @@ Optional:
 - `searches` (List of String) A list of DNS search domains for host-name lookup.This will be appended to the base search paths generated from DNSPolicy.Duplicated search paths will be removed.
 
 <a id="nestedatt--spec--vminsert--dns_config--options"></a>
-### Nested Schema for `spec.vminsert.dns_config.searches`
+### Nested Schema for `spec.vminsert.dns_config.options`
 
 Optional:
 
@@ -226,7 +226,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--vminsert--resources--claims"></a>
-### Nested Schema for `spec.vminsert.resources.requests`
+### Nested Schema for `spec.vminsert.resources.claims`
 
 Required:
 
@@ -359,7 +359,7 @@ Optional:
 - `status` (Attributes) status represents the current information/status of a persistent volume claim.Read-only.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--vmselect--claim_templates--status))
 
 <a id="nestedatt--spec--vmselect--claim_templates--spec"></a>
-### Nested Schema for `spec.vmselect.claim_templates.status`
+### Nested Schema for `spec.vmselect.claim_templates.spec`
 
 Optional:
 
@@ -409,7 +409,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--vmselect--claim_templates--status--resources--claims"></a>
-### Nested Schema for `spec.vmselect.claim_templates.status.resources.requests`
+### Nested Schema for `spec.vmselect.claim_templates.status.resources.claims`
 
 Required:
 
@@ -426,7 +426,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--vmselect--claim_templates--status--selector--match_expressions"></a>
-### Nested Schema for `spec.vmselect.claim_templates.status.selector.match_labels`
+### Nested Schema for `spec.vmselect.claim_templates.status.selector.match_expressions`
 
 Required:
 
@@ -480,7 +480,7 @@ Optional:
 - `searches` (List of String) A list of DNS search domains for host-name lookup.This will be appended to the base search paths generated from DNSPolicy.Duplicated search paths will be removed.
 
 <a id="nestedatt--spec--vmselect--dns_config--options"></a>
-### Nested Schema for `spec.vmselect.dns_config.searches`
+### Nested Schema for `spec.vmselect.dns_config.options`
 
 Optional:
 
@@ -509,7 +509,7 @@ Optional:
 - `volume_claim_template` (Map of String) A PVC spec to be used by the VMAlertManager StatefulSets.
 
 <a id="nestedatt--spec--vmselect--persistent_volume--empty_dir"></a>
-### Nested Schema for `spec.vmselect.persistent_volume.volume_claim_template`
+### Nested Schema for `spec.vmselect.persistent_volume.empty_dir`
 
 Optional:
 
@@ -556,7 +556,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--vmselect--resources--claims"></a>
-### Nested Schema for `spec.vmselect.resources.requests`
+### Nested Schema for `spec.vmselect.resources.claims`
 
 Required:
 
@@ -596,7 +596,7 @@ Optional:
 - `volume_claim_template` (Attributes) A PVC spec to be used by the VMAlertManager StatefulSets. (see [below for nested schema](#nestedatt--spec--vmselect--storage--volume_claim_template))
 
 <a id="nestedatt--spec--vmselect--storage--empty_dir"></a>
-### Nested Schema for `spec.vmselect.storage.volume_claim_template`
+### Nested Schema for `spec.vmselect.storage.empty_dir`
 
 Optional:
 
@@ -640,7 +640,7 @@ Optional:
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--vmselect--storage--volume_claim_template--spec--data_source"></a>
-### Nested Schema for `spec.vmselect.storage.volume_claim_template.spec.volume_name`
+### Nested Schema for `spec.vmselect.storage.volume_claim_template.spec.data_source`
 
 Required:
 
@@ -653,7 +653,7 @@ Optional:
 
 
 <a id="nestedatt--spec--vmselect--storage--volume_claim_template--spec--data_source_ref"></a>
-### Nested Schema for `spec.vmselect.storage.volume_claim_template.spec.volume_name`
+### Nested Schema for `spec.vmselect.storage.volume_claim_template.spec.data_source_ref`
 
 Required:
 
@@ -667,7 +667,7 @@ Optional:
 
 
 <a id="nestedatt--spec--vmselect--storage--volume_claim_template--spec--resources"></a>
-### Nested Schema for `spec.vmselect.storage.volume_claim_template.spec.volume_name`
+### Nested Schema for `spec.vmselect.storage.volume_claim_template.spec.resources`
 
 Optional:
 
@@ -676,7 +676,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--vmselect--storage--volume_claim_template--spec--volume_name--claims"></a>
-### Nested Schema for `spec.vmselect.storage.volume_claim_template.spec.volume_name.requests`
+### Nested Schema for `spec.vmselect.storage.volume_claim_template.spec.volume_name.claims`
 
 Required:
 
@@ -685,7 +685,7 @@ Required:
 
 
 <a id="nestedatt--spec--vmselect--storage--volume_claim_template--spec--selector"></a>
-### Nested Schema for `spec.vmselect.storage.volume_claim_template.spec.volume_name`
+### Nested Schema for `spec.vmselect.storage.volume_claim_template.spec.selector`
 
 Optional:
 
@@ -693,7 +693,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--vmselect--storage--volume_claim_template--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.vmselect.storage.volume_claim_template.spec.volume_name.match_labels`
+### Nested Schema for `spec.vmselect.storage.volume_claim_template.spec.volume_name.match_expressions`
 
 Required:
 
@@ -720,7 +720,7 @@ Optional:
 - `resize_status` (String) resizeStatus stores status of resize operation.ResizeStatus is not set by default but when expansion is complete resizeStatus is set to emptystring by resize controller or kubelet.This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
 
 <a id="nestedatt--spec--vmselect--storage--volume_claim_template--status--conditions"></a>
-### Nested Schema for `spec.vmselect.storage.volume_claim_template.status.resize_status`
+### Nested Schema for `spec.vmselect.storage.volume_claim_template.status.conditions`
 
 Required:
 
@@ -834,7 +834,7 @@ Optional:
 - `status` (Attributes) status represents the current information/status of a persistent volume claim.Read-only.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--vmstorage--claim_templates--status))
 
 <a id="nestedatt--spec--vmstorage--claim_templates--spec"></a>
-### Nested Schema for `spec.vmstorage.claim_templates.status`
+### Nested Schema for `spec.vmstorage.claim_templates.spec`
 
 Optional:
 
@@ -884,7 +884,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--vmstorage--claim_templates--status--resources--claims"></a>
-### Nested Schema for `spec.vmstorage.claim_templates.status.resources.requests`
+### Nested Schema for `spec.vmstorage.claim_templates.status.resources.claims`
 
 Required:
 
@@ -901,7 +901,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--vmstorage--claim_templates--status--selector--match_expressions"></a>
-### Nested Schema for `spec.vmstorage.claim_templates.status.selector.match_labels`
+### Nested Schema for `spec.vmstorage.claim_templates.status.selector.match_expressions`
 
 Required:
 
@@ -955,7 +955,7 @@ Optional:
 - `searches` (List of String) A list of DNS search domains for host-name lookup.This will be appended to the base search paths generated from DNSPolicy.Duplicated search paths will be removed.
 
 <a id="nestedatt--spec--vmstorage--dns_config--options"></a>
-### Nested Schema for `spec.vmstorage.dns_config.searches`
+### Nested Schema for `spec.vmstorage.dns_config.options`
 
 Optional:
 
@@ -1012,7 +1012,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--vmstorage--resources--claims"></a>
-### Nested Schema for `spec.vmstorage.resources.requests`
+### Nested Schema for `spec.vmstorage.resources.claims`
 
 Required:
 
@@ -1052,7 +1052,7 @@ Optional:
 - `volume_claim_template` (Map of String) A PVC spec to be used by the VMAlertManager StatefulSets.
 
 <a id="nestedatt--spec--vmstorage--storage--empty_dir"></a>
-### Nested Schema for `spec.vmstorage.storage.volume_claim_template`
+### Nested Schema for `spec.vmstorage.storage.empty_dir`
 
 Optional:
 
@@ -1101,7 +1101,7 @@ Optional:
 - `volume_mounts` (Attributes List) VolumeMounts allows configuration of additional VolumeMounts on the output Deployment definition.VolumeMounts specified will be appended to other VolumeMounts in the vmbackupmanager container,that are generated as a result of StorageSpec objects. (see [below for nested schema](#nestedatt--spec--vmstorage--vm_backup--volume_mounts))
 
 <a id="nestedatt--spec--vmstorage--vm_backup--credentials_secret"></a>
-### Nested Schema for `spec.vmstorage.vm_backup.volume_mounts`
+### Nested Schema for `spec.vmstorage.vm_backup.credentials_secret`
 
 Required:
 
@@ -1114,7 +1114,7 @@ Optional:
 
 
 <a id="nestedatt--spec--vmstorage--vm_backup--extra_envs"></a>
-### Nested Schema for `spec.vmstorage.vm_backup.volume_mounts`
+### Nested Schema for `spec.vmstorage.vm_backup.extra_envs`
 
 Required:
 
@@ -1136,7 +1136,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--vmstorage--vm_backup--volume_mounts--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--vmstorage--vm_backup--volume_mounts--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.vmstorage.vm_backup.volume_mounts.value_from.secret_key_ref`
+### Nested Schema for `spec.vmstorage.vm_backup.volume_mounts.value_from.config_map_key_ref`
 
 Required:
 
@@ -1149,7 +1149,7 @@ Optional:
 
 
 <a id="nestedatt--spec--vmstorage--vm_backup--volume_mounts--value_from--field_ref"></a>
-### Nested Schema for `spec.vmstorage.vm_backup.volume_mounts.value_from.secret_key_ref`
+### Nested Schema for `spec.vmstorage.vm_backup.volume_mounts.value_from.field_ref`
 
 Required:
 
@@ -1161,7 +1161,7 @@ Optional:
 
 
 <a id="nestedatt--spec--vmstorage--vm_backup--volume_mounts--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.vmstorage.vm_backup.volume_mounts.value_from.secret_key_ref`
+### Nested Schema for `spec.vmstorage.vm_backup.volume_mounts.value_from.resource_field_ref`
 
 Required:
 
@@ -1189,7 +1189,7 @@ Optional:
 
 
 <a id="nestedatt--spec--vmstorage--vm_backup--image"></a>
-### Nested Schema for `spec.vmstorage.vm_backup.volume_mounts`
+### Nested Schema for `spec.vmstorage.vm_backup.image`
 
 Optional:
 
@@ -1199,7 +1199,7 @@ Optional:
 
 
 <a id="nestedatt--spec--vmstorage--vm_backup--resources"></a>
-### Nested Schema for `spec.vmstorage.vm_backup.volume_mounts`
+### Nested Schema for `spec.vmstorage.vm_backup.resources`
 
 Optional:
 
@@ -1217,7 +1217,7 @@ Required:
 
 
 <a id="nestedatt--spec--vmstorage--vm_backup--restore"></a>
-### Nested Schema for `spec.vmstorage.vm_backup.volume_mounts`
+### Nested Schema for `spec.vmstorage.vm_backup.restore`
 
 Optional:
 

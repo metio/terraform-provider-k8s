@@ -111,7 +111,7 @@ Optional:
 - `unix_domain_socket_config` (Attributes) UnixDomainSocketConfig contains socket configuration. See also: https://docs.datadoghq.com/agent/kubernetes/apm/?tab=helm#agent-environment-variables Enabled Default: true Path Default: '/var/run/datadog/apm.socket' (see [below for nested schema](#nestedatt--spec--features--apm--unix_domain_socket_config))
 
 <a id="nestedatt--spec--features--apm--host_port_config"></a>
-### Nested Schema for `spec.features.apm.unix_domain_socket_config`
+### Nested Schema for `spec.features.apm.host_port_config`
 
 Optional:
 
@@ -149,7 +149,7 @@ Optional:
 - `host_benchmarks` (Attributes) HostBenchmarks contains configuration for host benchmarks. (see [below for nested schema](#nestedatt--spec--features--cspm--host_benchmarks))
 
 <a id="nestedatt--spec--features--cspm--custom_benchmarks"></a>
-### Nested Schema for `spec.features.cspm.host_benchmarks`
+### Nested Schema for `spec.features.cspm.custom_benchmarks`
 
 Optional:
 
@@ -165,7 +165,7 @@ Optional:
 - `name` (String) Name is the name of the ConfigMap.
 
 <a id="nestedatt--spec--features--cspm--host_benchmarks--config_map--items"></a>
-### Nested Schema for `spec.features.cspm.host_benchmarks.config_map.name`
+### Nested Schema for `spec.features.cspm.host_benchmarks.config_map.items`
 
 Required:
 
@@ -201,7 +201,7 @@ Optional:
 - `syscall_monitor_enabled` (Boolean) SyscallMonitorEnabled enables Syscall Monitoring (recommended for troubleshooting only). Default: false
 
 <a id="nestedatt--spec--features--cws--custom_policies"></a>
-### Nested Schema for `spec.features.cws.syscall_monitor_enabled`
+### Nested Schema for `spec.features.cws.custom_policies`
 
 Optional:
 
@@ -217,7 +217,7 @@ Optional:
 - `name` (String) Name is the name of the ConfigMap.
 
 <a id="nestedatt--spec--features--cws--syscall_monitor_enabled--config_map--items"></a>
-### Nested Schema for `spec.features.cws.syscall_monitor_enabled.config_map.name`
+### Nested Schema for `spec.features.cws.syscall_monitor_enabled.config_map.items`
 
 Required:
 
@@ -232,7 +232,7 @@ Optional:
 
 
 <a id="nestedatt--spec--features--cws--network"></a>
-### Nested Schema for `spec.features.cws.syscall_monitor_enabled`
+### Nested Schema for `spec.features.cws.network`
 
 Optional:
 
@@ -240,7 +240,7 @@ Optional:
 
 
 <a id="nestedatt--spec--features--cws--remote_configuration"></a>
-### Nested Schema for `spec.features.cws.syscall_monitor_enabled`
+### Nested Schema for `spec.features.cws.remote_configuration`
 
 Optional:
 
@@ -248,7 +248,7 @@ Optional:
 
 
 <a id="nestedatt--spec--features--cws--security_profiles"></a>
-### Nested Schema for `spec.features.cws.syscall_monitor_enabled`
+### Nested Schema for `spec.features.cws.security_profiles`
 
 Optional:
 
@@ -268,7 +268,7 @@ Optional:
 - `unix_domain_socket_config` (Attributes) UnixDomainSocketConfig contains socket configuration. See also: https://docs.datadoghq.com/agent/kubernetes/apm/?tab=helm#agent-environment-variables Enabled Default: true Path Default: '/var/run/datadog/dsd.socket' (see [below for nested schema](#nestedatt--spec--features--dogstatsd--unix_domain_socket_config))
 
 <a id="nestedatt--spec--features--dogstatsd--host_port_config"></a>
-### Nested Schema for `spec.features.dogstatsd.unix_domain_socket_config`
+### Nested Schema for `spec.features.dogstatsd.host_port_config`
 
 Optional:
 
@@ -277,7 +277,7 @@ Optional:
 
 
 <a id="nestedatt--spec--features--dogstatsd--mapper_profiles"></a>
-### Nested Schema for `spec.features.dogstatsd.unix_domain_socket_config`
+### Nested Schema for `spec.features.dogstatsd.mapper_profiles`
 
 Optional:
 
@@ -293,7 +293,7 @@ Optional:
 - `name` (String) Name is the name of the ConfigMap.
 
 <a id="nestedatt--spec--features--dogstatsd--unix_domain_socket_config--config_map--items"></a>
-### Nested Schema for `spec.features.dogstatsd.unix_domain_socket_config.config_map.name`
+### Nested Schema for `spec.features.dogstatsd.unix_domain_socket_config.config_map.items`
 
 Required:
 
@@ -346,7 +346,7 @@ Optional:
 - `wpa_controller` (Boolean) WPAController enables the informer and controller of the Watermark Pod Autoscaler. NOTE: The Watermark Pod Autoscaler controller needs to be installed. See also: https://github.com/DataDog/watermarkpodautoscaler. Default: false
 
 <a id="nestedatt--spec--features--external_metrics_server--endpoint"></a>
-### Nested Schema for `spec.features.external_metrics_server.wpa_controller`
+### Nested Schema for `spec.features.external_metrics_server.endpoint`
 
 Optional:
 
@@ -364,7 +364,7 @@ Optional:
 - `app_secret` (Attributes) AppSecret references an existing Secret which stores the application key instead of creating a new one. If set, this parameter takes precedence over 'AppKey'. (see [below for nested schema](#nestedatt--spec--features--external_metrics_server--wpa_controller--credentials--app_secret))
 
 <a id="nestedatt--spec--features--external_metrics_server--wpa_controller--credentials--api_secret"></a>
-### Nested Schema for `spec.features.external_metrics_server.wpa_controller.credentials.app_secret`
+### Nested Schema for `spec.features.external_metrics_server.wpa_controller.credentials.api_secret`
 
 Required:
 
@@ -399,7 +399,7 @@ Optional:
 - `enabled` (Boolean) Enabled enables Kube State Metrics Core. Default: true
 
 <a id="nestedatt--spec--features--kube_state_metrics_core--conf"></a>
-### Nested Schema for `spec.features.kube_state_metrics_core.enabled`
+### Nested Schema for `spec.features.kube_state_metrics_core.conf`
 
 Optional:
 
@@ -415,7 +415,7 @@ Optional:
 - `name` (String) Name is the name of the ConfigMap.
 
 <a id="nestedatt--spec--features--kube_state_metrics_core--enabled--config_map--items"></a>
-### Nested Schema for `spec.features.kube_state_metrics_core.enabled.config_map.name`
+### Nested Schema for `spec.features.kube_state_metrics_core.enabled.config_map.items`
 
 Required:
 
@@ -494,7 +494,7 @@ Optional:
 - `scrub_containers` (Boolean) ScrubContainers enables scrubbing of sensitive container data (passwords, tokens, etc. ). Default: true
 
 <a id="nestedatt--spec--features--orchestrator_explorer--conf"></a>
-### Nested Schema for `spec.features.orchestrator_explorer.scrub_containers`
+### Nested Schema for `spec.features.orchestrator_explorer.conf`
 
 Optional:
 
@@ -510,7 +510,7 @@ Optional:
 - `name` (String) Name is the name of the ConfigMap.
 
 <a id="nestedatt--spec--features--orchestrator_explorer--scrub_containers--config_map--items"></a>
-### Nested Schema for `spec.features.orchestrator_explorer.scrub_containers.config_map.name`
+### Nested Schema for `spec.features.orchestrator_explorer.scrub_containers.config_map.items`
 
 Required:
 
@@ -548,7 +548,7 @@ Optional:
 - `http` (Attributes) HTTP contains configuration for the OTLP ingest OTLP/HTTP receiver. (see [below for nested schema](#nestedatt--spec--features--otlp--receiver--protocols--http))
 
 <a id="nestedatt--spec--features--otlp--receiver--protocols--grpc"></a>
-### Nested Schema for `spec.features.otlp.receiver.protocols.http`
+### Nested Schema for `spec.features.otlp.receiver.protocols.grpc`
 
 Optional:
 
@@ -605,7 +605,7 @@ Optional:
 - `host` (Attributes) SBOMTypeConfig contains configuration for a SBOM collection type. (see [below for nested schema](#nestedatt--spec--features--sbom--host))
 
 <a id="nestedatt--spec--features--sbom--container_image"></a>
-### Nested Schema for `spec.features.sbom.host`
+### Nested Schema for `spec.features.sbom.container_image`
 
 Optional:
 
@@ -689,7 +689,7 @@ Optional:
 - `app_secret` (Attributes) AppSecret references an existing Secret which stores the application key instead of creating a new one. If set, this parameter takes precedence over 'AppKey'. (see [below for nested schema](#nestedatt--spec--global--credentials--app_secret))
 
 <a id="nestedatt--spec--global--credentials--api_secret"></a>
-### Nested Schema for `spec.global.credentials.app_secret`
+### Nested Schema for `spec.global.credentials.api_secret`
 
 Required:
 
@@ -722,7 +722,7 @@ Optional:
 - `url` (String) URL defines the endpoint URL.
 
 <a id="nestedatt--spec--global--endpoint--credentials"></a>
-### Nested Schema for `spec.global.endpoint.url`
+### Nested Schema for `spec.global.endpoint.credentials`
 
 Optional:
 
@@ -768,7 +768,7 @@ Optional:
 - `tls_verify` (Boolean) TLSVerify toggles kubelet TLS verification. Default: true
 
 <a id="nestedatt--spec--global--kubelet--host"></a>
-### Nested Schema for `spec.global.kubelet.tls_verify`
+### Nested Schema for `spec.global.kubelet.host`
 
 Optional:
 
@@ -849,7 +849,7 @@ Optional:
 - `flavor` (String) Flavor defines Which network policy to use.
 
 <a id="nestedatt--spec--global--network_policy--dns_selector_endpoints"></a>
-### Nested Schema for `spec.global.network_policy.flavor`
+### Nested Schema for `spec.global.network_policy.dns_selector_endpoints`
 
 Optional:
 
@@ -909,7 +909,7 @@ Optional:
 - `pod_anti_affinity` (Attributes) Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--override--affinity--pod_anti_affinity))
 
 <a id="nestedatt--spec--override--affinity--node_affinity"></a>
-### Nested Schema for `spec.override.affinity.pod_anti_affinity`
+### Nested Schema for `spec.override.affinity.node_affinity`
 
 Optional:
 
@@ -925,7 +925,7 @@ Required:
 - `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
 
 <a id="nestedatt--spec--override--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.override.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.override.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -933,7 +933,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--override--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--override--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.override.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.override.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -976,7 +976,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--override--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--override--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.override.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.override.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -1005,7 +1005,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--affinity--pod_affinity"></a>
-### Nested Schema for `spec.override.affinity.pod_anti_affinity`
+### Nested Schema for `spec.override.affinity.pod_affinity`
 
 Optional:
 
@@ -1021,7 +1021,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--override--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.override.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.override.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -1034,7 +1034,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'
 
 <a id="nestedatt--spec--override--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.override.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.override.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -1042,7 +1042,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--override--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.override.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.override.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -1056,7 +1056,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.override.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.override.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -1064,7 +1064,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--override--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.override.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.override.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -1093,7 +1093,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'
 
 <a id="nestedatt--spec--override--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.override.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.override.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -1101,7 +1101,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--override--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.override.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.override.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -1115,7 +1115,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.override.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.override.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -1123,7 +1123,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--override--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.override.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.override.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -1155,7 +1155,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--override--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.override.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.override.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -1168,7 +1168,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'
 
 <a id="nestedatt--spec--override--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.override.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.override.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -1176,7 +1176,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--override--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.override.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.override.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -1190,7 +1190,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.override.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.override.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -1198,7 +1198,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--override--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.override.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.override.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -1227,7 +1227,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'
 
 <a id="nestedatt--spec--override--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.override.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.override.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -1235,7 +1235,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--override--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.override.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.override.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -1249,7 +1249,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.override.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.override.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -1257,7 +1257,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--override--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.override.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.override.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -1293,7 +1293,7 @@ Optional:
 - `volume_mounts` (Attributes List) Specify additional volume mounts in the container. (see [below for nested schema](#nestedatt--spec--override--containers--volume_mounts))
 
 <a id="nestedatt--spec--override--containers--env"></a>
-### Nested Schema for `spec.override.containers.volume_mounts`
+### Nested Schema for `spec.override.containers.env`
 
 Required:
 
@@ -1315,7 +1315,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--override--containers--volume_mounts--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--override--containers--volume_mounts--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.override.containers.volume_mounts.value_from.secret_key_ref`
+### Nested Schema for `spec.override.containers.volume_mounts.value_from.config_map_key_ref`
 
 Required:
 
@@ -1328,7 +1328,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--containers--volume_mounts--value_from--field_ref"></a>
-### Nested Schema for `spec.override.containers.volume_mounts.value_from.secret_key_ref`
+### Nested Schema for `spec.override.containers.volume_mounts.value_from.field_ref`
 
 Required:
 
@@ -1340,7 +1340,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--containers--volume_mounts--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.override.containers.volume_mounts.value_from.secret_key_ref`
+### Nested Schema for `spec.override.containers.volume_mounts.value_from.resource_field_ref`
 
 Required:
 
@@ -1368,7 +1368,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--containers--liveness_probe"></a>
-### Nested Schema for `spec.override.containers.volume_mounts`
+### Nested Schema for `spec.override.containers.liveness_probe`
 
 Optional:
 
@@ -1418,7 +1418,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--override--containers--volume_mounts--http_get--http_headers"></a>
-### Nested Schema for `spec.override.containers.volume_mounts.http_get.scheme`
+### Nested Schema for `spec.override.containers.volume_mounts.http_get.http_headers`
 
 Required:
 
@@ -1441,7 +1441,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--containers--readiness_probe"></a>
-### Nested Schema for `spec.override.containers.volume_mounts`
+### Nested Schema for `spec.override.containers.readiness_probe`
 
 Optional:
 
@@ -1491,7 +1491,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--override--containers--volume_mounts--http_get--http_headers"></a>
-### Nested Schema for `spec.override.containers.volume_mounts.http_get.scheme`
+### Nested Schema for `spec.override.containers.volume_mounts.http_get.http_headers`
 
 Required:
 
@@ -1514,7 +1514,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--containers--resources"></a>
-### Nested Schema for `spec.override.containers.volume_mounts`
+### Nested Schema for `spec.override.containers.resources`
 
 Optional:
 
@@ -1523,7 +1523,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--containers--seccomp_config"></a>
-### Nested Schema for `spec.override.containers.volume_mounts`
+### Nested Schema for `spec.override.containers.seccomp_config`
 
 Optional:
 
@@ -1547,7 +1547,7 @@ Optional:
 - `name` (String) Name is the name of the ConfigMap.
 
 <a id="nestedatt--spec--override--containers--volume_mounts--custom_profile--config_map--items"></a>
-### Nested Schema for `spec.override.containers.volume_mounts.custom_profile.config_map.name`
+### Nested Schema for `spec.override.containers.volume_mounts.custom_profile.config_map.items`
 
 Required:
 
@@ -1563,7 +1563,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--containers--security_context"></a>
-### Nested Schema for `spec.override.containers.volume_mounts`
+### Nested Schema for `spec.override.containers.security_context`
 
 Optional:
 
@@ -1820,7 +1820,7 @@ Optional:
 - `tag` (String) Define the image tag to use. To be used if the Name field does not correspond to a full image string.
 
 <a id="nestedatt--spec--override--image--pull_secrets"></a>
-### Nested Schema for `spec.override.image.tag`
+### Nested Schema for `spec.override.image.pull_secrets`
 
 Optional:
 
@@ -1845,7 +1845,7 @@ Optional:
 - `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--override--security_context--windows_options))
 
 <a id="nestedatt--spec--override--security_context--se_linux_options"></a>
-### Nested Schema for `spec.override.security_context.windows_options`
+### Nested Schema for `spec.override.security_context.se_linux_options`
 
 Optional:
 
@@ -1856,7 +1856,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.override.security_context.windows_options`
+### Nested Schema for `spec.override.security_context.seccomp_profile`
 
 Required:
 
@@ -1868,7 +1868,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--security_context--sysctls"></a>
-### Nested Schema for `spec.override.security_context.windows_options`
+### Nested Schema for `spec.override.security_context.sysctls`
 
 Required:
 
@@ -1940,7 +1940,7 @@ Optional:
 - `vsphere_volume` (Attributes) VsphereVolume represents a vSphere volume attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--override--volumes--vsphere_volume))
 
 <a id="nestedatt--spec--override--volumes--aws_elastic_block_store"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume`
+### Nested Schema for `spec.override.volumes.aws_elastic_block_store`
 
 Required:
 
@@ -1954,7 +1954,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--azure_disk"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume`
+### Nested Schema for `spec.override.volumes.azure_disk`
 
 Required:
 
@@ -1970,7 +1970,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--azure_file"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume`
+### Nested Schema for `spec.override.volumes.azure_file`
 
 Required:
 
@@ -1983,7 +1983,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--cephfs"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume`
+### Nested Schema for `spec.override.volumes.cephfs`
 
 Required:
 
@@ -2007,7 +2007,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--cinder"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume`
+### Nested Schema for `spec.override.volumes.cinder`
 
 Required:
 
@@ -2029,7 +2029,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--config_map"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume`
+### Nested Schema for `spec.override.volumes.config_map`
 
 Optional:
 
@@ -2053,7 +2053,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--csi"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume`
+### Nested Schema for `spec.override.volumes.csi`
 
 Required:
 
@@ -2076,7 +2076,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--downward_api"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume`
+### Nested Schema for `spec.override.volumes.downward_api`
 
 Optional:
 
@@ -2097,7 +2097,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--override--volumes--vsphere_volume--items--resource_field_ref))
 
 <a id="nestedatt--spec--override--volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume.items.resource_field_ref`
+### Nested Schema for `spec.override.volumes.vsphere_volume.items.field_ref`
 
 Required:
 
@@ -2124,7 +2124,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--empty_dir"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume`
+### Nested Schema for `spec.override.volumes.empty_dir`
 
 Optional:
 
@@ -2133,7 +2133,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--ephemeral"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume`
+### Nested Schema for `spec.override.volumes.ephemeral`
 
 Optional:
 
@@ -2151,7 +2151,7 @@ Optional:
 - `metadata` (Map of String) May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation.
 
 <a id="nestedatt--spec--override--volumes--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume.volume_claim_template.metadata`
+### Nested Schema for `spec.override.volumes.vsphere_volume.volume_claim_template.spec`
 
 Optional:
 
@@ -2165,7 +2165,7 @@ Optional:
 - `volume_name` (String) VolumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--override--volumes--vsphere_volume--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.override.volumes.vsphere_volume.volume_claim_template.metadata.data_source`
 
 Required:
 
@@ -2178,7 +2178,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--vsphere_volume--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.override.volumes.vsphere_volume.volume_claim_template.metadata.data_source_ref`
 
 Required:
 
@@ -2191,7 +2191,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--vsphere_volume--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.override.volumes.vsphere_volume.volume_claim_template.metadata.resources`
 
 Optional:
 
@@ -2200,7 +2200,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--vsphere_volume--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.override.volumes.vsphere_volume.volume_claim_template.metadata.selector`
 
 Optional:
 
@@ -2208,7 +2208,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--override--volumes--vsphere_volume--volume_claim_template--metadata--volume_name--match_expressions"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_labels`
+### Nested Schema for `spec.override.volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_expressions`
 
 Required:
 
@@ -2225,7 +2225,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--fc"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume`
+### Nested Schema for `spec.override.volumes.fc`
 
 Optional:
 
@@ -2237,7 +2237,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--flex_volume"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume`
+### Nested Schema for `spec.override.volumes.flex_volume`
 
 Required:
 
@@ -2260,7 +2260,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--flocker"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume`
+### Nested Schema for `spec.override.volumes.flocker`
 
 Optional:
 
@@ -2269,7 +2269,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--gce_persistent_disk"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume`
+### Nested Schema for `spec.override.volumes.gce_persistent_disk`
 
 Required:
 
@@ -2283,7 +2283,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--git_repo"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume`
+### Nested Schema for `spec.override.volumes.git_repo`
 
 Required:
 
@@ -2296,7 +2296,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--glusterfs"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume`
+### Nested Schema for `spec.override.volumes.glusterfs`
 
 Required:
 
@@ -2309,7 +2309,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--host_path"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume`
+### Nested Schema for `spec.override.volumes.host_path`
 
 Required:
 
@@ -2321,7 +2321,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--iscsi"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume`
+### Nested Schema for `spec.override.volumes.iscsi`
 
 Required:
 
@@ -2350,7 +2350,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--nfs"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume`
+### Nested Schema for `spec.override.volumes.nfs`
 
 Required:
 
@@ -2363,7 +2363,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--persistent_volume_claim"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume`
+### Nested Schema for `spec.override.volumes.persistent_volume_claim`
 
 Required:
 
@@ -2375,7 +2375,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--photon_persistent_disk"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume`
+### Nested Schema for `spec.override.volumes.photon_persistent_disk`
 
 Required:
 
@@ -2387,7 +2387,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--portworx_volume"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume`
+### Nested Schema for `spec.override.volumes.portworx_volume`
 
 Required:
 
@@ -2400,7 +2400,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--projected"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume`
+### Nested Schema for `spec.override.volumes.projected`
 
 Optional:
 
@@ -2418,7 +2418,7 @@ Optional:
 - `service_account_token` (Attributes) information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--override--volumes--vsphere_volume--sources--service_account_token))
 
 <a id="nestedatt--spec--override--volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.override.volumes.vsphere_volume.sources.config_map`
 
 Optional:
 
@@ -2427,7 +2427,7 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--override--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume.sources.service_account_token.optional`
+### Nested Schema for `spec.override.volumes.vsphere_volume.sources.service_account_token.items`
 
 Required:
 
@@ -2441,7 +2441,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.override.volumes.vsphere_volume.sources.downward_api`
 
 Optional:
 
@@ -2461,7 +2461,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--override--volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
 
 <a id="nestedatt--spec--override--volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+### Nested Schema for `spec.override.volumes.vsphere_volume.sources.service_account_token.items.field_ref`
 
 Required:
 
@@ -2488,7 +2488,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.override.volumes.vsphere_volume.sources.secret`
 
 Optional:
 
@@ -2497,7 +2497,7 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 <a id="nestedatt--spec--override--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume.sources.service_account_token.optional`
+### Nested Schema for `spec.override.volumes.vsphere_volume.sources.service_account_token.items`
 
 Required:
 
@@ -2526,7 +2526,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--quobyte"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume`
+### Nested Schema for `spec.override.volumes.quobyte`
 
 Required:
 
@@ -2542,7 +2542,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--rbd"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume`
+### Nested Schema for `spec.override.volumes.rbd`
 
 Required:
 
@@ -2568,7 +2568,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--scale_io"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume`
+### Nested Schema for `spec.override.volumes.scale_io`
 
 Required:
 
@@ -2596,7 +2596,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--secret"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume`
+### Nested Schema for `spec.override.volumes.secret`
 
 Optional:
 
@@ -2620,7 +2620,7 @@ Optional:
 
 
 <a id="nestedatt--spec--override--volumes--storageos"></a>
-### Nested Schema for `spec.override.volumes.vsphere_volume`
+### Nested Schema for `spec.override.volumes.storageos`
 
 Optional:
 

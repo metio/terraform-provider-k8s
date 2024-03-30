@@ -107,7 +107,7 @@ Optional:
 - `response` (Attributes List) response is a list of HTTP response headers to modify. Currently, actions may define to either 'Set' or 'Delete' headers values. Actions defined here will modify the response headers of all requests made through a route. These actions are applied to a specific Route defined within a cluster i.e. connections made through a route. Route actions will be executed before IngressController actions for response headers. Actions are applied in sequence as defined in this list. A maximum of 20 response header actions may be configured. You can use this field to specify HTTP response headers that should be set or deleted when forwarding responses from your application to the client. Sample fetchers allowed are 'res.hdr' and 'ssl_c_der'. Converters allowed are 'lower' and 'base64'. Example header values: '%[res.hdr(X-target),lower]', '%{+Q}[ssl_c_der,base64]'. Note: This field cannot be used if your route uses TLS passthrough. (see [below for nested schema](#nestedatt--spec--http_headers--actions--response))
 
 <a id="nestedatt--spec--http_headers--actions--request"></a>
-### Nested Schema for `spec.http_headers.actions.response`
+### Nested Schema for `spec.http_headers.actions.request`
 
 Required:
 

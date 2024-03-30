@@ -88,7 +88,7 @@ Required:
 - `node_name` (String)
 
 <a id="nestedatt--spec--storage--device_classes--classes"></a>
-### Nested Schema for `spec.storage.device_classes.node_name`
+### Nested Schema for `spec.storage.device_classes.classes`
 
 Required:
 

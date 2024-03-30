@@ -104,7 +104,7 @@ Optional:
 - `zones` (List of String) Zones is list of availability zones that can be used.
 
 <a id="nestedatt--spec--platform--aws--root_volume"></a>
-### Nested Schema for `spec.platform.aws.zones`
+### Nested Schema for `spec.platform.aws.root_volume`
 
 Required:
 
@@ -118,7 +118,7 @@ Optional:
 
 
 <a id="nestedatt--spec--platform--aws--metadata_service"></a>
-### Nested Schema for `spec.platform.aws.zones`
+### Nested Schema for `spec.platform.aws.metadata_service`
 
 Optional:
 
@@ -126,7 +126,7 @@ Optional:
 
 
 <a id="nestedatt--spec--platform--aws--spot_market_options"></a>
-### Nested Schema for `spec.platform.aws.zones`
+### Nested Schema for `spec.platform.aws.spot_market_options`
 
 Optional:
 
@@ -148,7 +148,7 @@ Optional:
 - `zones` (List of String) Zones is list of availability zones that can be used. eg. ['1', '2', '3']
 
 <a id="nestedatt--spec--platform--azure--os_disk"></a>
-### Nested Schema for `spec.platform.azure.zones`
+### Nested Schema for `spec.platform.azure.os_disk`
 
 Required:
 
@@ -174,7 +174,7 @@ Optional:
 
 
 <a id="nestedatt--spec--platform--azure--os_image"></a>
-### Nested Schema for `spec.platform.azure.zones`
+### Nested Schema for `spec.platform.azure.os_image`
 
 Required:
 
@@ -200,7 +200,7 @@ Optional:
 - `zones` (List of String) Zones is list of availability zones that can be used.
 
 <a id="nestedatt--spec--platform--gcp--os_disk"></a>
-### Nested Schema for `spec.platform.gcp.zones`
+### Nested Schema for `spec.platform.gcp.os_disk`
 
 Optional:
 
@@ -217,7 +217,7 @@ Optional:
 - `kms_key_service_account` (String) KMSKeyServiceAccount is the service account being used for the encryption request for the given KMS key. If absent, the Compute Engine default service account is used. See https://cloud.google.com/compute/docs/access/service-accounts#compute_engine_service_account for details on the default service account.
 
 <a id="nestedatt--spec--platform--gcp--zones--encryption_key--kms_key"></a>
-### Nested Schema for `spec.platform.gcp.zones.encryption_key.kms_key_service_account`
+### Nested Schema for `spec.platform.gcp.zones.encryption_key.kms_key`
 
 Required:
 
@@ -244,7 +244,7 @@ Optional:
 - `zones` (List of String) Zones is the list of availability zones used for machines in the pool.
 
 <a id="nestedatt--spec--platform--ibmcloud--boot_volume"></a>
-### Nested Schema for `spec.platform.ibmcloud.zones`
+### Nested Schema for `spec.platform.ibmcloud.boot_volume`
 
 Optional:
 
@@ -252,7 +252,7 @@ Optional:
 
 
 <a id="nestedatt--spec--platform--ibmcloud--dedicated_hosts"></a>
-### Nested Schema for `spec.platform.ibmcloud.zones`
+### Nested Schema for `spec.platform.ibmcloud.dedicated_hosts`
 
 Optional:
 
@@ -293,7 +293,7 @@ Optional:
 - `vm_type` (String) VMType defines the workload type of the VM.
 
 <a id="nestedatt--spec--platform--ovirt--cpu"></a>
-### Nested Schema for `spec.platform.ovirt.vm_type`
+### Nested Schema for `spec.platform.ovirt.cpu`
 
 Required:
 
@@ -302,7 +302,7 @@ Required:
 
 
 <a id="nestedatt--spec--platform--ovirt--os_disk"></a>
-### Nested Schema for `spec.platform.ovirt.vm_type`
+### Nested Schema for `spec.platform.ovirt.os_disk`
 
 Required:
 
@@ -325,7 +325,7 @@ Optional:
 - `resource_pool` (String) ResourcePool is the name of the resource pool that will be used for virtual machines. If it is not present, a default value will be used.
 
 <a id="nestedatt--spec--platform--vsphere--os_disk"></a>
-### Nested Schema for `spec.platform.vsphere.resource_pool`
+### Nested Schema for `spec.platform.vsphere.os_disk`
 
 Required:
 

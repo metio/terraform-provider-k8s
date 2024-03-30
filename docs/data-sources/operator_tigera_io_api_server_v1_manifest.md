@@ -111,7 +111,7 @@ Optional:
 - `topology_spread_constraints` (Attributes List) TopologySpreadConstraints describes how a group of pods ought to spread across topology domains. Scheduler will schedule pods in a way which abides by the constraints. All topologySpreadConstraints are ANDed. (see [below for nested schema](#nestedatt--spec--api_server_deployment--spec--template--spec--topology_spread_constraints))
 
 <a id="nestedatt--spec--api_server_deployment--spec--template--spec--affinity"></a>
-### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints`
+### Nested Schema for `spec.api_server_deployment.spec.template.spec.affinity`
 
 Optional:
 
@@ -120,7 +120,7 @@ Optional:
 - `pod_anti_affinity` (Attributes) Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--api_server_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity))
 
 <a id="nestedatt--spec--api_server_deployment--spec--template--spec--topology_spread_constraints--node_affinity"></a>
-### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity`
+### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.node_affinity`
 
 Optional:
 
@@ -128,7 +128,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--api_server_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--api_server_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -144,7 +144,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--api_server_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference--match_fields))
 
 <a id="nestedatt--spec--api_server_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
-### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference.match_fields`
+### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Required:
 
@@ -187,7 +187,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--api_server_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--api_server_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -216,7 +216,7 @@ Optional:
 
 
 <a id="nestedatt--spec--api_server_deployment--spec--template--spec--topology_spread_constraints--pod_affinity"></a>
-### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity`
+### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_affinity`
 
 Optional:
 
@@ -224,7 +224,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--api_server_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--api_server_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -245,7 +245,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--api_server_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
-### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
@@ -253,7 +253,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--api_server_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -267,7 +267,7 @@ Optional:
 
 
 <a id="nestedatt--spec--api_server_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
-### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
@@ -275,7 +275,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--api_server_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -312,7 +312,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--api_server_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
-### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_labels`
+### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -334,7 +334,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--api_server_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_labels`
+### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -358,7 +358,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--api_server_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--api_server_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -379,7 +379,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--api_server_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
-### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
@@ -387,7 +387,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--api_server_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -401,7 +401,7 @@ Optional:
 
 
 <a id="nestedatt--spec--api_server_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
-### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
@@ -409,7 +409,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--api_server_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -446,7 +446,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--api_server_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
-### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_labels`
+### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -468,7 +468,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--api_server_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_labels`
+### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -485,7 +485,7 @@ Optional:
 
 
 <a id="nestedatt--spec--api_server_deployment--spec--template--spec--containers"></a>
-### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints`
+### Nested Schema for `spec.api_server_deployment.spec.template.spec.containers`
 
 Required:
 
@@ -505,7 +505,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--api_server_deployment--spec--template--spec--topology_spread_constraints--resources--claims"></a>
-### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.resources.requests`
+### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.resources.claims`
 
 Required:
 
@@ -515,7 +515,7 @@ Required:
 
 
 <a id="nestedatt--spec--api_server_deployment--spec--template--spec--init_containers"></a>
-### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints`
+### Nested Schema for `spec.api_server_deployment.spec.template.spec.init_containers`
 
 Required:
 
@@ -535,7 +535,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--api_server_deployment--spec--template--spec--topology_spread_constraints--resources--claims"></a>
-### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.resources.requests`
+### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.resources.claims`
 
 Required:
 
@@ -545,7 +545,7 @@ Required:
 
 
 <a id="nestedatt--spec--api_server_deployment--spec--template--spec--tolerations"></a>
-### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints`
+### Nested Schema for `spec.api_server_deployment.spec.template.spec.tolerations`
 
 Optional:
 
@@ -574,7 +574,7 @@ Optional:
 - `node_taints_policy` (String) NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
 
 <a id="nestedatt--spec--api_server_deployment--spec--template--spec--topology_spread_constraints--label_selector"></a>
-### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.node_taints_policy`
+### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.label_selector`
 
 Optional:
 
@@ -582,7 +582,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--api_server_deployment--spec--template--spec--topology_spread_constraints--node_taints_policy--match_expressions"></a>
-### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.node_taints_policy.match_labels`
+### Nested Schema for `spec.api_server_deployment.spec.template.spec.topology_spread_constraints.node_taints_policy.match_expressions`
 
 Required:
 

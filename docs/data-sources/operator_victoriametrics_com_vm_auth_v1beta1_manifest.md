@@ -193,7 +193,7 @@ Optional:
 - `path` (String) path is matched against the path of an incoming request. Currently it cancontain characters disallowed from the conventional 'path' part of a URLas defined by RFC 3986. Paths must begin with a '/' and must be presentwhen using PathType with value 'Exact' or 'Prefix'.
 
 <a id="nestedatt--spec--ingress--extra_rules--http--paths--backend"></a>
-### Nested Schema for `spec.ingress.extra_rules.http.paths.path`
+### Nested Schema for `spec.ingress.extra_rules.http.paths.backend`
 
 Optional:
 
@@ -201,7 +201,7 @@ Optional:
 - `service` (Attributes) service references a service as a backend.This is a mutually exclusive setting with 'Resource'. (see [below for nested schema](#nestedatt--spec--ingress--extra_rules--http--paths--path--service))
 
 <a id="nestedatt--spec--ingress--extra_rules--http--paths--path--resource"></a>
-### Nested Schema for `spec.ingress.extra_rules.http.paths.path.service`
+### Nested Schema for `spec.ingress.extra_rules.http.paths.path.resource`
 
 Required:
 

@@ -98,7 +98,7 @@ Optional:
 - `size_limit_in_bytes` (Number) SizeLimitInBytes - The size window defines the amount of data built up in your Event Hub before an capture operation
 
 <a id="nestedatt--spec--properties--capture_description--destination"></a>
-### Nested Schema for `spec.properties.capture_description.size_limit_in_bytes`
+### Nested Schema for `spec.properties.capture_description.destination`
 
 Optional:
 

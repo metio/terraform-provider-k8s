@@ -110,7 +110,7 @@ Optional:
 - `vlan_id` (String) validation pattern for VLANDID is a string number between 0-4096
 
 <a id="nestedatt--spec--interfaces--dhcp--ip"></a>
-### Nested Schema for `spec.interfaces.dhcp.vlan_id`
+### Nested Schema for `spec.interfaces.dhcp.ip`
 
 Optional:
 
@@ -132,7 +132,7 @@ Optional:
 - `osie` (Attributes) OSIE configuration. (see [below for nested schema](#nestedatt--spec--interfaces--netboot--osie))
 
 <a id="nestedatt--spec--interfaces--netboot--ipxe"></a>
-### Nested Schema for `spec.interfaces.netboot.osie`
+### Nested Schema for `spec.interfaces.netboot.ipxe`
 
 Optional:
 
@@ -173,7 +173,7 @@ Optional:
 - `private_subnets` (List of String)
 
 <a id="nestedatt--spec--metadata--custom--preinstalled_operating_system_version"></a>
-### Nested Schema for `spec.metadata.custom.private_subnets`
+### Nested Schema for `spec.metadata.custom.preinstalled_operating_system_version`
 
 Optional:
 
@@ -217,7 +217,7 @@ Optional:
 - `userdata` (String)
 
 <a id="nestedatt--spec--metadata--instance--ips"></a>
-### Nested Schema for `spec.metadata.instance.userdata`
+### Nested Schema for `spec.metadata.instance.ips`
 
 Optional:
 
@@ -230,7 +230,7 @@ Optional:
 
 
 <a id="nestedatt--spec--metadata--instance--operating_system"></a>
-### Nested Schema for `spec.metadata.instance.userdata`
+### Nested Schema for `spec.metadata.instance.operating_system`
 
 Optional:
 
@@ -242,7 +242,7 @@ Optional:
 
 
 <a id="nestedatt--spec--metadata--instance--storage"></a>
-### Nested Schema for `spec.metadata.instance.userdata`
+### Nested Schema for `spec.metadata.instance.storage`
 
 Optional:
 
@@ -260,7 +260,7 @@ Optional:
 - `wipe_table` (Boolean)
 
 <a id="nestedatt--spec--metadata--instance--userdata--disks--partitions"></a>
-### Nested Schema for `spec.metadata.instance.userdata.disks.wipe_table`
+### Nested Schema for `spec.metadata.instance.userdata.disks.partitions`
 
 Optional:
 
@@ -291,7 +291,7 @@ Optional:
 - `point` (String)
 
 <a id="nestedatt--spec--metadata--instance--userdata--filesystems--mount--create"></a>
-### Nested Schema for `spec.metadata.instance.userdata.filesystems.mount.point`
+### Nested Schema for `spec.metadata.instance.userdata.filesystems.mount.create`
 
 Optional:
 
@@ -300,7 +300,7 @@ Optional:
 
 
 <a id="nestedatt--spec--metadata--instance--userdata--filesystems--mount--files"></a>
-### Nested Schema for `spec.metadata.instance.userdata.filesystems.mount.point`
+### Nested Schema for `spec.metadata.instance.userdata.filesystems.mount.files`
 
 Optional:
 

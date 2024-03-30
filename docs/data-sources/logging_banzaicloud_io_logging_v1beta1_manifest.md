@@ -121,7 +121,7 @@ Optional:
 - `useragent` (Attributes) (see [below for nested schema](#nestedatt--spec--default_flow--filters--useragent))
 
 <a id="nestedatt--spec--default_flow--filters--concat"></a>
-### Nested Schema for `spec.default_flow.filters.useragent`
+### Nested Schema for `spec.default_flow.filters.concat`
 
 Optional:
 
@@ -147,7 +147,7 @@ Optional:
 
 
 <a id="nestedatt--spec--default_flow--filters--dedot"></a>
-### Nested Schema for `spec.default_flow.filters.useragent`
+### Nested Schema for `spec.default_flow.filters.dedot`
 
 Optional:
 
@@ -156,7 +156,7 @@ Optional:
 
 
 <a id="nestedatt--spec--default_flow--filters--detect_exceptions"></a>
-### Nested Schema for `spec.default_flow.filters.useragent`
+### Nested Schema for `spec.default_flow.filters.detect_exceptions`
 
 Optional:
 
@@ -172,7 +172,7 @@ Optional:
 
 
 <a id="nestedatt--spec--default_flow--filters--elasticsearch_genid"></a>
-### Nested Schema for `spec.default_flow.filters.useragent`
+### Nested Schema for `spec.default_flow.filters.elasticsearch_genid`
 
 Optional:
 
@@ -187,7 +187,7 @@ Optional:
 
 
 <a id="nestedatt--spec--default_flow--filters--enhance_k8s"></a>
-### Nested Schema for `spec.default_flow.filters.useragent`
+### Nested Schema for `spec.default_flow.filters.enhance_k8s`
 
 Optional:
 
@@ -219,7 +219,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--default_flow--filters--useragent--ca_file--value_from))
 
 <a id="nestedatt--spec--default_flow--filters--useragent--ca_file--mount_from"></a>
-### Nested Schema for `spec.default_flow.filters.useragent.ca_file.value_from`
+### Nested Schema for `spec.default_flow.filters.useragent.ca_file.mount_from`
 
 Optional:
 
@@ -271,7 +271,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--default_flow--filters--useragent--client_cert--value_from))
 
 <a id="nestedatt--spec--default_flow--filters--useragent--client_cert--mount_from"></a>
-### Nested Schema for `spec.default_flow.filters.useragent.client_cert.value_from`
+### Nested Schema for `spec.default_flow.filters.useragent.client_cert.mount_from`
 
 Optional:
 
@@ -323,7 +323,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--default_flow--filters--useragent--client_key--value_from))
 
 <a id="nestedatt--spec--default_flow--filters--useragent--client_key--mount_from"></a>
-### Nested Schema for `spec.default_flow.filters.useragent.client_key.value_from`
+### Nested Schema for `spec.default_flow.filters.useragent.client_key.mount_from`
 
 Optional:
 
@@ -367,7 +367,7 @@ Optional:
 
 
 <a id="nestedatt--spec--default_flow--filters--geoip"></a>
-### Nested Schema for `spec.default_flow.filters.useragent`
+### Nested Schema for `spec.default_flow.filters.geoip`
 
 Optional:
 
@@ -380,7 +380,7 @@ Optional:
 
 
 <a id="nestedatt--spec--default_flow--filters--grep"></a>
-### Nested Schema for `spec.default_flow.filters.useragent`
+### Nested Schema for `spec.default_flow.filters.grep`
 
 Optional:
 
@@ -398,7 +398,7 @@ Optional:
 - `regexp` (Attributes List) (see [below for nested schema](#nestedatt--spec--default_flow--filters--useragent--and--regexp))
 
 <a id="nestedatt--spec--default_flow--filters--useragent--and--exclude"></a>
-### Nested Schema for `spec.default_flow.filters.useragent.and.regexp`
+### Nested Schema for `spec.default_flow.filters.useragent.and.exclude`
 
 Required:
 
@@ -434,7 +434,7 @@ Optional:
 - `regexp` (Attributes List) (see [below for nested schema](#nestedatt--spec--default_flow--filters--useragent--or--regexp))
 
 <a id="nestedatt--spec--default_flow--filters--useragent--or--exclude"></a>
-### Nested Schema for `spec.default_flow.filters.useragent.or.regexp`
+### Nested Schema for `spec.default_flow.filters.useragent.or.exclude`
 
 Required:
 
@@ -463,7 +463,7 @@ Required:
 
 
 <a id="nestedatt--spec--default_flow--filters--kube_events_timestamp"></a>
-### Nested Schema for `spec.default_flow.filters.useragent`
+### Nested Schema for `spec.default_flow.filters.kube_events_timestamp`
 
 Optional:
 
@@ -472,7 +472,7 @@ Optional:
 
 
 <a id="nestedatt--spec--default_flow--filters--parser"></a>
-### Nested Schema for `spec.default_flow.filters.useragent`
+### Nested Schema for `spec.default_flow.filters.parser`
 
 Optional:
 
@@ -521,7 +521,7 @@ Optional:
 - `utc` (Boolean)
 
 <a id="nestedatt--spec--default_flow--filters--useragent--parse--custom_pattern_path"></a>
-### Nested Schema for `spec.default_flow.filters.useragent.parse.utc`
+### Nested Schema for `spec.default_flow.filters.useragent.parse.custom_pattern_path`
 
 Optional:
 
@@ -530,7 +530,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--default_flow--filters--useragent--parse--utc--value_from))
 
 <a id="nestedatt--spec--default_flow--filters--useragent--parse--utc--mount_from"></a>
-### Nested Schema for `spec.default_flow.filters.useragent.parse.utc.value_from`
+### Nested Schema for `spec.default_flow.filters.useragent.parse.utc.mount_from`
 
 Optional:
 
@@ -573,7 +573,7 @@ Optional:
 
 
 <a id="nestedatt--spec--default_flow--filters--useragent--parse--grok_patterns"></a>
-### Nested Schema for `spec.default_flow.filters.useragent.parse.utc`
+### Nested Schema for `spec.default_flow.filters.useragent.parse.grok_patterns`
 
 Required:
 
@@ -589,7 +589,7 @@ Optional:
 
 
 <a id="nestedatt--spec--default_flow--filters--useragent--parse--patterns"></a>
-### Nested Schema for `spec.default_flow.filters.useragent.parse.utc`
+### Nested Schema for `spec.default_flow.filters.useragent.parse.patterns`
 
 Optional:
 
@@ -615,7 +615,7 @@ Optional:
 - `utc` (Boolean)
 
 <a id="nestedatt--spec--default_flow--filters--useragent--parse--utc--custom_pattern_path"></a>
-### Nested Schema for `spec.default_flow.filters.useragent.parse.utc.utc`
+### Nested Schema for `spec.default_flow.filters.useragent.parse.utc.custom_pattern_path`
 
 Optional:
 
@@ -624,7 +624,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--default_flow--filters--useragent--parse--utc--utc--value_from))
 
 <a id="nestedatt--spec--default_flow--filters--useragent--parse--utc--utc--mount_from"></a>
-### Nested Schema for `spec.default_flow.filters.useragent.parse.utc.utc.value_from`
+### Nested Schema for `spec.default_flow.filters.useragent.parse.utc.utc.mount_from`
 
 Optional:
 
@@ -667,7 +667,7 @@ Optional:
 
 
 <a id="nestedatt--spec--default_flow--filters--useragent--parse--utc--grok_patterns"></a>
-### Nested Schema for `spec.default_flow.filters.useragent.parse.utc.utc`
+### Nested Schema for `spec.default_flow.filters.useragent.parse.utc.grok_patterns`
 
 Required:
 
@@ -718,7 +718,7 @@ Optional:
 - `utc` (Boolean)
 
 <a id="nestedatt--spec--default_flow--filters--useragent--parsers--custom_pattern_path"></a>
-### Nested Schema for `spec.default_flow.filters.useragent.parsers.utc`
+### Nested Schema for `spec.default_flow.filters.useragent.parsers.custom_pattern_path`
 
 Optional:
 
@@ -727,7 +727,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--default_flow--filters--useragent--parsers--utc--value_from))
 
 <a id="nestedatt--spec--default_flow--filters--useragent--parsers--utc--mount_from"></a>
-### Nested Schema for `spec.default_flow.filters.useragent.parsers.utc.value_from`
+### Nested Schema for `spec.default_flow.filters.useragent.parsers.utc.mount_from`
 
 Optional:
 
@@ -770,7 +770,7 @@ Optional:
 
 
 <a id="nestedatt--spec--default_flow--filters--useragent--parsers--grok_patterns"></a>
-### Nested Schema for `spec.default_flow.filters.useragent.parsers.utc`
+### Nested Schema for `spec.default_flow.filters.useragent.parsers.grok_patterns`
 
 Required:
 
@@ -786,7 +786,7 @@ Optional:
 
 
 <a id="nestedatt--spec--default_flow--filters--useragent--parsers--patterns"></a>
-### Nested Schema for `spec.default_flow.filters.useragent.parsers.utc`
+### Nested Schema for `spec.default_flow.filters.useragent.parsers.patterns`
 
 Optional:
 
@@ -812,7 +812,7 @@ Optional:
 - `utc` (Boolean)
 
 <a id="nestedatt--spec--default_flow--filters--useragent--parsers--utc--custom_pattern_path"></a>
-### Nested Schema for `spec.default_flow.filters.useragent.parsers.utc.utc`
+### Nested Schema for `spec.default_flow.filters.useragent.parsers.utc.custom_pattern_path`
 
 Optional:
 
@@ -821,7 +821,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--default_flow--filters--useragent--parsers--utc--utc--value_from))
 
 <a id="nestedatt--spec--default_flow--filters--useragent--parsers--utc--utc--mount_from"></a>
-### Nested Schema for `spec.default_flow.filters.useragent.parsers.utc.utc.value_from`
+### Nested Schema for `spec.default_flow.filters.useragent.parsers.utc.utc.mount_from`
 
 Optional:
 
@@ -864,7 +864,7 @@ Optional:
 
 
 <a id="nestedatt--spec--default_flow--filters--useragent--parsers--utc--grok_patterns"></a>
-### Nested Schema for `spec.default_flow.filters.useragent.parsers.utc.utc`
+### Nested Schema for `spec.default_flow.filters.useragent.parsers.utc.grok_patterns`
 
 Required:
 
@@ -883,7 +883,7 @@ Optional:
 
 
 <a id="nestedatt--spec--default_flow--filters--prometheus"></a>
-### Nested Schema for `spec.default_flow.filters.useragent`
+### Nested Schema for `spec.default_flow.filters.prometheus`
 
 Optional:
 
@@ -908,7 +908,7 @@ Optional:
 
 
 <a id="nestedatt--spec--default_flow--filters--record_modifier"></a>
-### Nested Schema for `spec.default_flow.filters.useragent`
+### Nested Schema for `spec.default_flow.filters.record_modifier`
 
 Optional:
 
@@ -931,7 +931,7 @@ Required:
 
 
 <a id="nestedatt--spec--default_flow--filters--record_transformer"></a>
-### Nested Schema for `spec.default_flow.filters.useragent`
+### Nested Schema for `spec.default_flow.filters.record_transformer`
 
 Optional:
 
@@ -945,7 +945,7 @@ Optional:
 
 
 <a id="nestedatt--spec--default_flow--filters--stdout"></a>
-### Nested Schema for `spec.default_flow.filters.useragent`
+### Nested Schema for `spec.default_flow.filters.stdout`
 
 Optional:
 
@@ -953,7 +953,7 @@ Optional:
 
 
 <a id="nestedatt--spec--default_flow--filters--sumologic"></a>
-### Nested Schema for `spec.default_flow.filters.useragent`
+### Nested Schema for `spec.default_flow.filters.sumologic`
 
 Optional:
 
@@ -986,7 +986,7 @@ Optional:
 
 
 <a id="nestedatt--spec--default_flow--filters--tag_normaliser"></a>
-### Nested Schema for `spec.default_flow.filters.useragent`
+### Nested Schema for `spec.default_flow.filters.tag_normaliser`
 
 Optional:
 
@@ -995,7 +995,7 @@ Optional:
 
 
 <a id="nestedatt--spec--default_flow--filters--throttle"></a>
-### Nested Schema for `spec.default_flow.filters.useragent`
+### Nested Schema for `spec.default_flow.filters.throttle`
 
 Optional:
 
@@ -1087,7 +1087,7 @@ Optional:
 - `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--affinity--pod_anti_affinity))
 
 <a id="nestedatt--spec--fluentbit--affinity--node_affinity"></a>
-### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity`
+### Nested Schema for `spec.fluentbit.affinity.node_affinity`
 
 Optional:
 
@@ -1103,7 +1103,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--fluentbit--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -1111,7 +1111,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--fluentbit--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--fluentbit--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -1154,7 +1154,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--fluentbit--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--fluentbit--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -1183,7 +1183,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentbit--affinity--pod_affinity"></a>
-### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity`
+### Nested Schema for `spec.fluentbit.affinity.pod_affinity`
 
 Optional:
 
@@ -1199,7 +1199,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--fluentbit--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -1214,7 +1214,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--fluentbit--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -1222,7 +1222,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--fluentbit--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -1236,7 +1236,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentbit--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -1244,7 +1244,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--fluentbit--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -1275,7 +1275,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--fluentbit--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -1283,7 +1283,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--fluentbit--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -1297,7 +1297,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentbit--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -1305,7 +1305,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--fluentbit--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -1337,7 +1337,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--fluentbit--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -1352,7 +1352,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--fluentbit--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -1360,7 +1360,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--fluentbit--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -1374,7 +1374,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentbit--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -1382,7 +1382,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--fluentbit--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -1413,7 +1413,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--fluentbit--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -1421,7 +1421,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--fluentbit--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -1435,7 +1435,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentbit--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -1443,7 +1443,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--fluentbit--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.fluentbit.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -1483,7 +1483,7 @@ Optional:
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--buffer_storage_volume--secret))
 
 <a id="nestedatt--spec--fluentbit--buffer_storage_volume--empty_dir"></a>
-### Nested Schema for `spec.fluentbit.buffer_storage_volume.secret`
+### Nested Schema for `spec.fluentbit.buffer_storage_volume.empty_dir`
 
 Optional:
 
@@ -1492,7 +1492,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentbit--buffer_storage_volume--host_path"></a>
-### Nested Schema for `spec.fluentbit.buffer_storage_volume.secret`
+### Nested Schema for `spec.fluentbit.buffer_storage_volume.host_path`
 
 Required:
 
@@ -1504,7 +1504,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentbit--buffer_storage_volume--pvc"></a>
-### Nested Schema for `spec.fluentbit.buffer_storage_volume.secret`
+### Nested Schema for `spec.fluentbit.buffer_storage_volume.pvc`
 
 Optional:
 
@@ -1539,7 +1539,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--fluentbit--buffer_storage_volume--secret--spec--data_source"></a>
-### Nested Schema for `spec.fluentbit.buffer_storage_volume.secret.spec.volume_name`
+### Nested Schema for `spec.fluentbit.buffer_storage_volume.secret.spec.data_source`
 
 Required:
 
@@ -1552,7 +1552,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentbit--buffer_storage_volume--secret--spec--data_source_ref"></a>
-### Nested Schema for `spec.fluentbit.buffer_storage_volume.secret.spec.volume_name`
+### Nested Schema for `spec.fluentbit.buffer_storage_volume.secret.spec.data_source_ref`
 
 Required:
 
@@ -1566,7 +1566,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentbit--buffer_storage_volume--secret--spec--resources"></a>
-### Nested Schema for `spec.fluentbit.buffer_storage_volume.secret.spec.volume_name`
+### Nested Schema for `spec.fluentbit.buffer_storage_volume.secret.spec.resources`
 
 Optional:
 
@@ -1575,7 +1575,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentbit--buffer_storage_volume--secret--spec--selector"></a>
-### Nested Schema for `spec.fluentbit.buffer_storage_volume.secret.spec.volume_name`
+### Nested Schema for `spec.fluentbit.buffer_storage_volume.secret.spec.selector`
 
 Optional:
 
@@ -1583,7 +1583,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--fluentbit--buffer_storage_volume--secret--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.fluentbit.buffer_storage_volume.secret.spec.volume_name.match_labels`
+### Nested Schema for `spec.fluentbit.buffer_storage_volume.secret.spec.volume_name.match_expressions`
 
 Required:
 
@@ -1634,7 +1634,7 @@ Optional:
 - `tag` (String)
 
 <a id="nestedatt--spec--fluentbit--buffer_volume_image--image_pull_secrets"></a>
-### Nested Schema for `spec.fluentbit.buffer_volume_image.tag`
+### Nested Schema for `spec.fluentbit.buffer_volume_image.image_pull_secrets`
 
 Optional:
 
@@ -1657,7 +1657,7 @@ Optional:
 - `timeout` (String)
 
 <a id="nestedatt--spec--fluentbit--buffer_volume_metrics--service_monitor_config"></a>
-### Nested Schema for `spec.fluentbit.buffer_volume_metrics.timeout`
+### Nested Schema for `spec.fluentbit.buffer_volume_metrics.service_monitor_config`
 
 Optional:
 
@@ -1711,7 +1711,7 @@ Optional:
 - `server_name` (String)
 
 <a id="nestedatt--spec--fluentbit--buffer_volume_metrics--timeout--tls_config--ca"></a>
-### Nested Schema for `spec.fluentbit.buffer_volume_metrics.timeout.tls_config.server_name`
+### Nested Schema for `spec.fluentbit.buffer_volume_metrics.timeout.tls_config.ca`
 
 Optional:
 
@@ -1719,7 +1719,7 @@ Optional:
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--buffer_volume_metrics--timeout--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--fluentbit--buffer_volume_metrics--timeout--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.fluentbit.buffer_volume_metrics.timeout.tls_config.server_name.secret`
+### Nested Schema for `spec.fluentbit.buffer_volume_metrics.timeout.tls_config.server_name.config_map`
 
 Required:
 
@@ -1746,7 +1746,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentbit--buffer_volume_metrics--timeout--tls_config--cert"></a>
-### Nested Schema for `spec.fluentbit.buffer_volume_metrics.timeout.tls_config.server_name`
+### Nested Schema for `spec.fluentbit.buffer_volume_metrics.timeout.tls_config.cert`
 
 Optional:
 
@@ -1754,7 +1754,7 @@ Optional:
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--buffer_volume_metrics--timeout--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--fluentbit--buffer_volume_metrics--timeout--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.fluentbit.buffer_volume_metrics.timeout.tls_config.server_name.secret`
+### Nested Schema for `spec.fluentbit.buffer_volume_metrics.timeout.tls_config.server_name.config_map`
 
 Required:
 
@@ -1781,7 +1781,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentbit--buffer_volume_metrics--timeout--tls_config--key_secret"></a>
-### Nested Schema for `spec.fluentbit.buffer_volume_metrics.timeout.tls_config.server_name`
+### Nested Schema for `spec.fluentbit.buffer_volume_metrics.timeout.tls_config.key_secret`
 
 Required:
 
@@ -1806,7 +1806,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--fluentbit--buffer_volume_resources--claims"></a>
-### Nested Schema for `spec.fluentbit.buffer_volume_resources.requests`
+### Nested Schema for `spec.fluentbit.buffer_volume_resources.claims`
 
 Required:
 
@@ -1823,7 +1823,7 @@ Optional:
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--config_hot_reload--resources))
 
 <a id="nestedatt--spec--fluentbit--config_hot_reload--image"></a>
-### Nested Schema for `spec.fluentbit.config_hot_reload.resources`
+### Nested Schema for `spec.fluentbit.config_hot_reload.image`
 
 Optional:
 
@@ -1870,7 +1870,7 @@ Optional:
 - `searches` (List of String)
 
 <a id="nestedatt--spec--fluentbit--dns_config--options"></a>
-### Nested Schema for `spec.fluentbit.dns_config.searches`
+### Nested Schema for `spec.fluentbit.dns_config.options`
 
 Optional:
 
@@ -2029,7 +2029,7 @@ Optional:
 - `rules` (Attributes List) (see [below for nested schema](#nestedatt--spec--fluentbit--filter_modify--rules))
 
 <a id="nestedatt--spec--fluentbit--filter_modify--conditions"></a>
-### Nested Schema for `spec.fluentbit.filter_modify.rules`
+### Nested Schema for `spec.fluentbit.filter_modify.conditions`
 
 Optional:
 
@@ -2262,7 +2262,7 @@ Optional:
 - `tag` (String)
 
 <a id="nestedatt--spec--fluentbit--image--image_pull_secrets"></a>
-### Nested Schema for `spec.fluentbit.image.tag`
+### Nested Schema for `spec.fluentbit.image.image_pull_secrets`
 
 Optional:
 
@@ -2322,7 +2322,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--fluentbit--liveness_probe--exec"></a>
-### Nested Schema for `spec.fluentbit.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.fluentbit.liveness_probe.exec`
 
 Optional:
 
@@ -2330,7 +2330,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentbit--liveness_probe--grpc"></a>
-### Nested Schema for `spec.fluentbit.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.fluentbit.liveness_probe.grpc`
 
 Required:
 
@@ -2342,7 +2342,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentbit--liveness_probe--http_get"></a>
-### Nested Schema for `spec.fluentbit.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.fluentbit.liveness_probe.http_get`
 
 Required:
 
@@ -2366,7 +2366,7 @@ Required:
 
 
 <a id="nestedatt--spec--fluentbit--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.fluentbit.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.fluentbit.liveness_probe.tcp_socket`
 
 Required:
 
@@ -2393,7 +2393,7 @@ Optional:
 - `timeout` (String)
 
 <a id="nestedatt--spec--fluentbit--metrics--service_monitor_config"></a>
-### Nested Schema for `spec.fluentbit.metrics.timeout`
+### Nested Schema for `spec.fluentbit.metrics.service_monitor_config`
 
 Optional:
 
@@ -2447,7 +2447,7 @@ Optional:
 - `server_name` (String)
 
 <a id="nestedatt--spec--fluentbit--metrics--timeout--tls_config--ca"></a>
-### Nested Schema for `spec.fluentbit.metrics.timeout.tls_config.server_name`
+### Nested Schema for `spec.fluentbit.metrics.timeout.tls_config.ca`
 
 Optional:
 
@@ -2455,7 +2455,7 @@ Optional:
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--metrics--timeout--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--fluentbit--metrics--timeout--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.fluentbit.metrics.timeout.tls_config.server_name.secret`
+### Nested Schema for `spec.fluentbit.metrics.timeout.tls_config.server_name.config_map`
 
 Required:
 
@@ -2482,7 +2482,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentbit--metrics--timeout--tls_config--cert"></a>
-### Nested Schema for `spec.fluentbit.metrics.timeout.tls_config.server_name`
+### Nested Schema for `spec.fluentbit.metrics.timeout.tls_config.cert`
 
 Optional:
 
@@ -2490,7 +2490,7 @@ Optional:
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--metrics--timeout--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--fluentbit--metrics--timeout--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.fluentbit.metrics.timeout.tls_config.server_name.secret`
+### Nested Schema for `spec.fluentbit.metrics.timeout.tls_config.server_name.config_map`
 
 Required:
 
@@ -2517,7 +2517,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentbit--metrics--timeout--tls_config--key_secret"></a>
-### Nested Schema for `spec.fluentbit.metrics.timeout.tls_config.server_name`
+### Nested Schema for `spec.fluentbit.metrics.timeout.tls_config.key_secret`
 
 Required:
 
@@ -2559,7 +2559,7 @@ Optional:
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--positiondb--secret))
 
 <a id="nestedatt--spec--fluentbit--positiondb--empty_dir"></a>
-### Nested Schema for `spec.fluentbit.positiondb.secret`
+### Nested Schema for `spec.fluentbit.positiondb.empty_dir`
 
 Optional:
 
@@ -2568,7 +2568,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentbit--positiondb--host_path"></a>
-### Nested Schema for `spec.fluentbit.positiondb.secret`
+### Nested Schema for `spec.fluentbit.positiondb.host_path`
 
 Required:
 
@@ -2580,7 +2580,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentbit--positiondb--pvc"></a>
-### Nested Schema for `spec.fluentbit.positiondb.secret`
+### Nested Schema for `spec.fluentbit.positiondb.pvc`
 
 Optional:
 
@@ -2615,7 +2615,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--fluentbit--positiondb--secret--spec--data_source"></a>
-### Nested Schema for `spec.fluentbit.positiondb.secret.spec.volume_name`
+### Nested Schema for `spec.fluentbit.positiondb.secret.spec.data_source`
 
 Required:
 
@@ -2628,7 +2628,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentbit--positiondb--secret--spec--data_source_ref"></a>
-### Nested Schema for `spec.fluentbit.positiondb.secret.spec.volume_name`
+### Nested Schema for `spec.fluentbit.positiondb.secret.spec.data_source_ref`
 
 Required:
 
@@ -2642,7 +2642,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentbit--positiondb--secret--spec--resources"></a>
-### Nested Schema for `spec.fluentbit.positiondb.secret.spec.volume_name`
+### Nested Schema for `spec.fluentbit.positiondb.secret.spec.resources`
 
 Optional:
 
@@ -2651,7 +2651,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentbit--positiondb--secret--spec--selector"></a>
-### Nested Schema for `spec.fluentbit.positiondb.secret.spec.volume_name`
+### Nested Schema for `spec.fluentbit.positiondb.secret.spec.selector`
 
 Optional:
 
@@ -2659,7 +2659,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--fluentbit--positiondb--secret--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.fluentbit.positiondb.secret.spec.volume_name.match_labels`
+### Nested Schema for `spec.fluentbit.positiondb.secret.spec.volume_name.match_expressions`
 
 Required:
 
@@ -2716,7 +2716,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--fluentbit--readiness_probe--exec"></a>
-### Nested Schema for `spec.fluentbit.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.fluentbit.readiness_probe.exec`
 
 Optional:
 
@@ -2724,7 +2724,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentbit--readiness_probe--grpc"></a>
-### Nested Schema for `spec.fluentbit.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.fluentbit.readiness_probe.grpc`
 
 Required:
 
@@ -2736,7 +2736,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentbit--readiness_probe--http_get"></a>
-### Nested Schema for `spec.fluentbit.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.fluentbit.readiness_probe.http_get`
 
 Required:
 
@@ -2760,7 +2760,7 @@ Required:
 
 
 <a id="nestedatt--spec--fluentbit--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.fluentbit.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.fluentbit.readiness_probe.tcp_socket`
 
 Required:
 
@@ -2782,7 +2782,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--fluentbit--resources--claims"></a>
-### Nested Schema for `spec.fluentbit.resources.requests`
+### Nested Schema for `spec.fluentbit.resources.claims`
 
 Required:
 
@@ -2802,7 +2802,7 @@ Optional:
 - `service_account` (String)
 
 <a id="nestedatt--spec--fluentbit--security--pod_security_context"></a>
-### Nested Schema for `spec.fluentbit.security.service_account`
+### Nested Schema for `spec.fluentbit.security.pod_security_context`
 
 Optional:
 
@@ -2862,7 +2862,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentbit--security--security_context"></a>
-### Nested Schema for `spec.fluentbit.security.service_account`
+### Nested Schema for `spec.fluentbit.security.security_context`
 
 Optional:
 
@@ -2934,7 +2934,7 @@ Optional:
 - `secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--fluentbit--service_account--secrets))
 
 <a id="nestedatt--spec--fluentbit--service_account--image_pull_secrets"></a>
-### Nested Schema for `spec.fluentbit.service_account.secrets`
+### Nested Schema for `spec.fluentbit.service_account.image_pull_secrets`
 
 Optional:
 
@@ -2942,7 +2942,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentbit--service_account--metadata"></a>
-### Nested Schema for `spec.fluentbit.service_account.secrets`
+### Nested Schema for `spec.fluentbit.service_account.metadata`
 
 Optional:
 
@@ -3009,7 +3009,7 @@ Optional:
 - `type` (String)
 
 <a id="nestedatt--spec--fluentbit--update_strategy--rolling_update"></a>
-### Nested Schema for `spec.fluentbit.update_strategy.type`
+### Nested Schema for `spec.fluentbit.update_strategy.rolling_update`
 
 Optional:
 
@@ -3085,7 +3085,7 @@ Optional:
 - `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--affinity--pod_anti_affinity))
 
 <a id="nestedatt--spec--fluentd--affinity--node_affinity"></a>
-### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity`
+### Nested Schema for `spec.fluentd.affinity.node_affinity`
 
 Optional:
 
@@ -3101,7 +3101,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--fluentd--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -3109,7 +3109,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--fluentd--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--fluentd--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -3152,7 +3152,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--fluentd--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--fluentd--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -3181,7 +3181,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--affinity--pod_affinity"></a>
-### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity`
+### Nested Schema for `spec.fluentd.affinity.pod_affinity`
 
 Optional:
 
@@ -3197,7 +3197,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--fluentd--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -3212,7 +3212,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--fluentd--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -3220,7 +3220,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--fluentd--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -3234,7 +3234,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -3242,7 +3242,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--fluentd--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -3273,7 +3273,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--fluentd--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -3281,7 +3281,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--fluentd--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -3295,7 +3295,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -3303,7 +3303,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--fluentd--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -3335,7 +3335,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--fluentd--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -3350,7 +3350,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--fluentd--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -3358,7 +3358,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--fluentd--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -3372,7 +3372,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -3380,7 +3380,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--fluentd--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -3411,7 +3411,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--fluentd--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -3419,7 +3419,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--fluentd--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -3433,7 +3433,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -3441,7 +3441,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--fluentd--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.fluentd.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -3468,7 +3468,7 @@ Optional:
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--buffer_storage_volume--secret))
 
 <a id="nestedatt--spec--fluentd--buffer_storage_volume--empty_dir"></a>
-### Nested Schema for `spec.fluentd.buffer_storage_volume.secret`
+### Nested Schema for `spec.fluentd.buffer_storage_volume.empty_dir`
 
 Optional:
 
@@ -3477,7 +3477,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--buffer_storage_volume--host_path"></a>
-### Nested Schema for `spec.fluentd.buffer_storage_volume.secret`
+### Nested Schema for `spec.fluentd.buffer_storage_volume.host_path`
 
 Required:
 
@@ -3489,7 +3489,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--buffer_storage_volume--pvc"></a>
-### Nested Schema for `spec.fluentd.buffer_storage_volume.secret`
+### Nested Schema for `spec.fluentd.buffer_storage_volume.pvc`
 
 Optional:
 
@@ -3524,7 +3524,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--fluentd--buffer_storage_volume--secret--spec--data_source"></a>
-### Nested Schema for `spec.fluentd.buffer_storage_volume.secret.spec.volume_name`
+### Nested Schema for `spec.fluentd.buffer_storage_volume.secret.spec.data_source`
 
 Required:
 
@@ -3537,7 +3537,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--buffer_storage_volume--secret--spec--data_source_ref"></a>
-### Nested Schema for `spec.fluentd.buffer_storage_volume.secret.spec.volume_name`
+### Nested Schema for `spec.fluentd.buffer_storage_volume.secret.spec.data_source_ref`
 
 Required:
 
@@ -3551,7 +3551,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--buffer_storage_volume--secret--spec--resources"></a>
-### Nested Schema for `spec.fluentd.buffer_storage_volume.secret.spec.volume_name`
+### Nested Schema for `spec.fluentd.buffer_storage_volume.secret.spec.resources`
 
 Optional:
 
@@ -3560,7 +3560,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--buffer_storage_volume--secret--spec--selector"></a>
-### Nested Schema for `spec.fluentd.buffer_storage_volume.secret.spec.volume_name`
+### Nested Schema for `spec.fluentd.buffer_storage_volume.secret.spec.selector`
 
 Optional:
 
@@ -3568,7 +3568,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--fluentd--buffer_storage_volume--secret--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.fluentd.buffer_storage_volume.secret.spec.volume_name.match_labels`
+### Nested Schema for `spec.fluentd.buffer_storage_volume.secret.spec.volume_name.match_expressions`
 
 Required:
 
@@ -3619,7 +3619,7 @@ Optional:
 - `tag` (String)
 
 <a id="nestedatt--spec--fluentd--buffer_volume_image--image_pull_secrets"></a>
-### Nested Schema for `spec.fluentd.buffer_volume_image.tag`
+### Nested Schema for `spec.fluentd.buffer_volume_image.image_pull_secrets`
 
 Optional:
 
@@ -3642,7 +3642,7 @@ Optional:
 - `timeout` (String)
 
 <a id="nestedatt--spec--fluentd--buffer_volume_metrics--service_monitor_config"></a>
-### Nested Schema for `spec.fluentd.buffer_volume_metrics.timeout`
+### Nested Schema for `spec.fluentd.buffer_volume_metrics.service_monitor_config`
 
 Optional:
 
@@ -3696,7 +3696,7 @@ Optional:
 - `server_name` (String)
 
 <a id="nestedatt--spec--fluentd--buffer_volume_metrics--timeout--tls_config--ca"></a>
-### Nested Schema for `spec.fluentd.buffer_volume_metrics.timeout.tls_config.server_name`
+### Nested Schema for `spec.fluentd.buffer_volume_metrics.timeout.tls_config.ca`
 
 Optional:
 
@@ -3704,7 +3704,7 @@ Optional:
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--buffer_volume_metrics--timeout--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--fluentd--buffer_volume_metrics--timeout--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.fluentd.buffer_volume_metrics.timeout.tls_config.server_name.secret`
+### Nested Schema for `spec.fluentd.buffer_volume_metrics.timeout.tls_config.server_name.config_map`
 
 Required:
 
@@ -3731,7 +3731,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--buffer_volume_metrics--timeout--tls_config--cert"></a>
-### Nested Schema for `spec.fluentd.buffer_volume_metrics.timeout.tls_config.server_name`
+### Nested Schema for `spec.fluentd.buffer_volume_metrics.timeout.tls_config.cert`
 
 Optional:
 
@@ -3739,7 +3739,7 @@ Optional:
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--buffer_volume_metrics--timeout--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--fluentd--buffer_volume_metrics--timeout--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.fluentd.buffer_volume_metrics.timeout.tls_config.server_name.secret`
+### Nested Schema for `spec.fluentd.buffer_volume_metrics.timeout.tls_config.server_name.config_map`
 
 Required:
 
@@ -3766,7 +3766,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--buffer_volume_metrics--timeout--tls_config--key_secret"></a>
-### Nested Schema for `spec.fluentd.buffer_volume_metrics.timeout.tls_config.server_name`
+### Nested Schema for `spec.fluentd.buffer_volume_metrics.timeout.tls_config.key_secret`
 
 Required:
 
@@ -3791,7 +3791,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--fluentd--buffer_volume_resources--claims"></a>
-### Nested Schema for `spec.fluentd.buffer_volume_resources.requests`
+### Nested Schema for `spec.fluentd.buffer_volume_resources.claims`
 
 Required:
 
@@ -3809,7 +3809,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--fluentd--config_check_resources--claims"></a>
-### Nested Schema for `spec.fluentd.config_check_resources.requests`
+### Nested Schema for `spec.fluentd.config_check_resources.claims`
 
 Required:
 
@@ -3828,7 +3828,7 @@ Optional:
 - `tag` (String)
 
 <a id="nestedatt--spec--fluentd--config_reloader_image--image_pull_secrets"></a>
-### Nested Schema for `spec.fluentd.config_reloader_image.tag`
+### Nested Schema for `spec.fluentd.config_reloader_image.image_pull_secrets`
 
 Optional:
 
@@ -3846,7 +3846,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--fluentd--config_reloader_resources--claims"></a>
-### Nested Schema for `spec.fluentd.config_reloader_resources.requests`
+### Nested Schema for `spec.fluentd.config_reloader_resources.claims`
 
 Required:
 
@@ -3864,7 +3864,7 @@ Optional:
 - `searches` (List of String)
 
 <a id="nestedatt--spec--fluentd--dns_config--options"></a>
-### Nested Schema for `spec.fluentd.dns_config.searches`
+### Nested Schema for `spec.fluentd.dns_config.options`
 
 Optional:
 
@@ -3959,7 +3959,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--fluentd--extra_volumes--volume"></a>
-### Nested Schema for `spec.fluentd.extra_volumes.volume_name`
+### Nested Schema for `spec.fluentd.extra_volumes.volume`
 
 Optional:
 
@@ -3998,7 +3998,7 @@ Optional:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--extra_volumes--volume_name--pvc--spec))
 
 <a id="nestedatt--spec--fluentd--extra_volumes--volume_name--pvc--source"></a>
-### Nested Schema for `spec.fluentd.extra_volumes.volume_name.pvc.spec`
+### Nested Schema for `spec.fluentd.extra_volumes.volume_name.pvc.source`
 
 Required:
 
@@ -4025,7 +4025,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--fluentd--extra_volumes--volume_name--pvc--spec--data_source"></a>
-### Nested Schema for `spec.fluentd.extra_volumes.volume_name.pvc.spec.volume_name`
+### Nested Schema for `spec.fluentd.extra_volumes.volume_name.pvc.spec.data_source`
 
 Required:
 
@@ -4038,7 +4038,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--extra_volumes--volume_name--pvc--spec--data_source_ref"></a>
-### Nested Schema for `spec.fluentd.extra_volumes.volume_name.pvc.spec.volume_name`
+### Nested Schema for `spec.fluentd.extra_volumes.volume_name.pvc.spec.data_source_ref`
 
 Required:
 
@@ -4052,7 +4052,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--extra_volumes--volume_name--pvc--spec--resources"></a>
-### Nested Schema for `spec.fluentd.extra_volumes.volume_name.pvc.spec.volume_name`
+### Nested Schema for `spec.fluentd.extra_volumes.volume_name.pvc.spec.resources`
 
 Optional:
 
@@ -4061,7 +4061,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--extra_volumes--volume_name--pvc--spec--selector"></a>
-### Nested Schema for `spec.fluentd.extra_volumes.volume_name.pvc.spec.volume_name`
+### Nested Schema for `spec.fluentd.extra_volumes.volume_name.pvc.spec.selector`
 
 Optional:
 
@@ -4069,7 +4069,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--fluentd--extra_volumes--volume_name--pvc--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.fluentd.extra_volumes.volume_name.pvc.spec.volume_name.match_labels`
+### Nested Schema for `spec.fluentd.extra_volumes.volume_name.pvc.spec.volume_name.match_expressions`
 
 Required:
 
@@ -4095,7 +4095,7 @@ Optional:
 - `secret_name` (String)
 
 <a id="nestedatt--spec--fluentd--extra_volumes--volume_name--secret--items"></a>
-### Nested Schema for `spec.fluentd.extra_volumes.volume_name.secret.secret_name`
+### Nested Schema for `spec.fluentd.extra_volumes.volume_name.secret.items`
 
 Required:
 
@@ -4135,7 +4135,7 @@ Optional:
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--fluentd_pvc_spec--secret))
 
 <a id="nestedatt--spec--fluentd--fluentd_pvc_spec--empty_dir"></a>
-### Nested Schema for `spec.fluentd.fluentd_pvc_spec.secret`
+### Nested Schema for `spec.fluentd.fluentd_pvc_spec.empty_dir`
 
 Optional:
 
@@ -4144,7 +4144,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--fluentd_pvc_spec--host_path"></a>
-### Nested Schema for `spec.fluentd.fluentd_pvc_spec.secret`
+### Nested Schema for `spec.fluentd.fluentd_pvc_spec.host_path`
 
 Required:
 
@@ -4156,7 +4156,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--fluentd_pvc_spec--pvc"></a>
-### Nested Schema for `spec.fluentd.fluentd_pvc_spec.secret`
+### Nested Schema for `spec.fluentd.fluentd_pvc_spec.pvc`
 
 Optional:
 
@@ -4191,7 +4191,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--fluentd--fluentd_pvc_spec--secret--spec--data_source"></a>
-### Nested Schema for `spec.fluentd.fluentd_pvc_spec.secret.spec.volume_name`
+### Nested Schema for `spec.fluentd.fluentd_pvc_spec.secret.spec.data_source`
 
 Required:
 
@@ -4204,7 +4204,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--fluentd_pvc_spec--secret--spec--data_source_ref"></a>
-### Nested Schema for `spec.fluentd.fluentd_pvc_spec.secret.spec.volume_name`
+### Nested Schema for `spec.fluentd.fluentd_pvc_spec.secret.spec.data_source_ref`
 
 Required:
 
@@ -4218,7 +4218,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--fluentd_pvc_spec--secret--spec--resources"></a>
-### Nested Schema for `spec.fluentd.fluentd_pvc_spec.secret.spec.volume_name`
+### Nested Schema for `spec.fluentd.fluentd_pvc_spec.secret.spec.resources`
 
 Optional:
 
@@ -4227,7 +4227,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--fluentd_pvc_spec--secret--spec--selector"></a>
-### Nested Schema for `spec.fluentd.fluentd_pvc_spec.secret.spec.volume_name`
+### Nested Schema for `spec.fluentd.fluentd_pvc_spec.secret.spec.selector`
 
 Optional:
 
@@ -4235,7 +4235,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--fluentd--fluentd_pvc_spec--secret--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.fluentd.fluentd_pvc_spec.secret.spec.volume_name.match_labels`
+### Nested Schema for `spec.fluentd.fluentd_pvc_spec.secret.spec.volume_name.match_expressions`
 
 Required:
 
@@ -4297,7 +4297,7 @@ Optional:
 - `transport` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--forward_input_config--transport))
 
 <a id="nestedatt--spec--fluentd--forward_input_config--security"></a>
-### Nested Schema for `spec.fluentd.forward_input_config.transport`
+### Nested Schema for `spec.fluentd.forward_input_config.security`
 
 Required:
 
@@ -4341,7 +4341,7 @@ Optional:
 - `tag` (String)
 
 <a id="nestedatt--spec--fluentd--image--image_pull_secrets"></a>
-### Nested Schema for `spec.fluentd.image.tag`
+### Nested Schema for `spec.fluentd.image.image_pull_secrets`
 
 Optional:
 
@@ -4366,7 +4366,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--fluentd--liveness_probe--exec"></a>
-### Nested Schema for `spec.fluentd.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.fluentd.liveness_probe.exec`
 
 Optional:
 
@@ -4374,7 +4374,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--liveness_probe--grpc"></a>
-### Nested Schema for `spec.fluentd.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.fluentd.liveness_probe.grpc`
 
 Required:
 
@@ -4386,7 +4386,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--liveness_probe--http_get"></a>
-### Nested Schema for `spec.fluentd.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.fluentd.liveness_probe.http_get`
 
 Required:
 
@@ -4410,7 +4410,7 @@ Required:
 
 
 <a id="nestedatt--spec--fluentd--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.fluentd.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.fluentd.liveness_probe.tcp_socket`
 
 Required:
 
@@ -4437,7 +4437,7 @@ Optional:
 - `timeout` (String)
 
 <a id="nestedatt--spec--fluentd--metrics--service_monitor_config"></a>
-### Nested Schema for `spec.fluentd.metrics.timeout`
+### Nested Schema for `spec.fluentd.metrics.service_monitor_config`
 
 Optional:
 
@@ -4491,7 +4491,7 @@ Optional:
 - `server_name` (String)
 
 <a id="nestedatt--spec--fluentd--metrics--timeout--tls_config--ca"></a>
-### Nested Schema for `spec.fluentd.metrics.timeout.tls_config.server_name`
+### Nested Schema for `spec.fluentd.metrics.timeout.tls_config.ca`
 
 Optional:
 
@@ -4499,7 +4499,7 @@ Optional:
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--metrics--timeout--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--fluentd--metrics--timeout--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.fluentd.metrics.timeout.tls_config.server_name.secret`
+### Nested Schema for `spec.fluentd.metrics.timeout.tls_config.server_name.config_map`
 
 Required:
 
@@ -4526,7 +4526,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--metrics--timeout--tls_config--cert"></a>
-### Nested Schema for `spec.fluentd.metrics.timeout.tls_config.server_name`
+### Nested Schema for `spec.fluentd.metrics.timeout.tls_config.cert`
 
 Optional:
 
@@ -4534,7 +4534,7 @@ Optional:
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--metrics--timeout--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--fluentd--metrics--timeout--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.fluentd.metrics.timeout.tls_config.server_name.secret`
+### Nested Schema for `spec.fluentd.metrics.timeout.tls_config.server_name.config_map`
 
 Required:
 
@@ -4561,7 +4561,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--metrics--timeout--tls_config--key_secret"></a>
-### Nested Schema for `spec.fluentd.metrics.timeout.tls_config.server_name`
+### Nested Schema for `spec.fluentd.metrics.timeout.tls_config.key_secret`
 
 Required:
 
@@ -4619,7 +4619,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--fluentd--readiness_probe--exec"></a>
-### Nested Schema for `spec.fluentd.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.fluentd.readiness_probe.exec`
 
 Optional:
 
@@ -4627,7 +4627,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--readiness_probe--grpc"></a>
-### Nested Schema for `spec.fluentd.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.fluentd.readiness_probe.grpc`
 
 Required:
 
@@ -4639,7 +4639,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--readiness_probe--http_get"></a>
-### Nested Schema for `spec.fluentd.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.fluentd.readiness_probe.http_get`
 
 Required:
 
@@ -4663,7 +4663,7 @@ Required:
 
 
 <a id="nestedatt--spec--fluentd--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.fluentd.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.fluentd.readiness_probe.tcp_socket`
 
 Required:
 
@@ -4685,7 +4685,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--fluentd--resources--claims"></a>
-### Nested Schema for `spec.fluentd.resources.requests`
+### Nested Schema for `spec.fluentd.resources.claims`
 
 Required:
 
@@ -4703,7 +4703,7 @@ Optional:
 - `replicas` (Number)
 
 <a id="nestedatt--spec--fluentd--scaling--drain"></a>
-### Nested Schema for `spec.fluentd.scaling.replicas`
+### Nested Schema for `spec.fluentd.scaling.drain`
 
 Optional:
 
@@ -4727,7 +4727,7 @@ Optional:
 - `tag` (String)
 
 <a id="nestedatt--spec--fluentd--scaling--replicas--image--image_pull_secrets"></a>
-### Nested Schema for `spec.fluentd.scaling.replicas.image.tag`
+### Nested Schema for `spec.fluentd.scaling.replicas.image.image_pull_secrets`
 
 Optional:
 
@@ -4746,7 +4746,7 @@ Optional:
 - `tag` (String)
 
 <a id="nestedatt--spec--fluentd--scaling--replicas--pause_image--image_pull_secrets"></a>
-### Nested Schema for `spec.fluentd.scaling.replicas.pause_image.tag`
+### Nested Schema for `spec.fluentd.scaling.replicas.pause_image.image_pull_secrets`
 
 Optional:
 
@@ -4764,7 +4764,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--fluentd--scaling--replicas--resources--claims"></a>
-### Nested Schema for `spec.fluentd.scaling.replicas.resources.requests`
+### Nested Schema for `spec.fluentd.scaling.replicas.resources.claims`
 
 Required:
 
@@ -4790,7 +4790,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--scaling--replicas--security_context--windows_options))
 
 <a id="nestedatt--spec--fluentd--scaling--replicas--security_context--capabilities"></a>
-### Nested Schema for `spec.fluentd.scaling.replicas.security_context.windows_options`
+### Nested Schema for `spec.fluentd.scaling.replicas.security_context.capabilities`
 
 Optional:
 
@@ -4799,7 +4799,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--scaling--replicas--security_context--se_linux_options"></a>
-### Nested Schema for `spec.fluentd.scaling.replicas.security_context.windows_options`
+### Nested Schema for `spec.fluentd.scaling.replicas.security_context.se_linux_options`
 
 Optional:
 
@@ -4810,7 +4810,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--scaling--replicas--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.fluentd.scaling.replicas.security_context.windows_options`
+### Nested Schema for `spec.fluentd.scaling.replicas.security_context.seccomp_profile`
 
 Required:
 
@@ -4847,7 +4847,7 @@ Optional:
 - `service_account` (String)
 
 <a id="nestedatt--spec--fluentd--security--pod_security_context"></a>
-### Nested Schema for `spec.fluentd.security.service_account`
+### Nested Schema for `spec.fluentd.security.pod_security_context`
 
 Optional:
 
@@ -4907,7 +4907,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--security--security_context"></a>
-### Nested Schema for `spec.fluentd.security.service_account`
+### Nested Schema for `spec.fluentd.security.security_context`
 
 Optional:
 
@@ -4979,7 +4979,7 @@ Optional:
 - `secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--fluentd--service_account--secrets))
 
 <a id="nestedatt--spec--fluentd--service_account--image_pull_secrets"></a>
-### Nested Schema for `spec.fluentd.service_account.secrets`
+### Nested Schema for `spec.fluentd.service_account.image_pull_secrets`
 
 Optional:
 
@@ -4987,7 +4987,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--service_account--metadata"></a>
-### Nested Schema for `spec.fluentd.service_account.secrets`
+### Nested Schema for `spec.fluentd.service_account.metadata`
 
 Optional:
 
@@ -5044,7 +5044,7 @@ Optional:
 - `working_dir` (String)
 
 <a id="nestedatt--spec--fluentd--sidecar_containers--env"></a>
-### Nested Schema for `spec.fluentd.sidecar_containers.working_dir`
+### Nested Schema for `spec.fluentd.sidecar_containers.env`
 
 Required:
 
@@ -5066,7 +5066,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--sidecar_containers--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--fluentd--sidecar_containers--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.fluentd.sidecar_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.fluentd.sidecar_containers.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -5079,7 +5079,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--sidecar_containers--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.fluentd.sidecar_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.fluentd.sidecar_containers.working_dir.value_from.field_ref`
 
 Required:
 
@@ -5091,7 +5091,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--sidecar_containers--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.fluentd.sidecar_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.fluentd.sidecar_containers.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -5119,7 +5119,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--sidecar_containers--env_from"></a>
-### Nested Schema for `spec.fluentd.sidecar_containers.working_dir`
+### Nested Schema for `spec.fluentd.sidecar_containers.env_from`
 
 Optional:
 
@@ -5147,7 +5147,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--sidecar_containers--lifecycle"></a>
-### Nested Schema for `spec.fluentd.sidecar_containers.working_dir`
+### Nested Schema for `spec.fluentd.sidecar_containers.lifecycle`
 
 Optional:
 
@@ -5165,7 +5165,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--sidecar_containers--working_dir--post_start--tcp_socket))
 
 <a id="nestedatt--spec--fluentd--sidecar_containers--working_dir--post_start--exec"></a>
-### Nested Schema for `spec.fluentd.sidecar_containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.fluentd.sidecar_containers.working_dir.post_start.exec`
 
 Optional:
 
@@ -5173,7 +5173,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--sidecar_containers--working_dir--post_start--http_get"></a>
-### Nested Schema for `spec.fluentd.sidecar_containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.fluentd.sidecar_containers.working_dir.post_start.http_get`
 
 Required:
 
@@ -5187,7 +5187,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--fluentd--sidecar_containers--working_dir--post_start--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.fluentd.sidecar_containers.working_dir.post_start.tcp_socket.scheme`
+### Nested Schema for `spec.fluentd.sidecar_containers.working_dir.post_start.tcp_socket.http_headers`
 
 Required:
 
@@ -5197,7 +5197,7 @@ Required:
 
 
 <a id="nestedatt--spec--fluentd--sidecar_containers--working_dir--post_start--sleep"></a>
-### Nested Schema for `spec.fluentd.sidecar_containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.fluentd.sidecar_containers.working_dir.post_start.sleep`
 
 Required:
 
@@ -5228,7 +5228,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--sidecar_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--fluentd--sidecar_containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.fluentd.sidecar_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.fluentd.sidecar_containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -5236,7 +5236,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--sidecar_containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.fluentd.sidecar_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.fluentd.sidecar_containers.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -5250,7 +5250,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--fluentd--sidecar_containers--working_dir--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.fluentd.sidecar_containers.working_dir.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.fluentd.sidecar_containers.working_dir.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -5260,7 +5260,7 @@ Required:
 
 
 <a id="nestedatt--spec--fluentd--sidecar_containers--working_dir--pre_stop--sleep"></a>
-### Nested Schema for `spec.fluentd.sidecar_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.fluentd.sidecar_containers.working_dir.pre_stop.sleep`
 
 Required:
 
@@ -5282,7 +5282,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--sidecar_containers--liveness_probe"></a>
-### Nested Schema for `spec.fluentd.sidecar_containers.working_dir`
+### Nested Schema for `spec.fluentd.sidecar_containers.liveness_probe`
 
 Optional:
 
@@ -5332,7 +5332,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--fluentd--sidecar_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.fluentd.sidecar_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.fluentd.sidecar_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -5355,7 +5355,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--sidecar_containers--ports"></a>
-### Nested Schema for `spec.fluentd.sidecar_containers.working_dir`
+### Nested Schema for `spec.fluentd.sidecar_containers.ports`
 
 Required:
 
@@ -5370,7 +5370,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--sidecar_containers--readiness_probe"></a>
-### Nested Schema for `spec.fluentd.sidecar_containers.working_dir`
+### Nested Schema for `spec.fluentd.sidecar_containers.readiness_probe`
 
 Optional:
 
@@ -5420,7 +5420,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--fluentd--sidecar_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.fluentd.sidecar_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.fluentd.sidecar_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -5443,7 +5443,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--sidecar_containers--resize_policy"></a>
-### Nested Schema for `spec.fluentd.sidecar_containers.working_dir`
+### Nested Schema for `spec.fluentd.sidecar_containers.resize_policy`
 
 Required:
 
@@ -5452,7 +5452,7 @@ Required:
 
 
 <a id="nestedatt--spec--fluentd--sidecar_containers--resources"></a>
-### Nested Schema for `spec.fluentd.sidecar_containers.working_dir`
+### Nested Schema for `spec.fluentd.sidecar_containers.resources`
 
 Optional:
 
@@ -5470,7 +5470,7 @@ Required:
 
 
 <a id="nestedatt--spec--fluentd--sidecar_containers--security_context"></a>
-### Nested Schema for `spec.fluentd.sidecar_containers.working_dir`
+### Nested Schema for `spec.fluentd.sidecar_containers.security_context`
 
 Optional:
 
@@ -5531,7 +5531,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--sidecar_containers--startup_probe"></a>
-### Nested Schema for `spec.fluentd.sidecar_containers.working_dir`
+### Nested Schema for `spec.fluentd.sidecar_containers.startup_probe`
 
 Optional:
 
@@ -5581,7 +5581,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--fluentd--sidecar_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.fluentd.sidecar_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.fluentd.sidecar_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -5604,7 +5604,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fluentd--sidecar_containers--volume_devices"></a>
-### Nested Schema for `spec.fluentd.sidecar_containers.working_dir`
+### Nested Schema for `spec.fluentd.sidecar_containers.volume_devices`
 
 Required:
 
@@ -5613,7 +5613,7 @@ Required:
 
 
 <a id="nestedatt--spec--fluentd--sidecar_containers--volume_mounts"></a>
-### Nested Schema for `spec.fluentd.sidecar_containers.working_dir`
+### Nested Schema for `spec.fluentd.sidecar_containers.volume_mounts`
 
 Required:
 
@@ -5672,7 +5672,7 @@ Optional:
 - `node_taints_policy` (String)
 
 <a id="nestedatt--spec--fluentd--topology_spread_constraints--label_selector"></a>
-### Nested Schema for `spec.fluentd.topology_spread_constraints.node_taints_policy`
+### Nested Schema for `spec.fluentd.topology_spread_constraints.label_selector`
 
 Optional:
 
@@ -5705,7 +5705,7 @@ Optional:
 - `tag` (String)
 
 <a id="nestedatt--spec--fluentd--volume_mod_image--image_pull_secrets"></a>
-### Nested Schema for `spec.fluentd.volume_mod_image.tag`
+### Nested Schema for `spec.fluentd.volume_mod_image.image_pull_secrets`
 
 Optional:
 
@@ -5827,7 +5827,7 @@ Optional:
 - `verify_ssl` (Boolean)
 
 <a id="nestedatt--spec--global_filters--enhance_k8s--ca_file"></a>
-### Nested Schema for `spec.global_filters.enhance_k8s.verify_ssl`
+### Nested Schema for `spec.global_filters.enhance_k8s.ca_file`
 
 Optional:
 
@@ -5879,7 +5879,7 @@ Optional:
 
 
 <a id="nestedatt--spec--global_filters--enhance_k8s--client_cert"></a>
-### Nested Schema for `spec.global_filters.enhance_k8s.verify_ssl`
+### Nested Schema for `spec.global_filters.enhance_k8s.client_cert`
 
 Optional:
 
@@ -5931,7 +5931,7 @@ Optional:
 
 
 <a id="nestedatt--spec--global_filters--enhance_k8s--client_key"></a>
-### Nested Schema for `spec.global_filters.enhance_k8s.verify_ssl`
+### Nested Schema for `spec.global_filters.enhance_k8s.client_key`
 
 Optional:
 
@@ -6007,7 +6007,7 @@ Optional:
 - `regexp` (Attributes List) (see [below for nested schema](#nestedatt--spec--global_filters--grep--regexp))
 
 <a id="nestedatt--spec--global_filters--grep--and"></a>
-### Nested Schema for `spec.global_filters.grep.regexp`
+### Nested Schema for `spec.global_filters.grep.and`
 
 Optional:
 
@@ -6034,7 +6034,7 @@ Required:
 
 
 <a id="nestedatt--spec--global_filters--grep--exclude"></a>
-### Nested Schema for `spec.global_filters.grep.regexp`
+### Nested Schema for `spec.global_filters.grep.exclude`
 
 Required:
 
@@ -6043,7 +6043,7 @@ Required:
 
 
 <a id="nestedatt--spec--global_filters--grep--or"></a>
-### Nested Schema for `spec.global_filters.grep.regexp`
+### Nested Schema for `spec.global_filters.grep.or`
 
 Optional:
 
@@ -6105,7 +6105,7 @@ Optional:
 - `reserve_time` (Boolean)
 
 <a id="nestedatt--spec--global_filters--parser--parse"></a>
-### Nested Schema for `spec.global_filters.parser.reserve_time`
+### Nested Schema for `spec.global_filters.parser.parse`
 
 Optional:
 
@@ -6147,7 +6147,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--global_filters--parser--reserve_time--custom_pattern_path--value_from))
 
 <a id="nestedatt--spec--global_filters--parser--reserve_time--custom_pattern_path--mount_from"></a>
-### Nested Schema for `spec.global_filters.parser.reserve_time.custom_pattern_path.value_from`
+### Nested Schema for `spec.global_filters.parser.reserve_time.custom_pattern_path.mount_from`
 
 Optional:
 
@@ -6232,7 +6232,7 @@ Optional:
 - `utc` (Boolean)
 
 <a id="nestedatt--spec--global_filters--parser--reserve_time--patterns--custom_pattern_path"></a>
-### Nested Schema for `spec.global_filters.parser.reserve_time.patterns.utc`
+### Nested Schema for `spec.global_filters.parser.reserve_time.patterns.custom_pattern_path`
 
 Optional:
 
@@ -6241,7 +6241,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--global_filters--parser--reserve_time--patterns--utc--value_from))
 
 <a id="nestedatt--spec--global_filters--parser--reserve_time--patterns--utc--mount_from"></a>
-### Nested Schema for `spec.global_filters.parser.reserve_time.patterns.utc.value_from`
+### Nested Schema for `spec.global_filters.parser.reserve_time.patterns.utc.mount_from`
 
 Optional:
 
@@ -6284,7 +6284,7 @@ Optional:
 
 
 <a id="nestedatt--spec--global_filters--parser--reserve_time--patterns--grok_patterns"></a>
-### Nested Schema for `spec.global_filters.parser.reserve_time.patterns.utc`
+### Nested Schema for `spec.global_filters.parser.reserve_time.patterns.grok_patterns`
 
 Required:
 
@@ -6302,7 +6302,7 @@ Optional:
 
 
 <a id="nestedatt--spec--global_filters--parser--parsers"></a>
-### Nested Schema for `spec.global_filters.parser.reserve_time`
+### Nested Schema for `spec.global_filters.parser.parsers`
 
 Optional:
 
@@ -6344,7 +6344,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--global_filters--parser--reserve_time--custom_pattern_path--value_from))
 
 <a id="nestedatt--spec--global_filters--parser--reserve_time--custom_pattern_path--mount_from"></a>
-### Nested Schema for `spec.global_filters.parser.reserve_time.custom_pattern_path.value_from`
+### Nested Schema for `spec.global_filters.parser.reserve_time.custom_pattern_path.mount_from`
 
 Optional:
 
@@ -6429,7 +6429,7 @@ Optional:
 - `utc` (Boolean)
 
 <a id="nestedatt--spec--global_filters--parser--reserve_time--patterns--custom_pattern_path"></a>
-### Nested Schema for `spec.global_filters.parser.reserve_time.patterns.utc`
+### Nested Schema for `spec.global_filters.parser.reserve_time.patterns.custom_pattern_path`
 
 Optional:
 
@@ -6438,7 +6438,7 @@ Optional:
 - `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--global_filters--parser--reserve_time--patterns--utc--value_from))
 
 <a id="nestedatt--spec--global_filters--parser--reserve_time--patterns--utc--mount_from"></a>
-### Nested Schema for `spec.global_filters.parser.reserve_time.patterns.utc.value_from`
+### Nested Schema for `spec.global_filters.parser.reserve_time.patterns.utc.mount_from`
 
 Optional:
 
@@ -6481,7 +6481,7 @@ Optional:
 
 
 <a id="nestedatt--spec--global_filters--parser--reserve_time--patterns--grok_patterns"></a>
-### Nested Schema for `spec.global_filters.parser.reserve_time.patterns.utc`
+### Nested Schema for `spec.global_filters.parser.reserve_time.patterns.grok_patterns`
 
 Required:
 
@@ -6537,7 +6537,7 @@ Optional:
 - `whitelist_keys` (String)
 
 <a id="nestedatt--spec--global_filters--record_modifier--replaces"></a>
-### Nested Schema for `spec.global_filters.record_modifier.whitelist_keys`
+### Nested Schema for `spec.global_filters.record_modifier.replaces`
 
 Required:
 
@@ -6691,7 +6691,7 @@ Optional:
 - `var_logs_path` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--buffer_storage"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.buffer_storage`
 
 Optional:
 
@@ -6704,7 +6704,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--buffer_storage_volume"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.buffer_storage_volume`
 
 Optional:
 
@@ -6743,7 +6743,7 @@ Optional:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--pvc--spec))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--pvc--source"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.pvc.spec`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.pvc.source`
 
 Required:
 
@@ -6770,7 +6770,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--pvc--spec--data_source"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.pvc.spec.volume_name`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.pvc.spec.data_source`
 
 Required:
 
@@ -6783,7 +6783,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--pvc--spec--data_source_ref"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.pvc.spec.volume_name`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.pvc.spec.data_source_ref`
 
 Required:
 
@@ -6797,7 +6797,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--pvc--spec--resources"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.pvc.spec.volume_name`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.pvc.spec.resources`
 
 Optional:
 
@@ -6806,7 +6806,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--pvc--spec--selector"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.pvc.spec.volume_name`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.pvc.spec.selector`
 
 Optional:
 
@@ -6814,7 +6814,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--pvc--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.pvc.spec.volume_name.match_labels`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.pvc.spec.volume_name.match_expressions`
 
 Required:
 
@@ -6840,7 +6840,7 @@ Optional:
 - `secret_name` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--secret--items"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.secret.secret_name`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.secret.items`
 
 Required:
 
@@ -6855,7 +6855,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.daemon_set`
 
 Optional:
 
@@ -6883,7 +6883,7 @@ Optional:
 - `update_strategy` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--selector"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.selector`
 
 Optional:
 
@@ -6891,7 +6891,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--match_expressions"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.match_labels`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.match_expressions`
 
 Required:
 
@@ -6905,7 +6905,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--template"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.template`
 
 Optional:
 
@@ -6913,7 +6913,7 @@ Optional:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--metadata"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.metadata`
 
 Optional:
 
@@ -6962,7 +6962,7 @@ Optional:
 - `volumes` (Attributes List) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--affinity"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.affinity`
 
 Optional:
 
@@ -6979,7 +6979,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -6987,7 +6987,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -6995,7 +6995,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -7038,7 +7038,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -7075,7 +7075,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -7083,7 +7083,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -7098,7 +7098,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -7106,7 +7106,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -7120,7 +7120,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -7128,7 +7128,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -7159,7 +7159,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -7167,7 +7167,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -7181,7 +7181,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -7189,7 +7189,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -7213,7 +7213,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -7221,7 +7221,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -7236,7 +7236,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -7244,7 +7244,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -7258,7 +7258,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -7266,7 +7266,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -7297,7 +7297,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -7305,7 +7305,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -7319,7 +7319,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -7327,7 +7327,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -7344,7 +7344,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--containers"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.containers`
 
 Required:
 
@@ -7399,7 +7399,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -7412,7 +7412,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--env--value_from--field_ref"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.env.value_from.field_ref`
 
 Required:
 
@@ -7424,7 +7424,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.env.value_from.resource_field_ref`
 
 Required:
 
@@ -7461,7 +7461,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--env_from--secret_ref))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--env_from--config_map_ref"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.env_from.secret_ref`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.env_from.config_map_ref`
 
 Optional:
 
@@ -7488,7 +7488,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--post_start"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.post_start`
 
 Optional:
 
@@ -7498,7 +7498,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -7506,7 +7506,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -7520,7 +7520,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -7530,7 +7530,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop--sleep"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.sleep`
 
 Required:
 
@@ -7561,7 +7561,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -7569,7 +7569,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -7583,7 +7583,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -7593,7 +7593,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop--sleep"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.sleep`
 
 Required:
 
@@ -7631,7 +7631,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--liveness_probe--exec"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.liveness_probe.exec`
 
 Optional:
 
@@ -7639,7 +7639,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--liveness_probe--grpc"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.liveness_probe.grpc`
 
 Required:
 
@@ -7651,7 +7651,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--liveness_probe--http_get"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.liveness_probe.http_get`
 
 Required:
 
@@ -7665,7 +7665,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.liveness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.liveness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -7675,7 +7675,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.liveness_probe.tcp_socket`
 
 Required:
 
@@ -7719,7 +7719,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--readiness_probe--exec"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.readiness_probe.exec`
 
 Optional:
 
@@ -7727,7 +7727,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--readiness_probe--grpc"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.readiness_probe.grpc`
 
 Required:
 
@@ -7739,7 +7739,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--readiness_probe--http_get"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.readiness_probe.http_get`
 
 Required:
 
@@ -7753,7 +7753,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.readiness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.readiness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -7763,7 +7763,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.readiness_probe.tcp_socket`
 
 Required:
 
@@ -7794,7 +7794,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--resources--claims"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.resources.requests`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.resources.claims`
 
 Required:
 
@@ -7820,7 +7820,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--security_context--windows_options))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--security_context--capabilities"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.security_context.windows_options`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.security_context.capabilities`
 
 Optional:
 
@@ -7829,7 +7829,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--security_context--se_linux_options"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.security_context.windows_options`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.security_context.se_linux_options`
 
 Optional:
 
@@ -7840,7 +7840,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.security_context.windows_options`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.security_context.seccomp_profile`
 
 Required:
 
@@ -7880,7 +7880,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--startup_probe--exec"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.startup_probe.exec`
 
 Optional:
 
@@ -7888,7 +7888,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--startup_probe--grpc"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.startup_probe.grpc`
 
 Required:
 
@@ -7900,7 +7900,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--startup_probe--http_get"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.startup_probe.http_get`
 
 Required:
 
@@ -7914,7 +7914,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--startup_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.startup_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.startup_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -7924,7 +7924,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.startup_probe.tcp_socket`
 
 Required:
 
@@ -7963,7 +7963,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--dns_config"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.dns_config`
 
 Optional:
 
@@ -7982,7 +7982,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--ephemeral_containers"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.ephemeral_containers`
 
 Required:
 
@@ -8038,7 +8038,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -8051,7 +8051,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--env--value_from--field_ref"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.env.value_from.field_ref`
 
 Required:
 
@@ -8063,7 +8063,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.env.value_from.resource_field_ref`
 
 Required:
 
@@ -8100,7 +8100,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--env_from--secret_ref))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--env_from--config_map_ref"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.env_from.secret_ref`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.env_from.config_map_ref`
 
 Optional:
 
@@ -8127,7 +8127,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--post_start"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.post_start`
 
 Optional:
 
@@ -8137,7 +8137,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -8145,7 +8145,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -8159,7 +8159,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -8169,7 +8169,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop--sleep"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.sleep`
 
 Required:
 
@@ -8200,7 +8200,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -8208,7 +8208,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -8222,7 +8222,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -8232,7 +8232,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop--sleep"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.sleep`
 
 Required:
 
@@ -8270,7 +8270,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--liveness_probe--exec"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.liveness_probe.exec`
 
 Optional:
 
@@ -8278,7 +8278,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--liveness_probe--grpc"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.liveness_probe.grpc`
 
 Required:
 
@@ -8290,7 +8290,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--liveness_probe--http_get"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.liveness_probe.http_get`
 
 Required:
 
@@ -8304,7 +8304,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.liveness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.liveness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -8314,7 +8314,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.liveness_probe.tcp_socket`
 
 Required:
 
@@ -8358,7 +8358,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--readiness_probe--exec"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.readiness_probe.exec`
 
 Optional:
 
@@ -8366,7 +8366,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--readiness_probe--grpc"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.readiness_probe.grpc`
 
 Required:
 
@@ -8378,7 +8378,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--readiness_probe--http_get"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.readiness_probe.http_get`
 
 Required:
 
@@ -8392,7 +8392,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.readiness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.readiness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -8402,7 +8402,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.readiness_probe.tcp_socket`
 
 Required:
 
@@ -8433,7 +8433,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--resources--claims"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.resources.requests`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.resources.claims`
 
 Required:
 
@@ -8459,7 +8459,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--security_context--windows_options))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--security_context--capabilities"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.security_context.windows_options`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.security_context.capabilities`
 
 Optional:
 
@@ -8468,7 +8468,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--security_context--se_linux_options"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.security_context.windows_options`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.security_context.se_linux_options`
 
 Optional:
 
@@ -8479,7 +8479,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.security_context.windows_options`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.security_context.seccomp_profile`
 
 Required:
 
@@ -8519,7 +8519,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--startup_probe--exec"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.startup_probe.exec`
 
 Optional:
 
@@ -8527,7 +8527,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--startup_probe--grpc"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.startup_probe.grpc`
 
 Required:
 
@@ -8539,7 +8539,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--startup_probe--http_get"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.startup_probe.http_get`
 
 Required:
 
@@ -8553,7 +8553,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--startup_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.startup_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.startup_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -8563,7 +8563,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.startup_probe.tcp_socket`
 
 Required:
 
@@ -8602,7 +8602,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--host_aliases"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.host_aliases`
 
 Optional:
 
@@ -8611,7 +8611,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--image_pull_secrets"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.image_pull_secrets`
 
 Optional:
 
@@ -8619,7 +8619,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--init_containers"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.init_containers`
 
 Required:
 
@@ -8674,7 +8674,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -8687,7 +8687,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--env--value_from--field_ref"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.env.value_from.field_ref`
 
 Required:
 
@@ -8699,7 +8699,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.env.value_from.resource_field_ref`
 
 Required:
 
@@ -8736,7 +8736,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--env_from--secret_ref))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--env_from--config_map_ref"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.env_from.secret_ref`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.env_from.config_map_ref`
 
 Optional:
 
@@ -8763,7 +8763,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--post_start"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.post_start`
 
 Optional:
 
@@ -8773,7 +8773,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -8781,7 +8781,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -8795,7 +8795,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -8805,7 +8805,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop--sleep"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.sleep`
 
 Required:
 
@@ -8836,7 +8836,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -8844,7 +8844,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -8858,7 +8858,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -8868,7 +8868,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--lifecycle--pre_stop--sleep"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.lifecycle.pre_stop.sleep`
 
 Required:
 
@@ -8906,7 +8906,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--liveness_probe--exec"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.liveness_probe.exec`
 
 Optional:
 
@@ -8914,7 +8914,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--liveness_probe--grpc"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.liveness_probe.grpc`
 
 Required:
 
@@ -8926,7 +8926,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--liveness_probe--http_get"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.liveness_probe.http_get`
 
 Required:
 
@@ -8940,7 +8940,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.liveness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.liveness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -8950,7 +8950,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.liveness_probe.tcp_socket`
 
 Required:
 
@@ -8994,7 +8994,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--readiness_probe--exec"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.readiness_probe.exec`
 
 Optional:
 
@@ -9002,7 +9002,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--readiness_probe--grpc"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.readiness_probe.grpc`
 
 Required:
 
@@ -9014,7 +9014,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--readiness_probe--http_get"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.readiness_probe.http_get`
 
 Required:
 
@@ -9028,7 +9028,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.readiness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.readiness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -9038,7 +9038,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.readiness_probe.tcp_socket`
 
 Required:
 
@@ -9069,7 +9069,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--resources--claims"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.resources.requests`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.resources.claims`
 
 Required:
 
@@ -9095,7 +9095,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--security_context--windows_options))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--security_context--capabilities"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.security_context.windows_options`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.security_context.capabilities`
 
 Optional:
 
@@ -9104,7 +9104,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--security_context--se_linux_options"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.security_context.windows_options`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.security_context.se_linux_options`
 
 Optional:
 
@@ -9115,7 +9115,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.security_context.windows_options`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.security_context.seccomp_profile`
 
 Required:
 
@@ -9155,7 +9155,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--startup_probe--exec"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.startup_probe.exec`
 
 Optional:
 
@@ -9163,7 +9163,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--startup_probe--grpc"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.startup_probe.grpc`
 
 Required:
 
@@ -9175,7 +9175,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--startup_probe--http_get"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.startup_probe.http_get`
 
 Required:
 
@@ -9189,7 +9189,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--startup_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.startup_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.startup_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -9199,7 +9199,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.startup_probe.tcp_socket`
 
 Required:
 
@@ -9238,7 +9238,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--readiness_gates"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.readiness_gates`
 
 Required:
 
@@ -9246,7 +9246,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--security_context"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.security_context`
 
 Optional:
 
@@ -9306,7 +9306,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--tolerations"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.tolerations`
 
 Optional:
 
@@ -9318,7 +9318,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--topology_spread_constraints"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.topology_spread_constraints`
 
 Required:
 
@@ -9343,7 +9343,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--label_selector--match_expressions"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.label_selector.match_labels`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.label_selector.match_expressions`
 
 Required:
 
@@ -9455,7 +9455,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--cephfs--secret_ref"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.cephfs.user`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.cephfs.secret_ref`
 
 Optional:
 
@@ -9496,7 +9496,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--config_map--items"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.config_map.optional`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.config_map.items`
 
 Required:
 
@@ -9524,7 +9524,7 @@ Optional:
 - `volume_attributes` (Map of String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--csi--node_publish_secret_ref"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.csi.volume_attributes`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -9554,7 +9554,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--downward_api--items--resource_field_ref))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--downward_api--items--field_ref"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.downward_api.items.resource_field_ref`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.downward_api.items.field_ref`
 
 Required:
 
@@ -9608,7 +9608,7 @@ Optional:
 - `metadata` (Map of String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--ephemeral--volume_claim_template--spec"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.ephemeral.volume_claim_template.metadata`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.ephemeral.volume_claim_template.spec`
 
 Optional:
 
@@ -9623,7 +9623,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--ephemeral--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.ephemeral.volume_claim_template.metadata.data_source`
 
 Required:
 
@@ -9636,7 +9636,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--ephemeral--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.ephemeral.volume_claim_template.metadata.data_source_ref`
 
 Required:
 
@@ -9650,7 +9650,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--ephemeral--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.ephemeral.volume_claim_template.metadata.resources`
 
 Optional:
 
@@ -9659,7 +9659,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--ephemeral--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.ephemeral.volume_claim_template.metadata.selector`
 
 Optional:
 
@@ -9667,7 +9667,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--ephemeral--volume_claim_template--metadata--volume_name--match_expressions"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.ephemeral.volume_claim_template.metadata.volume_name.match_labels`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.ephemeral.volume_claim_template.metadata.volume_name.match_expressions`
 
 Required:
 
@@ -9878,7 +9878,7 @@ Optional:
 - `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--projected--sources--service_account_token))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--projected--sources--cluster_trust_bundle"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.projected.sources.service_account_token`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.projected.sources.cluster_trust_bundle`
 
 Required:
 
@@ -9892,7 +9892,7 @@ Optional:
 - `signer_name` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--projected--sources--service_account_token--label_selector"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.projected.sources.service_account_token.signer_name`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.projected.sources.service_account_token.label_selector`
 
 Optional:
 
@@ -9900,7 +9900,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--projected--sources--service_account_token--signer_name--match_expressions"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.projected.sources.service_account_token.signer_name.match_labels`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.projected.sources.service_account_token.signer_name.match_expressions`
 
 Required:
 
@@ -9915,7 +9915,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--projected--sources--config_map"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.projected.sources.service_account_token`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.projected.sources.config_map`
 
 Optional:
 
@@ -9924,7 +9924,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.projected.sources.service_account_token.optional`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.projected.sources.service_account_token.items`
 
 Required:
 
@@ -9938,7 +9938,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--projected--sources--downward_api"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.projected.sources.service_account_token`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.projected.sources.downward_api`
 
 Optional:
 
@@ -9958,7 +9958,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--projected--sources--service_account_token--items--resource_field_ref))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--projected--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.projected.sources.service_account_token.items.resource_field_ref`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.projected.sources.service_account_token.items.field_ref`
 
 Required:
 
@@ -9985,7 +9985,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--projected--sources--secret"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.projected.sources.service_account_token`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.projected.sources.secret`
 
 Optional:
 
@@ -9994,7 +9994,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.projected.sources.service_account_token.optional`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.projected.sources.service_account_token.items`
 
 Required:
 
@@ -10056,7 +10056,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--rbd--secret_ref"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.rbd.user`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.rbd.secret_ref`
 
 Optional:
 
@@ -10084,7 +10084,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--scale_io--secret_ref"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.scale_io.volume_name`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.scale_io.secret_ref`
 
 Optional:
 
@@ -10103,7 +10103,7 @@ Optional:
 - `secret_name` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--secret--items"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.secret.secret_name`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.secret.items`
 
 Required:
 
@@ -10128,7 +10128,7 @@ Optional:
 - `volume_namespace` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--spec--volumes--storageos--secret_ref"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.storageos.volume_namespace`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.spec.volumes.storageos.secret_ref`
 
 Optional:
 
@@ -10162,7 +10162,7 @@ Optional:
 - `type` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--update_strategy--rolling_update"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.type`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.update_strategy.rolling_update`
 
 Optional:
 
@@ -10174,7 +10174,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--extra_volume_mounts"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.extra_volume_mounts`
 
 Required:
 
@@ -10187,7 +10187,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--filter_aws"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.filter_aws`
 
 Optional:
 
@@ -10204,7 +10204,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--filter_kubernetes"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.filter_kubernetes`
 
 Optional:
 
@@ -10240,7 +10240,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--forward_options"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.forward_options`
 
 Optional:
 
@@ -10254,7 +10254,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--input_tail"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.input_tail`
 
 Optional:
 
@@ -10289,7 +10289,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--metrics"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.metrics`
 
 Optional:
 
@@ -10315,7 +10315,7 @@ Optional:
 - `tls_config` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--service_monitor_config--tls_config))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--service_monitor_config--metric_relabelings"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.service_monitor_config.tls_config`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.service_monitor_config.metric_relabelings`
 
 Optional:
 
@@ -10329,7 +10329,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--service_monitor_config--relabelings"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.service_monitor_config.tls_config`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.service_monitor_config.relabelings`
 
 Optional:
 
@@ -10357,7 +10357,7 @@ Optional:
 - `server_name` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--service_monitor_config--tls_config--ca"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.service_monitor_config.tls_config.server_name`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.service_monitor_config.tls_config.ca`
 
 Optional:
 
@@ -10365,7 +10365,7 @@ Optional:
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--service_monitor_config--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--service_monitor_config--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.service_monitor_config.tls_config.server_name.secret`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.service_monitor_config.tls_config.server_name.config_map`
 
 Required:
 
@@ -10392,7 +10392,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--service_monitor_config--tls_config--cert"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.service_monitor_config.tls_config.server_name`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.service_monitor_config.tls_config.cert`
 
 Optional:
 
@@ -10400,7 +10400,7 @@ Optional:
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--service_monitor_config--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--service_monitor_config--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.service_monitor_config.tls_config.server_name.secret`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.service_monitor_config.tls_config.server_name.config_map`
 
 Required:
 
@@ -10427,7 +10427,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--service_monitor_config--tls_config--key_secret"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.service_monitor_config.tls_config.server_name`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.service_monitor_config.tls_config.key_secret`
 
 Required:
 
@@ -10443,7 +10443,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--metrics_service"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.metrics_service`
 
 Optional:
 
@@ -10485,7 +10485,7 @@ Optional:
 - `type` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--ports"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.type`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.ports`
 
 Required:
 
@@ -10501,7 +10501,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--spec--session_affinity_config"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.type`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.spec.session_affinity_config`
 
 Optional:
 
@@ -10519,7 +10519,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--network"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.network`
 
 Optional:
 
@@ -10535,7 +10535,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--positiondb"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.positiondb`
 
 Optional:
 
@@ -10574,7 +10574,7 @@ Optional:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--pvc--spec))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--pvc--source"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.pvc.spec`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.pvc.source`
 
 Required:
 
@@ -10601,7 +10601,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--pvc--spec--data_source"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.pvc.spec.volume_name`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.pvc.spec.data_source`
 
 Required:
 
@@ -10614,7 +10614,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--pvc--spec--data_source_ref"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.pvc.spec.volume_name`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.pvc.spec.data_source_ref`
 
 Required:
 
@@ -10628,7 +10628,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--pvc--spec--resources"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.pvc.spec.volume_name`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.pvc.spec.resources`
 
 Optional:
 
@@ -10637,7 +10637,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--pvc--spec--selector"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.pvc.spec.volume_name`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.pvc.spec.selector`
 
 Optional:
 
@@ -10645,7 +10645,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--pvc--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.pvc.spec.volume_name.match_labels`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.pvc.spec.volume_name.match_expressions`
 
 Required:
 
@@ -10671,7 +10671,7 @@ Optional:
 - `secret_name` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--secret--items"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.secret.secret_name`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.secret.items`
 
 Required:
 
@@ -10686,7 +10686,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--security"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.security`
 
 Optional:
 
@@ -10713,7 +10713,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--pod_security_context--windows_options))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--pod_security_context--se_linux_options"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.pod_security_context.windows_options`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.pod_security_context.se_linux_options`
 
 Optional:
 
@@ -10724,7 +10724,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--pod_security_context--seccomp_profile"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.pod_security_context.windows_options`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.pod_security_context.seccomp_profile`
 
 Required:
 
@@ -10736,7 +10736,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--pod_security_context--sysctls"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.pod_security_context.windows_options`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.pod_security_context.sysctls`
 
 Required:
 
@@ -10774,7 +10774,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--security_context--windows_options))
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--security_context--capabilities"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.security_context.windows_options`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.security_context.capabilities`
 
 Optional:
 
@@ -10783,7 +10783,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--security_context--se_linux_options"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.security_context.windows_options`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.security_context.se_linux_options`
 
 Optional:
 
@@ -10794,7 +10794,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--var_logs_path--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.security_context.windows_options`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path.security_context.seccomp_profile`
 
 Required:
 
@@ -10819,7 +10819,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--service_account"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.service_account`
 
 Optional:
 
@@ -10861,7 +10861,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--tls"></a>
-### Nested Schema for `spec.node_agents.node_agent_fluentbit.var_logs_path`
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.tls`
 
 Required:
 
@@ -10915,7 +10915,7 @@ Optional:
 - `timeout` (String)
 
 <a id="nestedatt--spec--syslog_ng--buffer_volume_metrics--service_monitor_config"></a>
-### Nested Schema for `spec.syslog_ng.buffer_volume_metrics.timeout`
+### Nested Schema for `spec.syslog_ng.buffer_volume_metrics.service_monitor_config`
 
 Optional:
 
@@ -10969,7 +10969,7 @@ Optional:
 - `server_name` (String)
 
 <a id="nestedatt--spec--syslog_ng--buffer_volume_metrics--timeout--tls_config--ca"></a>
-### Nested Schema for `spec.syslog_ng.buffer_volume_metrics.timeout.tls_config.server_name`
+### Nested Schema for `spec.syslog_ng.buffer_volume_metrics.timeout.tls_config.ca`
 
 Optional:
 
@@ -10977,7 +10977,7 @@ Optional:
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--buffer_volume_metrics--timeout--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--syslog_ng--buffer_volume_metrics--timeout--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.syslog_ng.buffer_volume_metrics.timeout.tls_config.server_name.secret`
+### Nested Schema for `spec.syslog_ng.buffer_volume_metrics.timeout.tls_config.server_name.config_map`
 
 Required:
 
@@ -11004,7 +11004,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--buffer_volume_metrics--timeout--tls_config--cert"></a>
-### Nested Schema for `spec.syslog_ng.buffer_volume_metrics.timeout.tls_config.server_name`
+### Nested Schema for `spec.syslog_ng.buffer_volume_metrics.timeout.tls_config.cert`
 
 Optional:
 
@@ -11012,7 +11012,7 @@ Optional:
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--buffer_volume_metrics--timeout--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--syslog_ng--buffer_volume_metrics--timeout--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.syslog_ng.buffer_volume_metrics.timeout.tls_config.server_name.secret`
+### Nested Schema for `spec.syslog_ng.buffer_volume_metrics.timeout.tls_config.server_name.config_map`
 
 Required:
 
@@ -11039,7 +11039,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--buffer_volume_metrics--timeout--tls_config--key_secret"></a>
-### Nested Schema for `spec.syslog_ng.buffer_volume_metrics.timeout.tls_config.server_name`
+### Nested Schema for `spec.syslog_ng.buffer_volume_metrics.timeout.tls_config.key_secret`
 
 Required:
 
@@ -11063,7 +11063,7 @@ Optional:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--buffer_volume_metrics_service--spec))
 
 <a id="nestedatt--spec--syslog_ng--buffer_volume_metrics_service--metadata"></a>
-### Nested Schema for `spec.syslog_ng.buffer_volume_metrics_service.spec`
+### Nested Schema for `spec.syslog_ng.buffer_volume_metrics_service.metadata`
 
 Optional:
 
@@ -11171,7 +11171,7 @@ Optional:
 - `volumes` (Attributes List) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes))
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--affinity"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes`
+### Nested Schema for `spec.syslog_ng.config_check_pod.affinity`
 
 Optional:
 
@@ -11188,7 +11188,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--node_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.node_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -11196,7 +11196,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.node_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.node_affinity.required_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -11204,7 +11204,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -11247,7 +11247,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -11284,7 +11284,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--pod_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -11292,7 +11292,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -11307,7 +11307,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -11329,7 +11329,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -11368,7 +11368,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -11376,7 +11376,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -11390,7 +11390,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -11398,7 +11398,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -11422,7 +11422,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -11430,7 +11430,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -11445,7 +11445,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -11467,7 +11467,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -11506,7 +11506,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -11514,7 +11514,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -11528,7 +11528,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -11536,7 +11536,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -11553,7 +11553,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--containers"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes`
+### Nested Schema for `spec.syslog_ng.config_check_pod.containers`
 
 Required:
 
@@ -11608,7 +11608,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -11621,7 +11621,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--env--value_from--field_ref"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.env.value_from.field_ref`
 
 Required:
 
@@ -11633,7 +11633,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.env.value_from.resource_field_ref`
 
 Required:
 
@@ -11670,7 +11670,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--env_from--secret_ref))
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--env_from--config_map_ref"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.env_from.secret_ref`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.env_from.config_map_ref`
 
 Optional:
 
@@ -11697,7 +11697,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop))
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--post_start"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.post_start`
 
 Optional:
 
@@ -11707,7 +11707,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -11715,7 +11715,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -11729,7 +11729,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -11739,7 +11739,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop--sleep"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.sleep`
 
 Required:
 
@@ -11770,7 +11770,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -11778,7 +11778,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -11792,7 +11792,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -11802,7 +11802,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop--sleep"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.sleep`
 
 Required:
 
@@ -11840,7 +11840,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--liveness_probe--exec"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.liveness_probe.exec`
 
 Optional:
 
@@ -11848,7 +11848,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--liveness_probe--grpc"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.liveness_probe.grpc`
 
 Required:
 
@@ -11860,7 +11860,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--liveness_probe--http_get"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.liveness_probe.http_get`
 
 Required:
 
@@ -11874,7 +11874,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.liveness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.liveness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -11884,7 +11884,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.liveness_probe.tcp_socket`
 
 Required:
 
@@ -11928,7 +11928,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--readiness_probe--exec"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.readiness_probe.exec`
 
 Optional:
 
@@ -11936,7 +11936,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--readiness_probe--grpc"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.readiness_probe.grpc`
 
 Required:
 
@@ -11948,7 +11948,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--readiness_probe--http_get"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.readiness_probe.http_get`
 
 Required:
 
@@ -11962,7 +11962,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.readiness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.readiness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -11972,7 +11972,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.readiness_probe.tcp_socket`
 
 Required:
 
@@ -12003,7 +12003,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--resources--claims"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.resources.requests`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.resources.claims`
 
 Required:
 
@@ -12029,7 +12029,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--security_context--windows_options))
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--security_context--capabilities"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.security_context.windows_options`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.security_context.capabilities`
 
 Optional:
 
@@ -12038,7 +12038,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--security_context--se_linux_options"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.security_context.windows_options`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.security_context.se_linux_options`
 
 Optional:
 
@@ -12049,7 +12049,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.security_context.windows_options`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.security_context.seccomp_profile`
 
 Required:
 
@@ -12089,7 +12089,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--startup_probe--exec"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.startup_probe.exec`
 
 Optional:
 
@@ -12097,7 +12097,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--startup_probe--grpc"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.startup_probe.grpc`
 
 Required:
 
@@ -12109,7 +12109,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--startup_probe--http_get"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.startup_probe.http_get`
 
 Required:
 
@@ -12123,7 +12123,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--startup_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.startup_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.startup_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -12133,7 +12133,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.startup_probe.tcp_socket`
 
 Required:
 
@@ -12172,7 +12172,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--dns_config"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes`
+### Nested Schema for `spec.syslog_ng.config_check_pod.dns_config`
 
 Optional:
 
@@ -12191,7 +12191,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--ephemeral_containers"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes`
+### Nested Schema for `spec.syslog_ng.config_check_pod.ephemeral_containers`
 
 Required:
 
@@ -12247,7 +12247,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -12260,7 +12260,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--env--value_from--field_ref"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.env.value_from.field_ref`
 
 Required:
 
@@ -12272,7 +12272,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.env.value_from.resource_field_ref`
 
 Required:
 
@@ -12309,7 +12309,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--env_from--secret_ref))
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--env_from--config_map_ref"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.env_from.secret_ref`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.env_from.config_map_ref`
 
 Optional:
 
@@ -12336,7 +12336,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop))
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--post_start"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.post_start`
 
 Optional:
 
@@ -12346,7 +12346,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -12354,7 +12354,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -12368,7 +12368,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -12378,7 +12378,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop--sleep"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.sleep`
 
 Required:
 
@@ -12409,7 +12409,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -12417,7 +12417,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -12431,7 +12431,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -12441,7 +12441,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop--sleep"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.sleep`
 
 Required:
 
@@ -12479,7 +12479,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--liveness_probe--exec"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.liveness_probe.exec`
 
 Optional:
 
@@ -12487,7 +12487,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--liveness_probe--grpc"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.liveness_probe.grpc`
 
 Required:
 
@@ -12499,7 +12499,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--liveness_probe--http_get"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.liveness_probe.http_get`
 
 Required:
 
@@ -12513,7 +12513,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.liveness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.liveness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -12523,7 +12523,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.liveness_probe.tcp_socket`
 
 Required:
 
@@ -12567,7 +12567,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--readiness_probe--exec"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.readiness_probe.exec`
 
 Optional:
 
@@ -12575,7 +12575,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--readiness_probe--grpc"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.readiness_probe.grpc`
 
 Required:
 
@@ -12587,7 +12587,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--readiness_probe--http_get"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.readiness_probe.http_get`
 
 Required:
 
@@ -12601,7 +12601,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.readiness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.readiness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -12611,7 +12611,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.readiness_probe.tcp_socket`
 
 Required:
 
@@ -12642,7 +12642,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--resources--claims"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.resources.requests`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.resources.claims`
 
 Required:
 
@@ -12668,7 +12668,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--security_context--windows_options))
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--security_context--capabilities"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.security_context.windows_options`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.security_context.capabilities`
 
 Optional:
 
@@ -12677,7 +12677,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--security_context--se_linux_options"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.security_context.windows_options`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.security_context.se_linux_options`
 
 Optional:
 
@@ -12688,7 +12688,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.security_context.windows_options`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.security_context.seccomp_profile`
 
 Required:
 
@@ -12728,7 +12728,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--startup_probe--exec"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.startup_probe.exec`
 
 Optional:
 
@@ -12736,7 +12736,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--startup_probe--grpc"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.startup_probe.grpc`
 
 Required:
 
@@ -12748,7 +12748,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--startup_probe--http_get"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.startup_probe.http_get`
 
 Required:
 
@@ -12762,7 +12762,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--startup_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.startup_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.startup_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -12772,7 +12772,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.startup_probe.tcp_socket`
 
 Required:
 
@@ -12811,7 +12811,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--host_aliases"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes`
+### Nested Schema for `spec.syslog_ng.config_check_pod.host_aliases`
 
 Optional:
 
@@ -12820,7 +12820,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--image_pull_secrets"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes`
+### Nested Schema for `spec.syslog_ng.config_check_pod.image_pull_secrets`
 
 Optional:
 
@@ -12828,7 +12828,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--init_containers"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes`
+### Nested Schema for `spec.syslog_ng.config_check_pod.init_containers`
 
 Required:
 
@@ -12883,7 +12883,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -12896,7 +12896,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--env--value_from--field_ref"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.env.value_from.field_ref`
 
 Required:
 
@@ -12908,7 +12908,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.env.value_from.resource_field_ref`
 
 Required:
 
@@ -12945,7 +12945,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--env_from--secret_ref))
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--env_from--config_map_ref"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.env_from.secret_ref`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.env_from.config_map_ref`
 
 Optional:
 
@@ -12972,7 +12972,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop))
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--post_start"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.post_start`
 
 Optional:
 
@@ -12982,7 +12982,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -12990,7 +12990,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -13004,7 +13004,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -13014,7 +13014,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop--sleep"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.sleep`
 
 Required:
 
@@ -13045,7 +13045,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -13053,7 +13053,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -13067,7 +13067,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -13077,7 +13077,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--lifecycle--pre_stop--sleep"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.lifecycle.pre_stop.sleep`
 
 Required:
 
@@ -13115,7 +13115,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--liveness_probe--exec"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.liveness_probe.exec`
 
 Optional:
 
@@ -13123,7 +13123,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--liveness_probe--grpc"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.liveness_probe.grpc`
 
 Required:
 
@@ -13135,7 +13135,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--liveness_probe--http_get"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.liveness_probe.http_get`
 
 Required:
 
@@ -13149,7 +13149,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.liveness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.liveness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -13159,7 +13159,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.liveness_probe.tcp_socket`
 
 Required:
 
@@ -13203,7 +13203,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--readiness_probe--exec"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.readiness_probe.exec`
 
 Optional:
 
@@ -13211,7 +13211,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--readiness_probe--grpc"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.readiness_probe.grpc`
 
 Required:
 
@@ -13223,7 +13223,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--readiness_probe--http_get"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.readiness_probe.http_get`
 
 Required:
 
@@ -13237,7 +13237,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.readiness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.readiness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -13247,7 +13247,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.readiness_probe.tcp_socket`
 
 Required:
 
@@ -13278,7 +13278,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--resources--claims"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.resources.requests`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.resources.claims`
 
 Required:
 
@@ -13304,7 +13304,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--security_context--windows_options))
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--security_context--capabilities"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.security_context.windows_options`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.security_context.capabilities`
 
 Optional:
 
@@ -13313,7 +13313,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--security_context--se_linux_options"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.security_context.windows_options`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.security_context.se_linux_options`
 
 Optional:
 
@@ -13324,7 +13324,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.security_context.windows_options`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.security_context.seccomp_profile`
 
 Required:
 
@@ -13364,7 +13364,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--startup_probe--exec"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.startup_probe.exec`
 
 Optional:
 
@@ -13372,7 +13372,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--startup_probe--grpc"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.startup_probe.grpc`
 
 Required:
 
@@ -13384,7 +13384,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--startup_probe--http_get"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.startup_probe.http_get`
 
 Required:
 
@@ -13398,7 +13398,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--startup_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.startup_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.startup_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -13408,7 +13408,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.startup_probe.tcp_socket`
 
 Required:
 
@@ -13447,7 +13447,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--readiness_gates"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes`
+### Nested Schema for `spec.syslog_ng.config_check_pod.readiness_gates`
 
 Required:
 
@@ -13455,7 +13455,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--security_context"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes`
+### Nested Schema for `spec.syslog_ng.config_check_pod.security_context`
 
 Optional:
 
@@ -13515,7 +13515,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--tolerations"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes`
+### Nested Schema for `spec.syslog_ng.config_check_pod.tolerations`
 
 Optional:
 
@@ -13527,7 +13527,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--topology_spread_constraints"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes`
+### Nested Schema for `spec.syslog_ng.config_check_pod.topology_spread_constraints`
 
 Required:
 
@@ -13552,7 +13552,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--label_selector--match_expressions"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.label_selector.match_labels`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.label_selector.match_expressions`
 
 Required:
 
@@ -13664,7 +13664,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--cephfs--secret_ref"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.cephfs.user`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.cephfs.secret_ref`
 
 Optional:
 
@@ -13705,7 +13705,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--config_map--items"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.config_map.optional`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.config_map.items`
 
 Required:
 
@@ -13733,7 +13733,7 @@ Optional:
 - `volume_attributes` (Map of String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--csi--node_publish_secret_ref"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.csi.volume_attributes`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -13763,7 +13763,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--downward_api--items--resource_field_ref))
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--downward_api--items--field_ref"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.downward_api.items.resource_field_ref`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.downward_api.items.field_ref`
 
 Required:
 
@@ -13817,7 +13817,7 @@ Optional:
 - `metadata` (Map of String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--ephemeral--volume_claim_template--spec"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.ephemeral.volume_claim_template.metadata`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.ephemeral.volume_claim_template.spec`
 
 Optional:
 
@@ -13832,7 +13832,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--ephemeral--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.ephemeral.volume_claim_template.metadata.data_source`
 
 Required:
 
@@ -13845,7 +13845,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--ephemeral--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.ephemeral.volume_claim_template.metadata.data_source_ref`
 
 Required:
 
@@ -13859,7 +13859,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--ephemeral--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.ephemeral.volume_claim_template.metadata.resources`
 
 Optional:
 
@@ -13868,7 +13868,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--ephemeral--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.ephemeral.volume_claim_template.metadata.selector`
 
 Optional:
 
@@ -14087,7 +14087,7 @@ Optional:
 - `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--projected--sources--service_account_token))
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--projected--sources--cluster_trust_bundle"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.projected.sources.service_account_token`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.projected.sources.cluster_trust_bundle`
 
 Required:
 
@@ -14101,7 +14101,7 @@ Optional:
 - `signer_name` (String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--projected--sources--service_account_token--label_selector"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.projected.sources.service_account_token.signer_name`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.projected.sources.service_account_token.label_selector`
 
 Optional:
 
@@ -14124,7 +14124,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--projected--sources--config_map"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.projected.sources.service_account_token`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.projected.sources.config_map`
 
 Optional:
 
@@ -14133,7 +14133,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.projected.sources.service_account_token.optional`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.projected.sources.service_account_token.items`
 
 Required:
 
@@ -14147,7 +14147,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--projected--sources--downward_api"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.projected.sources.service_account_token`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.projected.sources.downward_api`
 
 Optional:
 
@@ -14194,7 +14194,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--projected--sources--secret"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.projected.sources.service_account_token`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.projected.sources.secret`
 
 Optional:
 
@@ -14203,7 +14203,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.projected.sources.service_account_token.optional`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.projected.sources.service_account_token.items`
 
 Required:
 
@@ -14265,7 +14265,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--rbd--secret_ref"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.rbd.user`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.rbd.secret_ref`
 
 Optional:
 
@@ -14293,7 +14293,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--scale_io--secret_ref"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.scale_io.volume_name`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.scale_io.secret_ref`
 
 Optional:
 
@@ -14312,7 +14312,7 @@ Optional:
 - `secret_name` (String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--secret--items"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.secret.secret_name`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.secret.items`
 
 Required:
 
@@ -14337,7 +14337,7 @@ Optional:
 - `volume_namespace` (String)
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--storageos--secret_ref"></a>
-### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.storageos.volume_namespace`
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.storageos.secret_ref`
 
 Optional:
 
@@ -14372,7 +14372,7 @@ Optional:
 - `stats_level` (Number)
 
 <a id="nestedatt--spec--syslog_ng--global_options--stats"></a>
-### Nested Schema for `spec.syslog_ng.global_options.stats_level`
+### Nested Schema for `spec.syslog_ng.global_options.stats`
 
 Optional:
 
@@ -14396,7 +14396,7 @@ Optional:
 - `timeout` (String)
 
 <a id="nestedatt--spec--syslog_ng--metrics--service_monitor_config"></a>
-### Nested Schema for `spec.syslog_ng.metrics.timeout`
+### Nested Schema for `spec.syslog_ng.metrics.service_monitor_config`
 
 Optional:
 
@@ -14450,7 +14450,7 @@ Optional:
 - `server_name` (String)
 
 <a id="nestedatt--spec--syslog_ng--metrics--timeout--tls_config--ca"></a>
-### Nested Schema for `spec.syslog_ng.metrics.timeout.tls_config.server_name`
+### Nested Schema for `spec.syslog_ng.metrics.timeout.tls_config.ca`
 
 Optional:
 
@@ -14458,7 +14458,7 @@ Optional:
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--metrics--timeout--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--syslog_ng--metrics--timeout--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.syslog_ng.metrics.timeout.tls_config.server_name.secret`
+### Nested Schema for `spec.syslog_ng.metrics.timeout.tls_config.server_name.config_map`
 
 Required:
 
@@ -14485,7 +14485,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--metrics--timeout--tls_config--cert"></a>
-### Nested Schema for `spec.syslog_ng.metrics.timeout.tls_config.server_name`
+### Nested Schema for `spec.syslog_ng.metrics.timeout.tls_config.cert`
 
 Optional:
 
@@ -14493,7 +14493,7 @@ Optional:
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--metrics--timeout--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--syslog_ng--metrics--timeout--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.syslog_ng.metrics.timeout.tls_config.server_name.secret`
+### Nested Schema for `spec.syslog_ng.metrics.timeout.tls_config.server_name.config_map`
 
 Required:
 
@@ -14520,7 +14520,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--metrics--timeout--tls_config--key_secret"></a>
-### Nested Schema for `spec.syslog_ng.metrics.timeout.tls_config.server_name`
+### Nested Schema for `spec.syslog_ng.metrics.timeout.tls_config.key_secret`
 
 Required:
 
@@ -14544,7 +14544,7 @@ Optional:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--metrics_service--spec))
 
 <a id="nestedatt--spec--syslog_ng--metrics_service--metadata"></a>
-### Nested Schema for `spec.syslog_ng.metrics_service.spec`
+### Nested Schema for `spec.syslog_ng.metrics_service.metadata`
 
 Optional:
 
@@ -14636,7 +14636,7 @@ Optional:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--service--spec))
 
 <a id="nestedatt--spec--syslog_ng--service--metadata"></a>
-### Nested Schema for `spec.syslog_ng.service.spec`
+### Nested Schema for `spec.syslog_ng.service.metadata`
 
 Optional:
 
@@ -14714,7 +14714,7 @@ Optional:
 - `secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--syslog_ng--service_account--secrets))
 
 <a id="nestedatt--spec--syslog_ng--service_account--image_pull_secrets"></a>
-### Nested Schema for `spec.syslog_ng.service_account.secrets`
+### Nested Schema for `spec.syslog_ng.service_account.image_pull_secrets`
 
 Optional:
 
@@ -14722,7 +14722,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--service_account--metadata"></a>
-### Nested Schema for `spec.syslog_ng.service_account.secrets`
+### Nested Schema for `spec.syslog_ng.service_account.metadata`
 
 Optional:
 
@@ -14773,7 +14773,7 @@ Optional:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec))
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--metadata"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec`
+### Nested Schema for `spec.syslog_ng.stateful_set.metadata`
 
 Optional:
 
@@ -14804,7 +14804,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--selector--match_expressions"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.selector.match_labels`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.selector.match_expressions`
 
 Required:
 
@@ -14826,7 +14826,7 @@ Optional:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec))
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--metadata"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.metadata`
 
 Optional:
 
@@ -14875,7 +14875,7 @@ Optional:
 - `volumes` (Attributes List) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes))
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--affinity"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.affinity`
 
 Optional:
 
@@ -14884,7 +14884,7 @@ Optional:
 - `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--pod_anti_affinity))
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--node_affinity"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.node_affinity`
 
 Optional:
 
@@ -14900,7 +14900,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -14908,7 +14908,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -14951,7 +14951,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -14980,7 +14980,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--pod_affinity"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_affinity`
 
 Optional:
 
@@ -14996,7 +14996,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -15011,7 +15011,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -15019,7 +15019,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -15033,7 +15033,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -15041,7 +15041,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -15072,7 +15072,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -15080,7 +15080,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -15094,7 +15094,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -15102,7 +15102,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -15134,7 +15134,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -15149,7 +15149,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -15157,7 +15157,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -15171,7 +15171,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -15179,7 +15179,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -15210,7 +15210,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -15218,7 +15218,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -15232,7 +15232,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -15240,7 +15240,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -15257,7 +15257,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--containers"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.containers`
 
 Required:
 
@@ -15290,7 +15290,7 @@ Optional:
 - `working_dir` (String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--env"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.env`
 
 Required:
 
@@ -15312,7 +15312,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -15325,7 +15325,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.value_from.field_ref`
 
 Required:
 
@@ -15337,7 +15337,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -15365,7 +15365,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--env_from"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.env_from`
 
 Optional:
 
@@ -15393,7 +15393,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--lifecycle"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.lifecycle`
 
 Optional:
 
@@ -15411,7 +15411,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--post_start--tcp_socket))
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--post_start--exec"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.post_start.exec`
 
 Optional:
 
@@ -15419,7 +15419,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--post_start--http_get"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.post_start.http_get`
 
 Required:
 
@@ -15433,7 +15433,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--post_start--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.post_start.tcp_socket.scheme`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.post_start.tcp_socket.http_headers`
 
 Required:
 
@@ -15443,7 +15443,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--post_start--sleep"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.post_start.sleep`
 
 Required:
 
@@ -15474,7 +15474,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -15482,7 +15482,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -15496,7 +15496,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -15506,7 +15506,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--pre_stop--sleep"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.pre_stop.sleep`
 
 Required:
 
@@ -15528,7 +15528,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--liveness_probe"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.liveness_probe`
 
 Optional:
 
@@ -15578,7 +15578,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.http_get.scheme`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.http_get.http_headers`
 
 Required:
 
@@ -15601,7 +15601,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--ports"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.ports`
 
 Required:
 
@@ -15616,7 +15616,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--readiness_probe"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.readiness_probe`
 
 Optional:
 
@@ -15666,7 +15666,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.http_get.scheme`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.http_get.http_headers`
 
 Required:
 
@@ -15689,7 +15689,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--resize_policy"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.resize_policy`
 
 Required:
 
@@ -15698,7 +15698,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--resources"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.resources`
 
 Optional:
 
@@ -15716,7 +15716,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--security_context"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.security_context`
 
 Optional:
 
@@ -15777,7 +15777,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--startup_probe"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.startup_probe`
 
 Optional:
 
@@ -15827,7 +15827,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.http_get.scheme`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.http_get.http_headers`
 
 Required:
 
@@ -15850,7 +15850,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--volume_devices"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.volume_devices`
 
 Required:
 
@@ -15859,7 +15859,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--volume_mounts"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.volume_mounts`
 
 Required:
 
@@ -15876,7 +15876,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--dns_config"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.dns_config`
 
 Optional:
 
@@ -15885,7 +15885,7 @@ Optional:
 - `searches` (List of String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--options"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.searches`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.options`
 
 Optional:
 
@@ -15895,7 +15895,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--ephemeral_containers"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.ephemeral_containers`
 
 Required:
 
@@ -15929,7 +15929,7 @@ Optional:
 - `working_dir` (String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--env"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.env`
 
 Required:
 
@@ -15951,7 +15951,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -15964,7 +15964,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.value_from.field_ref`
 
 Required:
 
@@ -15976,7 +15976,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -16004,7 +16004,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--env_from"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.env_from`
 
 Optional:
 
@@ -16032,7 +16032,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--lifecycle"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.lifecycle`
 
 Optional:
 
@@ -16050,7 +16050,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--post_start--tcp_socket))
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--post_start--exec"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.post_start.exec`
 
 Optional:
 
@@ -16058,7 +16058,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--post_start--http_get"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.post_start.http_get`
 
 Required:
 
@@ -16072,7 +16072,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--post_start--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.post_start.tcp_socket.scheme`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.post_start.tcp_socket.http_headers`
 
 Required:
 
@@ -16082,7 +16082,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--post_start--sleep"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.post_start.sleep`
 
 Required:
 
@@ -16113,7 +16113,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -16121,7 +16121,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -16135,7 +16135,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -16145,7 +16145,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--pre_stop--sleep"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.pre_stop.sleep`
 
 Required:
 
@@ -16167,7 +16167,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--liveness_probe"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.liveness_probe`
 
 Optional:
 
@@ -16217,7 +16217,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.http_get.scheme`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.http_get.http_headers`
 
 Required:
 
@@ -16240,7 +16240,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--ports"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.ports`
 
 Required:
 
@@ -16255,7 +16255,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--readiness_probe"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.readiness_probe`
 
 Optional:
 
@@ -16305,7 +16305,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.http_get.scheme`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.http_get.http_headers`
 
 Required:
 
@@ -16328,7 +16328,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--resize_policy"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.resize_policy`
 
 Required:
 
@@ -16337,7 +16337,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--resources"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.resources`
 
 Optional:
 
@@ -16355,7 +16355,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--security_context"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.security_context`
 
 Optional:
 
@@ -16416,7 +16416,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--startup_probe"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.startup_probe`
 
 Optional:
 
@@ -16466,7 +16466,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.http_get.scheme`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.http_get.http_headers`
 
 Required:
 
@@ -16489,7 +16489,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--volume_devices"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.volume_devices`
 
 Required:
 
@@ -16498,7 +16498,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--volume_mounts"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.volume_mounts`
 
 Required:
 
@@ -16515,7 +16515,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--host_aliases"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.host_aliases`
 
 Optional:
 
@@ -16524,7 +16524,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--image_pull_secrets"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.image_pull_secrets`
 
 Optional:
 
@@ -16532,7 +16532,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--init_containers"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.init_containers`
 
 Required:
 
@@ -16565,7 +16565,7 @@ Optional:
 - `working_dir` (String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--env"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.env`
 
 Required:
 
@@ -16587,7 +16587,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -16600,7 +16600,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.value_from.field_ref`
 
 Required:
 
@@ -16612,7 +16612,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -16640,7 +16640,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--env_from"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.env_from`
 
 Optional:
 
@@ -16668,7 +16668,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--lifecycle"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.lifecycle`
 
 Optional:
 
@@ -16686,7 +16686,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--post_start--tcp_socket))
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--post_start--exec"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.post_start.exec`
 
 Optional:
 
@@ -16694,7 +16694,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--post_start--http_get"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.post_start.http_get`
 
 Required:
 
@@ -16708,7 +16708,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--post_start--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.post_start.tcp_socket.scheme`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.post_start.tcp_socket.http_headers`
 
 Required:
 
@@ -16718,7 +16718,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--post_start--sleep"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.post_start.sleep`
 
 Required:
 
@@ -16749,7 +16749,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -16757,7 +16757,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -16771,7 +16771,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -16781,7 +16781,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--pre_stop--sleep"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.pre_stop.sleep`
 
 Required:
 
@@ -16803,7 +16803,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--liveness_probe"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.liveness_probe`
 
 Optional:
 
@@ -16853,7 +16853,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.http_get.scheme`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.http_get.http_headers`
 
 Required:
 
@@ -16876,7 +16876,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--ports"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.ports`
 
 Required:
 
@@ -16891,7 +16891,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--readiness_probe"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.readiness_probe`
 
 Optional:
 
@@ -16941,7 +16941,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.http_get.scheme`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.http_get.http_headers`
 
 Required:
 
@@ -16964,7 +16964,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--resize_policy"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.resize_policy`
 
 Required:
 
@@ -16973,7 +16973,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--resources"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.resources`
 
 Optional:
 
@@ -16991,7 +16991,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--security_context"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.security_context`
 
 Optional:
 
@@ -17052,7 +17052,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--startup_probe"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.startup_probe`
 
 Optional:
 
@@ -17102,7 +17102,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.http_get.scheme`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir.http_get.http_headers`
 
 Required:
 
@@ -17125,7 +17125,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--volume_devices"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.volume_devices`
 
 Required:
 
@@ -17134,7 +17134,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--volume_mounts"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.volume_mounts`
 
 Required:
 
@@ -17151,7 +17151,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--readiness_gates"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.readiness_gates`
 
 Required:
 
@@ -17159,7 +17159,7 @@ Required:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--security_context"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.security_context`
 
 Optional:
 
@@ -17175,7 +17175,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--windows_options))
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--se_linux_options"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.windows_options`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.se_linux_options`
 
 Optional:
 
@@ -17186,7 +17186,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--seccomp_profile"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.windows_options`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.seccomp_profile`
 
 Required:
 
@@ -17198,7 +17198,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--sysctls"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.windows_options`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.sysctls`
 
 Required:
 
@@ -17219,7 +17219,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--tolerations"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.tolerations`
 
 Optional:
 
@@ -17231,7 +17231,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--topology_spread_constraints"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.topology_spread_constraints`
 
 Required:
 
@@ -17248,7 +17248,7 @@ Optional:
 - `node_taints_policy` (String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--label_selector"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.node_taints_policy`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.label_selector`
 
 Optional:
 
@@ -17310,7 +17310,7 @@ Optional:
 - `vsphere_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--vsphere_volume))
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--aws_elastic_block_store"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.aws_elastic_block_store`
 
 Required:
 
@@ -17324,7 +17324,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--azure_disk"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.azure_disk`
 
 Required:
 
@@ -17340,7 +17340,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--azure_file"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.azure_file`
 
 Required:
 
@@ -17353,7 +17353,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--cephfs"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.cephfs`
 
 Required:
 
@@ -17377,7 +17377,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--cinder"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.cinder`
 
 Required:
 
@@ -17399,7 +17399,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--config_map"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.config_map`
 
 Optional:
 
@@ -17423,7 +17423,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--csi"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.csi`
 
 Required:
 
@@ -17446,7 +17446,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--downward_api"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.downward_api`
 
 Optional:
 
@@ -17467,7 +17467,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--vsphere_volume--items--resource_field_ref))
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.items.resource_field_ref`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.items.field_ref`
 
 Required:
 
@@ -17494,7 +17494,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--empty_dir"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.empty_dir`
 
 Optional:
 
@@ -17503,7 +17503,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--ephemeral"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.ephemeral`
 
 Optional:
 
@@ -17521,7 +17521,7 @@ Optional:
 - `metadata` (Map of String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.volume_claim_template.metadata`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.volume_claim_template.spec`
 
 Optional:
 
@@ -17536,7 +17536,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--vsphere_volume--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.volume_claim_template.metadata.data_source`
 
 Required:
 
@@ -17549,7 +17549,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--vsphere_volume--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.volume_claim_template.metadata.data_source_ref`
 
 Required:
 
@@ -17563,7 +17563,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--vsphere_volume--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.volume_claim_template.metadata.resources`
 
 Optional:
 
@@ -17572,7 +17572,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--vsphere_volume--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.volume_claim_template.metadata.selector`
 
 Optional:
 
@@ -17580,7 +17580,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--vsphere_volume--volume_claim_template--metadata--volume_name--match_expressions"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_labels`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_expressions`
 
 Required:
 
@@ -17597,7 +17597,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--fc"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.fc`
 
 Optional:
 
@@ -17609,7 +17609,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--flex_volume"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.flex_volume`
 
 Required:
 
@@ -17632,7 +17632,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--flocker"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.flocker`
 
 Optional:
 
@@ -17641,7 +17641,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--gce_persistent_disk"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.gce_persistent_disk`
 
 Required:
 
@@ -17655,7 +17655,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--git_repo"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.git_repo`
 
 Required:
 
@@ -17668,7 +17668,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--glusterfs"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.glusterfs`
 
 Required:
 
@@ -17681,7 +17681,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--host_path"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.host_path`
 
 Required:
 
@@ -17693,7 +17693,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--iscsi"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.iscsi`
 
 Required:
 
@@ -17722,7 +17722,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--nfs"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.nfs`
 
 Required:
 
@@ -17735,7 +17735,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--persistent_volume_claim"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.persistent_volume_claim`
 
 Required:
 
@@ -17747,7 +17747,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--photon_persistent_disk"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.photon_persistent_disk`
 
 Required:
 
@@ -17759,7 +17759,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--portworx_volume"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.portworx_volume`
 
 Required:
 
@@ -17772,7 +17772,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--projected"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.projected`
 
 Optional:
 
@@ -17791,7 +17791,7 @@ Optional:
 - `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--vsphere_volume--sources--service_account_token))
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--vsphere_volume--sources--cluster_trust_bundle"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.sources.cluster_trust_bundle`
 
 Required:
 
@@ -17805,7 +17805,7 @@ Optional:
 - `signer_name` (String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--vsphere_volume--sources--service_account_token--label_selector"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.sources.service_account_token.signer_name`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.sources.service_account_token.label_selector`
 
 Optional:
 
@@ -17813,7 +17813,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--vsphere_volume--sources--service_account_token--signer_name--match_expressions"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.sources.service_account_token.signer_name.match_labels`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.sources.service_account_token.signer_name.match_expressions`
 
 Required:
 
@@ -17828,7 +17828,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.sources.config_map`
 
 Optional:
 
@@ -17837,7 +17837,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.sources.service_account_token.optional`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.sources.service_account_token.items`
 
 Required:
 
@@ -17851,7 +17851,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.sources.downward_api`
 
 Optional:
 
@@ -17871,7 +17871,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.sources.service_account_token.items.field_ref`
 
 Required:
 
@@ -17898,7 +17898,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.sources.secret`
 
 Optional:
 
@@ -17907,7 +17907,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.sources.service_account_token.optional`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume.sources.service_account_token.items`
 
 Required:
 
@@ -17936,7 +17936,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--quobyte"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.quobyte`
 
 Required:
 
@@ -17952,7 +17952,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--rbd"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.rbd`
 
 Required:
 
@@ -17978,7 +17978,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--scale_io"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.scale_io`
 
 Required:
 
@@ -18006,7 +18006,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--secret"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.secret`
 
 Optional:
 
@@ -18030,7 +18030,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--storageos"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.storageos`
 
 Optional:
 
@@ -18075,7 +18075,7 @@ Optional:
 - `type` (String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--update_strategy--rolling_update"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.update_strategy.type`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.update_strategy.rolling_update`
 
 Optional:
 
@@ -18093,7 +18093,7 @@ Optional:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--volume_claim_templates--spec))
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--volume_claim_templates--metadata"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.volume_claim_templates.spec`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.volume_claim_templates.metadata`
 
 Optional:
 
@@ -18118,7 +18118,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--volume_claim_templates--spec--data_source"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.volume_claim_templates.spec.volume_name`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.volume_claim_templates.spec.data_source`
 
 Required:
 
@@ -18131,7 +18131,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--volume_claim_templates--spec--data_source_ref"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.volume_claim_templates.spec.volume_name`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.volume_claim_templates.spec.data_source_ref`
 
 Required:
 
@@ -18145,7 +18145,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--volume_claim_templates--spec--resources"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.volume_claim_templates.spec.volume_name`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.volume_claim_templates.spec.resources`
 
 Optional:
 
@@ -18154,7 +18154,7 @@ Optional:
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--volume_claim_templates--spec--selector"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.volume_claim_templates.spec.volume_name`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.volume_claim_templates.spec.selector`
 
 Optional:
 
@@ -18162,7 +18162,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--volume_claim_templates--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.syslog_ng.stateful_set.spec.volume_claim_templates.spec.volume_name.match_labels`
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.volume_claim_templates.spec.volume_name.match_expressions`
 
 Required:
 

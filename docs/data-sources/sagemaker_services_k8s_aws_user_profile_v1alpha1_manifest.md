@@ -103,7 +103,7 @@ Optional:
 - `lifecycle_config_ar_ns` (List of String)
 
 <a id="nestedatt--spec--user_settings--code_editor_app_settings--default_resource_spec"></a>
-### Nested Schema for `spec.user_settings.code_editor_app_settings.lifecycle_config_ar_ns`
+### Nested Schema for `spec.user_settings.code_editor_app_settings.default_resource_spec`
 
 Optional:
 
@@ -151,7 +151,7 @@ Optional:
 - `lifecycle_config_ar_ns` (List of String)
 
 <a id="nestedatt--spec--user_settings--jupyter_lab_app_settings--custom_images"></a>
-### Nested Schema for `spec.user_settings.jupyter_lab_app_settings.lifecycle_config_ar_ns`
+### Nested Schema for `spec.user_settings.jupyter_lab_app_settings.custom_images`
 
 Optional:
 
@@ -161,7 +161,7 @@ Optional:
 
 
 <a id="nestedatt--spec--user_settings--jupyter_lab_app_settings--default_resource_spec"></a>
-### Nested Schema for `spec.user_settings.jupyter_lab_app_settings.lifecycle_config_ar_ns`
+### Nested Schema for `spec.user_settings.jupyter_lab_app_settings.default_resource_spec`
 
 Optional:
 
@@ -182,7 +182,7 @@ Optional:
 - `lifecycle_config_ar_ns` (List of String)
 
 <a id="nestedatt--spec--user_settings--jupyter_server_app_settings--default_resource_spec"></a>
-### Nested Schema for `spec.user_settings.jupyter_server_app_settings.lifecycle_config_ar_ns`
+### Nested Schema for `spec.user_settings.jupyter_server_app_settings.default_resource_spec`
 
 Optional:
 
@@ -204,7 +204,7 @@ Optional:
 - `lifecycle_config_ar_ns` (List of String)
 
 <a id="nestedatt--spec--user_settings--kernel_gateway_app_settings--custom_images"></a>
-### Nested Schema for `spec.user_settings.kernel_gateway_app_settings.lifecycle_config_ar_ns`
+### Nested Schema for `spec.user_settings.kernel_gateway_app_settings.custom_images`
 
 Optional:
 
@@ -214,7 +214,7 @@ Optional:
 
 
 <a id="nestedatt--spec--user_settings--kernel_gateway_app_settings--default_resource_spec"></a>
-### Nested Schema for `spec.user_settings.kernel_gateway_app_settings.lifecycle_config_ar_ns`
+### Nested Schema for `spec.user_settings.kernel_gateway_app_settings.default_resource_spec`
 
 Optional:
 

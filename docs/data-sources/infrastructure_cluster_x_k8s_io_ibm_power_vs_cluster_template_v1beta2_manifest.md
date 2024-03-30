@@ -91,7 +91,7 @@ Optional:
 - `zone` (String) zone is the name of Power VS zone where the cluster will be created possible values can be found here https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-server. when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource, 1. it is expected to set the zone, not setting will result in webhook error. 2. the zone should have PER capabilities, or else system will give error.
 
 <a id="nestedatt--spec--template--spec--network"></a>
-### Nested Schema for `spec.template.spec.zone`
+### Nested Schema for `spec.template.spec.network`
 
 Optional:
 
@@ -101,7 +101,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--control_plane_endpoint"></a>
-### Nested Schema for `spec.template.spec.zone`
+### Nested Schema for `spec.template.spec.control_plane_endpoint`
 
 Required:
 
@@ -110,7 +110,7 @@ Required:
 
 
 <a id="nestedatt--spec--template--spec--cos_instance"></a>
-### Nested Schema for `spec.template.spec.zone`
+### Nested Schema for `spec.template.spec.cos_instance`
 
 Optional:
 
@@ -120,7 +120,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--dhcp_server"></a>
-### Nested Schema for `spec.template.spec.zone`
+### Nested Schema for `spec.template.spec.dhcp_server`
 
 Optional:
 
@@ -132,7 +132,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--ignition"></a>
-### Nested Schema for `spec.template.spec.zone`
+### Nested Schema for `spec.template.spec.ignition`
 
 Optional:
 
@@ -140,7 +140,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--load_balancers"></a>
-### Nested Schema for `spec.template.spec.zone`
+### Nested Schema for `spec.template.spec.load_balancers`
 
 Optional:
 
@@ -159,7 +159,7 @@ Required:
 
 
 <a id="nestedatt--spec--template--spec--resource_group"></a>
-### Nested Schema for `spec.template.spec.zone`
+### Nested Schema for `spec.template.spec.resource_group`
 
 Optional:
 
@@ -169,7 +169,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--service_instance"></a>
-### Nested Schema for `spec.template.spec.zone`
+### Nested Schema for `spec.template.spec.service_instance`
 
 Optional:
 
@@ -179,7 +179,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--transit_gateway"></a>
-### Nested Schema for `spec.template.spec.zone`
+### Nested Schema for `spec.template.spec.transit_gateway`
 
 Optional:
 
@@ -188,7 +188,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--vpc"></a>
-### Nested Schema for `spec.template.spec.zone`
+### Nested Schema for `spec.template.spec.vpc`
 
 Optional:
 
@@ -198,7 +198,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--vpc_subnets"></a>
-### Nested Schema for `spec.template.spec.zone`
+### Nested Schema for `spec.template.spec.vpc_subnets`
 
 Optional:
 

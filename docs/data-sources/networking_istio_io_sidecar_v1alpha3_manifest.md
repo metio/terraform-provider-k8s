@@ -167,7 +167,7 @@ Optional:
 - `tcp` (Attributes) Settings common to both HTTP and TCP upstream connections. (see [below for nested schema](#nestedatt--spec--ingress--connection_pool--tcp))
 
 <a id="nestedatt--spec--ingress--connection_pool--http"></a>
-### Nested Schema for `spec.ingress.connection_pool.tcp`
+### Nested Schema for `spec.ingress.connection_pool.http`
 
 Optional:
 
@@ -246,7 +246,7 @@ Optional:
 - `subset` (String) The name of a subset within the service.
 
 <a id="nestedatt--spec--outbound_traffic_policy--egress_proxy--port"></a>
-### Nested Schema for `spec.outbound_traffic_policy.egress_proxy.subset`
+### Nested Schema for `spec.outbound_traffic_policy.egress_proxy.port`
 
 Optional:
 

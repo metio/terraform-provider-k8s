@@ -106,7 +106,7 @@ Optional:
 - `type` (String)
 
 <a id="nestedatt--spec--backend--zone_balancing--thresholds"></a>
-### Nested Schema for `spec.backend.zone_balancing.type`
+### Nested Schema for `spec.backend.zone_balancing.thresholds`
 
 Required:
 
@@ -161,7 +161,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -177,7 +177,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--preference--match_fields))
 
 <a id="nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
-### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.preference.match_fields`
+### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Required:
 
@@ -220,7 +220,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -257,7 +257,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -278,7 +278,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
@@ -286,7 +286,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -300,7 +300,7 @@ Optional:
 
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
@@ -308,7 +308,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -345,7 +345,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_labels`
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -367,7 +367,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_labels`
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -391,7 +391,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -412,7 +412,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
@@ -420,7 +420,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -434,7 +434,7 @@ Optional:
 
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
@@ -442,7 +442,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -479,7 +479,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_labels`
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -501,7 +501,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_labels`
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -570,7 +570,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--pod_disruption_budget--selector--match_expressions"></a>
-### Nested Schema for `spec.pod_disruption_budget.selector.match_labels`
+### Nested Schema for `spec.pod_disruption_budget.selector.match_expressions`
 
 Required:
 
@@ -683,7 +683,7 @@ Optional:
 - `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--varnish--env_from--secret_ref))
 
 <a id="nestedatt--spec--varnish--env_from--config_map_ref"></a>
-### Nested Schema for `spec.varnish.env_from.secret_ref`
+### Nested Schema for `spec.varnish.env_from.config_map_ref`
 
 Optional:
 
@@ -733,7 +733,7 @@ Optional:
 - `working_dir` (String) Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.
 
 <a id="nestedatt--spec--varnish--extra_init_containers--env"></a>
-### Nested Schema for `spec.varnish.extra_init_containers.working_dir`
+### Nested Schema for `spec.varnish.extra_init_containers.env`
 
 Required:
 
@@ -755,7 +755,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--varnish--extra_init_containers--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--varnish--extra_init_containers--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.varnish.extra_init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.varnish.extra_init_containers.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -768,7 +768,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_init_containers--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.varnish.extra_init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.varnish.extra_init_containers.working_dir.value_from.field_ref`
 
 Required:
 
@@ -780,7 +780,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_init_containers--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.varnish.extra_init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.varnish.extra_init_containers.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -808,7 +808,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_init_containers--env_from"></a>
-### Nested Schema for `spec.varnish.extra_init_containers.working_dir`
+### Nested Schema for `spec.varnish.extra_init_containers.env_from`
 
 Optional:
 
@@ -836,7 +836,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_init_containers--lifecycle"></a>
-### Nested Schema for `spec.varnish.extra_init_containers.working_dir`
+### Nested Schema for `spec.varnish.extra_init_containers.lifecycle`
 
 Optional:
 
@@ -853,7 +853,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--varnish--extra_init_containers--working_dir--post_start--tcp_socket))
 
 <a id="nestedatt--spec--varnish--extra_init_containers--working_dir--post_start--exec"></a>
-### Nested Schema for `spec.varnish.extra_init_containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.varnish.extra_init_containers.working_dir.post_start.exec`
 
 Optional:
 
@@ -861,7 +861,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_init_containers--working_dir--post_start--http_get"></a>
-### Nested Schema for `spec.varnish.extra_init_containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.varnish.extra_init_containers.working_dir.post_start.http_get`
 
 Required:
 
@@ -875,7 +875,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--varnish--extra_init_containers--working_dir--post_start--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.varnish.extra_init_containers.working_dir.post_start.tcp_socket.scheme`
+### Nested Schema for `spec.varnish.extra_init_containers.working_dir.post_start.tcp_socket.http_headers`
 
 Required:
 
@@ -907,7 +907,7 @@ Optional:
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--varnish--extra_init_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--varnish--extra_init_containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.varnish.extra_init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.varnish.extra_init_containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -915,7 +915,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_init_containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.varnish.extra_init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.varnish.extra_init_containers.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -929,7 +929,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--varnish--extra_init_containers--working_dir--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.varnish.extra_init_containers.working_dir.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.varnish.extra_init_containers.working_dir.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -953,7 +953,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_init_containers--liveness_probe"></a>
-### Nested Schema for `spec.varnish.extra_init_containers.working_dir`
+### Nested Schema for `spec.varnish.extra_init_containers.liveness_probe`
 
 Optional:
 
@@ -1003,7 +1003,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--varnish--extra_init_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.varnish.extra_init_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.varnish.extra_init_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -1026,7 +1026,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_init_containers--ports"></a>
-### Nested Schema for `spec.varnish.extra_init_containers.working_dir`
+### Nested Schema for `spec.varnish.extra_init_containers.ports`
 
 Required:
 
@@ -1041,7 +1041,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_init_containers--readiness_probe"></a>
-### Nested Schema for `spec.varnish.extra_init_containers.working_dir`
+### Nested Schema for `spec.varnish.extra_init_containers.readiness_probe`
 
 Optional:
 
@@ -1091,7 +1091,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--varnish--extra_init_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.varnish.extra_init_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.varnish.extra_init_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -1114,7 +1114,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_init_containers--resources"></a>
-### Nested Schema for `spec.varnish.extra_init_containers.working_dir`
+### Nested Schema for `spec.varnish.extra_init_containers.resources`
 
 Optional:
 
@@ -1123,7 +1123,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_init_containers--security_context"></a>
-### Nested Schema for `spec.varnish.extra_init_containers.working_dir`
+### Nested Schema for `spec.varnish.extra_init_containers.security_context`
 
 Optional:
 
@@ -1184,7 +1184,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_init_containers--startup_probe"></a>
-### Nested Schema for `spec.varnish.extra_init_containers.working_dir`
+### Nested Schema for `spec.varnish.extra_init_containers.startup_probe`
 
 Optional:
 
@@ -1234,7 +1234,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--varnish--extra_init_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.varnish.extra_init_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.varnish.extra_init_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -1257,7 +1257,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_init_containers--volume_devices"></a>
-### Nested Schema for `spec.varnish.extra_init_containers.working_dir`
+### Nested Schema for `spec.varnish.extra_init_containers.volume_devices`
 
 Required:
 
@@ -1266,7 +1266,7 @@ Required:
 
 
 <a id="nestedatt--spec--varnish--extra_init_containers--volume_mounts"></a>
-### Nested Schema for `spec.varnish.extra_init_containers.working_dir`
+### Nested Schema for `spec.varnish.extra_init_containers.volume_mounts`
 
 Required:
 
@@ -1294,7 +1294,7 @@ Optional:
 - `metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--varnish--extra_volume_claim_templates--metadata))
 
 <a id="nestedatt--spec--varnish--extra_volume_claim_templates--spec"></a>
-### Nested Schema for `spec.varnish.extra_volume_claim_templates.metadata`
+### Nested Schema for `spec.varnish.extra_volume_claim_templates.spec`
 
 Optional:
 
@@ -1351,7 +1351,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--varnish--extra_volume_claim_templates--metadata--selector--match_expressions"></a>
-### Nested Schema for `spec.varnish.extra_volume_claim_templates.metadata.selector.match_labels`
+### Nested Schema for `spec.varnish.extra_volume_claim_templates.metadata.selector.match_expressions`
 
 Required:
 
@@ -1432,7 +1432,7 @@ Optional:
 - `vsphere_volume` (Attributes) vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--varnish--extra_volumes--vsphere_volume))
 
 <a id="nestedatt--spec--varnish--extra_volumes--aws_elastic_block_store"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.varnish.extra_volumes.aws_elastic_block_store`
 
 Required:
 
@@ -1446,7 +1446,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--azure_disk"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.varnish.extra_volumes.azure_disk`
 
 Required:
 
@@ -1462,7 +1462,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--azure_file"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.varnish.extra_volumes.azure_file`
 
 Required:
 
@@ -1475,7 +1475,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--cephfs"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.varnish.extra_volumes.cephfs`
 
 Required:
 
@@ -1499,7 +1499,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--cinder"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.varnish.extra_volumes.cinder`
 
 Required:
 
@@ -1521,7 +1521,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--config_map"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.varnish.extra_volumes.config_map`
 
 Optional:
 
@@ -1545,7 +1545,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--csi"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.varnish.extra_volumes.csi`
 
 Required:
 
@@ -1568,7 +1568,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--downward_api"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.varnish.extra_volumes.downward_api`
 
 Optional:
 
@@ -1589,7 +1589,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--varnish--extra_volumes--vsphere_volume--items--resource_field_ref))
 
 <a id="nestedatt--spec--varnish--extra_volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume.items.resource_field_ref`
+### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume.items.field_ref`
 
 Required:
 
@@ -1616,7 +1616,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--empty_dir"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.varnish.extra_volumes.empty_dir`
 
 Optional:
 
@@ -1625,7 +1625,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--ephemeral"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.varnish.extra_volumes.ephemeral`
 
 Optional:
 
@@ -1643,7 +1643,7 @@ Optional:
 - `metadata` (Map of String) May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation.
 
 <a id="nestedatt--spec--varnish--extra_volumes--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume.volume_claim_template.metadata`
+### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume.volume_claim_template.spec`
 
 Optional:
 
@@ -1657,7 +1657,7 @@ Optional:
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--varnish--extra_volumes--vsphere_volume--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume.volume_claim_template.metadata.data_source`
 
 Required:
 
@@ -1670,7 +1670,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--vsphere_volume--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume.volume_claim_template.metadata.data_source_ref`
 
 Required:
 
@@ -1683,7 +1683,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--vsphere_volume--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume.volume_claim_template.metadata.resources`
 
 Optional:
 
@@ -1692,7 +1692,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--vsphere_volume--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume.volume_claim_template.metadata.selector`
 
 Optional:
 
@@ -1700,7 +1700,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--varnish--extra_volumes--vsphere_volume--volume_claim_template--metadata--volume_name--match_expressions"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_labels`
+### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_expressions`
 
 Required:
 
@@ -1717,7 +1717,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--fc"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.varnish.extra_volumes.fc`
 
 Optional:
 
@@ -1729,7 +1729,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--flex_volume"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.varnish.extra_volumes.flex_volume`
 
 Required:
 
@@ -1752,7 +1752,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--flocker"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.varnish.extra_volumes.flocker`
 
 Optional:
 
@@ -1761,7 +1761,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--gce_persistent_disk"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.varnish.extra_volumes.gce_persistent_disk`
 
 Required:
 
@@ -1775,7 +1775,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--git_repo"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.varnish.extra_volumes.git_repo`
 
 Required:
 
@@ -1788,7 +1788,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--glusterfs"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.varnish.extra_volumes.glusterfs`
 
 Required:
 
@@ -1801,7 +1801,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--host_path"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.varnish.extra_volumes.host_path`
 
 Required:
 
@@ -1813,7 +1813,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--iscsi"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.varnish.extra_volumes.iscsi`
 
 Required:
 
@@ -1842,7 +1842,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--nfs"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.varnish.extra_volumes.nfs`
 
 Required:
 
@@ -1855,7 +1855,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--persistent_volume_claim"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.varnish.extra_volumes.persistent_volume_claim`
 
 Required:
 
@@ -1867,7 +1867,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--photon_persistent_disk"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.varnish.extra_volumes.photon_persistent_disk`
 
 Required:
 
@@ -1879,7 +1879,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--portworx_volume"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.varnish.extra_volumes.portworx_volume`
 
 Required:
 
@@ -1892,7 +1892,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--projected"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.varnish.extra_volumes.projected`
 
 Optional:
 
@@ -1910,7 +1910,7 @@ Optional:
 - `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--varnish--extra_volumes--vsphere_volume--sources--service_account_token))
 
 <a id="nestedatt--spec--varnish--extra_volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume.sources.config_map`
 
 Optional:
 
@@ -1919,7 +1919,7 @@ Optional:
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--varnish--extra_volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume.sources.service_account_token.optional`
+### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume.sources.service_account_token.items`
 
 Required:
 
@@ -1933,7 +1933,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume.sources.downward_api`
 
 Optional:
 
@@ -1953,7 +1953,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--varnish--extra_volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
 
 <a id="nestedatt--spec--varnish--extra_volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume.sources.service_account_token.items.field_ref`
 
 Required:
 
@@ -1980,7 +1980,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume.sources.secret`
 
 Optional:
 
@@ -1989,7 +1989,7 @@ Optional:
 - `optional` (Boolean) optional field specify whether the Secret or its key must be defined
 
 <a id="nestedatt--spec--varnish--extra_volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume.sources.service_account_token.optional`
+### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume.sources.service_account_token.items`
 
 Required:
 
@@ -2018,7 +2018,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--quobyte"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.varnish.extra_volumes.quobyte`
 
 Required:
 
@@ -2034,7 +2034,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--rbd"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.varnish.extra_volumes.rbd`
 
 Required:
 
@@ -2060,7 +2060,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--scale_io"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.varnish.extra_volumes.scale_io`
 
 Required:
 
@@ -2088,7 +2088,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--secret"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.varnish.extra_volumes.secret`
 
 Optional:
 
@@ -2112,7 +2112,7 @@ Optional:
 
 
 <a id="nestedatt--spec--varnish--extra_volumes--storageos"></a>
-### Nested Schema for `spec.varnish.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.varnish.extra_volumes.storageos`
 
 Optional:
 

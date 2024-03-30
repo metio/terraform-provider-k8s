@@ -132,7 +132,7 @@ Optional:
 - `taints` (Attributes List) The list of the taints to be applied to the corresponding Node in additive manner. This list will not overwrite any other taints added to the Node on an ongoing basis by other entities. These taints should be actively reconciled e.g. if you ask the machine controller to apply a taint and then manually remove the taint the machine controller will put it back) but not have the machine controller remove any taints (see [below for nested schema](#nestedatt--spec--template--spec--taints))
 
 <a id="nestedatt--spec--template--spec--lifecycle_hooks"></a>
-### Nested Schema for `spec.template.spec.taints`
+### Nested Schema for `spec.template.spec.lifecycle_hooks`
 
 Optional:
 
@@ -159,7 +159,7 @@ Required:
 
 
 <a id="nestedatt--spec--template--spec--metadata"></a>
-### Nested Schema for `spec.template.spec.taints`
+### Nested Schema for `spec.template.spec.metadata`
 
 Optional:
 
@@ -188,7 +188,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--provider_spec"></a>
-### Nested Schema for `spec.template.spec.taints`
+### Nested Schema for `spec.template.spec.provider_spec`
 
 Optional:
 

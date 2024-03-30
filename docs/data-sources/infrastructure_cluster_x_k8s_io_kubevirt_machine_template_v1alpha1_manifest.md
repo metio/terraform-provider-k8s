@@ -75,7 +75,7 @@ Optional:
 - `virtual_machine_template` (Attributes) VirtualMachineTemplateSpec defines the desired state of the kubevirt VM. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template))
 
 <a id="nestedatt--spec--template--spec--infra_cluster_secret_ref"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template`
+### Nested Schema for `spec.template.spec.infra_cluster_secret_ref`
 
 Optional:
 
@@ -89,7 +89,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_bootstrap_check"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template`
+### Nested Schema for `spec.template.spec.virtual_machine_bootstrap_check`
 
 Optional:
 
@@ -121,7 +121,7 @@ Optional:
 - `running` (Boolean) Running controls whether the associatied VirtualMachineInstance is created or not Mutually exclusive with RunStrategy
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--template"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.template`
 
 Optional:
 
@@ -158,7 +158,7 @@ Optional:
 - `volumes` (Attributes List) List of volumes that can be mounted by disks belonging to the vmi. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--domain"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.domain`
 
 Required:
 
@@ -205,7 +205,7 @@ Optional:
 - `watchdog` (Attributes) Watchdog describes a watchdog device which can be added to the vmi. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--devices--watchdog))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--devices--disks"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.watchdog`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.disks`
 
 Required:
 
@@ -226,7 +226,7 @@ Optional:
 - `tag` (String) If specified, disk address and its tag will be provided to the guest via config drive metadata
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--devices--watchdog--block_size"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.watchdog.tag`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.watchdog.block_size`
 
 Optional:
 
@@ -234,7 +234,7 @@ Optional:
 - `match_volume` (Attributes) Represents if a feature is enabled or disabled. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--devices--watchdog--tag--match_volume))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--devices--watchdog--tag--custom"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.watchdog.tag.match_volume`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.watchdog.tag.custom`
 
 Required:
 
@@ -252,7 +252,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--devices--watchdog--cdrom"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.watchdog.tag`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.watchdog.cdrom`
 
 Optional:
 
@@ -262,7 +262,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--devices--watchdog--disk"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.watchdog.tag`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.watchdog.disk`
 
 Optional:
 
@@ -272,7 +272,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--devices--watchdog--lun"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.watchdog.tag`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.watchdog.lun`
 
 Optional:
 
@@ -283,7 +283,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--devices--filesystems"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.watchdog`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.filesystems`
 
 Required:
 
@@ -292,7 +292,7 @@ Required:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--devices--gpus"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.watchdog`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.gpus`
 
 Required:
 
@@ -331,7 +331,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--devices--host_devices"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.watchdog`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.host_devices`
 
 Required:
 
@@ -344,7 +344,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--devices--inputs"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.watchdog`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.inputs`
 
 Required:
 
@@ -357,7 +357,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--devices--interfaces"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.watchdog`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.interfaces`
 
 Required:
 
@@ -382,7 +382,7 @@ Optional:
 - `tag` (String) If specified, the virtual network interface address and its tag will be provided to the guest via config drive
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--devices--watchdog--dhcp_options"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.watchdog.tag`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.watchdog.dhcp_options`
 
 Optional:
 
@@ -392,7 +392,7 @@ Optional:
 - `tftp_server_name` (String) If specified will pass option 66 to interface's DHCP server
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--devices--watchdog--tag--private_options"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.watchdog.tag.tftp_server_name`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.watchdog.tag.private_options`
 
 Required:
 
@@ -402,7 +402,7 @@ Required:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--devices--watchdog--ports"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.watchdog.tag`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.watchdog.ports`
 
 Required:
 
@@ -416,7 +416,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--devices--sound"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.watchdog`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.sound`
 
 Required:
 
@@ -428,7 +428,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--devices--tpm"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.watchdog`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.devices.tpm`
 
 Optional:
 
@@ -478,7 +478,7 @@ Optional:
 - `utc` (Attributes) UTC sets the guest clock to UTC on each boot. If an offset is specified, guest changes to the clock will be kept during reboots and are not reset. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--clock--utc))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--clock--timer"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.clock.utc`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.clock.timer`
 
 Optional:
 
@@ -489,7 +489,7 @@ Optional:
 - `rtc` (Attributes) RTC (Real Time Clock) - a continuously running timer with periodic interrupts. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--clock--utc--rtc))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--clock--utc--hpet"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.clock.utc.rtc`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.clock.utc.hpet`
 
 Optional:
 
@@ -498,7 +498,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--clock--utc--hyperv"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.clock.utc.rtc`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.clock.utc.hyperv`
 
 Optional:
 
@@ -506,7 +506,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--clock--utc--kvm"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.clock.utc.rtc`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.clock.utc.kvm`
 
 Optional:
 
@@ -514,7 +514,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--clock--utc--pit"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.clock.utc.rtc`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.clock.utc.pit`
 
 Optional:
 
@@ -559,7 +559,7 @@ Optional:
 - `threads` (Number) Threads specifies the number of threads inside the vmi. Must be a value greater or equal 1.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--cpu--features"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.cpu.threads`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.cpu.features`
 
 Required:
 
@@ -571,7 +571,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--cpu--numa"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.cpu.threads`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.cpu.numa`
 
 Optional:
 
@@ -579,7 +579,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--cpu--realtime"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.cpu.threads`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.cpu.realtime`
 
 Optional:
 
@@ -600,7 +600,7 @@ Optional:
 - `smm` (Attributes) SMM enables/disables System Management Mode. TSEG not yet implemented. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--features--smm))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--features--acpi"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.acpi`
 
 Optional:
 
@@ -608,7 +608,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--features--apic"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.apic`
 
 Optional:
 
@@ -617,7 +617,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--features--hyperv"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.hyperv`
 
 Optional:
 
@@ -637,7 +637,7 @@ Optional:
 - `vpindex` (Attributes) VPIndex enables the Virtual Processor Index to help windows identifying virtual processors. Defaults to the machine type setting. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--features--smm--vpindex))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--features--smm--evmcs"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm.vpindex`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm.evmcs`
 
 Optional:
 
@@ -645,7 +645,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--features--smm--frequencies"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm.vpindex`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm.frequencies`
 
 Optional:
 
@@ -653,7 +653,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--features--smm--ipi"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm.vpindex`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm.ipi`
 
 Optional:
 
@@ -661,7 +661,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--features--smm--reenlightenment"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm.vpindex`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm.reenlightenment`
 
 Optional:
 
@@ -669,7 +669,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--features--smm--relaxed"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm.vpindex`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm.relaxed`
 
 Optional:
 
@@ -677,7 +677,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--features--smm--reset"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm.vpindex`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm.reset`
 
 Optional:
 
@@ -685,7 +685,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--features--smm--runtime"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm.vpindex`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm.runtime`
 
 Optional:
 
@@ -693,7 +693,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--features--smm--spinlocks"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm.vpindex`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm.spinlocks`
 
 Optional:
 
@@ -702,7 +702,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--features--smm--synic"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm.vpindex`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm.synic`
 
 Optional:
 
@@ -710,7 +710,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--features--smm--synictimer"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm.vpindex`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm.synictimer`
 
 Optional:
 
@@ -718,7 +718,7 @@ Optional:
 - `enabled` (Boolean)
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--features--smm--vpindex--direct"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm.vpindex.enabled`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm.vpindex.direct`
 
 Optional:
 
@@ -727,7 +727,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--features--smm--tlbflush"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm.vpindex`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm.tlbflush`
 
 Optional:
 
@@ -735,7 +735,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--features--smm--vapic"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm.vpindex`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm.vapic`
 
 Optional:
 
@@ -743,7 +743,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--features--smm--vendorid"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm.vpindex`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm.vendorid`
 
 Optional:
 
@@ -761,7 +761,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--features--kvm"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.kvm`
 
 Optional:
 
@@ -769,7 +769,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--features--pvspinlock"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.smm`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.features.pvspinlock`
 
 Optional:
 
@@ -796,7 +796,7 @@ Optional:
 - `uuid` (String) UUID reported by the vmi bios. Defaults to a random generated uid.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--firmware--bootloader"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.firmware.uuid`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.firmware.bootloader`
 
 Optional:
 
@@ -804,7 +804,7 @@ Optional:
 - `efi` (Attributes) If set, EFI will be used instead of BIOS. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--firmware--uuid--efi))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--firmware--uuid--bios"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.firmware.uuid.efi`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.firmware.uuid.bios`
 
 Optional:
 
@@ -821,7 +821,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--firmware--kernel_boot"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.firmware.uuid`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.firmware.kernel_boot`
 
 Optional:
 
@@ -829,7 +829,7 @@ Optional:
 - `kernel_args` (String) Arguments to be passed to the kernel at boot time
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--firmware--uuid--container"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.firmware.uuid.kernel_args`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.firmware.uuid.container`
 
 Required:
 
@@ -906,7 +906,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--access_credentials"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.access_credentials`
 
 Optional:
 
@@ -922,7 +922,7 @@ Required:
 - `source` (Attributes) Source represents where the public keys are pulled from (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--ssh_public_key--source))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--ssh_public_key--propagation_method"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.ssh_public_key.source`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.ssh_public_key.propagation_method`
 
 Optional:
 
@@ -964,7 +964,7 @@ Required:
 - `source` (Attributes) Source represents where the user passwords are pulled from (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--user_password--source))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--user_password--propagation_method"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.user_password.source`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.user_password.propagation_method`
 
 Optional:
 
@@ -990,7 +990,7 @@ Required:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--affinity"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.affinity`
 
 Optional:
 
@@ -1007,7 +1007,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -1015,7 +1015,7 @@ Required:
 - `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -1023,7 +1023,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -1066,7 +1066,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -1103,7 +1103,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -1111,7 +1111,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -1124,7 +1124,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -1132,7 +1132,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -1146,7 +1146,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -1154,7 +1154,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -1183,7 +1183,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -1191,7 +1191,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -1205,7 +1205,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -1213,7 +1213,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -1237,7 +1237,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -1245,7 +1245,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -1258,7 +1258,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -1266,7 +1266,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -1280,7 +1280,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -1288,7 +1288,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -1317,7 +1317,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -1325,7 +1325,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -1339,7 +1339,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -1347,7 +1347,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -1364,7 +1364,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--dns_config"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.dns_config`
 
 Optional:
 
@@ -1383,7 +1383,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--liveness_probe"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.liveness_probe`
 
 Optional:
 
@@ -1420,7 +1420,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--http_get--http_headers"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.http_get.scheme`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.http_get.http_headers`
 
 Required:
 
@@ -1443,7 +1443,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--networks"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.networks`
 
 Required:
 
@@ -1477,7 +1477,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--readiness_probe"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.readiness_probe`
 
 Optional:
 
@@ -1514,7 +1514,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--http_get--http_headers"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.http_get.scheme`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.http_get.http_headers`
 
 Required:
 
@@ -1537,7 +1537,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--tolerations"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.tolerations`
 
 Optional:
 
@@ -1549,7 +1549,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--topology_spread_constraints"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.topology_spread_constraints`
 
 Required:
 
@@ -1574,7 +1574,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--label_selector--match_expressions"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.label_selector.match_labels`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.label_selector.match_expressions`
 
 Required:
 
@@ -1626,7 +1626,7 @@ Optional:
 - `user_data_base64` (String) UserDataBase64 contains config drive cloud-init userdata as a base64 encoded string.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--cloud_init_config_drive--network_data_secret_ref"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.cloud_init_config_drive.user_data_base64`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.cloud_init_config_drive.network_data_secret_ref`
 
 Optional:
 
@@ -1634,7 +1634,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--cloud_init_config_drive--secret_ref"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.cloud_init_config_drive.user_data_base64`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.cloud_init_config_drive.secret_ref`
 
 Optional:
 
@@ -1655,7 +1655,7 @@ Optional:
 - `user_data_base64` (String) UserDataBase64 contains NoCloud cloud-init userdata as a base64 encoded string.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--cloud_init_no_cloud--network_data_secret_ref"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.cloud_init_no_cloud.user_data_base64`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.cloud_init_no_cloud.network_data_secret_ref`
 
 Optional:
 
@@ -1663,7 +1663,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--cloud_init_no_cloud--secret_ref"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.cloud_init_no_cloud.user_data_base64`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.cloud_init_no_cloud.secret_ref`
 
 Optional:
 
@@ -1716,7 +1716,7 @@ Optional:
 - `volume_label` (String) The volume label of the resulting disk inside the VMI. Different bootstrapping mechanisms require different values. Typical values are 'cidata' (cloud-init), 'config-2' (cloud-init) or 'OEMDRV' (kickstart).
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--downward_api--fields"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.downward_api.volume_label`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.downward_api.fields`
 
 Required:
 
@@ -1729,7 +1729,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--downward_api--volume_label--resource_field_ref))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--downward_api--volume_label--field_ref"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.downward_api.volume_label.resource_field_ref`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.downward_api.volume_label.field_ref`
 
 Required:
 
@@ -1850,7 +1850,7 @@ Optional:
 - `secret` (Attributes) Secret references a k8s Secret that contains Sysprep answer file named autounattend.xml that should be attached as disk of CDROM type. (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--sysprep--secret))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec--volumes--sysprep--config_map"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.sysprep.secret`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec.volumes.sysprep.config_map`
 
 Optional:
 
@@ -1870,7 +1870,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--data_volume_templates"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.data_volume_templates`
 
 Required:
 
@@ -1884,7 +1884,7 @@ Optional:
 - `status` (Map of String) DataVolumeTemplateDummyStatus is here simply for backwards compatibility with a previous API.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--spec"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.status`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.spec`
 
 Optional:
 
@@ -1899,7 +1899,7 @@ Optional:
 - `storage` (Attributes) Storage is the requested storage specification (see [below for nested schema](#nestedatt--spec--template--spec--virtual_machine_template--spec--running--status--storage))
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--status--checkpoints"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.status.storage`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.status.checkpoints`
 
 Required:
 
@@ -1908,7 +1908,7 @@ Required:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--status--pvc"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.status.storage`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.status.pvc`
 
 Optional:
 
@@ -1958,7 +1958,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--status--storage--resources--claims"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.status.storage.resources.requests`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.status.storage.resources.claims`
 
 Required:
 
@@ -1975,7 +1975,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--status--storage--selector--match_expressions"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.status.storage.selector.match_labels`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.status.storage.selector.match_expressions`
 
 Required:
 
@@ -1990,7 +1990,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--status--source"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.status.storage`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.status.source`
 
 Optional:
 
@@ -2104,7 +2104,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--status--source_ref"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.status.storage`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.status.source_ref`
 
 Required:
 
@@ -2167,7 +2167,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--status--storage--resources--claims"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.status.storage.resources.requests`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.status.storage.resources.claims`
 
 Required:
 
@@ -2184,7 +2184,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--running--status--storage--selector--match_expressions"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.status.storage.selector.match_labels`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running.status.storage.selector.match_expressions`
 
 Required:
 
@@ -2201,7 +2201,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--instancetype"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.instancetype`
 
 Optional:
 
@@ -2212,7 +2212,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--live_update_features"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.live_update_features`
 
 Optional:
 
@@ -2228,7 +2228,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--virtual_machine_template--spec--preference"></a>
-### Nested Schema for `spec.template.spec.virtual_machine_template.spec.running`
+### Nested Schema for `spec.template.spec.virtual_machine_template.spec.preference`
 
 Optional:
 

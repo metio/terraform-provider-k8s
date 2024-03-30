@@ -108,7 +108,7 @@ Optional:
 - `weight` (Number) Weight defines the weight used when balancing requests between multiple Kubernetes Service.
 
 <a id="nestedatt--spec--routes--services--proxy_protocol"></a>
-### Nested Schema for `spec.routes.services.weight`
+### Nested Schema for `spec.routes.services.proxy_protocol`
 
 Optional:
 

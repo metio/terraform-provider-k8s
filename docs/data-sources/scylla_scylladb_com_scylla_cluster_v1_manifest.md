@@ -101,7 +101,7 @@ Optional:
 - `user_managed_options` (Attributes) userManagedOptions specifies options for certificates manged by users. (see [below for nested schema](#nestedatt--spec--alternator--serving_certificate--user_managed_options))
 
 <a id="nestedatt--spec--alternator--serving_certificate--operator_managed_options"></a>
-### Nested Schema for `spec.alternator.serving_certificate.user_managed_options`
+### Nested Schema for `spec.alternator.serving_certificate.operator_managed_options`
 
 Optional:
 
@@ -163,7 +163,7 @@ Optional:
 - `volumes` (Attributes List) Volumes added to Scylla Pod. (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes))
 
 <a id="nestedatt--spec--datacenter--racks--agent_resources"></a>
-### Nested Schema for `spec.datacenter.racks.volumes`
+### Nested Schema for `spec.datacenter.racks.agent_resources`
 
 Optional:
 
@@ -181,7 +181,7 @@ Required:
 
 
 <a id="nestedatt--spec--datacenter--racks--agent_volume_mounts"></a>
-### Nested Schema for `spec.datacenter.racks.volumes`
+### Nested Schema for `spec.datacenter.racks.agent_volume_mounts`
 
 Required:
 
@@ -197,7 +197,7 @@ Optional:
 
 
 <a id="nestedatt--spec--datacenter--racks--placement"></a>
-### Nested Schema for `spec.datacenter.racks.volumes`
+### Nested Schema for `spec.datacenter.racks.placement`
 
 Optional:
 
@@ -215,7 +215,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes--node_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--datacenter--racks--volumes--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.node_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.datacenter.racks.volumes.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -223,7 +223,7 @@ Required:
 - `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
 
 <a id="nestedatt--spec--datacenter--racks--volumes--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.node_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.datacenter.racks.volumes.node_affinity.required_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -231,7 +231,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--datacenter--racks--volumes--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.datacenter.racks.volumes.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -274,7 +274,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--datacenter--racks--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.datacenter.racks.volumes.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -311,7 +311,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes--pod_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--datacenter--racks--volumes--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.pod_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.datacenter.racks.volumes.pod_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -319,7 +319,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--datacenter--racks--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.datacenter.racks.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -334,7 +334,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--datacenter--racks--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.datacenter.racks.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -356,7 +356,7 @@ Optional:
 
 
 <a id="nestedatt--spec--datacenter--racks--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.datacenter.racks.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -395,7 +395,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--datacenter--racks--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.datacenter.racks.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -403,7 +403,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--datacenter--racks--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.datacenter.racks.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -417,7 +417,7 @@ Optional:
 
 
 <a id="nestedatt--spec--datacenter--racks--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.datacenter.racks.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -425,7 +425,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--datacenter--racks--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.datacenter.racks.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -449,7 +449,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--datacenter--racks--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.datacenter.racks.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -457,7 +457,7 @@ Required:
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--datacenter--racks--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.datacenter.racks.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -472,7 +472,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--datacenter--racks--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.datacenter.racks.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -494,7 +494,7 @@ Optional:
 
 
 <a id="nestedatt--spec--datacenter--racks--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.datacenter.racks.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -533,7 +533,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--datacenter--racks--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.datacenter.racks.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -541,7 +541,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--datacenter--racks--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.datacenter.racks.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -555,7 +555,7 @@ Optional:
 
 
 <a id="nestedatt--spec--datacenter--racks--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.datacenter.racks.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -563,7 +563,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--datacenter--racks--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.datacenter.racks.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -592,7 +592,7 @@ Optional:
 
 
 <a id="nestedatt--spec--datacenter--racks--resources"></a>
-### Nested Schema for `spec.datacenter.racks.volumes`
+### Nested Schema for `spec.datacenter.racks.resources`
 
 Optional:
 
@@ -610,7 +610,7 @@ Required:
 
 
 <a id="nestedatt--spec--datacenter--racks--storage"></a>
-### Nested Schema for `spec.datacenter.racks.volumes`
+### Nested Schema for `spec.datacenter.racks.storage`
 
 Optional:
 
@@ -629,7 +629,7 @@ Optional:
 
 
 <a id="nestedatt--spec--datacenter--racks--volume_mounts"></a>
-### Nested Schema for `spec.datacenter.racks.volumes`
+### Nested Schema for `spec.datacenter.racks.volume_mounts`
 
 Required:
 
@@ -742,7 +742,7 @@ Optional:
 - `user` (String) user is optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
 
 <a id="nestedatt--spec--datacenter--racks--volumes--cephfs--secret_ref"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.cephfs.user`
+### Nested Schema for `spec.datacenter.racks.volumes.cephfs.secret_ref`
 
 Optional:
 
@@ -783,7 +783,7 @@ Optional:
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--datacenter--racks--volumes--config_map--items"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.config_map.optional`
+### Nested Schema for `spec.datacenter.racks.volumes.config_map.items`
 
 Required:
 
@@ -811,7 +811,7 @@ Optional:
 - `volume_attributes` (Map of String) volumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.
 
 <a id="nestedatt--spec--datacenter--racks--volumes--csi--node_publish_secret_ref"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.csi.volume_attributes`
+### Nested Schema for `spec.datacenter.racks.volumes.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -841,7 +841,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes--downward_api--items--resource_field_ref))
 
 <a id="nestedatt--spec--datacenter--racks--volumes--downward_api--items--field_ref"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.downward_api.items.resource_field_ref`
+### Nested Schema for `spec.datacenter.racks.volumes.downward_api.items.field_ref`
 
 Required:
 
@@ -895,7 +895,7 @@ Optional:
 - `metadata` (Map of String) May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation.
 
 <a id="nestedatt--spec--datacenter--racks--volumes--ephemeral--volume_claim_template--spec"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.ephemeral.volume_claim_template.metadata`
+### Nested Schema for `spec.datacenter.racks.volumes.ephemeral.volume_claim_template.spec`
 
 Optional:
 
@@ -910,7 +910,7 @@ Optional:
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--datacenter--racks--volumes--ephemeral--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.datacenter.racks.volumes.ephemeral.volume_claim_template.metadata.data_source`
 
 Required:
 
@@ -923,7 +923,7 @@ Optional:
 
 
 <a id="nestedatt--spec--datacenter--racks--volumes--ephemeral--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.datacenter.racks.volumes.ephemeral.volume_claim_template.metadata.data_source_ref`
 
 Required:
 
@@ -937,7 +937,7 @@ Optional:
 
 
 <a id="nestedatt--spec--datacenter--racks--volumes--ephemeral--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.datacenter.racks.volumes.ephemeral.volume_claim_template.metadata.resources`
 
 Optional:
 
@@ -946,7 +946,7 @@ Optional:
 
 
 <a id="nestedatt--spec--datacenter--racks--volumes--ephemeral--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.datacenter.racks.volumes.ephemeral.volume_claim_template.metadata.selector`
 
 Optional:
 
@@ -1165,7 +1165,7 @@ Optional:
 - `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes--projected--sources--service_account_token))
 
 <a id="nestedatt--spec--datacenter--racks--volumes--projected--sources--cluster_trust_bundle"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.projected.sources.service_account_token`
+### Nested Schema for `spec.datacenter.racks.volumes.projected.sources.cluster_trust_bundle`
 
 Required:
 
@@ -1179,7 +1179,7 @@ Optional:
 - `signer_name` (String) Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name.  The contents of all selected ClusterTrustBundles will be unified and deduplicated.
 
 <a id="nestedatt--spec--datacenter--racks--volumes--projected--sources--service_account_token--label_selector"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.projected.sources.service_account_token.signer_name`
+### Nested Schema for `spec.datacenter.racks.volumes.projected.sources.service_account_token.label_selector`
 
 Optional:
 
@@ -1202,7 +1202,7 @@ Optional:
 
 
 <a id="nestedatt--spec--datacenter--racks--volumes--projected--sources--config_map"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.projected.sources.service_account_token`
+### Nested Schema for `spec.datacenter.racks.volumes.projected.sources.config_map`
 
 Optional:
 
@@ -1211,7 +1211,7 @@ Optional:
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--datacenter--racks--volumes--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.projected.sources.service_account_token.optional`
+### Nested Schema for `spec.datacenter.racks.volumes.projected.sources.service_account_token.items`
 
 Required:
 
@@ -1225,7 +1225,7 @@ Optional:
 
 
 <a id="nestedatt--spec--datacenter--racks--volumes--projected--sources--downward_api"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.projected.sources.service_account_token`
+### Nested Schema for `spec.datacenter.racks.volumes.projected.sources.downward_api`
 
 Optional:
 
@@ -1272,7 +1272,7 @@ Optional:
 
 
 <a id="nestedatt--spec--datacenter--racks--volumes--projected--sources--secret"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.projected.sources.service_account_token`
+### Nested Schema for `spec.datacenter.racks.volumes.projected.sources.secret`
 
 Optional:
 
@@ -1281,7 +1281,7 @@ Optional:
 - `optional` (Boolean) optional field specify whether the Secret or its key must be defined
 
 <a id="nestedatt--spec--datacenter--racks--volumes--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.projected.sources.service_account_token.optional`
+### Nested Schema for `spec.datacenter.racks.volumes.projected.sources.service_account_token.items`
 
 Required:
 
@@ -1343,7 +1343,7 @@ Optional:
 - `user` (String) user is the rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 
 <a id="nestedatt--spec--datacenter--racks--volumes--rbd--secret_ref"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.rbd.user`
+### Nested Schema for `spec.datacenter.racks.volumes.rbd.secret_ref`
 
 Optional:
 
@@ -1371,7 +1371,7 @@ Optional:
 - `volume_name` (String) volumeName is the name of a volume already created in the ScaleIO system that is associated with this volume source.
 
 <a id="nestedatt--spec--datacenter--racks--volumes--scale_io--secret_ref"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.scale_io.volume_name`
+### Nested Schema for `spec.datacenter.racks.volumes.scale_io.secret_ref`
 
 Optional:
 
@@ -1390,7 +1390,7 @@ Optional:
 - `secret_name` (String) secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
 
 <a id="nestedatt--spec--datacenter--racks--volumes--secret--items"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.secret.secret_name`
+### Nested Schema for `spec.datacenter.racks.volumes.secret.items`
 
 Required:
 
@@ -1415,7 +1415,7 @@ Optional:
 - `volume_namespace` (String) volumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
 
 <a id="nestedatt--spec--datacenter--racks--volumes--storageos--secret_ref"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.storageos.volume_namespace`
+### Nested Schema for `spec.datacenter.racks.volumes.storageos.secret_ref`
 
 Optional:
 
@@ -1458,7 +1458,7 @@ Optional:
 - `nodes` (Attributes) nodes specifies options related to the address that is broadcasted for communication with other nodes. This field controls the 'broadcast_address' value in ScyllaDB config. (see [below for nested schema](#nestedatt--spec--expose_options--broadcast_options--nodes))
 
 <a id="nestedatt--spec--expose_options--broadcast_options--clients"></a>
-### Nested Schema for `spec.expose_options.broadcast_options.nodes`
+### Nested Schema for `spec.expose_options.broadcast_options.clients`
 
 Optional:
 

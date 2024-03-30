@@ -143,7 +143,7 @@ Optional:
 - `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--driver--affinity--pod_anti_affinity))
 
 <a id="nestedatt--spec--driver--affinity--node_affinity"></a>
-### Nested Schema for `spec.driver.affinity.pod_anti_affinity`
+### Nested Schema for `spec.driver.affinity.node_affinity`
 
 Optional:
 
@@ -159,7 +159,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--driver--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.driver.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.driver.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -167,7 +167,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--driver--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--driver--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.driver.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.driver.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -210,7 +210,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--driver--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--driver--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.driver.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.driver.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -239,7 +239,7 @@ Optional:
 
 
 <a id="nestedatt--spec--driver--affinity--pod_affinity"></a>
-### Nested Schema for `spec.driver.affinity.pod_anti_affinity`
+### Nested Schema for `spec.driver.affinity.pod_affinity`
 
 Optional:
 
@@ -255,7 +255,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--driver--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.driver.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.driver.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -267,7 +267,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--driver--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.driver.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.driver.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -275,7 +275,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--driver--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.driver.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.driver.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -303,7 +303,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--driver--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.driver.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.driver.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -311,7 +311,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--driver--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.driver.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.driver.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -343,7 +343,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--driver--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.driver.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.driver.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -355,7 +355,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--driver--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.driver.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.driver.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -363,7 +363,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--driver--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.driver.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.driver.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -391,7 +391,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--driver--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.driver.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.driver.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -399,7 +399,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--driver--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.driver.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.driver.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -434,7 +434,7 @@ Optional:
 - `searches` (List of String)
 
 <a id="nestedatt--spec--driver--dns_config--options"></a>
-### Nested Schema for `spec.driver.dns_config.searches`
+### Nested Schema for `spec.driver.dns_config.options`
 
 Optional:
 
@@ -528,7 +528,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--driver--env_from--secret_ref))
 
 <a id="nestedatt--spec--driver--env_from--config_map_ref"></a>
-### Nested Schema for `spec.driver.env_from.secret_ref`
+### Nested Schema for `spec.driver.env_from.config_map_ref`
 
 Optional:
 
@@ -605,7 +605,7 @@ Optional:
 - `working_dir` (String)
 
 <a id="nestedatt--spec--driver--init_containers--env"></a>
-### Nested Schema for `spec.driver.init_containers.working_dir`
+### Nested Schema for `spec.driver.init_containers.env`
 
 Required:
 
@@ -627,7 +627,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--driver--init_containers--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--driver--init_containers--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.driver.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.driver.init_containers.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -640,7 +640,7 @@ Optional:
 
 
 <a id="nestedatt--spec--driver--init_containers--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.driver.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.driver.init_containers.working_dir.value_from.field_ref`
 
 Required:
 
@@ -652,7 +652,7 @@ Optional:
 
 
 <a id="nestedatt--spec--driver--init_containers--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.driver.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.driver.init_containers.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -680,7 +680,7 @@ Optional:
 
 
 <a id="nestedatt--spec--driver--init_containers--env_from"></a>
-### Nested Schema for `spec.driver.init_containers.working_dir`
+### Nested Schema for `spec.driver.init_containers.env_from`
 
 Optional:
 
@@ -708,7 +708,7 @@ Optional:
 
 
 <a id="nestedatt--spec--driver--init_containers--lifecycle"></a>
-### Nested Schema for `spec.driver.init_containers.working_dir`
+### Nested Schema for `spec.driver.init_containers.lifecycle`
 
 Optional:
 
@@ -725,7 +725,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--driver--init_containers--working_dir--post_start--tcp_socket))
 
 <a id="nestedatt--spec--driver--init_containers--working_dir--post_start--exec"></a>
-### Nested Schema for `spec.driver.init_containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.driver.init_containers.working_dir.post_start.exec`
 
 Optional:
 
@@ -733,7 +733,7 @@ Optional:
 
 
 <a id="nestedatt--spec--driver--init_containers--working_dir--post_start--http_get"></a>
-### Nested Schema for `spec.driver.init_containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.driver.init_containers.working_dir.post_start.http_get`
 
 Required:
 
@@ -747,7 +747,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--driver--init_containers--working_dir--post_start--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.driver.init_containers.working_dir.post_start.tcp_socket.scheme`
+### Nested Schema for `spec.driver.init_containers.working_dir.post_start.tcp_socket.http_headers`
 
 Required:
 
@@ -779,7 +779,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--driver--init_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--driver--init_containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.driver.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.driver.init_containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -787,7 +787,7 @@ Optional:
 
 
 <a id="nestedatt--spec--driver--init_containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.driver.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.driver.init_containers.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -801,7 +801,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--driver--init_containers--working_dir--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.driver.init_containers.working_dir.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.driver.init_containers.working_dir.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -825,7 +825,7 @@ Optional:
 
 
 <a id="nestedatt--spec--driver--init_containers--liveness_probe"></a>
-### Nested Schema for `spec.driver.init_containers.working_dir`
+### Nested Schema for `spec.driver.init_containers.liveness_probe`
 
 Optional:
 
@@ -861,7 +861,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--driver--init_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.driver.init_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.driver.init_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -884,7 +884,7 @@ Optional:
 
 
 <a id="nestedatt--spec--driver--init_containers--ports"></a>
-### Nested Schema for `spec.driver.init_containers.working_dir`
+### Nested Schema for `spec.driver.init_containers.ports`
 
 Required:
 
@@ -899,7 +899,7 @@ Optional:
 
 
 <a id="nestedatt--spec--driver--init_containers--readiness_probe"></a>
-### Nested Schema for `spec.driver.init_containers.working_dir`
+### Nested Schema for `spec.driver.init_containers.readiness_probe`
 
 Optional:
 
@@ -935,7 +935,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--driver--init_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.driver.init_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.driver.init_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -958,7 +958,7 @@ Optional:
 
 
 <a id="nestedatt--spec--driver--init_containers--resources"></a>
-### Nested Schema for `spec.driver.init_containers.working_dir`
+### Nested Schema for `spec.driver.init_containers.resources`
 
 Optional:
 
@@ -967,7 +967,7 @@ Optional:
 
 
 <a id="nestedatt--spec--driver--init_containers--security_context"></a>
-### Nested Schema for `spec.driver.init_containers.working_dir`
+### Nested Schema for `spec.driver.init_containers.security_context`
 
 Optional:
 
@@ -1023,7 +1023,7 @@ Optional:
 
 
 <a id="nestedatt--spec--driver--init_containers--startup_probe"></a>
-### Nested Schema for `spec.driver.init_containers.working_dir`
+### Nested Schema for `spec.driver.init_containers.startup_probe`
 
 Optional:
 
@@ -1059,7 +1059,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--driver--init_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.driver.init_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.driver.init_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -1082,7 +1082,7 @@ Optional:
 
 
 <a id="nestedatt--spec--driver--init_containers--volume_devices"></a>
-### Nested Schema for `spec.driver.init_containers.working_dir`
+### Nested Schema for `spec.driver.init_containers.volume_devices`
 
 Required:
 
@@ -1091,7 +1091,7 @@ Required:
 
 
 <a id="nestedatt--spec--driver--init_containers--volume_mounts"></a>
-### Nested Schema for `spec.driver.init_containers.working_dir`
+### Nested Schema for `spec.driver.init_containers.volume_mounts`
 
 Required:
 
@@ -1116,7 +1116,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--driver--lifecycle--pre_stop))
 
 <a id="nestedatt--spec--driver--lifecycle--post_start"></a>
-### Nested Schema for `spec.driver.lifecycle.pre_stop`
+### Nested Schema for `spec.driver.lifecycle.post_start`
 
 Optional:
 
@@ -1147,7 +1147,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--driver--lifecycle--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.driver.lifecycle.pre_stop.http_get.scheme`
+### Nested Schema for `spec.driver.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -1201,7 +1201,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--driver--lifecycle--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.driver.lifecycle.pre_stop.http_get.scheme`
+### Nested Schema for `spec.driver.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -1239,7 +1239,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--driver--pod_security_context--windows_options))
 
 <a id="nestedatt--spec--driver--pod_security_context--se_linux_options"></a>
-### Nested Schema for `spec.driver.pod_security_context.windows_options`
+### Nested Schema for `spec.driver.pod_security_context.se_linux_options`
 
 Optional:
 
@@ -1250,7 +1250,7 @@ Optional:
 
 
 <a id="nestedatt--spec--driver--pod_security_context--sysctls"></a>
-### Nested Schema for `spec.driver.pod_security_context.windows_options`
+### Nested Schema for `spec.driver.pod_security_context.sysctls`
 
 Required:
 
@@ -1297,7 +1297,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--driver--security_context--windows_options))
 
 <a id="nestedatt--spec--driver--security_context--capabilities"></a>
-### Nested Schema for `spec.driver.security_context.windows_options`
+### Nested Schema for `spec.driver.security_context.capabilities`
 
 Optional:
 
@@ -1306,7 +1306,7 @@ Optional:
 
 
 <a id="nestedatt--spec--driver--security_context--se_linux_options"></a>
-### Nested Schema for `spec.driver.security_context.windows_options`
+### Nested Schema for `spec.driver.security_context.se_linux_options`
 
 Optional:
 
@@ -1317,7 +1317,7 @@ Optional:
 
 
 <a id="nestedatt--spec--driver--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.driver.security_context.windows_options`
+### Nested Schema for `spec.driver.security_context.seccomp_profile`
 
 Optional:
 
@@ -1367,7 +1367,7 @@ Optional:
 - `working_dir` (String)
 
 <a id="nestedatt--spec--driver--sidecars--env"></a>
-### Nested Schema for `spec.driver.sidecars.working_dir`
+### Nested Schema for `spec.driver.sidecars.env`
 
 Required:
 
@@ -1389,7 +1389,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--driver--sidecars--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--driver--sidecars--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.driver.sidecars.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.driver.sidecars.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -1402,7 +1402,7 @@ Optional:
 
 
 <a id="nestedatt--spec--driver--sidecars--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.driver.sidecars.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.driver.sidecars.working_dir.value_from.field_ref`
 
 Required:
 
@@ -1414,7 +1414,7 @@ Optional:
 
 
 <a id="nestedatt--spec--driver--sidecars--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.driver.sidecars.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.driver.sidecars.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -1442,7 +1442,7 @@ Optional:
 
 
 <a id="nestedatt--spec--driver--sidecars--env_from"></a>
-### Nested Schema for `spec.driver.sidecars.working_dir`
+### Nested Schema for `spec.driver.sidecars.env_from`
 
 Optional:
 
@@ -1470,7 +1470,7 @@ Optional:
 
 
 <a id="nestedatt--spec--driver--sidecars--lifecycle"></a>
-### Nested Schema for `spec.driver.sidecars.working_dir`
+### Nested Schema for `spec.driver.sidecars.lifecycle`
 
 Optional:
 
@@ -1487,7 +1487,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--driver--sidecars--working_dir--post_start--tcp_socket))
 
 <a id="nestedatt--spec--driver--sidecars--working_dir--post_start--exec"></a>
-### Nested Schema for `spec.driver.sidecars.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.driver.sidecars.working_dir.post_start.exec`
 
 Optional:
 
@@ -1495,7 +1495,7 @@ Optional:
 
 
 <a id="nestedatt--spec--driver--sidecars--working_dir--post_start--http_get"></a>
-### Nested Schema for `spec.driver.sidecars.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.driver.sidecars.working_dir.post_start.http_get`
 
 Required:
 
@@ -1509,7 +1509,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--driver--sidecars--working_dir--post_start--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.driver.sidecars.working_dir.post_start.tcp_socket.scheme`
+### Nested Schema for `spec.driver.sidecars.working_dir.post_start.tcp_socket.http_headers`
 
 Required:
 
@@ -1541,7 +1541,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--driver--sidecars--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--driver--sidecars--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.driver.sidecars.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.driver.sidecars.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -1549,7 +1549,7 @@ Optional:
 
 
 <a id="nestedatt--spec--driver--sidecars--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.driver.sidecars.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.driver.sidecars.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -1563,7 +1563,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--driver--sidecars--working_dir--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.driver.sidecars.working_dir.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.driver.sidecars.working_dir.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -1587,7 +1587,7 @@ Optional:
 
 
 <a id="nestedatt--spec--driver--sidecars--liveness_probe"></a>
-### Nested Schema for `spec.driver.sidecars.working_dir`
+### Nested Schema for `spec.driver.sidecars.liveness_probe`
 
 Optional:
 
@@ -1623,7 +1623,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--driver--sidecars--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.driver.sidecars.working_dir.http_get.scheme`
+### Nested Schema for `spec.driver.sidecars.working_dir.http_get.http_headers`
 
 Required:
 
@@ -1646,7 +1646,7 @@ Optional:
 
 
 <a id="nestedatt--spec--driver--sidecars--ports"></a>
-### Nested Schema for `spec.driver.sidecars.working_dir`
+### Nested Schema for `spec.driver.sidecars.ports`
 
 Required:
 
@@ -1661,7 +1661,7 @@ Optional:
 
 
 <a id="nestedatt--spec--driver--sidecars--readiness_probe"></a>
-### Nested Schema for `spec.driver.sidecars.working_dir`
+### Nested Schema for `spec.driver.sidecars.readiness_probe`
 
 Optional:
 
@@ -1697,7 +1697,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--driver--sidecars--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.driver.sidecars.working_dir.http_get.scheme`
+### Nested Schema for `spec.driver.sidecars.working_dir.http_get.http_headers`
 
 Required:
 
@@ -1720,7 +1720,7 @@ Optional:
 
 
 <a id="nestedatt--spec--driver--sidecars--resources"></a>
-### Nested Schema for `spec.driver.sidecars.working_dir`
+### Nested Schema for `spec.driver.sidecars.resources`
 
 Optional:
 
@@ -1729,7 +1729,7 @@ Optional:
 
 
 <a id="nestedatt--spec--driver--sidecars--security_context"></a>
-### Nested Schema for `spec.driver.sidecars.working_dir`
+### Nested Schema for `spec.driver.sidecars.security_context`
 
 Optional:
 
@@ -1785,7 +1785,7 @@ Optional:
 
 
 <a id="nestedatt--spec--driver--sidecars--startup_probe"></a>
-### Nested Schema for `spec.driver.sidecars.working_dir`
+### Nested Schema for `spec.driver.sidecars.startup_probe`
 
 Optional:
 
@@ -1821,7 +1821,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--driver--sidecars--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.driver.sidecars.working_dir.http_get.scheme`
+### Nested Schema for `spec.driver.sidecars.working_dir.http_get.http_headers`
 
 Required:
 
@@ -1844,7 +1844,7 @@ Optional:
 
 
 <a id="nestedatt--spec--driver--sidecars--volume_devices"></a>
-### Nested Schema for `spec.driver.sidecars.working_dir`
+### Nested Schema for `spec.driver.sidecars.volume_devices`
 
 Required:
 
@@ -1853,7 +1853,7 @@ Required:
 
 
 <a id="nestedatt--spec--driver--sidecars--volume_mounts"></a>
-### Nested Schema for `spec.driver.sidecars.working_dir`
+### Nested Schema for `spec.driver.sidecars.volume_mounts`
 
 Required:
 
@@ -1947,7 +1947,7 @@ Optional:
 - `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--executor--affinity--pod_anti_affinity))
 
 <a id="nestedatt--spec--executor--affinity--node_affinity"></a>
-### Nested Schema for `spec.executor.affinity.pod_anti_affinity`
+### Nested Schema for `spec.executor.affinity.node_affinity`
 
 Optional:
 
@@ -1963,7 +1963,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--executor--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.executor.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.executor.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -1971,7 +1971,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--executor--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--executor--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.executor.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.executor.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -2014,7 +2014,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--executor--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--executor--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.executor.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.executor.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -2043,7 +2043,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executor--affinity--pod_affinity"></a>
-### Nested Schema for `spec.executor.affinity.pod_anti_affinity`
+### Nested Schema for `spec.executor.affinity.pod_affinity`
 
 Optional:
 
@@ -2059,7 +2059,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--executor--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.executor.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.executor.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -2071,7 +2071,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--executor--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.executor.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.executor.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -2079,7 +2079,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--executor--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.executor.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.executor.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -2107,7 +2107,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--executor--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.executor.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.executor.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -2115,7 +2115,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--executor--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.executor.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.executor.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -2147,7 +2147,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--executor--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.executor.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.executor.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -2159,7 +2159,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--executor--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.executor.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.executor.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -2167,7 +2167,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--executor--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.executor.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.executor.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -2195,7 +2195,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--executor--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.executor.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.executor.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -2203,7 +2203,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--executor--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.executor.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.executor.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -2238,7 +2238,7 @@ Optional:
 - `searches` (List of String)
 
 <a id="nestedatt--spec--executor--dns_config--options"></a>
-### Nested Schema for `spec.executor.dns_config.searches`
+### Nested Schema for `spec.executor.dns_config.options`
 
 Optional:
 
@@ -2332,7 +2332,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--executor--env_from--secret_ref))
 
 <a id="nestedatt--spec--executor--env_from--config_map_ref"></a>
-### Nested Schema for `spec.executor.env_from.secret_ref`
+### Nested Schema for `spec.executor.env_from.config_map_ref`
 
 Optional:
 
@@ -2409,7 +2409,7 @@ Optional:
 - `working_dir` (String)
 
 <a id="nestedatt--spec--executor--init_containers--env"></a>
-### Nested Schema for `spec.executor.init_containers.working_dir`
+### Nested Schema for `spec.executor.init_containers.env`
 
 Required:
 
@@ -2431,7 +2431,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--executor--init_containers--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--executor--init_containers--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.executor.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.executor.init_containers.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -2444,7 +2444,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executor--init_containers--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.executor.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.executor.init_containers.working_dir.value_from.field_ref`
 
 Required:
 
@@ -2456,7 +2456,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executor--init_containers--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.executor.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.executor.init_containers.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -2484,7 +2484,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executor--init_containers--env_from"></a>
-### Nested Schema for `spec.executor.init_containers.working_dir`
+### Nested Schema for `spec.executor.init_containers.env_from`
 
 Optional:
 
@@ -2512,7 +2512,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executor--init_containers--lifecycle"></a>
-### Nested Schema for `spec.executor.init_containers.working_dir`
+### Nested Schema for `spec.executor.init_containers.lifecycle`
 
 Optional:
 
@@ -2529,7 +2529,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--executor--init_containers--working_dir--post_start--tcp_socket))
 
 <a id="nestedatt--spec--executor--init_containers--working_dir--post_start--exec"></a>
-### Nested Schema for `spec.executor.init_containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.executor.init_containers.working_dir.post_start.exec`
 
 Optional:
 
@@ -2537,7 +2537,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executor--init_containers--working_dir--post_start--http_get"></a>
-### Nested Schema for `spec.executor.init_containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.executor.init_containers.working_dir.post_start.http_get`
 
 Required:
 
@@ -2551,7 +2551,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--executor--init_containers--working_dir--post_start--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.executor.init_containers.working_dir.post_start.tcp_socket.scheme`
+### Nested Schema for `spec.executor.init_containers.working_dir.post_start.tcp_socket.http_headers`
 
 Required:
 
@@ -2583,7 +2583,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--executor--init_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--executor--init_containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.executor.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.executor.init_containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -2591,7 +2591,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executor--init_containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.executor.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.executor.init_containers.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -2605,7 +2605,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--executor--init_containers--working_dir--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.executor.init_containers.working_dir.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.executor.init_containers.working_dir.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -2629,7 +2629,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executor--init_containers--liveness_probe"></a>
-### Nested Schema for `spec.executor.init_containers.working_dir`
+### Nested Schema for `spec.executor.init_containers.liveness_probe`
 
 Optional:
 
@@ -2665,7 +2665,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--executor--init_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.executor.init_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.executor.init_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -2688,7 +2688,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executor--init_containers--ports"></a>
-### Nested Schema for `spec.executor.init_containers.working_dir`
+### Nested Schema for `spec.executor.init_containers.ports`
 
 Required:
 
@@ -2703,7 +2703,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executor--init_containers--readiness_probe"></a>
-### Nested Schema for `spec.executor.init_containers.working_dir`
+### Nested Schema for `spec.executor.init_containers.readiness_probe`
 
 Optional:
 
@@ -2739,7 +2739,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--executor--init_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.executor.init_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.executor.init_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -2762,7 +2762,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executor--init_containers--resources"></a>
-### Nested Schema for `spec.executor.init_containers.working_dir`
+### Nested Schema for `spec.executor.init_containers.resources`
 
 Optional:
 
@@ -2771,7 +2771,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executor--init_containers--security_context"></a>
-### Nested Schema for `spec.executor.init_containers.working_dir`
+### Nested Schema for `spec.executor.init_containers.security_context`
 
 Optional:
 
@@ -2827,7 +2827,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executor--init_containers--startup_probe"></a>
-### Nested Schema for `spec.executor.init_containers.working_dir`
+### Nested Schema for `spec.executor.init_containers.startup_probe`
 
 Optional:
 
@@ -2863,7 +2863,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--executor--init_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.executor.init_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.executor.init_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -2886,7 +2886,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executor--init_containers--volume_devices"></a>
-### Nested Schema for `spec.executor.init_containers.working_dir`
+### Nested Schema for `spec.executor.init_containers.volume_devices`
 
 Required:
 
@@ -2895,7 +2895,7 @@ Required:
 
 
 <a id="nestedatt--spec--executor--init_containers--volume_mounts"></a>
-### Nested Schema for `spec.executor.init_containers.working_dir`
+### Nested Schema for `spec.executor.init_containers.volume_mounts`
 
 Required:
 
@@ -2926,7 +2926,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--executor--pod_security_context--windows_options))
 
 <a id="nestedatt--spec--executor--pod_security_context--se_linux_options"></a>
-### Nested Schema for `spec.executor.pod_security_context.windows_options`
+### Nested Schema for `spec.executor.pod_security_context.se_linux_options`
 
 Optional:
 
@@ -2937,7 +2937,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executor--pod_security_context--sysctls"></a>
-### Nested Schema for `spec.executor.pod_security_context.windows_options`
+### Nested Schema for `spec.executor.pod_security_context.sysctls`
 
 Required:
 
@@ -2984,7 +2984,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--executor--security_context--windows_options))
 
 <a id="nestedatt--spec--executor--security_context--capabilities"></a>
-### Nested Schema for `spec.executor.security_context.windows_options`
+### Nested Schema for `spec.executor.security_context.capabilities`
 
 Optional:
 
@@ -2993,7 +2993,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executor--security_context--se_linux_options"></a>
-### Nested Schema for `spec.executor.security_context.windows_options`
+### Nested Schema for `spec.executor.security_context.se_linux_options`
 
 Optional:
 
@@ -3004,7 +3004,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executor--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.executor.security_context.windows_options`
+### Nested Schema for `spec.executor.security_context.seccomp_profile`
 
 Optional:
 
@@ -3054,7 +3054,7 @@ Optional:
 - `working_dir` (String)
 
 <a id="nestedatt--spec--executor--sidecars--env"></a>
-### Nested Schema for `spec.executor.sidecars.working_dir`
+### Nested Schema for `spec.executor.sidecars.env`
 
 Required:
 
@@ -3076,7 +3076,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--executor--sidecars--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--executor--sidecars--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.executor.sidecars.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.executor.sidecars.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -3089,7 +3089,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executor--sidecars--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.executor.sidecars.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.executor.sidecars.working_dir.value_from.field_ref`
 
 Required:
 
@@ -3101,7 +3101,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executor--sidecars--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.executor.sidecars.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.executor.sidecars.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -3129,7 +3129,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executor--sidecars--env_from"></a>
-### Nested Schema for `spec.executor.sidecars.working_dir`
+### Nested Schema for `spec.executor.sidecars.env_from`
 
 Optional:
 
@@ -3157,7 +3157,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executor--sidecars--lifecycle"></a>
-### Nested Schema for `spec.executor.sidecars.working_dir`
+### Nested Schema for `spec.executor.sidecars.lifecycle`
 
 Optional:
 
@@ -3174,7 +3174,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--executor--sidecars--working_dir--post_start--tcp_socket))
 
 <a id="nestedatt--spec--executor--sidecars--working_dir--post_start--exec"></a>
-### Nested Schema for `spec.executor.sidecars.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.executor.sidecars.working_dir.post_start.exec`
 
 Optional:
 
@@ -3182,7 +3182,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executor--sidecars--working_dir--post_start--http_get"></a>
-### Nested Schema for `spec.executor.sidecars.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.executor.sidecars.working_dir.post_start.http_get`
 
 Required:
 
@@ -3196,7 +3196,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--executor--sidecars--working_dir--post_start--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.executor.sidecars.working_dir.post_start.tcp_socket.scheme`
+### Nested Schema for `spec.executor.sidecars.working_dir.post_start.tcp_socket.http_headers`
 
 Required:
 
@@ -3228,7 +3228,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--executor--sidecars--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--executor--sidecars--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.executor.sidecars.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.executor.sidecars.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -3236,7 +3236,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executor--sidecars--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.executor.sidecars.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.executor.sidecars.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -3250,7 +3250,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--executor--sidecars--working_dir--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.executor.sidecars.working_dir.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.executor.sidecars.working_dir.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -3274,7 +3274,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executor--sidecars--liveness_probe"></a>
-### Nested Schema for `spec.executor.sidecars.working_dir`
+### Nested Schema for `spec.executor.sidecars.liveness_probe`
 
 Optional:
 
@@ -3310,7 +3310,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--executor--sidecars--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.executor.sidecars.working_dir.http_get.scheme`
+### Nested Schema for `spec.executor.sidecars.working_dir.http_get.http_headers`
 
 Required:
 
@@ -3333,7 +3333,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executor--sidecars--ports"></a>
-### Nested Schema for `spec.executor.sidecars.working_dir`
+### Nested Schema for `spec.executor.sidecars.ports`
 
 Required:
 
@@ -3348,7 +3348,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executor--sidecars--readiness_probe"></a>
-### Nested Schema for `spec.executor.sidecars.working_dir`
+### Nested Schema for `spec.executor.sidecars.readiness_probe`
 
 Optional:
 
@@ -3384,7 +3384,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--executor--sidecars--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.executor.sidecars.working_dir.http_get.scheme`
+### Nested Schema for `spec.executor.sidecars.working_dir.http_get.http_headers`
 
 Required:
 
@@ -3407,7 +3407,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executor--sidecars--resources"></a>
-### Nested Schema for `spec.executor.sidecars.working_dir`
+### Nested Schema for `spec.executor.sidecars.resources`
 
 Optional:
 
@@ -3416,7 +3416,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executor--sidecars--security_context"></a>
-### Nested Schema for `spec.executor.sidecars.working_dir`
+### Nested Schema for `spec.executor.sidecars.security_context`
 
 Optional:
 
@@ -3472,7 +3472,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executor--sidecars--startup_probe"></a>
-### Nested Schema for `spec.executor.sidecars.working_dir`
+### Nested Schema for `spec.executor.sidecars.startup_probe`
 
 Optional:
 
@@ -3508,7 +3508,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--executor--sidecars--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.executor.sidecars.working_dir.http_get.scheme`
+### Nested Schema for `spec.executor.sidecars.working_dir.http_get.http_headers`
 
 Required:
 
@@ -3531,7 +3531,7 @@ Optional:
 
 
 <a id="nestedatt--spec--executor--sidecars--volume_devices"></a>
-### Nested Schema for `spec.executor.sidecars.working_dir`
+### Nested Schema for `spec.executor.sidecars.volume_devices`
 
 Required:
 
@@ -3540,7 +3540,7 @@ Required:
 
 
 <a id="nestedatt--spec--executor--sidecars--volume_mounts"></a>
-### Nested Schema for `spec.executor.sidecars.working_dir`
+### Nested Schema for `spec.executor.sidecars.volume_mounts`
 
 Required:
 
@@ -3782,7 +3782,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--volumes--cephfs--secret_ref"></a>
-### Nested Schema for `spec.volumes.cephfs.user`
+### Nested Schema for `spec.volumes.cephfs.secret_ref`
 
 Optional:
 
@@ -3823,7 +3823,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--volumes--config_map--items"></a>
-### Nested Schema for `spec.volumes.config_map.optional`
+### Nested Schema for `spec.volumes.config_map.items`
 
 Required:
 
@@ -3851,7 +3851,7 @@ Optional:
 - `volume_attributes` (Map of String)
 
 <a id="nestedatt--spec--volumes--csi--node_publish_secret_ref"></a>
-### Nested Schema for `spec.volumes.csi.volume_attributes`
+### Nested Schema for `spec.volumes.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -3940,7 +3940,7 @@ Optional:
 - `storage_class_name` (String)
 
 <a id="nestedatt--spec--volumes--ephemeral--volume_claim_template--spec--resources"></a>
-### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.storage_class_name`
+### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.resources`
 
 Optional:
 
@@ -4145,7 +4145,7 @@ Optional:
 - `default_mode` (Number)
 
 <a id="nestedatt--spec--volumes--projected--sources"></a>
-### Nested Schema for `spec.volumes.projected.default_mode`
+### Nested Schema for `spec.volumes.projected.sources`
 
 Optional:
 
@@ -4164,7 +4164,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--volumes--projected--default_mode--config_map--items"></a>
-### Nested Schema for `spec.volumes.projected.default_mode.config_map.optional`
+### Nested Schema for `spec.volumes.projected.default_mode.config_map.items`
 
 Required:
 
@@ -4198,7 +4198,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--volumes--projected--default_mode--downward_api--items--resource_field_ref))
 
 <a id="nestedatt--spec--volumes--projected--default_mode--downward_api--items--field_ref"></a>
-### Nested Schema for `spec.volumes.projected.default_mode.downward_api.items.resource_field_ref`
+### Nested Schema for `spec.volumes.projected.default_mode.downward_api.items.field_ref`
 
 Required:
 
@@ -4234,7 +4234,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--volumes--projected--default_mode--secret--items"></a>
-### Nested Schema for `spec.volumes.projected.default_mode.secret.optional`
+### Nested Schema for `spec.volumes.projected.default_mode.secret.items`
 
 Required:
 
@@ -4296,7 +4296,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--volumes--rbd--secret_ref"></a>
-### Nested Schema for `spec.volumes.rbd.user`
+### Nested Schema for `spec.volumes.rbd.secret_ref`
 
 Optional:
 
@@ -4324,7 +4324,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--volumes--scale_io--secret_ref"></a>
-### Nested Schema for `spec.volumes.scale_io.volume_name`
+### Nested Schema for `spec.volumes.scale_io.secret_ref`
 
 Optional:
 
@@ -4343,7 +4343,7 @@ Optional:
 - `secret_name` (String)
 
 <a id="nestedatt--spec--volumes--secret--items"></a>
-### Nested Schema for `spec.volumes.secret.secret_name`
+### Nested Schema for `spec.volumes.secret.items`
 
 Required:
 
@@ -4368,7 +4368,7 @@ Optional:
 - `volume_namespace` (String)
 
 <a id="nestedatt--spec--volumes--storageos--secret_ref"></a>
-### Nested Schema for `spec.volumes.storageos.volume_namespace`
+### Nested Schema for `spec.volumes.storageos.secret_ref`
 
 Optional:
 

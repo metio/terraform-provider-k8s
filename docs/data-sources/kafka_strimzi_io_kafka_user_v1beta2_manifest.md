@@ -121,7 +121,7 @@ Optional:
 - `type` (String) The type of the rule. Currently the only supported type is 'allow'. ACL rules with type 'allow' are used to allow user to execute the specified operations. Default value is 'allow'.
 
 <a id="nestedatt--spec--authorization--acls--resource"></a>
-### Nested Schema for `spec.authorization.acls.type`
+### Nested Schema for `spec.authorization.acls.resource`
 
 Required:
 

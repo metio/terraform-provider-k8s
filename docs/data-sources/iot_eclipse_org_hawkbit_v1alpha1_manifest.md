@@ -82,7 +82,7 @@ Optional:
 - `username` (String)
 
 <a id="nestedatt--spec--database--mysql--password_secret"></a>
-### Nested Schema for `spec.database.mysql.username`
+### Nested Schema for `spec.database.mysql.password_secret`
 
 Optional:
 
@@ -104,7 +104,7 @@ Optional:
 - `username` (String)
 
 <a id="nestedatt--spec--database--postgres--password_secret"></a>
-### Nested Schema for `spec.database.postgres.username`
+### Nested Schema for `spec.database.postgres.password_secret`
 
 Optional:
 
@@ -145,7 +145,7 @@ Optional:
 - `username` (String)
 
 <a id="nestedatt--spec--rabbit--external--password_secret"></a>
-### Nested Schema for `spec.rabbit.external.username`
+### Nested Schema for `spec.rabbit.external.password_secret`
 
 Optional:
 

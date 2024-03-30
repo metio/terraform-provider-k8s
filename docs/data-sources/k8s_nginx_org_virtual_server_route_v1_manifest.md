@@ -86,7 +86,7 @@ Optional:
 - `return` (Attributes) ActionReturn defines a return in an Action. (see [below for nested schema](#nestedatt--spec--subroutes--action--return))
 
 <a id="nestedatt--spec--subroutes--action--proxy"></a>
-### Nested Schema for `spec.subroutes.action.return`
+### Nested Schema for `spec.subroutes.action.proxy`
 
 Optional:
 
@@ -124,7 +124,7 @@ Optional:
 - `pass` (List of String)
 
 <a id="nestedatt--spec--subroutes--action--return--response_headers--add"></a>
-### Nested Schema for `spec.subroutes.action.return.response_headers.pass`
+### Nested Schema for `spec.subroutes.action.return.response_headers.add`
 
 Optional:
 
@@ -136,7 +136,7 @@ Optional:
 
 
 <a id="nestedatt--spec--subroutes--action--redirect"></a>
-### Nested Schema for `spec.subroutes.action.return`
+### Nested Schema for `spec.subroutes.action.redirect`
 
 Optional:
 
@@ -165,7 +165,7 @@ Optional:
 - `return` (Attributes) ErrorPageReturn defines a return for an ErrorPage. (see [below for nested schema](#nestedatt--spec--subroutes--error_pages--return))
 
 <a id="nestedatt--spec--subroutes--error_pages--redirect"></a>
-### Nested Schema for `spec.subroutes.error_pages.return`
+### Nested Schema for `spec.subroutes.error_pages.redirect`
 
 Optional:
 
@@ -204,7 +204,7 @@ Optional:
 - `splits` (Attributes List) (see [below for nested schema](#nestedatt--spec--subroutes--matches--splits))
 
 <a id="nestedatt--spec--subroutes--matches--action"></a>
-### Nested Schema for `spec.subroutes.matches.splits`
+### Nested Schema for `spec.subroutes.matches.action`
 
 Optional:
 
@@ -224,7 +224,7 @@ Optional:
 - `upstream` (String)
 
 <a id="nestedatt--spec--subroutes--matches--splits--proxy--request_headers"></a>
-### Nested Schema for `spec.subroutes.matches.splits.proxy.upstream`
+### Nested Schema for `spec.subroutes.matches.splits.proxy.request_headers`
 
 Optional:
 
@@ -242,7 +242,7 @@ Optional:
 
 
 <a id="nestedatt--spec--subroutes--matches--splits--proxy--response_headers"></a>
-### Nested Schema for `spec.subroutes.matches.splits.proxy.upstream`
+### Nested Schema for `spec.subroutes.matches.splits.proxy.response_headers`
 
 Optional:
 
@@ -252,7 +252,7 @@ Optional:
 - `pass` (List of String)
 
 <a id="nestedatt--spec--subroutes--matches--splits--proxy--upstream--add"></a>
-### Nested Schema for `spec.subroutes.matches.splits.proxy.upstream.pass`
+### Nested Schema for `spec.subroutes.matches.splits.proxy.upstream.add`
 
 Optional:
 
@@ -284,7 +284,7 @@ Optional:
 
 
 <a id="nestedatt--spec--subroutes--matches--conditions"></a>
-### Nested Schema for `spec.subroutes.matches.splits`
+### Nested Schema for `spec.subroutes.matches.conditions`
 
 Optional:
 
@@ -314,7 +314,7 @@ Optional:
 - `return` (Attributes) ActionReturn defines a return in an Action. (see [below for nested schema](#nestedatt--spec--subroutes--matches--splits--action--return))
 
 <a id="nestedatt--spec--subroutes--matches--splits--action--proxy"></a>
-### Nested Schema for `spec.subroutes.matches.splits.action.return`
+### Nested Schema for `spec.subroutes.matches.splits.action.proxy`
 
 Optional:
 
@@ -324,7 +324,7 @@ Optional:
 - `upstream` (String)
 
 <a id="nestedatt--spec--subroutes--matches--splits--action--return--request_headers"></a>
-### Nested Schema for `spec.subroutes.matches.splits.action.return.upstream`
+### Nested Schema for `spec.subroutes.matches.splits.action.return.request_headers`
 
 Optional:
 
@@ -342,7 +342,7 @@ Optional:
 
 
 <a id="nestedatt--spec--subroutes--matches--splits--action--return--response_headers"></a>
-### Nested Schema for `spec.subroutes.matches.splits.action.return.upstream`
+### Nested Schema for `spec.subroutes.matches.splits.action.return.response_headers`
 
 Optional:
 
@@ -352,7 +352,7 @@ Optional:
 - `pass` (List of String)
 
 <a id="nestedatt--spec--subroutes--matches--splits--action--return--upstream--add"></a>
-### Nested Schema for `spec.subroutes.matches.splits.action.return.upstream.pass`
+### Nested Schema for `spec.subroutes.matches.splits.action.return.upstream.add`
 
 Optional:
 
@@ -364,7 +364,7 @@ Optional:
 
 
 <a id="nestedatt--spec--subroutes--matches--splits--action--redirect"></a>
-### Nested Schema for `spec.subroutes.matches.splits.action.return`
+### Nested Schema for `spec.subroutes.matches.splits.action.redirect`
 
 Optional:
 
@@ -403,7 +403,7 @@ Optional:
 - `weight` (Number)
 
 <a id="nestedatt--spec--subroutes--splits--action"></a>
-### Nested Schema for `spec.subroutes.splits.weight`
+### Nested Schema for `spec.subroutes.splits.action`
 
 Optional:
 
@@ -423,7 +423,7 @@ Optional:
 - `upstream` (String)
 
 <a id="nestedatt--spec--subroutes--splits--weight--proxy--request_headers"></a>
-### Nested Schema for `spec.subroutes.splits.weight.proxy.upstream`
+### Nested Schema for `spec.subroutes.splits.weight.proxy.request_headers`
 
 Optional:
 
@@ -441,7 +441,7 @@ Optional:
 
 
 <a id="nestedatt--spec--subroutes--splits--weight--proxy--response_headers"></a>
-### Nested Schema for `spec.subroutes.splits.weight.proxy.upstream`
+### Nested Schema for `spec.subroutes.splits.weight.proxy.response_headers`
 
 Optional:
 
@@ -451,7 +451,7 @@ Optional:
 - `pass` (List of String)
 
 <a id="nestedatt--spec--subroutes--splits--weight--proxy--upstream--add"></a>
-### Nested Schema for `spec.subroutes.splits.weight.proxy.upstream.pass`
+### Nested Schema for `spec.subroutes.splits.weight.proxy.upstream.add`
 
 Optional:
 
@@ -553,7 +553,7 @@ Optional:
 - `tls` (Attributes) UpstreamTLS defines a TLS configuration for an Upstream. (see [below for nested schema](#nestedatt--spec--upstreams--health_check--tls))
 
 <a id="nestedatt--spec--upstreams--health_check--headers"></a>
-### Nested Schema for `spec.upstreams.health_check.tls`
+### Nested Schema for `spec.upstreams.health_check.headers`
 
 Optional:
 

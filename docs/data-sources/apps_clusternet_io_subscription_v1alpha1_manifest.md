@@ -104,7 +104,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--subscribers--cluster_affinity--match_expressions"></a>
-### Nested Schema for `spec.subscribers.cluster_affinity.match_labels`
+### Nested Schema for `spec.subscribers.cluster_affinity.match_expressions`
 
 Required:
 
@@ -164,7 +164,7 @@ Optional:
 - `topology_spread_constraints` (Attributes List) TopologySpreadConstraints describes how a group of replicas ought to spread across topologydomains. Scheduler will schedule pods in a way which abides by the constraints.All topologySpreadConstraints are ANDed.Present only for spread divided scheduling. (see [below for nested schema](#nestedatt--spec--dividing_scheduling--dynamic_dividing--topology_spread_constraints))
 
 <a id="nestedatt--spec--dividing_scheduling--dynamic_dividing--preferred_clusters"></a>
-### Nested Schema for `spec.dividing_scheduling.dynamic_dividing.topology_spread_constraints`
+### Nested Schema for `spec.dividing_scheduling.dynamic_dividing.preferred_clusters`
 
 Required:
 
@@ -180,7 +180,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--dividing_scheduling--dynamic_dividing--topology_spread_constraints--preference--match_fields))
 
 <a id="nestedatt--spec--dividing_scheduling--dynamic_dividing--topology_spread_constraints--preference--match_expressions"></a>
-### Nested Schema for `spec.dividing_scheduling.dynamic_dividing.topology_spread_constraints.preference.match_fields`
+### Nested Schema for `spec.dividing_scheduling.dynamic_dividing.topology_spread_constraints.preference.match_expressions`
 
 Required:
 
@@ -233,7 +233,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--dividing_scheduling--dynamic_dividing--topology_spread_constraints--label_selector--match_expressions"></a>
-### Nested Schema for `spec.dividing_scheduling.dynamic_dividing.topology_spread_constraints.label_selector.match_labels`
+### Nested Schema for `spec.dividing_scheduling.dynamic_dividing.topology_spread_constraints.label_selector.match_expressions`
 
 Required:
 

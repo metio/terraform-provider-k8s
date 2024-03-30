@@ -84,7 +84,7 @@ Optional:
 - `enabled` (Attributes List) Enabled specifies plugins that should be enabled in addition to the default plugins. Enabled plugins are called in the order specified here, after default plugins. If they need to be invoked before default plugins, default plugins must be disabled and re-enabled here in desired order. (see [below for nested schema](#nestedatt--spec--plugins--filter--enabled))
 
 <a id="nestedatt--spec--plugins--filter--disabled"></a>
-### Nested Schema for `spec.plugins.filter.enabled`
+### Nested Schema for `spec.plugins.filter.disabled`
 
 Optional:
 
@@ -113,7 +113,7 @@ Optional:
 - `enabled` (Attributes List) Enabled specifies plugins that should be enabled in addition to the default plugins. Enabled plugins are called in the order specified here, after default plugins. If they need to be invoked before default plugins, default plugins must be disabled and re-enabled here in desired order. (see [below for nested schema](#nestedatt--spec--plugins--score--enabled))
 
 <a id="nestedatt--spec--plugins--score--disabled"></a>
-### Nested Schema for `spec.plugins.score.enabled`
+### Nested Schema for `spec.plugins.score.disabled`
 
 Optional:
 
@@ -142,7 +142,7 @@ Optional:
 - `enabled` (Attributes List) Enabled specifies plugins that should be enabled in addition to the default plugins. Enabled plugins are called in the order specified here, after default plugins. If they need to be invoked before default plugins, default plugins must be disabled and re-enabled here in desired order. (see [below for nested schema](#nestedatt--spec--plugins--select--enabled))
 
 <a id="nestedatt--spec--plugins--select--disabled"></a>
-### Nested Schema for `spec.plugins.select.enabled`
+### Nested Schema for `spec.plugins.select.disabled`
 
 Optional:
 

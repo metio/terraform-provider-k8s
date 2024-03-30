@@ -234,7 +234,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--endpoint--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--endpoint--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.endpoint.value_from.secret_key_ref`
+### Nested Schema for `spec.endpoint.value_from.config_map_key_ref`
 
 Required:
 
@@ -247,7 +247,7 @@ Optional:
 
 
 <a id="nestedatt--spec--endpoint--value_from--field_ref"></a>
-### Nested Schema for `spec.endpoint.value_from.secret_key_ref`
+### Nested Schema for `spec.endpoint.value_from.field_ref`
 
 Required:
 
@@ -259,7 +259,7 @@ Optional:
 
 
 <a id="nestedatt--spec--endpoint--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.endpoint.value_from.secret_key_ref`
+### Nested Schema for `spec.endpoint.value_from.resource_field_ref`
 
 Required:
 
@@ -305,7 +305,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--port--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--port--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.port.value_from.secret_key_ref`
+### Nested Schema for `spec.port.value_from.config_map_key_ref`
 
 Required:
 
@@ -318,7 +318,7 @@ Optional:
 
 
 <a id="nestedatt--spec--port--value_from--field_ref"></a>
-### Nested Schema for `spec.port.value_from.secret_key_ref`
+### Nested Schema for `spec.port.value_from.field_ref`
 
 Required:
 
@@ -330,7 +330,7 @@ Optional:
 
 
 <a id="nestedatt--spec--port--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.port.value_from.secret_key_ref`
+### Nested Schema for `spec.port.value_from.resource_field_ref`
 
 Required:
 

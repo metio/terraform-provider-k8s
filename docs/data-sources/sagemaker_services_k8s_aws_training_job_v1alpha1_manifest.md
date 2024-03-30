@@ -230,7 +230,7 @@ Optional:
 - `s3_data_source` (Attributes) Describes the S3 data source.Your input bucket must be in the same Amazon Web Services region as yourtraining job. (see [below for nested schema](#nestedatt--spec--input_data_config--data_source--s3_data_source))
 
 <a id="nestedatt--spec--input_data_config--data_source--file_system_data_source"></a>
-### Nested Schema for `spec.input_data_config.data_source.s3_data_source`
+### Nested Schema for `spec.input_data_config.data_source.file_system_data_source`
 
 Optional:
 

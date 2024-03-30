@@ -88,7 +88,7 @@ Required:
 - `matches` (Attributes List) Matches describes how to match HTTP requests this rule should be appliedto. (see [below for nested schema](#nestedatt--spec--to--rules--matches))
 
 <a id="nestedatt--spec--to--rules--default"></a>
-### Nested Schema for `spec.to.rules.matches`
+### Nested Schema for `spec.to.rules.default`
 
 Optional:
 
@@ -125,7 +125,7 @@ Optional:
 - `url_rewrite` (Attributes) (see [below for nested schema](#nestedatt--spec--to--rules--matches--filters--url_rewrite))
 
 <a id="nestedatt--spec--to--rules--matches--filters--request_header_modifier"></a>
-### Nested Schema for `spec.to.rules.matches.filters.url_rewrite`
+### Nested Schema for `spec.to.rules.matches.filters.request_header_modifier`
 
 Optional:
 
@@ -134,7 +134,7 @@ Optional:
 - `set` (Attributes List) (see [below for nested schema](#nestedatt--spec--to--rules--matches--filters--url_rewrite--set))
 
 <a id="nestedatt--spec--to--rules--matches--filters--url_rewrite--add"></a>
-### Nested Schema for `spec.to.rules.matches.filters.url_rewrite.set`
+### Nested Schema for `spec.to.rules.matches.filters.url_rewrite.add`
 
 Required:
 
@@ -153,7 +153,7 @@ Required:
 
 
 <a id="nestedatt--spec--to--rules--matches--filters--request_mirror"></a>
-### Nested Schema for `spec.to.rules.matches.filters.url_rewrite`
+### Nested Schema for `spec.to.rules.matches.filters.request_mirror`
 
 Required:
 
@@ -164,7 +164,7 @@ Optional:
 - `percentage` (String) Percentage of requests to mirror. If not specified, all requeststo the target cluster will be mirrored.
 
 <a id="nestedatt--spec--to--rules--matches--filters--url_rewrite--backend_ref"></a>
-### Nested Schema for `spec.to.rules.matches.filters.url_rewrite.percentage`
+### Nested Schema for `spec.to.rules.matches.filters.url_rewrite.backend_ref`
 
 Optional:
 
@@ -179,7 +179,7 @@ Optional:
 
 
 <a id="nestedatt--spec--to--rules--matches--filters--request_redirect"></a>
-### Nested Schema for `spec.to.rules.matches.filters.url_rewrite`
+### Nested Schema for `spec.to.rules.matches.filters.request_redirect`
 
 Optional:
 
@@ -190,7 +190,7 @@ Optional:
 - `status_code` (Number) StatusCode is the HTTP status code to be used in response.
 
 <a id="nestedatt--spec--to--rules--matches--filters--url_rewrite--path"></a>
-### Nested Schema for `spec.to.rules.matches.filters.url_rewrite.status_code`
+### Nested Schema for `spec.to.rules.matches.filters.url_rewrite.path`
 
 Required:
 
@@ -204,7 +204,7 @@ Optional:
 
 
 <a id="nestedatt--spec--to--rules--matches--filters--response_header_modifier"></a>
-### Nested Schema for `spec.to.rules.matches.filters.url_rewrite`
+### Nested Schema for `spec.to.rules.matches.filters.response_header_modifier`
 
 Optional:
 
@@ -213,7 +213,7 @@ Optional:
 - `set` (Attributes List) (see [below for nested schema](#nestedatt--spec--to--rules--matches--filters--url_rewrite--set))
 
 <a id="nestedatt--spec--to--rules--matches--filters--url_rewrite--add"></a>
-### Nested Schema for `spec.to.rules.matches.filters.url_rewrite.set`
+### Nested Schema for `spec.to.rules.matches.filters.url_rewrite.add`
 
 Required:
 

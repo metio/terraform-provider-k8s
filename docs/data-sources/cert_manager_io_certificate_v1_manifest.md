@@ -130,7 +130,7 @@ Optional:
 - `alias` (String) Alias specifies the alias of the key in the keystore, required by the JKS format.If not provided, the default alias 'certificate' will be used.
 
 <a id="nestedatt--spec--keystores--jks--password_secret_ref"></a>
-### Nested Schema for `spec.keystores.jks.alias`
+### Nested Schema for `spec.keystores.jks.password_secret_ref`
 
 Required:
 
@@ -155,7 +155,7 @@ Optional:
 - `profile` (String) Profile specifies the key and certificate encryption algorithms and the HMAC algorithmused to create the PKCS12 keystore. Default value is 'LegacyRC2' for backward compatibility.If provided, allowed values are:'LegacyRC2': Deprecated. Not supported by default in OpenSSL 3 or Java 20.'LegacyDES': Less secure algorithm. Use this option for maximal compatibility.'Modern2023': Secure algorithm. Use this option in case you have to always use secure algorithms(eg. because of company policy). Please note that the security of the algorithm is not that importantin reality, because the unencrypted certificate and private key are also stored in the Secret.
 
 <a id="nestedatt--spec--keystores--pkcs12--password_secret_ref"></a>
-### Nested Schema for `spec.keystores.pkcs12.profile`
+### Nested Schema for `spec.keystores.pkcs12.password_secret_ref`
 
 Required:
 

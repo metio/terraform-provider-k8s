@@ -82,7 +82,7 @@ Optional:
 - `value` (Attributes) (see [below for nested schema](#nestedatt--spec--auth_parameter--basic_auth--value))
 
 <a id="nestedatt--spec--auth_parameter--basic_auth--secret_ref"></a>
-### Nested Schema for `spec.auth_parameter.basic_auth.value`
+### Nested Schema for `spec.auth_parameter.basic_auth.secret_ref`
 
 Required:
 
@@ -108,7 +108,7 @@ Optional:
 - `value` (Attributes) (see [below for nested schema](#nestedatt--spec--auth_parameter--hmac_auth--value))
 
 <a id="nestedatt--spec--auth_parameter--hmac_auth--secret_ref"></a>
-### Nested Schema for `spec.auth_parameter.hmac_auth.value`
+### Nested Schema for `spec.auth_parameter.hmac_auth.secret_ref`
 
 Required:
 
@@ -144,7 +144,7 @@ Optional:
 - `value` (Attributes) (see [below for nested schema](#nestedatt--spec--auth_parameter--jwt_auth--value))
 
 <a id="nestedatt--spec--auth_parameter--jwt_auth--secret_ref"></a>
-### Nested Schema for `spec.auth_parameter.jwt_auth.value`
+### Nested Schema for `spec.auth_parameter.jwt_auth.secret_ref`
 
 Required:
 
@@ -178,7 +178,7 @@ Optional:
 - `value` (Attributes) (see [below for nested schema](#nestedatt--spec--auth_parameter--key_auth--value))
 
 <a id="nestedatt--spec--auth_parameter--key_auth--secret_ref"></a>
-### Nested Schema for `spec.auth_parameter.key_auth.value`
+### Nested Schema for `spec.auth_parameter.key_auth.secret_ref`
 
 Required:
 
@@ -203,7 +203,7 @@ Optional:
 - `value` (Attributes) (see [below for nested schema](#nestedatt--spec--auth_parameter--ldap_auth--value))
 
 <a id="nestedatt--spec--auth_parameter--ldap_auth--secret_ref"></a>
-### Nested Schema for `spec.auth_parameter.ldap_auth.value`
+### Nested Schema for `spec.auth_parameter.ldap_auth.secret_ref`
 
 Required:
 
@@ -228,7 +228,7 @@ Optional:
 - `value` (Attributes) (see [below for nested schema](#nestedatt--spec--auth_parameter--wolf_rbac--value))
 
 <a id="nestedatt--spec--auth_parameter--wolf_rbac--secret_ref"></a>
-### Nested Schema for `spec.auth_parameter.wolf_rbac.value`
+### Nested Schema for `spec.auth_parameter.wolf_rbac.secret_ref`
 
 Required:
 

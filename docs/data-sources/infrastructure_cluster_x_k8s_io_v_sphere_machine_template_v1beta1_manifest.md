@@ -103,7 +103,7 @@ Optional:
 - `thumbprint` (String) Thumbprint is the colon-separated SHA-1 checksum of the given vCenter server's host certificate When this is set to empty, this VirtualMachine would be created without TLS certificate validation of the communication between Cluster API Provider vSphere and the VMware vCenter server.
 
 <a id="nestedatt--spec--template--spec--network"></a>
-### Nested Schema for `spec.template.spec.thumbprint`
+### Nested Schema for `spec.template.spec.network`
 
 Required:
 
@@ -140,7 +140,7 @@ Optional:
 - `skip_ip_allocation` (Boolean) SkipIPAllocation allows the device to not have IP address or DHCP configured. This is suitable for devices for which IP allocation is handled externally, eg. using Multus CNI. If true, CAPV will not verify IP address allocation.
 
 <a id="nestedatt--spec--template--spec--thumbprint--devices--addresses_from_pools"></a>
-### Nested Schema for `spec.template.spec.thumbprint.devices.skip_ip_allocation`
+### Nested Schema for `spec.template.spec.thumbprint.devices.addresses_from_pools`
 
 Required:
 
@@ -153,7 +153,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--thumbprint--devices--dhcp4_overrides"></a>
-### Nested Schema for `spec.template.spec.thumbprint.devices.skip_ip_allocation`
+### Nested Schema for `spec.template.spec.thumbprint.devices.dhcp4_overrides`
 
 Optional:
 
@@ -169,7 +169,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--thumbprint--devices--dhcp6_overrides"></a>
-### Nested Schema for `spec.template.spec.thumbprint.devices.skip_ip_allocation`
+### Nested Schema for `spec.template.spec.thumbprint.devices.dhcp6_overrides`
 
 Optional:
 
@@ -185,7 +185,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--thumbprint--devices--routes"></a>
-### Nested Schema for `spec.template.spec.thumbprint.devices.skip_ip_allocation`
+### Nested Schema for `spec.template.spec.thumbprint.devices.routes`
 
 Required:
 
@@ -207,7 +207,7 @@ Required:
 
 
 <a id="nestedatt--spec--template--spec--pci_devices"></a>
-### Nested Schema for `spec.template.spec.thumbprint`
+### Nested Schema for `spec.template.spec.pci_devices`
 
 Optional:
 

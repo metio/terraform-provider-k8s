@@ -253,7 +253,7 @@ Optional:
 - `web_origins` (List of String)
 
 <a id="nestedatt--spec--realm--applications--authorization_settings"></a>
-### Nested Schema for `spec.realm.applications.web_origins`
+### Nested Schema for `spec.realm.applications.authorization_settings`
 
 Optional:
 
@@ -287,7 +287,7 @@ Optional:
 - `type` (String)
 
 <a id="nestedatt--spec--realm--applications--web_origins--policies--resources_data"></a>
-### Nested Schema for `spec.realm.applications.web_origins.policies.type`
+### Nested Schema for `spec.realm.applications.web_origins.policies.resources_data`
 
 Optional:
 
@@ -303,7 +303,7 @@ Optional:
 - `uris` (List of String)
 
 <a id="nestedatt--spec--realm--applications--web_origins--policies--type--owner"></a>
-### Nested Schema for `spec.realm.applications.web_origins.policies.type.uris`
+### Nested Schema for `spec.realm.applications.web_origins.policies.type.owner`
 
 Optional:
 
@@ -312,7 +312,7 @@ Optional:
 
 
 <a id="nestedatt--spec--realm--applications--web_origins--policies--type--scopes"></a>
-### Nested Schema for `spec.realm.applications.web_origins.policies.type.uris`
+### Nested Schema for `spec.realm.applications.web_origins.policies.type.scopes`
 
 Optional:
 
@@ -324,7 +324,7 @@ Optional:
 
 
 <a id="nestedatt--spec--realm--applications--web_origins--policies--scopes_data"></a>
-### Nested Schema for `spec.realm.applications.web_origins.policies.type`
+### Nested Schema for `spec.realm.applications.web_origins.policies.scopes_data`
 
 Optional:
 
@@ -352,7 +352,7 @@ Optional:
 - `uris` (List of String)
 
 <a id="nestedatt--spec--realm--applications--web_origins--resources--owner"></a>
-### Nested Schema for `spec.realm.applications.web_origins.resources.uris`
+### Nested Schema for `spec.realm.applications.web_origins.resources.owner`
 
 Optional:
 
@@ -361,7 +361,7 @@ Optional:
 
 
 <a id="nestedatt--spec--realm--applications--web_origins--resources--scopes"></a>
-### Nested Schema for `spec.realm.applications.web_origins.resources.uris`
+### Nested Schema for `spec.realm.applications.web_origins.resources.scopes`
 
 Optional:
 
@@ -385,7 +385,7 @@ Optional:
 
 
 <a id="nestedatt--spec--realm--applications--claims"></a>
-### Nested Schema for `spec.realm.applications.web_origins`
+### Nested Schema for `spec.realm.applications.claims`
 
 Optional:
 
@@ -402,7 +402,7 @@ Optional:
 
 
 <a id="nestedatt--spec--realm--applications--protocol_mappers"></a>
-### Nested Schema for `spec.realm.applications.web_origins`
+### Nested Schema for `spec.realm.applications.protocol_mappers`
 
 Optional:
 
@@ -430,7 +430,7 @@ Optional:
 - `top_level` (Boolean)
 
 <a id="nestedatt--spec--realm--authentication_flows--authentication_executions"></a>
-### Nested Schema for `spec.realm.authentication_flows.top_level`
+### Nested Schema for `spec.realm.authentication_flows.authentication_executions`
 
 Optional:
 
@@ -504,7 +504,7 @@ Optional:
 - `standard_flow_enabled` (Boolean)
 
 <a id="nestedatt--spec--realm--client_templates--protocol_mappers"></a>
-### Nested Schema for `spec.realm.client_templates.standard_flow_enabled`
+### Nested Schema for `spec.realm.client_templates.protocol_mappers`
 
 Optional:
 
@@ -569,7 +569,7 @@ Optional:
 - `web_origins` (List of String)
 
 <a id="nestedatt--spec--realm--clients--authorization_settings"></a>
-### Nested Schema for `spec.realm.clients.web_origins`
+### Nested Schema for `spec.realm.clients.authorization_settings`
 
 Optional:
 
@@ -603,7 +603,7 @@ Optional:
 - `type` (String)
 
 <a id="nestedatt--spec--realm--clients--web_origins--policies--resources_data"></a>
-### Nested Schema for `spec.realm.clients.web_origins.policies.type`
+### Nested Schema for `spec.realm.clients.web_origins.policies.resources_data`
 
 Optional:
 
@@ -619,7 +619,7 @@ Optional:
 - `uris` (List of String)
 
 <a id="nestedatt--spec--realm--clients--web_origins--policies--type--owner"></a>
-### Nested Schema for `spec.realm.clients.web_origins.policies.type.uris`
+### Nested Schema for `spec.realm.clients.web_origins.policies.type.owner`
 
 Optional:
 
@@ -628,7 +628,7 @@ Optional:
 
 
 <a id="nestedatt--spec--realm--clients--web_origins--policies--type--scopes"></a>
-### Nested Schema for `spec.realm.clients.web_origins.policies.type.uris`
+### Nested Schema for `spec.realm.clients.web_origins.policies.type.scopes`
 
 Optional:
 
@@ -640,7 +640,7 @@ Optional:
 
 
 <a id="nestedatt--spec--realm--clients--web_origins--policies--scopes_data"></a>
-### Nested Schema for `spec.realm.clients.web_origins.policies.type`
+### Nested Schema for `spec.realm.clients.web_origins.policies.scopes_data`
 
 Optional:
 
@@ -668,7 +668,7 @@ Optional:
 - `uris` (List of String)
 
 <a id="nestedatt--spec--realm--clients--web_origins--resources--owner"></a>
-### Nested Schema for `spec.realm.clients.web_origins.resources.uris`
+### Nested Schema for `spec.realm.clients.web_origins.resources.owner`
 
 Optional:
 
@@ -677,7 +677,7 @@ Optional:
 
 
 <a id="nestedatt--spec--realm--clients--web_origins--resources--scopes"></a>
-### Nested Schema for `spec.realm.clients.web_origins.resources.uris`
+### Nested Schema for `spec.realm.clients.web_origins.resources.scopes`
 
 Optional:
 
@@ -701,7 +701,7 @@ Optional:
 
 
 <a id="nestedatt--spec--realm--clients--protocol_mappers"></a>
-### Nested Schema for `spec.realm.clients.web_origins`
+### Nested Schema for `spec.realm.clients.protocol_mappers`
 
 Optional:
 
@@ -731,7 +731,7 @@ Optional:
 - `scope_param_required` (Boolean)
 
 <a id="nestedatt--spec--realm--default_role--composites"></a>
-### Nested Schema for `spec.realm.default_role.scope_param_required`
+### Nested Schema for `spec.realm.default_role.composites`
 
 Optional:
 
@@ -774,7 +774,7 @@ Optional:
 - `username` (String)
 
 <a id="nestedatt--spec--realm--federated_users--client_consents"></a>
-### Nested Schema for `spec.realm.federated_users.username`
+### Nested Schema for `spec.realm.federated_users.client_consents`
 
 Optional:
 
@@ -786,7 +786,7 @@ Optional:
 
 
 <a id="nestedatt--spec--realm--federated_users--credentials"></a>
-### Nested Schema for `spec.realm.federated_users.username`
+### Nested Schema for `spec.realm.federated_users.credentials`
 
 Optional:
 
@@ -811,7 +811,7 @@ Optional:
 
 
 <a id="nestedatt--spec--realm--federated_users--federated_identities"></a>
-### Nested Schema for `spec.realm.federated_users.username`
+### Nested Schema for `spec.realm.federated_users.federated_identities`
 
 Optional:
 
@@ -821,7 +821,7 @@ Optional:
 
 
 <a id="nestedatt--spec--realm--federated_users--social_links"></a>
-### Nested Schema for `spec.realm.federated_users.username`
+### Nested Schema for `spec.realm.federated_users.social_links`
 
 Optional:
 
@@ -945,7 +945,7 @@ Optional:
 - `web_origins` (List of String)
 
 <a id="nestedatt--spec--realm--oauth_clients--authorization_settings"></a>
-### Nested Schema for `spec.realm.oauth_clients.web_origins`
+### Nested Schema for `spec.realm.oauth_clients.authorization_settings`
 
 Optional:
 
@@ -979,7 +979,7 @@ Optional:
 - `type` (String)
 
 <a id="nestedatt--spec--realm--oauth_clients--web_origins--policies--resources_data"></a>
-### Nested Schema for `spec.realm.oauth_clients.web_origins.policies.type`
+### Nested Schema for `spec.realm.oauth_clients.web_origins.policies.resources_data`
 
 Optional:
 
@@ -995,7 +995,7 @@ Optional:
 - `uris` (List of String)
 
 <a id="nestedatt--spec--realm--oauth_clients--web_origins--policies--type--owner"></a>
-### Nested Schema for `spec.realm.oauth_clients.web_origins.policies.type.uris`
+### Nested Schema for `spec.realm.oauth_clients.web_origins.policies.type.owner`
 
 Optional:
 
@@ -1004,7 +1004,7 @@ Optional:
 
 
 <a id="nestedatt--spec--realm--oauth_clients--web_origins--policies--type--scopes"></a>
-### Nested Schema for `spec.realm.oauth_clients.web_origins.policies.type.uris`
+### Nested Schema for `spec.realm.oauth_clients.web_origins.policies.type.scopes`
 
 Optional:
 
@@ -1016,7 +1016,7 @@ Optional:
 
 
 <a id="nestedatt--spec--realm--oauth_clients--web_origins--policies--scopes_data"></a>
-### Nested Schema for `spec.realm.oauth_clients.web_origins.policies.type`
+### Nested Schema for `spec.realm.oauth_clients.web_origins.policies.scopes_data`
 
 Optional:
 
@@ -1044,7 +1044,7 @@ Optional:
 - `uris` (List of String)
 
 <a id="nestedatt--spec--realm--oauth_clients--web_origins--resources--owner"></a>
-### Nested Schema for `spec.realm.oauth_clients.web_origins.resources.uris`
+### Nested Schema for `spec.realm.oauth_clients.web_origins.resources.owner`
 
 Optional:
 
@@ -1053,7 +1053,7 @@ Optional:
 
 
 <a id="nestedatt--spec--realm--oauth_clients--web_origins--resources--scopes"></a>
-### Nested Schema for `spec.realm.oauth_clients.web_origins.resources.uris`
+### Nested Schema for `spec.realm.oauth_clients.web_origins.resources.scopes`
 
 Optional:
 
@@ -1077,7 +1077,7 @@ Optional:
 
 
 <a id="nestedatt--spec--realm--oauth_clients--claims"></a>
-### Nested Schema for `spec.realm.oauth_clients.web_origins`
+### Nested Schema for `spec.realm.oauth_clients.claims`
 
 Optional:
 
@@ -1094,7 +1094,7 @@ Optional:
 
 
 <a id="nestedatt--spec--realm--oauth_clients--protocol_mappers"></a>
-### Nested Schema for `spec.realm.oauth_clients.web_origins`
+### Nested Schema for `spec.realm.oauth_clients.protocol_mappers`
 
 Optional:
 
@@ -1244,7 +1244,7 @@ Optional:
 - `username` (String)
 
 <a id="nestedatt--spec--realm--users--client_consents"></a>
-### Nested Schema for `spec.realm.users.username`
+### Nested Schema for `spec.realm.users.client_consents`
 
 Optional:
 
@@ -1256,7 +1256,7 @@ Optional:
 
 
 <a id="nestedatt--spec--realm--users--credentials"></a>
-### Nested Schema for `spec.realm.users.username`
+### Nested Schema for `spec.realm.users.credentials`
 
 Optional:
 
@@ -1281,7 +1281,7 @@ Optional:
 
 
 <a id="nestedatt--spec--realm--users--federated_identities"></a>
-### Nested Schema for `spec.realm.users.username`
+### Nested Schema for `spec.realm.users.federated_identities`
 
 Optional:
 
@@ -1291,7 +1291,7 @@ Optional:
 
 
 <a id="nestedatt--spec--realm--users--social_links"></a>
-### Nested Schema for `spec.realm.users.username`
+### Nested Schema for `spec.realm.users.social_links`
 
 Optional:
 

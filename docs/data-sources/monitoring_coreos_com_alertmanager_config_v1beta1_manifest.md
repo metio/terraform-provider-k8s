@@ -129,7 +129,7 @@ Optional:
 - `title` (String) The template of the message's title.
 
 <a id="nestedatt--spec--receivers--discord_configs--api_url"></a>
-### Nested Schema for `spec.receivers.discord_configs.title`
+### Nested Schema for `spec.receivers.discord_configs.api_url`
 
 Required:
 
@@ -142,7 +142,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--discord_configs--http_config"></a>
-### Nested Schema for `spec.receivers.discord_configs.title`
+### Nested Schema for `spec.receivers.discord_configs.http_config`
 
 Optional:
 
@@ -163,7 +163,7 @@ Optional:
 - `type` (String) Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'
 
 <a id="nestedatt--spec--receivers--discord_configs--title--authorization--credentials"></a>
-### Nested Schema for `spec.receivers.discord_configs.title.authorization.type`
+### Nested Schema for `spec.receivers.discord_configs.title.authorization.credentials`
 
 Required:
 
@@ -185,7 +185,7 @@ Optional:
 - `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--title--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--discord_configs--title--basic_auth--password"></a>
-### Nested Schema for `spec.receivers.discord_configs.title.basic_auth.username`
+### Nested Schema for `spec.receivers.discord_configs.title.basic_auth.password`
 
 Required:
 
@@ -235,7 +235,7 @@ Optional:
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 
 <a id="nestedatt--spec--receivers--discord_configs--title--oauth2--client_id"></a>
-### Nested Schema for `spec.receivers.discord_configs.title.oauth2.scopes`
+### Nested Schema for `spec.receivers.discord_configs.title.oauth2.client_id`
 
 Optional:
 
@@ -243,7 +243,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--title--oauth2--scopes--secret))
 
 <a id="nestedatt--spec--receivers--discord_configs--title--oauth2--scopes--config_map"></a>
-### Nested Schema for `spec.receivers.discord_configs.title.oauth2.scopes.secret`
+### Nested Schema for `spec.receivers.discord_configs.title.oauth2.scopes.config_map`
 
 Required:
 
@@ -270,7 +270,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--discord_configs--title--oauth2--client_secret"></a>
-### Nested Schema for `spec.receivers.discord_configs.title.oauth2.scopes`
+### Nested Schema for `spec.receivers.discord_configs.title.oauth2.client_secret`
 
 Required:
 
@@ -295,7 +295,7 @@ Optional:
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--receivers--discord_configs--title--tls_config--ca"></a>
-### Nested Schema for `spec.receivers.discord_configs.title.tls_config.server_name`
+### Nested Schema for `spec.receivers.discord_configs.title.tls_config.ca`
 
 Optional:
 
@@ -303,7 +303,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--title--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--receivers--discord_configs--title--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.discord_configs.title.tls_config.server_name.secret`
+### Nested Schema for `spec.receivers.discord_configs.title.tls_config.server_name.config_map`
 
 Required:
 
@@ -330,7 +330,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--discord_configs--title--tls_config--cert"></a>
-### Nested Schema for `spec.receivers.discord_configs.title.tls_config.server_name`
+### Nested Schema for `spec.receivers.discord_configs.title.tls_config.cert`
 
 Optional:
 
@@ -338,7 +338,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--title--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--receivers--discord_configs--title--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.discord_configs.title.tls_config.server_name.secret`
+### Nested Schema for `spec.receivers.discord_configs.title.tls_config.server_name.config_map`
 
 Required:
 
@@ -365,7 +365,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--discord_configs--title--tls_config--key_secret"></a>
-### Nested Schema for `spec.receivers.discord_configs.title.tls_config.server_name`
+### Nested Schema for `spec.receivers.discord_configs.title.tls_config.key_secret`
 
 Required:
 
@@ -401,7 +401,7 @@ Optional:
 - `to` (String) The email address to send notifications to.
 
 <a id="nestedatt--spec--receivers--email_configs--auth_password"></a>
-### Nested Schema for `spec.receivers.email_configs.to`
+### Nested Schema for `spec.receivers.email_configs.auth_password`
 
 Required:
 
@@ -410,7 +410,7 @@ Required:
 
 
 <a id="nestedatt--spec--receivers--email_configs--auth_secret"></a>
-### Nested Schema for `spec.receivers.email_configs.to`
+### Nested Schema for `spec.receivers.email_configs.auth_secret`
 
 Required:
 
@@ -419,7 +419,7 @@ Required:
 
 
 <a id="nestedatt--spec--receivers--email_configs--headers"></a>
-### Nested Schema for `spec.receivers.email_configs.to`
+### Nested Schema for `spec.receivers.email_configs.headers`
 
 Required:
 
@@ -428,7 +428,7 @@ Required:
 
 
 <a id="nestedatt--spec--receivers--email_configs--tls_config"></a>
-### Nested Schema for `spec.receivers.email_configs.to`
+### Nested Schema for `spec.receivers.email_configs.tls_config`
 
 Optional:
 
@@ -447,7 +447,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--email_configs--to--ca--secret))
 
 <a id="nestedatt--spec--receivers--email_configs--to--ca--config_map"></a>
-### Nested Schema for `spec.receivers.email_configs.to.ca.secret`
+### Nested Schema for `spec.receivers.email_configs.to.ca.config_map`
 
 Required:
 
@@ -482,7 +482,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--email_configs--to--cert--secret))
 
 <a id="nestedatt--spec--receivers--email_configs--to--cert--config_map"></a>
-### Nested Schema for `spec.receivers.email_configs.to.cert.secret`
+### Nested Schema for `spec.receivers.email_configs.to.cert.config_map`
 
 Required:
 
@@ -538,7 +538,7 @@ Optional:
 - `title` (String) Message title template.
 
 <a id="nestedatt--spec--receivers--msteams_configs--webhook_url"></a>
-### Nested Schema for `spec.receivers.msteams_configs.title`
+### Nested Schema for `spec.receivers.msteams_configs.webhook_url`
 
 Required:
 
@@ -551,7 +551,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--msteams_configs--http_config"></a>
-### Nested Schema for `spec.receivers.msteams_configs.title`
+### Nested Schema for `spec.receivers.msteams_configs.http_config`
 
 Optional:
 
@@ -572,7 +572,7 @@ Optional:
 - `type` (String) Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'
 
 <a id="nestedatt--spec--receivers--msteams_configs--title--authorization--credentials"></a>
-### Nested Schema for `spec.receivers.msteams_configs.title.authorization.type`
+### Nested Schema for `spec.receivers.msteams_configs.title.authorization.credentials`
 
 Required:
 
@@ -594,7 +594,7 @@ Optional:
 - `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--title--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--msteams_configs--title--basic_auth--password"></a>
-### Nested Schema for `spec.receivers.msteams_configs.title.basic_auth.username`
+### Nested Schema for `spec.receivers.msteams_configs.title.basic_auth.password`
 
 Required:
 
@@ -644,7 +644,7 @@ Optional:
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 
 <a id="nestedatt--spec--receivers--msteams_configs--title--oauth2--client_id"></a>
-### Nested Schema for `spec.receivers.msteams_configs.title.oauth2.scopes`
+### Nested Schema for `spec.receivers.msteams_configs.title.oauth2.client_id`
 
 Optional:
 
@@ -652,7 +652,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--title--oauth2--scopes--secret))
 
 <a id="nestedatt--spec--receivers--msteams_configs--title--oauth2--scopes--config_map"></a>
-### Nested Schema for `spec.receivers.msteams_configs.title.oauth2.scopes.secret`
+### Nested Schema for `spec.receivers.msteams_configs.title.oauth2.scopes.config_map`
 
 Required:
 
@@ -679,7 +679,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--msteams_configs--title--oauth2--client_secret"></a>
-### Nested Schema for `spec.receivers.msteams_configs.title.oauth2.scopes`
+### Nested Schema for `spec.receivers.msteams_configs.title.oauth2.client_secret`
 
 Required:
 
@@ -704,7 +704,7 @@ Optional:
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--receivers--msteams_configs--title--tls_config--ca"></a>
-### Nested Schema for `spec.receivers.msteams_configs.title.tls_config.server_name`
+### Nested Schema for `spec.receivers.msteams_configs.title.tls_config.ca`
 
 Optional:
 
@@ -712,7 +712,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--title--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--receivers--msteams_configs--title--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.msteams_configs.title.tls_config.server_name.secret`
+### Nested Schema for `spec.receivers.msteams_configs.title.tls_config.server_name.config_map`
 
 Required:
 
@@ -739,7 +739,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--msteams_configs--title--tls_config--cert"></a>
-### Nested Schema for `spec.receivers.msteams_configs.title.tls_config.server_name`
+### Nested Schema for `spec.receivers.msteams_configs.title.tls_config.cert`
 
 Optional:
 
@@ -747,7 +747,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--title--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--receivers--msteams_configs--title--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.msteams_configs.title.tls_config.server_name.secret`
+### Nested Schema for `spec.receivers.msteams_configs.title.tls_config.server_name.config_map`
 
 Required:
 
@@ -774,7 +774,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--msteams_configs--title--tls_config--key_secret"></a>
-### Nested Schema for `spec.receivers.msteams_configs.title.tls_config.server_name`
+### Nested Schema for `spec.receivers.msteams_configs.title.tls_config.key_secret`
 
 Required:
 
@@ -810,7 +810,7 @@ Optional:
 - `tags` (String) Comma separated list of tags attached to the notifications.
 
 <a id="nestedatt--spec--receivers--opsgenie_configs--api_key"></a>
-### Nested Schema for `spec.receivers.opsgenie_configs.tags`
+### Nested Schema for `spec.receivers.opsgenie_configs.api_key`
 
 Required:
 
@@ -819,7 +819,7 @@ Required:
 
 
 <a id="nestedatt--spec--receivers--opsgenie_configs--details"></a>
-### Nested Schema for `spec.receivers.opsgenie_configs.tags`
+### Nested Schema for `spec.receivers.opsgenie_configs.details`
 
 Required:
 
@@ -828,7 +828,7 @@ Required:
 
 
 <a id="nestedatt--spec--receivers--opsgenie_configs--http_config"></a>
-### Nested Schema for `spec.receivers.opsgenie_configs.tags`
+### Nested Schema for `spec.receivers.opsgenie_configs.http_config`
 
 Optional:
 
@@ -849,7 +849,7 @@ Optional:
 - `type` (String) Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'
 
 <a id="nestedatt--spec--receivers--opsgenie_configs--tags--authorization--credentials"></a>
-### Nested Schema for `spec.receivers.opsgenie_configs.tags.authorization.type`
+### Nested Schema for `spec.receivers.opsgenie_configs.tags.authorization.credentials`
 
 Required:
 
@@ -871,7 +871,7 @@ Optional:
 - `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--opsgenie_configs--tags--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--opsgenie_configs--tags--basic_auth--password"></a>
-### Nested Schema for `spec.receivers.opsgenie_configs.tags.basic_auth.username`
+### Nested Schema for `spec.receivers.opsgenie_configs.tags.basic_auth.password`
 
 Required:
 
@@ -921,7 +921,7 @@ Optional:
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 
 <a id="nestedatt--spec--receivers--opsgenie_configs--tags--oauth2--client_id"></a>
-### Nested Schema for `spec.receivers.opsgenie_configs.tags.oauth2.scopes`
+### Nested Schema for `spec.receivers.opsgenie_configs.tags.oauth2.client_id`
 
 Optional:
 
@@ -929,7 +929,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--opsgenie_configs--tags--oauth2--scopes--secret))
 
 <a id="nestedatt--spec--receivers--opsgenie_configs--tags--oauth2--scopes--config_map"></a>
-### Nested Schema for `spec.receivers.opsgenie_configs.tags.oauth2.scopes.secret`
+### Nested Schema for `spec.receivers.opsgenie_configs.tags.oauth2.scopes.config_map`
 
 Required:
 
@@ -956,7 +956,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--opsgenie_configs--tags--oauth2--client_secret"></a>
-### Nested Schema for `spec.receivers.opsgenie_configs.tags.oauth2.scopes`
+### Nested Schema for `spec.receivers.opsgenie_configs.tags.oauth2.client_secret`
 
 Required:
 
@@ -981,7 +981,7 @@ Optional:
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--receivers--opsgenie_configs--tags--tls_config--ca"></a>
-### Nested Schema for `spec.receivers.opsgenie_configs.tags.tls_config.server_name`
+### Nested Schema for `spec.receivers.opsgenie_configs.tags.tls_config.ca`
 
 Optional:
 
@@ -989,7 +989,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--opsgenie_configs--tags--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--receivers--opsgenie_configs--tags--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.opsgenie_configs.tags.tls_config.server_name.secret`
+### Nested Schema for `spec.receivers.opsgenie_configs.tags.tls_config.server_name.config_map`
 
 Required:
 
@@ -1016,7 +1016,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--opsgenie_configs--tags--tls_config--cert"></a>
-### Nested Schema for `spec.receivers.opsgenie_configs.tags.tls_config.server_name`
+### Nested Schema for `spec.receivers.opsgenie_configs.tags.tls_config.cert`
 
 Optional:
 
@@ -1024,7 +1024,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--opsgenie_configs--tags--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--receivers--opsgenie_configs--tags--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.opsgenie_configs.tags.tls_config.server_name.secret`
+### Nested Schema for `spec.receivers.opsgenie_configs.tags.tls_config.server_name.config_map`
 
 Required:
 
@@ -1051,7 +1051,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--opsgenie_configs--tags--tls_config--key_secret"></a>
-### Nested Schema for `spec.receivers.opsgenie_configs.tags.tls_config.server_name`
+### Nested Schema for `spec.receivers.opsgenie_configs.tags.tls_config.key_secret`
 
 Required:
 
@@ -1066,7 +1066,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--opsgenie_configs--responders"></a>
-### Nested Schema for `spec.receivers.opsgenie_configs.tags`
+### Nested Schema for `spec.receivers.opsgenie_configs.responders`
 
 Required:
 
@@ -1102,7 +1102,7 @@ Optional:
 - `url` (String) The URL to send requests to.
 
 <a id="nestedatt--spec--receivers--pagerduty_configs--details"></a>
-### Nested Schema for `spec.receivers.pagerduty_configs.url`
+### Nested Schema for `spec.receivers.pagerduty_configs.details`
 
 Required:
 
@@ -1111,7 +1111,7 @@ Required:
 
 
 <a id="nestedatt--spec--receivers--pagerduty_configs--http_config"></a>
-### Nested Schema for `spec.receivers.pagerduty_configs.url`
+### Nested Schema for `spec.receivers.pagerduty_configs.http_config`
 
 Optional:
 
@@ -1132,7 +1132,7 @@ Optional:
 - `type` (String) Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'
 
 <a id="nestedatt--spec--receivers--pagerduty_configs--url--authorization--credentials"></a>
-### Nested Schema for `spec.receivers.pagerduty_configs.url.authorization.type`
+### Nested Schema for `spec.receivers.pagerduty_configs.url.authorization.credentials`
 
 Required:
 
@@ -1154,7 +1154,7 @@ Optional:
 - `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--pagerduty_configs--url--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--pagerduty_configs--url--basic_auth--password"></a>
-### Nested Schema for `spec.receivers.pagerduty_configs.url.basic_auth.username`
+### Nested Schema for `spec.receivers.pagerduty_configs.url.basic_auth.password`
 
 Required:
 
@@ -1204,7 +1204,7 @@ Optional:
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 
 <a id="nestedatt--spec--receivers--pagerduty_configs--url--oauth2--client_id"></a>
-### Nested Schema for `spec.receivers.pagerduty_configs.url.oauth2.scopes`
+### Nested Schema for `spec.receivers.pagerduty_configs.url.oauth2.client_id`
 
 Optional:
 
@@ -1212,7 +1212,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--pagerduty_configs--url--oauth2--scopes--secret))
 
 <a id="nestedatt--spec--receivers--pagerduty_configs--url--oauth2--scopes--config_map"></a>
-### Nested Schema for `spec.receivers.pagerduty_configs.url.oauth2.scopes.secret`
+### Nested Schema for `spec.receivers.pagerduty_configs.url.oauth2.scopes.config_map`
 
 Required:
 
@@ -1239,7 +1239,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--pagerduty_configs--url--oauth2--client_secret"></a>
-### Nested Schema for `spec.receivers.pagerduty_configs.url.oauth2.scopes`
+### Nested Schema for `spec.receivers.pagerduty_configs.url.oauth2.client_secret`
 
 Required:
 
@@ -1264,7 +1264,7 @@ Optional:
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--receivers--pagerduty_configs--url--tls_config--ca"></a>
-### Nested Schema for `spec.receivers.pagerduty_configs.url.tls_config.server_name`
+### Nested Schema for `spec.receivers.pagerduty_configs.url.tls_config.ca`
 
 Optional:
 
@@ -1272,7 +1272,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--pagerduty_configs--url--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--receivers--pagerduty_configs--url--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.pagerduty_configs.url.tls_config.server_name.secret`
+### Nested Schema for `spec.receivers.pagerduty_configs.url.tls_config.server_name.config_map`
 
 Required:
 
@@ -1299,7 +1299,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--pagerduty_configs--url--tls_config--cert"></a>
-### Nested Schema for `spec.receivers.pagerduty_configs.url.tls_config.server_name`
+### Nested Schema for `spec.receivers.pagerduty_configs.url.tls_config.cert`
 
 Optional:
 
@@ -1307,7 +1307,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--pagerduty_configs--url--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--receivers--pagerduty_configs--url--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.pagerduty_configs.url.tls_config.server_name.secret`
+### Nested Schema for `spec.receivers.pagerduty_configs.url.tls_config.server_name.config_map`
 
 Required:
 
@@ -1334,7 +1334,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--pagerduty_configs--url--tls_config--key_secret"></a>
-### Nested Schema for `spec.receivers.pagerduty_configs.url.tls_config.server_name`
+### Nested Schema for `spec.receivers.pagerduty_configs.url.tls_config.key_secret`
 
 Required:
 
@@ -1349,7 +1349,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--pagerduty_configs--pager_duty_image_configs"></a>
-### Nested Schema for `spec.receivers.pagerduty_configs.url`
+### Nested Schema for `spec.receivers.pagerduty_configs.pager_duty_image_configs`
 
 Optional:
 
@@ -1359,7 +1359,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--pagerduty_configs--pager_duty_link_configs"></a>
-### Nested Schema for `spec.receivers.pagerduty_configs.url`
+### Nested Schema for `spec.receivers.pagerduty_configs.pager_duty_link_configs`
 
 Optional:
 
@@ -1368,7 +1368,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--pagerduty_configs--routing_key"></a>
-### Nested Schema for `spec.receivers.pagerduty_configs.url`
+### Nested Schema for `spec.receivers.pagerduty_configs.routing_key`
 
 Required:
 
@@ -1377,7 +1377,7 @@ Required:
 
 
 <a id="nestedatt--spec--receivers--pagerduty_configs--service_key"></a>
-### Nested Schema for `spec.receivers.pagerduty_configs.url`
+### Nested Schema for `spec.receivers.pagerduty_configs.service_key`
 
 Required:
 
@@ -1409,7 +1409,7 @@ Optional:
 - `user_key_file` (String) The user key file that contains the recipient user's user key. Either 'userKey' or 'userKeyFile' is required. It requires Alertmanager >= v0.26.0.
 
 <a id="nestedatt--spec--receivers--pushover_configs--http_config"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key_file`
+### Nested Schema for `spec.receivers.pushover_configs.http_config`
 
 Optional:
 
@@ -1430,7 +1430,7 @@ Optional:
 - `type` (String) Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'
 
 <a id="nestedatt--spec--receivers--pushover_configs--user_key_file--authorization--credentials"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key_file.authorization.type`
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file.authorization.credentials`
 
 Required:
 
@@ -1452,7 +1452,7 @@ Optional:
 - `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key_file--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--pushover_configs--user_key_file--basic_auth--password"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key_file.basic_auth.username`
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file.basic_auth.password`
 
 Required:
 
@@ -1502,7 +1502,7 @@ Optional:
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 
 <a id="nestedatt--spec--receivers--pushover_configs--user_key_file--oauth2--client_id"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key_file.oauth2.scopes`
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file.oauth2.client_id`
 
 Optional:
 
@@ -1510,7 +1510,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key_file--oauth2--scopes--secret))
 
 <a id="nestedatt--spec--receivers--pushover_configs--user_key_file--oauth2--scopes--config_map"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key_file.oauth2.scopes.secret`
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file.oauth2.scopes.config_map`
 
 Required:
 
@@ -1537,7 +1537,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--pushover_configs--user_key_file--oauth2--client_secret"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key_file.oauth2.scopes`
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file.oauth2.client_secret`
 
 Required:
 
@@ -1562,7 +1562,7 @@ Optional:
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--receivers--pushover_configs--user_key_file--tls_config--ca"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key_file.tls_config.server_name`
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file.tls_config.ca`
 
 Optional:
 
@@ -1570,7 +1570,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key_file--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--receivers--pushover_configs--user_key_file--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key_file.tls_config.server_name.secret`
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file.tls_config.server_name.config_map`
 
 Required:
 
@@ -1597,7 +1597,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--pushover_configs--user_key_file--tls_config--cert"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key_file.tls_config.server_name`
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file.tls_config.cert`
 
 Optional:
 
@@ -1605,7 +1605,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key_file--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--receivers--pushover_configs--user_key_file--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key_file.tls_config.server_name.secret`
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file.tls_config.server_name.config_map`
 
 Required:
 
@@ -1632,7 +1632,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--pushover_configs--user_key_file--tls_config--key_secret"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key_file.tls_config.server_name`
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file.tls_config.key_secret`
 
 Required:
 
@@ -1647,7 +1647,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--pushover_configs--token"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key_file`
+### Nested Schema for `spec.receivers.pushover_configs.token`
 
 Required:
 
@@ -1656,7 +1656,7 @@ Required:
 
 
 <a id="nestedatt--spec--receivers--pushover_configs--user_key"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key_file`
+### Nested Schema for `spec.receivers.pushover_configs.user_key`
 
 Required:
 
@@ -1694,7 +1694,7 @@ Optional:
 - `username` (String)
 
 <a id="nestedatt--spec--receivers--slack_configs--actions"></a>
-### Nested Schema for `spec.receivers.slack_configs.username`
+### Nested Schema for `spec.receivers.slack_configs.actions`
 
 Required:
 
@@ -1725,7 +1725,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--slack_configs--api_url"></a>
-### Nested Schema for `spec.receivers.slack_configs.username`
+### Nested Schema for `spec.receivers.slack_configs.api_url`
 
 Required:
 
@@ -1734,7 +1734,7 @@ Required:
 
 
 <a id="nestedatt--spec--receivers--slack_configs--fields"></a>
-### Nested Schema for `spec.receivers.slack_configs.username`
+### Nested Schema for `spec.receivers.slack_configs.fields`
 
 Required:
 
@@ -1747,7 +1747,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--slack_configs--http_config"></a>
-### Nested Schema for `spec.receivers.slack_configs.username`
+### Nested Schema for `spec.receivers.slack_configs.http_config`
 
 Optional:
 
@@ -1768,7 +1768,7 @@ Optional:
 - `type` (String) Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'
 
 <a id="nestedatt--spec--receivers--slack_configs--username--authorization--credentials"></a>
-### Nested Schema for `spec.receivers.slack_configs.username.authorization.type`
+### Nested Schema for `spec.receivers.slack_configs.username.authorization.credentials`
 
 Required:
 
@@ -1790,7 +1790,7 @@ Optional:
 - `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--slack_configs--username--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--slack_configs--username--basic_auth--password"></a>
-### Nested Schema for `spec.receivers.slack_configs.username.basic_auth.username`
+### Nested Schema for `spec.receivers.slack_configs.username.basic_auth.password`
 
 Required:
 
@@ -1840,7 +1840,7 @@ Optional:
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 
 <a id="nestedatt--spec--receivers--slack_configs--username--oauth2--client_id"></a>
-### Nested Schema for `spec.receivers.slack_configs.username.oauth2.scopes`
+### Nested Schema for `spec.receivers.slack_configs.username.oauth2.client_id`
 
 Optional:
 
@@ -1848,7 +1848,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--slack_configs--username--oauth2--scopes--secret))
 
 <a id="nestedatt--spec--receivers--slack_configs--username--oauth2--scopes--config_map"></a>
-### Nested Schema for `spec.receivers.slack_configs.username.oauth2.scopes.secret`
+### Nested Schema for `spec.receivers.slack_configs.username.oauth2.scopes.config_map`
 
 Required:
 
@@ -1875,7 +1875,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--slack_configs--username--oauth2--client_secret"></a>
-### Nested Schema for `spec.receivers.slack_configs.username.oauth2.scopes`
+### Nested Schema for `spec.receivers.slack_configs.username.oauth2.client_secret`
 
 Required:
 
@@ -1900,7 +1900,7 @@ Optional:
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--receivers--slack_configs--username--tls_config--ca"></a>
-### Nested Schema for `spec.receivers.slack_configs.username.tls_config.server_name`
+### Nested Schema for `spec.receivers.slack_configs.username.tls_config.ca`
 
 Optional:
 
@@ -1908,7 +1908,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--slack_configs--username--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--receivers--slack_configs--username--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.slack_configs.username.tls_config.server_name.secret`
+### Nested Schema for `spec.receivers.slack_configs.username.tls_config.server_name.config_map`
 
 Required:
 
@@ -1935,7 +1935,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--slack_configs--username--tls_config--cert"></a>
-### Nested Schema for `spec.receivers.slack_configs.username.tls_config.server_name`
+### Nested Schema for `spec.receivers.slack_configs.username.tls_config.cert`
 
 Optional:
 
@@ -1943,7 +1943,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--slack_configs--username--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--receivers--slack_configs--username--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.slack_configs.username.tls_config.server_name.secret`
+### Nested Schema for `spec.receivers.slack_configs.username.tls_config.server_name.config_map`
 
 Required:
 
@@ -1970,7 +1970,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--slack_configs--username--tls_config--key_secret"></a>
-### Nested Schema for `spec.receivers.slack_configs.username.tls_config.server_name`
+### Nested Schema for `spec.receivers.slack_configs.username.tls_config.key_secret`
 
 Required:
 
@@ -2002,7 +2002,7 @@ Optional:
 - `topic_arn` (String) SNS topic ARN, i.e. arn:aws:sns:us-east-2:698519295917:My-Topic If you don't specify this value, you must specify a value for the PhoneNumber or TargetARN.
 
 <a id="nestedatt--spec--receivers--sns_configs--http_config"></a>
-### Nested Schema for `spec.receivers.sns_configs.topic_arn`
+### Nested Schema for `spec.receivers.sns_configs.http_config`
 
 Optional:
 
@@ -2023,7 +2023,7 @@ Optional:
 - `type` (String) Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'
 
 <a id="nestedatt--spec--receivers--sns_configs--topic_arn--authorization--credentials"></a>
-### Nested Schema for `spec.receivers.sns_configs.topic_arn.authorization.type`
+### Nested Schema for `spec.receivers.sns_configs.topic_arn.authorization.credentials`
 
 Required:
 
@@ -2045,7 +2045,7 @@ Optional:
 - `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--topic_arn--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--sns_configs--topic_arn--basic_auth--password"></a>
-### Nested Schema for `spec.receivers.sns_configs.topic_arn.basic_auth.username`
+### Nested Schema for `spec.receivers.sns_configs.topic_arn.basic_auth.password`
 
 Required:
 
@@ -2095,7 +2095,7 @@ Optional:
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 
 <a id="nestedatt--spec--receivers--sns_configs--topic_arn--oauth2--client_id"></a>
-### Nested Schema for `spec.receivers.sns_configs.topic_arn.oauth2.scopes`
+### Nested Schema for `spec.receivers.sns_configs.topic_arn.oauth2.client_id`
 
 Optional:
 
@@ -2103,7 +2103,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--topic_arn--oauth2--scopes--secret))
 
 <a id="nestedatt--spec--receivers--sns_configs--topic_arn--oauth2--scopes--config_map"></a>
-### Nested Schema for `spec.receivers.sns_configs.topic_arn.oauth2.scopes.secret`
+### Nested Schema for `spec.receivers.sns_configs.topic_arn.oauth2.scopes.config_map`
 
 Required:
 
@@ -2130,7 +2130,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--sns_configs--topic_arn--oauth2--client_secret"></a>
-### Nested Schema for `spec.receivers.sns_configs.topic_arn.oauth2.scopes`
+### Nested Schema for `spec.receivers.sns_configs.topic_arn.oauth2.client_secret`
 
 Required:
 
@@ -2155,7 +2155,7 @@ Optional:
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--receivers--sns_configs--topic_arn--tls_config--ca"></a>
-### Nested Schema for `spec.receivers.sns_configs.topic_arn.tls_config.server_name`
+### Nested Schema for `spec.receivers.sns_configs.topic_arn.tls_config.ca`
 
 Optional:
 
@@ -2163,7 +2163,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--topic_arn--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--receivers--sns_configs--topic_arn--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.sns_configs.topic_arn.tls_config.server_name.secret`
+### Nested Schema for `spec.receivers.sns_configs.topic_arn.tls_config.server_name.config_map`
 
 Required:
 
@@ -2190,7 +2190,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--sns_configs--topic_arn--tls_config--cert"></a>
-### Nested Schema for `spec.receivers.sns_configs.topic_arn.tls_config.server_name`
+### Nested Schema for `spec.receivers.sns_configs.topic_arn.tls_config.cert`
 
 Optional:
 
@@ -2198,7 +2198,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--topic_arn--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--receivers--sns_configs--topic_arn--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.sns_configs.topic_arn.tls_config.server_name.secret`
+### Nested Schema for `spec.receivers.sns_configs.topic_arn.tls_config.server_name.config_map`
 
 Required:
 
@@ -2225,7 +2225,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--sns_configs--topic_arn--tls_config--key_secret"></a>
-### Nested Schema for `spec.receivers.sns_configs.topic_arn.tls_config.server_name`
+### Nested Schema for `spec.receivers.sns_configs.topic_arn.tls_config.key_secret`
 
 Required:
 
@@ -2240,7 +2240,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--sns_configs--sigv4"></a>
-### Nested Schema for `spec.receivers.sns_configs.topic_arn`
+### Nested Schema for `spec.receivers.sns_configs.sigv4`
 
 Optional:
 
@@ -2294,7 +2294,7 @@ Optional:
 - `send_resolved` (Boolean) Whether to notify about resolved alerts.
 
 <a id="nestedatt--spec--receivers--telegram_configs--bot_token"></a>
-### Nested Schema for `spec.receivers.telegram_configs.send_resolved`
+### Nested Schema for `spec.receivers.telegram_configs.bot_token`
 
 Required:
 
@@ -2303,7 +2303,7 @@ Required:
 
 
 <a id="nestedatt--spec--receivers--telegram_configs--http_config"></a>
-### Nested Schema for `spec.receivers.telegram_configs.send_resolved`
+### Nested Schema for `spec.receivers.telegram_configs.http_config`
 
 Optional:
 
@@ -2324,7 +2324,7 @@ Optional:
 - `type` (String) Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'
 
 <a id="nestedatt--spec--receivers--telegram_configs--send_resolved--authorization--credentials"></a>
-### Nested Schema for `spec.receivers.telegram_configs.send_resolved.authorization.type`
+### Nested Schema for `spec.receivers.telegram_configs.send_resolved.authorization.credentials`
 
 Required:
 
@@ -2346,7 +2346,7 @@ Optional:
 - `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--telegram_configs--send_resolved--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--telegram_configs--send_resolved--basic_auth--password"></a>
-### Nested Schema for `spec.receivers.telegram_configs.send_resolved.basic_auth.username`
+### Nested Schema for `spec.receivers.telegram_configs.send_resolved.basic_auth.password`
 
 Required:
 
@@ -2396,7 +2396,7 @@ Optional:
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 
 <a id="nestedatt--spec--receivers--telegram_configs--send_resolved--oauth2--client_id"></a>
-### Nested Schema for `spec.receivers.telegram_configs.send_resolved.oauth2.scopes`
+### Nested Schema for `spec.receivers.telegram_configs.send_resolved.oauth2.client_id`
 
 Optional:
 
@@ -2404,7 +2404,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--telegram_configs--send_resolved--oauth2--scopes--secret))
 
 <a id="nestedatt--spec--receivers--telegram_configs--send_resolved--oauth2--scopes--config_map"></a>
-### Nested Schema for `spec.receivers.telegram_configs.send_resolved.oauth2.scopes.secret`
+### Nested Schema for `spec.receivers.telegram_configs.send_resolved.oauth2.scopes.config_map`
 
 Required:
 
@@ -2431,7 +2431,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--telegram_configs--send_resolved--oauth2--client_secret"></a>
-### Nested Schema for `spec.receivers.telegram_configs.send_resolved.oauth2.scopes`
+### Nested Schema for `spec.receivers.telegram_configs.send_resolved.oauth2.client_secret`
 
 Required:
 
@@ -2456,7 +2456,7 @@ Optional:
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--receivers--telegram_configs--send_resolved--tls_config--ca"></a>
-### Nested Schema for `spec.receivers.telegram_configs.send_resolved.tls_config.server_name`
+### Nested Schema for `spec.receivers.telegram_configs.send_resolved.tls_config.ca`
 
 Optional:
 
@@ -2464,7 +2464,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--telegram_configs--send_resolved--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--receivers--telegram_configs--send_resolved--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.telegram_configs.send_resolved.tls_config.server_name.secret`
+### Nested Schema for `spec.receivers.telegram_configs.send_resolved.tls_config.server_name.config_map`
 
 Required:
 
@@ -2491,7 +2491,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--telegram_configs--send_resolved--tls_config--cert"></a>
-### Nested Schema for `spec.receivers.telegram_configs.send_resolved.tls_config.server_name`
+### Nested Schema for `spec.receivers.telegram_configs.send_resolved.tls_config.cert`
 
 Optional:
 
@@ -2499,7 +2499,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--telegram_configs--send_resolved--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--receivers--telegram_configs--send_resolved--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.telegram_configs.send_resolved.tls_config.server_name.secret`
+### Nested Schema for `spec.receivers.telegram_configs.send_resolved.tls_config.server_name.config_map`
 
 Required:
 
@@ -2526,7 +2526,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--telegram_configs--send_resolved--tls_config--key_secret"></a>
-### Nested Schema for `spec.receivers.telegram_configs.send_resolved.tls_config.server_name`
+### Nested Schema for `spec.receivers.telegram_configs.send_resolved.tls_config.key_secret`
 
 Required:
 
@@ -2558,7 +2558,7 @@ Optional:
 - `state_message` (String) Contains long explanation of the alerted problem.
 
 <a id="nestedatt--spec--receivers--victorops_configs--api_key"></a>
-### Nested Schema for `spec.receivers.victorops_configs.state_message`
+### Nested Schema for `spec.receivers.victorops_configs.api_key`
 
 Required:
 
@@ -2567,7 +2567,7 @@ Required:
 
 
 <a id="nestedatt--spec--receivers--victorops_configs--custom_fields"></a>
-### Nested Schema for `spec.receivers.victorops_configs.state_message`
+### Nested Schema for `spec.receivers.victorops_configs.custom_fields`
 
 Required:
 
@@ -2576,7 +2576,7 @@ Required:
 
 
 <a id="nestedatt--spec--receivers--victorops_configs--http_config"></a>
-### Nested Schema for `spec.receivers.victorops_configs.state_message`
+### Nested Schema for `spec.receivers.victorops_configs.http_config`
 
 Optional:
 
@@ -2597,7 +2597,7 @@ Optional:
 - `type` (String) Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'
 
 <a id="nestedatt--spec--receivers--victorops_configs--state_message--authorization--credentials"></a>
-### Nested Schema for `spec.receivers.victorops_configs.state_message.authorization.type`
+### Nested Schema for `spec.receivers.victorops_configs.state_message.authorization.credentials`
 
 Required:
 
@@ -2619,7 +2619,7 @@ Optional:
 - `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--state_message--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--victorops_configs--state_message--basic_auth--password"></a>
-### Nested Schema for `spec.receivers.victorops_configs.state_message.basic_auth.username`
+### Nested Schema for `spec.receivers.victorops_configs.state_message.basic_auth.password`
 
 Required:
 
@@ -2669,7 +2669,7 @@ Optional:
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 
 <a id="nestedatt--spec--receivers--victorops_configs--state_message--oauth2--client_id"></a>
-### Nested Schema for `spec.receivers.victorops_configs.state_message.oauth2.scopes`
+### Nested Schema for `spec.receivers.victorops_configs.state_message.oauth2.client_id`
 
 Optional:
 
@@ -2677,7 +2677,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--state_message--oauth2--scopes--secret))
 
 <a id="nestedatt--spec--receivers--victorops_configs--state_message--oauth2--scopes--config_map"></a>
-### Nested Schema for `spec.receivers.victorops_configs.state_message.oauth2.scopes.secret`
+### Nested Schema for `spec.receivers.victorops_configs.state_message.oauth2.scopes.config_map`
 
 Required:
 
@@ -2704,7 +2704,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--victorops_configs--state_message--oauth2--client_secret"></a>
-### Nested Schema for `spec.receivers.victorops_configs.state_message.oauth2.scopes`
+### Nested Schema for `spec.receivers.victorops_configs.state_message.oauth2.client_secret`
 
 Required:
 
@@ -2729,7 +2729,7 @@ Optional:
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--receivers--victorops_configs--state_message--tls_config--ca"></a>
-### Nested Schema for `spec.receivers.victorops_configs.state_message.tls_config.server_name`
+### Nested Schema for `spec.receivers.victorops_configs.state_message.tls_config.ca`
 
 Optional:
 
@@ -2737,7 +2737,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--state_message--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--receivers--victorops_configs--state_message--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.victorops_configs.state_message.tls_config.server_name.secret`
+### Nested Schema for `spec.receivers.victorops_configs.state_message.tls_config.server_name.config_map`
 
 Required:
 
@@ -2764,7 +2764,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--victorops_configs--state_message--tls_config--cert"></a>
-### Nested Schema for `spec.receivers.victorops_configs.state_message.tls_config.server_name`
+### Nested Schema for `spec.receivers.victorops_configs.state_message.tls_config.cert`
 
 Optional:
 
@@ -2772,7 +2772,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--state_message--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--receivers--victorops_configs--state_message--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.victorops_configs.state_message.tls_config.server_name.secret`
+### Nested Schema for `spec.receivers.victorops_configs.state_message.tls_config.server_name.config_map`
 
 Required:
 
@@ -2799,7 +2799,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--victorops_configs--state_message--tls_config--key_secret"></a>
-### Nested Schema for `spec.receivers.victorops_configs.state_message.tls_config.server_name`
+### Nested Schema for `spec.receivers.victorops_configs.state_message.tls_config.key_secret`
 
 Required:
 
@@ -2829,7 +2829,7 @@ Optional:
 - `send_resolved` (Boolean) Whether to notify about resolved alerts.
 
 <a id="nestedatt--spec--receivers--webex_configs--http_config"></a>
-### Nested Schema for `spec.receivers.webex_configs.send_resolved`
+### Nested Schema for `spec.receivers.webex_configs.http_config`
 
 Optional:
 
@@ -2850,7 +2850,7 @@ Optional:
 - `type` (String) Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'
 
 <a id="nestedatt--spec--receivers--webex_configs--send_resolved--authorization--credentials"></a>
-### Nested Schema for `spec.receivers.webex_configs.send_resolved.authorization.type`
+### Nested Schema for `spec.receivers.webex_configs.send_resolved.authorization.credentials`
 
 Required:
 
@@ -2872,7 +2872,7 @@ Optional:
 - `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--webex_configs--send_resolved--basic_auth--password"></a>
-### Nested Schema for `spec.receivers.webex_configs.send_resolved.basic_auth.username`
+### Nested Schema for `spec.receivers.webex_configs.send_resolved.basic_auth.password`
 
 Required:
 
@@ -2922,7 +2922,7 @@ Optional:
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 
 <a id="nestedatt--spec--receivers--webex_configs--send_resolved--oauth2--client_id"></a>
-### Nested Schema for `spec.receivers.webex_configs.send_resolved.oauth2.scopes`
+### Nested Schema for `spec.receivers.webex_configs.send_resolved.oauth2.client_id`
 
 Optional:
 
@@ -2930,7 +2930,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--oauth2--scopes--secret))
 
 <a id="nestedatt--spec--receivers--webex_configs--send_resolved--oauth2--scopes--config_map"></a>
-### Nested Schema for `spec.receivers.webex_configs.send_resolved.oauth2.scopes.secret`
+### Nested Schema for `spec.receivers.webex_configs.send_resolved.oauth2.scopes.config_map`
 
 Required:
 
@@ -2957,7 +2957,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--webex_configs--send_resolved--oauth2--client_secret"></a>
-### Nested Schema for `spec.receivers.webex_configs.send_resolved.oauth2.scopes`
+### Nested Schema for `spec.receivers.webex_configs.send_resolved.oauth2.client_secret`
 
 Required:
 
@@ -2982,7 +2982,7 @@ Optional:
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--ca"></a>
-### Nested Schema for `spec.receivers.webex_configs.send_resolved.tls_config.server_name`
+### Nested Schema for `spec.receivers.webex_configs.send_resolved.tls_config.ca`
 
 Optional:
 
@@ -2990,7 +2990,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.webex_configs.send_resolved.tls_config.server_name.secret`
+### Nested Schema for `spec.receivers.webex_configs.send_resolved.tls_config.server_name.config_map`
 
 Required:
 
@@ -3017,7 +3017,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--cert"></a>
-### Nested Schema for `spec.receivers.webex_configs.send_resolved.tls_config.server_name`
+### Nested Schema for `spec.receivers.webex_configs.send_resolved.tls_config.cert`
 
 Optional:
 
@@ -3025,7 +3025,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.webex_configs.send_resolved.tls_config.server_name.secret`
+### Nested Schema for `spec.receivers.webex_configs.send_resolved.tls_config.server_name.config_map`
 
 Required:
 
@@ -3052,7 +3052,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--key_secret"></a>
-### Nested Schema for `spec.receivers.webex_configs.send_resolved.tls_config.server_name`
+### Nested Schema for `spec.receivers.webex_configs.send_resolved.tls_config.key_secret`
 
 Required:
 
@@ -3079,7 +3079,7 @@ Optional:
 - `url_secret` (Attributes) The secret's key that contains the webhook URL to send HTTP requests to. 'urlSecret' takes precedence over 'url'. One of 'urlSecret' and 'url' should be defined. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. (see [below for nested schema](#nestedatt--spec--receivers--webhook_configs--url_secret))
 
 <a id="nestedatt--spec--receivers--webhook_configs--http_config"></a>
-### Nested Schema for `spec.receivers.webhook_configs.url_secret`
+### Nested Schema for `spec.receivers.webhook_configs.http_config`
 
 Optional:
 
@@ -3100,7 +3100,7 @@ Optional:
 - `type` (String) Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'
 
 <a id="nestedatt--spec--receivers--webhook_configs--url_secret--authorization--credentials"></a>
-### Nested Schema for `spec.receivers.webhook_configs.url_secret.authorization.type`
+### Nested Schema for `spec.receivers.webhook_configs.url_secret.authorization.credentials`
 
 Required:
 
@@ -3122,7 +3122,7 @@ Optional:
 - `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--webhook_configs--url_secret--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--webhook_configs--url_secret--basic_auth--password"></a>
-### Nested Schema for `spec.receivers.webhook_configs.url_secret.basic_auth.username`
+### Nested Schema for `spec.receivers.webhook_configs.url_secret.basic_auth.password`
 
 Required:
 
@@ -3172,7 +3172,7 @@ Optional:
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 
 <a id="nestedatt--spec--receivers--webhook_configs--url_secret--oauth2--client_id"></a>
-### Nested Schema for `spec.receivers.webhook_configs.url_secret.oauth2.scopes`
+### Nested Schema for `spec.receivers.webhook_configs.url_secret.oauth2.client_id`
 
 Optional:
 
@@ -3180,7 +3180,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webhook_configs--url_secret--oauth2--scopes--secret))
 
 <a id="nestedatt--spec--receivers--webhook_configs--url_secret--oauth2--scopes--config_map"></a>
-### Nested Schema for `spec.receivers.webhook_configs.url_secret.oauth2.scopes.secret`
+### Nested Schema for `spec.receivers.webhook_configs.url_secret.oauth2.scopes.config_map`
 
 Required:
 
@@ -3207,7 +3207,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--webhook_configs--url_secret--oauth2--client_secret"></a>
-### Nested Schema for `spec.receivers.webhook_configs.url_secret.oauth2.scopes`
+### Nested Schema for `spec.receivers.webhook_configs.url_secret.oauth2.client_secret`
 
 Required:
 
@@ -3232,7 +3232,7 @@ Optional:
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--receivers--webhook_configs--url_secret--tls_config--ca"></a>
-### Nested Schema for `spec.receivers.webhook_configs.url_secret.tls_config.server_name`
+### Nested Schema for `spec.receivers.webhook_configs.url_secret.tls_config.ca`
 
 Optional:
 
@@ -3240,7 +3240,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webhook_configs--url_secret--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--receivers--webhook_configs--url_secret--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.webhook_configs.url_secret.tls_config.server_name.secret`
+### Nested Schema for `spec.receivers.webhook_configs.url_secret.tls_config.server_name.config_map`
 
 Required:
 
@@ -3267,7 +3267,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--webhook_configs--url_secret--tls_config--cert"></a>
-### Nested Schema for `spec.receivers.webhook_configs.url_secret.tls_config.server_name`
+### Nested Schema for `spec.receivers.webhook_configs.url_secret.tls_config.cert`
 
 Optional:
 
@@ -3275,7 +3275,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webhook_configs--url_secret--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--receivers--webhook_configs--url_secret--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.webhook_configs.url_secret.tls_config.server_name.secret`
+### Nested Schema for `spec.receivers.webhook_configs.url_secret.tls_config.server_name.config_map`
 
 Required:
 
@@ -3302,7 +3302,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--webhook_configs--url_secret--tls_config--key_secret"></a>
-### Nested Schema for `spec.receivers.webhook_configs.url_secret.tls_config.server_name`
+### Nested Schema for `spec.receivers.webhook_configs.url_secret.tls_config.key_secret`
 
 Required:
 
@@ -3344,7 +3344,7 @@ Optional:
 - `to_user` (String)
 
 <a id="nestedatt--spec--receivers--wechat_configs--api_secret"></a>
-### Nested Schema for `spec.receivers.wechat_configs.to_user`
+### Nested Schema for `spec.receivers.wechat_configs.api_secret`
 
 Required:
 
@@ -3353,7 +3353,7 @@ Required:
 
 
 <a id="nestedatt--spec--receivers--wechat_configs--http_config"></a>
-### Nested Schema for `spec.receivers.wechat_configs.to_user`
+### Nested Schema for `spec.receivers.wechat_configs.http_config`
 
 Optional:
 
@@ -3374,7 +3374,7 @@ Optional:
 - `type` (String) Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'
 
 <a id="nestedatt--spec--receivers--wechat_configs--to_user--authorization--credentials"></a>
-### Nested Schema for `spec.receivers.wechat_configs.to_user.authorization.type`
+### Nested Schema for `spec.receivers.wechat_configs.to_user.authorization.credentials`
 
 Required:
 
@@ -3396,7 +3396,7 @@ Optional:
 - `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--to_user--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--wechat_configs--to_user--basic_auth--password"></a>
-### Nested Schema for `spec.receivers.wechat_configs.to_user.basic_auth.username`
+### Nested Schema for `spec.receivers.wechat_configs.to_user.basic_auth.password`
 
 Required:
 
@@ -3446,7 +3446,7 @@ Optional:
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 
 <a id="nestedatt--spec--receivers--wechat_configs--to_user--oauth2--client_id"></a>
-### Nested Schema for `spec.receivers.wechat_configs.to_user.oauth2.scopes`
+### Nested Schema for `spec.receivers.wechat_configs.to_user.oauth2.client_id`
 
 Optional:
 
@@ -3454,7 +3454,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--to_user--oauth2--scopes--secret))
 
 <a id="nestedatt--spec--receivers--wechat_configs--to_user--oauth2--scopes--config_map"></a>
-### Nested Schema for `spec.receivers.wechat_configs.to_user.oauth2.scopes.secret`
+### Nested Schema for `spec.receivers.wechat_configs.to_user.oauth2.scopes.config_map`
 
 Required:
 
@@ -3481,7 +3481,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--wechat_configs--to_user--oauth2--client_secret"></a>
-### Nested Schema for `spec.receivers.wechat_configs.to_user.oauth2.scopes`
+### Nested Schema for `spec.receivers.wechat_configs.to_user.oauth2.client_secret`
 
 Required:
 
@@ -3506,7 +3506,7 @@ Optional:
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--receivers--wechat_configs--to_user--tls_config--ca"></a>
-### Nested Schema for `spec.receivers.wechat_configs.to_user.tls_config.server_name`
+### Nested Schema for `spec.receivers.wechat_configs.to_user.tls_config.ca`
 
 Optional:
 
@@ -3514,7 +3514,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--to_user--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--receivers--wechat_configs--to_user--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.wechat_configs.to_user.tls_config.server_name.secret`
+### Nested Schema for `spec.receivers.wechat_configs.to_user.tls_config.server_name.config_map`
 
 Required:
 
@@ -3541,7 +3541,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--wechat_configs--to_user--tls_config--cert"></a>
-### Nested Schema for `spec.receivers.wechat_configs.to_user.tls_config.server_name`
+### Nested Schema for `spec.receivers.wechat_configs.to_user.tls_config.cert`
 
 Optional:
 
@@ -3549,7 +3549,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--to_user--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--receivers--wechat_configs--to_user--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.wechat_configs.to_user.tls_config.server_name.secret`
+### Nested Schema for `spec.receivers.wechat_configs.to_user.tls_config.server_name.config_map`
 
 Required:
 
@@ -3576,7 +3576,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--wechat_configs--to_user--tls_config--key_secret"></a>
-### Nested Schema for `spec.receivers.wechat_configs.to_user.tls_config.server_name`
+### Nested Schema for `spec.receivers.wechat_configs.to_user.tls_config.key_secret`
 
 Required:
 
@@ -3642,7 +3642,7 @@ Optional:
 - `years` (List of String) Years is a list of YearRange
 
 <a id="nestedatt--spec--time_intervals--time_intervals--days_of_month"></a>
-### Nested Schema for `spec.time_intervals.time_intervals.years`
+### Nested Schema for `spec.time_intervals.time_intervals.days_of_month`
 
 Optional:
 
@@ -3651,7 +3651,7 @@ Optional:
 
 
 <a id="nestedatt--spec--time_intervals--time_intervals--times"></a>
-### Nested Schema for `spec.time_intervals.time_intervals.years`
+### Nested Schema for `spec.time_intervals.time_intervals.times`
 
 Optional:
 

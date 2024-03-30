@@ -179,7 +179,7 @@ Optional:
 - `web_identity_token_file` (String) Web identity token file
 
 <a id="nestedatt--spec--outputs--cloud_watch--aws_key_id"></a>
-### Nested Schema for `spec.outputs.cloud_watch.web_identity_token_file`
+### Nested Schema for `spec.outputs.cloud_watch.aws_key_id`
 
 Optional:
 
@@ -208,7 +208,7 @@ Optional:
 
 
 <a id="nestedatt--spec--outputs--cloud_watch--aws_sec_key"></a>
-### Nested Schema for `spec.outputs.cloud_watch.web_identity_token_file`
+### Nested Schema for `spec.outputs.cloud_watch.aws_sec_key`
 
 Optional:
 
@@ -281,7 +281,7 @@ Optional:
 - `use_ssl` (Boolean) If true, the agent initializes a secure connection to Datadog. In clear TCP otherwise.
 
 <a id="nestedatt--spec--outputs--datadog--api_key"></a>
-### Nested Schema for `spec.outputs.datadog.use_ssl`
+### Nested Schema for `spec.outputs.datadog.api_key`
 
 Optional:
 
@@ -332,7 +332,7 @@ Optional:
 - `user` (Attributes) Optional, The login credentials to connect to Elasticsearch (see [below for nested schema](#nestedatt--spec--outputs--elasticsearch--user))
 
 <a id="nestedatt--spec--outputs--elasticsearch--client_key_password"></a>
-### Nested Schema for `spec.outputs.elasticsearch.user`
+### Nested Schema for `spec.outputs.elasticsearch.client_key_password`
 
 Optional:
 
@@ -361,7 +361,7 @@ Optional:
 
 
 <a id="nestedatt--spec--outputs--elasticsearch--password"></a>
-### Nested Schema for `spec.outputs.elasticsearch.user`
+### Nested Schema for `spec.outputs.elasticsearch.password`
 
 Optional:
 
@@ -480,7 +480,7 @@ Optional:
 - `verify_connection_at_startup` (Boolean) Verify that a connection can be made with one of out_forward nodes at the time of startup.
 
 <a id="nestedatt--spec--outputs--forward--servers"></a>
-### Nested Schema for `spec.outputs.forward.verify_connection_at_startup`
+### Nested Schema for `spec.outputs.forward.servers`
 
 Optional:
 
@@ -556,7 +556,7 @@ Optional:
 
 
 <a id="nestedatt--spec--outputs--forward--security"></a>
-### Nested Schema for `spec.outputs.forward.verify_connection_at_startup`
+### Nested Schema for `spec.outputs.forward.security`
 
 Optional:
 
@@ -575,7 +575,7 @@ Optional:
 - `username` (Attributes) Secret defines the key of a value. (see [below for nested schema](#nestedatt--spec--outputs--forward--verify_connection_at_startup--user--username))
 
 <a id="nestedatt--spec--outputs--forward--verify_connection_at_startup--user--password"></a>
-### Nested Schema for `spec.outputs.forward.verify_connection_at_startup.user.username`
+### Nested Schema for `spec.outputs.forward.verify_connection_at_startup.user.password`
 
 Optional:
 
@@ -635,7 +635,7 @@ Optional:
 
 
 <a id="nestedatt--spec--outputs--forward--service_discovery"></a>
-### Nested Schema for `spec.outputs.forward.verify_connection_at_startup`
+### Nested Schema for `spec.outputs.forward.service_discovery`
 
 Required:
 
@@ -673,7 +673,7 @@ Optional:
 - `weight` (String) Weight defines the load balancing weight
 
 <a id="nestedatt--spec--outputs--forward--verify_connection_at_startup--server--password"></a>
-### Nested Schema for `spec.outputs.forward.verify_connection_at_startup.server.weight`
+### Nested Schema for `spec.outputs.forward.verify_connection_at_startup.server.password`
 
 Optional:
 
@@ -702,7 +702,7 @@ Optional:
 
 
 <a id="nestedatt--spec--outputs--forward--verify_connection_at_startup--server--username"></a>
-### Nested Schema for `spec.outputs.forward.verify_connection_at_startup.server.weight`
+### Nested Schema for `spec.outputs.forward.verify_connection_at_startup.server.username`
 
 Optional:
 
@@ -760,7 +760,7 @@ Optional:
 - `tls_version` (String) TlsVersion defines the default version of TLS transport.
 
 <a id="nestedatt--spec--outputs--http--auth"></a>
-### Nested Schema for `spec.outputs.http.tls_version`
+### Nested Schema for `spec.outputs.http.auth`
 
 Optional:
 
@@ -841,7 +841,7 @@ Optional:
 - `worker_id_key` (String) The field name to inject worker_id
 
 <a id="nestedatt--spec--outputs--inject--inline"></a>
-### Nested Schema for `spec.outputs.inject.worker_id_key`
+### Nested Schema for `spec.outputs.inject.inline`
 
 Optional:
 
@@ -892,7 +892,7 @@ Optional:
 - `tls_private_key_file` (String) TlsPrivateKey defines the client private key file for TLS.
 
 <a id="nestedatt--spec--outputs--loki--http_password"></a>
-### Nested Schema for `spec.outputs.loki.tls_private_key_file`
+### Nested Schema for `spec.outputs.loki.http_password`
 
 Optional:
 
@@ -921,7 +921,7 @@ Optional:
 
 
 <a id="nestedatt--spec--outputs--loki--http_user"></a>
-### Nested Schema for `spec.outputs.loki.tls_private_key_file`
+### Nested Schema for `spec.outputs.loki.http_user`
 
 Optional:
 
@@ -950,7 +950,7 @@ Optional:
 
 
 <a id="nestedatt--spec--outputs--loki--tenant_id"></a>
-### Nested Schema for `spec.outputs.loki.tls_private_key_file`
+### Nested Schema for `spec.outputs.loki.tenant_id`
 
 Optional:
 
@@ -996,7 +996,7 @@ Optional:
 - `user` (Attributes) Optional, The login credentials to connect to Opensearch (see [below for nested schema](#nestedatt--spec--outputs--opensearch--user))
 
 <a id="nestedatt--spec--outputs--opensearch--password"></a>
-### Nested Schema for `spec.outputs.opensearch.user`
+### Nested Schema for `spec.outputs.opensearch.password`
 
 Optional:
 

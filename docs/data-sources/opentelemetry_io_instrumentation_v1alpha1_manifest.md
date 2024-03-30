@@ -241,7 +241,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--apache_httpd--resource_requirements--claims"></a>
-### Nested Schema for `spec.apache_httpd.resource_requirements.requests`
+### Nested Schema for `spec.apache_httpd.resource_requirements.claims`
 
 Required:
 
@@ -345,7 +345,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--dotnet--resource_requirements--claims"></a>
-### Nested Schema for `spec.dotnet.resource_requirements.requests`
+### Nested Schema for `spec.dotnet.resource_requirements.claims`
 
 Required:
 
@@ -377,7 +377,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.env.value_from.secret_key_ref`
+### Nested Schema for `spec.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -390,7 +390,7 @@ Optional:
 
 
 <a id="nestedatt--spec--env--value_from--field_ref"></a>
-### Nested Schema for `spec.env.value_from.secret_key_ref`
+### Nested Schema for `spec.env.value_from.field_ref`
 
 Required:
 
@@ -402,7 +402,7 @@ Optional:
 
 
 <a id="nestedatt--spec--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.env.value_from.secret_key_ref`
+### Nested Schema for `spec.env.value_from.resource_field_ref`
 
 Required:
 
@@ -532,7 +532,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--go--resource_requirements--claims"></a>
-### Nested Schema for `spec.go.resource_requirements.requests`
+### Nested Schema for `spec.go.resource_requirements.claims`
 
 Required:
 
@@ -636,7 +636,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--java--resources--claims"></a>
-### Nested Schema for `spec.java.resources.requests`
+### Nested Schema for `spec.java.resources.claims`
 
 Required:
 
@@ -817,7 +817,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--nginx--resource_requirements--claims"></a>
-### Nested Schema for `spec.nginx.resource_requirements.requests`
+### Nested Schema for `spec.nginx.resource_requirements.claims`
 
 Required:
 
@@ -921,7 +921,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--nodejs--resource_requirements--claims"></a>
-### Nested Schema for `spec.nodejs.resource_requirements.requests`
+### Nested Schema for `spec.nodejs.resource_requirements.claims`
 
 Required:
 
@@ -1025,7 +1025,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--python--resource_requirements--claims"></a>
-### Nested Schema for `spec.python.resource_requirements.requests`
+### Nested Schema for `spec.python.resource_requirements.claims`
 
 Required:
 

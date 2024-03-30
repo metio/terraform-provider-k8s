@@ -95,7 +95,7 @@ Optional:
 - `test` (String) object name
 
 <a id="nestedatt--spec--after--execute--execution_request"></a>
-### Nested Schema for `spec.after.execute.test`
+### Nested Schema for `spec.after.execute.execution_request`
 
 Optional:
 
@@ -151,7 +151,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--after--execute--test--variables--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--after--execute--test--variables--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.after.execute.test.variables.value_from.secret_key_ref`
+### Nested Schema for `spec.after.execute.test.variables.value_from.config_map_key_ref`
 
 Required:
 
@@ -164,7 +164,7 @@ Optional:
 
 
 <a id="nestedatt--spec--after--execute--test--variables--value_from--field_ref"></a>
-### Nested Schema for `spec.after.execute.test.variables.value_from.secret_key_ref`
+### Nested Schema for `spec.after.execute.test.variables.value_from.field_ref`
 
 Required:
 
@@ -176,7 +176,7 @@ Optional:
 
 
 <a id="nestedatt--spec--after--execute--test--variables--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.after.execute.test.variables.value_from.secret_key_ref`
+### Nested Schema for `spec.after.execute.test.variables.value_from.resource_field_ref`
 
 Required:
 
@@ -238,7 +238,7 @@ Optional:
 - `test` (String) object name
 
 <a id="nestedatt--spec--before--execute--execution_request"></a>
-### Nested Schema for `spec.before.execute.test`
+### Nested Schema for `spec.before.execute.execution_request`
 
 Optional:
 
@@ -294,7 +294,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--before--execute--test--variables--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--before--execute--test--variables--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.before.execute.test.variables.value_from.secret_key_ref`
+### Nested Schema for `spec.before.execute.test.variables.value_from.config_map_key_ref`
 
 Required:
 
@@ -307,7 +307,7 @@ Optional:
 
 
 <a id="nestedatt--spec--before--execute--test--variables--value_from--field_ref"></a>
-### Nested Schema for `spec.before.execute.test.variables.value_from.secret_key_ref`
+### Nested Schema for `spec.before.execute.test.variables.value_from.field_ref`
 
 Required:
 
@@ -319,7 +319,7 @@ Optional:
 
 
 <a id="nestedatt--spec--before--execute--test--variables--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.before.execute.test.variables.value_from.secret_key_ref`
+### Nested Schema for `spec.before.execute.test.variables.value_from.resource_field_ref`
 
 Required:
 
@@ -479,7 +479,7 @@ Optional:
 - `test` (String) object name
 
 <a id="nestedatt--spec--steps--execute--execution_request"></a>
-### Nested Schema for `spec.steps.execute.test`
+### Nested Schema for `spec.steps.execute.execution_request`
 
 Optional:
 
@@ -535,7 +535,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--steps--execute--test--variables--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--steps--execute--test--variables--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.steps.execute.test.variables.value_from.secret_key_ref`
+### Nested Schema for `spec.steps.execute.test.variables.value_from.config_map_key_ref`
 
 Required:
 
@@ -548,7 +548,7 @@ Optional:
 
 
 <a id="nestedatt--spec--steps--execute--test--variables--value_from--field_ref"></a>
-### Nested Schema for `spec.steps.execute.test.variables.value_from.secret_key_ref`
+### Nested Schema for `spec.steps.execute.test.variables.value_from.field_ref`
 
 Required:
 
@@ -560,7 +560,7 @@ Optional:
 
 
 <a id="nestedatt--spec--steps--execute--test--variables--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.steps.execute.test.variables.value_from.secret_key_ref`
+### Nested Schema for `spec.steps.execute.test.variables.value_from.resource_field_ref`
 
 Required:
 

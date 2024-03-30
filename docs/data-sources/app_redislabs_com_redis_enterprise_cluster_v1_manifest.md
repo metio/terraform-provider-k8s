@@ -201,7 +201,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--extra_env_vars--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--extra_env_vars--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.extra_env_vars.value_from.secret_key_ref`
+### Nested Schema for `spec.extra_env_vars.value_from.config_map_key_ref`
 
 Required:
 
@@ -214,7 +214,7 @@ Optional:
 
 
 <a id="nestedatt--spec--extra_env_vars--value_from--field_ref"></a>
-### Nested Schema for `spec.extra_env_vars.value_from.secret_key_ref`
+### Nested Schema for `spec.extra_env_vars.value_from.field_ref`
 
 Required:
 
@@ -226,7 +226,7 @@ Optional:
 
 
 <a id="nestedatt--spec--extra_env_vars--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.extra_env_vars.value_from.secret_key_ref`
+### Nested Schema for `spec.extra_env_vars.value_from.resource_field_ref`
 
 Required:
 
@@ -303,7 +303,7 @@ Optional:
 - `template` (String) Configuration for a template query. Mutually exclusive with the 'query' field. The substring '%u' will be replaced with the username, e.g., 'cn=%u,ou=dev,dc=example,dc=com'.
 
 <a id="nestedatt--spec--ldap--authentication_query--query"></a>
-### Nested Schema for `spec.ldap.authentication_query.template`
+### Nested Schema for `spec.ldap.authentication_query.query`
 
 Required:
 
@@ -384,7 +384,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -405,7 +405,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector.match_labels`
+### Nested Schema for `spec.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
 
 Required:
 
@@ -427,7 +427,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector.match_labels`
+### Nested Schema for `spec.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
 
 Required:
 
@@ -456,7 +456,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -478,7 +478,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -584,7 +584,7 @@ Optional:
 - `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--affinity--pod_anti_affinity))
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--affinity--node_affinity"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.node_affinity`
 
 Optional:
 
@@ -600,7 +600,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -608,7 +608,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -651,7 +651,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -680,7 +680,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--affinity--pod_affinity"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_affinity`
 
 Optional:
 
@@ -696,7 +696,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -709,7 +709,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -717,7 +717,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -731,7 +731,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -739,7 +739,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -768,7 +768,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -776,7 +776,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -790,7 +790,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -798,7 +798,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -830,7 +830,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -843,7 +843,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -851,7 +851,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -865,7 +865,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -873,7 +873,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -902,7 +902,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -910,7 +910,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -924,7 +924,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -932,7 +932,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -958,7 +958,7 @@ Optional:
 - `searches` (List of String)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--dns_config--options"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.dns_config.searches`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.dns_config.options`
 
 Optional:
 
@@ -1000,7 +1000,7 @@ Optional:
 - `working_dir` (String)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--ephemeral_containers--env"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.env`
 
 Required:
 
@@ -1022,7 +1022,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--ephemeral_containers--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--ephemeral_containers--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -1035,7 +1035,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--ephemeral_containers--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir.value_from.field_ref`
 
 Required:
 
@@ -1047,7 +1047,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--ephemeral_containers--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -1075,7 +1075,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--ephemeral_containers--env_from"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.env_from`
 
 Optional:
 
@@ -1103,7 +1103,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--ephemeral_containers--lifecycle"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.lifecycle`
 
 Optional:
 
@@ -1120,7 +1120,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--ephemeral_containers--working_dir--post_start--tcp_socket))
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--ephemeral_containers--working_dir--post_start--exec"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir.post_start.exec`
 
 Optional:
 
@@ -1128,7 +1128,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--ephemeral_containers--working_dir--post_start--http_get"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir.post_start.http_get`
 
 Required:
 
@@ -1142,7 +1142,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--ephemeral_containers--working_dir--post_start--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir.post_start.tcp_socket.scheme`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir.post_start.tcp_socket.http_headers`
 
 Required:
 
@@ -1174,7 +1174,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--ephemeral_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--ephemeral_containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -1182,7 +1182,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--ephemeral_containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -1196,7 +1196,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--ephemeral_containers--working_dir--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -1220,7 +1220,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--ephemeral_containers--liveness_probe"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.liveness_probe`
 
 Optional:
 
@@ -1270,7 +1270,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--ephemeral_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -1293,7 +1293,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--ephemeral_containers--ports"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.ports`
 
 Required:
 
@@ -1308,7 +1308,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--ephemeral_containers--readiness_probe"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.readiness_probe`
 
 Optional:
 
@@ -1358,7 +1358,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--ephemeral_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -1381,7 +1381,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--ephemeral_containers--resources"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.resources`
 
 Optional:
 
@@ -1399,7 +1399,7 @@ Required:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--ephemeral_containers--security_context"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.security_context`
 
 Optional:
 
@@ -1460,7 +1460,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--ephemeral_containers--startup_probe"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.startup_probe`
 
 Optional:
 
@@ -1510,7 +1510,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--ephemeral_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -1533,7 +1533,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--ephemeral_containers--volume_devices"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.volume_devices`
 
 Required:
 
@@ -1542,7 +1542,7 @@ Required:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--ephemeral_containers--volume_mounts"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.working_dir`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.ephemeral_containers.volume_mounts`
 
 Required:
 
@@ -1607,7 +1607,7 @@ Optional:
 - `working_dir` (String)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--init_containers--env"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.env`
 
 Required:
 
@@ -1629,7 +1629,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--init_containers--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--init_containers--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -1642,7 +1642,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--init_containers--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir.value_from.field_ref`
 
 Required:
 
@@ -1654,7 +1654,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--init_containers--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -1682,7 +1682,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--init_containers--env_from"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.env_from`
 
 Optional:
 
@@ -1710,7 +1710,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--init_containers--lifecycle"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.lifecycle`
 
 Optional:
 
@@ -1727,7 +1727,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--init_containers--working_dir--post_start--tcp_socket))
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--init_containers--working_dir--post_start--exec"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir.post_start.exec`
 
 Optional:
 
@@ -1735,7 +1735,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--init_containers--working_dir--post_start--http_get"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir.post_start.http_get`
 
 Required:
 
@@ -1749,7 +1749,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--init_containers--working_dir--post_start--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir.post_start.tcp_socket.scheme`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir.post_start.tcp_socket.http_headers`
 
 Required:
 
@@ -1781,7 +1781,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--init_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--init_containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -1789,7 +1789,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--init_containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -1803,7 +1803,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--init_containers--working_dir--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -1827,7 +1827,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--init_containers--liveness_probe"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.liveness_probe`
 
 Optional:
 
@@ -1877,7 +1877,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--init_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -1900,7 +1900,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--init_containers--ports"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.ports`
 
 Required:
 
@@ -1915,7 +1915,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--init_containers--readiness_probe"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.readiness_probe`
 
 Optional:
 
@@ -1965,7 +1965,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--init_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -1988,7 +1988,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--init_containers--resources"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.resources`
 
 Optional:
 
@@ -2006,7 +2006,7 @@ Required:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--init_containers--security_context"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.security_context`
 
 Optional:
 
@@ -2067,7 +2067,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--init_containers--startup_probe"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.startup_probe`
 
 Optional:
 
@@ -2117,7 +2117,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--init_containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir.http_get.scheme`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir.http_get.http_headers`
 
 Required:
 
@@ -2140,7 +2140,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--init_containers--volume_devices"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.volume_devices`
 
 Required:
 
@@ -2149,7 +2149,7 @@ Required:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--init_containers--volume_mounts"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.working_dir`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.init_containers.volume_mounts`
 
 Required:
 
@@ -2227,7 +2227,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--security_context--windows_options))
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--security_context--se_linux_options"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.security_context.windows_options`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.security_context.se_linux_options`
 
 Optional:
 
@@ -2238,7 +2238,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.security_context.windows_options`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.security_context.seccomp_profile`
 
 Required:
 
@@ -2250,7 +2250,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--security_context--sysctls"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.security_context.windows_options`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.security_context.sysctls`
 
 Required:
 
@@ -2300,7 +2300,7 @@ Optional:
 - `node_taints_policy` (String)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--topology_spread_constraints--label_selector"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.topology_spread_constraints.node_taints_policy`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.topology_spread_constraints.label_selector`
 
 Optional:
 
@@ -2362,7 +2362,7 @@ Optional:
 - `vsphere_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--vsphere_volume))
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--aws_elastic_block_store"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.aws_elastic_block_store`
 
 Required:
 
@@ -2376,7 +2376,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--azure_disk"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.azure_disk`
 
 Required:
 
@@ -2392,7 +2392,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--azure_file"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.azure_file`
 
 Required:
 
@@ -2405,7 +2405,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--cephfs"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.cephfs`
 
 Required:
 
@@ -2429,7 +2429,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--cinder"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.cinder`
 
 Required:
 
@@ -2451,7 +2451,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--config_map"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.config_map`
 
 Optional:
 
@@ -2475,7 +2475,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--csi"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.csi`
 
 Required:
 
@@ -2498,7 +2498,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--downward_api"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.downward_api`
 
 Optional:
 
@@ -2519,7 +2519,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--vsphere_volume--items--resource_field_ref))
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume.items.resource_field_ref`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume.items.field_ref`
 
 Required:
 
@@ -2546,7 +2546,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--empty_dir"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.empty_dir`
 
 Optional:
 
@@ -2555,7 +2555,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--ephemeral"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.ephemeral`
 
 Optional:
 
@@ -2573,7 +2573,7 @@ Optional:
 - `metadata` (Map of String)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume.volume_claim_template.metadata`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume.volume_claim_template.spec`
 
 Optional:
 
@@ -2587,7 +2587,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--vsphere_volume--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume.volume_claim_template.metadata.data_source`
 
 Required:
 
@@ -2600,7 +2600,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--vsphere_volume--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume.volume_claim_template.metadata.data_source_ref`
 
 Required:
 
@@ -2614,7 +2614,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--vsphere_volume--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume.volume_claim_template.metadata.resources`
 
 Optional:
 
@@ -2623,7 +2623,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--vsphere_volume--volume_claim_template--metadata--volume_name--claims"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume.volume_claim_template.metadata.volume_name.requests`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume.volume_claim_template.metadata.volume_name.claims`
 
 Required:
 
@@ -2632,7 +2632,7 @@ Required:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--vsphere_volume--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume.volume_claim_template.metadata.selector`
 
 Optional:
 
@@ -2640,7 +2640,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--vsphere_volume--volume_claim_template--metadata--volume_name--match_expressions"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_labels`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_expressions`
 
 Required:
 
@@ -2657,7 +2657,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--fc"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.fc`
 
 Optional:
 
@@ -2669,7 +2669,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--flex_volume"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.flex_volume`
 
 Required:
 
@@ -2692,7 +2692,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--flocker"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.flocker`
 
 Optional:
 
@@ -2701,7 +2701,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--gce_persistent_disk"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.gce_persistent_disk`
 
 Required:
 
@@ -2715,7 +2715,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--git_repo"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.git_repo`
 
 Required:
 
@@ -2728,7 +2728,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--glusterfs"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.glusterfs`
 
 Required:
 
@@ -2741,7 +2741,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--host_path"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.host_path`
 
 Required:
 
@@ -2753,7 +2753,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--iscsi"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.iscsi`
 
 Required:
 
@@ -2782,7 +2782,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--nfs"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.nfs`
 
 Required:
 
@@ -2795,7 +2795,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--persistent_volume_claim"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.persistent_volume_claim`
 
 Required:
 
@@ -2807,7 +2807,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--photon_persistent_disk"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.photon_persistent_disk`
 
 Required:
 
@@ -2819,7 +2819,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--portworx_volume"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.portworx_volume`
 
 Required:
 
@@ -2832,7 +2832,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--projected"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.projected`
 
 Optional:
 
@@ -2850,7 +2850,7 @@ Optional:
 - `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--vsphere_volume--sources--service_account_token))
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume.sources.config_map`
 
 Optional:
 
@@ -2859,7 +2859,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume.sources.service_account_token.optional`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume.sources.service_account_token.items`
 
 Required:
 
@@ -2873,7 +2873,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume.sources.downward_api`
 
 Optional:
 
@@ -2893,7 +2893,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume.sources.service_account_token.items.field_ref`
 
 Required:
 
@@ -2920,7 +2920,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume.sources.secret`
 
 Optional:
 
@@ -2929,7 +2929,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume.sources.service_account_token.optional`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume.sources.service_account_token.items`
 
 Required:
 
@@ -2958,7 +2958,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--quobyte"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.quobyte`
 
 Required:
 
@@ -2974,7 +2974,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--rbd"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.rbd`
 
 Required:
 
@@ -3000,7 +3000,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--scale_io"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.scale_io`
 
 Required:
 
@@ -3028,7 +3028,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--secret"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.secret`
 
 Optional:
 
@@ -3052,7 +3052,7 @@ Optional:
 
 
 <a id="nestedatt--spec--redis_enterprise_additional_pod_spec_attributes--volumes--storageos"></a>
-### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.vsphere_volume`
+### Nested Schema for `spec.redis_enterprise_additional_pod_spec_attributes.volumes.storageos`
 
 Optional:
 
@@ -3394,7 +3394,7 @@ Optional:
 - `volumes` (Attributes List) (see [below for nested schema](#nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes))
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--affinity"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.affinity`
 
 Optional:
 
@@ -3411,7 +3411,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--node_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.node_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -3419,7 +3419,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.node_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.node_affinity.required_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -3427,7 +3427,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -3470,7 +3470,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -3507,7 +3507,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--pod_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -3515,7 +3515,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -3528,7 +3528,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -3550,7 +3550,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -3587,7 +3587,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -3595,7 +3595,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -3609,7 +3609,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -3617,7 +3617,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -3641,7 +3641,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -3649,7 +3649,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -3662,7 +3662,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -3684,7 +3684,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -3721,7 +3721,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -3729,7 +3729,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -3743,7 +3743,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -3751,7 +3751,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -3768,7 +3768,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--dns_config"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.dns_config`
 
 Optional:
 
@@ -3787,7 +3787,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--ephemeral_containers"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.ephemeral_containers`
 
 Required:
 
@@ -3841,7 +3841,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -3854,7 +3854,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--env--value_from--field_ref"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.env.value_from.field_ref`
 
 Required:
 
@@ -3866,7 +3866,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.env.value_from.resource_field_ref`
 
 Required:
 
@@ -3903,7 +3903,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--env_from--secret_ref))
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--env_from--config_map_ref"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.env_from.secret_ref`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.env_from.config_map_ref`
 
 Optional:
 
@@ -3930,7 +3930,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--lifecycle--pre_stop))
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--lifecycle--post_start"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.lifecycle.pre_stop`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.lifecycle.post_start`
 
 Optional:
 
@@ -3939,7 +3939,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -3947,7 +3947,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -3961,7 +3961,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -3993,7 +3993,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -4001,7 +4001,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -4015,7 +4015,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -4055,7 +4055,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--liveness_probe--exec"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.liveness_probe.exec`
 
 Optional:
 
@@ -4063,7 +4063,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--liveness_probe--grpc"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.liveness_probe.grpc`
 
 Required:
 
@@ -4075,7 +4075,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--liveness_probe--http_get"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.liveness_probe.http_get`
 
 Required:
 
@@ -4089,7 +4089,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.liveness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.liveness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -4099,7 +4099,7 @@ Required:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.liveness_probe.tcp_socket`
 
 Required:
 
@@ -4143,7 +4143,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--readiness_probe--exec"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.readiness_probe.exec`
 
 Optional:
 
@@ -4151,7 +4151,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--readiness_probe--grpc"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.readiness_probe.grpc`
 
 Required:
 
@@ -4163,7 +4163,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--readiness_probe--http_get"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.readiness_probe.http_get`
 
 Required:
 
@@ -4177,7 +4177,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.readiness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.readiness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -4187,7 +4187,7 @@ Required:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.readiness_probe.tcp_socket`
 
 Required:
 
@@ -4209,7 +4209,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--resources--claims"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.resources.requests`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.resources.claims`
 
 Required:
 
@@ -4235,7 +4235,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--security_context--windows_options))
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--security_context--capabilities"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.security_context.windows_options`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.security_context.capabilities`
 
 Optional:
 
@@ -4244,7 +4244,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--security_context--se_linux_options"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.security_context.windows_options`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.security_context.se_linux_options`
 
 Optional:
 
@@ -4255,7 +4255,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.security_context.windows_options`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.security_context.seccomp_profile`
 
 Required:
 
@@ -4295,7 +4295,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--startup_probe--exec"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.startup_probe.exec`
 
 Optional:
 
@@ -4303,7 +4303,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--startup_probe--grpc"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.startup_probe.grpc`
 
 Required:
 
@@ -4315,7 +4315,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--startup_probe--http_get"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.startup_probe.http_get`
 
 Required:
 
@@ -4329,7 +4329,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--startup_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.startup_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.startup_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -4339,7 +4339,7 @@ Required:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.startup_probe.tcp_socket`
 
 Required:
 
@@ -4378,7 +4378,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--host_aliases"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.host_aliases`
 
 Optional:
 
@@ -4387,7 +4387,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--image_pull_secrets"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.image_pull_secrets`
 
 Optional:
 
@@ -4395,7 +4395,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--init_containers"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.init_containers`
 
 Required:
 
@@ -4448,7 +4448,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -4461,7 +4461,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--env--value_from--field_ref"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.env.value_from.field_ref`
 
 Required:
 
@@ -4473,7 +4473,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.env.value_from.resource_field_ref`
 
 Required:
 
@@ -4510,7 +4510,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--env_from--secret_ref))
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--env_from--config_map_ref"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.env_from.secret_ref`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.env_from.config_map_ref`
 
 Optional:
 
@@ -4537,7 +4537,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--lifecycle--pre_stop))
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--lifecycle--post_start"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.lifecycle.pre_stop`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.lifecycle.post_start`
 
 Optional:
 
@@ -4546,7 +4546,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -4554,7 +4554,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -4568,7 +4568,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -4600,7 +4600,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -4608,7 +4608,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -4622,7 +4622,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -4662,7 +4662,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--liveness_probe--exec"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.liveness_probe.exec`
 
 Optional:
 
@@ -4670,7 +4670,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--liveness_probe--grpc"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.liveness_probe.grpc`
 
 Required:
 
@@ -4682,7 +4682,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--liveness_probe--http_get"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.liveness_probe.http_get`
 
 Required:
 
@@ -4696,7 +4696,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.liveness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.liveness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -4706,7 +4706,7 @@ Required:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.liveness_probe.tcp_socket`
 
 Required:
 
@@ -4750,7 +4750,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--readiness_probe--exec"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.readiness_probe.exec`
 
 Optional:
 
@@ -4758,7 +4758,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--readiness_probe--grpc"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.readiness_probe.grpc`
 
 Required:
 
@@ -4770,7 +4770,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--readiness_probe--http_get"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.readiness_probe.http_get`
 
 Required:
 
@@ -4784,7 +4784,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.readiness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.readiness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -4794,7 +4794,7 @@ Required:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.readiness_probe.tcp_socket`
 
 Required:
 
@@ -4816,7 +4816,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--resources--claims"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.resources.requests`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.resources.claims`
 
 Required:
 
@@ -4842,7 +4842,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--security_context--windows_options))
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--security_context--capabilities"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.security_context.windows_options`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.security_context.capabilities`
 
 Optional:
 
@@ -4851,7 +4851,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--security_context--se_linux_options"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.security_context.windows_options`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.security_context.se_linux_options`
 
 Optional:
 
@@ -4862,7 +4862,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.security_context.windows_options`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.security_context.seccomp_profile`
 
 Required:
 
@@ -4902,7 +4902,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--startup_probe--exec"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.startup_probe.exec`
 
 Optional:
 
@@ -4910,7 +4910,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--startup_probe--grpc"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.startup_probe.grpc`
 
 Required:
 
@@ -4922,7 +4922,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--startup_probe--http_get"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.startup_probe.http_get`
 
 Required:
 
@@ -4936,7 +4936,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--startup_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.startup_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.startup_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -4946,7 +4946,7 @@ Required:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.startup_probe.tcp_socket`
 
 Required:
 
@@ -4985,7 +4985,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--os"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.os`
 
 Required:
 
@@ -4993,7 +4993,7 @@ Required:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--readiness_gates"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.readiness_gates`
 
 Required:
 
@@ -5001,7 +5001,7 @@ Required:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--resource_claims"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.resource_claims`
 
 Required:
 
@@ -5022,7 +5022,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--scheduling_gates"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.scheduling_gates`
 
 Required:
 
@@ -5030,7 +5030,7 @@ Required:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--security_context"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.security_context`
 
 Optional:
 
@@ -5090,7 +5090,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--tolerations"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.tolerations`
 
 Optional:
 
@@ -5102,7 +5102,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--topology_spread_constraints"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.topology_spread_constraints`
 
 Required:
 
@@ -5127,7 +5127,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--label_selector--match_expressions"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.label_selector.match_labels`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.label_selector.match_expressions`
 
 Required:
 
@@ -5239,7 +5239,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--cephfs--secret_ref"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.cephfs.user`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.cephfs.secret_ref`
 
 Optional:
 
@@ -5280,7 +5280,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--config_map--items"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.config_map.optional`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.config_map.items`
 
 Required:
 
@@ -5308,7 +5308,7 @@ Optional:
 - `volume_attributes` (Map of String)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--csi--node_publish_secret_ref"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.csi.volume_attributes`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -5338,7 +5338,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--downward_api--items--resource_field_ref))
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--downward_api--items--field_ref"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.downward_api.items.resource_field_ref`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.downward_api.items.field_ref`
 
 Required:
 
@@ -5392,7 +5392,7 @@ Optional:
 - `metadata` (Map of String)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--ephemeral--volume_claim_template--spec"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.ephemeral.volume_claim_template.metadata`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.ephemeral.volume_claim_template.spec`
 
 Optional:
 
@@ -5406,7 +5406,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--ephemeral--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.ephemeral.volume_claim_template.metadata.data_source`
 
 Required:
 
@@ -5419,7 +5419,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--ephemeral--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.ephemeral.volume_claim_template.metadata.data_source_ref`
 
 Required:
 
@@ -5433,7 +5433,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--ephemeral--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.ephemeral.volume_claim_template.metadata.resources`
 
 Optional:
 
@@ -5451,7 +5451,7 @@ Required:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--ephemeral--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.ephemeral.volume_claim_template.metadata.selector`
 
 Optional:
 
@@ -5669,7 +5669,7 @@ Optional:
 - `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--projected--sources--service_account_token))
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--projected--sources--config_map"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.projected.sources.service_account_token`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.projected.sources.config_map`
 
 Optional:
 
@@ -5678,7 +5678,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.projected.sources.service_account_token.optional`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.projected.sources.service_account_token.items`
 
 Required:
 
@@ -5692,7 +5692,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--projected--sources--downward_api"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.projected.sources.service_account_token`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.projected.sources.downward_api`
 
 Optional:
 
@@ -5739,7 +5739,7 @@ Optional:
 
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--projected--sources--secret"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.projected.sources.service_account_token`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.projected.sources.secret`
 
 Optional:
 
@@ -5748,7 +5748,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.projected.sources.service_account_token.optional`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.projected.sources.service_account_token.items`
 
 Required:
 
@@ -5810,7 +5810,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--rbd--secret_ref"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.rbd.user`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.rbd.secret_ref`
 
 Optional:
 
@@ -5838,7 +5838,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--scale_io--secret_ref"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.scale_io.volume_name`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.scale_io.secret_ref`
 
 Optional:
 
@@ -5857,7 +5857,7 @@ Optional:
 - `secret_name` (String)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--secret--items"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.secret.secret_name`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.secret.items`
 
 Required:
 
@@ -5882,7 +5882,7 @@ Optional:
 - `volume_namespace` (String)
 
 <a id="nestedatt--spec--services_rigger_spec--services_rigger_additional_pod_spec_attributes--volumes--storageos--secret_ref"></a>
-### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.storageos.volume_namespace`
+### Nested Schema for `spec.services_rigger_spec.services_rigger_additional_pod_spec_attributes.volumes.storageos.secret_ref`
 
 Optional:
 
@@ -6023,7 +6023,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--side_containers_spec--env_from--secret_ref))
 
 <a id="nestedatt--spec--side_containers_spec--env_from--config_map_ref"></a>
-### Nested Schema for `spec.side_containers_spec.env_from.secret_ref`
+### Nested Schema for `spec.side_containers_spec.env_from.config_map_ref`
 
 Optional:
 
@@ -6050,7 +6050,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--side_containers_spec--lifecycle--pre_stop))
 
 <a id="nestedatt--spec--side_containers_spec--lifecycle--post_start"></a>
-### Nested Schema for `spec.side_containers_spec.lifecycle.pre_stop`
+### Nested Schema for `spec.side_containers_spec.lifecycle.post_start`
 
 Optional:
 
@@ -6081,7 +6081,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--side_containers_spec--lifecycle--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.side_containers_spec.lifecycle.pre_stop.http_get.scheme`
+### Nested Schema for `spec.side_containers_spec.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -6135,7 +6135,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--side_containers_spec--lifecycle--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.side_containers_spec.lifecycle.pre_stop.http_get.scheme`
+### Nested Schema for `spec.side_containers_spec.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -6175,7 +6175,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--side_containers_spec--liveness_probe--exec"></a>
-### Nested Schema for `spec.side_containers_spec.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.side_containers_spec.liveness_probe.exec`
 
 Optional:
 
@@ -6183,7 +6183,7 @@ Optional:
 
 
 <a id="nestedatt--spec--side_containers_spec--liveness_probe--grpc"></a>
-### Nested Schema for `spec.side_containers_spec.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.side_containers_spec.liveness_probe.grpc`
 
 Required:
 
@@ -6195,7 +6195,7 @@ Optional:
 
 
 <a id="nestedatt--spec--side_containers_spec--liveness_probe--http_get"></a>
-### Nested Schema for `spec.side_containers_spec.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.side_containers_spec.liveness_probe.http_get`
 
 Required:
 
@@ -6219,7 +6219,7 @@ Required:
 
 
 <a id="nestedatt--spec--side_containers_spec--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.side_containers_spec.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.side_containers_spec.liveness_probe.tcp_socket`
 
 Required:
 
@@ -6263,7 +6263,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--side_containers_spec--readiness_probe--exec"></a>
-### Nested Schema for `spec.side_containers_spec.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.side_containers_spec.readiness_probe.exec`
 
 Optional:
 
@@ -6271,7 +6271,7 @@ Optional:
 
 
 <a id="nestedatt--spec--side_containers_spec--readiness_probe--grpc"></a>
-### Nested Schema for `spec.side_containers_spec.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.side_containers_spec.readiness_probe.grpc`
 
 Required:
 
@@ -6283,7 +6283,7 @@ Optional:
 
 
 <a id="nestedatt--spec--side_containers_spec--readiness_probe--http_get"></a>
-### Nested Schema for `spec.side_containers_spec.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.side_containers_spec.readiness_probe.http_get`
 
 Required:
 
@@ -6307,7 +6307,7 @@ Required:
 
 
 <a id="nestedatt--spec--side_containers_spec--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.side_containers_spec.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.side_containers_spec.readiness_probe.tcp_socket`
 
 Required:
 
@@ -6329,7 +6329,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--side_containers_spec--resources--claims"></a>
-### Nested Schema for `spec.side_containers_spec.resources.requests`
+### Nested Schema for `spec.side_containers_spec.resources.claims`
 
 Required:
 
@@ -6355,7 +6355,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--side_containers_spec--security_context--windows_options))
 
 <a id="nestedatt--spec--side_containers_spec--security_context--capabilities"></a>
-### Nested Schema for `spec.side_containers_spec.security_context.windows_options`
+### Nested Schema for `spec.side_containers_spec.security_context.capabilities`
 
 Optional:
 
@@ -6364,7 +6364,7 @@ Optional:
 
 
 <a id="nestedatt--spec--side_containers_spec--security_context--se_linux_options"></a>
-### Nested Schema for `spec.side_containers_spec.security_context.windows_options`
+### Nested Schema for `spec.side_containers_spec.security_context.se_linux_options`
 
 Optional:
 
@@ -6375,7 +6375,7 @@ Optional:
 
 
 <a id="nestedatt--spec--side_containers_spec--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.side_containers_spec.security_context.windows_options`
+### Nested Schema for `spec.side_containers_spec.security_context.seccomp_profile`
 
 Required:
 
@@ -6415,7 +6415,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--side_containers_spec--startup_probe--exec"></a>
-### Nested Schema for `spec.side_containers_spec.startup_probe.timeout_seconds`
+### Nested Schema for `spec.side_containers_spec.startup_probe.exec`
 
 Optional:
 
@@ -6423,7 +6423,7 @@ Optional:
 
 
 <a id="nestedatt--spec--side_containers_spec--startup_probe--grpc"></a>
-### Nested Schema for `spec.side_containers_spec.startup_probe.timeout_seconds`
+### Nested Schema for `spec.side_containers_spec.startup_probe.grpc`
 
 Required:
 
@@ -6435,7 +6435,7 @@ Optional:
 
 
 <a id="nestedatt--spec--side_containers_spec--startup_probe--http_get"></a>
-### Nested Schema for `spec.side_containers_spec.startup_probe.timeout_seconds`
+### Nested Schema for `spec.side_containers_spec.startup_probe.http_get`
 
 Required:
 
@@ -6459,7 +6459,7 @@ Required:
 
 
 <a id="nestedatt--spec--side_containers_spec--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.side_containers_spec.startup_probe.timeout_seconds`
+### Nested Schema for `spec.side_containers_spec.startup_probe.tcp_socket`
 
 Required:
 
@@ -6610,7 +6610,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--volumes--cephfs--secret_ref"></a>
-### Nested Schema for `spec.volumes.cephfs.user`
+### Nested Schema for `spec.volumes.cephfs.secret_ref`
 
 Optional:
 
@@ -6651,7 +6651,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--volumes--config_map--items"></a>
-### Nested Schema for `spec.volumes.config_map.optional`
+### Nested Schema for `spec.volumes.config_map.items`
 
 Required:
 
@@ -6679,7 +6679,7 @@ Optional:
 - `volume_attributes` (Map of String)
 
 <a id="nestedatt--spec--volumes--csi--node_publish_secret_ref"></a>
-### Nested Schema for `spec.volumes.csi.volume_attributes`
+### Nested Schema for `spec.volumes.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -6931,7 +6931,7 @@ Optional:
 - `default_mode` (Number)
 
 <a id="nestedatt--spec--volumes--projected--sources"></a>
-### Nested Schema for `spec.volumes.projected.default_mode`
+### Nested Schema for `spec.volumes.projected.sources`
 
 Optional:
 
@@ -6950,7 +6950,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--volumes--projected--default_mode--config_map--items"></a>
-### Nested Schema for `spec.volumes.projected.default_mode.config_map.optional`
+### Nested Schema for `spec.volumes.projected.default_mode.config_map.items`
 
 Required:
 
@@ -6984,7 +6984,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--volumes--projected--default_mode--downward_api--items--resource_field_ref))
 
 <a id="nestedatt--spec--volumes--projected--default_mode--downward_api--items--field_ref"></a>
-### Nested Schema for `spec.volumes.projected.default_mode.downward_api.items.resource_field_ref`
+### Nested Schema for `spec.volumes.projected.default_mode.downward_api.items.field_ref`
 
 Required:
 
@@ -7020,7 +7020,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--volumes--projected--default_mode--secret--items"></a>
-### Nested Schema for `spec.volumes.projected.default_mode.secret.optional`
+### Nested Schema for `spec.volumes.projected.default_mode.secret.items`
 
 Required:
 
@@ -7082,7 +7082,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--volumes--rbd--secret_ref"></a>
-### Nested Schema for `spec.volumes.rbd.user`
+### Nested Schema for `spec.volumes.rbd.secret_ref`
 
 Optional:
 
@@ -7110,7 +7110,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--volumes--scale_io--secret_ref"></a>
-### Nested Schema for `spec.volumes.scale_io.volume_name`
+### Nested Schema for `spec.volumes.scale_io.secret_ref`
 
 Optional:
 
@@ -7129,7 +7129,7 @@ Optional:
 - `secret_name` (String)
 
 <a id="nestedatt--spec--volumes--secret--items"></a>
-### Nested Schema for `spec.volumes.secret.secret_name`
+### Nested Schema for `spec.volumes.secret.items`
 
 Required:
 
@@ -7154,7 +7154,7 @@ Optional:
 - `volume_namespace` (String)
 
 <a id="nestedatt--spec--volumes--storageos--secret_ref"></a>
-### Nested Schema for `spec.volumes.storageos.volume_namespace`
+### Nested Schema for `spec.volumes.storageos.secret_ref`
 
 Optional:
 

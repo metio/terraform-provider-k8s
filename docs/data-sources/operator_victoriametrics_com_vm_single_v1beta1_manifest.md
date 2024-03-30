@@ -295,7 +295,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--storage--resources--claims"></a>
-### Nested Schema for `spec.storage.resources.requests`
+### Nested Schema for `spec.storage.resources.claims`
 
 Required:
 
@@ -312,7 +312,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--storage--selector--match_expressions"></a>
-### Nested Schema for `spec.storage.selector.match_labels`
+### Nested Schema for `spec.storage.selector.match_expressions`
 
 Required:
 
@@ -368,7 +368,7 @@ Optional:
 - `without` (List of String) Without is an optional list of labels, which must be excluded when grouping input series.See also By.If neither By nor Without are set, then the Outputs are calculatedindividually per each input time series.
 
 <a id="nestedatt--spec--stream_aggr_config--rules--input_relabel_configs"></a>
-### Nested Schema for `spec.stream_aggr_config.rules.without`
+### Nested Schema for `spec.stream_aggr_config.rules.input_relabel_configs`
 
 Optional:
 
@@ -385,7 +385,7 @@ Optional:
 
 
 <a id="nestedatt--spec--stream_aggr_config--rules--output_relabel_configs"></a>
-### Nested Schema for `spec.stream_aggr_config.rules.without`
+### Nested Schema for `spec.stream_aggr_config.rules.output_relabel_configs`
 
 Optional:
 
@@ -550,7 +550,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--vm_backup--resources--claims"></a>
-### Nested Schema for `spec.vm_backup.resources.requests`
+### Nested Schema for `spec.vm_backup.resources.claims`
 
 Required:
 

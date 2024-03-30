@@ -91,7 +91,7 @@ Optional:
 - `hosted_zone_role` (String) HostedZoneRole is the role to assume when performing operations on a hosted zone owned by another account.
 
 <a id="nestedatt--spec--platform--aws--credentials_assume_role"></a>
-### Nested Schema for `spec.platform.aws.hosted_zone_role`
+### Nested Schema for `spec.platform.aws.credentials_assume_role`
 
 Required:
 
@@ -103,7 +103,7 @@ Optional:
 
 
 <a id="nestedatt--spec--platform--aws--credentials_secret_ref"></a>
-### Nested Schema for `spec.platform.aws.hosted_zone_role`
+### Nested Schema for `spec.platform.aws.credentials_secret_ref`
 
 Optional:
 
@@ -121,7 +121,7 @@ Optional:
 - `resource_group_name` (String) ResourceGroupName is the name of the resource group where the cluster was installed. Required for new deprovisions (schema notwithstanding).
 
 <a id="nestedatt--spec--platform--azure--credentials_secret_ref"></a>
-### Nested Schema for `spec.platform.azure.resource_group_name`
+### Nested Schema for `spec.platform.azure.credentials_secret_ref`
 
 Optional:
 
@@ -142,7 +142,7 @@ Optional:
 - `network_project_id` (String) NetworkProjectID is used for shared VPC setups
 
 <a id="nestedatt--spec--platform--gcp--credentials_secret_ref"></a>
-### Nested Schema for `spec.platform.gcp.network_project_id`
+### Nested Schema for `spec.platform.gcp.credentials_secret_ref`
 
 Optional:
 
@@ -160,7 +160,7 @@ Required:
 - `region` (String) Region specifies the IBM Cloud region
 
 <a id="nestedatt--spec--platform--ibmcloud--credentials_secret_ref"></a>
-### Nested Schema for `spec.platform.ibmcloud.region`
+### Nested Schema for `spec.platform.ibmcloud.credentials_secret_ref`
 
 Optional:
 
@@ -181,7 +181,7 @@ Optional:
 - `credentials_secret_ref` (Attributes) CredentialsSecretRef is the OpenStack account credentials to use for deprovisioning the cluster (see [below for nested schema](#nestedatt--spec--platform--openstack--credentials_secret_ref))
 
 <a id="nestedatt--spec--platform--openstack--certificates_secret_ref"></a>
-### Nested Schema for `spec.platform.openstack.credentials_secret_ref`
+### Nested Schema for `spec.platform.openstack.certificates_secret_ref`
 
 Optional:
 
@@ -207,7 +207,7 @@ Required:
 - `credentials_secret_ref` (Attributes) CredentialsSecretRef is the oVirt account credentials to use for deprovisioning the cluster secret fields: ovirt_url, ovirt_username, ovirt_password, ovirt_ca_bundle (see [below for nested schema](#nestedatt--spec--platform--ovirt--credentials_secret_ref))
 
 <a id="nestedatt--spec--platform--ovirt--certificates_secret_ref"></a>
-### Nested Schema for `spec.platform.ovirt.credentials_secret_ref`
+### Nested Schema for `spec.platform.ovirt.certificates_secret_ref`
 
 Optional:
 
@@ -233,7 +233,7 @@ Required:
 - `v_center` (String) VCenter is the vSphere vCenter hostname.
 
 <a id="nestedatt--spec--platform--vsphere--certificates_secret_ref"></a>
-### Nested Schema for `spec.platform.vsphere.v_center`
+### Nested Schema for `spec.platform.vsphere.certificates_secret_ref`
 
 Optional:
 
@@ -241,7 +241,7 @@ Optional:
 
 
 <a id="nestedatt--spec--platform--vsphere--credentials_secret_ref"></a>
-### Nested Schema for `spec.platform.vsphere.v_center`
+### Nested Schema for `spec.platform.vsphere.credentials_secret_ref`
 
 Optional:
 

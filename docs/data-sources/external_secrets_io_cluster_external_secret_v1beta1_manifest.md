@@ -88,7 +88,7 @@ Optional:
 - `source_ref` (Attributes) SourceRef allows you to override the sourcefrom which the value will pulled from. (see [below for nested schema](#nestedatt--spec--external_secret_spec--data--source_ref))
 
 <a id="nestedatt--spec--external_secret_spec--data--remote_ref"></a>
-### Nested Schema for `spec.external_secret_spec.data.source_ref`
+### Nested Schema for `spec.external_secret_spec.data.remote_ref`
 
 Required:
 
@@ -149,7 +149,7 @@ Optional:
 - `source_ref` (Attributes) SourceRef points to a store or generatorwhich contains secret values ready to use.Use this in combination with Extract or Find pull values out ofa specific SecretStore.When sourceRef points to a generator Extract or Find is not supported.The generator returns a static map of values (see [below for nested schema](#nestedatt--spec--external_secret_spec--data_from--source_ref))
 
 <a id="nestedatt--spec--external_secret_spec--data_from--extract"></a>
-### Nested Schema for `spec.external_secret_spec.data_from.source_ref`
+### Nested Schema for `spec.external_secret_spec.data_from.extract`
 
 Required:
 
@@ -165,7 +165,7 @@ Optional:
 
 
 <a id="nestedatt--spec--external_secret_spec--data_from--find"></a>
-### Nested Schema for `spec.external_secret_spec.data_from.source_ref`
+### Nested Schema for `spec.external_secret_spec.data_from.find`
 
 Optional:
 
@@ -185,7 +185,7 @@ Optional:
 
 
 <a id="nestedatt--spec--external_secret_spec--data_from--rewrite"></a>
-### Nested Schema for `spec.external_secret_spec.data_from.source_ref`
+### Nested Schema for `spec.external_secret_spec.data_from.rewrite`
 
 Optional:
 
@@ -300,7 +300,7 @@ Optional:
 - `target` (String)
 
 <a id="nestedatt--spec--external_secret_spec--target--template--template_from--config_map"></a>
-### Nested Schema for `spec.external_secret_spec.target.template.template_from.target`
+### Nested Schema for `spec.external_secret_spec.target.template.template_from.config_map`
 
 Required:
 
@@ -308,7 +308,7 @@ Required:
 - `name` (String)
 
 <a id="nestedatt--spec--external_secret_spec--target--template--template_from--target--items"></a>
-### Nested Schema for `spec.external_secret_spec.target.template.template_from.target.name`
+### Nested Schema for `spec.external_secret_spec.target.template.template_from.target.items`
 
 Required:
 
@@ -321,7 +321,7 @@ Optional:
 
 
 <a id="nestedatt--spec--external_secret_spec--target--template--template_from--secret"></a>
-### Nested Schema for `spec.external_secret_spec.target.template.template_from.target`
+### Nested Schema for `spec.external_secret_spec.target.template.template_from.secret`
 
 Required:
 
@@ -329,7 +329,7 @@ Required:
 - `name` (String)
 
 <a id="nestedatt--spec--external_secret_spec--target--template--template_from--target--items"></a>
-### Nested Schema for `spec.external_secret_spec.target.template.template_from.target.name`
+### Nested Schema for `spec.external_secret_spec.target.template.template_from.target.items`
 
 Required:
 

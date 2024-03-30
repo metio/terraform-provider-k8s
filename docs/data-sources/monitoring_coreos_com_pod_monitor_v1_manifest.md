@@ -159,7 +159,7 @@ Optional:
 - `type` (String) Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'
 
 <a id="nestedatt--spec--pod_metrics_endpoints--authorization--credentials"></a>
-### Nested Schema for `spec.pod_metrics_endpoints.authorization.type`
+### Nested Schema for `spec.pod_metrics_endpoints.authorization.credentials`
 
 Required:
 
@@ -181,7 +181,7 @@ Optional:
 - `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--pod_metrics_endpoints--basic_auth--username))
 
 <a id="nestedatt--spec--pod_metrics_endpoints--basic_auth--password"></a>
-### Nested Schema for `spec.pod_metrics_endpoints.basic_auth.username`
+### Nested Schema for `spec.pod_metrics_endpoints.basic_auth.password`
 
 Required:
 
@@ -249,7 +249,7 @@ Optional:
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 
 <a id="nestedatt--spec--pod_metrics_endpoints--oauth2--client_id"></a>
-### Nested Schema for `spec.pod_metrics_endpoints.oauth2.scopes`
+### Nested Schema for `spec.pod_metrics_endpoints.oauth2.client_id`
 
 Optional:
 
@@ -284,7 +284,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_metrics_endpoints--oauth2--client_secret"></a>
-### Nested Schema for `spec.pod_metrics_endpoints.oauth2.scopes`
+### Nested Schema for `spec.pod_metrics_endpoints.oauth2.client_secret`
 
 Required:
 
@@ -323,7 +323,7 @@ Optional:
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--pod_metrics_endpoints--tls_config--ca"></a>
-### Nested Schema for `spec.pod_metrics_endpoints.tls_config.server_name`
+### Nested Schema for `spec.pod_metrics_endpoints.tls_config.ca`
 
 Optional:
 
@@ -358,7 +358,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_metrics_endpoints--tls_config--cert"></a>
-### Nested Schema for `spec.pod_metrics_endpoints.tls_config.server_name`
+### Nested Schema for `spec.pod_metrics_endpoints.tls_config.cert`
 
 Optional:
 
@@ -393,7 +393,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_metrics_endpoints--tls_config--key_secret"></a>
-### Nested Schema for `spec.pod_metrics_endpoints.tls_config.server_name`
+### Nested Schema for `spec.pod_metrics_endpoints.tls_config.key_secret`
 
 Required:
 

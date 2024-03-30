@@ -78,7 +78,7 @@ Optional:
 - `is_deleted` (Boolean)
 
 <a id="nestedatt--spec--schema--cassandra--fields"></a>
-### Nested Schema for `spec.schema.cassandra.is_deleted`
+### Nested Schema for `spec.schema.cassandra.fields`
 
 Required:
 

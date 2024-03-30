@@ -103,7 +103,7 @@ Optional:
 - `public_zone` (Attributes) publicZone is the location where all the DNS records that are publicly accessible to the internet exist.  If this field is nil, no public records should be created.  Once set, this field cannot be changed. (see [below for nested schema](#nestedatt--spec--dns--spec--public_zone))
 
 <a id="nestedatt--spec--dns--spec--platform"></a>
-### Nested Schema for `spec.dns.spec.public_zone`
+### Nested Schema for `spec.dns.spec.platform`
 
 Required:
 
@@ -123,7 +123,7 @@ Optional:
 
 
 <a id="nestedatt--spec--dns--spec--private_zone"></a>
-### Nested Schema for `spec.dns.spec.public_zone`
+### Nested Schema for `spec.dns.spec.private_zone`
 
 Optional:
 
@@ -165,7 +165,7 @@ Optional:
 - `platform_spec` (Attributes) platformSpec holds desired information specific to the underlying infrastructure provider. (see [below for nested schema](#nestedatt--spec--infra--spec--platform_spec))
 
 <a id="nestedatt--spec--infra--spec--cloud_config"></a>
-### Nested Schema for `spec.infra.spec.platform_spec`
+### Nested Schema for `spec.infra.spec.cloud_config`
 
 Optional:
 
@@ -242,7 +242,7 @@ Optional:
 - `failure_domains` (Attributes List) failureDomains configures failure domains information for the Nutanix platform. When set, the failure domains defined here may be used to spread Machines across prism element clusters to improve fault tolerance of the cluster. (see [below for nested schema](#nestedatt--spec--infra--spec--platform_spec--nutanix--failure_domains))
 
 <a id="nestedatt--spec--infra--spec--platform_spec--nutanix--prism_central"></a>
-### Nested Schema for `spec.infra.spec.platform_spec.nutanix.failure_domains`
+### Nested Schema for `spec.infra.spec.platform_spec.nutanix.prism_central`
 
 Required:
 
@@ -251,7 +251,7 @@ Required:
 
 
 <a id="nestedatt--spec--infra--spec--platform_spec--nutanix--prism_elements"></a>
-### Nested Schema for `spec.infra.spec.platform_spec.nutanix.failure_domains`
+### Nested Schema for `spec.infra.spec.platform_spec.nutanix.prism_elements`
 
 Required:
 
@@ -259,7 +259,7 @@ Required:
 - `name` (String) name is the name of the Prism Element (cluster). This value will correspond with the cluster field configured on other resources (eg Machines, PVCs, etc).
 
 <a id="nestedatt--spec--infra--spec--platform_spec--nutanix--failure_domains--endpoint"></a>
-### Nested Schema for `spec.infra.spec.platform_spec.nutanix.failure_domains.name`
+### Nested Schema for `spec.infra.spec.platform_spec.nutanix.failure_domains.endpoint`
 
 Required:
 
@@ -278,7 +278,7 @@ Required:
 - `subnets` (Attributes List) subnets holds a list of identifiers (one or more) of the cluster's network subnets for the Machine's VM to connect to. The subnet identifiers (uuid or name) can be obtained from the Prism Central console or using the prism_central API. (see [below for nested schema](#nestedatt--spec--infra--spec--platform_spec--nutanix--failure_domains--subnets))
 
 <a id="nestedatt--spec--infra--spec--platform_spec--nutanix--failure_domains--cluster"></a>
-### Nested Schema for `spec.infra.spec.platform_spec.nutanix.failure_domains.subnets`
+### Nested Schema for `spec.infra.spec.platform_spec.nutanix.failure_domains.cluster`
 
 Required:
 
@@ -345,7 +345,7 @@ Optional:
 - `vcenters` (Attributes List) vcenters holds the connection details for services to communicate with vCenter. Currently, only a single vCenter is supported. --- (see [below for nested schema](#nestedatt--spec--infra--spec--platform_spec--vsphere--vcenters))
 
 <a id="nestedatt--spec--infra--spec--platform_spec--vsphere--failure_domains"></a>
-### Nested Schema for `spec.infra.spec.platform_spec.vsphere.vcenters`
+### Nested Schema for `spec.infra.spec.platform_spec.vsphere.failure_domains`
 
 Required:
 
@@ -356,7 +356,7 @@ Required:
 - `zone` (String) zone defines the name of a zone tag that will be attached to a vCenter cluster. The tag category in vCenter must be named openshift-zone.
 
 <a id="nestedatt--spec--infra--spec--platform_spec--vsphere--vcenters--topology"></a>
-### Nested Schema for `spec.infra.spec.platform_spec.vsphere.vcenters.zone`
+### Nested Schema for `spec.infra.spec.platform_spec.vsphere.vcenters.topology`
 
 Required:
 
@@ -374,7 +374,7 @@ Optional:
 
 
 <a id="nestedatt--spec--infra--spec--platform_spec--vsphere--node_networking"></a>
-### Nested Schema for `spec.infra.spec.platform_spec.vsphere.vcenters`
+### Nested Schema for `spec.infra.spec.platform_spec.vsphere.node_networking`
 
 Optional:
 
@@ -382,7 +382,7 @@ Optional:
 - `internal` (Attributes) internal represents the network configuration of the node that is routable only within the cluster. (see [below for nested schema](#nestedatt--spec--infra--spec--platform_spec--vsphere--vcenters--internal))
 
 <a id="nestedatt--spec--infra--spec--platform_spec--vsphere--vcenters--external"></a>
-### Nested Schema for `spec.infra.spec.platform_spec.vsphere.vcenters.internal`
+### Nested Schema for `spec.infra.spec.platform_spec.vsphere.vcenters.external`
 
 Optional:
 
@@ -486,7 +486,7 @@ Optional:
 - `service_endpoints` (Attributes List) ServiceEndpoints list contains custom endpoints which will override default service endpoint of AWS Services. There must be only one ServiceEndpoint for a service. (see [below for nested schema](#nestedatt--spec--infra--status--platform_status--aws--service_endpoints))
 
 <a id="nestedatt--spec--infra--status--platform_status--aws--resource_tags"></a>
-### Nested Schema for `spec.infra.status.platform_status.aws.service_endpoints`
+### Nested Schema for `spec.infra.status.platform_status.aws.resource_tags`
 
 Required:
 
@@ -629,7 +629,7 @@ Optional:
 - `node_dnsip` (String) nodeDNSIP is the IP address for the internal DNS used by the nodes. Unlike the one managed by the DNS operator, 'NodeDNSIP' provides name resolution for the nodes themselves. There is no DNS-as-a-service for OpenStack deployments. In order to minimize necessary changes to the datacenter DNS, a DNS service is hosted as a static pod to serve those hostnames to the nodes in the cluster.
 
 <a id="nestedatt--spec--infra--status--platform_status--openstack--load_balancer"></a>
-### Nested Schema for `spec.infra.status.platform_status.openstack.node_dnsip`
+### Nested Schema for `spec.infra.status.platform_status.openstack.load_balancer`
 
 Optional:
 
@@ -662,7 +662,7 @@ Optional:
 - `zone` (String) zone holds the default zone for the new Power VS resources created by the cluster. Note: Currently only single-zone OCP clusters are supported
 
 <a id="nestedatt--spec--infra--status--platform_status--powervs--service_endpoints"></a>
-### Nested Schema for `spec.infra.status.platform_status.powervs.zone`
+### Nested Schema for `spec.infra.status.platform_status.powervs.service_endpoints`
 
 Required:
 
@@ -703,7 +703,7 @@ Optional:
 - `network` (Attributes) Network contains MTU migration configuration for the default network. (see [below for nested schema](#nestedatt--spec--network--mtu_migration--network))
 
 <a id="nestedatt--spec--network--mtu_migration--machine"></a>
-### Nested Schema for `spec.network.mtu_migration.network`
+### Nested Schema for `spec.network.mtu_migration.machine`
 
 Optional:
 

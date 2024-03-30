@@ -111,7 +111,7 @@ Optional:
 - `search_domains` (List of String) SearchDomains is a list of search domains used when resolving IP addresses with DNS.
 
 <a id="nestedatt--spec--network--devices--routes"></a>
-### Nested Schema for `spec.network.devices.search_domains`
+### Nested Schema for `spec.network.devices.routes`
 
 Required:
 

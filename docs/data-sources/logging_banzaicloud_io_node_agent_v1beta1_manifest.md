@@ -127,7 +127,7 @@ Optional:
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--buffer_storage_volume--secret))
 
 <a id="nestedatt--spec--node_agent_fluentbit--buffer_storage_volume--empty_dir"></a>
-### Nested Schema for `spec.node_agent_fluentbit.buffer_storage_volume.secret`
+### Nested Schema for `spec.node_agent_fluentbit.buffer_storage_volume.empty_dir`
 
 Optional:
 
@@ -136,7 +136,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--buffer_storage_volume--host_path"></a>
-### Nested Schema for `spec.node_agent_fluentbit.buffer_storage_volume.secret`
+### Nested Schema for `spec.node_agent_fluentbit.buffer_storage_volume.host_path`
 
 Required:
 
@@ -148,7 +148,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--buffer_storage_volume--pvc"></a>
-### Nested Schema for `spec.node_agent_fluentbit.buffer_storage_volume.secret`
+### Nested Schema for `spec.node_agent_fluentbit.buffer_storage_volume.pvc`
 
 Optional:
 
@@ -183,7 +183,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--buffer_storage_volume--secret--spec--data_source"></a>
-### Nested Schema for `spec.node_agent_fluentbit.buffer_storage_volume.secret.spec.volume_name`
+### Nested Schema for `spec.node_agent_fluentbit.buffer_storage_volume.secret.spec.data_source`
 
 Required:
 
@@ -196,7 +196,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--buffer_storage_volume--secret--spec--data_source_ref"></a>
-### Nested Schema for `spec.node_agent_fluentbit.buffer_storage_volume.secret.spec.volume_name`
+### Nested Schema for `spec.node_agent_fluentbit.buffer_storage_volume.secret.spec.data_source_ref`
 
 Required:
 
@@ -210,7 +210,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--buffer_storage_volume--secret--spec--resources"></a>
-### Nested Schema for `spec.node_agent_fluentbit.buffer_storage_volume.secret.spec.volume_name`
+### Nested Schema for `spec.node_agent_fluentbit.buffer_storage_volume.secret.spec.resources`
 
 Optional:
 
@@ -219,7 +219,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--buffer_storage_volume--secret--spec--selector"></a>
-### Nested Schema for `spec.node_agent_fluentbit.buffer_storage_volume.secret.spec.volume_name`
+### Nested Schema for `spec.node_agent_fluentbit.buffer_storage_volume.secret.spec.selector`
 
 Optional:
 
@@ -227,7 +227,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--buffer_storage_volume--secret--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.node_agent_fluentbit.buffer_storage_volume.secret.spec.volume_name.match_labels`
+### Nested Schema for `spec.node_agent_fluentbit.buffer_storage_volume.secret.spec.volume_name.match_expressions`
 
 Required:
 
@@ -276,7 +276,7 @@ Optional:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec))
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--metadata"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.metadata`
 
 Optional:
 
@@ -304,7 +304,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--selector--match_expressions"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.selector.match_labels`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.selector.match_expressions`
 
 Required:
 
@@ -326,7 +326,7 @@ Optional:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec))
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--metadata"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.metadata`
 
 Optional:
 
@@ -375,7 +375,7 @@ Optional:
 - `volumes` (Attributes List) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes))
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--affinity"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.affinity`
 
 Optional:
 
@@ -384,7 +384,7 @@ Optional:
 - `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--pod_anti_affinity))
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--node_affinity"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.node_affinity`
 
 Optional:
 
@@ -400,7 +400,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -408,7 +408,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -451,7 +451,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -480,7 +480,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--pod_affinity"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_affinity`
 
 Optional:
 
@@ -496,7 +496,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -511,7 +511,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -519,7 +519,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -533,7 +533,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -541,7 +541,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -572,7 +572,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -580,7 +580,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -594,7 +594,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -602,7 +602,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -634,7 +634,7 @@ Required:
 - `weight` (Number)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -649,7 +649,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -657,7 +657,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -671,7 +671,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -679,7 +679,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -710,7 +710,7 @@ Optional:
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -718,7 +718,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -732,7 +732,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -740,7 +740,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -757,7 +757,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--containers"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.containers`
 
 Required:
 
@@ -790,7 +790,7 @@ Optional:
 - `working_dir` (String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--env"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.env`
 
 Required:
 
@@ -812,7 +812,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -825,7 +825,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.value_from.field_ref`
 
 Required:
 
@@ -837,7 +837,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -865,7 +865,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--env_from"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.env_from`
 
 Optional:
 
@@ -893,7 +893,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--lifecycle"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.lifecycle`
 
 Optional:
 
@@ -911,7 +911,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--post_start--tcp_socket))
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--post_start--exec"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.post_start.exec`
 
 Optional:
 
@@ -919,7 +919,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--post_start--http_get"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.post_start.http_get`
 
 Required:
 
@@ -933,7 +933,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--post_start--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.post_start.tcp_socket.scheme`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.post_start.tcp_socket.http_headers`
 
 Required:
 
@@ -943,7 +943,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--post_start--sleep"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.post_start.sleep`
 
 Required:
 
@@ -974,7 +974,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -982,7 +982,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -996,7 +996,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -1006,7 +1006,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--pre_stop--sleep"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.pre_stop.sleep`
 
 Required:
 
@@ -1028,7 +1028,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--liveness_probe"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.liveness_probe`
 
 Optional:
 
@@ -1078,7 +1078,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.http_get.scheme`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.http_get.http_headers`
 
 Required:
 
@@ -1101,7 +1101,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--ports"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.ports`
 
 Required:
 
@@ -1116,7 +1116,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--readiness_probe"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.readiness_probe`
 
 Optional:
 
@@ -1166,7 +1166,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.http_get.scheme`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.http_get.http_headers`
 
 Required:
 
@@ -1189,7 +1189,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--resize_policy"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.resize_policy`
 
 Required:
 
@@ -1198,7 +1198,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--resources"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.resources`
 
 Optional:
 
@@ -1216,7 +1216,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--security_context"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.security_context`
 
 Optional:
 
@@ -1277,7 +1277,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--startup_probe"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.startup_probe`
 
 Optional:
 
@@ -1327,7 +1327,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.http_get.scheme`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.http_get.http_headers`
 
 Required:
 
@@ -1350,7 +1350,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--volume_devices"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.volume_devices`
 
 Required:
 
@@ -1359,7 +1359,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--volume_mounts"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.volume_mounts`
 
 Required:
 
@@ -1376,7 +1376,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--dns_config"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.dns_config`
 
 Optional:
 
@@ -1385,7 +1385,7 @@ Optional:
 - `searches` (List of String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--options"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.searches`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.options`
 
 Optional:
 
@@ -1395,7 +1395,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--ephemeral_containers"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.ephemeral_containers`
 
 Required:
 
@@ -1429,7 +1429,7 @@ Optional:
 - `working_dir` (String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--env"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.env`
 
 Required:
 
@@ -1451,7 +1451,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -1464,7 +1464,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.value_from.field_ref`
 
 Required:
 
@@ -1476,7 +1476,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -1504,7 +1504,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--env_from"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.env_from`
 
 Optional:
 
@@ -1532,7 +1532,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--lifecycle"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.lifecycle`
 
 Optional:
 
@@ -1550,7 +1550,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--post_start--tcp_socket))
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--post_start--exec"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.post_start.exec`
 
 Optional:
 
@@ -1558,7 +1558,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--post_start--http_get"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.post_start.http_get`
 
 Required:
 
@@ -1572,7 +1572,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--post_start--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.post_start.tcp_socket.scheme`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.post_start.tcp_socket.http_headers`
 
 Required:
 
@@ -1582,7 +1582,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--post_start--sleep"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.post_start.sleep`
 
 Required:
 
@@ -1613,7 +1613,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -1621,7 +1621,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -1635,7 +1635,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -1645,7 +1645,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--pre_stop--sleep"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.pre_stop.sleep`
 
 Required:
 
@@ -1667,7 +1667,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--liveness_probe"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.liveness_probe`
 
 Optional:
 
@@ -1717,7 +1717,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.http_get.scheme`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.http_get.http_headers`
 
 Required:
 
@@ -1740,7 +1740,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--ports"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.ports`
 
 Required:
 
@@ -1755,7 +1755,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--readiness_probe"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.readiness_probe`
 
 Optional:
 
@@ -1805,7 +1805,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.http_get.scheme`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.http_get.http_headers`
 
 Required:
 
@@ -1828,7 +1828,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--resize_policy"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.resize_policy`
 
 Required:
 
@@ -1837,7 +1837,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--resources"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.resources`
 
 Optional:
 
@@ -1855,7 +1855,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--security_context"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.security_context`
 
 Optional:
 
@@ -1916,7 +1916,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--startup_probe"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.startup_probe`
 
 Optional:
 
@@ -1966,7 +1966,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.http_get.scheme`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.http_get.http_headers`
 
 Required:
 
@@ -1989,7 +1989,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--volume_devices"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.volume_devices`
 
 Required:
 
@@ -1998,7 +1998,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--volume_mounts"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.volume_mounts`
 
 Required:
 
@@ -2015,7 +2015,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--host_aliases"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.host_aliases`
 
 Optional:
 
@@ -2024,7 +2024,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--image_pull_secrets"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.image_pull_secrets`
 
 Optional:
 
@@ -2032,7 +2032,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--init_containers"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.init_containers`
 
 Required:
 
@@ -2065,7 +2065,7 @@ Optional:
 - `working_dir` (String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--env"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.env`
 
 Required:
 
@@ -2087,7 +2087,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.value_from.config_map_key_ref`
 
 Required:
 
@@ -2100,7 +2100,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.value_from.field_ref`
 
 Required:
 
@@ -2112,7 +2112,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.value_from.resource_field_ref`
 
 Required:
 
@@ -2140,7 +2140,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--env_from"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.env_from`
 
 Optional:
 
@@ -2168,7 +2168,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--lifecycle"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.lifecycle`
 
 Optional:
 
@@ -2186,7 +2186,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--post_start--tcp_socket))
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--post_start--exec"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.post_start.exec`
 
 Optional:
 
@@ -2194,7 +2194,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--post_start--http_get"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.post_start.http_get`
 
 Required:
 
@@ -2208,7 +2208,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--post_start--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.post_start.tcp_socket.scheme`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.post_start.tcp_socket.http_headers`
 
 Required:
 
@@ -2218,7 +2218,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--post_start--sleep"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.post_start.tcp_socket`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.post_start.sleep`
 
 Required:
 
@@ -2249,7 +2249,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -2257,7 +2257,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.pre_stop.http_get`
 
 Required:
 
@@ -2271,7 +2271,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -2281,7 +2281,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--pre_stop--sleep"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.pre_stop.sleep`
 
 Required:
 
@@ -2303,7 +2303,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--liveness_probe"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.liveness_probe`
 
 Optional:
 
@@ -2353,7 +2353,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.http_get.scheme`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.http_get.http_headers`
 
 Required:
 
@@ -2376,7 +2376,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--ports"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.ports`
 
 Required:
 
@@ -2391,7 +2391,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--readiness_probe"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.readiness_probe`
 
 Optional:
 
@@ -2441,7 +2441,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.http_get.scheme`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.http_get.http_headers`
 
 Required:
 
@@ -2464,7 +2464,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--resize_policy"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.resize_policy`
 
 Required:
 
@@ -2473,7 +2473,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--resources"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.resources`
 
 Optional:
 
@@ -2491,7 +2491,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--security_context"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.security_context`
 
 Optional:
 
@@ -2552,7 +2552,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--startup_probe"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.startup_probe`
 
 Optional:
 
@@ -2602,7 +2602,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.http_get.scheme`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir.http_get.http_headers`
 
 Required:
 
@@ -2625,7 +2625,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--volume_devices"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.volume_devices`
 
 Required:
 
@@ -2634,7 +2634,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--volume_mounts"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.working_dir`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.volume_mounts`
 
 Required:
 
@@ -2651,7 +2651,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--readiness_gates"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.readiness_gates`
 
 Required:
 
@@ -2659,7 +2659,7 @@ Required:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--security_context"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.security_context`
 
 Optional:
 
@@ -2675,7 +2675,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--windows_options))
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--se_linux_options"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.windows_options`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.se_linux_options`
 
 Optional:
 
@@ -2686,7 +2686,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--seccomp_profile"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.windows_options`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.seccomp_profile`
 
 Required:
 
@@ -2698,7 +2698,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--sysctls"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.windows_options`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.sysctls`
 
 Required:
 
@@ -2719,7 +2719,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--tolerations"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.tolerations`
 
 Optional:
 
@@ -2731,7 +2731,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--topology_spread_constraints"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.topology_spread_constraints`
 
 Required:
 
@@ -2748,7 +2748,7 @@ Optional:
 - `node_taints_policy` (String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--label_selector"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.node_taints_policy`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.label_selector`
 
 Optional:
 
@@ -2810,7 +2810,7 @@ Optional:
 - `vsphere_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--vsphere_volume))
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--aws_elastic_block_store"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.aws_elastic_block_store`
 
 Required:
 
@@ -2824,7 +2824,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--azure_disk"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.azure_disk`
 
 Required:
 
@@ -2840,7 +2840,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--azure_file"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.azure_file`
 
 Required:
 
@@ -2853,7 +2853,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--cephfs"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.cephfs`
 
 Required:
 
@@ -2877,7 +2877,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--cinder"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.cinder`
 
 Required:
 
@@ -2899,7 +2899,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--config_map"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.config_map`
 
 Optional:
 
@@ -2923,7 +2923,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--csi"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.csi`
 
 Required:
 
@@ -2946,7 +2946,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--downward_api"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.downward_api`
 
 Optional:
 
@@ -2967,7 +2967,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--vsphere_volume--items--resource_field_ref))
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.items.resource_field_ref`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.items.field_ref`
 
 Required:
 
@@ -2994,7 +2994,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--empty_dir"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.empty_dir`
 
 Optional:
 
@@ -3003,7 +3003,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--ephemeral"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.ephemeral`
 
 Optional:
 
@@ -3021,7 +3021,7 @@ Optional:
 - `metadata` (Map of String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.volume_claim_template.metadata`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.volume_claim_template.spec`
 
 Optional:
 
@@ -3036,7 +3036,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--vsphere_volume--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.volume_claim_template.metadata.data_source`
 
 Required:
 
@@ -3049,7 +3049,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--vsphere_volume--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.volume_claim_template.metadata.data_source_ref`
 
 Required:
 
@@ -3063,7 +3063,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--vsphere_volume--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.volume_claim_template.metadata.resources`
 
 Optional:
 
@@ -3072,7 +3072,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--vsphere_volume--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.volume_claim_template.metadata.selector`
 
 Optional:
 
@@ -3080,7 +3080,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--vsphere_volume--volume_claim_template--metadata--volume_name--match_expressions"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_labels`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_expressions`
 
 Required:
 
@@ -3097,7 +3097,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--fc"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.fc`
 
 Optional:
 
@@ -3109,7 +3109,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--flex_volume"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.flex_volume`
 
 Required:
 
@@ -3132,7 +3132,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--flocker"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.flocker`
 
 Optional:
 
@@ -3141,7 +3141,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--gce_persistent_disk"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.gce_persistent_disk`
 
 Required:
 
@@ -3155,7 +3155,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--git_repo"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.git_repo`
 
 Required:
 
@@ -3168,7 +3168,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--glusterfs"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.glusterfs`
 
 Required:
 
@@ -3181,7 +3181,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--host_path"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.host_path`
 
 Required:
 
@@ -3193,7 +3193,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--iscsi"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.iscsi`
 
 Required:
 
@@ -3222,7 +3222,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--nfs"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.nfs`
 
 Required:
 
@@ -3235,7 +3235,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--persistent_volume_claim"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.persistent_volume_claim`
 
 Required:
 
@@ -3247,7 +3247,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--photon_persistent_disk"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.photon_persistent_disk`
 
 Required:
 
@@ -3259,7 +3259,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--portworx_volume"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.portworx_volume`
 
 Required:
 
@@ -3272,7 +3272,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--projected"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.projected`
 
 Optional:
 
@@ -3291,7 +3291,7 @@ Optional:
 - `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--vsphere_volume--sources--service_account_token))
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--vsphere_volume--sources--cluster_trust_bundle"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.sources.cluster_trust_bundle`
 
 Required:
 
@@ -3305,7 +3305,7 @@ Optional:
 - `signer_name` (String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--vsphere_volume--sources--service_account_token--label_selector"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.sources.service_account_token.signer_name`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.sources.service_account_token.label_selector`
 
 Optional:
 
@@ -3313,7 +3313,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--vsphere_volume--sources--service_account_token--signer_name--match_expressions"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.sources.service_account_token.signer_name.match_labels`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.sources.service_account_token.signer_name.match_expressions`
 
 Required:
 
@@ -3328,7 +3328,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.sources.config_map`
 
 Optional:
 
@@ -3337,7 +3337,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.sources.service_account_token.optional`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.sources.service_account_token.items`
 
 Required:
 
@@ -3351,7 +3351,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.sources.downward_api`
 
 Optional:
 
@@ -3371,7 +3371,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.sources.service_account_token.items.field_ref`
 
 Required:
 
@@ -3398,7 +3398,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.sources.secret`
 
 Optional:
 
@@ -3407,7 +3407,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.sources.service_account_token.optional`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume.sources.service_account_token.items`
 
 Required:
 
@@ -3436,7 +3436,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--quobyte"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.quobyte`
 
 Required:
 
@@ -3452,7 +3452,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--rbd"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.rbd`
 
 Required:
 
@@ -3478,7 +3478,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--scale_io"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.scale_io`
 
 Required:
 
@@ -3506,7 +3506,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--secret"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.secret`
 
 Optional:
 
@@ -3530,7 +3530,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--storageos"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.vsphere_volume`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.storageos`
 
 Optional:
 
@@ -3575,7 +3575,7 @@ Optional:
 - `type` (String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--update_strategy--rolling_update"></a>
-### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.update_strategy.type`
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.update_strategy.rolling_update`
 
 Optional:
 
@@ -3716,7 +3716,7 @@ Optional:
 - `timeout` (String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--metrics--service_monitor_config"></a>
-### Nested Schema for `spec.node_agent_fluentbit.metrics.timeout`
+### Nested Schema for `spec.node_agent_fluentbit.metrics.service_monitor_config`
 
 Optional:
 
@@ -3770,7 +3770,7 @@ Optional:
 - `server_name` (String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--metrics--timeout--tls_config--ca"></a>
-### Nested Schema for `spec.node_agent_fluentbit.metrics.timeout.tls_config.server_name`
+### Nested Schema for `spec.node_agent_fluentbit.metrics.timeout.tls_config.ca`
 
 Optional:
 
@@ -3778,7 +3778,7 @@ Optional:
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--metrics--timeout--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--node_agent_fluentbit--metrics--timeout--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.node_agent_fluentbit.metrics.timeout.tls_config.server_name.secret`
+### Nested Schema for `spec.node_agent_fluentbit.metrics.timeout.tls_config.server_name.config_map`
 
 Required:
 
@@ -3805,7 +3805,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--metrics--timeout--tls_config--cert"></a>
-### Nested Schema for `spec.node_agent_fluentbit.metrics.timeout.tls_config.server_name`
+### Nested Schema for `spec.node_agent_fluentbit.metrics.timeout.tls_config.cert`
 
 Optional:
 
@@ -3813,7 +3813,7 @@ Optional:
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--metrics--timeout--tls_config--server_name--secret))
 
 <a id="nestedatt--spec--node_agent_fluentbit--metrics--timeout--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.node_agent_fluentbit.metrics.timeout.tls_config.server_name.secret`
+### Nested Schema for `spec.node_agent_fluentbit.metrics.timeout.tls_config.server_name.config_map`
 
 Required:
 
@@ -3840,7 +3840,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--metrics--timeout--tls_config--key_secret"></a>
-### Nested Schema for `spec.node_agent_fluentbit.metrics.timeout.tls_config.server_name`
+### Nested Schema for `spec.node_agent_fluentbit.metrics.timeout.tls_config.key_secret`
 
 Required:
 
@@ -3864,7 +3864,7 @@ Optional:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--metrics_service--spec))
 
 <a id="nestedatt--spec--node_agent_fluentbit--metrics_service--metadata"></a>
-### Nested Schema for `spec.node_agent_fluentbit.metrics_service.spec`
+### Nested Schema for `spec.node_agent_fluentbit.metrics_service.metadata`
 
 Optional:
 
@@ -3958,7 +3958,7 @@ Optional:
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--positiondb--secret))
 
 <a id="nestedatt--spec--node_agent_fluentbit--positiondb--empty_dir"></a>
-### Nested Schema for `spec.node_agent_fluentbit.positiondb.secret`
+### Nested Schema for `spec.node_agent_fluentbit.positiondb.empty_dir`
 
 Optional:
 
@@ -3967,7 +3967,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--positiondb--host_path"></a>
-### Nested Schema for `spec.node_agent_fluentbit.positiondb.secret`
+### Nested Schema for `spec.node_agent_fluentbit.positiondb.host_path`
 
 Required:
 
@@ -3979,7 +3979,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--positiondb--pvc"></a>
-### Nested Schema for `spec.node_agent_fluentbit.positiondb.secret`
+### Nested Schema for `spec.node_agent_fluentbit.positiondb.pvc`
 
 Optional:
 
@@ -4014,7 +4014,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--positiondb--secret--spec--data_source"></a>
-### Nested Schema for `spec.node_agent_fluentbit.positiondb.secret.spec.volume_name`
+### Nested Schema for `spec.node_agent_fluentbit.positiondb.secret.spec.data_source`
 
 Required:
 
@@ -4027,7 +4027,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--positiondb--secret--spec--data_source_ref"></a>
-### Nested Schema for `spec.node_agent_fluentbit.positiondb.secret.spec.volume_name`
+### Nested Schema for `spec.node_agent_fluentbit.positiondb.secret.spec.data_source_ref`
 
 Required:
 
@@ -4041,7 +4041,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--positiondb--secret--spec--resources"></a>
-### Nested Schema for `spec.node_agent_fluentbit.positiondb.secret.spec.volume_name`
+### Nested Schema for `spec.node_agent_fluentbit.positiondb.secret.spec.resources`
 
 Optional:
 
@@ -4050,7 +4050,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--positiondb--secret--spec--selector"></a>
-### Nested Schema for `spec.node_agent_fluentbit.positiondb.secret.spec.volume_name`
+### Nested Schema for `spec.node_agent_fluentbit.positiondb.secret.spec.selector`
 
 Optional:
 
@@ -4058,7 +4058,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--positiondb--secret--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.node_agent_fluentbit.positiondb.secret.spec.volume_name.match_labels`
+### Nested Schema for `spec.node_agent_fluentbit.positiondb.secret.spec.volume_name.match_expressions`
 
 Required:
 
@@ -4110,7 +4110,7 @@ Optional:
 - `service_account` (String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--security--pod_security_context"></a>
-### Nested Schema for `spec.node_agent_fluentbit.security.service_account`
+### Nested Schema for `spec.node_agent_fluentbit.security.pod_security_context`
 
 Optional:
 
@@ -4170,7 +4170,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--security--security_context"></a>
-### Nested Schema for `spec.node_agent_fluentbit.security.service_account`
+### Nested Schema for `spec.node_agent_fluentbit.security.security_context`
 
 Optional:
 
@@ -4242,7 +4242,7 @@ Optional:
 - `secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--service_account--secrets))
 
 <a id="nestedatt--spec--node_agent_fluentbit--service_account--image_pull_secrets"></a>
-### Nested Schema for `spec.node_agent_fluentbit.service_account.secrets`
+### Nested Schema for `spec.node_agent_fluentbit.service_account.image_pull_secrets`
 
 Optional:
 
@@ -4250,7 +4250,7 @@ Optional:
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--service_account--metadata"></a>
-### Nested Schema for `spec.node_agent_fluentbit.service_account.secrets`
+### Nested Schema for `spec.node_agent_fluentbit.service_account.metadata`
 
 Optional:
 

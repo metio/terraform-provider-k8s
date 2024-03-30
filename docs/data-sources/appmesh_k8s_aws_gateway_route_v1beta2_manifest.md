@@ -83,7 +83,7 @@ Optional:
 - `rewrite` (Attributes) GrpcGatewayRouteRewrite refers to https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_GrpcGatewayRouteRewrite.html (see [below for nested schema](#nestedatt--spec--grpc_route--action--rewrite))
 
 <a id="nestedatt--spec--grpc_route--action--target"></a>
-### Nested Schema for `spec.grpc_route.action.rewrite`
+### Nested Schema for `spec.grpc_route.action.target`
 
 Required:
 
@@ -143,7 +143,7 @@ Optional:
 - `service_name` (String) Either ServiceName or Hostname must be specified. Both are allowed as well The fully qualified domain name for the service to match from the request.
 
 <a id="nestedatt--spec--grpc_route--match--hostname"></a>
-### Nested Schema for `spec.grpc_route.match.service_name`
+### Nested Schema for `spec.grpc_route.match.hostname`
 
 Optional:
 
@@ -152,7 +152,7 @@ Optional:
 
 
 <a id="nestedatt--spec--grpc_route--match--metadata"></a>
-### Nested Schema for `spec.grpc_route.match.service_name`
+### Nested Schema for `spec.grpc_route.match.metadata`
 
 Required:
 
@@ -175,7 +175,7 @@ Optional:
 - `suffix` (String) The value sent by the client must end with the specified characters.
 
 <a id="nestedatt--spec--grpc_route--match--service_name--match--range"></a>
-### Nested Schema for `spec.grpc_route.match.service_name.match.suffix`
+### Nested Schema for `spec.grpc_route.match.service_name.match.range`
 
 Required:
 
@@ -207,7 +207,7 @@ Optional:
 - `rewrite` (Attributes) HTTPGatewayRouteRewrite refers to https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_HttpGatewayRouteRewrite.html (see [below for nested schema](#nestedatt--spec--http2_route--action--rewrite))
 
 <a id="nestedatt--spec--http2_route--action--target"></a>
-### Nested Schema for `spec.http2_route.action.rewrite`
+### Nested Schema for `spec.http2_route.action.target`
 
 Required:
 
@@ -289,7 +289,7 @@ Optional:
 - `query_parameters` (Attributes List) Client specified query parameters to match on (see [below for nested schema](#nestedatt--spec--http2_route--match--query_parameters))
 
 <a id="nestedatt--spec--http2_route--match--headers"></a>
-### Nested Schema for `spec.http2_route.match.query_parameters`
+### Nested Schema for `spec.http2_route.match.headers`
 
 Required:
 
@@ -312,7 +312,7 @@ Optional:
 - `suffix` (String) The value sent by the client must end with the specified characters.
 
 <a id="nestedatt--spec--http2_route--match--query_parameters--match--range"></a>
-### Nested Schema for `spec.http2_route.match.query_parameters.match.suffix`
+### Nested Schema for `spec.http2_route.match.query_parameters.match.range`
 
 Required:
 
@@ -323,7 +323,7 @@ Required:
 
 
 <a id="nestedatt--spec--http2_route--match--hostname"></a>
-### Nested Schema for `spec.http2_route.match.query_parameters`
+### Nested Schema for `spec.http2_route.match.hostname`
 
 Optional:
 
@@ -332,7 +332,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http2_route--match--path"></a>
-### Nested Schema for `spec.http2_route.match.query_parameters`
+### Nested Schema for `spec.http2_route.match.path`
 
 Optional:
 
@@ -382,7 +382,7 @@ Optional:
 - `rewrite` (Attributes) HTTPGatewayRouteRewrite refers to https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_HttpGatewayRouteRewrite.html (see [below for nested schema](#nestedatt--spec--http_route--action--rewrite))
 
 <a id="nestedatt--spec--http_route--action--target"></a>
-### Nested Schema for `spec.http_route.action.rewrite`
+### Nested Schema for `spec.http_route.action.target`
 
 Required:
 
@@ -464,7 +464,7 @@ Optional:
 - `query_parameters` (Attributes List) Client specified query parameters to match on (see [below for nested schema](#nestedatt--spec--http_route--match--query_parameters))
 
 <a id="nestedatt--spec--http_route--match--headers"></a>
-### Nested Schema for `spec.http_route.match.query_parameters`
+### Nested Schema for `spec.http_route.match.headers`
 
 Required:
 
@@ -487,7 +487,7 @@ Optional:
 - `suffix` (String) The value sent by the client must end with the specified characters.
 
 <a id="nestedatt--spec--http_route--match--query_parameters--match--range"></a>
-### Nested Schema for `spec.http_route.match.query_parameters.match.suffix`
+### Nested Schema for `spec.http_route.match.query_parameters.match.range`
 
 Required:
 
@@ -498,7 +498,7 @@ Required:
 
 
 <a id="nestedatt--spec--http_route--match--hostname"></a>
-### Nested Schema for `spec.http_route.match.query_parameters`
+### Nested Schema for `spec.http_route.match.hostname`
 
 Optional:
 
@@ -507,7 +507,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http_route--match--path"></a>
-### Nested Schema for `spec.http_route.match.query_parameters`
+### Nested Schema for `spec.http_route.match.path`
 
 Optional:
 

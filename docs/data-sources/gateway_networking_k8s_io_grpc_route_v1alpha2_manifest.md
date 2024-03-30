@@ -3,7 +3,7 @@
 page_title: "k8s_gateway_networking_k8s_io_grpc_route_v1alpha2_manifest Data Source - terraform-provider-k8s"
 subcategory: "gateway.networking.k8s.io"
 description: |-
-  GRPCRoute provides a way to route gRPC requests. This includes the capabilityto match requests by hostname, gRPC service, gRPC method, or HTTP/2 header.Filters can be used to specify additional processing steps. Backends specifywhere matching requests will be routed.GRPCRoute falls under extended support within the Gateway API. Within thefollowing specification, the word 'MUST' indicates that an implementationsupporting GRPCRoute must conform to the indicated requirement, but animplementation not supporting this route type need not follow the requirementunless explicitly indicated.Implementations supporting 'GRPCRoute' with the 'HTTPS' 'ProtocolType' MUSTaccept HTTP/2 connections without an initial upgrade from HTTP/1.1, i.e. viaALPN. If the implementation does not support this, then it MUST set the'Accepted' condition to 'False' for the affected listener with a reason of'UnsupportedProtocol'.  Implementations MAY also accept HTTP/2 connectionswith an upgrade from HTTP/1.Implementations supporting 'GRPCRoute' with the 'HTTP' 'ProtocolType' MUSTsupport HTTP/2 over cleartext TCP (h2c,https://www.rfc-editor.org/rfc/rfc7540#section-3.1) without an initialupgrade from HTTP/1.1, i.e. with prior knowledge(https://www.rfc-editor.org/rfc/rfc7540#section-3.4). If the implementationdoes not support this, then it MUST set the 'Accepted' condition to 'False'for the affected listener with a reason of 'UnsupportedProtocol'.Implementations MAY also accept HTTP/2 connections with an upgrade fromHTTP/1, i.e. without prior knowledge.
+  GRPCRoute provides a way to route gRPC requests. This includes the capabilityto match requests by hostname, gRPC service, gRPC method, or HTTP/2 header.Filters can be used to specify additional processing steps. Backends specifywhere matching requests will be routed.GRPCRoute falls under extended support within the Gateway API. Within thefollowing specification, the word 'MUST' indicates that an implementationsupporting GRPCRoute must conform to the indicated requirement, but animplementation not supporting this route type need not follow the requirementunless explicitly indicated.Implementations supporting 'GRPCRoute' with the 'HTTPS' 'ProtocolType' MUSTaccept HTTP/2 connections without an initial upgrade from HTTP/1.1, i.e. viaALPN. If the implementation does not support this, then it MUST set the'Accepted' condition to 'False' for the affected listener with a reason of'UnsupportedProtocol'.  Implementations MAY also accept HTTP/2 connectionswith an upgrade from HTTP/1.Implementations supporting 'GRPCRoute' with the 'HTTP' 'ProtocolType' MUSTsupport HTTP/2 over cleartext TCP (h2c,https://www.rfc-editor.org/rfc/rfc7540#section-3.1) without an initialupgrade from HTTP/1.1, i.e. with prior knowledge(. If the implementationdoes not support this, then it MUST set the 'Accepted' condition to 'False'for the affected listener with a reason of 'UnsupportedProtocol'.Implementations MAY also accept HTTP/2 connections with an upgrade fromHTTP/1, i.e. without prior knowledge.
 ---
 
 # k8s_gateway_networking_k8s_io_grpc_route_v1alpha2_manifest (Data Source)
@@ -101,7 +101,7 @@ Optional:
 - `weight` (Number) Weight specifies the proportion of requests forwarded to the referencedbackend. This is computed as weight/(sum of all weights in thisBackendRefs list). For non-zero values, there may be some epsilon fromthe exact proportion defined here depending on the precision animplementation supports. Weight is not a percentage and the sum ofweights does not need to equal 100.If only one backend is specified and it has a weight greater than 0, 100%of the traffic is forwarded to that backend. If weight is set to 0, notraffic should be forwarded for this entry. If unspecified, weightdefaults to 1.Support for this field varies based on the context where used.
 
 <a id="nestedatt--spec--rules--backend_refs--filters"></a>
-### Nested Schema for `spec.rules.backend_refs.weight`
+### Nested Schema for `spec.rules.backend_refs.filters`
 
 Required:
 
@@ -134,7 +134,7 @@ Optional:
 - `set` (Attributes List) Set overwrites the request with the given header (name, value)before the action.Input:  GET /foo HTTP/1.1  my-header: fooConfig:  set:  - name: 'my-header'    value: 'bar'Output:  GET /foo HTTP/1.1  my-header: bar (see [below for nested schema](#nestedatt--spec--rules--backend_refs--weight--request_header_modifier--set))
 
 <a id="nestedatt--spec--rules--backend_refs--weight--request_header_modifier--add"></a>
-### Nested Schema for `spec.rules.backend_refs.weight.request_header_modifier.set`
+### Nested Schema for `spec.rules.backend_refs.weight.request_header_modifier.add`
 
 Required:
 
@@ -185,7 +185,7 @@ Optional:
 - `set` (Attributes List) Set overwrites the request with the given header (name, value)before the action.Input:  GET /foo HTTP/1.1  my-header: fooConfig:  set:  - name: 'my-header'    value: 'bar'Output:  GET /foo HTTP/1.1  my-header: bar (see [below for nested schema](#nestedatt--spec--rules--backend_refs--weight--response_header_modifier--set))
 
 <a id="nestedatt--spec--rules--backend_refs--weight--response_header_modifier--add"></a>
-### Nested Schema for `spec.rules.backend_refs.weight.response_header_modifier.set`
+### Nested Schema for `spec.rules.backend_refs.weight.response_header_modifier.add`
 
 Required:
 
@@ -220,7 +220,7 @@ Optional:
 - `response_header_modifier` (Attributes) ResponseHeaderModifier defines a schema for a filter that modifies responseheaders.Support: Extended (see [below for nested schema](#nestedatt--spec--rules--filters--response_header_modifier))
 
 <a id="nestedatt--spec--rules--filters--extension_ref"></a>
-### Nested Schema for `spec.rules.filters.response_header_modifier`
+### Nested Schema for `spec.rules.filters.extension_ref`
 
 Required:
 
@@ -230,7 +230,7 @@ Required:
 
 
 <a id="nestedatt--spec--rules--filters--request_header_modifier"></a>
-### Nested Schema for `spec.rules.filters.response_header_modifier`
+### Nested Schema for `spec.rules.filters.request_header_modifier`
 
 Optional:
 
@@ -258,7 +258,7 @@ Required:
 
 
 <a id="nestedatt--spec--rules--filters--request_mirror"></a>
-### Nested Schema for `spec.rules.filters.response_header_modifier`
+### Nested Schema for `spec.rules.filters.request_mirror`
 
 Required:
 
@@ -318,7 +318,7 @@ Optional:
 - `method` (Attributes) Method specifies a gRPC request service/method matcher. If this field isnot specified, all services and methods will match. (see [below for nested schema](#nestedatt--spec--rules--matches--method))
 
 <a id="nestedatt--spec--rules--matches--headers"></a>
-### Nested Schema for `spec.rules.matches.method`
+### Nested Schema for `spec.rules.matches.headers`
 
 Required:
 

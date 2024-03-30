@@ -95,7 +95,7 @@ Optional:
 - `status` (String)
 
 <a id="nestedatt--spec--groups--jobs--compiled_params"></a>
-### Nested Schema for `spec.groups.jobs.status`
+### Nested Schema for `spec.groups.jobs.compiled_params`
 
 Optional:
 
@@ -133,7 +133,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--groups--jobs--status--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--groups--jobs--status--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.env.value_from.secret_key_ref`
+### Nested Schema for `spec.groups.jobs.status.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -146,7 +146,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--env--value_from--field_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.env.value_from.secret_key_ref`
+### Nested Schema for `spec.groups.jobs.status.env.value_from.field_ref`
 
 Required:
 
@@ -158,7 +158,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.env.value_from.secret_key_ref`
+### Nested Schema for `spec.groups.jobs.status.env.value_from.resource_field_ref`
 
 Required:
 
@@ -195,7 +195,7 @@ Optional:
 - `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--groups--jobs--status--from_env--secret_ref))
 
 <a id="nestedatt--spec--groups--jobs--status--from_env--config_map_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.from_env.secret_ref`
+### Nested Schema for `spec.groups.jobs.status.from_env.config_map_ref`
 
 Optional:
 
@@ -277,7 +277,7 @@ Optional:
 - `vsphere_volume` (Attributes) vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume))
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--aws_elastic_block_store"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.aws_elastic_block_store`
 
 Required:
 
@@ -291,7 +291,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--azure_disk"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.azure_disk`
 
 Required:
 
@@ -307,7 +307,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--azure_file"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.azure_file`
 
 Required:
 
@@ -320,7 +320,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--cephfs"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.cephfs`
 
 Required:
 
@@ -335,7 +335,7 @@ Optional:
 - `user` (String) user is optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.user`
+### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -344,7 +344,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--cinder"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.cinder`
 
 Required:
 
@@ -366,7 +366,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--config_map"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.config_map`
 
 Optional:
 
@@ -376,7 +376,7 @@ Optional:
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.optional`
+### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.items`
 
 Required:
 
@@ -390,7 +390,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--csi"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.csi`
 
 Required:
 
@@ -404,7 +404,7 @@ Optional:
 - `volume_attributes` (Map of String) volumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--node_publish_secret_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_attributes`
+### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.node_publish_secret_ref`
 
 Optional:
 
@@ -413,7 +413,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--downward_api"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.downward_api`
 
 Optional:
 
@@ -434,7 +434,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--items--resource_field_ref))
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.items.resource_field_ref`
+### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.items.field_ref`
 
 Required:
 
@@ -461,7 +461,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--empty_dir"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.empty_dir`
 
 Optional:
 
@@ -470,7 +470,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--ephemeral"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.ephemeral`
 
 Optional:
 
@@ -488,7 +488,7 @@ Optional:
 - `metadata` (Map of String) May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation.
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_claim_template.metadata`
+### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_claim_template.spec`
 
 Optional:
 
@@ -538,7 +538,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--metadata--resources--claims"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_claim_template.metadata.resources.requests`
+### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_claim_template.metadata.resources.claims`
 
 Required:
 
@@ -555,7 +555,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--metadata--selector--match_expressions"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_claim_template.metadata.selector.match_labels`
+### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_claim_template.metadata.selector.match_expressions`
 
 Required:
 
@@ -572,7 +572,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--fc"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.fc`
 
 Optional:
 
@@ -584,7 +584,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--flex_volume"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.flex_volume`
 
 Required:
 
@@ -607,7 +607,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--flocker"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.flocker`
 
 Optional:
 
@@ -616,7 +616,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--gce_persistent_disk"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.gce_persistent_disk`
 
 Required:
 
@@ -630,7 +630,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--git_repo"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.git_repo`
 
 Required:
 
@@ -643,7 +643,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--glusterfs"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.glusterfs`
 
 Required:
 
@@ -656,7 +656,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--host_path"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.host_path`
 
 Required:
 
@@ -668,7 +668,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--iscsi"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.iscsi`
 
 Required:
 
@@ -697,7 +697,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--nfs"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.nfs`
 
 Required:
 
@@ -710,7 +710,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--persistent_volume_claim"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.persistent_volume_claim`
 
 Required:
 
@@ -722,7 +722,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--photon_persistent_disk"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.photon_persistent_disk`
 
 Required:
 
@@ -734,7 +734,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--portworx_volume"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.portworx_volume`
 
 Required:
 
@@ -747,7 +747,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--projected"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.projected`
 
 Optional:
 
@@ -765,7 +765,7 @@ Optional:
 - `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--service_account_token))
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.config_map`
 
 Optional:
 
@@ -788,7 +788,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.downward_api`
 
 Optional:
 
@@ -808,7 +808,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.service_account_token.items.field_ref`
 
 Required:
 
@@ -835,7 +835,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.secret`
 
 Optional:
 
@@ -873,7 +873,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--quobyte"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.quobyte`
 
 Required:
 
@@ -889,7 +889,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--rbd"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.rbd`
 
 Required:
 
@@ -906,7 +906,7 @@ Optional:
 - `user` (String) user is the rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.user`
+### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -915,7 +915,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--scale_io"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.scale_io`
 
 Required:
 
@@ -934,7 +934,7 @@ Optional:
 - `volume_name` (String) volumeName is the name of a volume already created in the ScaleIO system that is associated with this volume source.
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_name`
+### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -943,7 +943,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--secret"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.secret`
 
 Optional:
 
@@ -953,7 +953,7 @@ Optional:
 - `secret_name` (String) secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.secret_name`
+### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.items`
 
 Required:
 
@@ -967,7 +967,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--storageos"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.storageos`
 
 Optional:
 
@@ -978,7 +978,7 @@ Optional:
 - `volume_namespace` (String) volumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_namespace`
+### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -1003,7 +1003,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--dependencies"></a>
-### Nested Schema for `spec.groups.jobs.status`
+### Nested Schema for `spec.groups.jobs.dependencies`
 
 Required:
 
@@ -1015,7 +1015,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--params"></a>
-### Nested Schema for `spec.groups.jobs.status`
+### Nested Schema for `spec.groups.jobs.params`
 
 Optional:
 
@@ -1053,7 +1053,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--groups--jobs--status--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--groups--jobs--status--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.env.value_from.secret_key_ref`
+### Nested Schema for `spec.groups.jobs.status.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -1066,7 +1066,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--env--value_from--field_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.env.value_from.secret_key_ref`
+### Nested Schema for `spec.groups.jobs.status.env.value_from.field_ref`
 
 Required:
 
@@ -1078,7 +1078,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.env.value_from.secret_key_ref`
+### Nested Schema for `spec.groups.jobs.status.env.value_from.resource_field_ref`
 
 Required:
 
@@ -1115,7 +1115,7 @@ Optional:
 - `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--groups--jobs--status--from_env--secret_ref))
 
 <a id="nestedatt--spec--groups--jobs--status--from_env--config_map_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.from_env.secret_ref`
+### Nested Schema for `spec.groups.jobs.status.from_env.config_map_ref`
 
 Optional:
 
@@ -1197,7 +1197,7 @@ Optional:
 - `vsphere_volume` (Attributes) vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume))
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--aws_elastic_block_store"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.aws_elastic_block_store`
 
 Required:
 
@@ -1211,7 +1211,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--azure_disk"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.azure_disk`
 
 Required:
 
@@ -1227,7 +1227,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--azure_file"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.azure_file`
 
 Required:
 
@@ -1240,7 +1240,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--cephfs"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.cephfs`
 
 Required:
 
@@ -1255,7 +1255,7 @@ Optional:
 - `user` (String) user is optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.user`
+### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -1264,7 +1264,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--cinder"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.cinder`
 
 Required:
 
@@ -1286,7 +1286,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--config_map"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.config_map`
 
 Optional:
 
@@ -1296,7 +1296,7 @@ Optional:
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.optional`
+### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.items`
 
 Required:
 
@@ -1310,7 +1310,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--csi"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.csi`
 
 Required:
 
@@ -1324,7 +1324,7 @@ Optional:
 - `volume_attributes` (Map of String) volumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--node_publish_secret_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_attributes`
+### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.node_publish_secret_ref`
 
 Optional:
 
@@ -1333,7 +1333,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--downward_api"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.downward_api`
 
 Optional:
 
@@ -1354,7 +1354,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--items--resource_field_ref))
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.items.resource_field_ref`
+### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.items.field_ref`
 
 Required:
 
@@ -1381,7 +1381,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--empty_dir"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.empty_dir`
 
 Optional:
 
@@ -1390,7 +1390,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--ephemeral"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.ephemeral`
 
 Optional:
 
@@ -1408,7 +1408,7 @@ Optional:
 - `metadata` (Map of String) May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation.
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_claim_template.metadata`
+### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_claim_template.spec`
 
 Optional:
 
@@ -1458,7 +1458,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--metadata--resources--claims"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_claim_template.metadata.resources.requests`
+### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_claim_template.metadata.resources.claims`
 
 Required:
 
@@ -1475,7 +1475,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--volume_claim_template--metadata--selector--match_expressions"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_claim_template.metadata.selector.match_labels`
+### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_claim_template.metadata.selector.match_expressions`
 
 Required:
 
@@ -1492,7 +1492,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--fc"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.fc`
 
 Optional:
 
@@ -1504,7 +1504,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--flex_volume"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.flex_volume`
 
 Required:
 
@@ -1527,7 +1527,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--flocker"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.flocker`
 
 Optional:
 
@@ -1536,7 +1536,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--gce_persistent_disk"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.gce_persistent_disk`
 
 Required:
 
@@ -1550,7 +1550,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--git_repo"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.git_repo`
 
 Required:
 
@@ -1563,7 +1563,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--glusterfs"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.glusterfs`
 
 Required:
 
@@ -1576,7 +1576,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--host_path"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.host_path`
 
 Required:
 
@@ -1588,7 +1588,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--iscsi"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.iscsi`
 
 Required:
 
@@ -1617,7 +1617,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--nfs"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.nfs`
 
 Required:
 
@@ -1630,7 +1630,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--persistent_volume_claim"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.persistent_volume_claim`
 
 Required:
 
@@ -1642,7 +1642,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--photon_persistent_disk"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.photon_persistent_disk`
 
 Required:
 
@@ -1654,7 +1654,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--portworx_volume"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.portworx_volume`
 
 Required:
 
@@ -1667,7 +1667,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--projected"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.projected`
 
 Optional:
 
@@ -1685,7 +1685,7 @@ Optional:
 - `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--service_account_token))
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.config_map`
 
 Optional:
 
@@ -1708,7 +1708,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.downward_api`
 
 Optional:
 
@@ -1728,7 +1728,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.service_account_token.items.field_ref`
 
 Required:
 
@@ -1755,7 +1755,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.sources.secret`
 
 Optional:
 
@@ -1793,7 +1793,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--quobyte"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.quobyte`
 
 Required:
 
@@ -1809,7 +1809,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--rbd"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.rbd`
 
 Required:
 
@@ -1826,7 +1826,7 @@ Optional:
 - `user` (String) user is the rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.user`
+### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -1835,7 +1835,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--scale_io"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.scale_io`
 
 Required:
 
@@ -1854,7 +1854,7 @@ Optional:
 - `volume_name` (String) volumeName is the name of a volume already created in the ScaleIO system that is associated with this volume source.
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_name`
+### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -1863,7 +1863,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--secret"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.secret`
 
 Optional:
 
@@ -1873,7 +1873,7 @@ Optional:
 - `secret_name` (String) secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.secret_name`
+### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.items`
 
 Required:
 
@@ -1887,7 +1887,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--storageos"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume`
+### Nested Schema for `spec.groups.jobs.status.volumes.storageos`
 
 Optional:
 
@@ -1898,7 +1898,7 @@ Optional:
 - `volume_namespace` (String) volumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
 
 <a id="nestedatt--spec--groups--jobs--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.volume_namespace`
+### Nested Schema for `spec.groups.jobs.status.volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -1952,7 +1952,7 @@ Optional:
 - `volumes` (Attributes List) (see [below for nested schema](#nestedatt--spec--groups--params--volumes))
 
 <a id="nestedatt--spec--groups--params--env"></a>
-### Nested Schema for `spec.groups.params.volumes`
+### Nested Schema for `spec.groups.params.env`
 
 Required:
 
@@ -1974,7 +1974,7 @@ Optional:
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--groups--params--volumes--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--groups--params--volumes--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.groups.params.volumes.value_from.secret_key_ref`
+### Nested Schema for `spec.groups.params.volumes.value_from.config_map_key_ref`
 
 Required:
 
@@ -1987,7 +1987,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--params--volumes--value_from--field_ref"></a>
-### Nested Schema for `spec.groups.params.volumes.value_from.secret_key_ref`
+### Nested Schema for `spec.groups.params.volumes.value_from.field_ref`
 
 Required:
 
@@ -1999,7 +1999,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--params--volumes--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.groups.params.volumes.value_from.secret_key_ref`
+### Nested Schema for `spec.groups.params.volumes.value_from.resource_field_ref`
 
 Required:
 
@@ -2027,7 +2027,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--params--from_env"></a>
-### Nested Schema for `spec.groups.params.volumes`
+### Nested Schema for `spec.groups.params.from_env`
 
 Optional:
 
@@ -2055,7 +2055,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--params--image_pull_secrets"></a>
-### Nested Schema for `spec.groups.params.volumes`
+### Nested Schema for `spec.groups.params.image_pull_secrets`
 
 Optional:
 
@@ -2063,7 +2063,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--params--volume_mount"></a>
-### Nested Schema for `spec.groups.params.volumes`
+### Nested Schema for `spec.groups.params.volume_mount`
 
 Required:
 
@@ -2176,7 +2176,7 @@ Optional:
 - `user` (String) user is optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
 
 <a id="nestedatt--spec--groups--params--volumes--cephfs--secret_ref"></a>
-### Nested Schema for `spec.groups.params.volumes.cephfs.user`
+### Nested Schema for `spec.groups.params.volumes.cephfs.secret_ref`
 
 Optional:
 
@@ -2217,7 +2217,7 @@ Optional:
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--groups--params--volumes--config_map--items"></a>
-### Nested Schema for `spec.groups.params.volumes.config_map.optional`
+### Nested Schema for `spec.groups.params.volumes.config_map.items`
 
 Required:
 
@@ -2245,7 +2245,7 @@ Optional:
 - `volume_attributes` (Map of String) volumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.
 
 <a id="nestedatt--spec--groups--params--volumes--csi--node_publish_secret_ref"></a>
-### Nested Schema for `spec.groups.params.volumes.csi.volume_attributes`
+### Nested Schema for `spec.groups.params.volumes.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -2275,7 +2275,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--groups--params--volumes--downward_api--items--resource_field_ref))
 
 <a id="nestedatt--spec--groups--params--volumes--downward_api--items--field_ref"></a>
-### Nested Schema for `spec.groups.params.volumes.downward_api.items.resource_field_ref`
+### Nested Schema for `spec.groups.params.volumes.downward_api.items.field_ref`
 
 Required:
 
@@ -2329,7 +2329,7 @@ Optional:
 - `metadata` (Map of String) May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation.
 
 <a id="nestedatt--spec--groups--params--volumes--ephemeral--volume_claim_template--spec"></a>
-### Nested Schema for `spec.groups.params.volumes.ephemeral.volume_claim_template.metadata`
+### Nested Schema for `spec.groups.params.volumes.ephemeral.volume_claim_template.spec`
 
 Optional:
 
@@ -2343,7 +2343,7 @@ Optional:
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--groups--params--volumes--ephemeral--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.groups.params.volumes.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.groups.params.volumes.ephemeral.volume_claim_template.metadata.data_source`
 
 Required:
 
@@ -2356,7 +2356,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--params--volumes--ephemeral--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.groups.params.volumes.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.groups.params.volumes.ephemeral.volume_claim_template.metadata.data_source_ref`
 
 Required:
 
@@ -2370,7 +2370,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--params--volumes--ephemeral--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.groups.params.volumes.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.groups.params.volumes.ephemeral.volume_claim_template.metadata.resources`
 
 Optional:
 
@@ -2388,7 +2388,7 @@ Required:
 
 
 <a id="nestedatt--spec--groups--params--volumes--ephemeral--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.groups.params.volumes.ephemeral.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.groups.params.volumes.ephemeral.volume_claim_template.metadata.selector`
 
 Optional:
 
@@ -2606,7 +2606,7 @@ Optional:
 - `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--groups--params--volumes--projected--sources--service_account_token))
 
 <a id="nestedatt--spec--groups--params--volumes--projected--sources--config_map"></a>
-### Nested Schema for `spec.groups.params.volumes.projected.sources.service_account_token`
+### Nested Schema for `spec.groups.params.volumes.projected.sources.config_map`
 
 Optional:
 
@@ -2615,7 +2615,7 @@ Optional:
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--groups--params--volumes--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.groups.params.volumes.projected.sources.service_account_token.optional`
+### Nested Schema for `spec.groups.params.volumes.projected.sources.service_account_token.items`
 
 Required:
 
@@ -2629,7 +2629,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--params--volumes--projected--sources--downward_api"></a>
-### Nested Schema for `spec.groups.params.volumes.projected.sources.service_account_token`
+### Nested Schema for `spec.groups.params.volumes.projected.sources.downward_api`
 
 Optional:
 
@@ -2676,7 +2676,7 @@ Optional:
 
 
 <a id="nestedatt--spec--groups--params--volumes--projected--sources--secret"></a>
-### Nested Schema for `spec.groups.params.volumes.projected.sources.service_account_token`
+### Nested Schema for `spec.groups.params.volumes.projected.sources.secret`
 
 Optional:
 
@@ -2685,7 +2685,7 @@ Optional:
 - `optional` (Boolean) optional field specify whether the Secret or its key must be defined
 
 <a id="nestedatt--spec--groups--params--volumes--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.groups.params.volumes.projected.sources.service_account_token.optional`
+### Nested Schema for `spec.groups.params.volumes.projected.sources.service_account_token.items`
 
 Required:
 
@@ -2747,7 +2747,7 @@ Optional:
 - `user` (String) user is the rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 
 <a id="nestedatt--spec--groups--params--volumes--rbd--secret_ref"></a>
-### Nested Schema for `spec.groups.params.volumes.rbd.user`
+### Nested Schema for `spec.groups.params.volumes.rbd.secret_ref`
 
 Optional:
 
@@ -2775,7 +2775,7 @@ Optional:
 - `volume_name` (String) volumeName is the name of a volume already created in the ScaleIO system that is associated with this volume source.
 
 <a id="nestedatt--spec--groups--params--volumes--scale_io--secret_ref"></a>
-### Nested Schema for `spec.groups.params.volumes.scale_io.volume_name`
+### Nested Schema for `spec.groups.params.volumes.scale_io.secret_ref`
 
 Optional:
 
@@ -2794,7 +2794,7 @@ Optional:
 - `secret_name` (String) secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
 
 <a id="nestedatt--spec--groups--params--volumes--secret--items"></a>
-### Nested Schema for `spec.groups.params.volumes.secret.secret_name`
+### Nested Schema for `spec.groups.params.volumes.secret.items`
 
 Required:
 
@@ -2819,7 +2819,7 @@ Optional:
 - `volume_namespace` (String) volumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
 
 <a id="nestedatt--spec--groups--params--volumes--storageos--secret_ref"></a>
-### Nested Schema for `spec.groups.params.volumes.storageos.volume_namespace`
+### Nested Schema for `spec.groups.params.volumes.storageos.secret_ref`
 
 Optional:
 
@@ -2945,7 +2945,7 @@ Optional:
 - `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--params--from_env--secret_ref))
 
 <a id="nestedatt--spec--params--from_env--config_map_ref"></a>
-### Nested Schema for `spec.params.from_env.secret_ref`
+### Nested Schema for `spec.params.from_env.config_map_ref`
 
 Optional:
 
@@ -3027,7 +3027,7 @@ Optional:
 - `vsphere_volume` (Attributes) vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume))
 
 <a id="nestedatt--spec--params--volumes--aws_elastic_block_store"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume`
+### Nested Schema for `spec.params.volumes.aws_elastic_block_store`
 
 Required:
 
@@ -3041,7 +3041,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--azure_disk"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume`
+### Nested Schema for `spec.params.volumes.azure_disk`
 
 Required:
 
@@ -3057,7 +3057,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--azure_file"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume`
+### Nested Schema for `spec.params.volumes.azure_file`
 
 Required:
 
@@ -3070,7 +3070,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--cephfs"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume`
+### Nested Schema for `spec.params.volumes.cephfs`
 
 Required:
 
@@ -3094,7 +3094,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--cinder"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume`
+### Nested Schema for `spec.params.volumes.cinder`
 
 Required:
 
@@ -3116,7 +3116,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--config_map"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume`
+### Nested Schema for `spec.params.volumes.config_map`
 
 Optional:
 
@@ -3140,7 +3140,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--csi"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume`
+### Nested Schema for `spec.params.volumes.csi`
 
 Required:
 
@@ -3163,7 +3163,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--downward_api"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume`
+### Nested Schema for `spec.params.volumes.downward_api`
 
 Optional:
 
@@ -3184,7 +3184,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--items--resource_field_ref))
 
 <a id="nestedatt--spec--params--volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.items.resource_field_ref`
+### Nested Schema for `spec.params.volumes.vsphere_volume.items.field_ref`
 
 Required:
 
@@ -3211,7 +3211,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--empty_dir"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume`
+### Nested Schema for `spec.params.volumes.empty_dir`
 
 Optional:
 
@@ -3220,7 +3220,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--ephemeral"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume`
+### Nested Schema for `spec.params.volumes.ephemeral`
 
 Optional:
 
@@ -3238,7 +3238,7 @@ Optional:
 - `metadata` (Map of String) May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation.
 
 <a id="nestedatt--spec--params--volumes--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.volume_claim_template.metadata`
+### Nested Schema for `spec.params.volumes.vsphere_volume.volume_claim_template.spec`
 
 Optional:
 
@@ -3252,7 +3252,7 @@ Optional:
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--params--volumes--vsphere_volume--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.params.volumes.vsphere_volume.volume_claim_template.metadata.data_source`
 
 Required:
 
@@ -3265,7 +3265,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--vsphere_volume--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.params.volumes.vsphere_volume.volume_claim_template.metadata.data_source_ref`
 
 Required:
 
@@ -3279,7 +3279,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--vsphere_volume--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.params.volumes.vsphere_volume.volume_claim_template.metadata.resources`
 
 Optional:
 
@@ -3288,7 +3288,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--params--volumes--vsphere_volume--volume_claim_template--metadata--volume_name--claims"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.volume_claim_template.metadata.volume_name.requests`
+### Nested Schema for `spec.params.volumes.vsphere_volume.volume_claim_template.metadata.volume_name.claims`
 
 Required:
 
@@ -3297,7 +3297,7 @@ Required:
 
 
 <a id="nestedatt--spec--params--volumes--vsphere_volume--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.params.volumes.vsphere_volume.volume_claim_template.metadata.selector`
 
 Optional:
 
@@ -3305,7 +3305,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--params--volumes--vsphere_volume--volume_claim_template--metadata--volume_name--match_expressions"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_labels`
+### Nested Schema for `spec.params.volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_expressions`
 
 Required:
 
@@ -3322,7 +3322,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--fc"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume`
+### Nested Schema for `spec.params.volumes.fc`
 
 Optional:
 
@@ -3334,7 +3334,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--flex_volume"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume`
+### Nested Schema for `spec.params.volumes.flex_volume`
 
 Required:
 
@@ -3357,7 +3357,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--flocker"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume`
+### Nested Schema for `spec.params.volumes.flocker`
 
 Optional:
 
@@ -3366,7 +3366,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--gce_persistent_disk"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume`
+### Nested Schema for `spec.params.volumes.gce_persistent_disk`
 
 Required:
 
@@ -3380,7 +3380,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--git_repo"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume`
+### Nested Schema for `spec.params.volumes.git_repo`
 
 Required:
 
@@ -3393,7 +3393,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--glusterfs"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume`
+### Nested Schema for `spec.params.volumes.glusterfs`
 
 Required:
 
@@ -3406,7 +3406,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--host_path"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume`
+### Nested Schema for `spec.params.volumes.host_path`
 
 Required:
 
@@ -3418,7 +3418,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--iscsi"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume`
+### Nested Schema for `spec.params.volumes.iscsi`
 
 Required:
 
@@ -3447,7 +3447,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--nfs"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume`
+### Nested Schema for `spec.params.volumes.nfs`
 
 Required:
 
@@ -3460,7 +3460,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--persistent_volume_claim"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume`
+### Nested Schema for `spec.params.volumes.persistent_volume_claim`
 
 Required:
 
@@ -3472,7 +3472,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--photon_persistent_disk"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume`
+### Nested Schema for `spec.params.volumes.photon_persistent_disk`
 
 Required:
 
@@ -3484,7 +3484,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--portworx_volume"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume`
+### Nested Schema for `spec.params.volumes.portworx_volume`
 
 Required:
 
@@ -3497,7 +3497,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--projected"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume`
+### Nested Schema for `spec.params.volumes.projected`
 
 Optional:
 
@@ -3515,7 +3515,7 @@ Optional:
 - `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--sources--service_account_token))
 
 <a id="nestedatt--spec--params--volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.params.volumes.vsphere_volume.sources.config_map`
 
 Optional:
 
@@ -3524,7 +3524,7 @@ Optional:
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--params--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.sources.service_account_token.optional`
+### Nested Schema for `spec.params.volumes.vsphere_volume.sources.service_account_token.items`
 
 Required:
 
@@ -3538,7 +3538,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.params.volumes.vsphere_volume.sources.downward_api`
 
 Optional:
 
@@ -3558,7 +3558,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--params--volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
 
 <a id="nestedatt--spec--params--volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+### Nested Schema for `spec.params.volumes.vsphere_volume.sources.service_account_token.items.field_ref`
 
 Required:
 
@@ -3585,7 +3585,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.params.volumes.vsphere_volume.sources.secret`
 
 Optional:
 
@@ -3594,7 +3594,7 @@ Optional:
 - `optional` (Boolean) optional field specify whether the Secret or its key must be defined
 
 <a id="nestedatt--spec--params--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume.sources.service_account_token.optional`
+### Nested Schema for `spec.params.volumes.vsphere_volume.sources.service_account_token.items`
 
 Required:
 
@@ -3623,7 +3623,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--quobyte"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume`
+### Nested Schema for `spec.params.volumes.quobyte`
 
 Required:
 
@@ -3639,7 +3639,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--rbd"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume`
+### Nested Schema for `spec.params.volumes.rbd`
 
 Required:
 
@@ -3665,7 +3665,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--scale_io"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume`
+### Nested Schema for `spec.params.volumes.scale_io`
 
 Required:
 
@@ -3693,7 +3693,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--secret"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume`
+### Nested Schema for `spec.params.volumes.secret`
 
 Optional:
 
@@ -3717,7 +3717,7 @@ Optional:
 
 
 <a id="nestedatt--spec--params--volumes--storageos"></a>
-### Nested Schema for `spec.params.volumes.vsphere_volume`
+### Nested Schema for `spec.params.volumes.storageos`
 
 Optional:
 

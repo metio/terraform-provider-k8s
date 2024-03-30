@@ -139,7 +139,7 @@ Optional:
 - `service` (Attributes) IngressServiceBackend references a Kubernetes Service as a Backend. (see [below for nested schema](#nestedatt--spec--rules--http--paths--backend--service))
 
 <a id="nestedatt--spec--rules--http--paths--backend--resource"></a>
-### Nested Schema for `spec.rules.http.paths.backend.service`
+### Nested Schema for `spec.rules.http.paths.backend.resource`
 
 Required:
 

@@ -3,7 +3,7 @@
 page_title: "k8s_hnc_x_k8s_io_hnc_configuration_v1alpha2_manifest Data Source - terraform-provider-k8s"
 subcategory: "hnc.x-k8s.io"
 description: |-
-  HNCConfiguration is a cluster-wide configuration for HNC as a whole. See details in http://bit.ly/hnc-type-configuration
+  HNCConfiguration is a cluster-wide configuration for HNC as a whole. See details in
 ---
 
 # k8s_hnc_x_k8s_io_hnc_configuration_v1alpha2_manifest (Data Source)

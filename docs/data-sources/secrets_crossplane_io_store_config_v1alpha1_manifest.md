@@ -82,7 +82,7 @@ Optional:
 - `secret_ref` (Attributes) A SecretRef is a reference to a secret key that contains the credentialsthat must be used to connect to the provider. (see [below for nested schema](#nestedatt--spec--kubernetes--auth--secret_ref))
 
 <a id="nestedatt--spec--kubernetes--auth--env"></a>
-### Nested Schema for `spec.kubernetes.auth.secret_ref`
+### Nested Schema for `spec.kubernetes.auth.env`
 
 Required:
 
@@ -90,7 +90,7 @@ Required:
 
 
 <a id="nestedatt--spec--kubernetes--auth--fs"></a>
-### Nested Schema for `spec.kubernetes.auth.secret_ref`
+### Nested Schema for `spec.kubernetes.auth.fs`
 
 Required:
 

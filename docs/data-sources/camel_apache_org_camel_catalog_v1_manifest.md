@@ -95,7 +95,7 @@ Optional:
 - `version` (String) Maven Version
 
 <a id="nestedatt--spec--artifacts--dependencies--exclusions"></a>
-### Nested Schema for `spec.artifacts.dependencies.version`
+### Nested Schema for `spec.artifacts.dependencies.exclusions`
 
 Required:
 
@@ -128,7 +128,7 @@ Optional:
 - `producer` (Attributes) required scope for producers (see [below for nested schema](#nestedatt--spec--artifacts--schemes--producer))
 
 <a id="nestedatt--spec--artifacts--schemes--consumer"></a>
-### Nested Schema for `spec.artifacts.schemes.producer`
+### Nested Schema for `spec.artifacts.schemes.consumer`
 
 Optional:
 
@@ -150,7 +150,7 @@ Optional:
 - `version` (String) Maven Version
 
 <a id="nestedatt--spec--artifacts--schemes--producer--dependencies--exclusions"></a>
-### Nested Schema for `spec.artifacts.schemes.producer.dependencies.version`
+### Nested Schema for `spec.artifacts.schemes.producer.dependencies.exclusions`
 
 Required:
 
@@ -183,7 +183,7 @@ Optional:
 - `version` (String) Maven Version
 
 <a id="nestedatt--spec--artifacts--schemes--producer--dependencies--exclusions"></a>
-### Nested Schema for `spec.artifacts.schemes.producer.dependencies.version`
+### Nested Schema for `spec.artifacts.schemes.producer.dependencies.exclusions`
 
 Required:
 

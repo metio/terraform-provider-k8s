@@ -88,7 +88,7 @@ Optional:
 - `vlan_id` (Number) VlanID is the vlan id assigned by the user for the DNI.
 
 <a id="nestedatt--spec--network--direct_network_interfaces--ip_pool_ref"></a>
-### Nested Schema for `spec.network.direct_network_interfaces.vlan_id`
+### Nested Schema for `spec.network.direct_network_interfaces.ip_pool_ref`
 
 Optional:
 
@@ -130,7 +130,7 @@ Optional:
 - `kubernetes` (Attributes) Kubernetes defines the Kubernetes settings on the host OS. (see [below for nested schema](#nestedatt--spec--host_os_configuration--bottlerocket_configuration--kubernetes))
 
 <a id="nestedatt--spec--host_os_configuration--bottlerocket_configuration--boot"></a>
-### Nested Schema for `spec.host_os_configuration.bottlerocket_configuration.kubernetes`
+### Nested Schema for `spec.host_os_configuration.bottlerocket_configuration.boot`
 
 Optional:
 
@@ -138,7 +138,7 @@ Optional:
 
 
 <a id="nestedatt--spec--host_os_configuration--bottlerocket_configuration--kernel"></a>
-### Nested Schema for `spec.host_os_configuration.bottlerocket_configuration.kubernetes`
+### Nested Schema for `spec.host_os_configuration.bottlerocket_configuration.kernel`
 
 Optional:
 

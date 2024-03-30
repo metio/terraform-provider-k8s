@@ -103,7 +103,7 @@ Required:
 - `username` (String) Username is the username for the container repo.
 
 <a id="nestedatt--spec--builder--build_registry--password_secret_ref"></a>
-### Nested Schema for `spec.builder.build_registry.username`
+### Nested Schema for `spec.builder.build_registry.password_secret_ref`
 
 Required:
 

@@ -79,7 +79,7 @@ Optional:
 - `path` (String) Path specifies a vault secret path (e.g. secret/data/some-secret or mongodb/creds/mymongo)
 
 <a id="nestedatt--spec--destination--vault--auth"></a>
-### Nested Schema for `spec.destination.vault.path`
+### Nested Schema for `spec.destination.vault.auth`
 
 Optional:
 
@@ -115,7 +115,7 @@ Optional:
 - `token_key` (String) A key in the SecretRef which contains token value. Default: token
 
 <a id="nestedatt--spec--destination--vault--path--token--secret_ref"></a>
-### Nested Schema for `spec.destination.vault.path.token.token_key`
+### Nested Schema for `spec.destination.vault.path.token.secret_ref`
 
 Optional:
 
@@ -146,7 +146,7 @@ Optional:
 - `path` (String) Path specifies a vault secret path (e.g. secret/data/some-secret or mongodb/creds/mymongo)
 
 <a id="nestedatt--spec--source--vault--auth"></a>
-### Nested Schema for `spec.source.vault.path`
+### Nested Schema for `spec.source.vault.auth`
 
 Optional:
 
@@ -182,7 +182,7 @@ Optional:
 - `token_key` (String) A key in the SecretRef which contains token value. Default: token
 
 <a id="nestedatt--spec--source--vault--path--token--secret_ref"></a>
-### Nested Schema for `spec.source.vault.path.token.token_key`
+### Nested Schema for `spec.source.vault.path.token.secret_ref`
 
 Optional:
 

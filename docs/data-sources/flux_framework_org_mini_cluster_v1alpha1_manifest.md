@@ -228,7 +228,7 @@ Optional:
 - `lead_broker` (Attributes) The lead broker ip address to join to. E.g., if we burst to cluster 2, this is the address to connect to cluster 1 For the first cluster, this should not be defined (see [below for nested schema](#nestedatt--spec--flux--bursting--lead_broker))
 
 <a id="nestedatt--spec--flux--bursting--clusters"></a>
-### Nested Schema for `spec.flux.bursting.lead_broker`
+### Nested Schema for `spec.flux.bursting.clusters`
 
 Optional:
 

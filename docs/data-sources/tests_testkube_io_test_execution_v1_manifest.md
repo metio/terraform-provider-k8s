@@ -145,7 +145,7 @@ Optional:
 - `mount_path` (String) where we shoud mount resource
 
 <a id="nestedatt--spec--execution_request--env_config_maps--reference"></a>
-### Nested Schema for `spec.execution_request.env_config_maps.mount_path`
+### Nested Schema for `spec.execution_request.env_config_maps.reference`
 
 Optional:
 
@@ -167,7 +167,7 @@ Optional:
 - `mount_path` (String) where we shoud mount resource
 
 <a id="nestedatt--spec--execution_request--env_secrets--reference"></a>
-### Nested Schema for `spec.execution_request.env_secrets.mount_path`
+### Nested Schema for `spec.execution_request.env_secrets.reference`
 
 Optional:
 

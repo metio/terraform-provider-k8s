@@ -216,7 +216,7 @@ Optional:
 - `secret_ref` (Attributes) SecretEnvSource selects a Secret to populate the environment variables with.The contents of the target Secret's Data field will represent the key-value pairs as environment variables. (see [below for nested schema](#nestedatt--spec--containers--env_from--secret_ref))
 
 <a id="nestedatt--spec--containers--env_from--config_map_ref"></a>
-### Nested Schema for `spec.containers.env_from.secret_ref`
+### Nested Schema for `spec.containers.env_from.config_map_ref`
 
 Optional:
 
@@ -243,7 +243,7 @@ Optional:
 - `pre_stop` (Attributes) LifecycleHandler defines a specific action that should be taken in a lifecycle hook. One and only one of the fields, except TCPSocket must be specified. (see [below for nested schema](#nestedatt--spec--containers--lifecycle--pre_stop))
 
 <a id="nestedatt--spec--containers--lifecycle--post_start"></a>
-### Nested Schema for `spec.containers.lifecycle.pre_stop`
+### Nested Schema for `spec.containers.lifecycle.post_start`
 
 Optional:
 
@@ -274,7 +274,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--containers--lifecycle--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.containers.lifecycle.pre_stop.http_get.scheme`
+### Nested Schema for `spec.containers.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -328,7 +328,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--containers--lifecycle--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.containers.lifecycle.pre_stop.http_get.scheme`
+### Nested Schema for `spec.containers.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -368,7 +368,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--containers--liveness_probe--exec"></a>
-### Nested Schema for `spec.containers.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.containers.liveness_probe.exec`
 
 Optional:
 
@@ -376,7 +376,7 @@ Optional:
 
 
 <a id="nestedatt--spec--containers--liveness_probe--grpc"></a>
-### Nested Schema for `spec.containers.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.containers.liveness_probe.grpc`
 
 Required:
 
@@ -388,7 +388,7 @@ Optional:
 
 
 <a id="nestedatt--spec--containers--liveness_probe--http_get"></a>
-### Nested Schema for `spec.containers.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.containers.liveness_probe.http_get`
 
 Required:
 
@@ -412,7 +412,7 @@ Required:
 
 
 <a id="nestedatt--spec--containers--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.containers.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.containers.liveness_probe.tcp_socket`
 
 Required:
 
@@ -456,7 +456,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--containers--readiness_probe--exec"></a>
-### Nested Schema for `spec.containers.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.containers.readiness_probe.exec`
 
 Optional:
 
@@ -464,7 +464,7 @@ Optional:
 
 
 <a id="nestedatt--spec--containers--readiness_probe--grpc"></a>
-### Nested Schema for `spec.containers.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.containers.readiness_probe.grpc`
 
 Required:
 
@@ -476,7 +476,7 @@ Optional:
 
 
 <a id="nestedatt--spec--containers--readiness_probe--http_get"></a>
-### Nested Schema for `spec.containers.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.containers.readiness_probe.http_get`
 
 Required:
 
@@ -500,7 +500,7 @@ Required:
 
 
 <a id="nestedatt--spec--containers--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.containers.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.containers.readiness_probe.tcp_socket`
 
 Required:
 
@@ -531,7 +531,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--containers--resources--claims"></a>
-### Nested Schema for `spec.containers.resources.requests`
+### Nested Schema for `spec.containers.resources.claims`
 
 Required:
 
@@ -557,7 +557,7 @@ Optional:
 - `windows_options` (Attributes) WindowsSecurityContextOptions contain Windows-specific options and credentials. (see [below for nested schema](#nestedatt--spec--containers--security_context--windows_options))
 
 <a id="nestedatt--spec--containers--security_context--capabilities"></a>
-### Nested Schema for `spec.containers.security_context.windows_options`
+### Nested Schema for `spec.containers.security_context.capabilities`
 
 Optional:
 
@@ -566,7 +566,7 @@ Optional:
 
 
 <a id="nestedatt--spec--containers--security_context--se_linux_options"></a>
-### Nested Schema for `spec.containers.security_context.windows_options`
+### Nested Schema for `spec.containers.security_context.se_linux_options`
 
 Optional:
 
@@ -577,7 +577,7 @@ Optional:
 
 
 <a id="nestedatt--spec--containers--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.containers.security_context.windows_options`
+### Nested Schema for `spec.containers.security_context.seccomp_profile`
 
 Required:
 
@@ -617,7 +617,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--containers--startup_probe--exec"></a>
-### Nested Schema for `spec.containers.startup_probe.timeout_seconds`
+### Nested Schema for `spec.containers.startup_probe.exec`
 
 Optional:
 
@@ -625,7 +625,7 @@ Optional:
 
 
 <a id="nestedatt--spec--containers--startup_probe--grpc"></a>
-### Nested Schema for `spec.containers.startup_probe.timeout_seconds`
+### Nested Schema for `spec.containers.startup_probe.grpc`
 
 Required:
 
@@ -637,7 +637,7 @@ Optional:
 
 
 <a id="nestedatt--spec--containers--startup_probe--http_get"></a>
-### Nested Schema for `spec.containers.startup_probe.timeout_seconds`
+### Nested Schema for `spec.containers.startup_probe.http_get`
 
 Required:
 
@@ -661,7 +661,7 @@ Required:
 
 
 <a id="nestedatt--spec--containers--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.containers.startup_probe.timeout_seconds`
+### Nested Schema for `spec.containers.startup_probe.tcp_socket`
 
 Required:
 
@@ -717,7 +717,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) A node selector represents the union of the results of one or more label queries over a set of nodes; that is, it represents the OR of the selectors represented by the node selector terms. (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -733,7 +733,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--preference--match_fields))
 
 <a id="nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
-### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.preference.match_fields`
+### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Required:
 
@@ -776,7 +776,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -813,7 +813,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -834,7 +834,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
@@ -842,7 +842,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -856,7 +856,7 @@ Optional:
 
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
@@ -864,7 +864,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -901,7 +901,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_labels`
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -923,7 +923,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_labels`
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -947,7 +947,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -968,7 +968,7 @@ Optional:
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
@@ -976,7 +976,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -990,7 +990,7 @@ Optional:
 
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
@@ -998,7 +998,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
 
 Required:
 
@@ -1035,7 +1035,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_labels`
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -1057,7 +1057,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_labels`
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -1211,7 +1211,7 @@ Optional:
 - `secret_ref` (Attributes) SecretEnvSource selects a Secret to populate the environment variables with.The contents of the target Secret's Data field will represent the key-value pairs as environment variables. (see [below for nested schema](#nestedatt--spec--ephemeral_containers--env_from--secret_ref))
 
 <a id="nestedatt--spec--ephemeral_containers--env_from--config_map_ref"></a>
-### Nested Schema for `spec.ephemeral_containers.env_from.secret_ref`
+### Nested Schema for `spec.ephemeral_containers.env_from.config_map_ref`
 
 Optional:
 
@@ -1238,7 +1238,7 @@ Optional:
 - `pre_stop` (Attributes) LifecycleHandler defines a specific action that should be taken in a lifecycle hook. One and only one of the fields, except TCPSocket must be specified. (see [below for nested schema](#nestedatt--spec--ephemeral_containers--lifecycle--pre_stop))
 
 <a id="nestedatt--spec--ephemeral_containers--lifecycle--post_start"></a>
-### Nested Schema for `spec.ephemeral_containers.lifecycle.pre_stop`
+### Nested Schema for `spec.ephemeral_containers.lifecycle.post_start`
 
 Optional:
 
@@ -1269,7 +1269,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--ephemeral_containers--lifecycle--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.ephemeral_containers.lifecycle.pre_stop.http_get.scheme`
+### Nested Schema for `spec.ephemeral_containers.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -1323,7 +1323,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--ephemeral_containers--lifecycle--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.ephemeral_containers.lifecycle.pre_stop.http_get.scheme`
+### Nested Schema for `spec.ephemeral_containers.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -1363,7 +1363,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--ephemeral_containers--liveness_probe--exec"></a>
-### Nested Schema for `spec.ephemeral_containers.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.ephemeral_containers.liveness_probe.exec`
 
 Optional:
 
@@ -1371,7 +1371,7 @@ Optional:
 
 
 <a id="nestedatt--spec--ephemeral_containers--liveness_probe--grpc"></a>
-### Nested Schema for `spec.ephemeral_containers.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.ephemeral_containers.liveness_probe.grpc`
 
 Required:
 
@@ -1383,7 +1383,7 @@ Optional:
 
 
 <a id="nestedatt--spec--ephemeral_containers--liveness_probe--http_get"></a>
-### Nested Schema for `spec.ephemeral_containers.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.ephemeral_containers.liveness_probe.http_get`
 
 Required:
 
@@ -1407,7 +1407,7 @@ Required:
 
 
 <a id="nestedatt--spec--ephemeral_containers--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.ephemeral_containers.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.ephemeral_containers.liveness_probe.tcp_socket`
 
 Required:
 
@@ -1451,7 +1451,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--ephemeral_containers--readiness_probe--exec"></a>
-### Nested Schema for `spec.ephemeral_containers.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.ephemeral_containers.readiness_probe.exec`
 
 Optional:
 
@@ -1459,7 +1459,7 @@ Optional:
 
 
 <a id="nestedatt--spec--ephemeral_containers--readiness_probe--grpc"></a>
-### Nested Schema for `spec.ephemeral_containers.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.ephemeral_containers.readiness_probe.grpc`
 
 Required:
 
@@ -1471,7 +1471,7 @@ Optional:
 
 
 <a id="nestedatt--spec--ephemeral_containers--readiness_probe--http_get"></a>
-### Nested Schema for `spec.ephemeral_containers.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.ephemeral_containers.readiness_probe.http_get`
 
 Required:
 
@@ -1495,7 +1495,7 @@ Required:
 
 
 <a id="nestedatt--spec--ephemeral_containers--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.ephemeral_containers.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.ephemeral_containers.readiness_probe.tcp_socket`
 
 Required:
 
@@ -1526,7 +1526,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--ephemeral_containers--resources--claims"></a>
-### Nested Schema for `spec.ephemeral_containers.resources.requests`
+### Nested Schema for `spec.ephemeral_containers.resources.claims`
 
 Required:
 
@@ -1552,7 +1552,7 @@ Optional:
 - `windows_options` (Attributes) WindowsSecurityContextOptions contain Windows-specific options and credentials. (see [below for nested schema](#nestedatt--spec--ephemeral_containers--security_context--windows_options))
 
 <a id="nestedatt--spec--ephemeral_containers--security_context--capabilities"></a>
-### Nested Schema for `spec.ephemeral_containers.security_context.windows_options`
+### Nested Schema for `spec.ephemeral_containers.security_context.capabilities`
 
 Optional:
 
@@ -1561,7 +1561,7 @@ Optional:
 
 
 <a id="nestedatt--spec--ephemeral_containers--security_context--se_linux_options"></a>
-### Nested Schema for `spec.ephemeral_containers.security_context.windows_options`
+### Nested Schema for `spec.ephemeral_containers.security_context.se_linux_options`
 
 Optional:
 
@@ -1572,7 +1572,7 @@ Optional:
 
 
 <a id="nestedatt--spec--ephemeral_containers--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.ephemeral_containers.security_context.windows_options`
+### Nested Schema for `spec.ephemeral_containers.security_context.seccomp_profile`
 
 Required:
 
@@ -1612,7 +1612,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--ephemeral_containers--startup_probe--exec"></a>
-### Nested Schema for `spec.ephemeral_containers.startup_probe.timeout_seconds`
+### Nested Schema for `spec.ephemeral_containers.startup_probe.exec`
 
 Optional:
 
@@ -1620,7 +1620,7 @@ Optional:
 
 
 <a id="nestedatt--spec--ephemeral_containers--startup_probe--grpc"></a>
-### Nested Schema for `spec.ephemeral_containers.startup_probe.timeout_seconds`
+### Nested Schema for `spec.ephemeral_containers.startup_probe.grpc`
 
 Required:
 
@@ -1632,7 +1632,7 @@ Optional:
 
 
 <a id="nestedatt--spec--ephemeral_containers--startup_probe--http_get"></a>
-### Nested Schema for `spec.ephemeral_containers.startup_probe.timeout_seconds`
+### Nested Schema for `spec.ephemeral_containers.startup_probe.http_get`
 
 Required:
 
@@ -1656,7 +1656,7 @@ Required:
 
 
 <a id="nestedatt--spec--ephemeral_containers--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.ephemeral_containers.startup_probe.timeout_seconds`
+### Nested Schema for `spec.ephemeral_containers.startup_probe.tcp_socket`
 
 Required:
 
@@ -1829,7 +1829,7 @@ Optional:
 - `secret_ref` (Attributes) SecretEnvSource selects a Secret to populate the environment variables with.The contents of the target Secret's Data field will represent the key-value pairs as environment variables. (see [below for nested schema](#nestedatt--spec--init_containers--env_from--secret_ref))
 
 <a id="nestedatt--spec--init_containers--env_from--config_map_ref"></a>
-### Nested Schema for `spec.init_containers.env_from.secret_ref`
+### Nested Schema for `spec.init_containers.env_from.config_map_ref`
 
 Optional:
 
@@ -1856,7 +1856,7 @@ Optional:
 - `pre_stop` (Attributes) LifecycleHandler defines a specific action that should be taken in a lifecycle hook. One and only one of the fields, except TCPSocket must be specified. (see [below for nested schema](#nestedatt--spec--init_containers--lifecycle--pre_stop))
 
 <a id="nestedatt--spec--init_containers--lifecycle--post_start"></a>
-### Nested Schema for `spec.init_containers.lifecycle.pre_stop`
+### Nested Schema for `spec.init_containers.lifecycle.post_start`
 
 Optional:
 
@@ -1887,7 +1887,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--init_containers--lifecycle--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.init_containers.lifecycle.pre_stop.http_get.scheme`
+### Nested Schema for `spec.init_containers.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -1941,7 +1941,7 @@ Optional:
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--init_containers--lifecycle--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.init_containers.lifecycle.pre_stop.http_get.scheme`
+### Nested Schema for `spec.init_containers.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -1981,7 +1981,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--init_containers--liveness_probe--exec"></a>
-### Nested Schema for `spec.init_containers.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.liveness_probe.exec`
 
 Optional:
 
@@ -1989,7 +1989,7 @@ Optional:
 
 
 <a id="nestedatt--spec--init_containers--liveness_probe--grpc"></a>
-### Nested Schema for `spec.init_containers.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.liveness_probe.grpc`
 
 Required:
 
@@ -2001,7 +2001,7 @@ Optional:
 
 
 <a id="nestedatt--spec--init_containers--liveness_probe--http_get"></a>
-### Nested Schema for `spec.init_containers.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.liveness_probe.http_get`
 
 Required:
 
@@ -2025,7 +2025,7 @@ Required:
 
 
 <a id="nestedatt--spec--init_containers--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.init_containers.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.liveness_probe.tcp_socket`
 
 Required:
 
@@ -2069,7 +2069,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--init_containers--readiness_probe--exec"></a>
-### Nested Schema for `spec.init_containers.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.readiness_probe.exec`
 
 Optional:
 
@@ -2077,7 +2077,7 @@ Optional:
 
 
 <a id="nestedatt--spec--init_containers--readiness_probe--grpc"></a>
-### Nested Schema for `spec.init_containers.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.readiness_probe.grpc`
 
 Required:
 
@@ -2089,7 +2089,7 @@ Optional:
 
 
 <a id="nestedatt--spec--init_containers--readiness_probe--http_get"></a>
-### Nested Schema for `spec.init_containers.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.readiness_probe.http_get`
 
 Required:
 
@@ -2113,7 +2113,7 @@ Required:
 
 
 <a id="nestedatt--spec--init_containers--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.init_containers.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.readiness_probe.tcp_socket`
 
 Required:
 
@@ -2144,7 +2144,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--init_containers--resources--claims"></a>
-### Nested Schema for `spec.init_containers.resources.requests`
+### Nested Schema for `spec.init_containers.resources.claims`
 
 Required:
 
@@ -2170,7 +2170,7 @@ Optional:
 - `windows_options` (Attributes) WindowsSecurityContextOptions contain Windows-specific options and credentials. (see [below for nested schema](#nestedatt--spec--init_containers--security_context--windows_options))
 
 <a id="nestedatt--spec--init_containers--security_context--capabilities"></a>
-### Nested Schema for `spec.init_containers.security_context.windows_options`
+### Nested Schema for `spec.init_containers.security_context.capabilities`
 
 Optional:
 
@@ -2179,7 +2179,7 @@ Optional:
 
 
 <a id="nestedatt--spec--init_containers--security_context--se_linux_options"></a>
-### Nested Schema for `spec.init_containers.security_context.windows_options`
+### Nested Schema for `spec.init_containers.security_context.se_linux_options`
 
 Optional:
 
@@ -2190,7 +2190,7 @@ Optional:
 
 
 <a id="nestedatt--spec--init_containers--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.init_containers.security_context.windows_options`
+### Nested Schema for `spec.init_containers.security_context.seccomp_profile`
 
 Required:
 
@@ -2230,7 +2230,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--init_containers--startup_probe--exec"></a>
-### Nested Schema for `spec.init_containers.startup_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.startup_probe.exec`
 
 Optional:
 
@@ -2238,7 +2238,7 @@ Optional:
 
 
 <a id="nestedatt--spec--init_containers--startup_probe--grpc"></a>
-### Nested Schema for `spec.init_containers.startup_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.startup_probe.grpc`
 
 Required:
 
@@ -2250,7 +2250,7 @@ Optional:
 
 
 <a id="nestedatt--spec--init_containers--startup_probe--http_get"></a>
-### Nested Schema for `spec.init_containers.startup_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.startup_probe.http_get`
 
 Required:
 
@@ -2274,7 +2274,7 @@ Required:
 
 
 <a id="nestedatt--spec--init_containers--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.init_containers.startup_probe.timeout_seconds`
+### Nested Schema for `spec.init_containers.startup_probe.tcp_socket`
 
 Required:
 
@@ -2455,7 +2455,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--topology_spread_constraints--label_selector--match_expressions"></a>
-### Nested Schema for `spec.topology_spread_constraints.label_selector.match_labels`
+### Nested Schema for `spec.topology_spread_constraints.label_selector.match_expressions`
 
 Required:
 
@@ -2567,7 +2567,7 @@ Optional:
 - `user` (String) user is optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
 
 <a id="nestedatt--spec--volumes--cephfs--secret_ref"></a>
-### Nested Schema for `spec.volumes.cephfs.user`
+### Nested Schema for `spec.volumes.cephfs.secret_ref`
 
 Optional:
 
@@ -2608,7 +2608,7 @@ Optional:
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--volumes--config_map--items"></a>
-### Nested Schema for `spec.volumes.config_map.optional`
+### Nested Schema for `spec.volumes.config_map.items`
 
 Required:
 
@@ -2636,7 +2636,7 @@ Optional:
 - `volume_attributes` (Map of String) volumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.
 
 <a id="nestedatt--spec--volumes--csi--node_publish_secret_ref"></a>
-### Nested Schema for `spec.volumes.csi.volume_attributes`
+### Nested Schema for `spec.volumes.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -2734,7 +2734,7 @@ Optional:
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--volumes--ephemeral--volume_claim_template--spec--data_source"></a>
-### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.volume_name`
+### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.data_source`
 
 Required:
 
@@ -2747,7 +2747,7 @@ Optional:
 
 
 <a id="nestedatt--spec--volumes--ephemeral--volume_claim_template--spec--data_source_ref"></a>
-### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.volume_name`
+### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.data_source_ref`
 
 Required:
 
@@ -2761,7 +2761,7 @@ Optional:
 
 
 <a id="nestedatt--spec--volumes--ephemeral--volume_claim_template--spec--resources"></a>
-### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.volume_name`
+### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.resources`
 
 Optional:
 
@@ -2770,7 +2770,7 @@ Optional:
 
 
 <a id="nestedatt--spec--volumes--ephemeral--volume_claim_template--spec--selector"></a>
-### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.volume_name`
+### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.selector`
 
 Optional:
 
@@ -2778,7 +2778,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--volumes--ephemeral--volume_claim_template--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.volume_name.match_labels`
+### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.volume_name.match_expressions`
 
 Required:
 
@@ -2814,7 +2814,7 @@ Optional:
 - `uid` (String) UID is the unique in time and space value for this object. It is typically generated by the server on successful creation of a resource and is not allowed to change on PUT operations.Populated by the system. Read-only. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids
 
 <a id="nestedatt--spec--volumes--ephemeral--volume_claim_template--metadata--managed_fields"></a>
-### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.metadata.uid`
+### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.metadata.managed_fields`
 
 Optional:
 
@@ -2828,7 +2828,7 @@ Optional:
 
 
 <a id="nestedatt--spec--volumes--ephemeral--volume_claim_template--metadata--owner_references"></a>
-### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.metadata.uid`
+### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.metadata.owner_references`
 
 Required:
 
@@ -3049,7 +3049,7 @@ Optional:
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--volumes--projected--sources--config_map--items"></a>
-### Nested Schema for `spec.volumes.projected.sources.config_map.optional`
+### Nested Schema for `spec.volumes.projected.sources.config_map.items`
 
 Required:
 
@@ -3083,7 +3083,7 @@ Optional:
 - `resource_field_ref` (Attributes) ResourceFieldSelector represents container resources (cpu, memory) and their output format (see [below for nested schema](#nestedatt--spec--volumes--projected--sources--downward_api--items--resource_field_ref))
 
 <a id="nestedatt--spec--volumes--projected--sources--downward_api--items--field_ref"></a>
-### Nested Schema for `spec.volumes.projected.sources.downward_api.items.resource_field_ref`
+### Nested Schema for `spec.volumes.projected.sources.downward_api.items.field_ref`
 
 Required:
 
@@ -3119,7 +3119,7 @@ Optional:
 - `optional` (Boolean) optional field specify whether the Secret or its key must be defined
 
 <a id="nestedatt--spec--volumes--projected--sources--secret--items"></a>
-### Nested Schema for `spec.volumes.projected.sources.secret.optional`
+### Nested Schema for `spec.volumes.projected.sources.secret.items`
 
 Required:
 
@@ -3181,7 +3181,7 @@ Optional:
 - `user` (String) user is the rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 
 <a id="nestedatt--spec--volumes--rbd--secret_ref"></a>
-### Nested Schema for `spec.volumes.rbd.user`
+### Nested Schema for `spec.volumes.rbd.secret_ref`
 
 Optional:
 
@@ -3209,7 +3209,7 @@ Optional:
 - `volume_name` (String) volumeName is the name of a volume already created in the ScaleIO system that is associated with this volume source.
 
 <a id="nestedatt--spec--volumes--scale_io--secret_ref"></a>
-### Nested Schema for `spec.volumes.scale_io.volume_name`
+### Nested Schema for `spec.volumes.scale_io.secret_ref`
 
 Optional:
 
@@ -3228,7 +3228,7 @@ Optional:
 - `secret_name` (String) secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
 
 <a id="nestedatt--spec--volumes--secret--items"></a>
-### Nested Schema for `spec.volumes.secret.secret_name`
+### Nested Schema for `spec.volumes.secret.items`
 
 Required:
 
@@ -3253,7 +3253,7 @@ Optional:
 - `volume_namespace` (String) volumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
 
 <a id="nestedatt--spec--volumes--storageos--secret_ref"></a>
-### Nested Schema for `spec.volumes.storageos.volume_namespace`
+### Nested Schema for `spec.volumes.storageos.secret_ref`
 
 Optional:
 

@@ -3,7 +3,7 @@
 page_title: "k8s_operator_openshift_io_dns_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "operator.openshift.io"
 description: |-
-  DNS manages the CoreDNS component to provide a name resolution service for pods and services in the cluster.  This supports the DNS-based service discovery specification: https://github.com/kubernetes/dns/blob/master/docs/specification.md  More details: https://kubernetes.io/docs/tasks/administer-cluster/coredns  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).
+  DNS manages the CoreDNS component to provide a name resolution service for pods and services in the cluster.  This supports the DNS-based service discovery specification:   More details:   Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).
 ---
 
 # k8s_operator_openshift_io_dns_v1_manifest (Data Source)
@@ -112,7 +112,7 @@ Optional:
 - `upstreams` (List of String) upstreams is a list of resolvers to forward name queries for subdomains of Zones. Each instance of CoreDNS performs health checking of Upstreams. When a healthy upstream returns an error during the exchange, another resolver is tried from Upstreams. The Upstreams are selected in the order specified in Policy. Each upstream is represented by an IP address or IP:port if the upstream listens on a port other than 53.  A maximum of 15 upstreams is allowed per ForwardPlugin.
 
 <a id="nestedatt--spec--servers--forward_plugin--transport_config"></a>
-### Nested Schema for `spec.servers.forward_plugin.upstreams`
+### Nested Schema for `spec.servers.forward_plugin.transport_config`
 
 Optional:
 
@@ -161,7 +161,7 @@ Optional:
 - `transport` (String) transport allows cluster administrators to opt-in to using a DNS-over-TLS connection between cluster DNS and an upstream resolver(s). Configuring TLS as the transport at this level without configuring a CABundle will result in the system certificates being used to verify the serving certificate of the upstream resolver(s).  Possible values: '' (empty) - This means no explicit choice has been made and the platform chooses the default which is subject to change over time. The current default is 'Cleartext'. 'Cleartext' - Cluster admin specified cleartext option. This results in the same functionality as an empty value but may be useful when a cluster admin wants to be more explicit about the transport, or wants to switch from 'TLS' to 'Cleartext' explicitly. 'TLS' - This indicates that DNS queries should be sent over a TLS connection. If Transport is set to TLS, you MUST also set ServerName. If a port is not included with the upstream IP, port 853 will be tried by default per RFC 7858 section 3.1; https://datatracker.ietf.org/doc/html/rfc7858#section-3.1.
 
 <a id="nestedatt--spec--upstream_resolvers--transport_config--tls"></a>
-### Nested Schema for `spec.upstream_resolvers.transport_config.transport`
+### Nested Schema for `spec.upstream_resolvers.transport_config.tls`
 
 Required:
 

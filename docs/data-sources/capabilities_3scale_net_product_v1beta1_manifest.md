@@ -94,7 +94,7 @@ Required:
 - `value` (Number) Limit Value
 
 <a id="nestedatt--spec--application_plans--limits--metric_method_ref"></a>
-### Nested Schema for `spec.application_plans.limits.value`
+### Nested Schema for `spec.application_plans.limits.metric_method_ref`
 
 Required:
 
@@ -117,7 +117,7 @@ Required:
 - `to` (Number) Range To
 
 <a id="nestedatt--spec--application_plans--pricing_rules--metric_method_ref"></a>
-### Nested Schema for `spec.application_plans.pricing_rules.to`
+### Nested Schema for `spec.application_plans.pricing_rules.metric_method_ref`
 
 Required:
 
@@ -174,7 +174,7 @@ Optional:
 - `security` (Attributes) SecuritySpec defines the desired state of Authentication Security (see [below for nested schema](#nestedatt--spec--deployment--apicast_hosted--authentication--app_key_app_id--security))
 
 <a id="nestedatt--spec--deployment--apicast_hosted--authentication--app_key_app_id--gateway_response"></a>
-### Nested Schema for `spec.deployment.apicast_hosted.authentication.app_key_app_id.security`
+### Nested Schema for `spec.deployment.apicast_hosted.authentication.app_key_app_id.gateway_response`
 
 Optional:
 
@@ -221,7 +221,7 @@ Optional:
 - `security` (Attributes) SecuritySpec defines the desired state of Authentication Security (see [below for nested schema](#nestedatt--spec--deployment--apicast_hosted--authentication--oidc--security))
 
 <a id="nestedatt--spec--deployment--apicast_hosted--authentication--oidc--authentication_flow"></a>
-### Nested Schema for `spec.deployment.apicast_hosted.authentication.oidc.security`
+### Nested Schema for `spec.deployment.apicast_hosted.authentication.oidc.authentication_flow`
 
 Required:
 
@@ -232,7 +232,7 @@ Required:
 
 
 <a id="nestedatt--spec--deployment--apicast_hosted--authentication--oidc--gateway_response"></a>
-### Nested Schema for `spec.deployment.apicast_hosted.authentication.oidc.security`
+### Nested Schema for `spec.deployment.apicast_hosted.authentication.oidc.gateway_response`
 
 Optional:
 
@@ -251,7 +251,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--apicast_hosted--authentication--oidc--issuer_endpoint_ref"></a>
-### Nested Schema for `spec.deployment.apicast_hosted.authentication.oidc.security`
+### Nested Schema for `spec.deployment.apicast_hosted.authentication.oidc.issuer_endpoint_ref`
 
 Optional:
 
@@ -280,7 +280,7 @@ Optional:
 - `security` (Attributes) SecuritySpec defines the desired state of Authentication Security (see [below for nested schema](#nestedatt--spec--deployment--apicast_hosted--authentication--userkey--security))
 
 <a id="nestedatt--spec--deployment--apicast_hosted--authentication--userkey--gateway_response"></a>
-### Nested Schema for `spec.deployment.apicast_hosted.authentication.userkey.security`
+### Nested Schema for `spec.deployment.apicast_hosted.authentication.userkey.gateway_response`
 
 Optional:
 
@@ -320,7 +320,7 @@ Optional:
 - `staging_public_base_url` (String)
 
 <a id="nestedatt--spec--deployment--apicast_self_managed--authentication"></a>
-### Nested Schema for `spec.deployment.apicast_self_managed.staging_public_base_url`
+### Nested Schema for `spec.deployment.apicast_self_managed.authentication`
 
 Optional:
 
@@ -340,7 +340,7 @@ Optional:
 - `security` (Attributes) SecuritySpec defines the desired state of Authentication Security (see [below for nested schema](#nestedatt--spec--deployment--apicast_self_managed--staging_public_base_url--app_key_app_id--security))
 
 <a id="nestedatt--spec--deployment--apicast_self_managed--staging_public_base_url--app_key_app_id--gateway_response"></a>
-### Nested Schema for `spec.deployment.apicast_self_managed.staging_public_base_url.app_key_app_id.security`
+### Nested Schema for `spec.deployment.apicast_self_managed.staging_public_base_url.app_key_app_id.gateway_response`
 
 Optional:
 
@@ -387,7 +387,7 @@ Optional:
 - `security` (Attributes) SecuritySpec defines the desired state of Authentication Security (see [below for nested schema](#nestedatt--spec--deployment--apicast_self_managed--staging_public_base_url--oidc--security))
 
 <a id="nestedatt--spec--deployment--apicast_self_managed--staging_public_base_url--oidc--authentication_flow"></a>
-### Nested Schema for `spec.deployment.apicast_self_managed.staging_public_base_url.oidc.security`
+### Nested Schema for `spec.deployment.apicast_self_managed.staging_public_base_url.oidc.authentication_flow`
 
 Required:
 
@@ -398,7 +398,7 @@ Required:
 
 
 <a id="nestedatt--spec--deployment--apicast_self_managed--staging_public_base_url--oidc--gateway_response"></a>
-### Nested Schema for `spec.deployment.apicast_self_managed.staging_public_base_url.oidc.security`
+### Nested Schema for `spec.deployment.apicast_self_managed.staging_public_base_url.oidc.gateway_response`
 
 Optional:
 
@@ -417,7 +417,7 @@ Optional:
 
 
 <a id="nestedatt--spec--deployment--apicast_self_managed--staging_public_base_url--oidc--issuer_endpoint_ref"></a>
-### Nested Schema for `spec.deployment.apicast_self_managed.staging_public_base_url.oidc.security`
+### Nested Schema for `spec.deployment.apicast_self_managed.staging_public_base_url.oidc.issuer_endpoint_ref`
 
 Optional:
 
@@ -446,7 +446,7 @@ Optional:
 - `security` (Attributes) SecuritySpec defines the desired state of Authentication Security (see [below for nested schema](#nestedatt--spec--deployment--apicast_self_managed--staging_public_base_url--userkey--security))
 
 <a id="nestedatt--spec--deployment--apicast_self_managed--staging_public_base_url--userkey--gateway_response"></a>
-### Nested Schema for `spec.deployment.apicast_self_managed.staging_public_base_url.userkey.security`
+### Nested Schema for `spec.deployment.apicast_self_managed.staging_public_base_url.userkey.gateway_response`
 
 Optional:
 

@@ -95,7 +95,7 @@ Optional:
 - `stabilization_window_seconds` (Number) stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).
 
 <a id="nestedatt--spec--behavior--scale_down--policies"></a>
-### Nested Schema for `spec.behavior.scale_down.stabilization_window_seconds`
+### Nested Schema for `spec.behavior.scale_down.policies`
 
 Required:
 
@@ -115,7 +115,7 @@ Optional:
 - `stabilization_window_seconds` (Number) stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).
 
 <a id="nestedatt--spec--behavior--scale_up--policies"></a>
-### Nested Schema for `spec.behavior.scale_up.stabilization_window_seconds`
+### Nested Schema for `spec.behavior.scale_up.policies`
 
 Required:
 
@@ -174,7 +174,7 @@ Required:
 - `target` (Attributes) MetricTarget defines the target value, average value, or average utilization of a specific metric (see [below for nested schema](#nestedatt--spec--metrics--external--target))
 
 <a id="nestedatt--spec--metrics--external--metric"></a>
-### Nested Schema for `spec.metrics.external.target`
+### Nested Schema for `spec.metrics.external.metric`
 
 Required:
 
@@ -193,7 +193,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--metrics--external--target--selector--match_expressions"></a>
-### Nested Schema for `spec.metrics.external.target.selector.match_labels`
+### Nested Schema for `spec.metrics.external.target.selector.match_expressions`
 
 Required:
 
@@ -232,7 +232,7 @@ Required:
 - `target` (Attributes) MetricTarget defines the target value, average value, or average utilization of a specific metric (see [below for nested schema](#nestedatt--spec--metrics--object--target))
 
 <a id="nestedatt--spec--metrics--object--described_object"></a>
-### Nested Schema for `spec.metrics.object.target`
+### Nested Schema for `spec.metrics.object.described_object`
 
 Required:
 
@@ -245,7 +245,7 @@ Optional:
 
 
 <a id="nestedatt--spec--metrics--object--metric"></a>
-### Nested Schema for `spec.metrics.object.target`
+### Nested Schema for `spec.metrics.object.metric`
 
 Required:
 
@@ -264,7 +264,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--metrics--object--target--selector--match_expressions"></a>
-### Nested Schema for `spec.metrics.object.target.selector.match_labels`
+### Nested Schema for `spec.metrics.object.target.selector.match_expressions`
 
 Required:
 
@@ -302,7 +302,7 @@ Required:
 - `target` (Attributes) MetricTarget defines the target value, average value, or average utilization of a specific metric (see [below for nested schema](#nestedatt--spec--metrics--pods--target))
 
 <a id="nestedatt--spec--metrics--pods--metric"></a>
-### Nested Schema for `spec.metrics.pods.target`
+### Nested Schema for `spec.metrics.pods.metric`
 
 Required:
 
@@ -321,7 +321,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--metrics--pods--target--selector--match_expressions"></a>
-### Nested Schema for `spec.metrics.pods.target.selector.match_labels`
+### Nested Schema for `spec.metrics.pods.target.selector.match_expressions`
 
 Required:
 

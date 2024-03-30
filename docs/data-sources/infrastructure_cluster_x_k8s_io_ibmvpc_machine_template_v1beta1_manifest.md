@@ -84,7 +84,7 @@ Optional:
 - `ssh_keys` (List of String) SSHKeys is the SSH pub keys that will be used to access VM.
 
 <a id="nestedatt--spec--template--spec--boot_volume"></a>
-### Nested Schema for `spec.template.spec.ssh_keys`
+### Nested Schema for `spec.template.spec.boot_volume`
 
 Optional:
 
@@ -97,7 +97,7 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--primary_network_interface"></a>
-### Nested Schema for `spec.template.spec.ssh_keys`
+### Nested Schema for `spec.template.spec.primary_network_interface`
 
 Optional:
 

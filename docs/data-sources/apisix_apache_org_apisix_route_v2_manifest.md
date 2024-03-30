@@ -91,7 +91,7 @@ Optional:
 - `type` (String)
 
 <a id="nestedatt--spec--http--authentication--jwt_auth"></a>
-### Nested Schema for `spec.http.authentication.type`
+### Nested Schema for `spec.http.authentication.jwt_auth`
 
 Optional:
 
@@ -101,7 +101,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http--authentication--key_auth"></a>
-### Nested Schema for `spec.http.authentication.type`
+### Nested Schema for `spec.http.authentication.key_auth`
 
 Optional:
 
@@ -109,7 +109,7 @@ Optional:
 
 
 <a id="nestedatt--spec--http--authentication--ldap_auth"></a>
-### Nested Schema for `spec.http.authentication.type`
+### Nested Schema for `spec.http.authentication.ldap_auth`
 
 Optional:
 
@@ -148,7 +148,7 @@ Optional:
 - `remote_addrs` (List of String)
 
 <a id="nestedatt--spec--http--match--exprs"></a>
-### Nested Schema for `spec.http.match.remote_addrs`
+### Nested Schema for `spec.http.match.exprs`
 
 Optional:
 

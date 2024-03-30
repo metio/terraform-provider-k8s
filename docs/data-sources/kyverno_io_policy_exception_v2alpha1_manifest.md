@@ -88,7 +88,7 @@ Optional:
 - `subjects` (Attributes List) Subjects is the list of subject names like users, user groups, and service accounts. (see [below for nested schema](#nestedatt--spec--match--all--subjects))
 
 <a id="nestedatt--spec--match--all--resources"></a>
-### Nested Schema for `spec.match.all.subjects`
+### Nested Schema for `spec.match.all.resources`
 
 Optional:
 
@@ -110,7 +110,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--match--all--subjects--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.match.all.subjects.namespace_selector.match_labels`
+### Nested Schema for `spec.match.all.subjects.namespace_selector.match_expressions`
 
 Required:
 
@@ -132,7 +132,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--match--all--subjects--selector--match_expressions"></a>
-### Nested Schema for `spec.match.all.subjects.selector.match_labels`
+### Nested Schema for `spec.match.all.subjects.selector.match_expressions`
 
 Required:
 
@@ -172,7 +172,7 @@ Optional:
 - `subjects` (Attributes List) Subjects is the list of subject names like users, user groups, and service accounts. (see [below for nested schema](#nestedatt--spec--match--any--subjects))
 
 <a id="nestedatt--spec--match--any--resources"></a>
-### Nested Schema for `spec.match.any.subjects`
+### Nested Schema for `spec.match.any.resources`
 
 Optional:
 
@@ -194,7 +194,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--match--any--subjects--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.match.any.subjects.namespace_selector.match_labels`
+### Nested Schema for `spec.match.any.subjects.namespace_selector.match_expressions`
 
 Required:
 
@@ -216,7 +216,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--match--any--subjects--selector--match_expressions"></a>
-### Nested Schema for `spec.match.any.subjects.selector.match_labels`
+### Nested Schema for `spec.match.any.subjects.selector.match_expressions`
 
 Required:
 

@@ -89,7 +89,7 @@ Optional:
 - `service_account_name` (String) ServiceAccountName corresponds to PodSpec.ServiceAccountName.
 
 <a id="nestedatt--spec--pod_template--spec--container"></a>
-### Nested Schema for `spec.pod_template.spec.service_account_name`
+### Nested Schema for `spec.pod_template.spec.container`
 
 Optional:
 
@@ -105,7 +105,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--security_context"></a>
-### Nested Schema for `spec.pod_template.spec.service_account_name`
+### Nested Schema for `spec.pod_template.spec.security_context`
 
 Optional:
 

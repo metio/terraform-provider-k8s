@@ -150,7 +150,7 @@ Optional:
 - `user_tags` (Map of String) UserTags specifies additional tags for AWS resources created for the cluster.
 
 <a id="nestedatt--spec--platform--aws--credentials_assume_role"></a>
-### Nested Schema for `spec.platform.aws.user_tags`
+### Nested Schema for `spec.platform.aws.credentials_assume_role`
 
 Required:
 
@@ -162,7 +162,7 @@ Optional:
 
 
 <a id="nestedatt--spec--platform--aws--credentials_secret_ref"></a>
-### Nested Schema for `spec.platform.aws.user_tags`
+### Nested Schema for `spec.platform.aws.credentials_secret_ref`
 
 Optional:
 
@@ -170,7 +170,7 @@ Optional:
 
 
 <a id="nestedatt--spec--platform--aws--private_link"></a>
-### Nested Schema for `spec.platform.aws.user_tags`
+### Nested Schema for `spec.platform.aws.private_link`
 
 Required:
 
@@ -196,7 +196,7 @@ Optional:
 - `cloud_name` (String) cloudName is the name of the Azure cloud environment which can be used to configure the Azure SDK with the appropriate Azure API endpoints. If empty, the value is equal to 'AzurePublicCloud'.
 
 <a id="nestedatt--spec--platform--azure--credentials_secret_ref"></a>
-### Nested Schema for `spec.platform.azure.cloud_name`
+### Nested Schema for `spec.platform.azure.credentials_secret_ref`
 
 Optional:
 
@@ -229,7 +229,7 @@ Required:
 - `region` (String) Region specifies the GCP region where the cluster will be created.
 
 <a id="nestedatt--spec--platform--gcp--credentials_secret_ref"></a>
-### Nested Schema for `spec.platform.gcp.region`
+### Nested Schema for `spec.platform.gcp.credentials_secret_ref`
 
 Optional:
 
@@ -251,7 +251,7 @@ Optional:
 - `cis_instance_crn` (String) CISInstanceCRN is the IBM Cloud Internet Services Instance CRN CISInstanceCRN is DEPRECATED and gathered via the IBM Cloud API for the provided credentials and cluster deployment base domain. This field will be ignored.
 
 <a id="nestedatt--spec--platform--ibmcloud--credentials_secret_ref"></a>
-### Nested Schema for `spec.platform.ibmcloud.cis_instance_crn`
+### Nested Schema for `spec.platform.ibmcloud.credentials_secret_ref`
 
 Optional:
 
@@ -273,7 +273,7 @@ Optional:
 - `trunk_support` (Boolean) TrunkSupport indicates whether or not to use trunk ports in your OpenShift cluster.
 
 <a id="nestedatt--spec--platform--openstack--credentials_secret_ref"></a>
-### Nested Schema for `spec.platform.openstack.trunk_support`
+### Nested Schema for `spec.platform.openstack.credentials_secret_ref`
 
 Optional:
 
@@ -281,7 +281,7 @@ Optional:
 
 
 <a id="nestedatt--spec--platform--openstack--certificates_secret_ref"></a>
-### Nested Schema for `spec.platform.openstack.trunk_support`
+### Nested Schema for `spec.platform.openstack.certificates_secret_ref`
 
 Optional:
 
@@ -304,7 +304,7 @@ Optional:
 - `ovirt_network_name` (String) The target network of all the network interfaces of the nodes. Omitting defaults to ovirtmgmt network which is a default network for evert ovirt cluster.
 
 <a id="nestedatt--spec--platform--ovirt--certificates_secret_ref"></a>
-### Nested Schema for `spec.platform.ovirt.ovirt_network_name`
+### Nested Schema for `spec.platform.ovirt.certificates_secret_ref`
 
 Optional:
 
@@ -312,7 +312,7 @@ Optional:
 
 
 <a id="nestedatt--spec--platform--ovirt--credentials_secret_ref"></a>
-### Nested Schema for `spec.platform.ovirt.ovirt_network_name`
+### Nested Schema for `spec.platform.ovirt.credentials_secret_ref`
 
 Optional:
 
@@ -338,7 +338,7 @@ Optional:
 - `network` (String) Network specifies the name of the network to be used by the cluster.
 
 <a id="nestedatt--spec--platform--vsphere--certificates_secret_ref"></a>
-### Nested Schema for `spec.platform.vsphere.network`
+### Nested Schema for `spec.platform.vsphere.certificates_secret_ref`
 
 Optional:
 
@@ -346,7 +346,7 @@ Optional:
 
 
 <a id="nestedatt--spec--platform--vsphere--credentials_secret_ref"></a>
-### Nested Schema for `spec.platform.vsphere.network`
+### Nested Schema for `spec.platform.vsphere.credentials_secret_ref`
 
 Optional:
 

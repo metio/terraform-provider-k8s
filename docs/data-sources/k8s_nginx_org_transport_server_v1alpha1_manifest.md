@@ -143,7 +143,7 @@ Optional:
 - `timeout` (String)
 
 <a id="nestedatt--spec--upstreams--health_check--match"></a>
-### Nested Schema for `spec.upstreams.health_check.timeout`
+### Nested Schema for `spec.upstreams.health_check.match`
 
 Optional:
 

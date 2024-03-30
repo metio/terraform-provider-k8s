@@ -127,7 +127,7 @@ Optional:
 - `scopes` (Attributes List) Authorization Scopes. (see [below for nested schema](#nestedatt--spec--client--authorization_settings--scopes))
 
 <a id="nestedatt--spec--client--authorization_settings--policies"></a>
-### Nested Schema for `spec.client.authorization_settings.scopes`
+### Nested Schema for `spec.client.authorization_settings.policies`
 
 Optional:
 
@@ -163,7 +163,7 @@ Optional:
 
 
 <a id="nestedatt--spec--client--authorization_settings--resources"></a>
-### Nested Schema for `spec.client.authorization_settings.scopes`
+### Nested Schema for `spec.client.authorization_settings.resources`
 
 Optional:
 
@@ -210,7 +210,7 @@ Optional:
 - `type` (String) Type.
 
 <a id="nestedatt--spec--client--authorization_settings--scopes--policies--resources_data"></a>
-### Nested Schema for `spec.client.authorization_settings.scopes.policies.type`
+### Nested Schema for `spec.client.authorization_settings.scopes.policies.resources_data`
 
 Optional:
 
@@ -371,7 +371,7 @@ Optional:
 - `id` (String) Id
 
 <a id="nestedatt--spec--scope_mappings--realm_mappings--composites"></a>
-### Nested Schema for `spec.scope_mappings.realm_mappings.id`
+### Nested Schema for `spec.scope_mappings.realm_mappings.composites`
 
 Optional:
 

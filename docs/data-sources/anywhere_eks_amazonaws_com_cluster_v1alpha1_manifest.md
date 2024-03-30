@@ -104,7 +104,7 @@ Optional:
 - `kindnetd` (Map of String) KindnetdConfig contains configuration specific to the Kindnetd CNI.
 
 <a id="nestedatt--spec--cluster_network--cni_config--cilium"></a>
-### Nested Schema for `spec.cluster_network.cni_config.kindnetd`
+### Nested Schema for `spec.cluster_network.cni_config.cilium`
 
 Optional:
 
@@ -223,7 +223,7 @@ Optional:
 - `type` (String) UpgradeRolloutStrategyType defines the types of upgrade rollout strategies.
 
 <a id="nestedatt--spec--control_plane_configuration--upgrade_rollout_strategy--rolling_update"></a>
-### Nested Schema for `spec.control_plane_configuration.upgrade_rollout_strategy.type`
+### Nested Schema for `spec.control_plane_configuration.upgrade_rollout_strategy.rolling_update`
 
 Required:
 
@@ -348,7 +348,7 @@ Optional:
 - `tag` (String) Tag package controller tag
 
 <a id="nestedatt--spec--packages--controller--resources"></a>
-### Nested Schema for `spec.packages.controller.tag`
+### Nested Schema for `spec.packages.controller.resources`
 
 Optional:
 
@@ -493,7 +493,7 @@ Optional:
 - `type` (String) UpgradeRolloutStrategyType defines the types of upgrade rollout strategies.
 
 <a id="nestedatt--spec--worker_node_group_configurations--upgrade_rollout_strategy--rolling_update"></a>
-### Nested Schema for `spec.worker_node_group_configurations.upgrade_rollout_strategy.type`
+### Nested Schema for `spec.worker_node_group_configurations.upgrade_rollout_strategy.rolling_update`
 
 Required:
 

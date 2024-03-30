@@ -103,7 +103,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--node_selector--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--node_selector--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.node_selector.node_selector_terms.match_fields`
+### Nested Schema for `spec.node_selector.node_selector_terms.match_expressions`
 
 Required:
 
@@ -154,7 +154,7 @@ Optional:
 - `data_write` (Map of String) Responsible for converting the data coming from the platform into a form that is understood by the bluetooth device For example: 'ON':[1], 'OFF':[0]
 
 <a id="nestedatt--spec--property_visitors--bluetooth--data_converter"></a>
-### Nested Schema for `spec.property_visitors.bluetooth.data_write`
+### Nested Schema for `spec.property_visitors.bluetooth.data_converter`
 
 Optional:
 
@@ -242,7 +242,7 @@ Optional:
 - `tcp` (Attributes) (see [below for nested schema](#nestedatt--spec--protocol--common--tcp))
 
 <a id="nestedatt--spec--protocol--common--com"></a>
-### Nested Schema for `spec.protocol.common.tcp`
+### Nested Schema for `spec.protocol.common.com`
 
 Optional:
 

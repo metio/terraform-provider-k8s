@@ -159,7 +159,7 @@ Optional:
 - `query` (Attributes) Query is used to define query rate limits. (see [below for nested schema](#nestedatt--spec--limits--global--query))
 
 <a id="nestedatt--spec--limits--global--ingestion"></a>
-### Nested Schema for `spec.limits.global.query`
+### Nested Schema for `spec.limits.global.ingestion`
 
 Optional:
 
@@ -189,7 +189,7 @@ Optional:
 - `query` (Attributes) Query is used to define query rate limits. (see [below for nested schema](#nestedatt--spec--limits--per_tenant--query))
 
 <a id="nestedatt--spec--limits--per_tenant--ingestion"></a>
-### Nested Schema for `spec.limits.per_tenant.query`
+### Nested Schema for `spec.limits.per_tenant.ingestion`
 
 Optional:
 
@@ -287,7 +287,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--resources--total--claims"></a>
-### Nested Schema for `spec.resources.total.requests`
+### Nested Schema for `spec.resources.total.claims`
 
 Required:
 
@@ -354,7 +354,7 @@ Optional:
 - `tolerations` (Attributes List) Tolerations defines component-specific pod tolerations. (see [below for nested schema](#nestedatt--spec--template--compactor--tolerations))
 
 <a id="nestedatt--spec--template--compactor--resources"></a>
-### Nested Schema for `spec.template.compactor.tolerations`
+### Nested Schema for `spec.template.compactor.resources`
 
 Optional:
 
@@ -393,7 +393,7 @@ Optional:
 - `tls` (Attributes) TLS defines TLS configuration for distributor receivers (see [below for nested schema](#nestedatt--spec--template--distributor--tls))
 
 <a id="nestedatt--spec--template--distributor--component"></a>
-### Nested Schema for `spec.template.distributor.tls`
+### Nested Schema for `spec.template.distributor.component`
 
 Optional:
 
@@ -412,7 +412,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--template--distributor--tls--resources--claims"></a>
-### Nested Schema for `spec.template.distributor.tls.resources.requests`
+### Nested Schema for `spec.template.distributor.tls.resources.claims`
 
 Required:
 
@@ -458,7 +458,7 @@ Optional:
 - `ingress` (Attributes) Ingress defines gateway Ingress options. (see [below for nested schema](#nestedatt--spec--template--gateway--ingress))
 
 <a id="nestedatt--spec--template--gateway--component"></a>
-### Nested Schema for `spec.template.gateway.ingress`
+### Nested Schema for `spec.template.gateway.component`
 
 Optional:
 
@@ -477,7 +477,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--template--gateway--ingress--resources--claims"></a>
-### Nested Schema for `spec.template.gateway.ingress.resources.requests`
+### Nested Schema for `spec.template.gateway.ingress.resources.claims`
 
 Required:
 
@@ -530,7 +530,7 @@ Optional:
 - `tolerations` (Attributes List) Tolerations defines component-specific pod tolerations. (see [below for nested schema](#nestedatt--spec--template--ingester--tolerations))
 
 <a id="nestedatt--spec--template--ingester--resources"></a>
-### Nested Schema for `spec.template.ingester.tolerations`
+### Nested Schema for `spec.template.ingester.resources`
 
 Optional:
 
@@ -571,7 +571,7 @@ Optional:
 - `tolerations` (Attributes List) Tolerations defines component-specific pod tolerations. (see [below for nested schema](#nestedatt--spec--template--querier--tolerations))
 
 <a id="nestedatt--spec--template--querier--resources"></a>
-### Nested Schema for `spec.template.querier.tolerations`
+### Nested Schema for `spec.template.querier.resources`
 
 Optional:
 
@@ -610,7 +610,7 @@ Optional:
 - `jaeger_query` (Attributes) JaegerQuery defines options specific to the Jaeger Query component. (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query))
 
 <a id="nestedatt--spec--template--query_frontend--component"></a>
-### Nested Schema for `spec.template.query_frontend.jaeger_query`
+### Nested Schema for `spec.template.query_frontend.component`
 
 Optional:
 
@@ -629,7 +629,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--template--query_frontend--jaeger_query--resources--claims"></a>
-### Nested Schema for `spec.template.query_frontend.jaeger_query.resources.requests`
+### Nested Schema for `spec.template.query_frontend.jaeger_query.resources.claims`
 
 Required:
 
@@ -672,7 +672,7 @@ Optional:
 - `type` (String) Type defines the type of Ingress for the Jaeger Query UI. Currently ingress, route and none are supported.
 
 <a id="nestedatt--spec--template--query_frontend--jaeger_query--ingress--route"></a>
-### Nested Schema for `spec.template.query_frontend.jaeger_query.ingress.type`
+### Nested Schema for `spec.template.query_frontend.jaeger_query.ingress.route`
 
 Optional:
 
@@ -699,7 +699,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--template--query_frontend--jaeger_query--resources--claims"></a>
-### Nested Schema for `spec.template.query_frontend.jaeger_query.resources.requests`
+### Nested Schema for `spec.template.query_frontend.jaeger_query.resources.claims`
 
 Required:
 
@@ -764,7 +764,7 @@ Optional:
 - `roles` (Attributes List) Roles defines a set of permissions to interact with a tenant. (see [below for nested schema](#nestedatt--spec--tenants--authorization--roles))
 
 <a id="nestedatt--spec--tenants--authorization--role_bindings"></a>
-### Nested Schema for `spec.tenants.authorization.roles`
+### Nested Schema for `spec.tenants.authorization.role_bindings`
 
 Required:
 

@@ -129,7 +129,7 @@ Optional:
 - `status` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status))
 
 <a id="nestedatt--spec--job_manager--pod_template--metadata"></a>
-### Nested Schema for `spec.job_manager.pod_template.status`
+### Nested Schema for `spec.job_manager.pod_template.metadata`
 
 Optional:
 
@@ -178,7 +178,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--spec"></a>
-### Nested Schema for `spec.job_manager.pod_template.status`
+### Nested Schema for `spec.job_manager.pod_template.spec`
 
 Optional:
 
@@ -232,7 +232,7 @@ Optional:
 - `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--affinity--pod_anti_affinity))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--affinity--node_affinity"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_anti_affinity`
+### Nested Schema for `spec.job_manager.pod_template.status.affinity.node_affinity`
 
 Optional:
 
@@ -240,7 +240,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Optional:
 
@@ -248,7 +248,7 @@ Optional:
 - `weight` (Number)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -316,7 +316,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--affinity--pod_affinity"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_anti_affinity`
+### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_affinity`
 
 Optional:
 
@@ -324,7 +324,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Optional:
 
@@ -332,7 +332,7 @@ Optional:
 - `weight` (Number)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Optional:
 
@@ -350,7 +350,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_labels`
+### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
 
 Optional:
 
@@ -369,7 +369,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_labels`
+### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
 
 Optional:
 
@@ -392,7 +392,7 @@ Optional:
 - `topology_key` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key`
+### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -411,7 +411,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key`
+### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -440,7 +440,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Optional:
 
@@ -448,7 +448,7 @@ Optional:
 - `weight` (Number)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Optional:
 
@@ -466,7 +466,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_labels`
+### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
 
 Optional:
 
@@ -485,7 +485,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_labels`
+### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
 
 Optional:
 
@@ -508,7 +508,7 @@ Optional:
 - `topology_key` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key`
+### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -527,7 +527,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key`
+### Nested Schema for `spec.job_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -578,7 +578,7 @@ Optional:
 - `working_dir` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--env"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.env`
 
 Optional:
 
@@ -597,7 +597,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--containers--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.value_from.config_map_key_ref`
 
 Optional:
 
@@ -607,7 +607,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.value_from.field_ref`
 
 Optional:
 
@@ -616,7 +616,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.value_from.resource_field_ref`
 
 Optional:
 
@@ -638,7 +638,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--env_from"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.env_from`
 
 Optional:
 
@@ -647,7 +647,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--containers--working_dir--secret_ref))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--config_map_ref"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.secret_ref`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.config_map_ref`
 
 Optional:
 
@@ -666,7 +666,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--lifecycle"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.lifecycle`
 
 Optional:
 
@@ -674,7 +674,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--containers--working_dir--pre_stop))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--post_start"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.pre_stop`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.post_start`
 
 Optional:
 
@@ -683,7 +683,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -691,7 +691,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.pre_stop.http_get`
 
 Optional:
 
@@ -731,7 +731,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -739,7 +739,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.pre_stop.http_get`
 
 Optional:
 
@@ -771,7 +771,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--liveness_probe"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.liveness_probe`
 
 Optional:
 
@@ -787,7 +787,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--exec"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.exec`
 
 Optional:
 
@@ -795,7 +795,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--grpc"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.grpc`
 
 Optional:
 
@@ -804,7 +804,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--http_get"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.http_get`
 
 Optional:
 
@@ -815,7 +815,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.timeout_seconds.http_headers`
 
 Optional:
 
@@ -825,7 +825,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.tcp_socket`
 
 Optional:
 
@@ -835,7 +835,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--ports"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.ports`
 
 Optional:
 
@@ -847,7 +847,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--readiness_probe"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.readiness_probe`
 
 Optional:
 
@@ -863,7 +863,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--exec"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.exec`
 
 Optional:
 
@@ -871,7 +871,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--grpc"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.grpc`
 
 Optional:
 
@@ -880,7 +880,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--http_get"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.http_get`
 
 Optional:
 
@@ -891,7 +891,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.timeout_seconds.http_headers`
 
 Optional:
 
@@ -901,7 +901,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.tcp_socket`
 
 Optional:
 
@@ -911,7 +911,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--resize_policy"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.resize_policy`
 
 Optional:
 
@@ -920,7 +920,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--resources"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.resources`
 
 Optional:
 
@@ -929,7 +929,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--claims"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.requests`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.claims`
 
 Optional:
 
@@ -938,7 +938,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--security_context"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.security_context`
 
 Optional:
 
@@ -955,7 +955,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--containers--working_dir--windows_options))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--capabilities"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.windows_options`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.capabilities`
 
 Optional:
 
@@ -964,7 +964,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--se_linux_options"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.windows_options`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.se_linux_options`
 
 Optional:
 
@@ -975,7 +975,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--seccomp_profile"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.windows_options`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.seccomp_profile`
 
 Optional:
 
@@ -996,7 +996,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--startup_probe"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.startup_probe`
 
 Optional:
 
@@ -1012,7 +1012,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--exec"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.exec`
 
 Optional:
 
@@ -1020,7 +1020,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--grpc"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.grpc`
 
 Optional:
 
@@ -1029,7 +1029,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--http_get"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.http_get`
 
 Optional:
 
@@ -1040,7 +1040,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.timeout_seconds.http_headers`
 
 Optional:
 
@@ -1050,7 +1050,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir.tcp_socket`
 
 Optional:
 
@@ -1060,7 +1060,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--volume_devices"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.volume_devices`
 
 Optional:
 
@@ -1069,7 +1069,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--volume_mounts"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.containers.volume_mounts`
 
 Optional:
 
@@ -1092,7 +1092,7 @@ Optional:
 - `searches` (List of String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--dns_config--options"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.dns_config.searches`
+### Nested Schema for `spec.job_manager.pod_template.status.dns_config.options`
 
 Optional:
 
@@ -1132,7 +1132,7 @@ Optional:
 - `working_dir` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--env"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.env`
 
 Optional:
 
@@ -1151,7 +1151,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.value_from.config_map_key_ref`
 
 Optional:
 
@@ -1161,7 +1161,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.value_from.field_ref`
 
 Optional:
 
@@ -1170,7 +1170,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.value_from.resource_field_ref`
 
 Optional:
 
@@ -1192,7 +1192,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--env_from"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.env_from`
 
 Optional:
 
@@ -1201,7 +1201,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--secret_ref))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--config_map_ref"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.secret_ref`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.config_map_ref`
 
 Optional:
 
@@ -1220,7 +1220,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--lifecycle"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.lifecycle`
 
 Optional:
 
@@ -1228,7 +1228,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--pre_stop))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--post_start"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.pre_stop`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.post_start`
 
 Optional:
 
@@ -1237,7 +1237,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -1245,7 +1245,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.pre_stop.http_get`
 
 Optional:
 
@@ -1285,7 +1285,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -1293,7 +1293,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.pre_stop.http_get`
 
 Optional:
 
@@ -1325,7 +1325,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--liveness_probe"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.liveness_probe`
 
 Optional:
 
@@ -1341,7 +1341,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--exec"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.exec`
 
 Optional:
 
@@ -1349,7 +1349,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--grpc"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.grpc`
 
 Optional:
 
@@ -1358,7 +1358,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--http_get"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.http_get`
 
 Optional:
 
@@ -1369,7 +1369,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds.http_headers`
 
 Optional:
 
@@ -1379,7 +1379,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.tcp_socket`
 
 Optional:
 
@@ -1389,7 +1389,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--ports"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.ports`
 
 Optional:
 
@@ -1401,7 +1401,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--readiness_probe"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.readiness_probe`
 
 Optional:
 
@@ -1417,7 +1417,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--exec"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.exec`
 
 Optional:
 
@@ -1425,7 +1425,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--grpc"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.grpc`
 
 Optional:
 
@@ -1434,7 +1434,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--http_get"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.http_get`
 
 Optional:
 
@@ -1445,7 +1445,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds.http_headers`
 
 Optional:
 
@@ -1455,7 +1455,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.tcp_socket`
 
 Optional:
 
@@ -1465,7 +1465,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--resize_policy"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.resize_policy`
 
 Optional:
 
@@ -1474,7 +1474,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--resources"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.resources`
 
 Optional:
 
@@ -1483,7 +1483,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--claims"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.requests`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.claims`
 
 Optional:
 
@@ -1492,7 +1492,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--security_context"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.security_context`
 
 Optional:
 
@@ -1509,7 +1509,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--windows_options))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--capabilities"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.windows_options`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.capabilities`
 
 Optional:
 
@@ -1518,7 +1518,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--se_linux_options"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.windows_options`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.se_linux_options`
 
 Optional:
 
@@ -1529,7 +1529,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--seccomp_profile"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.windows_options`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.seccomp_profile`
 
 Optional:
 
@@ -1550,7 +1550,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--startup_probe"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.startup_probe`
 
 Optional:
 
@@ -1566,7 +1566,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--exec"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.exec`
 
 Optional:
 
@@ -1574,7 +1574,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--grpc"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.grpc`
 
 Optional:
 
@@ -1583,7 +1583,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--http_get"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.http_get`
 
 Optional:
 
@@ -1594,7 +1594,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds.http_headers`
 
 Optional:
 
@@ -1604,7 +1604,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir.tcp_socket`
 
 Optional:
 
@@ -1614,7 +1614,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--volume_devices"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.volume_devices`
 
 Optional:
 
@@ -1623,7 +1623,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--volume_mounts"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.volume_mounts`
 
 Optional:
 
@@ -1683,7 +1683,7 @@ Optional:
 - `working_dir` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--env"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.env`
 
 Optional:
 
@@ -1702,7 +1702,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.value_from.config_map_key_ref`
 
 Optional:
 
@@ -1712,7 +1712,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.value_from.field_ref`
 
 Optional:
 
@@ -1721,7 +1721,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.value_from.resource_field_ref`
 
 Optional:
 
@@ -1743,7 +1743,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--env_from"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.env_from`
 
 Optional:
 
@@ -1752,7 +1752,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--secret_ref))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--config_map_ref"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.secret_ref`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.config_map_ref`
 
 Optional:
 
@@ -1771,7 +1771,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--lifecycle"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.lifecycle`
 
 Optional:
 
@@ -1779,7 +1779,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--pre_stop))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--post_start"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.pre_stop`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.post_start`
 
 Optional:
 
@@ -1788,7 +1788,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -1796,7 +1796,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.pre_stop.http_get`
 
 Optional:
 
@@ -1836,7 +1836,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -1844,7 +1844,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.pre_stop.http_get`
 
 Optional:
 
@@ -1876,7 +1876,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--liveness_probe"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.liveness_probe`
 
 Optional:
 
@@ -1892,7 +1892,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--exec"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.exec`
 
 Optional:
 
@@ -1900,7 +1900,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--grpc"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.grpc`
 
 Optional:
 
@@ -1909,7 +1909,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--http_get"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.http_get`
 
 Optional:
 
@@ -1920,7 +1920,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.timeout_seconds.http_headers`
 
 Optional:
 
@@ -1930,7 +1930,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.tcp_socket`
 
 Optional:
 
@@ -1940,7 +1940,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--ports"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.ports`
 
 Optional:
 
@@ -1952,7 +1952,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--readiness_probe"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.readiness_probe`
 
 Optional:
 
@@ -1968,7 +1968,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--exec"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.exec`
 
 Optional:
 
@@ -1976,7 +1976,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--grpc"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.grpc`
 
 Optional:
 
@@ -1985,7 +1985,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--http_get"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.http_get`
 
 Optional:
 
@@ -1996,7 +1996,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.timeout_seconds.http_headers`
 
 Optional:
 
@@ -2006,7 +2006,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.tcp_socket`
 
 Optional:
 
@@ -2016,7 +2016,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--resize_policy"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.resize_policy`
 
 Optional:
 
@@ -2025,7 +2025,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--resources"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.resources`
 
 Optional:
 
@@ -2034,7 +2034,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--claims"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.requests`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.claims`
 
 Optional:
 
@@ -2043,7 +2043,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--security_context"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.security_context`
 
 Optional:
 
@@ -2060,7 +2060,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--windows_options))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--capabilities"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.windows_options`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.capabilities`
 
 Optional:
 
@@ -2069,7 +2069,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--se_linux_options"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.windows_options`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.se_linux_options`
 
 Optional:
 
@@ -2080,7 +2080,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--seccomp_profile"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.windows_options`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.seccomp_profile`
 
 Optional:
 
@@ -2101,7 +2101,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--startup_probe"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.startup_probe`
 
 Optional:
 
@@ -2117,7 +2117,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--exec"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.exec`
 
 Optional:
 
@@ -2125,7 +2125,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--grpc"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.grpc`
 
 Optional:
 
@@ -2134,7 +2134,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--http_get"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.http_get`
 
 Optional:
 
@@ -2145,7 +2145,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.timeout_seconds.http_headers`
 
 Optional:
 
@@ -2155,7 +2155,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir.tcp_socket`
 
 Optional:
 
@@ -2165,7 +2165,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--volume_devices"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.volume_devices`
 
 Optional:
 
@@ -2174,7 +2174,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--volume_mounts"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir`
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.volume_mounts`
 
 Optional:
 
@@ -2246,7 +2246,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--security_context--windows_options))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--security_context--se_linux_options"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.security_context.windows_options`
+### Nested Schema for `spec.job_manager.pod_template.status.security_context.se_linux_options`
 
 Optional:
 
@@ -2257,7 +2257,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.security_context.windows_options`
+### Nested Schema for `spec.job_manager.pod_template.status.security_context.seccomp_profile`
 
 Optional:
 
@@ -2266,7 +2266,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--security_context--sysctls"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.security_context.windows_options`
+### Nested Schema for `spec.job_manager.pod_template.status.security_context.sysctls`
 
 Optional:
 
@@ -2313,7 +2313,7 @@ Optional:
 - `when_unsatisfiable` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--topology_spread_constraints--label_selector"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.topology_spread_constraints.when_unsatisfiable`
+### Nested Schema for `spec.job_manager.pod_template.status.topology_spread_constraints.label_selector`
 
 Optional:
 
@@ -2321,7 +2321,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--topology_spread_constraints--when_unsatisfiable--match_expressions"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.topology_spread_constraints.when_unsatisfiable.match_labels`
+### Nested Schema for `spec.job_manager.pod_template.status.topology_spread_constraints.when_unsatisfiable.match_expressions`
 
 Optional:
 
@@ -2369,7 +2369,7 @@ Optional:
 - `vsphere_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--volumes--vsphere_volume))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--aws_elastic_block_store"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.aws_elastic_block_store`
 
 Optional:
 
@@ -2380,7 +2380,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--azure_disk"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.azure_disk`
 
 Optional:
 
@@ -2393,7 +2393,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--azure_file"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.azure_file`
 
 Optional:
 
@@ -2403,7 +2403,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--cephfs"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.cephfs`
 
 Optional:
 
@@ -2415,7 +2415,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.user`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -2424,7 +2424,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--cinder"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.cinder`
 
 Optional:
 
@@ -2434,7 +2434,7 @@ Optional:
 - `volume_id` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.volume_id`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -2443,7 +2443,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--config_map"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.config_map`
 
 Optional:
 
@@ -2453,7 +2453,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.optional`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.items`
 
 Optional:
 
@@ -2464,7 +2464,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--csi"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.csi`
 
 Optional:
 
@@ -2475,7 +2475,7 @@ Optional:
 - `volume_attributes` (Map of String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--vsphere_volume--node_publish_secret_ref"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.volume_attributes`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.node_publish_secret_ref`
 
 Optional:
 
@@ -2484,7 +2484,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--downward_api"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.downward_api`
 
 Optional:
 
@@ -2502,7 +2502,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--volumes--vsphere_volume--items--resource_field_ref))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.items.resource_field_ref`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.items.field_ref`
 
 Optional:
 
@@ -2523,7 +2523,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--empty_dir"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.empty_dir`
 
 Optional:
 
@@ -2532,7 +2532,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--ephemeral"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.ephemeral`
 
 Optional:
 
@@ -2547,7 +2547,7 @@ Optional:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--volumes--vsphere_volume--volume_claim_template--spec))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--vsphere_volume--volume_claim_template--metadata"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.volume_claim_template.spec`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.volume_claim_template.metadata`
 
 Optional:
 
@@ -2640,7 +2640,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--vsphere_volume--volume_claim_template--spec--resources--claims"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.volume_claim_template.spec.resources.requests`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.volume_claim_template.spec.resources.claims`
 
 Optional:
 
@@ -2657,7 +2657,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--vsphere_volume--volume_claim_template--spec--selector--match_expressions"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.volume_claim_template.spec.selector.match_labels`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.volume_claim_template.spec.selector.match_expressions`
 
 Optional:
 
@@ -2671,7 +2671,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--fc"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.fc`
 
 Optional:
 
@@ -2683,7 +2683,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--flex_volume"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.flex_volume`
 
 Optional:
 
@@ -2703,7 +2703,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--flocker"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.flocker`
 
 Optional:
 
@@ -2712,7 +2712,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--gce_persistent_disk"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.gce_persistent_disk`
 
 Optional:
 
@@ -2723,7 +2723,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--git_repo"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.git_repo`
 
 Optional:
 
@@ -2733,7 +2733,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--glusterfs"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.glusterfs`
 
 Optional:
 
@@ -2743,7 +2743,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--host_path"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.host_path`
 
 Optional:
 
@@ -2752,7 +2752,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--iscsi"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.iscsi`
 
 Optional:
 
@@ -2769,7 +2769,7 @@ Optional:
 - `target_portal` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.target_portal`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -2778,7 +2778,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--nfs"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.nfs`
 
 Optional:
 
@@ -2788,7 +2788,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--persistent_volume_claim"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.persistent_volume_claim`
 
 Optional:
 
@@ -2797,7 +2797,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--photon_persistent_disk"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.photon_persistent_disk`
 
 Optional:
 
@@ -2806,7 +2806,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--portworx_volume"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.portworx_volume`
 
 Optional:
 
@@ -2816,7 +2816,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--projected"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.projected`
 
 Optional:
 
@@ -2834,7 +2834,7 @@ Optional:
 - `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--volumes--vsphere_volume--sources--service_account_token))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.sources.config_map`
 
 Optional:
 
@@ -2854,7 +2854,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.sources.downward_api`
 
 Optional:
 
@@ -2871,7 +2871,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.sources.service_account_token.items.field_ref`
 
 Optional:
 
@@ -2892,7 +2892,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.sources.secret`
 
 Optional:
 
@@ -2924,7 +2924,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--quobyte"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.quobyte`
 
 Optional:
 
@@ -2937,7 +2937,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--rbd"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.rbd`
 
 Optional:
 
@@ -2951,7 +2951,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.user`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -2960,7 +2960,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--scale_io"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.scale_io`
 
 Optional:
 
@@ -2976,7 +2976,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.volume_name`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -2985,7 +2985,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--secret"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.secret`
 
 Optional:
 
@@ -2995,7 +2995,7 @@ Optional:
 - `secret_name` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.secret_name`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.items`
 
 Optional:
 
@@ -3006,7 +3006,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--storageos"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.storageos`
 
 Optional:
 
@@ -3017,7 +3017,7 @@ Optional:
 - `volume_namespace` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.volume_namespace`
+### Nested Schema for `spec.job_manager.pod_template.status.volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -3089,7 +3089,7 @@ Optional:
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--container_statuses--state))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--container_statuses--last_state"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.container_statuses.state`
+### Nested Schema for `spec.job_manager.pod_template.status.container_statuses.last_state`
 
 Optional:
 
@@ -3098,7 +3098,7 @@ Optional:
 - `waiting` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--container_statuses--state--waiting))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--container_statuses--state--running"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.container_statuses.state.waiting`
+### Nested Schema for `spec.job_manager.pod_template.status.container_statuses.state.running`
 
 Optional:
 
@@ -3106,7 +3106,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--container_statuses--state--terminated"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.container_statuses.state.waiting`
+### Nested Schema for `spec.job_manager.pod_template.status.container_statuses.state.terminated`
 
 Optional:
 
@@ -3130,7 +3130,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--container_statuses--resources"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.container_statuses.state`
+### Nested Schema for `spec.job_manager.pod_template.status.container_statuses.resources`
 
 Optional:
 
@@ -3139,7 +3139,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--container_statuses--state--claims"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.container_statuses.state.requests`
+### Nested Schema for `spec.job_manager.pod_template.status.container_statuses.state.claims`
 
 Optional:
 
@@ -3157,7 +3157,7 @@ Optional:
 - `waiting` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--container_statuses--state--waiting))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--container_statuses--state--running"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.container_statuses.state.waiting`
+### Nested Schema for `spec.job_manager.pod_template.status.container_statuses.state.running`
 
 Optional:
 
@@ -3165,7 +3165,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--container_statuses--state--terminated"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.container_statuses.state.waiting`
+### Nested Schema for `spec.job_manager.pod_template.status.container_statuses.state.terminated`
 
 Optional:
 
@@ -3207,7 +3207,7 @@ Optional:
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_container_statuses--state))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_container_statuses--last_state"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_container_statuses.state`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_container_statuses.last_state`
 
 Optional:
 
@@ -3216,7 +3216,7 @@ Optional:
 - `waiting` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_container_statuses--state--waiting))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_container_statuses--state--running"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_container_statuses.state.waiting`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_container_statuses.state.running`
 
 Optional:
 
@@ -3224,7 +3224,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_container_statuses--state--terminated"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_container_statuses.state.waiting`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_container_statuses.state.terminated`
 
 Optional:
 
@@ -3248,7 +3248,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_container_statuses--resources"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_container_statuses.state`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_container_statuses.resources`
 
 Optional:
 
@@ -3257,7 +3257,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_container_statuses--state--claims"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_container_statuses.state.requests`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_container_statuses.state.claims`
 
 Optional:
 
@@ -3275,7 +3275,7 @@ Optional:
 - `waiting` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_container_statuses--state--waiting))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_container_statuses--state--running"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_container_statuses.state.waiting`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_container_statuses.state.running`
 
 Optional:
 
@@ -3283,7 +3283,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_container_statuses--state--terminated"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_container_statuses.state.waiting`
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_container_statuses.state.terminated`
 
 Optional:
 
@@ -3325,7 +3325,7 @@ Optional:
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_container_statuses--state))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_container_statuses--last_state"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_container_statuses.state`
+### Nested Schema for `spec.job_manager.pod_template.status.init_container_statuses.last_state`
 
 Optional:
 
@@ -3334,7 +3334,7 @@ Optional:
 - `waiting` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_container_statuses--state--waiting))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_container_statuses--state--running"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_container_statuses.state.waiting`
+### Nested Schema for `spec.job_manager.pod_template.status.init_container_statuses.state.running`
 
 Optional:
 
@@ -3342,7 +3342,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_container_statuses--state--terminated"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_container_statuses.state.waiting`
+### Nested Schema for `spec.job_manager.pod_template.status.init_container_statuses.state.terminated`
 
 Optional:
 
@@ -3366,7 +3366,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_container_statuses--resources"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_container_statuses.state`
+### Nested Schema for `spec.job_manager.pod_template.status.init_container_statuses.resources`
 
 Optional:
 
@@ -3375,7 +3375,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_container_statuses--state--claims"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_container_statuses.state.requests`
+### Nested Schema for `spec.job_manager.pod_template.status.init_container_statuses.state.claims`
 
 Optional:
 
@@ -3393,7 +3393,7 @@ Optional:
 - `waiting` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_container_statuses--state--waiting))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_container_statuses--state--running"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_container_statuses.state.waiting`
+### Nested Schema for `spec.job_manager.pod_template.status.init_container_statuses.state.running`
 
 Optional:
 
@@ -3401,7 +3401,7 @@ Optional:
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_container_statuses--state--terminated"></a>
-### Nested Schema for `spec.job_manager.pod_template.status.init_container_statuses.state.waiting`
+### Nested Schema for `spec.job_manager.pod_template.status.init_container_statuses.state.terminated`
 
 Optional:
 
@@ -3479,7 +3479,7 @@ Optional:
 - `uid` (String)
 
 <a id="nestedatt--spec--pod_template--metadata--managed_fields"></a>
-### Nested Schema for `spec.pod_template.metadata.uid`
+### Nested Schema for `spec.pod_template.metadata.managed_fields`
 
 Optional:
 
@@ -3493,7 +3493,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--metadata--owner_references"></a>
-### Nested Schema for `spec.pod_template.metadata.uid`
+### Nested Schema for `spec.pod_template.metadata.owner_references`
 
 Optional:
 
@@ -3552,7 +3552,7 @@ Optional:
 - `volumes` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes))
 
 <a id="nestedatt--spec--pod_template--spec--affinity"></a>
-### Nested Schema for `spec.pod_template.spec.volumes`
+### Nested Schema for `spec.pod_template.spec.affinity`
 
 Optional:
 
@@ -3569,7 +3569,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--pod_template--spec--volumes--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.pod_template.spec.volumes.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Optional:
 
@@ -3577,7 +3577,7 @@ Optional:
 - `weight` (Number)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.pod_template.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -3585,7 +3585,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--pod_template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+### Nested Schema for `spec.pod_template.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Optional:
 
@@ -3622,7 +3622,7 @@ Optional:
 - `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--pod_template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+### Nested Schema for `spec.pod_template.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Optional:
 
@@ -3653,7 +3653,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--pod_template--spec--volumes--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.pod_template.spec.volumes.pod_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Optional:
 
@@ -3661,7 +3661,7 @@ Optional:
 - `weight` (Number)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.pod_template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Optional:
 
@@ -3671,7 +3671,7 @@ Optional:
 - `topology_key` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.topology_key`
+### Nested Schema for `spec.pod_template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -3690,7 +3690,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.topology_key`
+### Nested Schema for `spec.pod_template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -3721,7 +3721,7 @@ Optional:
 - `topology_key` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.topology_key`
+### Nested Schema for `spec.pod_template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -3729,7 +3729,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_labels`
+### Nested Schema for `spec.pod_template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
 
 Optional:
 
@@ -3740,7 +3740,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.topology_key`
+### Nested Schema for `spec.pod_template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -3748,7 +3748,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_labels`
+### Nested Schema for `spec.pod_template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
 
 Optional:
 
@@ -3769,7 +3769,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--pod_template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.pod_template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Optional:
 
@@ -3777,7 +3777,7 @@ Optional:
 - `weight` (Number)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.pod_template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Optional:
 
@@ -3787,7 +3787,7 @@ Optional:
 - `topology_key` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.topology_key`
+### Nested Schema for `spec.pod_template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
@@ -3806,7 +3806,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.topology_key`
+### Nested Schema for `spec.pod_template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
@@ -3837,7 +3837,7 @@ Optional:
 - `topology_key` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key`
+### Nested Schema for `spec.pod_template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -3845,7 +3845,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_labels`
+### Nested Schema for `spec.pod_template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
 
 Optional:
 
@@ -3856,7 +3856,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key`
+### Nested Schema for `spec.pod_template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -3864,7 +3864,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_labels`
+### Nested Schema for `spec.pod_template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
 
 Optional:
 
@@ -3878,7 +3878,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--containers"></a>
-### Nested Schema for `spec.pod_template.spec.volumes`
+### Nested Schema for `spec.pod_template.spec.containers`
 
 Optional:
 
@@ -3926,7 +3926,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--pod_template--spec--volumes--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.pod_template.spec.volumes.env.value_from.config_map_key_ref`
 
 Optional:
 
@@ -3936,7 +3936,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--env--value_from--field_ref"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.pod_template.spec.volumes.env.value_from.field_ref`
 
 Optional:
 
@@ -3945,7 +3945,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.pod_template.spec.volumes.env.value_from.resource_field_ref`
 
 Optional:
 
@@ -3976,7 +3976,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--env_from--secret_ref))
 
 <a id="nestedatt--spec--pod_template--spec--volumes--env_from--config_map_ref"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.env_from.secret_ref`
+### Nested Schema for `spec.pod_template.spec.volumes.env_from.config_map_ref`
 
 Optional:
 
@@ -4003,7 +4003,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop))
 
 <a id="nestedatt--spec--pod_template--spec--volumes--lifecycle--post_start"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop`
+### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.post_start`
 
 Optional:
 
@@ -4012,7 +4012,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -4020,7 +4020,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.http_get`
 
 Optional:
 
@@ -4031,7 +4031,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Optional:
 
@@ -4060,7 +4060,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -4068,7 +4068,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.http_get`
 
 Optional:
 
@@ -4079,7 +4079,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Optional:
 
@@ -4116,7 +4116,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--liveness_probe--exec"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.liveness_probe.exec`
 
 Optional:
 
@@ -4124,7 +4124,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--liveness_probe--grpc"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.liveness_probe.grpc`
 
 Optional:
 
@@ -4133,7 +4133,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--liveness_probe--http_get"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.liveness_probe.http_get`
 
 Optional:
 
@@ -4144,7 +4144,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.liveness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.pod_template.spec.volumes.liveness_probe.timeout_seconds.http_headers`
 
 Optional:
 
@@ -4154,7 +4154,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.liveness_probe.tcp_socket`
 
 Optional:
 
@@ -4192,7 +4192,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--readiness_probe--exec"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.readiness_probe.exec`
 
 Optional:
 
@@ -4200,7 +4200,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--readiness_probe--grpc"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.readiness_probe.grpc`
 
 Optional:
 
@@ -4209,7 +4209,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--readiness_probe--http_get"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.readiness_probe.http_get`
 
 Optional:
 
@@ -4220,7 +4220,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.readiness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.pod_template.spec.volumes.readiness_probe.timeout_seconds.http_headers`
 
 Optional:
 
@@ -4230,7 +4230,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.readiness_probe.tcp_socket`
 
 Optional:
 
@@ -4258,7 +4258,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--resources--claims"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.resources.requests`
+### Nested Schema for `spec.pod_template.spec.volumes.resources.claims`
 
 Optional:
 
@@ -4284,7 +4284,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--security_context--windows_options))
 
 <a id="nestedatt--spec--pod_template--spec--volumes--security_context--capabilities"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.security_context.windows_options`
+### Nested Schema for `spec.pod_template.spec.volumes.security_context.capabilities`
 
 Optional:
 
@@ -4293,7 +4293,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--security_context--se_linux_options"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.security_context.windows_options`
+### Nested Schema for `spec.pod_template.spec.volumes.security_context.se_linux_options`
 
 Optional:
 
@@ -4304,7 +4304,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.security_context.windows_options`
+### Nested Schema for `spec.pod_template.spec.volumes.security_context.seccomp_profile`
 
 Optional:
 
@@ -4341,7 +4341,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--startup_probe--exec"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.startup_probe.exec`
 
 Optional:
 
@@ -4349,7 +4349,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--startup_probe--grpc"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.startup_probe.grpc`
 
 Optional:
 
@@ -4358,7 +4358,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--startup_probe--http_get"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.startup_probe.http_get`
 
 Optional:
 
@@ -4369,7 +4369,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--startup_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.startup_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.pod_template.spec.volumes.startup_probe.timeout_seconds.http_headers`
 
 Optional:
 
@@ -4379,7 +4379,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.startup_probe.tcp_socket`
 
 Optional:
 
@@ -4412,7 +4412,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--dns_config"></a>
-### Nested Schema for `spec.pod_template.spec.volumes`
+### Nested Schema for `spec.pod_template.spec.dns_config`
 
 Optional:
 
@@ -4431,7 +4431,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--ephemeral_containers"></a>
-### Nested Schema for `spec.pod_template.spec.volumes`
+### Nested Schema for `spec.pod_template.spec.ephemeral_containers`
 
 Optional:
 
@@ -4480,7 +4480,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--pod_template--spec--volumes--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.pod_template.spec.volumes.env.value_from.config_map_key_ref`
 
 Optional:
 
@@ -4490,7 +4490,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--env--value_from--field_ref"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.pod_template.spec.volumes.env.value_from.field_ref`
 
 Optional:
 
@@ -4499,7 +4499,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.pod_template.spec.volumes.env.value_from.resource_field_ref`
 
 Optional:
 
@@ -4530,7 +4530,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--env_from--secret_ref))
 
 <a id="nestedatt--spec--pod_template--spec--volumes--env_from--config_map_ref"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.env_from.secret_ref`
+### Nested Schema for `spec.pod_template.spec.volumes.env_from.config_map_ref`
 
 Optional:
 
@@ -4557,7 +4557,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop))
 
 <a id="nestedatt--spec--pod_template--spec--volumes--lifecycle--post_start"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop`
+### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.post_start`
 
 Optional:
 
@@ -4566,7 +4566,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -4574,7 +4574,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.http_get`
 
 Optional:
 
@@ -4585,7 +4585,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Optional:
 
@@ -4614,7 +4614,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -4622,7 +4622,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.http_get`
 
 Optional:
 
@@ -4633,7 +4633,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Optional:
 
@@ -4670,7 +4670,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--liveness_probe--exec"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.liveness_probe.exec`
 
 Optional:
 
@@ -4678,7 +4678,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--liveness_probe--grpc"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.liveness_probe.grpc`
 
 Optional:
 
@@ -4687,7 +4687,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--liveness_probe--http_get"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.liveness_probe.http_get`
 
 Optional:
 
@@ -4698,7 +4698,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.liveness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.pod_template.spec.volumes.liveness_probe.timeout_seconds.http_headers`
 
 Optional:
 
@@ -4708,7 +4708,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.liveness_probe.tcp_socket`
 
 Optional:
 
@@ -4746,7 +4746,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--readiness_probe--exec"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.readiness_probe.exec`
 
 Optional:
 
@@ -4754,7 +4754,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--readiness_probe--grpc"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.readiness_probe.grpc`
 
 Optional:
 
@@ -4763,7 +4763,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--readiness_probe--http_get"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.readiness_probe.http_get`
 
 Optional:
 
@@ -4774,7 +4774,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.readiness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.pod_template.spec.volumes.readiness_probe.timeout_seconds.http_headers`
 
 Optional:
 
@@ -4784,7 +4784,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.readiness_probe.tcp_socket`
 
 Optional:
 
@@ -4812,7 +4812,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--resources--claims"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.resources.requests`
+### Nested Schema for `spec.pod_template.spec.volumes.resources.claims`
 
 Optional:
 
@@ -4838,7 +4838,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--security_context--windows_options))
 
 <a id="nestedatt--spec--pod_template--spec--volumes--security_context--capabilities"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.security_context.windows_options`
+### Nested Schema for `spec.pod_template.spec.volumes.security_context.capabilities`
 
 Optional:
 
@@ -4847,7 +4847,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--security_context--se_linux_options"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.security_context.windows_options`
+### Nested Schema for `spec.pod_template.spec.volumes.security_context.se_linux_options`
 
 Optional:
 
@@ -4858,7 +4858,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.security_context.windows_options`
+### Nested Schema for `spec.pod_template.spec.volumes.security_context.seccomp_profile`
 
 Optional:
 
@@ -4895,7 +4895,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--startup_probe--exec"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.startup_probe.exec`
 
 Optional:
 
@@ -4903,7 +4903,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--startup_probe--grpc"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.startup_probe.grpc`
 
 Optional:
 
@@ -4912,7 +4912,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--startup_probe--http_get"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.startup_probe.http_get`
 
 Optional:
 
@@ -4923,7 +4923,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--startup_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.startup_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.pod_template.spec.volumes.startup_probe.timeout_seconds.http_headers`
 
 Optional:
 
@@ -4933,7 +4933,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.startup_probe.tcp_socket`
 
 Optional:
 
@@ -4966,7 +4966,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--host_aliases"></a>
-### Nested Schema for `spec.pod_template.spec.volumes`
+### Nested Schema for `spec.pod_template.spec.host_aliases`
 
 Optional:
 
@@ -4975,7 +4975,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--image_pull_secrets"></a>
-### Nested Schema for `spec.pod_template.spec.volumes`
+### Nested Schema for `spec.pod_template.spec.image_pull_secrets`
 
 Optional:
 
@@ -4983,7 +4983,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--init_containers"></a>
-### Nested Schema for `spec.pod_template.spec.volumes`
+### Nested Schema for `spec.pod_template.spec.init_containers`
 
 Optional:
 
@@ -5031,7 +5031,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--pod_template--spec--volumes--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.pod_template.spec.volumes.env.value_from.config_map_key_ref`
 
 Optional:
 
@@ -5041,7 +5041,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--env--value_from--field_ref"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.pod_template.spec.volumes.env.value_from.field_ref`
 
 Optional:
 
@@ -5050,7 +5050,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.env.value_from.secret_key_ref`
+### Nested Schema for `spec.pod_template.spec.volumes.env.value_from.resource_field_ref`
 
 Optional:
 
@@ -5081,7 +5081,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--env_from--secret_ref))
 
 <a id="nestedatt--spec--pod_template--spec--volumes--env_from--config_map_ref"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.env_from.secret_ref`
+### Nested Schema for `spec.pod_template.spec.volumes.env_from.config_map_ref`
 
 Optional:
 
@@ -5108,7 +5108,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop))
 
 <a id="nestedatt--spec--pod_template--spec--volumes--lifecycle--post_start"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop`
+### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.post_start`
 
 Optional:
 
@@ -5117,7 +5117,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -5125,7 +5125,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.http_get`
 
 Optional:
 
@@ -5136,7 +5136,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Optional:
 
@@ -5165,7 +5165,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.exec`
 
 Optional:
 
@@ -5173,7 +5173,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket`
+### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.http_get`
 
 Optional:
 
@@ -5184,7 +5184,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket.scheme`
+### Nested Schema for `spec.pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Optional:
 
@@ -5221,7 +5221,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--liveness_probe--exec"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.liveness_probe.exec`
 
 Optional:
 
@@ -5229,7 +5229,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--liveness_probe--grpc"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.liveness_probe.grpc`
 
 Optional:
 
@@ -5238,7 +5238,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--liveness_probe--http_get"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.liveness_probe.http_get`
 
 Optional:
 
@@ -5249,7 +5249,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.liveness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.pod_template.spec.volumes.liveness_probe.timeout_seconds.http_headers`
 
 Optional:
 
@@ -5259,7 +5259,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.liveness_probe.tcp_socket`
 
 Optional:
 
@@ -5297,7 +5297,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--readiness_probe--exec"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.readiness_probe.exec`
 
 Optional:
 
@@ -5305,7 +5305,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--readiness_probe--grpc"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.readiness_probe.grpc`
 
 Optional:
 
@@ -5314,7 +5314,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--readiness_probe--http_get"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.readiness_probe.http_get`
 
 Optional:
 
@@ -5325,7 +5325,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.readiness_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.pod_template.spec.volumes.readiness_probe.timeout_seconds.http_headers`
 
 Optional:
 
@@ -5335,7 +5335,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.readiness_probe.tcp_socket`
 
 Optional:
 
@@ -5363,7 +5363,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--resources--claims"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.resources.requests`
+### Nested Schema for `spec.pod_template.spec.volumes.resources.claims`
 
 Optional:
 
@@ -5389,7 +5389,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--security_context--windows_options))
 
 <a id="nestedatt--spec--pod_template--spec--volumes--security_context--capabilities"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.security_context.windows_options`
+### Nested Schema for `spec.pod_template.spec.volumes.security_context.capabilities`
 
 Optional:
 
@@ -5398,7 +5398,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--security_context--se_linux_options"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.security_context.windows_options`
+### Nested Schema for `spec.pod_template.spec.volumes.security_context.se_linux_options`
 
 Optional:
 
@@ -5409,7 +5409,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.security_context.windows_options`
+### Nested Schema for `spec.pod_template.spec.volumes.security_context.seccomp_profile`
 
 Optional:
 
@@ -5446,7 +5446,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--startup_probe--exec"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.startup_probe.exec`
 
 Optional:
 
@@ -5454,7 +5454,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--startup_probe--grpc"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.startup_probe.grpc`
 
 Optional:
 
@@ -5463,7 +5463,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--startup_probe--http_get"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.startup_probe.http_get`
 
 Optional:
 
@@ -5474,7 +5474,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--startup_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.startup_probe.timeout_seconds.scheme`
+### Nested Schema for `spec.pod_template.spec.volumes.startup_probe.timeout_seconds.http_headers`
 
 Optional:
 
@@ -5484,7 +5484,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.startup_probe.timeout_seconds`
+### Nested Schema for `spec.pod_template.spec.volumes.startup_probe.tcp_socket`
 
 Optional:
 
@@ -5517,7 +5517,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--os"></a>
-### Nested Schema for `spec.pod_template.spec.volumes`
+### Nested Schema for `spec.pod_template.spec.os`
 
 Optional:
 
@@ -5525,7 +5525,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--readiness_gates"></a>
-### Nested Schema for `spec.pod_template.spec.volumes`
+### Nested Schema for `spec.pod_template.spec.readiness_gates`
 
 Optional:
 
@@ -5533,7 +5533,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--resource_claims"></a>
-### Nested Schema for `spec.pod_template.spec.volumes`
+### Nested Schema for `spec.pod_template.spec.resource_claims`
 
 Optional:
 
@@ -5551,7 +5551,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--scheduling_gates"></a>
-### Nested Schema for `spec.pod_template.spec.volumes`
+### Nested Schema for `spec.pod_template.spec.scheduling_gates`
 
 Optional:
 
@@ -5559,7 +5559,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--security_context"></a>
-### Nested Schema for `spec.pod_template.spec.volumes`
+### Nested Schema for `spec.pod_template.spec.security_context`
 
 Optional:
 
@@ -5616,7 +5616,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--tolerations"></a>
-### Nested Schema for `spec.pod_template.spec.volumes`
+### Nested Schema for `spec.pod_template.spec.tolerations`
 
 Optional:
 
@@ -5628,7 +5628,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--topology_spread_constraints"></a>
-### Nested Schema for `spec.pod_template.spec.volumes`
+### Nested Schema for `spec.pod_template.spec.topology_spread_constraints`
 
 Optional:
 
@@ -5650,7 +5650,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--label_selector--match_expressions"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.label_selector.match_labels`
+### Nested Schema for `spec.pod_template.spec.volumes.label_selector.match_expressions`
 
 Optional:
 
@@ -5744,7 +5744,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--cephfs--secret_ref"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.cephfs.user`
+### Nested Schema for `spec.pod_template.spec.volumes.cephfs.secret_ref`
 
 Optional:
 
@@ -5763,7 +5763,7 @@ Optional:
 - `volume_id` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--cinder--secret_ref"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.cinder.volume_id`
+### Nested Schema for `spec.pod_template.spec.volumes.cinder.secret_ref`
 
 Optional:
 
@@ -5782,7 +5782,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--config_map--items"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.config_map.optional`
+### Nested Schema for `spec.pod_template.spec.volumes.config_map.items`
 
 Optional:
 
@@ -5804,7 +5804,7 @@ Optional:
 - `volume_attributes` (Map of String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--csi--node_publish_secret_ref"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.csi.volume_attributes`
+### Nested Schema for `spec.pod_template.spec.volumes.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -5831,7 +5831,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--downward_api--items--resource_field_ref))
 
 <a id="nestedatt--spec--pod_template--spec--volumes--downward_api--items--field_ref"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.downward_api.items.resource_field_ref`
+### Nested Schema for `spec.pod_template.spec.volumes.downward_api.items.field_ref`
 
 Optional:
 
@@ -5876,7 +5876,7 @@ Optional:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--ephemeral--volume_claim_template--spec))
 
 <a id="nestedatt--spec--pod_template--spec--volumes--ephemeral--volume_claim_template--metadata"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.ephemeral.volume_claim_template.spec`
+### Nested Schema for `spec.pod_template.spec.volumes.ephemeral.volume_claim_template.metadata`
 
 Optional:
 
@@ -5897,7 +5897,7 @@ Optional:
 - `uid` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--ephemeral--volume_claim_template--spec--managed_fields"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.ephemeral.volume_claim_template.spec.uid`
+### Nested Schema for `spec.pod_template.spec.volumes.ephemeral.volume_claim_template.spec.managed_fields`
 
 Optional:
 
@@ -5911,7 +5911,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--ephemeral--volume_claim_template--spec--owner_references"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.ephemeral.volume_claim_template.spec.uid`
+### Nested Schema for `spec.pod_template.spec.volumes.ephemeral.volume_claim_template.spec.owner_references`
 
 Optional:
 
@@ -5939,7 +5939,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--ephemeral--volume_claim_template--spec--data_source"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.ephemeral.volume_claim_template.spec.volume_name`
+### Nested Schema for `spec.pod_template.spec.volumes.ephemeral.volume_claim_template.spec.data_source`
 
 Optional:
 
@@ -5949,7 +5949,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--ephemeral--volume_claim_template--spec--data_source_ref"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.ephemeral.volume_claim_template.spec.volume_name`
+### Nested Schema for `spec.pod_template.spec.volumes.ephemeral.volume_claim_template.spec.data_source_ref`
 
 Optional:
 
@@ -5960,7 +5960,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--ephemeral--volume_claim_template--spec--resources"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.ephemeral.volume_claim_template.spec.volume_name`
+### Nested Schema for `spec.pod_template.spec.volumes.ephemeral.volume_claim_template.spec.resources`
 
 Optional:
 
@@ -5978,7 +5978,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--ephemeral--volume_claim_template--spec--selector"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.ephemeral.volume_claim_template.spec.volume_name`
+### Nested Schema for `spec.pod_template.spec.volumes.ephemeral.volume_claim_template.spec.selector`
 
 Optional:
 
@@ -6098,7 +6098,7 @@ Optional:
 - `target_portal` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--iscsi--secret_ref"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.iscsi.target_portal`
+### Nested Schema for `spec.pod_template.spec.volumes.iscsi.secret_ref`
 
 Optional:
 
@@ -6163,7 +6163,7 @@ Optional:
 - `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--projected--sources--service_account_token))
 
 <a id="nestedatt--spec--pod_template--spec--volumes--projected--sources--config_map"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.projected.sources.service_account_token`
+### Nested Schema for `spec.pod_template.spec.volumes.projected.sources.config_map`
 
 Optional:
 
@@ -6172,7 +6172,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.projected.sources.service_account_token.optional`
+### Nested Schema for `spec.pod_template.spec.volumes.projected.sources.service_account_token.items`
 
 Optional:
 
@@ -6183,7 +6183,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--projected--sources--downward_api"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.projected.sources.service_account_token`
+### Nested Schema for `spec.pod_template.spec.volumes.projected.sources.downward_api`
 
 Optional:
 
@@ -6221,7 +6221,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--projected--sources--secret"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.projected.sources.service_account_token`
+### Nested Schema for `spec.pod_template.spec.volumes.projected.sources.secret`
 
 Optional:
 
@@ -6230,7 +6230,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.projected.sources.service_account_token.optional`
+### Nested Schema for `spec.pod_template.spec.volumes.projected.sources.service_account_token.items`
 
 Optional:
 
@@ -6280,7 +6280,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--rbd--secret_ref"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.rbd.user`
+### Nested Schema for `spec.pod_template.spec.volumes.rbd.secret_ref`
 
 Optional:
 
@@ -6305,7 +6305,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--scale_io--secret_ref"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.scale_io.volume_name`
+### Nested Schema for `spec.pod_template.spec.volumes.scale_io.secret_ref`
 
 Optional:
 
@@ -6324,7 +6324,7 @@ Optional:
 - `secret_name` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--secret--items"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.secret.secret_name`
+### Nested Schema for `spec.pod_template.spec.volumes.secret.items`
 
 Optional:
 
@@ -6346,7 +6346,7 @@ Optional:
 - `volume_namespace` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--storageos--secret_ref"></a>
-### Nested Schema for `spec.pod_template.spec.volumes.storageos.volume_namespace`
+### Nested Schema for `spec.pod_template.spec.volumes.storageos.secret_ref`
 
 Optional:
 
@@ -6388,7 +6388,7 @@ Optional:
 - `start_time` (String)
 
 <a id="nestedatt--spec--pod_template--status--conditions"></a>
-### Nested Schema for `spec.pod_template.status.start_time`
+### Nested Schema for `spec.pod_template.status.conditions`
 
 Optional:
 
@@ -6401,7 +6401,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--status--container_statuses"></a>
-### Nested Schema for `spec.pod_template.status.start_time`
+### Nested Schema for `spec.pod_template.status.container_statuses`
 
 Optional:
 
@@ -6427,7 +6427,7 @@ Optional:
 - `waiting` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--status--start_time--last_state--waiting))
 
 <a id="nestedatt--spec--pod_template--status--start_time--last_state--running"></a>
-### Nested Schema for `spec.pod_template.status.start_time.last_state.waiting`
+### Nested Schema for `spec.pod_template.status.start_time.last_state.running`
 
 Optional:
 
@@ -6435,7 +6435,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--status--start_time--last_state--terminated"></a>
-### Nested Schema for `spec.pod_template.status.start_time.last_state.waiting`
+### Nested Schema for `spec.pod_template.status.start_time.last_state.terminated`
 
 Optional:
 
@@ -6468,7 +6468,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--pod_template--status--start_time--resources--claims"></a>
-### Nested Schema for `spec.pod_template.status.start_time.resources.requests`
+### Nested Schema for `spec.pod_template.status.start_time.resources.claims`
 
 Optional:
 
@@ -6486,7 +6486,7 @@ Optional:
 - `waiting` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--status--start_time--state--waiting))
 
 <a id="nestedatt--spec--pod_template--status--start_time--state--running"></a>
-### Nested Schema for `spec.pod_template.status.start_time.state.waiting`
+### Nested Schema for `spec.pod_template.status.start_time.state.running`
 
 Optional:
 
@@ -6494,7 +6494,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--status--start_time--state--terminated"></a>
-### Nested Schema for `spec.pod_template.status.start_time.state.waiting`
+### Nested Schema for `spec.pod_template.status.start_time.state.terminated`
 
 Optional:
 
@@ -6519,7 +6519,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--status--ephemeral_container_statuses"></a>
-### Nested Schema for `spec.pod_template.status.start_time`
+### Nested Schema for `spec.pod_template.status.ephemeral_container_statuses`
 
 Optional:
 
@@ -6545,7 +6545,7 @@ Optional:
 - `waiting` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--status--start_time--last_state--waiting))
 
 <a id="nestedatt--spec--pod_template--status--start_time--last_state--running"></a>
-### Nested Schema for `spec.pod_template.status.start_time.last_state.waiting`
+### Nested Schema for `spec.pod_template.status.start_time.last_state.running`
 
 Optional:
 
@@ -6553,7 +6553,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--status--start_time--last_state--terminated"></a>
-### Nested Schema for `spec.pod_template.status.start_time.last_state.waiting`
+### Nested Schema for `spec.pod_template.status.start_time.last_state.terminated`
 
 Optional:
 
@@ -6586,7 +6586,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--pod_template--status--start_time--resources--claims"></a>
-### Nested Schema for `spec.pod_template.status.start_time.resources.requests`
+### Nested Schema for `spec.pod_template.status.start_time.resources.claims`
 
 Optional:
 
@@ -6604,7 +6604,7 @@ Optional:
 - `waiting` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--status--start_time--state--waiting))
 
 <a id="nestedatt--spec--pod_template--status--start_time--state--running"></a>
-### Nested Schema for `spec.pod_template.status.start_time.state.waiting`
+### Nested Schema for `spec.pod_template.status.start_time.state.running`
 
 Optional:
 
@@ -6612,7 +6612,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--status--start_time--state--terminated"></a>
-### Nested Schema for `spec.pod_template.status.start_time.state.waiting`
+### Nested Schema for `spec.pod_template.status.start_time.state.terminated`
 
 Optional:
 
@@ -6637,7 +6637,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--status--init_container_statuses"></a>
-### Nested Schema for `spec.pod_template.status.start_time`
+### Nested Schema for `spec.pod_template.status.init_container_statuses`
 
 Optional:
 
@@ -6663,7 +6663,7 @@ Optional:
 - `waiting` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--status--start_time--last_state--waiting))
 
 <a id="nestedatt--spec--pod_template--status--start_time--last_state--running"></a>
-### Nested Schema for `spec.pod_template.status.start_time.last_state.waiting`
+### Nested Schema for `spec.pod_template.status.start_time.last_state.running`
 
 Optional:
 
@@ -6671,7 +6671,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--status--start_time--last_state--terminated"></a>
-### Nested Schema for `spec.pod_template.status.start_time.last_state.waiting`
+### Nested Schema for `spec.pod_template.status.start_time.last_state.terminated`
 
 Optional:
 
@@ -6704,7 +6704,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--pod_template--status--start_time--resources--claims"></a>
-### Nested Schema for `spec.pod_template.status.start_time.resources.requests`
+### Nested Schema for `spec.pod_template.status.start_time.resources.claims`
 
 Optional:
 
@@ -6722,7 +6722,7 @@ Optional:
 - `waiting` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--status--start_time--state--waiting))
 
 <a id="nestedatt--spec--pod_template--status--start_time--state--running"></a>
-### Nested Schema for `spec.pod_template.status.start_time.state.waiting`
+### Nested Schema for `spec.pod_template.status.start_time.state.running`
 
 Optional:
 
@@ -6730,7 +6730,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--status--start_time--state--terminated"></a>
-### Nested Schema for `spec.pod_template.status.start_time.state.waiting`
+### Nested Schema for `spec.pod_template.status.start_time.state.terminated`
 
 Optional:
 
@@ -6755,7 +6755,7 @@ Optional:
 
 
 <a id="nestedatt--spec--pod_template--status--pod_i_ps"></a>
-### Nested Schema for `spec.pod_template.status.start_time`
+### Nested Schema for `spec.pod_template.status.pod_i_ps`
 
 Optional:
 
@@ -6785,7 +6785,7 @@ Optional:
 - `status` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status))
 
 <a id="nestedatt--spec--task_manager--pod_template--metadata"></a>
-### Nested Schema for `spec.task_manager.pod_template.status`
+### Nested Schema for `spec.task_manager.pod_template.metadata`
 
 Optional:
 
@@ -6834,7 +6834,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--spec"></a>
-### Nested Schema for `spec.task_manager.pod_template.status`
+### Nested Schema for `spec.task_manager.pod_template.spec`
 
 Optional:
 
@@ -6888,7 +6888,7 @@ Optional:
 - `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--affinity--pod_anti_affinity))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--affinity--node_affinity"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_anti_affinity`
+### Nested Schema for `spec.task_manager.pod_template.status.affinity.node_affinity`
 
 Optional:
 
@@ -6896,7 +6896,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Optional:
 
@@ -6904,7 +6904,7 @@ Optional:
 - `weight` (Number)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
@@ -6972,7 +6972,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--affinity--pod_affinity"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_anti_affinity`
+### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_affinity`
 
 Optional:
 
@@ -6980,7 +6980,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Optional:
 
@@ -6988,7 +6988,7 @@ Optional:
 - `weight` (Number)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Optional:
 
@@ -7006,7 +7006,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_labels`
+### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
 
 Optional:
 
@@ -7025,7 +7025,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_labels`
+### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
 
 Optional:
 
@@ -7048,7 +7048,7 @@ Optional:
 - `topology_key` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key`
+### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -7067,7 +7067,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key`
+### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -7096,7 +7096,7 @@ Optional:
 - `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Optional:
 
@@ -7104,7 +7104,7 @@ Optional:
 - `weight` (Number)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Optional:
 
@@ -7122,7 +7122,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_labels`
+### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
 
 Optional:
 
@@ -7141,7 +7141,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_labels`
+### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
 
 Optional:
 
@@ -7164,7 +7164,7 @@ Optional:
 - `topology_key` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key`
+### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
@@ -7183,7 +7183,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key`
+### Nested Schema for `spec.task_manager.pod_template.status.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
@@ -7234,7 +7234,7 @@ Optional:
 - `working_dir` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--env"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.env`
 
 Optional:
 
@@ -7253,7 +7253,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--containers--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.value_from.config_map_key_ref`
 
 Optional:
 
@@ -7263,7 +7263,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.value_from.field_ref`
 
 Optional:
 
@@ -7272,7 +7272,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.value_from.resource_field_ref`
 
 Optional:
 
@@ -7294,7 +7294,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--env_from"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.env_from`
 
 Optional:
 
@@ -7303,7 +7303,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--containers--working_dir--secret_ref))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--config_map_ref"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.secret_ref`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.config_map_ref`
 
 Optional:
 
@@ -7322,7 +7322,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--lifecycle"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.lifecycle`
 
 Optional:
 
@@ -7330,7 +7330,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--containers--working_dir--pre_stop))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--post_start"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.pre_stop`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.post_start`
 
 Optional:
 
@@ -7339,7 +7339,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -7347,7 +7347,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.pre_stop.http_get`
 
 Optional:
 
@@ -7387,7 +7387,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -7395,7 +7395,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.pre_stop.http_get`
 
 Optional:
 
@@ -7427,7 +7427,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--liveness_probe"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.liveness_probe`
 
 Optional:
 
@@ -7443,7 +7443,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--exec"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.exec`
 
 Optional:
 
@@ -7451,7 +7451,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--grpc"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.grpc`
 
 Optional:
 
@@ -7460,7 +7460,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--http_get"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.http_get`
 
 Optional:
 
@@ -7471,7 +7471,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.timeout_seconds.http_headers`
 
 Optional:
 
@@ -7481,7 +7481,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.tcp_socket`
 
 Optional:
 
@@ -7491,7 +7491,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--ports"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.ports`
 
 Optional:
 
@@ -7503,7 +7503,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--readiness_probe"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.readiness_probe`
 
 Optional:
 
@@ -7519,7 +7519,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--exec"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.exec`
 
 Optional:
 
@@ -7527,7 +7527,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--grpc"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.grpc`
 
 Optional:
 
@@ -7536,7 +7536,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--http_get"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.http_get`
 
 Optional:
 
@@ -7547,7 +7547,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.timeout_seconds.http_headers`
 
 Optional:
 
@@ -7557,7 +7557,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.tcp_socket`
 
 Optional:
 
@@ -7567,7 +7567,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--resize_policy"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.resize_policy`
 
 Optional:
 
@@ -7576,7 +7576,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--resources"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.resources`
 
 Optional:
 
@@ -7585,7 +7585,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--claims"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.requests`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.claims`
 
 Optional:
 
@@ -7594,7 +7594,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--security_context"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.security_context`
 
 Optional:
 
@@ -7611,7 +7611,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--containers--working_dir--windows_options))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--capabilities"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.windows_options`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.capabilities`
 
 Optional:
 
@@ -7620,7 +7620,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--se_linux_options"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.windows_options`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.se_linux_options`
 
 Optional:
 
@@ -7631,7 +7631,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--seccomp_profile"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.windows_options`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.seccomp_profile`
 
 Optional:
 
@@ -7652,7 +7652,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--startup_probe"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.startup_probe`
 
 Optional:
 
@@ -7668,7 +7668,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--exec"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.exec`
 
 Optional:
 
@@ -7676,7 +7676,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--grpc"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.grpc`
 
 Optional:
 
@@ -7685,7 +7685,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--http_get"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.http_get`
 
 Optional:
 
@@ -7696,7 +7696,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.timeout_seconds.http_headers`
 
 Optional:
 
@@ -7706,7 +7706,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir.tcp_socket`
 
 Optional:
 
@@ -7716,7 +7716,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--volume_devices"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.volume_devices`
 
 Optional:
 
@@ -7725,7 +7725,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--volume_mounts"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.containers.volume_mounts`
 
 Optional:
 
@@ -7748,7 +7748,7 @@ Optional:
 - `searches` (List of String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--dns_config--options"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.dns_config.searches`
+### Nested Schema for `spec.task_manager.pod_template.status.dns_config.options`
 
 Optional:
 
@@ -7788,7 +7788,7 @@ Optional:
 - `working_dir` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--env"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.env`
 
 Optional:
 
@@ -7807,7 +7807,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.value_from.config_map_key_ref`
 
 Optional:
 
@@ -7817,7 +7817,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.value_from.field_ref`
 
 Optional:
 
@@ -7826,7 +7826,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.value_from.resource_field_ref`
 
 Optional:
 
@@ -7848,7 +7848,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--env_from"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.env_from`
 
 Optional:
 
@@ -7857,7 +7857,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--secret_ref))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--config_map_ref"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.secret_ref`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.config_map_ref`
 
 Optional:
 
@@ -7876,7 +7876,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--lifecycle"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.lifecycle`
 
 Optional:
 
@@ -7884,7 +7884,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--pre_stop))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--post_start"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.pre_stop`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.post_start`
 
 Optional:
 
@@ -7893,7 +7893,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -7901,7 +7901,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.pre_stop.http_get`
 
 Optional:
 
@@ -7941,7 +7941,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -7949,7 +7949,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.pre_stop.http_get`
 
 Optional:
 
@@ -7981,7 +7981,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--liveness_probe"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.liveness_probe`
 
 Optional:
 
@@ -7997,7 +7997,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--exec"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.exec`
 
 Optional:
 
@@ -8005,7 +8005,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--grpc"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.grpc`
 
 Optional:
 
@@ -8014,7 +8014,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--http_get"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.http_get`
 
 Optional:
 
@@ -8025,7 +8025,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds.http_headers`
 
 Optional:
 
@@ -8035,7 +8035,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.tcp_socket`
 
 Optional:
 
@@ -8045,7 +8045,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--ports"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.ports`
 
 Optional:
 
@@ -8057,7 +8057,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--readiness_probe"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.readiness_probe`
 
 Optional:
 
@@ -8073,7 +8073,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--exec"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.exec`
 
 Optional:
 
@@ -8081,7 +8081,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--grpc"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.grpc`
 
 Optional:
 
@@ -8090,7 +8090,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--http_get"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.http_get`
 
 Optional:
 
@@ -8101,7 +8101,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds.http_headers`
 
 Optional:
 
@@ -8111,7 +8111,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.tcp_socket`
 
 Optional:
 
@@ -8121,7 +8121,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--resize_policy"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.resize_policy`
 
 Optional:
 
@@ -8130,7 +8130,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--resources"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.resources`
 
 Optional:
 
@@ -8139,7 +8139,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--claims"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.requests`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.claims`
 
 Optional:
 
@@ -8148,7 +8148,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--security_context"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.security_context`
 
 Optional:
 
@@ -8165,7 +8165,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--windows_options))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--capabilities"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.windows_options`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.capabilities`
 
 Optional:
 
@@ -8174,7 +8174,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--se_linux_options"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.windows_options`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.se_linux_options`
 
 Optional:
 
@@ -8185,7 +8185,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--seccomp_profile"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.windows_options`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.seccomp_profile`
 
 Optional:
 
@@ -8206,7 +8206,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--startup_probe"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.startup_probe`
 
 Optional:
 
@@ -8222,7 +8222,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--exec"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.exec`
 
 Optional:
 
@@ -8230,7 +8230,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--grpc"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.grpc`
 
 Optional:
 
@@ -8239,7 +8239,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--http_get"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.http_get`
 
 Optional:
 
@@ -8250,7 +8250,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds.http_headers`
 
 Optional:
 
@@ -8260,7 +8260,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir.tcp_socket`
 
 Optional:
 
@@ -8270,7 +8270,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--volume_devices"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.volume_devices`
 
 Optional:
 
@@ -8279,7 +8279,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--volume_mounts"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.volume_mounts`
 
 Optional:
 
@@ -8339,7 +8339,7 @@ Optional:
 - `working_dir` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--env"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.env`
 
 Optional:
 
@@ -8358,7 +8358,7 @@ Optional:
 - `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.value_from.config_map_key_ref`
 
 Optional:
 
@@ -8368,7 +8368,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.value_from.field_ref`
 
 Optional:
 
@@ -8377,7 +8377,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.value_from.secret_key_ref`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.value_from.resource_field_ref`
 
 Optional:
 
@@ -8399,7 +8399,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--env_from"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.env_from`
 
 Optional:
 
@@ -8408,7 +8408,7 @@ Optional:
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--secret_ref))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--config_map_ref"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.secret_ref`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.config_map_ref`
 
 Optional:
 
@@ -8427,7 +8427,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--lifecycle"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.lifecycle`
 
 Optional:
 
@@ -8435,7 +8435,7 @@ Optional:
 - `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--pre_stop))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--post_start"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.pre_stop`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.post_start`
 
 Optional:
 
@@ -8444,7 +8444,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -8452,7 +8452,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.pre_stop.http_get`
 
 Optional:
 
@@ -8492,7 +8492,7 @@ Optional:
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.pre_stop.exec`
 
 Optional:
 
@@ -8500,7 +8500,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.pre_stop.tcp_socket`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.pre_stop.http_get`
 
 Optional:
 
@@ -8532,7 +8532,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--liveness_probe"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.liveness_probe`
 
 Optional:
 
@@ -8548,7 +8548,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--exec"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.exec`
 
 Optional:
 
@@ -8556,7 +8556,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--grpc"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.grpc`
 
 Optional:
 
@@ -8565,7 +8565,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--http_get"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.http_get`
 
 Optional:
 
@@ -8576,7 +8576,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.timeout_seconds.http_headers`
 
 Optional:
 
@@ -8586,7 +8586,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.tcp_socket`
 
 Optional:
 
@@ -8596,7 +8596,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--ports"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.ports`
 
 Optional:
 
@@ -8608,7 +8608,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--readiness_probe"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.readiness_probe`
 
 Optional:
 
@@ -8624,7 +8624,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--exec"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.exec`
 
 Optional:
 
@@ -8632,7 +8632,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--grpc"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.grpc`
 
 Optional:
 
@@ -8641,7 +8641,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--http_get"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.http_get`
 
 Optional:
 
@@ -8652,7 +8652,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.timeout_seconds.http_headers`
 
 Optional:
 
@@ -8662,7 +8662,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.tcp_socket`
 
 Optional:
 
@@ -8672,7 +8672,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--resize_policy"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.resize_policy`
 
 Optional:
 
@@ -8681,7 +8681,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--resources"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.resources`
 
 Optional:
 
@@ -8690,7 +8690,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--claims"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.requests`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.claims`
 
 Optional:
 
@@ -8699,7 +8699,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--security_context"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.security_context`
 
 Optional:
 
@@ -8716,7 +8716,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--windows_options))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--capabilities"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.windows_options`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.capabilities`
 
 Optional:
 
@@ -8725,7 +8725,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--se_linux_options"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.windows_options`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.se_linux_options`
 
 Optional:
 
@@ -8736,7 +8736,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--seccomp_profile"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.windows_options`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.seccomp_profile`
 
 Optional:
 
@@ -8757,7 +8757,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--startup_probe"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.startup_probe`
 
 Optional:
 
@@ -8773,7 +8773,7 @@ Optional:
 - `timeout_seconds` (Number)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--exec"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.exec`
 
 Optional:
 
@@ -8781,7 +8781,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--grpc"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.grpc`
 
 Optional:
 
@@ -8790,7 +8790,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--http_get"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.http_get`
 
 Optional:
 
@@ -8801,7 +8801,7 @@ Optional:
 - `scheme` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.timeout_seconds.scheme`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.timeout_seconds.http_headers`
 
 Optional:
 
@@ -8811,7 +8811,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.timeout_seconds`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir.tcp_socket`
 
 Optional:
 
@@ -8821,7 +8821,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--volume_devices"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.volume_devices`
 
 Optional:
 
@@ -8830,7 +8830,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--volume_mounts"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir`
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.volume_mounts`
 
 Optional:
 
@@ -8902,7 +8902,7 @@ Optional:
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--security_context--windows_options))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--security_context--se_linux_options"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.security_context.windows_options`
+### Nested Schema for `spec.task_manager.pod_template.status.security_context.se_linux_options`
 
 Optional:
 
@@ -8913,7 +8913,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.security_context.windows_options`
+### Nested Schema for `spec.task_manager.pod_template.status.security_context.seccomp_profile`
 
 Optional:
 
@@ -8922,7 +8922,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--security_context--sysctls"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.security_context.windows_options`
+### Nested Schema for `spec.task_manager.pod_template.status.security_context.sysctls`
 
 Optional:
 
@@ -8969,7 +8969,7 @@ Optional:
 - `when_unsatisfiable` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--topology_spread_constraints--label_selector"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.topology_spread_constraints.when_unsatisfiable`
+### Nested Schema for `spec.task_manager.pod_template.status.topology_spread_constraints.label_selector`
 
 Optional:
 
@@ -8977,7 +8977,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--topology_spread_constraints--when_unsatisfiable--match_expressions"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.topology_spread_constraints.when_unsatisfiable.match_labels`
+### Nested Schema for `spec.task_manager.pod_template.status.topology_spread_constraints.when_unsatisfiable.match_expressions`
 
 Optional:
 
@@ -9025,7 +9025,7 @@ Optional:
 - `vsphere_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--volumes--vsphere_volume))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--aws_elastic_block_store"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.aws_elastic_block_store`
 
 Optional:
 
@@ -9036,7 +9036,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--azure_disk"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.azure_disk`
 
 Optional:
 
@@ -9049,7 +9049,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--azure_file"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.azure_file`
 
 Optional:
 
@@ -9059,7 +9059,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--cephfs"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.cephfs`
 
 Optional:
 
@@ -9071,7 +9071,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.user`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -9080,7 +9080,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--cinder"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.cinder`
 
 Optional:
 
@@ -9090,7 +9090,7 @@ Optional:
 - `volume_id` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.volume_id`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -9099,7 +9099,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--config_map"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.config_map`
 
 Optional:
 
@@ -9109,7 +9109,7 @@ Optional:
 - `optional` (Boolean)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.optional`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.items`
 
 Optional:
 
@@ -9120,7 +9120,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--csi"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.csi`
 
 Optional:
 
@@ -9131,7 +9131,7 @@ Optional:
 - `volume_attributes` (Map of String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--vsphere_volume--node_publish_secret_ref"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.volume_attributes`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.node_publish_secret_ref`
 
 Optional:
 
@@ -9140,7 +9140,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--downward_api"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.downward_api`
 
 Optional:
 
@@ -9158,7 +9158,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--volumes--vsphere_volume--items--resource_field_ref))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.items.resource_field_ref`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.items.field_ref`
 
 Optional:
 
@@ -9179,7 +9179,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--empty_dir"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.empty_dir`
 
 Optional:
 
@@ -9188,7 +9188,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--ephemeral"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.ephemeral`
 
 Optional:
 
@@ -9203,7 +9203,7 @@ Optional:
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--volumes--vsphere_volume--volume_claim_template--spec))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--vsphere_volume--volume_claim_template--metadata"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.volume_claim_template.spec`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.volume_claim_template.metadata`
 
 Optional:
 
@@ -9296,7 +9296,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--vsphere_volume--volume_claim_template--spec--resources--claims"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.volume_claim_template.spec.resources.requests`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.volume_claim_template.spec.resources.claims`
 
 Optional:
 
@@ -9313,7 +9313,7 @@ Optional:
 - `match_labels` (Map of String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--vsphere_volume--volume_claim_template--spec--selector--match_expressions"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.volume_claim_template.spec.selector.match_labels`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.volume_claim_template.spec.selector.match_expressions`
 
 Optional:
 
@@ -9327,7 +9327,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--fc"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.fc`
 
 Optional:
 
@@ -9339,7 +9339,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--flex_volume"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.flex_volume`
 
 Optional:
 
@@ -9359,7 +9359,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--flocker"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.flocker`
 
 Optional:
 
@@ -9368,7 +9368,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--gce_persistent_disk"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.gce_persistent_disk`
 
 Optional:
 
@@ -9379,7 +9379,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--git_repo"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.git_repo`
 
 Optional:
 
@@ -9389,7 +9389,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--glusterfs"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.glusterfs`
 
 Optional:
 
@@ -9399,7 +9399,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--host_path"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.host_path`
 
 Optional:
 
@@ -9408,7 +9408,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--iscsi"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.iscsi`
 
 Optional:
 
@@ -9425,7 +9425,7 @@ Optional:
 - `target_portal` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.target_portal`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -9434,7 +9434,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--nfs"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.nfs`
 
 Optional:
 
@@ -9444,7 +9444,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--persistent_volume_claim"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.persistent_volume_claim`
 
 Optional:
 
@@ -9453,7 +9453,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--photon_persistent_disk"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.photon_persistent_disk`
 
 Optional:
 
@@ -9462,7 +9462,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--portworx_volume"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.portworx_volume`
 
 Optional:
 
@@ -9472,7 +9472,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--projected"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.projected`
 
 Optional:
 
@@ -9490,7 +9490,7 @@ Optional:
 - `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--volumes--vsphere_volume--sources--service_account_token))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.sources.config_map`
 
 Optional:
 
@@ -9510,7 +9510,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.sources.downward_api`
 
 Optional:
 
@@ -9527,7 +9527,7 @@ Optional:
 - `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.sources.service_account_token.items.field_ref`
 
 Optional:
 
@@ -9548,7 +9548,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.sources.secret`
 
 Optional:
 
@@ -9580,7 +9580,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--quobyte"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.quobyte`
 
 Optional:
 
@@ -9593,7 +9593,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--rbd"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.rbd`
 
 Optional:
 
@@ -9607,7 +9607,7 @@ Optional:
 - `user` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.user`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -9616,7 +9616,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--scale_io"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.scale_io`
 
 Optional:
 
@@ -9632,7 +9632,7 @@ Optional:
 - `volume_name` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.volume_name`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -9641,7 +9641,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--secret"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.secret`
 
 Optional:
 
@@ -9651,7 +9651,7 @@ Optional:
 - `secret_name` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.secret_name`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.items`
 
 Optional:
 
@@ -9662,7 +9662,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--storageos"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.storageos`
 
 Optional:
 
@@ -9673,7 +9673,7 @@ Optional:
 - `volume_namespace` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.volume_namespace`
+### Nested Schema for `spec.task_manager.pod_template.status.volumes.vsphere_volume.secret_ref`
 
 Optional:
 
@@ -9745,7 +9745,7 @@ Optional:
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--container_statuses--state))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--container_statuses--last_state"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.container_statuses.state`
+### Nested Schema for `spec.task_manager.pod_template.status.container_statuses.last_state`
 
 Optional:
 
@@ -9754,7 +9754,7 @@ Optional:
 - `waiting` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--container_statuses--state--waiting))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--container_statuses--state--running"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.container_statuses.state.waiting`
+### Nested Schema for `spec.task_manager.pod_template.status.container_statuses.state.running`
 
 Optional:
 
@@ -9762,7 +9762,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--container_statuses--state--terminated"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.container_statuses.state.waiting`
+### Nested Schema for `spec.task_manager.pod_template.status.container_statuses.state.terminated`
 
 Optional:
 
@@ -9786,7 +9786,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--container_statuses--resources"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.container_statuses.state`
+### Nested Schema for `spec.task_manager.pod_template.status.container_statuses.resources`
 
 Optional:
 
@@ -9795,7 +9795,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--container_statuses--state--claims"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.container_statuses.state.requests`
+### Nested Schema for `spec.task_manager.pod_template.status.container_statuses.state.claims`
 
 Optional:
 
@@ -9813,7 +9813,7 @@ Optional:
 - `waiting` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--container_statuses--state--waiting))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--container_statuses--state--running"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.container_statuses.state.waiting`
+### Nested Schema for `spec.task_manager.pod_template.status.container_statuses.state.running`
 
 Optional:
 
@@ -9821,7 +9821,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--container_statuses--state--terminated"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.container_statuses.state.waiting`
+### Nested Schema for `spec.task_manager.pod_template.status.container_statuses.state.terminated`
 
 Optional:
 
@@ -9863,7 +9863,7 @@ Optional:
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_container_statuses--state))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_container_statuses--last_state"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_container_statuses.state`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_container_statuses.last_state`
 
 Optional:
 
@@ -9872,7 +9872,7 @@ Optional:
 - `waiting` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_container_statuses--state--waiting))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_container_statuses--state--running"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_container_statuses.state.waiting`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_container_statuses.state.running`
 
 Optional:
 
@@ -9880,7 +9880,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_container_statuses--state--terminated"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_container_statuses.state.waiting`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_container_statuses.state.terminated`
 
 Optional:
 
@@ -9904,7 +9904,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_container_statuses--resources"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_container_statuses.state`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_container_statuses.resources`
 
 Optional:
 
@@ -9913,7 +9913,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_container_statuses--state--claims"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_container_statuses.state.requests`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_container_statuses.state.claims`
 
 Optional:
 
@@ -9931,7 +9931,7 @@ Optional:
 - `waiting` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_container_statuses--state--waiting))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_container_statuses--state--running"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_container_statuses.state.waiting`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_container_statuses.state.running`
 
 Optional:
 
@@ -9939,7 +9939,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_container_statuses--state--terminated"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_container_statuses.state.waiting`
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_container_statuses.state.terminated`
 
 Optional:
 
@@ -9981,7 +9981,7 @@ Optional:
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_container_statuses--state))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_container_statuses--last_state"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_container_statuses.state`
+### Nested Schema for `spec.task_manager.pod_template.status.init_container_statuses.last_state`
 
 Optional:
 
@@ -9990,7 +9990,7 @@ Optional:
 - `waiting` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_container_statuses--state--waiting))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_container_statuses--state--running"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_container_statuses.state.waiting`
+### Nested Schema for `spec.task_manager.pod_template.status.init_container_statuses.state.running`
 
 Optional:
 
@@ -9998,7 +9998,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_container_statuses--state--terminated"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_container_statuses.state.waiting`
+### Nested Schema for `spec.task_manager.pod_template.status.init_container_statuses.state.terminated`
 
 Optional:
 
@@ -10022,7 +10022,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_container_statuses--resources"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_container_statuses.state`
+### Nested Schema for `spec.task_manager.pod_template.status.init_container_statuses.resources`
 
 Optional:
 
@@ -10031,7 +10031,7 @@ Optional:
 - `requests` (Map of String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_container_statuses--state--claims"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_container_statuses.state.requests`
+### Nested Schema for `spec.task_manager.pod_template.status.init_container_statuses.state.claims`
 
 Optional:
 
@@ -10049,7 +10049,7 @@ Optional:
 - `waiting` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_container_statuses--state--waiting))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_container_statuses--state--running"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_container_statuses.state.waiting`
+### Nested Schema for `spec.task_manager.pod_template.status.init_container_statuses.state.running`
 
 Optional:
 
@@ -10057,7 +10057,7 @@ Optional:
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_container_statuses--state--terminated"></a>
-### Nested Schema for `spec.task_manager.pod_template.status.init_container_statuses.state.waiting`
+### Nested Schema for `spec.task_manager.pod_template.status.init_container_statuses.state.terminated`
 
 Optional:
 

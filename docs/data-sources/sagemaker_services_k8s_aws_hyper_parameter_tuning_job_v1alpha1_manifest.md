@@ -98,7 +98,7 @@ Optional:
 - `integer_parameter_ranges` (Attributes List) (see [below for nested schema](#nestedatt--spec--hyper_parameter_tuning_job_config--parameter_ranges--integer_parameter_ranges))
 
 <a id="nestedatt--spec--hyper_parameter_tuning_job_config--parameter_ranges--auto_parameters"></a>
-### Nested Schema for `spec.hyper_parameter_tuning_job_config.parameter_ranges.integer_parameter_ranges`
+### Nested Schema for `spec.hyper_parameter_tuning_job_config.parameter_ranges.auto_parameters`
 
 Optional:
 
@@ -107,7 +107,7 @@ Optional:
 
 
 <a id="nestedatt--spec--hyper_parameter_tuning_job_config--parameter_ranges--categorical_parameter_ranges"></a>
-### Nested Schema for `spec.hyper_parameter_tuning_job_config.parameter_ranges.integer_parameter_ranges`
+### Nested Schema for `spec.hyper_parameter_tuning_job_config.parameter_ranges.categorical_parameter_ranges`
 
 Optional:
 
@@ -116,7 +116,7 @@ Optional:
 
 
 <a id="nestedatt--spec--hyper_parameter_tuning_job_config--parameter_ranges--continuous_parameter_ranges"></a>
-### Nested Schema for `spec.hyper_parameter_tuning_job_config.parameter_ranges.integer_parameter_ranges`
+### Nested Schema for `spec.hyper_parameter_tuning_job_config.parameter_ranges.continuous_parameter_ranges`
 
 Optional:
 
@@ -206,7 +206,7 @@ Optional:
 - `training_input_mode` (String) The training input mode that the algorithm supports. For more informationabout input modes, see Algorithms (https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html).Pipe modeIf an algorithm supports Pipe mode, Amazon SageMaker streams data directlyfrom Amazon S3 to the container.File modeIf an algorithm supports File mode, SageMaker downloads the training datafrom S3 to the provisioned ML storage volume, and mounts the directory tothe Docker volume for the training container.You must provision the ML storage volume with sufficient capacity to accommodatethe data downloaded from S3. In addition to the training data, the ML storagevolume also stores the output model. The algorithm container uses the MLstorage volume to also store intermediate information, if any.For distributed algorithms, training data is distributed uniformly. Yourtraining duration is predictable if the input data objects sizes are approximatelythe same. SageMaker does not split the files any further for model training.If the object sizes are skewed, training won't be optimal as the data distributionis also skewed when one host in a training cluster is overloaded, thus becominga bottleneck in training.FastFile modeIf an algorithm supports FastFile mode, SageMaker streams data directly fromS3 to the container with no code changes, and provides file system accessto the data. Users can author their training script to interact with thesefiles as if they were stored on disk.FastFile mode works best when the data is read sequentially. Augmented manifestfiles aren't supported. The startup time is lower when there are fewer filesin the S3 bucket provided.
 
 <a id="nestedatt--spec--training_job_definition--algorithm_specification--metric_definitions"></a>
-### Nested Schema for `spec.training_job_definition.algorithm_specification.training_input_mode`
+### Nested Schema for `spec.training_job_definition.algorithm_specification.metric_definitions`
 
 Optional:
 
@@ -235,7 +235,7 @@ Optional:
 - `integer_parameter_ranges` (Attributes List) (see [below for nested schema](#nestedatt--spec--training_job_definition--hyper_parameter_ranges--integer_parameter_ranges))
 
 <a id="nestedatt--spec--training_job_definition--hyper_parameter_ranges--auto_parameters"></a>
-### Nested Schema for `spec.training_job_definition.hyper_parameter_ranges.integer_parameter_ranges`
+### Nested Schema for `spec.training_job_definition.hyper_parameter_ranges.auto_parameters`
 
 Optional:
 
@@ -244,7 +244,7 @@ Optional:
 
 
 <a id="nestedatt--spec--training_job_definition--hyper_parameter_ranges--categorical_parameter_ranges"></a>
-### Nested Schema for `spec.training_job_definition.hyper_parameter_ranges.integer_parameter_ranges`
+### Nested Schema for `spec.training_job_definition.hyper_parameter_ranges.categorical_parameter_ranges`
 
 Optional:
 
@@ -253,7 +253,7 @@ Optional:
 
 
 <a id="nestedatt--spec--training_job_definition--hyper_parameter_ranges--continuous_parameter_ranges"></a>
-### Nested Schema for `spec.training_job_definition.hyper_parameter_ranges.integer_parameter_ranges`
+### Nested Schema for `spec.training_job_definition.hyper_parameter_ranges.continuous_parameter_ranges`
 
 Optional:
 
@@ -289,7 +289,7 @@ Optional:
 - `shuffle_config` (Attributes) A configuration for a shuffle option for input data in a channel. If youuse S3Prefix for S3DataType, the results of the S3 key prefix matches areshuffled. If you use ManifestFile, the order of the S3 object referencesin the ManifestFile is shuffled. If you use AugmentedManifestFile, the orderof the JSON lines in the AugmentedManifestFile is shuffled. The shufflingorder is determined using the Seed value.For Pipe input mode, when ShuffleConfig is specified shuffling is done atthe start of every epoch. With large datasets, this ensures that the orderof the training data is different for each epoch, and it helps reduce biasand possible overfitting. In a multi-node training job when ShuffleConfigis combined with S3DataDistributionType of ShardedByS3Key, the data is shuffledacross nodes so that the content sent to a particular node on the first epochmight be sent to a different node on the second epoch. (see [below for nested schema](#nestedatt--spec--training_job_definition--input_data_config--shuffle_config))
 
 <a id="nestedatt--spec--training_job_definition--input_data_config--data_source"></a>
-### Nested Schema for `spec.training_job_definition.input_data_config.shuffle_config`
+### Nested Schema for `spec.training_job_definition.input_data_config.data_source`
 
 Optional:
 
@@ -352,7 +352,7 @@ Optional:
 - `volume_size_in_gb` (Number)
 
 <a id="nestedatt--spec--training_job_definition--resource_config--instance_groups"></a>
-### Nested Schema for `spec.training_job_definition.resource_config.volume_size_in_gb`
+### Nested Schema for `spec.training_job_definition.resource_config.instance_groups`
 
 Optional:
 
@@ -432,7 +432,7 @@ Optional:
 - `training_input_mode` (String) The training input mode that the algorithm supports. For more informationabout input modes, see Algorithms (https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html).Pipe modeIf an algorithm supports Pipe mode, Amazon SageMaker streams data directlyfrom Amazon S3 to the container.File modeIf an algorithm supports File mode, SageMaker downloads the training datafrom S3 to the provisioned ML storage volume, and mounts the directory tothe Docker volume for the training container.You must provision the ML storage volume with sufficient capacity to accommodatethe data downloaded from S3. In addition to the training data, the ML storagevolume also stores the output model. The algorithm container uses the MLstorage volume to also store intermediate information, if any.For distributed algorithms, training data is distributed uniformly. Yourtraining duration is predictable if the input data objects sizes are approximatelythe same. SageMaker does not split the files any further for model training.If the object sizes are skewed, training won't be optimal as the data distributionis also skewed when one host in a training cluster is overloaded, thus becominga bottleneck in training.FastFile modeIf an algorithm supports FastFile mode, SageMaker streams data directly fromS3 to the container with no code changes, and provides file system accessto the data. Users can author their training script to interact with thesefiles as if they were stored on disk.FastFile mode works best when the data is read sequentially. Augmented manifestfiles aren't supported. The startup time is lower when there are fewer filesin the S3 bucket provided.
 
 <a id="nestedatt--spec--training_job_definitions--algorithm_specification--metric_definitions"></a>
-### Nested Schema for `spec.training_job_definitions.algorithm_specification.training_input_mode`
+### Nested Schema for `spec.training_job_definitions.algorithm_specification.metric_definitions`
 
 Optional:
 
@@ -461,7 +461,7 @@ Optional:
 - `integer_parameter_ranges` (Attributes List) (see [below for nested schema](#nestedatt--spec--training_job_definitions--hyper_parameter_ranges--integer_parameter_ranges))
 
 <a id="nestedatt--spec--training_job_definitions--hyper_parameter_ranges--auto_parameters"></a>
-### Nested Schema for `spec.training_job_definitions.hyper_parameter_ranges.integer_parameter_ranges`
+### Nested Schema for `spec.training_job_definitions.hyper_parameter_ranges.auto_parameters`
 
 Optional:
 
@@ -470,7 +470,7 @@ Optional:
 
 
 <a id="nestedatt--spec--training_job_definitions--hyper_parameter_ranges--categorical_parameter_ranges"></a>
-### Nested Schema for `spec.training_job_definitions.hyper_parameter_ranges.integer_parameter_ranges`
+### Nested Schema for `spec.training_job_definitions.hyper_parameter_ranges.categorical_parameter_ranges`
 
 Optional:
 
@@ -479,7 +479,7 @@ Optional:
 
 
 <a id="nestedatt--spec--training_job_definitions--hyper_parameter_ranges--continuous_parameter_ranges"></a>
-### Nested Schema for `spec.training_job_definitions.hyper_parameter_ranges.integer_parameter_ranges`
+### Nested Schema for `spec.training_job_definitions.hyper_parameter_ranges.continuous_parameter_ranges`
 
 Optional:
 
@@ -515,7 +515,7 @@ Optional:
 - `shuffle_config` (Attributes) A configuration for a shuffle option for input data in a channel. If youuse S3Prefix for S3DataType, the results of the S3 key prefix matches areshuffled. If you use ManifestFile, the order of the S3 object referencesin the ManifestFile is shuffled. If you use AugmentedManifestFile, the orderof the JSON lines in the AugmentedManifestFile is shuffled. The shufflingorder is determined using the Seed value.For Pipe input mode, when ShuffleConfig is specified shuffling is done atthe start of every epoch. With large datasets, this ensures that the orderof the training data is different for each epoch, and it helps reduce biasand possible overfitting. In a multi-node training job when ShuffleConfigis combined with S3DataDistributionType of ShardedByS3Key, the data is shuffledacross nodes so that the content sent to a particular node on the first epochmight be sent to a different node on the second epoch. (see [below for nested schema](#nestedatt--spec--training_job_definitions--input_data_config--shuffle_config))
 
 <a id="nestedatt--spec--training_job_definitions--input_data_config--data_source"></a>
-### Nested Schema for `spec.training_job_definitions.input_data_config.shuffle_config`
+### Nested Schema for `spec.training_job_definitions.input_data_config.data_source`
 
 Optional:
 
@@ -578,7 +578,7 @@ Optional:
 - `volume_size_in_gb` (Number)
 
 <a id="nestedatt--spec--training_job_definitions--resource_config--instance_groups"></a>
-### Nested Schema for `spec.training_job_definitions.resource_config.volume_size_in_gb`
+### Nested Schema for `spec.training_job_definitions.resource_config.instance_groups`
 
 Optional:
 

@@ -114,7 +114,7 @@ Optional:
 - `queue_name` (String)
 
 <a id="nestedatt--spec--source_parameters--active_mq_broker_parameters--credentials"></a>
-### Nested Schema for `spec.source_parameters.active_mq_broker_parameters.queue_name`
+### Nested Schema for `spec.source_parameters.active_mq_broker_parameters.credentials`
 
 Optional:
 
@@ -137,7 +137,7 @@ Optional:
 - `starting_position` (String)
 
 <a id="nestedatt--spec--source_parameters--dynamo_db_stream_parameters--dead_letter_config"></a>
-### Nested Schema for `spec.source_parameters.dynamo_db_stream_parameters.starting_position`
+### Nested Schema for `spec.source_parameters.dynamo_db_stream_parameters.dead_letter_config`
 
 Optional:
 
@@ -177,7 +177,7 @@ Optional:
 - `starting_position_timestamp` (String)
 
 <a id="nestedatt--spec--source_parameters--kinesis_stream_parameters--dead_letter_config"></a>
-### Nested Schema for `spec.source_parameters.kinesis_stream_parameters.starting_position_timestamp`
+### Nested Schema for `spec.source_parameters.kinesis_stream_parameters.dead_letter_config`
 
 Optional:
 
@@ -198,7 +198,7 @@ Optional:
 - `topic_name` (String)
 
 <a id="nestedatt--spec--source_parameters--managed_streaming_kafka_parameters--credentials"></a>
-### Nested Schema for `spec.source_parameters.managed_streaming_kafka_parameters.topic_name`
+### Nested Schema for `spec.source_parameters.managed_streaming_kafka_parameters.credentials`
 
 Optional:
 
@@ -219,7 +219,7 @@ Optional:
 - `virtual_host` (String)
 
 <a id="nestedatt--spec--source_parameters--rabbit_mq_broker_parameters--credentials"></a>
-### Nested Schema for `spec.source_parameters.rabbit_mq_broker_parameters.virtual_host`
+### Nested Schema for `spec.source_parameters.rabbit_mq_broker_parameters.credentials`
 
 Optional:
 
@@ -243,7 +243,7 @@ Optional:
 - `vpc` (Attributes) This structure specifies the VPC subnets and security groups for the stream,and whether a public IP address is to be used. (see [below for nested schema](#nestedatt--spec--source_parameters--self_managed_kafka_parameters--vpc))
 
 <a id="nestedatt--spec--source_parameters--self_managed_kafka_parameters--credentials"></a>
-### Nested Schema for `spec.source_parameters.self_managed_kafka_parameters.vpc`
+### Nested Schema for `spec.source_parameters.self_managed_kafka_parameters.credentials`
 
 Optional:
 
@@ -305,7 +305,7 @@ Optional:
 - `retry_strategy` (Attributes) The retry strategy that's associated with a job. For more information, seeAutomated job retries (https://docs.aws.amazon.com/batch/latest/userguide/job_retries.html)in the Batch User Guide. (see [below for nested schema](#nestedatt--spec--target_parameters--batch_job_parameters--retry_strategy))
 
 <a id="nestedatt--spec--target_parameters--batch_job_parameters--array_properties"></a>
-### Nested Schema for `spec.target_parameters.batch_job_parameters.retry_strategy`
+### Nested Schema for `spec.target_parameters.batch_job_parameters.array_properties`
 
 Optional:
 
@@ -313,7 +313,7 @@ Optional:
 
 
 <a id="nestedatt--spec--target_parameters--batch_job_parameters--container_overrides"></a>
-### Nested Schema for `spec.target_parameters.batch_job_parameters.retry_strategy`
+### Nested Schema for `spec.target_parameters.batch_job_parameters.container_overrides`
 
 Optional:
 
@@ -342,7 +342,7 @@ Optional:
 
 
 <a id="nestedatt--spec--target_parameters--batch_job_parameters--depends_on"></a>
-### Nested Schema for `spec.target_parameters.batch_job_parameters.retry_strategy`
+### Nested Schema for `spec.target_parameters.batch_job_parameters.depends_on`
 
 Optional:
 
@@ -390,7 +390,7 @@ Optional:
 - `task_definition_arn` (String)
 
 <a id="nestedatt--spec--target_parameters--ecs_task_parameters--capacity_provider_strategy"></a>
-### Nested Schema for `spec.target_parameters.ecs_task_parameters.task_definition_arn`
+### Nested Schema for `spec.target_parameters.ecs_task_parameters.capacity_provider_strategy`
 
 Optional:
 
@@ -400,7 +400,7 @@ Optional:
 
 
 <a id="nestedatt--spec--target_parameters--ecs_task_parameters--network_configuration"></a>
-### Nested Schema for `spec.target_parameters.ecs_task_parameters.task_definition_arn`
+### Nested Schema for `spec.target_parameters.ecs_task_parameters.network_configuration`
 
 Optional:
 
@@ -418,7 +418,7 @@ Optional:
 
 
 <a id="nestedatt--spec--target_parameters--ecs_task_parameters--overrides"></a>
-### Nested Schema for `spec.target_parameters.ecs_task_parameters.task_definition_arn`
+### Nested Schema for `spec.target_parameters.ecs_task_parameters.overrides`
 
 Optional:
 
@@ -445,7 +445,7 @@ Optional:
 - `resource_requirements` (Attributes List) (see [below for nested schema](#nestedatt--spec--target_parameters--ecs_task_parameters--task_definition_arn--container_overrides--resource_requirements))
 
 <a id="nestedatt--spec--target_parameters--ecs_task_parameters--task_definition_arn--container_overrides--environment"></a>
-### Nested Schema for `spec.target_parameters.ecs_task_parameters.task_definition_arn.container_overrides.resource_requirements`
+### Nested Schema for `spec.target_parameters.ecs_task_parameters.task_definition_arn.container_overrides.environment`
 
 Optional:
 
@@ -454,7 +454,7 @@ Optional:
 
 
 <a id="nestedatt--spec--target_parameters--ecs_task_parameters--task_definition_arn--container_overrides--environment_files"></a>
-### Nested Schema for `spec.target_parameters.ecs_task_parameters.task_definition_arn.container_overrides.resource_requirements`
+### Nested Schema for `spec.target_parameters.ecs_task_parameters.task_definition_arn.container_overrides.environment_files`
 
 Optional:
 
@@ -491,7 +491,7 @@ Optional:
 
 
 <a id="nestedatt--spec--target_parameters--ecs_task_parameters--placement_constraints"></a>
-### Nested Schema for `spec.target_parameters.ecs_task_parameters.task_definition_arn`
+### Nested Schema for `spec.target_parameters.ecs_task_parameters.placement_constraints`
 
 Optional:
 
@@ -500,7 +500,7 @@ Optional:
 
 
 <a id="nestedatt--spec--target_parameters--ecs_task_parameters--placement_strategy"></a>
-### Nested Schema for `spec.target_parameters.ecs_task_parameters.task_definition_arn`
+### Nested Schema for `spec.target_parameters.ecs_task_parameters.placement_strategy`
 
 Optional:
 
@@ -509,7 +509,7 @@ Optional:
 
 
 <a id="nestedatt--spec--target_parameters--ecs_task_parameters--tags"></a>
-### Nested Schema for `spec.target_parameters.ecs_task_parameters.task_definition_arn`
+### Nested Schema for `spec.target_parameters.ecs_task_parameters.tags`
 
 Optional:
 

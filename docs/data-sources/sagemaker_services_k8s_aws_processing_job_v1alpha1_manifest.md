@@ -150,7 +150,7 @@ Optional:
 - `redshift_dataset_definition` (Attributes) Configuration for Redshift Dataset Definition input. (see [below for nested schema](#nestedatt--spec--processing_inputs--dataset_definition--redshift_dataset_definition))
 
 <a id="nestedatt--spec--processing_inputs--dataset_definition--athena_dataset_definition"></a>
-### Nested Schema for `spec.processing_inputs.dataset_definition.redshift_dataset_definition`
+### Nested Schema for `spec.processing_inputs.dataset_definition.athena_dataset_definition`
 
 Optional:
 
@@ -214,7 +214,7 @@ Optional:
 - `s3_output` (Attributes) Configuration for uploading output data to Amazon S3 from the processingcontainer. (see [below for nested schema](#nestedatt--spec--processing_output_config--outputs--s3_output))
 
 <a id="nestedatt--spec--processing_output_config--outputs--feature_store_output"></a>
-### Nested Schema for `spec.processing_output_config.outputs.s3_output`
+### Nested Schema for `spec.processing_output_config.outputs.feature_store_output`
 
 Optional:
 

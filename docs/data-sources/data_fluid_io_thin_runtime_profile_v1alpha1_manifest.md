@@ -176,7 +176,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--fuse--liveness_probe--exec"></a>
-### Nested Schema for `spec.fuse.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.fuse.liveness_probe.exec`
 
 Optional:
 
@@ -184,7 +184,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fuse--liveness_probe--grpc"></a>
-### Nested Schema for `spec.fuse.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.fuse.liveness_probe.grpc`
 
 Required:
 
@@ -196,7 +196,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fuse--liveness_probe--http_get"></a>
-### Nested Schema for `spec.fuse.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.fuse.liveness_probe.http_get`
 
 Required:
 
@@ -220,7 +220,7 @@ Required:
 
 
 <a id="nestedatt--spec--fuse--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.fuse.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.fuse.liveness_probe.tcp_socket`
 
 Required:
 
@@ -264,7 +264,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--fuse--readiness_probe--exec"></a>
-### Nested Schema for `spec.fuse.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.fuse.readiness_probe.exec`
 
 Optional:
 
@@ -272,7 +272,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fuse--readiness_probe--grpc"></a>
-### Nested Schema for `spec.fuse.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.fuse.readiness_probe.grpc`
 
 Required:
 
@@ -284,7 +284,7 @@ Optional:
 
 
 <a id="nestedatt--spec--fuse--readiness_probe--http_get"></a>
-### Nested Schema for `spec.fuse.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.fuse.readiness_probe.http_get`
 
 Required:
 
@@ -308,7 +308,7 @@ Required:
 
 
 <a id="nestedatt--spec--fuse--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.fuse.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.fuse.readiness_probe.tcp_socket`
 
 Required:
 
@@ -444,7 +444,7 @@ Optional:
 - `user` (String) Optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
 
 <a id="nestedatt--spec--volumes--cephfs--secret_ref"></a>
-### Nested Schema for `spec.volumes.cephfs.user`
+### Nested Schema for `spec.volumes.cephfs.secret_ref`
 
 Optional:
 
@@ -485,7 +485,7 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--volumes--config_map--items"></a>
-### Nested Schema for `spec.volumes.config_map.optional`
+### Nested Schema for `spec.volumes.config_map.items`
 
 Required:
 
@@ -513,7 +513,7 @@ Optional:
 - `volume_attributes` (Map of String) VolumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.
 
 <a id="nestedatt--spec--volumes--csi--node_publish_secret_ref"></a>
-### Nested Schema for `spec.volumes.csi.volume_attributes`
+### Nested Schema for `spec.volumes.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -611,7 +611,7 @@ Optional:
 - `volume_name` (String) VolumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--volumes--ephemeral--volume_claim_template--spec--data_source"></a>
-### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.volume_name`
+### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.data_source`
 
 Required:
 
@@ -624,7 +624,7 @@ Optional:
 
 
 <a id="nestedatt--spec--volumes--ephemeral--volume_claim_template--spec--data_source_ref"></a>
-### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.volume_name`
+### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.data_source_ref`
 
 Required:
 
@@ -637,7 +637,7 @@ Optional:
 
 
 <a id="nestedatt--spec--volumes--ephemeral--volume_claim_template--spec--resources"></a>
-### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.volume_name`
+### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.resources`
 
 Optional:
 
@@ -646,7 +646,7 @@ Optional:
 
 
 <a id="nestedatt--spec--volumes--ephemeral--volume_claim_template--spec--selector"></a>
-### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.volume_name`
+### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.selector`
 
 Optional:
 
@@ -654,7 +654,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--volumes--ephemeral--volume_claim_template--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.volume_name.match_labels`
+### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.volume_name.match_expressions`
 
 Required:
 
@@ -873,7 +873,7 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--volumes--projected--sources--config_map--items"></a>
-### Nested Schema for `spec.volumes.projected.sources.config_map.optional`
+### Nested Schema for `spec.volumes.projected.sources.config_map.items`
 
 Required:
 
@@ -907,7 +907,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--volumes--projected--sources--downward_api--items--resource_field_ref))
 
 <a id="nestedatt--spec--volumes--projected--sources--downward_api--items--field_ref"></a>
-### Nested Schema for `spec.volumes.projected.sources.downward_api.items.resource_field_ref`
+### Nested Schema for `spec.volumes.projected.sources.downward_api.items.field_ref`
 
 Required:
 
@@ -943,7 +943,7 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 <a id="nestedatt--spec--volumes--projected--sources--secret--items"></a>
-### Nested Schema for `spec.volumes.projected.sources.secret.optional`
+### Nested Schema for `spec.volumes.projected.sources.secret.items`
 
 Required:
 
@@ -1005,7 +1005,7 @@ Optional:
 - `user` (String) The rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 
 <a id="nestedatt--spec--volumes--rbd--secret_ref"></a>
-### Nested Schema for `spec.volumes.rbd.user`
+### Nested Schema for `spec.volumes.rbd.secret_ref`
 
 Optional:
 
@@ -1033,7 +1033,7 @@ Optional:
 - `volume_name` (String) The name of a volume already created in the ScaleIO system that is associated with this volume source.
 
 <a id="nestedatt--spec--volumes--scale_io--secret_ref"></a>
-### Nested Schema for `spec.volumes.scale_io.volume_name`
+### Nested Schema for `spec.volumes.scale_io.secret_ref`
 
 Optional:
 
@@ -1052,7 +1052,7 @@ Optional:
 - `secret_name` (String) Name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
 
 <a id="nestedatt--spec--volumes--secret--items"></a>
-### Nested Schema for `spec.volumes.secret.secret_name`
+### Nested Schema for `spec.volumes.secret.items`
 
 Required:
 
@@ -1077,7 +1077,7 @@ Optional:
 - `volume_namespace` (String) VolumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
 
 <a id="nestedatt--spec--volumes--storageos--secret_ref"></a>
-### Nested Schema for `spec.volumes.storageos.volume_namespace`
+### Nested Schema for `spec.volumes.storageos.secret_ref`
 
 Optional:
 
@@ -1211,7 +1211,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--worker--liveness_probe--exec"></a>
-### Nested Schema for `spec.worker.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.worker.liveness_probe.exec`
 
 Optional:
 
@@ -1219,7 +1219,7 @@ Optional:
 
 
 <a id="nestedatt--spec--worker--liveness_probe--grpc"></a>
-### Nested Schema for `spec.worker.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.worker.liveness_probe.grpc`
 
 Required:
 
@@ -1231,7 +1231,7 @@ Optional:
 
 
 <a id="nestedatt--spec--worker--liveness_probe--http_get"></a>
-### Nested Schema for `spec.worker.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.worker.liveness_probe.http_get`
 
 Required:
 
@@ -1255,7 +1255,7 @@ Required:
 
 
 <a id="nestedatt--spec--worker--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.worker.liveness_probe.timeout_seconds`
+### Nested Schema for `spec.worker.liveness_probe.tcp_socket`
 
 Required:
 
@@ -1299,7 +1299,7 @@ Optional:
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--worker--readiness_probe--exec"></a>
-### Nested Schema for `spec.worker.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.worker.readiness_probe.exec`
 
 Optional:
 
@@ -1307,7 +1307,7 @@ Optional:
 
 
 <a id="nestedatt--spec--worker--readiness_probe--grpc"></a>
-### Nested Schema for `spec.worker.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.worker.readiness_probe.grpc`
 
 Required:
 
@@ -1319,7 +1319,7 @@ Optional:
 
 
 <a id="nestedatt--spec--worker--readiness_probe--http_get"></a>
-### Nested Schema for `spec.worker.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.worker.readiness_probe.http_get`
 
 Required:
 
@@ -1343,7 +1343,7 @@ Required:
 
 
 <a id="nestedatt--spec--worker--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.worker.readiness_probe.timeout_seconds`
+### Nested Schema for `spec.worker.readiness_probe.tcp_socket`
 
 Required:
 

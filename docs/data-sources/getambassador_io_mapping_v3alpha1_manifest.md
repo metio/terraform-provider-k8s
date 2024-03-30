@@ -235,7 +235,7 @@ Optional:
 - `http` (Attributes) HealthCheck for HTTP upstreams. Only one of http_health_check or grpc_health_check may be specified (see [below for nested schema](#nestedatt--spec--health_checks--health_check--http))
 
 <a id="nestedatt--spec--health_checks--health_check--grpc"></a>
-### Nested Schema for `spec.health_checks.health_check.http`
+### Nested Schema for `spec.health_checks.health_check.grpc`
 
 Required:
 

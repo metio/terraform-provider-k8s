@@ -182,7 +182,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--oauth2--client_id--secret))
 
 <a id="nestedatt--spec--oauth2--client_id--config_map"></a>
-### Nested Schema for `spec.oauth2.client_id.secret`
+### Nested Schema for `spec.oauth2.client_id.config_map`
 
 Required:
 
@@ -240,7 +240,7 @@ Optional:
 - `selector` (Attributes) Select Ingress objects by labels. (see [below for nested schema](#nestedatt--spec--targets--ingress--selector))
 
 <a id="nestedatt--spec--targets--ingress--namespace_selector"></a>
-### Nested Schema for `spec.targets.ingress.selector`
+### Nested Schema for `spec.targets.ingress.namespace_selector`
 
 Optional:
 
@@ -249,7 +249,7 @@ Optional:
 
 
 <a id="nestedatt--spec--targets--ingress--relabeling_configs"></a>
-### Nested Schema for `spec.targets.ingress.selector`
+### Nested Schema for `spec.targets.ingress.relabeling_configs`
 
 Optional:
 
@@ -342,7 +342,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--tls_config--ca--secret))
 
 <a id="nestedatt--spec--tls_config--ca--config_map"></a>
-### Nested Schema for `spec.tls_config.ca.secret`
+### Nested Schema for `spec.tls_config.ca.config_map`
 
 Required:
 
@@ -377,7 +377,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--tls_config--cert--secret))
 
 <a id="nestedatt--spec--tls_config--cert--config_map"></a>
-### Nested Schema for `spec.tls_config.cert.secret`
+### Nested Schema for `spec.tls_config.cert.config_map`
 
 Required:
 
@@ -444,7 +444,7 @@ Optional:
 - `tls_config` (Attributes) TLSConfig specifies TLSConfig configuration parameters. (see [below for nested schema](#nestedatt--spec--vm_scrape_params--proxy_client_config--tls_config))
 
 <a id="nestedatt--spec--vm_scrape_params--proxy_client_config--basic_auth"></a>
-### Nested Schema for `spec.vm_scrape_params.proxy_client_config.tls_config`
+### Nested Schema for `spec.vm_scrape_params.proxy_client_config.basic_auth`
 
 Optional:
 
@@ -480,7 +480,7 @@ Optional:
 
 
 <a id="nestedatt--spec--vm_scrape_params--proxy_client_config--bearer_token"></a>
-### Nested Schema for `spec.vm_scrape_params.proxy_client_config.tls_config`
+### Nested Schema for `spec.vm_scrape_params.proxy_client_config.bearer_token`
 
 Required:
 
@@ -515,7 +515,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--vm_scrape_params--proxy_client_config--tls_config--ca--secret))
 
 <a id="nestedatt--spec--vm_scrape_params--proxy_client_config--tls_config--ca--config_map"></a>
-### Nested Schema for `spec.vm_scrape_params.proxy_client_config.tls_config.ca.secret`
+### Nested Schema for `spec.vm_scrape_params.proxy_client_config.tls_config.ca.config_map`
 
 Required:
 
@@ -550,7 +550,7 @@ Optional:
 - `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--vm_scrape_params--proxy_client_config--tls_config--cert--secret))
 
 <a id="nestedatt--spec--vm_scrape_params--proxy_client_config--tls_config--cert--config_map"></a>
-### Nested Schema for `spec.vm_scrape_params.proxy_client_config.tls_config.cert.secret`
+### Nested Schema for `spec.vm_scrape_params.proxy_client_config.tls_config.cert.config_map`
 
 Required:
 

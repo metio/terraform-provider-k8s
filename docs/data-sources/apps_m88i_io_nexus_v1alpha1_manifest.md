@@ -127,7 +127,7 @@ Optional:
 - `vsphere_volume` (Attributes) VsphereVolume represents a vSphere volume attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--persistence--extra_volumes--vsphere_volume))
 
 <a id="nestedatt--spec--persistence--extra_volumes--aws_elastic_block_store"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.persistence.extra_volumes.aws_elastic_block_store`
 
 Required:
 
@@ -141,7 +141,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--azure_disk"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.persistence.extra_volumes.azure_disk`
 
 Required:
 
@@ -157,7 +157,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--azure_file"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.persistence.extra_volumes.azure_file`
 
 Required:
 
@@ -170,7 +170,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--cephfs"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.persistence.extra_volumes.cephfs`
 
 Required:
 
@@ -194,7 +194,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--cinder"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.persistence.extra_volumes.cinder`
 
 Required:
 
@@ -216,7 +216,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--config_map"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.persistence.extra_volumes.config_map`
 
 Optional:
 
@@ -240,7 +240,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--csi"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.persistence.extra_volumes.csi`
 
 Required:
 
@@ -263,7 +263,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--downward_api"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.persistence.extra_volumes.downward_api`
 
 Optional:
 
@@ -284,7 +284,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--persistence--extra_volumes--vsphere_volume--items--resource_field_ref))
 
 <a id="nestedatt--spec--persistence--extra_volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume.items.resource_field_ref`
+### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume.items.field_ref`
 
 Required:
 
@@ -311,7 +311,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--empty_dir"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.persistence.extra_volumes.empty_dir`
 
 Optional:
 
@@ -320,7 +320,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--ephemeral"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.persistence.extra_volumes.ephemeral`
 
 Optional:
 
@@ -339,7 +339,7 @@ Optional:
 - `metadata` (Map of String) May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation.
 
 <a id="nestedatt--spec--persistence--extra_volumes--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume.volume_claim_template.metadata`
+### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume.volume_claim_template.spec`
 
 Optional:
 
@@ -352,7 +352,7 @@ Optional:
 - `volume_name` (String) VolumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--persistence--extra_volumes--vsphere_volume--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume.volume_claim_template.metadata.data_source`
 
 Required:
 
@@ -365,7 +365,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--vsphere_volume--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume.volume_claim_template.metadata.resources`
 
 Optional:
 
@@ -374,7 +374,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--vsphere_volume--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name`
+### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume.volume_claim_template.metadata.selector`
 
 Optional:
 
@@ -382,7 +382,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--persistence--extra_volumes--vsphere_volume--volume_claim_template--metadata--volume_name--match_expressions"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_labels`
+### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_expressions`
 
 Required:
 
@@ -399,7 +399,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--fc"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.persistence.extra_volumes.fc`
 
 Optional:
 
@@ -411,7 +411,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--flex_volume"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.persistence.extra_volumes.flex_volume`
 
 Required:
 
@@ -434,7 +434,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--flocker"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.persistence.extra_volumes.flocker`
 
 Optional:
 
@@ -443,7 +443,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--gce_persistent_disk"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.persistence.extra_volumes.gce_persistent_disk`
 
 Required:
 
@@ -457,7 +457,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--git_repo"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.persistence.extra_volumes.git_repo`
 
 Required:
 
@@ -470,7 +470,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--glusterfs"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.persistence.extra_volumes.glusterfs`
 
 Required:
 
@@ -483,7 +483,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--host_path"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.persistence.extra_volumes.host_path`
 
 Required:
 
@@ -495,7 +495,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--iscsi"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.persistence.extra_volumes.iscsi`
 
 Required:
 
@@ -524,7 +524,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--nfs"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.persistence.extra_volumes.nfs`
 
 Required:
 
@@ -537,7 +537,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--persistent_volume_claim"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.persistence.extra_volumes.persistent_volume_claim`
 
 Required:
 
@@ -549,7 +549,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--photon_persistent_disk"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.persistence.extra_volumes.photon_persistent_disk`
 
 Required:
 
@@ -561,7 +561,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--portworx_volume"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.persistence.extra_volumes.portworx_volume`
 
 Required:
 
@@ -574,7 +574,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--projected"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.persistence.extra_volumes.projected`
 
 Required:
 
@@ -595,7 +595,7 @@ Optional:
 - `service_account_token` (Attributes) information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--persistence--extra_volumes--vsphere_volume--sources--service_account_token))
 
 <a id="nestedatt--spec--persistence--extra_volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume.sources.config_map`
 
 Optional:
 
@@ -604,7 +604,7 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--persistence--extra_volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume.sources.service_account_token.optional`
+### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume.sources.service_account_token.items`
 
 Required:
 
@@ -618,7 +618,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume.sources.downward_api`
 
 Optional:
 
@@ -638,7 +638,7 @@ Optional:
 - `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--persistence--extra_volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
 
 <a id="nestedatt--spec--persistence--extra_volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume.sources.service_account_token.items.field_ref`
 
 Required:
 
@@ -665,7 +665,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume.sources.service_account_token`
+### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume.sources.secret`
 
 Optional:
 
@@ -674,7 +674,7 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 <a id="nestedatt--spec--persistence--extra_volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume.sources.service_account_token.optional`
+### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume.sources.service_account_token.items`
 
 Required:
 
@@ -703,7 +703,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--quobyte"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.persistence.extra_volumes.quobyte`
 
 Required:
 
@@ -719,7 +719,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--rbd"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.persistence.extra_volumes.rbd`
 
 Required:
 
@@ -745,7 +745,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--scale_io"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.persistence.extra_volumes.scale_io`
 
 Required:
 
@@ -773,7 +773,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--secret"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.persistence.extra_volumes.secret`
 
 Optional:
 
@@ -797,7 +797,7 @@ Optional:
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--storageos"></a>
-### Nested Schema for `spec.persistence.extra_volumes.vsphere_volume`
+### Nested Schema for `spec.persistence.extra_volumes.storageos`
 
 Optional:
 

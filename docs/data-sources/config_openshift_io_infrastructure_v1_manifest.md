@@ -132,7 +132,7 @@ Optional:
 - `failure_domains` (Attributes List) failureDomains configures failure domains information for the Nutanix platform. When set, the failure domains defined here may be used to spread Machines across prism element clusters to improve fault tolerance of the cluster. (see [below for nested schema](#nestedatt--spec--platform_spec--nutanix--failure_domains))
 
 <a id="nestedatt--spec--platform_spec--nutanix--prism_central"></a>
-### Nested Schema for `spec.platform_spec.nutanix.failure_domains`
+### Nested Schema for `spec.platform_spec.nutanix.prism_central`
 
 Required:
 
@@ -141,7 +141,7 @@ Required:
 
 
 <a id="nestedatt--spec--platform_spec--nutanix--prism_elements"></a>
-### Nested Schema for `spec.platform_spec.nutanix.failure_domains`
+### Nested Schema for `spec.platform_spec.nutanix.prism_elements`
 
 Required:
 
@@ -235,7 +235,7 @@ Optional:
 - `vcenters` (Attributes List) vcenters holds the connection details for services to communicate with vCenter. Currently, only a single vCenter is supported. --- (see [below for nested schema](#nestedatt--spec--platform_spec--vsphere--vcenters))
 
 <a id="nestedatt--spec--platform_spec--vsphere--failure_domains"></a>
-### Nested Schema for `spec.platform_spec.vsphere.vcenters`
+### Nested Schema for `spec.platform_spec.vsphere.failure_domains`
 
 Required:
 
@@ -264,7 +264,7 @@ Optional:
 
 
 <a id="nestedatt--spec--platform_spec--vsphere--node_networking"></a>
-### Nested Schema for `spec.platform_spec.vsphere.vcenters`
+### Nested Schema for `spec.platform_spec.vsphere.node_networking`
 
 Optional:
 

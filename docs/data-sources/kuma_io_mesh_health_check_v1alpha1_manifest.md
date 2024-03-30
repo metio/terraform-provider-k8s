@@ -119,7 +119,7 @@ Optional:
 - `unhealthy_threshold` (Number) Number of consecutive unhealthy checks before considering a hostunhealthy.
 
 <a id="nestedatt--spec--to--default--grpc"></a>
-### Nested Schema for `spec.to.default.unhealthy_threshold`
+### Nested Schema for `spec.to.default.grpc`
 
 Optional:
 
@@ -129,7 +129,7 @@ Optional:
 
 
 <a id="nestedatt--spec--to--default--http"></a>
-### Nested Schema for `spec.to.default.unhealthy_threshold`
+### Nested Schema for `spec.to.default.http`
 
 Optional:
 
@@ -147,7 +147,7 @@ Optional:
 - `set` (Attributes List) (see [below for nested schema](#nestedatt--spec--to--default--unhealthy_threshold--request_headers_to_add--set))
 
 <a id="nestedatt--spec--to--default--unhealthy_threshold--request_headers_to_add--add"></a>
-### Nested Schema for `spec.to.default.unhealthy_threshold.request_headers_to_add.set`
+### Nested Schema for `spec.to.default.unhealthy_threshold.request_headers_to_add.add`
 
 Required:
 
@@ -167,7 +167,7 @@ Required:
 
 
 <a id="nestedatt--spec--to--default--tcp"></a>
-### Nested Schema for `spec.to.default.unhealthy_threshold`
+### Nested Schema for `spec.to.default.tcp`
 
 Optional:
 

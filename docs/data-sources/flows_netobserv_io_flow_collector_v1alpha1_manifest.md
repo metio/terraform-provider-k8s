@@ -96,7 +96,7 @@ Optional:
 - `sampling` (Number) sampling rate of the flow reporter. 100 means one flow on 100 is sent. 0 or 1 means all flows are sampled.
 
 <a id="nestedatt--spec--agent--ebpf--debug"></a>
-### Nested Schema for `spec.agent.ebpf.sampling`
+### Nested Schema for `spec.agent.ebpf.debug`
 
 Optional:
 
@@ -104,7 +104,7 @@ Optional:
 
 
 <a id="nestedatt--spec--agent--ebpf--resources"></a>
-### Nested Schema for `spec.agent.ebpf.sampling`
+### Nested Schema for `spec.agent.ebpf.resources`
 
 Optional:
 
@@ -135,7 +135,7 @@ Optional:
 - `sampling` (Number) sampling is the sampling rate on the reporter. 100 means one flow on 100 is sent. To ensure cluster stability, it is not possible to set a value below 2. If you really want to sample every packet, which might impact the cluster stability, refer to 'forceSampleAll'. Alternatively, you can use the eBPF Agent instead of IPFIX.
 
 <a id="nestedatt--spec--agent--ipfix--cluster_network_operator"></a>
-### Nested Schema for `spec.agent.ipfix.sampling`
+### Nested Schema for `spec.agent.ipfix.cluster_network_operator`
 
 Optional:
 
@@ -143,7 +143,7 @@ Optional:
 
 
 <a id="nestedatt--spec--agent--ipfix--ovn_kubernetes"></a>
-### Nested Schema for `spec.agent.ipfix.sampling`
+### Nested Schema for `spec.agent.ipfix.ovn_kubernetes`
 
 Optional:
 
@@ -183,7 +183,7 @@ Optional:
 - `status` (String) Status describe the desired status regarding deploying an horizontal pod autoscaler DISABLED will not deploy an horizontal pod autoscaler ENABLED will deploy an horizontal pod autoscaler
 
 <a id="nestedatt--spec--console_plugin--autoscaler--metrics"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status`
+### Nested Schema for `spec.console_plugin.autoscaler.metrics`
 
 Required:
 
@@ -230,7 +230,7 @@ Required:
 - `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--external--target))
 
 <a id="nestedatt--spec--console_plugin--autoscaler--status--external--metric"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.external.target`
+### Nested Schema for `spec.console_plugin.autoscaler.status.external.metric`
 
 Required:
 
@@ -249,7 +249,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--console_plugin--autoscaler--status--external--target--selector--match_expressions"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.external.target.selector.match_labels`
+### Nested Schema for `spec.console_plugin.autoscaler.status.external.target.selector.match_expressions`
 
 Required:
 
@@ -288,7 +288,7 @@ Required:
 - `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object--target))
 
 <a id="nestedatt--spec--console_plugin--autoscaler--status--object--described_object"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.object.target`
+### Nested Schema for `spec.console_plugin.autoscaler.status.object.described_object`
 
 Required:
 
@@ -301,7 +301,7 @@ Optional:
 
 
 <a id="nestedatt--spec--console_plugin--autoscaler--status--object--metric"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.object.target`
+### Nested Schema for `spec.console_plugin.autoscaler.status.object.metric`
 
 Required:
 
@@ -320,7 +320,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--console_plugin--autoscaler--status--object--target--selector--match_expressions"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.object.target.selector.match_labels`
+### Nested Schema for `spec.console_plugin.autoscaler.status.object.target.selector.match_expressions`
 
 Required:
 
@@ -358,7 +358,7 @@ Required:
 - `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--pods--target))
 
 <a id="nestedatt--spec--console_plugin--autoscaler--status--pods--metric"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.pods.target`
+### Nested Schema for `spec.console_plugin.autoscaler.status.pods.metric`
 
 Required:
 
@@ -377,7 +377,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--console_plugin--autoscaler--status--pods--target--selector--match_expressions"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.pods.target.selector.match_labels`
+### Nested Schema for `spec.console_plugin.autoscaler.status.pods.target.selector.match_expressions`
 
 Required:
 
@@ -463,7 +463,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--console_plugin--resources--claims"></a>
-### Nested Schema for `spec.console_plugin.resources.requests`
+### Nested Schema for `spec.console_plugin.resources.claims`
 
 Required:
 
@@ -511,7 +511,7 @@ Optional:
 - `tls` (Attributes) tls client configuration. When using TLS, verify that the address matches the Kafka port used for TLS, generally 9093. Note that, when eBPF agents are used, Kafka certificate needs to be copied in the agent namespace (by default it's netobserv-privileged). (see [below for nested schema](#nestedatt--spec--exporters--kafka--tls))
 
 <a id="nestedatt--spec--exporters--kafka--sasl"></a>
-### Nested Schema for `spec.exporters.kafka.tls`
+### Nested Schema for `spec.exporters.kafka.sasl`
 
 Optional:
 
@@ -602,7 +602,7 @@ Optional:
 - `type` (String) Type of SASL authentication to use, or 'DISABLED' if SASL is not used
 
 <a id="nestedatt--spec--kafka--sasl--client_id_reference"></a>
-### Nested Schema for `spec.kafka.sasl.type`
+### Nested Schema for `spec.kafka.sasl.client_id_reference`
 
 Optional:
 
@@ -613,7 +613,7 @@ Optional:
 
 
 <a id="nestedatt--spec--kafka--sasl--client_secret_reference"></a>
-### Nested Schema for `spec.kafka.sasl.type`
+### Nested Schema for `spec.kafka.sasl.client_secret_reference`
 
 Optional:
 
@@ -635,7 +635,7 @@ Optional:
 - `user_cert` (Attributes) userCert defines the user certificate reference, used for mTLS (you can ignore it when using regular, one-way TLS) (see [below for nested schema](#nestedatt--spec--kafka--tls--user_cert))
 
 <a id="nestedatt--spec--kafka--tls--ca_cert"></a>
-### Nested Schema for `spec.kafka.tls.user_cert`
+### Nested Schema for `spec.kafka.tls.ca_cert`
 
 Optional:
 
@@ -690,7 +690,7 @@ Optional:
 - `user_cert` (Attributes) userCert defines the user certificate reference, used for mTLS (you can ignore it when using regular, one-way TLS) (see [below for nested schema](#nestedatt--spec--loki--tls--user_cert))
 
 <a id="nestedatt--spec--loki--tls--ca_cert"></a>
-### Nested Schema for `spec.loki.tls.user_cert`
+### Nested Schema for `spec.loki.tls.ca_cert`
 
 Optional:
 
@@ -754,7 +754,7 @@ Optional:
 - `status` (String) Status describe the desired status regarding deploying an horizontal pod autoscaler DISABLED will not deploy an horizontal pod autoscaler ENABLED will deploy an horizontal pod autoscaler
 
 <a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status`
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics`
 
 Required:
 
@@ -801,7 +801,7 @@ Required:
 - `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--target))
 
 <a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--metric"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.external.target`
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.external.metric`
 
 Required:
 
@@ -820,7 +820,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--target--selector--match_expressions"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.external.target.selector.match_labels`
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.external.target.selector.match_expressions`
 
 Required:
 
@@ -859,7 +859,7 @@ Required:
 - `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--target))
 
 <a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--described_object"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.object.target`
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.object.described_object`
 
 Required:
 
@@ -872,7 +872,7 @@ Optional:
 
 
 <a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--metric"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.object.target`
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.object.metric`
 
 Required:
 
@@ -891,7 +891,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--target--selector--match_expressions"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.object.target.selector.match_labels`
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.object.target.selector.match_expressions`
 
 Required:
 
@@ -929,7 +929,7 @@ Required:
 - `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--target))
 
 <a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--metric"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.pods.target`
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.pods.metric`
 
 Required:
 
@@ -948,7 +948,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--target--selector--match_expressions"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.pods.target.selector.match_labels`
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.pods.target.selector.match_expressions`
 
 Required:
 
@@ -1027,7 +1027,7 @@ Optional:
 - `type` (String) Select the type of TLS configuration 'DISABLED' (default) to not configure TLS for the endpoint, 'PROVIDED' to manually provide cert file and a key file, and 'AUTO' to use OpenShift auto generated certificate using annotations
 
 <a id="nestedatt--spec--processor--metrics--server--tls--provided"></a>
-### Nested Schema for `spec.processor.metrics.server.tls.type`
+### Nested Schema for `spec.processor.metrics.server.tls.provided`
 
 Optional:
 
@@ -1051,7 +1051,7 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--processor--resources--claims"></a>
-### Nested Schema for `spec.processor.resources.requests`
+### Nested Schema for `spec.processor.resources.claims`
 
 Required:
 

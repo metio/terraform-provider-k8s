@@ -101,7 +101,7 @@ Optional:
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs.
 
 <a id="nestedatt--spec--workload--selector--match_expressions"></a>
-### Nested Schema for `spec.workload.selector.match_labels`
+### Nested Schema for `spec.workload.selector.match_expressions`
 
 Required:
 

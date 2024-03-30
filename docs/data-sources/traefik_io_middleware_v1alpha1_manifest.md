@@ -3,7 +3,7 @@
 page_title: "k8s_traefik_io_middleware_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "traefik.io"
 description: |-
-  Middleware is the CRD implementation of a Traefik Middleware.More info: https://doc.traefik.io/traefik/v3.0/middlewares/http/overview/
+  Middleware is the CRD implementation of a Traefik Middleware.More info:
 ---
 
 # k8s_traefik_io_middleware_v1alpha1_manifest (Data Source)
@@ -204,7 +204,7 @@ Optional:
 - `weight` (Number) Weight defines the weight and should only be specified when Name references a TraefikService object(and to be precise, one that embeds a Weighted Round Robin).
 
 <a id="nestedatt--spec--errors--service--response_forwarding"></a>
-### Nested Schema for `spec.errors.service.weight`
+### Nested Schema for `spec.errors.service.response_forwarding`
 
 Optional:
 
@@ -212,7 +212,7 @@ Optional:
 
 
 <a id="nestedatt--spec--errors--service--sticky"></a>
-### Nested Schema for `spec.errors.service.weight`
+### Nested Schema for `spec.errors.service.sticky`
 
 Optional:
 
@@ -323,7 +323,7 @@ Optional:
 - `request_host` (Boolean) RequestHost defines whether to consider the request Host as the source.
 
 <a id="nestedatt--spec--in_flight_req--source_criterion--ip_strategy"></a>
-### Nested Schema for `spec.in_flight_req.source_criterion.request_host`
+### Nested Schema for `spec.in_flight_req.source_criterion.ip_strategy`
 
 Optional:
 
@@ -391,7 +391,7 @@ Optional:
 - `subject` (Attributes) Subject defines the client certificate subject details to add to the X-Forwarded-Tls-Client-Cert-Info header. (see [below for nested schema](#nestedatt--spec--pass_tls_client_cert--info--subject))
 
 <a id="nestedatt--spec--pass_tls_client_cert--info--issuer"></a>
-### Nested Schema for `spec.pass_tls_client_cert.info.subject`
+### Nested Schema for `spec.pass_tls_client_cert.info.issuer`
 
 Optional:
 
@@ -441,7 +441,7 @@ Optional:
 - `request_host` (Boolean) RequestHost defines whether to consider the request Host as the source.
 
 <a id="nestedatt--spec--rate_limit--source_criterion--ip_strategy"></a>
-### Nested Schema for `spec.rate_limit.source_criterion.request_host`
+### Nested Schema for `spec.rate_limit.source_criterion.ip_strategy`
 
 Optional:
 

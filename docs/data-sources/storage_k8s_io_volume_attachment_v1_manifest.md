@@ -106,7 +106,7 @@ Optional:
 - `vsphere_volume` (Attributes) Represents a vSphere volume resource. (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--vsphere_volume))
 
 <a id="nestedatt--spec--source--inline_volume_spec--aws_elastic_block_store"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume`
+### Nested Schema for `spec.source.inline_volume_spec.aws_elastic_block_store`
 
 Required:
 
@@ -120,7 +120,7 @@ Optional:
 
 
 <a id="nestedatt--spec--source--inline_volume_spec--azure_disk"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume`
+### Nested Schema for `spec.source.inline_volume_spec.azure_disk`
 
 Required:
 
@@ -136,7 +136,7 @@ Optional:
 
 
 <a id="nestedatt--spec--source--inline_volume_spec--azure_file"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume`
+### Nested Schema for `spec.source.inline_volume_spec.azure_file`
 
 Required:
 
@@ -150,7 +150,7 @@ Optional:
 
 
 <a id="nestedatt--spec--source--inline_volume_spec--cephfs"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume`
+### Nested Schema for `spec.source.inline_volume_spec.cephfs`
 
 Required:
 
@@ -175,7 +175,7 @@ Optional:
 
 
 <a id="nestedatt--spec--source--inline_volume_spec--cinder"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume`
+### Nested Schema for `spec.source.inline_volume_spec.cinder`
 
 Required:
 
@@ -198,7 +198,7 @@ Optional:
 
 
 <a id="nestedatt--spec--source--inline_volume_spec--claim_ref"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume`
+### Nested Schema for `spec.source.inline_volume_spec.claim_ref`
 
 Optional:
 
@@ -212,7 +212,7 @@ Optional:
 
 
 <a id="nestedatt--spec--source--inline_volume_spec--csi"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume`
+### Nested Schema for `spec.source.inline_volume_spec.csi`
 
 Required:
 
@@ -277,7 +277,7 @@ Optional:
 
 
 <a id="nestedatt--spec--source--inline_volume_spec--fc"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume`
+### Nested Schema for `spec.source.inline_volume_spec.fc`
 
 Optional:
 
@@ -289,7 +289,7 @@ Optional:
 
 
 <a id="nestedatt--spec--source--inline_volume_spec--flex_volume"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume`
+### Nested Schema for `spec.source.inline_volume_spec.flex_volume`
 
 Required:
 
@@ -313,7 +313,7 @@ Optional:
 
 
 <a id="nestedatt--spec--source--inline_volume_spec--flocker"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume`
+### Nested Schema for `spec.source.inline_volume_spec.flocker`
 
 Optional:
 
@@ -322,7 +322,7 @@ Optional:
 
 
 <a id="nestedatt--spec--source--inline_volume_spec--gce_persistent_disk"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume`
+### Nested Schema for `spec.source.inline_volume_spec.gce_persistent_disk`
 
 Required:
 
@@ -336,7 +336,7 @@ Optional:
 
 
 <a id="nestedatt--spec--source--inline_volume_spec--glusterfs"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume`
+### Nested Schema for `spec.source.inline_volume_spec.glusterfs`
 
 Required:
 
@@ -350,7 +350,7 @@ Optional:
 
 
 <a id="nestedatt--spec--source--inline_volume_spec--host_path"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume`
+### Nested Schema for `spec.source.inline_volume_spec.host_path`
 
 Required:
 
@@ -362,7 +362,7 @@ Optional:
 
 
 <a id="nestedatt--spec--source--inline_volume_spec--iscsi"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume`
+### Nested Schema for `spec.source.inline_volume_spec.iscsi`
 
 Required:
 
@@ -392,7 +392,7 @@ Optional:
 
 
 <a id="nestedatt--spec--source--inline_volume_spec--local"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume`
+### Nested Schema for `spec.source.inline_volume_spec.local`
 
 Required:
 
@@ -404,7 +404,7 @@ Optional:
 
 
 <a id="nestedatt--spec--source--inline_volume_spec--nfs"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume`
+### Nested Schema for `spec.source.inline_volume_spec.nfs`
 
 Required:
 
@@ -417,7 +417,7 @@ Optional:
 
 
 <a id="nestedatt--spec--source--inline_volume_spec--node_affinity"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume`
+### Nested Schema for `spec.source.inline_volume_spec.node_affinity`
 
 Optional:
 
@@ -439,7 +439,7 @@ Optional:
 - `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--vsphere_volume--required--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--source--inline_volume_spec--vsphere_volume--required--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume.required.node_selector_terms.match_fields`
+### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume.required.node_selector_terms.match_expressions`
 
 Required:
 
@@ -468,7 +468,7 @@ Optional:
 
 
 <a id="nestedatt--spec--source--inline_volume_spec--photon_persistent_disk"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume`
+### Nested Schema for `spec.source.inline_volume_spec.photon_persistent_disk`
 
 Required:
 
@@ -480,7 +480,7 @@ Optional:
 
 
 <a id="nestedatt--spec--source--inline_volume_spec--portworx_volume"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume`
+### Nested Schema for `spec.source.inline_volume_spec.portworx_volume`
 
 Required:
 
@@ -493,7 +493,7 @@ Optional:
 
 
 <a id="nestedatt--spec--source--inline_volume_spec--quobyte"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume`
+### Nested Schema for `spec.source.inline_volume_spec.quobyte`
 
 Required:
 
@@ -509,7 +509,7 @@ Optional:
 
 
 <a id="nestedatt--spec--source--inline_volume_spec--rbd"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume`
+### Nested Schema for `spec.source.inline_volume_spec.rbd`
 
 Required:
 
@@ -536,7 +536,7 @@ Optional:
 
 
 <a id="nestedatt--spec--source--inline_volume_spec--scale_io"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume`
+### Nested Schema for `spec.source.inline_volume_spec.scale_io`
 
 Required:
 
@@ -565,7 +565,7 @@ Optional:
 
 
 <a id="nestedatt--spec--source--inline_volume_spec--storageos"></a>
-### Nested Schema for `spec.source.inline_volume_spec.vsphere_volume`
+### Nested Schema for `spec.source.inline_volume_spec.storageos`
 
 Optional:
 
