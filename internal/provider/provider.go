@@ -51,8 +51,8 @@ func (p *K8sProvider) Metadata(_ context.Context, _ provider.MetadataRequest, re
 
 func (p *K8sProvider) Schema(_ context.Context, _ provider.SchemaRequest, resp *provider.SchemaResponse) {
 	resp.Schema = schema.Schema{
-		Description:         "Provider for Kubernetes resources using server-side apply. Requires Terraform 1.0 or later.",
-		MarkdownDescription: "Provider for [Kubernetes](https://kubernetes.io/) resources using [server-side apply](https://kubernetes.io/docs/reference/using-api/server-side-apply/). Requires Terraform 1.0 or later.",
+		Description:         "Provider for Kubernetes resources. Requires Terraform 1.0 or later.",
+		MarkdownDescription: "Provider for [Kubernetes](https://kubernetes.io/) resources. Requires Terraform 1.0 or later.",
 		Attributes: map[string]schema.Attribute{
 			"kubeconfig": schema.StringAttribute{
 				Description:         "An explicit path to a kubeconfig file. Can be specified with the 'TF_K8S_CONFIG' environment variable. Uses Kubernetes defaults if not specified ('KUBECONFIG', or your home directory).",

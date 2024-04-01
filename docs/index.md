@@ -3,12 +3,12 @@
 page_title: "k8s Provider"
 subcategory: ""
 description: |-
-  Provider for Kubernetes https://kubernetes.io/ resources using server-side apply https://kubernetes.io/docs/reference/using-api/server-side-apply/. Requires Terraform 1.0 or later.
+  Provider for Kubernetes https://kubernetes.io/ resources. Requires Terraform 1.0 or later.
 ---
 
 # k8s Provider
 
-Provider for [Kubernetes](https://kubernetes.io/) resources using [server-side apply](https://kubernetes.io/docs/reference/using-api/server-side-apply/). Requires Terraform 1.0 or later.
+Provider for [Kubernetes](https://kubernetes.io/) resources. Requires Terraform 1.0 or later.
 
 This provider only deals with creating Kubernetes manifests. In order to apply those manifests to a running cluster use
 other providers like the [kubectl provider](https://registry.terraform.io/providers/gavinbunney/kubectl/).
