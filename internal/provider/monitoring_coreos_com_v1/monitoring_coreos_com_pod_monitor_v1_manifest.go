@@ -13,6 +13,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
+	"github.com/metio/terraform-provider-k8s/internal/customtypes"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
@@ -133,9 +134,9 @@ type MonitoringCoreosComPodMonitorV1ManifestData struct {
 				SourceLabels *[]string `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
 				TargetLabel  *string   `tfsdk:"target_label" json:"targetLabel,omitempty"`
 			} `tfsdk:"relabelings" json:"relabelings,omitempty"`
-			Scheme        *string `tfsdk:"scheme" json:"scheme,omitempty"`
-			ScrapeTimeout *string `tfsdk:"scrape_timeout" json:"scrapeTimeout,omitempty"`
-			TargetPort    *string `tfsdk:"target_port" json:"targetPort,omitempty"`
+			Scheme        *string                      `tfsdk:"scheme" json:"scheme,omitempty"`
+			ScrapeTimeout *string                      `tfsdk:"scrape_timeout" json:"scrapeTimeout,omitempty"`
+			TargetPort    customtypes.IntOrStringValue `tfsdk:"target_port" json:"targetPort,omitempty"`
 			TlsConfig     *struct {
 				Ca *struct {
 					ConfigMap *struct {
@@ -915,12 +916,13 @@ func (r *MonitoringCoreosComPodMonitorV1Manifest) Schema(_ context.Context, _ da
 									},
 								},
 
-								"target_port": schema.StringAttribute{
+								"target_port": schema.DynamicAttribute{
 									Description:         "Name or number of the target port of the 'Pod' object behind the Service, the port must be specified with container port property.  Deprecated: use 'port' instead.",
 									MarkdownDescription: "Name or number of the target port of the 'Pod' object behind the Service, the port must be specified with container port property.  Deprecated: use 'port' instead.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+									CustomType:          customtypes.IntOrStringType{},
 								},
 
 								"tls_config": schema.SingleNestedAttribute{
