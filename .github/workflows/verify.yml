@@ -45,4 +45,4 @@ jobs:
             (echo "*** Unexpected differences after code generation. Run 'make docs' and commit."; exit 1)
       - id: build
         name: Build Provider
-        run: go build -v ./...
+        run: go build -v
