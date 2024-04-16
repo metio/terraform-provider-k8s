@@ -16,28 +16,28 @@ type openapiv3TypeTranslator struct {
 }
 
 func (t *openapiv3TypeTranslator) hasNoType() bool {
-	return t.property.Type == ""
+	return t.property.Type == nil || len(t.property.Type.Slice()) == 0
 }
 
 func (t *openapiv3TypeTranslator) isIntOrString() bool {
 	_, ok := t.property.Extensions["x-kubernetes-int-or-string"]
-	return ok || t.property.Type == "string" && t.property.Format == "int-or-string"
+	return ok || t.property.Type.Is(openapi3.TypeString) && t.property.Format == "int-or-string"
 }
 
 func (t *openapiv3TypeTranslator) isBoolean() bool {
-	return t.property.Type == "boolean"
+	return t.property.Type.Is(openapi3.TypeBoolean)
 }
 
 func (t *openapiv3TypeTranslator) isString() bool {
-	return t.property.Type == "string"
+	return t.property.Type.Is(openapi3.TypeString)
 }
 
 func (t *openapiv3TypeTranslator) isInteger() bool {
-	return t.property.Type == "integer"
+	return t.property.Type.Is(openapi3.TypeInteger)
 }
 
 func (t *openapiv3TypeTranslator) isNumber() bool {
-	return t.property.Type == "number"
+	return t.property.Type.Is(openapi3.TypeNumber)
 }
 
 func (t *openapiv3TypeTranslator) isFloat() bool {
@@ -45,11 +45,11 @@ func (t *openapiv3TypeTranslator) isFloat() bool {
 }
 
 func (t *openapiv3TypeTranslator) isArray() bool {
-	return t.property.Type == "array"
+	return t.property.Type.Is(openapi3.TypeArray)
 }
 
 func (t *openapiv3TypeTranslator) isObject() bool {
-	return t.property.Type == "object"
+	return t.property.Type.Is(openapi3.TypeObject)
 }
 
 func (t *openapiv3TypeTranslator) hasUnknownFields() bool {
@@ -67,7 +67,7 @@ func (t *openapiv3TypeTranslator) hasOneOf() bool {
 
 func (t *openapiv3TypeTranslator) isOneOfArray() bool {
 	for _, oneOf := range t.property.OneOf {
-		if oneOf.Value.Type == "array" {
+		if oneOf.Value.Type.Is(openapi3.TypeArray) {
 			return true
 		}
 	}
@@ -76,7 +76,7 @@ func (t *openapiv3TypeTranslator) isOneOfArray() bool {
 
 func (t *openapiv3TypeTranslator) isOneOfBoolean() bool {
 	for _, oneOf := range t.property.OneOf {
-		if oneOf.Value.Type == "boolean" {
+		if oneOf.Value.Type.Is(openapi3.TypeBoolean) {
 			return true
 		}
 	}
@@ -84,33 +84,33 @@ func (t *openapiv3TypeTranslator) isOneOfBoolean() bool {
 }
 
 func (t *openapiv3TypeTranslator) isObjectWithAdditionalStringProperties() bool {
-	return t.property.Type == "object" &&
+	return t.property.Type.Is(openapi3.TypeObject) &&
 		t.property.AdditionalProperties.Schema != nil &&
-		t.property.AdditionalProperties.Schema.Value.Type == "string"
+		t.property.AdditionalProperties.Schema.Value.Type.Is(openapi3.TypeString)
 }
 
 func (t *openapiv3TypeTranslator) isObjectWithAdditionalObjectProperties() bool {
-	return t.property.Type == "object" &&
+	return t.property.Type.Is(openapi3.TypeObject) &&
 		t.property.AdditionalProperties.Schema != nil &&
-		t.property.AdditionalProperties.Schema.Value.Type == "object"
+		t.property.AdditionalProperties.Schema.Value.Type.Is(openapi3.TypeObject)
 }
 
 func (t *openapiv3TypeTranslator) isObjectWithAdditionalArrayProperties() bool {
-	return t.property.Type == "object" &&
+	return t.property.Type.Is(openapi3.TypeObject) &&
 		t.property.AdditionalProperties.Schema != nil &&
-		t.property.AdditionalProperties.Schema.Value.Type == "array"
+		t.property.AdditionalProperties.Schema.Value.Type.Is(openapi3.TypeArray)
 }
 
 func (t *openapiv3TypeTranslator) isArrayWithObjectItems() bool {
-	return t.property.Type == "array" &&
+	return t.property.Type.Is(openapi3.TypeArray) &&
 		t.property.Items != nil &&
 		t.property.Items.Value != nil &&
-		t.property.Items.Value.Type == "object"
+		t.property.Items.Value.Type.Is(openapi3.TypeObject)
 }
 
 func (t *openapiv3TypeTranslator) additionalPropertiesHaveStringItems() bool {
 	return t.property.AdditionalProperties.Schema.Value.Items != nil &&
-		t.property.AdditionalProperties.Schema.Value.Items.Value.Type == "string"
+		t.property.AdditionalProperties.Schema.Value.Items.Value.Type.Is(openapi3.TypeString)
 }
 
 func (t *openapiv3TypeTranslator) additionalPropertiesHaveProperties() bool {
@@ -124,17 +124,17 @@ func (t *openapiv3TypeTranslator) additionalPropertiesHaveUnknownFields() bool {
 
 func (t *openapiv3TypeTranslator) additionalPropertiesHaveAdditionalStringProperties() bool {
 	return t.property.AdditionalProperties.Schema.Value.AdditionalProperties.Schema != nil &&
-		t.property.AdditionalProperties.Schema.Value.AdditionalProperties.Schema.Value.Type == "string"
+		t.property.AdditionalProperties.Schema.Value.AdditionalProperties.Schema.Value.Type.Is(openapi3.TypeString)
 }
 
 func (t *openapiv3TypeTranslator) additionalPropertiesHaveAdditionalArrayProperties() bool {
 	return t.property.AdditionalProperties.Schema.Value.AdditionalProperties.Schema != nil &&
-		t.property.AdditionalProperties.Schema.Value.AdditionalProperties.Schema.Value.Type == "array"
+		t.property.AdditionalProperties.Schema.Value.AdditionalProperties.Schema.Value.Type.Is(openapi3.TypeArray)
 }
 
 func (t *openapiv3TypeTranslator) additionalPropertiesHaveAdditionalPropertiesWithStringItems() bool {
 	return t.property.AdditionalProperties.Schema.Value.AdditionalProperties.Schema.Value.Items != nil &&
-		t.property.AdditionalProperties.Schema.Value.AdditionalProperties.Schema.Value.Items.Value.Type == "string"
+		t.property.AdditionalProperties.Schema.Value.AdditionalProperties.Schema.Value.Items.Value.Type.Is(openapi3.TypeString)
 }
 
 func (t *openapiv3TypeTranslator) itemsHaveUnknownFields() bool {
@@ -144,5 +144,5 @@ func (t *openapiv3TypeTranslator) itemsHaveUnknownFields() bool {
 
 func (t *openapiv3TypeTranslator) itemsHaveAdditionalStringProperties() bool {
 	return t.property.Items.Value.AdditionalProperties.Schema != nil &&
-		t.property.Items.Value.AdditionalProperties.Schema.Value.Type == "string"
+		t.property.Items.Value.AdditionalProperties.Schema.Value.Type.Is(openapi3.TypeString)
 }

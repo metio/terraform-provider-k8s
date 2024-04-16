@@ -106,9 +106,9 @@ func openAPIv3Properties(schema *openapi3.Schema, imports *AdditionalImports, pa
 				}
 
 				var nestedProperties []*Property
-				if prop.Value.Type == "array" && prop.Value.Items != nil && prop.Value.Items.Value != nil && prop.Value.Items.Value.Type == "object" {
+				if prop.Value.Type.Is(openapi3.TypeArray) && prop.Value.Items != nil && prop.Value.Items.Value != nil && prop.Value.Items.Value.Type.Is(openapi3.TypeObject) {
 					nestedProperties = openAPIv3Properties(prop.Value.Items.Value, imports, propPath, terraformResourceName)
-				} else if prop.Value.Type == "object" && prop.Value.AdditionalProperties.Schema != nil && prop.Value.AdditionalProperties.Schema.Value.Type == "object" {
+				} else if prop.Value.Type.Is(openapi3.TypeObject) && prop.Value.AdditionalProperties.Schema != nil && prop.Value.AdditionalProperties.Schema.Value.Type.Is(openapi3.TypeObject) {
 					nestedProperties = openAPIv3Properties(prop.Value.AdditionalProperties.Schema.Value, imports, propPath, terraformResourceName)
 				} else {
 					nestedProperties = openAPIv3Properties(prop.Value, imports, propPath, terraformResourceName)
