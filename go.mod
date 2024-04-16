@@ -22,8 +22,6 @@ require (
 	sigs.k8s.io/yaml v1.4.0
 )
 
-//replace github.com/hashicorp/terraform-plugin-docs => ../../../../github.com/sebhoss/terraform-plugin-docs
-
 require (
 	cloud.google.com/go v0.112.0 // indirect
 	cloud.google.com/go/compute v1.23.3 // indirect

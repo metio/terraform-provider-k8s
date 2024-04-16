@@ -18,7 +18,7 @@ type openapiv3ValidatorExtractor struct {
 }
 
 func (v *openapiv3ValidatorExtractor) integerWithMinimum() string {
-	if v.property.Type == "integer" && v.property.Min != nil {
+	if v.property.Type.Is(openapi3.TypeInteger) && v.property.Min != nil {
 		v.imports.Int64Validator = true
 		min := *v.property.Min
 		if v.property.ExclusiveMin {
@@ -30,7 +30,7 @@ func (v *openapiv3ValidatorExtractor) integerWithMinimum() string {
 }
 
 func (v *openapiv3ValidatorExtractor) integerWithMaximum() string {
-	if v.property.Type == "integer" && v.property.Max != nil {
+	if v.property.Type.Is(openapi3.TypeInteger) && v.property.Max != nil {
 		v.imports.Int64Validator = true
 		max := *v.property.Max
 		if v.property.ExclusiveMax {
@@ -42,7 +42,7 @@ func (v *openapiv3ValidatorExtractor) integerWithMaximum() string {
 }
 
 func (v *openapiv3ValidatorExtractor) integerWithEnums() string {
-	if v.property.Type == "integer" && len(v.property.Enum) > 0 {
+	if v.property.Type.Is(openapi3.TypeInteger) && len(v.property.Enum) > 0 {
 		v.imports.Int64Validator = true
 		enums := openapiIntEnums(v.property.Enum)
 		return fmt.Sprintf("int64validator.OneOf(%v)", concatEnums(enums))
@@ -51,7 +51,7 @@ func (v *openapiv3ValidatorExtractor) integerWithEnums() string {
 }
 
 func (v *openapiv3ValidatorExtractor) numberWithMinimum() string {
-	if v.property.Type == "number" && v.property.Min != nil {
+	if v.property.Type.Is(openapi3.TypeNumber) && v.property.Min != nil {
 		v.imports.Float64Validator = true
 		min := *v.property.Min
 		if v.property.ExclusiveMin {
@@ -63,7 +63,7 @@ func (v *openapiv3ValidatorExtractor) numberWithMinimum() string {
 }
 
 func (v *openapiv3ValidatorExtractor) numberWithMaximum() string {
-	if v.property.Type == "number" && v.property.Max != nil {
+	if v.property.Type.Is(openapi3.TypeNumber) && v.property.Max != nil {
 		v.imports.Float64Validator = true
 		max := *v.property.Max
 		if v.property.ExclusiveMax {
@@ -75,7 +75,7 @@ func (v *openapiv3ValidatorExtractor) numberWithMaximum() string {
 }
 
 func (v *openapiv3ValidatorExtractor) numberWithEnums() string {
-	if v.property.Type == "number" && len(v.property.Enum) > 0 {
+	if v.property.Type.Is(openapi3.TypeNumber) && len(v.property.Enum) > 0 {
 		v.imports.Float64Validator = true
 		enums := openapiFloatEnums(v.property.Enum)
 		return fmt.Sprintf("float64validator.OneOf(%v)", concatEnums(enums))
@@ -84,21 +84,21 @@ func (v *openapiv3ValidatorExtractor) numberWithEnums() string {
 }
 
 func (v *openapiv3ValidatorExtractor) stringWithByteFormat() string {
-	if v.property.Type == "string" && v.property.Format == "byte" {
+	if v.property.Type.Is(openapi3.TypeString) && v.property.Format == "byte" {
 		return "validators.Base64Validator()"
 	}
 	return ""
 }
 
 func (v *openapiv3ValidatorExtractor) stringWithDateTimeFormat() string {
-	if v.property.Type == "string" && v.property.Format == "date-time" {
+	if v.property.Type.Is(openapi3.TypeString) && v.property.Format == "date-time" {
 		return "validators.DateTime64Validator()"
 	}
 	return ""
 }
 
 func (v *openapiv3ValidatorExtractor) stringWithMinimumLength() string {
-	if v.property.Type == "string" && v.property.MinLength != 0 {
+	if v.property.Type.Is(openapi3.TypeString) && v.property.MinLength != 0 {
 		v.imports.StringValidator = true
 		return fmt.Sprintf("stringvalidator.LengthAtLeast(%v)", v.property.MinLength)
 	}
@@ -106,7 +106,7 @@ func (v *openapiv3ValidatorExtractor) stringWithMinimumLength() string {
 }
 
 func (v *openapiv3ValidatorExtractor) stringWithMaximumLength() string {
-	if v.property.Type == "string" && v.property.MaxLength != nil {
+	if v.property.Type.Is(openapi3.TypeString) && v.property.MaxLength != nil {
 		v.imports.StringValidator = true
 		return fmt.Sprintf("stringvalidator.LengthAtMost(%v)", *v.property.MaxLength)
 	}
@@ -114,7 +114,7 @@ func (v *openapiv3ValidatorExtractor) stringWithMaximumLength() string {
 }
 
 func (v *openapiv3ValidatorExtractor) stringWithEnums() string {
-	if v.property.Type == "string" && len(v.property.Enum) > 0 {
+	if v.property.Type.Is(openapi3.TypeString) && len(v.property.Enum) > 0 {
 		v.imports.StringValidator = true
 		enums := openapiStringEnums(v.property.Enum)
 		return fmt.Sprintf("stringvalidator.OneOf(%s)", concatEnums(enums))
@@ -123,7 +123,7 @@ func (v *openapiv3ValidatorExtractor) stringWithEnums() string {
 }
 
 func (v *openapiv3ValidatorExtractor) stringWithPattern() string {
-	if v.property.Type == "string" && v.property.Pattern != "" {
+	if v.property.Type.Is(openapi3.TypeString) && v.property.Pattern != "" {
 		v.imports.Regexp = true
 		v.imports.StringValidator = true
 		return fmt.Sprintf(`stringvalidator.RegexMatches(regexp.MustCompile(%s), "")`, escapeRegexPattern(v.property.Pattern))
