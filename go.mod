@@ -6,7 +6,7 @@ module github.com/metio/terraform-provider-k8s
 go 1.22
 
 require (
-	github.com/getkin/kin-openapi v0.123.0
+	github.com/getkin/kin-openapi v0.124.0
 	github.com/gruntwork-io/terratest v0.46.13
 	github.com/hashicorp/terraform-plugin-docs v0.19.0
 	github.com/hashicorp/terraform-plugin-framework v1.7.0
