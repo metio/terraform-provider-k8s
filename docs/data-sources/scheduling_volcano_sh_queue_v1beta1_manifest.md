@@ -58,6 +58,7 @@ Optional:
 - `capability` (Map of String) ResourceList is a set of (resource name, quantity) pairs.
 - `extend_clusters` (Attributes List) extendCluster indicate the jobs in this Queue will be dispatched to these clusters. (see [below for nested schema](#nestedatt--spec--extend_clusters))
 - `guarantee` (Attributes) Guarantee indicate configuration about resource reservation (see [below for nested schema](#nestedatt--spec--guarantee))
+- `parent` (String) Parent define the parent of queue
 - `reclaimable` (Boolean) Reclaimable indicate whether the queue can be reclaimed by other queue
 - `type` (String) Type define the type of queue
 - `weight` (Number)

@@ -84,6 +84,7 @@ Optional:
 - `jmeter` (Attributes List) (see [below for nested schema](#nestedatt--spec--jmeter))
 - `junit` (Attributes List) (see [below for nested schema](#nestedatt--spec--junit))
 - `kubernetes` (Attributes List) (see [below for nested schema](#nestedatt--spec--kubernetes))
+- `kubernetes_resource` (Attributes List) (see [below for nested schema](#nestedatt--spec--kubernetes_resource))
 - `ldap` (Attributes List) (see [below for nested schema](#nestedatt--spec--ldap))
 - `mongodb` (Attributes List) (see [below for nested schema](#nestedatt--spec--mongodb))
 - `mssql` (Attributes List) (see [below for nested schema](#nestedatt--spec--mssql))
@@ -1083,6 +1084,7 @@ Optional:
 - `name` (String)
 - `namespace` (String)
 - `statuses` (List of String)
+- `tag_selector` (String)
 - `types` (List of String)
 
 
@@ -5280,6 +5282,7 @@ Optional:
 
 - `description` (String) Description for the check
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--kubernetes--display))
+- `healthy` (Boolean) Fail the check if any resources are unhealthy
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `ignore` (List of String) Ignore the specified resources from the fetched resources. Can be a glob pattern.
 - `kubeconfig` (Attributes) KubeConfig is the kubeconfig or the path to the kubeconfig file. (see [below for nested schema](#nestedatt--spec--kubernetes--kubeconfig))
@@ -5287,7 +5290,7 @@ Optional:
 - `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--kubernetes--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kubernetes--namespace_selector))
-- `ready` (Boolean)
+- `ready` (Boolean) Fail the check if any resources are not ready
 - `resource` (Attributes) (see [below for nested schema](#nestedatt--spec--kubernetes--resource))
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--kubernetes--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--kubernetes--transform))
@@ -5425,6 +5428,169 @@ Optional:
 - `javascript` (String)
 - `json_path` (String)
 - `template` (String)
+
+
+
+<a id="nestedatt--spec--kubernetes_resource"></a>
+### Nested Schema for `spec.kubernetes_resource`
+
+Required:
+
+- `name` (String) Name of the check
+- `resources` (Map of String) Resources are kubernetes resources that are created & clearedafter every check run.
+
+Optional:
+
+- `check_retries` (Attributes) Set initial delays and retry intervals for checks. (see [below for nested schema](#nestedatt--spec--kubernetes_resource--check_retries))
+- `checks` (Map of String) Checks to run against the kubernetes resources.
+- `clear_resources` (Boolean) Ensure that the resources are deleted before creating them.
+- `description` (String) Description for the check
+- `display` (Attributes) (see [below for nested schema](#nestedatt--spec--kubernetes_resource--display))
+- `icon` (String) Icon for overwriting default icon on the dashboard
+- `kubeconfig` (Attributes) Kubeconfig is the kubeconfig or the path to the kubeconfig file. (see [below for nested schema](#nestedatt--spec--kubernetes_resource--kubeconfig))
+- `labels` (Map of String) Labels for the check
+- `metrics` (Attributes List) Metrics to expose from check results (see [below for nested schema](#nestedatt--spec--kubernetes_resource--metrics))
+- `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
+- `static_resources` (Map of String) StaticResources are kubernetes resources that are created & onlycleared when the canary is deleted
+- `test` (Attributes) (see [below for nested schema](#nestedatt--spec--kubernetes_resource--test))
+- `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--kubernetes_resource--transform))
+- `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
+- `wait_for` (Attributes) (see [below for nested schema](#nestedatt--spec--kubernetes_resource--wait_for))
+
+<a id="nestedatt--spec--kubernetes_resource--check_retries"></a>
+### Nested Schema for `spec.kubernetes_resource.check_retries`
+
+Optional:
+
+- `delay` (String) Delay is the initial delay
+- `interval` (String)
+- `timeout` (String)
+
+
+<a id="nestedatt--spec--kubernetes_resource--display"></a>
+### Nested Schema for `spec.kubernetes_resource.display`
+
+Optional:
+
+- `expr` (String)
+- `javascript` (String)
+- `json_path` (String)
+- `template` (String)
+
+
+<a id="nestedatt--spec--kubernetes_resource--kubeconfig"></a>
+### Nested Schema for `spec.kubernetes_resource.kubeconfig`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--kubernetes_resource--kubeconfig--value_from))
+
+<a id="nestedatt--spec--kubernetes_resource--kubeconfig--value_from"></a>
+### Nested Schema for `spec.kubernetes_resource.kubeconfig.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kubernetes_resource--kubeconfig--value_from--config_map_key_ref))
+- `helm_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kubernetes_resource--kubeconfig--value_from--helm_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kubernetes_resource--kubeconfig--value_from--secret_key_ref))
+- `service_account` (String) ServiceAccount specifies the service account whose token should be fetched
+
+<a id="nestedatt--spec--kubernetes_resource--kubeconfig--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.kubernetes_resource.kubeconfig.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--kubernetes_resource--kubeconfig--value_from--helm_ref"></a>
+### Nested Schema for `spec.kubernetes_resource.kubeconfig.value_from.helm_ref`
+
+Required:
+
+- `key` (String) Key is a JSONPath expression used to fetch the key from the merged JSON.
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--kubernetes_resource--kubeconfig--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.kubernetes_resource.kubeconfig.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+
+
+
+
+<a id="nestedatt--spec--kubernetes_resource--metrics"></a>
+### Nested Schema for `spec.kubernetes_resource.metrics`
+
+Optional:
+
+- `labels` (Attributes List) (see [below for nested schema](#nestedatt--spec--kubernetes_resource--metrics--labels))
+- `name` (String)
+- `type` (String)
+- `value` (String)
+
+<a id="nestedatt--spec--kubernetes_resource--metrics--labels"></a>
+### Nested Schema for `spec.kubernetes_resource.metrics.labels`
+
+Required:
+
+- `name` (String)
+
+Optional:
+
+- `value` (String)
+- `value_expr` (String)
+
+
+
+<a id="nestedatt--spec--kubernetes_resource--test"></a>
+### Nested Schema for `spec.kubernetes_resource.test`
+
+Optional:
+
+- `expr` (String)
+- `javascript` (String)
+- `json_path` (String)
+- `template` (String)
+
+
+<a id="nestedatt--spec--kubernetes_resource--transform"></a>
+### Nested Schema for `spec.kubernetes_resource.transform`
+
+Optional:
+
+- `expr` (String)
+- `javascript` (String)
+- `json_path` (String)
+- `template` (String)
+
+
+<a id="nestedatt--spec--kubernetes_resource--wait_for"></a>
+### Nested Schema for `spec.kubernetes_resource.wait_for`
+
+Optional:
+
+- `delete` (Boolean) Whether to wait for deletion or not
+- `disable` (Boolean) Disable waiting for resources to get to their desired state.
+- `expr` (String) Expr is a cel expression that determines whether all the resourcesare in their desired state before running checks on them.	Default: 'dyn(resources).all(r, k8s.isHealthy(r))'
+- `interval` (String) Interval to check if all static & non-static resources are ready.	Default: 5s
+- `timeout` (String) Timeout to wait for all static & non-static resources to be ready.	Default: 10m
 
 
 

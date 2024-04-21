@@ -63,8 +63,8 @@ Optional:
 - `api_passthrough` (Attributes) Specifies X.509 certificate information to be included in the issued certificate.An APIPassthrough or APICSRPassthrough template variant must be selected,or else this parameter is ignored. For more information about using thesetemplates, see Understanding Certificate Templates (https://docs.aws.amazon.com/privateca/latest/userguide/UsingTemplates.html).If conflicting or duplicate certificate information is supplied during certificateissuance, Amazon Web Services Private CA applies order of operation rules(https://docs.aws.amazon.com/privateca/latest/userguide/UsingTemplates.html#template-order-of-operations)to determine what information is used. (see [below for nested schema](#nestedatt--spec--api_passthrough))
 - `certificate_authority_arn` (String) The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority(https://docs.aws.amazon.com/privateca/latest/APIReference/API_CreateCertificateAuthority.html).This must be of the form:arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012
 - `certificate_authority_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--certificate_authority_ref))
-- `csr` (String) The certificate signing request (CSR) for the certificate you want to issue.As an example, you can use the following OpenSSL command to create the CSRand a 2048 bit RSA private key.openssl req -new -newkey rsa:2048 -days 365 -keyout private/test_cert_priv_key.pem-out csr/test_cert_.csrIf you have a configuration file, you can then use the following OpenSSLcommand. The usr_cert block in the configuration file contains your X509version 3 extensions.openssl req -new -config openssl_rsa.cnf -extensions usr_cert -newkey rsa:2048-days 365 -keyout private/test_cert_priv_key.pem -out csr/test_cert_.csrNote: A CSR must provide either a subject name or a subject alternative nameor the request will be rejected.
-- `csr_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--csr_ref))
+- `certificate_signing_request` (String)
+- `certificate_signing_request_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--certificate_signing_request_ref))
 - `template_arn` (String) Specifies a custom configuration template to use when issuing a certificate.If this parameter is not provided, Amazon Web Services Private CA defaultsto the EndEntityCertificate/V1 template. For CA certificates, you shouldchoose the shortest path length that meets your needs. The path length isindicated by the PathLenN portion of the ARN, where N is the CA depth (https://docs.aws.amazon.com/privateca/latest/userguide/PcaTerms.html#terms-cadepth).Note: The CA depth configured on a subordinate CA certificate must not exceedthe limit set by its parents in the CA hierarchy.For a list of TemplateArn values supported by Amazon Web Services PrivateCA, see Understanding Certificate Templates (https://docs.aws.amazon.com/privateca/latest/userguide/UsingTemplates.html).
 - `validity_not_before` (Attributes) Information describing the start of the validity period of the certificate.This parameter sets the “Not Before' date for the certificate.By default, when issuing a certificate, Amazon Web Services Private CA setsthe 'Not Before' date to the issuance time minus 60 minutes. This compensatesfor clock inconsistencies across computer systems. The ValidityNotBeforeparameter can be used to customize the “Not Before” value.Unlike the Validity parameter, the ValidityNotBefore parameter is optional.The ValidityNotBefore value is expressed as an explicit date and time, usingthe Validity type value ABSOLUTE. For more information, see Validity (https://docs.aws.amazon.com/privateca/latest/APIReference/API_Validity.html)in this API reference and Validity (https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.5)in RFC 5280. (see [below for nested schema](#nestedatt--spec--validity_not_before))
 
@@ -270,15 +270,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--csr_ref"></a>
-### Nested Schema for `spec.csr_ref`
+<a id="nestedatt--spec--certificate_signing_request_ref"></a>
+### Nested Schema for `spec.certificate_signing_request_ref`
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--csr_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--certificate_signing_request_ref--from))
 
-<a id="nestedatt--spec--csr_ref--from"></a>
-### Nested Schema for `spec.csr_ref.from`
+<a id="nestedatt--spec--certificate_signing_request_ref--from"></a>
+### Nested Schema for `spec.certificate_signing_request_ref.from`
 
 Optional:
 

@@ -3,12 +3,12 @@
 page_title: "k8s_metal3_io_hardware_data_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "metal3.io"
 description: |-
-  HardwareData is the Schema for the hardwaredata API
+  HardwareData is the Schema for the hardwaredata API.
 ---
 
 # k8s_metal3_io_hardware_data_v1alpha1_manifest (Data Source)
 
-HardwareData is the Schema for the hardwaredata API
+HardwareData is the Schema for the hardwaredata API.
 
 ## Example Usage
 
@@ -30,7 +30,7 @@ data "k8s_metal3_io_hardware_data_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) HardwareDataSpec defines the desired state of HardwareData (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) HardwareDataSpec defines the desired state of HardwareData. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 

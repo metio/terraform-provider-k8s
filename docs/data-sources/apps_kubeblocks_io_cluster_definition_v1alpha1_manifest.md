@@ -3,12 +3,12 @@
 page_title: "k8s_apps_kubeblocks_io_cluster_definition_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "apps.kubeblocks.io"
 description: |-
-  ClusterDefinition is the Schema for the clusterdefinitions API
+  ClusterDefinition is the Schema for the ClusterDefinition API
 ---
 
 # k8s_apps_kubeblocks_io_cluster_definition_v1alpha1_manifest (Data Source)
 
-ClusterDefinition is the Schema for the clusterdefinitions API
+ClusterDefinition is the Schema for the ClusterDefinition API
 
 ## Example Usage
 
@@ -30,7 +30,7 @@ data "k8s_apps_kubeblocks_io_cluster_definition_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) ClusterDefinitionSpec defines the desired state of ClusterDefinition (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) ClusterDefinitionSpec defines the desired state of ClusterDefinition. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -52,14 +52,12 @@ Optional:
 <a id="nestedatt--spec"></a>
 ### Nested Schema for `spec`
 
-Required:
-
-- `component_defs` (Attributes List) Provides the definitions for the cluster components. (see [below for nested schema](#nestedatt--spec--component_defs))
-
 Optional:
 
-- `connection_credential` (Map of String) Connection credential template used for creating a connection credential secret for cluster objects.  Built-in objects are:  - '$(RANDOM_PASSWD)' random 8 characters. - '$(STRONG_RANDOM_PASSWD)' random 16 characters, with mixed cases, digits and symbols. - '$(UUID)' generate a random UUID v4 string. - '$(UUID_B64)' generate a random UUID v4 BASE64 encoded string. - '$(UUID_STR_B64)' generate a random UUID v4 string then BASE64 encoded. - '$(UUID_HEX)' generate a random UUID v4 HEX representation. - '$(HEADLESS_SVC_FQDN)' headless service FQDN placeholder, value pattern is '$(CLUSTER_NAME)-$(1ST_COMP_NAME)-headless.$(NAMESPACE).svc', where 1ST_COMP_NAME is the 1st component that provide 'ClusterDefinition.spec.componentDefs[].service' attribute; - '$(SVC_FQDN)' service FQDN placeholder, value pattern is '$(CLUSTER_NAME)-$(1ST_COMP_NAME).$(NAMESPACE).svc', where 1ST_COMP_NAME is the 1st component that provide 'ClusterDefinition.spec.componentDefs[].service' attribute; - '$(SVC_PORT_{PORT-NAME})' is ServicePort's port value with specified port name, i.e, a servicePort JSON struct: '{'name': 'mysql', 'targetPort': 'mysqlContainerPort', 'port': 3306}', and '$(SVC_PORT_mysql)' in the connection credential value is 3306.
-- `type` (String) Specifies the well-known application cluster type, such as mysql, redis, or mongodb.
+- `component_defs` (Attributes List) Provides the definitions for the cluster components.  Deprecated since v0.9. Components should now be individually defined using ComponentDefinition and collectively referenced via 'topology.components'. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases. (see [below for nested schema](#nestedatt--spec--component_defs))
+- `connection_credential` (Map of String) Connection credential template used for creating a connection credential secret for cluster objects.  Built-in objects are:  - '$(RANDOM_PASSWD)' random 8 characters. - '$(STRONG_RANDOM_PASSWD)' random 16 characters, with mixed cases, digits and symbols. - '$(UUID)' generate a random UUID v4 string. - '$(UUID_B64)' generate a random UUID v4 BASE64 encoded string. - '$(UUID_STR_B64)' generate a random UUID v4 string then BASE64 encoded. - '$(UUID_HEX)' generate a random UUID v4 HEX representation. - '$(HEADLESS_SVC_FQDN)' headless service FQDN placeholder, value pattern is '$(CLUSTER_NAME)-$(1ST_COMP_NAME)-headless.$(NAMESPACE).svc', where 1ST_COMP_NAME is the 1st component that provide 'ClusterDefinition.spec.componentDefs[].service' attribute; - '$(SVC_FQDN)' service FQDN placeholder, value pattern is '$(CLUSTER_NAME)-$(1ST_COMP_NAME).$(NAMESPACE).svc', where 1ST_COMP_NAME is the 1st component that provide 'ClusterDefinition.spec.componentDefs[].service' attribute; - '$(SVC_PORT_{PORT-NAME})' is ServicePort's port value with specified port name, i.e, a servicePort JSON struct: '{'name': 'mysql', 'targetPort': 'mysqlContainerPort', 'port': 3306}', and '$(SVC_PORT_mysql)' in the connection credential value is 3306.  Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.
+- `topologies` (Attributes List) Topologies defines all possible topologies within the cluster. (see [below for nested schema](#nestedatt--spec--topologies))
+- `type` (String) Specifies the well-known database type, such as mysql, redis, or mongodb.  Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.
 
 <a id="nestedatt--spec--component_defs"></a>
 ### Nested Schema for `spec.component_defs`
@@ -71,6 +69,7 @@ Required:
 
 Optional:
 
+- `builtin_monitor_container` (Attributes) Defines the built-in metrics exporter container. (see [below for nested schema](#nestedatt--spec--component_defs--builtin_monitor_container))
 - `character_type` (String) Defines well-known database component name, such as mongos(mongodb), proxy(redis), mariadb(mysql).
 - `component_def_ref` (Attributes List) Used to inject values from other components into the current component. Values will be saved and updated in a configmap and mounted to the current component. (see [below for nested schema](#nestedatt--spec--component_defs--component_def_ref))
 - `config_specs` (Attributes List) Defines the template of configurations. (see [below for nested schema](#nestedatt--spec--component_defs--config_specs))
@@ -79,21 +78,35 @@ Optional:
 - `description` (String) Description of the component definition.
 - `horizontal_scale_policy` (Attributes) Defines the behavior of horizontal scale. (see [below for nested schema](#nestedatt--spec--component_defs--horizontal_scale_policy))
 - `log_configs` (Attributes List) Specify the logging files which can be observed and configured by cluster users. (see [below for nested schema](#nestedatt--spec--component_defs--log_configs))
-- `monitor` (Attributes) Specify the config that how to monitor the component. (see [below for nested schema](#nestedatt--spec--component_defs--monitor))
 - `pod_spec` (Attributes) Defines the pod spec template of component. (see [below for nested schema](#nestedatt--spec--component_defs--pod_spec))
 - `post_start_spec` (Attributes) Defines the command to be executed when the component is ready, and the command will only be executed once after the component becomes ready. (see [below for nested schema](#nestedatt--spec--component_defs--post_start_spec))
 - `probes` (Attributes) Settings for health checks. (see [below for nested schema](#nestedatt--spec--component_defs--probes))
 - `replication_spec` (Attributes) Defines spec for 'Replication' workloads. (see [below for nested schema](#nestedatt--spec--component_defs--replication_spec))
-- `rsm_spec` (Attributes) Defines workload spec of this component. From KB 0.7.0, RSM(ReplicatedStateMachineSpec) will be the underlying CR which powers all kinds of workload in KB. RSM is an enhanced stateful workload extension dedicated for heavy-state workloads like databases. (see [below for nested schema](#nestedatt--spec--component_defs--rsm_spec))
+- `rsm_spec` (Attributes) Defines workload spec of this component. From KB 0.7.0, RSM(InstanceSetSpec) will be the underlying CR which powers all kinds of workload in KB. RSM is an enhanced stateful workload extension dedicated for heavy-state workloads like databases. (see [below for nested schema](#nestedatt--spec--component_defs--rsm_spec))
 - `script_specs` (Attributes List) Defines the template of scripts. (see [below for nested schema](#nestedatt--spec--component_defs--script_specs))
 - `service` (Attributes) Defines the service spec. (see [below for nested schema](#nestedatt--spec--component_defs--service))
 - `service_ref_declarations` (Attributes List) Used to declare the service reference of the current component. (see [below for nested schema](#nestedatt--spec--component_defs--service_ref_declarations))
+- `sidecar_container_specs` (Map of String) Defines the sidecar containers that will be attached to the component's main container.
 - `stateful_spec` (Attributes) Defines spec for 'Stateful' workloads. (see [below for nested schema](#nestedatt--spec--component_defs--stateful_spec))
 - `stateless_spec` (Attributes) Defines spec for 'Stateless' workloads. (see [below for nested schema](#nestedatt--spec--component_defs--stateless_spec))
 - `switchover_spec` (Attributes) Defines command to do switchover. In particular, when workloadType=Replication, the command defined in switchoverSpec will only be executed under the condition of cluster.componentSpecs[x].SwitchPolicy.type=Noop. (see [below for nested schema](#nestedatt--spec--component_defs--switchover_spec))
 - `system_accounts` (Attributes) Defines system accounts needed to manage the component, and the statement to create them. (see [below for nested schema](#nestedatt--spec--component_defs--system_accounts))
 - `volume_protection_spec` (Attributes) Defines settings to do volume protect. (see [below for nested schema](#nestedatt--spec--component_defs--volume_protection_spec))
 - `volume_types` (Attributes List) Used to describe the purpose of the volumes mapping the name of the VolumeMounts in the PodSpec.Container field, such as data volume, log volume, etc. When backing up the volume, the volume can be correctly backed up according to the volumeType.  For example:  - 'name: data, type: data' means that the volume named 'data' is used to store 'data'. - 'name: binlog, type: log' means that the volume named 'binlog' is used to store 'log'.  NOTE: When volumeTypes is not defined, the backup function will not be supported, even if a persistent volume has been specified. (see [below for nested schema](#nestedatt--spec--component_defs--volume_types))
+
+<a id="nestedatt--spec--component_defs--builtin_monitor_container"></a>
+### Nested Schema for `spec.component_defs.builtin_monitor_container`
+
+Required:
+
+- `name` (String) Specifies the name of the built-in metrics exporter container.
+
+Optional:
+
+- `metrics_path` (String) Specifies the http/https url path to scrape for metrics. If empty, Prometheus uses the default value (e.g. '/metrics').
+- `metrics_port` (String) Specifies the port name to scrape for metrics.
+- `protocol` (String) Specifies the schema to use for scraping. 'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling. If empty, Prometheus uses the default value 'http'.
+
 
 <a id="nestedatt--spec--component_defs--component_def_ref"></a>
 ### Nested Schema for `spec.component_defs.component_def_ref`
@@ -146,13 +159,14 @@ Required:
 
 Optional:
 
-- `as_env_from` (List of String) An optional field where the list of containers will be injected into EnvFrom.
-- `constraint_ref` (String) An optional field that defines the name of the referenced configuration constraints object.
-- `default_mode` (Number) Refers to the mode bits used to set permissions on created files by default.  Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.  Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `keys` (List of String) Defines a list of keys. If left empty, ConfigConstraint applies to all keys in the configmap.
-- `legacy_rendered_config_spec` (Attributes) An optional field that defines the secondary rendered config spec. (see [below for nested schema](#nestedatt--spec--component_defs--config_specs--legacy_rendered_config_spec))
+- `as_env_from` (List of String) Deprecated: AsEnvFrom has been deprecated since 0.9.0 and will be removed in 0.10.0 Specifies the containers to inject the ConfigMap parameters as environment variables.  This is useful when application images accept parameters through environment variables and generate the final configuration file in the startup script based on these variables.  This field allows users to specify a list of container names, and KubeBlocks will inject the environment variables converted from the ConfigMap into these designated containers. This provides a flexible way to pass the configuration items from the ConfigMap to the container without modifying the image.  Note: The field name 'asEnvFrom' may be changed to 'injectEnvTo' in future versions for better clarity.
+- `constraint_ref` (String) Specifies the name of the referenced configuration constraints object.
+- `default_mode` (Number) Deprecated: DefaultMode is deprecated since 0.9.0 and will be removed in 0.10.0 for scripts, auto set 0555 for configs, auto set 0444 Refers to the mode bits used to set permissions on created files by default.  Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.  Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `inject_env_to` (List of String) Specifies the containers to inject the ConfigMap parameters as environment variables.  This is useful when application images accept parameters through environment variables and generate the final configuration file in the startup script based on these variables.  This field allows users to specify a list of container names, and KubeBlocks will inject the environment variables converted from the ConfigMap into these designated containers. This provides a flexible way to pass the configuration items from the ConfigMap to the container without modifying the image.
+- `keys` (List of String) Specifies the configuration files within the ConfigMap that support dynamic updates.  A configuration template (provided in the form of a ConfigMap) may contain templates for multiple configuration files. Each configuration file corresponds to a key in the ConfigMap. Some of these configuration files may support dynamic modification and reloading without requiring a pod restart.  If empty or omitted, all configuration files in the ConfigMap are assumed to support dynamic updates, and ConfigConstraint applies to all keys.
+- `legacy_rendered_config_spec` (Attributes) Specifies the secondary rendered config spec for pod-specific customization.  The template is rendered inside the pod (by the 'config-manager' sidecar container) and merged with the main template's render result to generate the final configuration file.  This field is intended to handle scenarios where different pods within the same Component have varying configurations. It allows for pod-specific customization of the configuration.  Note: This field will be deprecated in future versions, and the functionality will be moved to 'cluster.spec.componentSpecs[*].instances[*]'. (see [below for nested schema](#nestedatt--spec--component_defs--config_specs--legacy_rendered_config_spec))
 - `namespace` (String) Specifies the namespace of the referenced configuration template ConfigMap object. An empty namespace is equivalent to the 'default' namespace.
-- `re_render_resource_types` (List of String) An optional field defines which resources change trigger re-render config.
+- `re_render_resource_types` (List of String) Specifies whether the configuration needs to be re-rendered after v-scale or h-scale operations to reflect changes.  In some scenarios, the configuration may need to be updated to reflect the changes in resource allocation or cluster topology. Examples:  - Redis: adjust maxmemory after v-scale operation. - MySQL: increase max connections after v-scale operation. - Zookeeper: update zoo.cfg with new node addresses after h-scale operation.
 
 <a id="nestedatt--spec--component_defs--config_specs--legacy_rendered_config_spec"></a>
 ### Nested Schema for `spec.component_defs.config_specs.legacy_rendered_config_spec`
@@ -281,29 +295,8 @@ Optional:
 
 Required:
 
-- `file_path_pattern` (String) Indicates the path to the log file using a pattern, it corresponds to the variable (log path) in the database kernel.
-- `name` (String) Specifies the type of log, such as 'slow' for a MySQL slow log file.
-
-
-<a id="nestedatt--spec--component_defs--monitor"></a>
-### Nested Schema for `spec.component_defs.monitor`
-
-Optional:
-
-- `built_in` (Boolean) To enable the built-in monitoring. When set to true, monitoring metrics will be automatically scraped. When set to false, the provider is expected to configure the ExporterConfig and manage the Sidecar container.
-- `exporter_config` (Attributes) Provided by the provider and contains the necessary information for the Time Series Database. This field is only valid when BuiltIn is set to false. (see [below for nested schema](#nestedatt--spec--component_defs--monitor--exporter_config))
-
-<a id="nestedatt--spec--component_defs--monitor--exporter_config"></a>
-### Nested Schema for `spec.component_defs.monitor.exporter_config`
-
-Required:
-
-- `scrape_port` (String) Defines the port that the exporter uses for the Time Series Database to scrape metrics.
-
-Optional:
-
-- `scrape_path` (String) Specifies the URL path that the exporter uses for the Time Series Database to scrape metrics.
-
+- `file_path_pattern` (String) Specifies the paths or patterns identifying where the log files are stored. This field allows the system to locate and manage log files effectively.  Examples:  - /home/postgres/pgdata/pgroot/data/log/postgresql-* - /data/mysql/log/mysqld-error.log
+- `name` (String) Specifies a descriptive label for the log type, such as 'slow' for a MySQL slow log file. It provides a clear identification of the log's purpose and content.
 
 
 <a id="nestedatt--spec--component_defs--pod_spec"></a>
@@ -3654,7 +3647,7 @@ Optional:
 - `member_join_action` (Attributes) Defines the action to add a member. If the Image is not configured, the Image from the previous non-nil action will be used. (see [below for nested schema](#nestedatt--spec--component_defs--rsm_spec--roles--member_join_action))
 - `member_leave_action` (Attributes) Defines the action to remove a member. If the Image is not configured, the Image from the previous non-nil action will be used. (see [below for nested schema](#nestedatt--spec--component_defs--rsm_spec--roles--member_leave_action))
 - `promote_action` (Attributes) Defines the action to inform the cluster that the new member can join voting now. If the Image is not configured, the Image from the previous non-nil action will be used. (see [below for nested schema](#nestedatt--spec--component_defs--rsm_spec--roles--promote_action))
-- `switchover_action` (Attributes) Specifies the environment variables that can be used in all following Actions: - KB_RSM_USERNAME: Represents the username part of the credential - KB_RSM_PASSWORD: Represents the password part of the credential - KB_RSM_LEADER_HOST: Represents the leader host - KB_RSM_TARGET_HOST: Represents the target host - KB_RSM_SERVICE_PORT: Represents the service port  Defines the action to perform a switchover. If the Image is not configured, the latest [BusyBox](https://busybox.net/) image will be used. (see [below for nested schema](#nestedatt--spec--component_defs--rsm_spec--roles--switchover_action))
+- `switchover_action` (Attributes) Specifies the environment variables that can be used in all following Actions: - KB_ITS_USERNAME: Represents the username part of the credential - KB_ITS_PASSWORD: Represents the password part of the credential - KB_ITS_LEADER_HOST: Represents the leader host - KB_ITS_TARGET_HOST: Represents the target host - KB_ITS_SERVICE_PORT: Represents the service port  Defines the action to perform a switchover. If the Image is not configured, the latest [BusyBox](https://busybox.net/) image will be used. (see [below for nested schema](#nestedatt--spec--component_defs--rsm_spec--roles--switchover_action))
 
 <a id="nestedatt--spec--component_defs--rsm_spec--roles--log_sync_action"></a>
 ### Nested Schema for `spec.component_defs.rsm_spec.roles.log_sync_action`
@@ -3728,7 +3721,7 @@ Optional:
 Optional:
 
 - `builtin_handler_name` (String) Specifies the builtin handler name to use to probe the role of the main container. Available handlers include: mysql, postgres, mongodb, redis, etcd, kafka. Use CustomHandler to define a custom role probe function if none of the built-in handlers meet the requirement.
-- `custom_handler` (Attributes List) Defines a custom method for role probing. If the BuiltinHandler meets the requirement, use it instead. Actions defined here are executed in series. Upon completion of all actions, the final output should be a single string representing the role name defined in spec.Roles. The latest [BusyBox](https://busybox.net/) image will be used if Image is not configured. Environment variables can be used in Command: - v_KB_RSM_LAST_STDOUT: stdout from the last action, watch for 'v_' prefix - KB_RSM_USERNAME: username part of the credential - KB_RSM_PASSWORD: password part of the credential (see [below for nested schema](#nestedatt--spec--component_defs--rsm_spec--roles--custom_handler))
+- `custom_handler` (Attributes List) Defines a custom method for role probing. If the BuiltinHandler meets the requirement, use it instead. Actions defined here are executed in series. Upon completion of all actions, the final output should be a single string representing the role name defined in spec.Roles. The latest [BusyBox](https://busybox.net/) image will be used if Image is not configured. Environment variables can be used in Command: - v_KB_ITS_LAST_STDOUT: stdout from the last action, watch for 'v_' prefix - KB_ITS_USERNAME: username part of the credential - KB_ITS_PASSWORD: password part of the credential (see [below for nested schema](#nestedatt--spec--component_defs--rsm_spec--roles--custom_handler))
 - `failure_threshold` (Number) Specifies the minimum number of consecutive failures for the probe to be considered failed after having succeeded.
 - `initial_delay_seconds` (Number) Specifies the number of seconds to wait after the container has started before initiating role probing.
 - `period_seconds` (Number) Specifies the frequency (in seconds) of probe execution.
@@ -3776,7 +3769,7 @@ Required:
 
 Optional:
 
-- `default_mode` (Number) Refers to the mode bits used to set permissions on created files by default.  Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.  Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `default_mode` (Number) Deprecated: DefaultMode is deprecated since 0.9.0 and will be removed in 0.10.0 for scripts, auto set 0555 for configs, auto set 0444 Refers to the mode bits used to set permissions on created files by default.  Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.  Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
 - `namespace` (String) Specifies the namespace of the referenced configuration template ConfigMap object. An empty namespace is equivalent to the 'default' namespace.
 
 
@@ -3808,8 +3801,8 @@ Optional:
 
 Required:
 
-- `name` (String) Specifies the name of the service reference declaration.  The service reference may originate from an external service that is not part of KubeBlocks, or from services provided by other KubeBlocks Cluster objects. The specific type of service reference is determined by the binding declaration when a Cluster is created.
-- `service_ref_declaration_specs` (Attributes List) Represents a collection of service descriptions for a service reference declaration.  Each ServiceRefDeclarationSpec defines a service Kind and Version. When multiple ServiceRefDeclarationSpecs are defined, it implies that the ServiceRefDeclaration can be any one of the specified ServiceRefDeclarationSpecs.  For instance, when the ServiceRefDeclaration is declared to require an OLTP database, which can be either MySQL or PostgreSQL, a ServiceRefDeclarationSpec for MySQL and another for PostgreSQL can be defined. When referencing the service within the cluster, as long as the serviceKind and serviceVersion match either MySQL or PostgreSQL, it can be used. (see [below for nested schema](#nestedatt--spec--component_defs--service_ref_declarations--service_ref_declaration_specs))
+- `name` (String) Specifies the name of the ServiceRefDeclaration.
+- `service_ref_declaration_specs` (Attributes List) Defines a list of constraints and requirements for services that can be bound to this ServiceRefDeclaration upon Cluster creation. Each ServiceRefDeclarationSpec defines a ServiceKind and ServiceVersion, outlining the acceptable service types and versions that are compatible.  This flexibility allows a ServiceRefDeclaration to be fulfilled by any one of the provided specs. For example, if it requires an OLTP database, specs for both MySQL and PostgreSQL are listed, either MySQL or PostgreSQL services can be used when binding. (see [below for nested schema](#nestedatt--spec--component_defs--service_ref_declarations--service_ref_declaration_specs))
 
 <a id="nestedatt--spec--component_defs--service_ref_declarations--service_ref_declaration_specs"></a>
 ### Nested Schema for `spec.component_defs.service_ref_declarations.service_ref_declaration_specs`
@@ -4000,7 +3993,7 @@ Required:
 
 Optional:
 
-- `deletion` (String) Defines the statement required to delete an existing account. Typically used in conjunction with the creation statement to delete an account before recreating it. For example, one might use a 'drop user if exists' statement followed by a 'create user' statement to ensure a fresh account. Deprecated: This field is deprecated and the update statement should be used instead.
+- `deletion` (String) Defines the statement required to delete an existing account. Typically used in conjunction with the creation statement to delete an account before recreating it. For example, one might use a 'drop user if exists' statement followed by a 'create user' statement to ensure a fresh account.  Deprecated: This field is deprecated and the update statement should be used instead.
 - `update` (String) Defines the statement required to update the password of an existing account.
 
 
@@ -4061,3 +4054,36 @@ Required:
 Optional:
 
 - `type` (String) Type of data the volume will persistent.
+
+
+
+<a id="nestedatt--spec--topologies"></a>
+### Nested Schema for `spec.topologies`
+
+Required:
+
+- `components` (Attributes List) Components specifies the components in the topology. (see [below for nested schema](#nestedatt--spec--topologies--components))
+- `name` (String) Name is the unique identifier for the cluster topology. Cannot be updated.
+
+Optional:
+
+- `default` (Boolean) Default indicates whether this topology serves as the default configuration. When set to true, this topology is automatically used unless another is explicitly specified.
+- `orders` (Attributes) Specifies the sequence in which components within a cluster topology are started, stopped, and upgraded. This ordering is crucial for maintaining the correct dependencies and operational flow across components. (see [below for nested schema](#nestedatt--spec--topologies--orders))
+
+<a id="nestedatt--spec--topologies--components"></a>
+### Nested Schema for `spec.topologies.components`
+
+Required:
+
+- `comp_def` (String) Specifies the name or prefix of the ComponentDefinition custom resource(CR) that defines the Component's characteristics and behavior.  When a prefix is used, the system selects the ComponentDefinition CR with the latest version that matches the prefix. This approach allows:  1. Precise selection by providing the exact name of a ComponentDefinition CR. 2. Flexible and automatic selection of the most up-to-date ComponentDefinition CR by specifying a prefix.  Once set, this field cannot be updated.
+- `name` (String) Defines the unique identifier of the component within the cluster topology. It follows IANA Service naming rules and is used as part of the Service's DNS name. The name must start with a lowercase letter, can contain lowercase letters, numbers, and hyphens, and must end with a lowercase letter or number.  Cannot be updated once set.
+
+
+<a id="nestedatt--spec--topologies--orders"></a>
+### Nested Schema for `spec.topologies.orders`
+
+Optional:
+
+- `provision` (List of String) Specifies the order for creating and initializing components. This is designed for components that depend on one another. Components without dependencies can be grouped together.  Components that can be provisioned independently or have no dependencies can be listed together in the same stage, separated by commas.
+- `terminate` (List of String) Outlines the order for stopping and deleting components. This sequence is designed for components that require a graceful shutdown or have interdependencies.  Components that can be terminated independently or have no dependencies can be listed together in the same stage, separated by commas.
+- `update` (List of String) Update determines the order for updating components' specifications, such as image upgrades or resource scaling. This sequence is designed for components that have dependencies or require specific update procedures.  Components that can be updated independently or have no dependencies can be listed together in the same stage, separated by commas.

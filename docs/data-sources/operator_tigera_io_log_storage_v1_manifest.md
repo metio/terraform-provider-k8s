@@ -3,12 +3,12 @@
 page_title: "k8s_operator_tigera_io_log_storage_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "operator.tigera.io"
 description: |-
-  LogStorage installs the components required for Tigera flow and DNS log storage. At most one instance of this resource is supported. It must be named 'tigera-secure'. When created, this installs an Elasticsearch cluster for use by Calico Enterprise.
+  LogStorage installs the components required for Tigera flow and DNS log storage. At most one instanceof this resource is supported. It must be named 'tigera-secure'. When created, this installs an Elasticsearch cluster for use byCalico Enterprise.
 ---
 
 # k8s_operator_tigera_io_log_storage_v1_manifest (Data Source)
 
-LogStorage installs the components required for Tigera flow and DNS log storage. At most one instance of this resource is supported. It must be named 'tigera-secure'. When created, this installs an Elasticsearch cluster for use by Calico Enterprise.
+LogStorage installs the components required for Tigera flow and DNS log storage. At most one instanceof this resource is supported. It must be named 'tigera-secure'. When created, this installs an Elasticsearch cluster for use byCalico Enterprise.
 
 ## Example Usage
 
@@ -54,23 +54,23 @@ Optional:
 
 Optional:
 
-- `component_resources` (Attributes List) ComponentResources can be used to customize the resource requirements for each component. Only ECKOperator is supported for this spec. (see [below for nested schema](#nestedatt--spec--component_resources))
-- `data_node_selector` (Map of String) DataNodeSelector gives you more control over the node that Elasticsearch will run on. The contents of DataNodeSelector will be added to the PodSpec of the Elasticsearch nodes. For the pod to be eligible to run on a node, the node must have each of the indicated key-value pairs as labels as well as access to the specified StorageClassName.
-- `eck_operator_stateful_set` (Attributes) ECKOperatorStatefulSet configures the ECKOperator StatefulSet. If used in conjunction with the deprecated ComponentResources, then these overrides take precedence. (see [below for nested schema](#nestedatt--spec--eck_operator_stateful_set))
+- `component_resources` (Attributes List) ComponentResources can be used to customize the resource requirements for each component.Only ECKOperator is supported for this spec. (see [below for nested schema](#nestedatt--spec--component_resources))
+- `data_node_selector` (Map of String) DataNodeSelector gives you more control over the node that Elasticsearch will run on. The contents of DataNodeSelector willbe added to the PodSpec of the Elasticsearch nodes. For the pod to be eligible to run on a node, the node must haveeach of the indicated key-value pairs as labels as well as access to the specified StorageClassName.
+- `eck_operator_stateful_set` (Attributes) ECKOperatorStatefulSet configures the ECKOperator StatefulSet. If used in conjunction with the deprecatedComponentResources, then these overrides take precedence. (see [below for nested schema](#nestedatt--spec--eck_operator_stateful_set))
 - `elasticsearch_metrics_deployment` (Attributes) ElasticsearchMetricsDeployment configures the tigera-elasticsearch-metric Deployment. (see [below for nested schema](#nestedatt--spec--elasticsearch_metrics_deployment))
 - `indices` (Attributes) Index defines the configuration for the indices in the Elasticsearch cluster. (see [below for nested schema](#nestedatt--spec--indices))
 - `kibana` (Attributes) Kibana configures the Kibana Spec. (see [below for nested schema](#nestedatt--spec--kibana))
 - `linseed_deployment` (Attributes) LinseedDeployment configures the linseed Deployment. (see [below for nested schema](#nestedatt--spec--linseed_deployment))
 - `nodes` (Attributes) Nodes defines the configuration for a set of identical Elasticsearch cluster nodes, each of type master, data, and ingest. (see [below for nested schema](#nestedatt--spec--nodes))
 - `retention` (Attributes) Retention defines how long data is retained in the Elasticsearch cluster before it is cleared. (see [below for nested schema](#nestedatt--spec--retention))
-- `storage_class_name` (String) StorageClassName will populate the PersistentVolumeClaim.StorageClassName that is used to provision disks to the Tigera Elasticsearch cluster. The StorageClassName should only be modified when no LogStorage is currently active. We recommend choosing a storage class dedicated to Tigera LogStorage only. Otherwise, data retention cannot be guaranteed during upgrades. See https://docs.tigera.io/maintenance/upgrading for up-to-date instructions. Default: tigera-elasticsearch
+- `storage_class_name` (String) StorageClassName will populate the PersistentVolumeClaim.StorageClassName that is used to provision disks to theTigera Elasticsearch cluster. The StorageClassName should only be modified when no LogStorage is currentlyactive. We recommend choosing a storage class dedicated to Tigera LogStorage only. Otherwise, data retentioncannot be guaranteed during upgrades. See https://docs.tigera.io/maintenance/upgrading for up-to-date instructions.Default: tigera-elasticsearch
 
 <a id="nestedatt--spec--component_resources"></a>
 ### Nested Schema for `spec.component_resources`
 
 Required:
 
-- `component_name` (String) Deprecated. Please use ECKOperatorStatefulSet. ComponentName is an enum which identifies the component
+- `component_name` (String) Deprecated. Please use ECKOperatorStatefulSet.ComponentName is an enum which identifies the component
 - `resource_requirements` (Attributes) ResourceRequirements allows customization of limits and requests for compute resources such as cpu and memory. (see [below for nested schema](#nestedatt--spec--component_resources--resource_requirements))
 
 <a id="nestedatt--spec--component_resources--resource_requirements"></a>
@@ -78,16 +78,16 @@ Required:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--component_resources--resource_requirements--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--component_resources--resource_requirements--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--component_resources--resource_requirements--claims"></a>
 ### Nested Schema for `spec.component_resources.resource_requirements.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -118,35 +118,35 @@ Optional:
 
 Optional:
 
-- `containers` (Attributes List) Containers is a list of ECKOperator StatefulSet containers. If specified, this overrides the specified ECKOperator StatefulSet containers. If omitted, the ECKOperator StatefulSet will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--eck_operator_stateful_set--spec--template--spec--containers))
-- `init_containers` (Attributes List) InitContainers is a list of ECKOperator StatefulSet init containers. If specified, this overrides the specified ECKOperator StatefulSet init containers. If omitted, the ECKOperator StatefulSet will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--eck_operator_stateful_set--spec--template--spec--init_containers))
+- `containers` (Attributes List) Containers is a list of ECKOperator StatefulSet containers.If specified, this overrides the specified ECKOperator StatefulSet containers.If omitted, the ECKOperator StatefulSet will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--eck_operator_stateful_set--spec--template--spec--containers))
+- `init_containers` (Attributes List) InitContainers is a list of ECKOperator StatefulSet init containers.If specified, this overrides the specified ECKOperator StatefulSet init containers.If omitted, the ECKOperator StatefulSet will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--eck_operator_stateful_set--spec--template--spec--init_containers))
 
 <a id="nestedatt--spec--eck_operator_stateful_set--spec--template--spec--containers"></a>
 ### Nested Schema for `spec.eck_operator_stateful_set.spec.template.spec.containers`
 
 Required:
 
-- `name` (String) Name is an enum which identifies the ECKOperator StatefulSet container by name.
+- `name` (String) Name is an enum which identifies the ECKOperator StatefulSet container by name.Supported values are: manager
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named ECKOperator StatefulSet container's resources. If omitted, the ECKOperator StatefulSet will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--eck_operator_stateful_set--spec--template--spec--init_containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named ECKOperator StatefulSet container's resources.If omitted, the ECKOperator StatefulSet will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--eck_operator_stateful_set--spec--template--spec--init_containers--resources))
 
 <a id="nestedatt--spec--eck_operator_stateful_set--spec--template--spec--init_containers--resources"></a>
 ### Nested Schema for `spec.eck_operator_stateful_set.spec.template.spec.init_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--eck_operator_stateful_set--spec--template--spec--init_containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--eck_operator_stateful_set--spec--template--spec--init_containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--eck_operator_stateful_set--spec--template--spec--init_containers--resources--claims"></a>
 ### Nested Schema for `spec.eck_operator_stateful_set.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -160,23 +160,23 @@ Required:
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named ECKOperator StatefulSet init container's resources. If omitted, the ECKOperator StatefulSet will use its default value for this init container's resources. (see [below for nested schema](#nestedatt--spec--eck_operator_stateful_set--spec--template--spec--init_containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named ECKOperator StatefulSet init container's resources.If omitted, the ECKOperator StatefulSet will use its default value for this init container's resources. (see [below for nested schema](#nestedatt--spec--eck_operator_stateful_set--spec--template--spec--init_containers--resources))
 
 <a id="nestedatt--spec--eck_operator_stateful_set--spec--template--spec--init_containers--resources"></a>
 ### Nested Schema for `spec.eck_operator_stateful_set.spec.template.spec.init_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--eck_operator_stateful_set--spec--template--spec--init_containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--eck_operator_stateful_set--spec--template--spec--init_containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--eck_operator_stateful_set--spec--template--spec--init_containers--resources--claims"></a>
 ### Nested Schema for `spec.eck_operator_stateful_set.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -211,35 +211,35 @@ Optional:
 
 Optional:
 
-- `containers` (Attributes List) Containers is a list of ElasticsearchMetricsDeployment containers. If specified, this overrides the specified ElasticsearchMetricsDeployment containers. If omitted, the ElasticsearchMetrics Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--elasticsearch_metrics_deployment--spec--template--spec--containers))
-- `init_containers` (Attributes List) InitContainers is a list of ElasticsearchMetricsDeployment init containers. If specified, this overrides the specified ElasticsearchMetricsDeployment init containers. If omitted, the ElasticsearchMetrics Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--elasticsearch_metrics_deployment--spec--template--spec--init_containers))
+- `containers` (Attributes List) Containers is a list of ElasticsearchMetricsDeployment containers.If specified, this overrides the specified ElasticsearchMetricsDeployment containers.If omitted, the ElasticsearchMetrics Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--elasticsearch_metrics_deployment--spec--template--spec--containers))
+- `init_containers` (Attributes List) InitContainers is a list of ElasticsearchMetricsDeployment init containers.If specified, this overrides the specified ElasticsearchMetricsDeployment init containers.If omitted, the ElasticsearchMetrics Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--elasticsearch_metrics_deployment--spec--template--spec--init_containers))
 
 <a id="nestedatt--spec--elasticsearch_metrics_deployment--spec--template--spec--containers"></a>
 ### Nested Schema for `spec.elasticsearch_metrics_deployment.spec.template.spec.containers`
 
 Required:
 
-- `name` (String) Name is an enum which identifies the ElasticsearchMetricsDeployment container by name.
+- `name` (String) Name is an enum which identifies the ElasticsearchMetricsDeployment container by name.Supported values are: tigera-elasticsearch-metrics
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named ElasticsearchMetricsDeployment container's resources. If omitted, the ElasticsearchMetrics Deployment will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--elasticsearch_metrics_deployment--spec--template--spec--init_containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named ElasticsearchMetricsDeployment container's resources.If omitted, the ElasticsearchMetrics Deployment will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--elasticsearch_metrics_deployment--spec--template--spec--init_containers--resources))
 
 <a id="nestedatt--spec--elasticsearch_metrics_deployment--spec--template--spec--init_containers--resources"></a>
 ### Nested Schema for `spec.elasticsearch_metrics_deployment.spec.template.spec.init_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--elasticsearch_metrics_deployment--spec--template--spec--init_containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--elasticsearch_metrics_deployment--spec--template--spec--init_containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--elasticsearch_metrics_deployment--spec--template--spec--init_containers--resources--claims"></a>
 ### Nested Schema for `spec.elasticsearch_metrics_deployment.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -249,27 +249,27 @@ Required:
 
 Required:
 
-- `name` (String) Name is an enum which identifies the ElasticsearchMetricsDeployment init container by name.
+- `name` (String) Name is an enum which identifies the ElasticsearchMetricsDeployment init container by name.Supported values are: tigera-ee-elasticsearch-metrics-tls-key-cert-provisioner
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named ElasticsearchMetricsDeployment init container's resources. If omitted, the ElasticsearchMetrics Deployment will use its default value for this init container's resources. (see [below for nested schema](#nestedatt--spec--elasticsearch_metrics_deployment--spec--template--spec--init_containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named ElasticsearchMetricsDeployment init container's resources.If omitted, the ElasticsearchMetrics Deployment will use its default value for this init container's resources. (see [below for nested schema](#nestedatt--spec--elasticsearch_metrics_deployment--spec--template--spec--init_containers--resources))
 
 <a id="nestedatt--spec--elasticsearch_metrics_deployment--spec--template--spec--init_containers--resources"></a>
 ### Nested Schema for `spec.elasticsearch_metrics_deployment.spec.template.spec.init_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--elasticsearch_metrics_deployment--spec--template--spec--init_containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--elasticsearch_metrics_deployment--spec--template--spec--init_containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--elasticsearch_metrics_deployment--spec--template--spec--init_containers--resources--claims"></a>
 ### Nested Schema for `spec.elasticsearch_metrics_deployment.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -312,35 +312,35 @@ Optional:
 
 Optional:
 
-- `containers` (Attributes List) Containers is a list of Kibana containers. If specified, this overrides the specified Kibana Deployment containers. If omitted, the Kibana Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--kibana--spec--template--spec--containers))
-- `init_containers` (Attributes List) InitContainers is a list of Kibana init containers. If specified, this overrides the specified Kibana Deployment init containers. If omitted, the Kibana Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--kibana--spec--template--spec--init_containers))
+- `containers` (Attributes List) Containers is a list of Kibana containers.If specified, this overrides the specified Kibana Deployment containers.If omitted, the Kibana Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--kibana--spec--template--spec--containers))
+- `init_containers` (Attributes List) InitContainers is a list of Kibana init containers.If specified, this overrides the specified Kibana Deployment init containers.If omitted, the Kibana Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--kibana--spec--template--spec--init_containers))
 
 <a id="nestedatt--spec--kibana--spec--template--spec--containers"></a>
 ### Nested Schema for `spec.kibana.spec.template.spec.containers`
 
 Required:
 
-- `name` (String) Name is an enum which identifies the Kibana Deployment container by name.
+- `name` (String) Name is an enum which identifies the Kibana Deployment container by name.Supported values are: kibana
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named Kibana container's resources. If omitted, the Kibana will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--kibana--spec--template--spec--init_containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named Kibana container's resources.If omitted, the Kibana will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--kibana--spec--template--spec--init_containers--resources))
 
 <a id="nestedatt--spec--kibana--spec--template--spec--init_containers--resources"></a>
 ### Nested Schema for `spec.kibana.spec.template.spec.init_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--kibana--spec--template--spec--init_containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--kibana--spec--template--spec--init_containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--kibana--spec--template--spec--init_containers--resources--claims"></a>
 ### Nested Schema for `spec.kibana.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -350,27 +350,27 @@ Required:
 
 Required:
 
-- `name` (String) Name is an enum which identifies the Kibana init container by name.
+- `name` (String) Name is an enum which identifies the Kibana init container by name.Supported values are: key-cert-provisioner
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named Kibana Deployment init container's resources. If omitted, the Kibana Deployment will use its default value for this init container's resources. If used in conjunction with the deprecated ComponentResources, then this value takes precedence. (see [below for nested schema](#nestedatt--spec--kibana--spec--template--spec--init_containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named Kibana Deployment init container's resources.If omitted, the Kibana Deployment will use its default value for this init container's resources.If used in conjunction with the deprecated ComponentResources, then this value takes precedence. (see [below for nested schema](#nestedatt--spec--kibana--spec--template--spec--init_containers--resources))
 
 <a id="nestedatt--spec--kibana--spec--template--spec--init_containers--resources"></a>
 ### Nested Schema for `spec.kibana.spec.template.spec.init_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--kibana--spec--template--spec--init_containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--kibana--spec--template--spec--init_containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--kibana--spec--template--spec--init_containers--resources--claims"></a>
 ### Nested Schema for `spec.kibana.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -405,35 +405,35 @@ Optional:
 
 Optional:
 
-- `containers` (Attributes List) Containers is a list of linseed containers. If specified, this overrides the specified linseed Deployment containers. If omitted, the linseed Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--linseed_deployment--spec--template--spec--containers))
-- `init_containers` (Attributes List) InitContainers is a list of linseed init containers. If specified, this overrides the specified linseed Deployment init containers. If omitted, the linseed Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--linseed_deployment--spec--template--spec--init_containers))
+- `containers` (Attributes List) Containers is a list of linseed containers.If specified, this overrides the specified linseed Deployment containers.If omitted, the linseed Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--linseed_deployment--spec--template--spec--containers))
+- `init_containers` (Attributes List) InitContainers is a list of linseed init containers.If specified, this overrides the specified linseed Deployment init containers.If omitted, the linseed Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--linseed_deployment--spec--template--spec--init_containers))
 
 <a id="nestedatt--spec--linseed_deployment--spec--template--spec--containers"></a>
 ### Nested Schema for `spec.linseed_deployment.spec.template.spec.containers`
 
 Required:
 
-- `name` (String) Name is an enum which identifies the linseed Deployment container by name.
+- `name` (String) Name is an enum which identifies the linseed Deployment container by name.Supported values are: tigera-linseed
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named linseed Deployment container's resources. If omitted, the linseed Deployment will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--linseed_deployment--spec--template--spec--init_containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named linseed Deployment container's resources.If omitted, the linseed Deployment will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--linseed_deployment--spec--template--spec--init_containers--resources))
 
 <a id="nestedatt--spec--linseed_deployment--spec--template--spec--init_containers--resources"></a>
 ### Nested Schema for `spec.linseed_deployment.spec.template.spec.init_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--linseed_deployment--spec--template--spec--init_containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--linseed_deployment--spec--template--spec--init_containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--linseed_deployment--spec--template--spec--init_containers--resources--claims"></a>
 ### Nested Schema for `spec.linseed_deployment.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -443,27 +443,27 @@ Required:
 
 Required:
 
-- `name` (String) Name is an enum which identifies the linseed Deployment init container by name.
+- `name` (String) Name is an enum which identifies the linseed Deployment init container by name.Supported values are: tigera-secure-linseed-token-tls-key-cert-provisioner,tigera-secure-linseed-cert-key-cert-provisioner
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named linseed Deployment init container's resources. If omitted, the linseed Deployment will use its default value for this init container's resources. (see [below for nested schema](#nestedatt--spec--linseed_deployment--spec--template--spec--init_containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named linseed Deployment init container's resources.If omitted, the linseed Deployment will use its default value for this init container's resources. (see [below for nested schema](#nestedatt--spec--linseed_deployment--spec--template--spec--init_containers--resources))
 
 <a id="nestedatt--spec--linseed_deployment--spec--template--spec--init_containers--resources"></a>
 ### Nested Schema for `spec.linseed_deployment.spec.template.spec.init_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--linseed_deployment--spec--template--spec--init_containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--linseed_deployment--spec--template--spec--init_containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--linseed_deployment--spec--template--spec--init_containers--resources--claims"></a>
 ### Nested Schema for `spec.linseed_deployment.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -486,7 +486,7 @@ Optional:
 
 Optional:
 
-- `selection_attributes` (Attributes List) SelectionAttributes defines K8s node attributes a NodeSet should use when setting the Node Affinity selectors and Elasticsearch cluster awareness attributes for the Elasticsearch nodes. The list of SelectionAttributes are used to define Node Affinities and set the node awareness configuration in the running Elasticsearch instance. (see [below for nested schema](#nestedatt--spec--nodes--node_sets--selection_attributes))
+- `selection_attributes` (Attributes List) SelectionAttributes defines K8s node attributes a NodeSet should use when setting the Node Affinity selectors andElasticsearch cluster awareness attributes for the Elasticsearch nodes. The list of SelectionAttributes are usedto define Node Affinities and set the node awareness configuration in the running Elasticsearch instance. (see [below for nested schema](#nestedatt--spec--nodes--node_sets--selection_attributes))
 
 <a id="nestedatt--spec--nodes--node_sets--selection_attributes"></a>
 ### Nested Schema for `spec.nodes.node_sets.selection_attributes`
@@ -504,16 +504,16 @@ Required:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--nodes--resource_requirements--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--nodes--resource_requirements--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--nodes--resource_requirements--claims"></a>
 ### Nested Schema for `spec.nodes.resource_requirements.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -523,9 +523,9 @@ Required:
 
 Optional:
 
-- `audit_reports` (Number) AuditReports configures the retention period for audit logs, in days.  Logs written on a day that started at least this long ago are removed.  To keep logs for at least x days, use a retention period of x+1. Default: 91
-- `bgp_logs` (Number) BGPLogs configures the retention period for BGP logs, in days.  Logs written on a day that started at least this long ago are removed.  To keep logs for at least x days, use a retention period of x+1. Default: 8
-- `compliance_reports` (Number) ComplianceReports configures the retention period for compliance reports, in days. Reports are output from the analysis of the system state and audit events for compliance reporting. Consult the Compliance Reporting documentation for more details on reports. Logs written on a day that started at least this long ago are removed.  To keep logs for at least x days, use a retention period of x+1. Default: 91
-- `dns_logs` (Number) DNSLogs configures the retention period for DNS logs, in days.  Logs written on a day that started at least this long ago are removed.  To keep logs for at least x days, use a retention period of x+1. Default: 8
-- `flows` (Number) Flows configures the retention period for flow logs, in days.  Logs written on a day that started at least this long ago are removed.  To keep logs for at least x days, use a retention period of x+1. Default: 8
-- `snapshots` (Number) Snapshots configures the retention period for snapshots, in days. Snapshots are periodic captures of resources which along with audit events are used to generate reports. Consult the Compliance Reporting documentation for more details on snapshots. Logs written on a day that started at least this long ago are removed.  To keep logs for at least x days, use a retention period of x+1. Default: 91
+- `audit_reports` (Number) AuditReports configures the retention period for audit logs, in days.  Logs written on a day that started at least this long ago areremoved.  To keep logs for at least x days, use a retention period of x+1.Default: 91
+- `bgp_logs` (Number) BGPLogs configures the retention period for BGP logs, in days.  Logs written on a day that started at least this long agoare removed.  To keep logs for at least x days, use a retention period of x+1.Default: 8
+- `compliance_reports` (Number) ComplianceReports configures the retention period for compliance reports, in days. Reports are outputfrom the analysis of the system state and audit events for compliance reporting.Consult the Compliance Reporting documentation for more details on reports.Logs written on a day that started at least this long ago areremoved.  To keep logs for at least x days, use a retention period of x+1.Default: 91
+- `dns_logs` (Number) DNSLogs configures the retention period for DNS logs, in days.  Logs written on a day that started at least this long agoare removed.  To keep logs for at least x days, use a retention period of x+1.Default: 8
+- `flows` (Number) Flows configures the retention period for flow logs, in days.  Logs written on a day that started at least this long agoare removed.  To keep logs for at least x days, use a retention period of x+1.Default: 8
+- `snapshots` (Number) Snapshots configures the retention period for snapshots, in days. Snapshots are periodic capturesof resources which along with audit events are used to generate reports.Consult the Compliance Reporting documentation for more details on snapshots.Logs written on a day that started at least this long ago areremoved.  To keep logs for at least x days, use a retention period of x+1.Default: 91

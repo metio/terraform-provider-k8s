@@ -64,6 +64,7 @@ Required:
 Optional:
 
 - `aws_actions` (List of String)
+- `azure_key_vault_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--calls--azure_key_vault_policy))
 - `azure_roles` (List of String)
 - `database_resources` (Attributes List) (see [below for nested schema](#nestedatt--spec--calls--database_resources))
 - `gcp_permissions` (List of String)
@@ -72,6 +73,17 @@ Optional:
 - `kafka_topics` (Attributes List) (see [below for nested schema](#nestedatt--spec--calls--kafka_topics))
 - `name` (String)
 - `type` (String)
+
+<a id="nestedatt--spec--calls--azure_key_vault_policy"></a>
+### Nested Schema for `spec.calls.azure_key_vault_policy`
+
+Optional:
+
+- `certificate_permissions` (List of String)
+- `key_permissions` (List of String)
+- `secret_permissions` (List of String)
+- `storage_permissions` (List of String)
+
 
 <a id="nestedatt--spec--calls--database_resources"></a>
 ### Nested Schema for `spec.calls.database_resources`

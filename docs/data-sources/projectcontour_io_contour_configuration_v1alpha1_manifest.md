@@ -55,7 +55,7 @@ Optional:
 - `debug` (Attributes) Debug contains parameters to enable debug loggingand debug interfaces inside Contour. (see [below for nested schema](#nestedatt--spec--debug))
 - `enable_external_name_service` (Boolean) EnableExternalNameService allows processing of ExternalNameServicesContour's default is false for security reasons.
 - `envoy` (Attributes) Envoy contains parameters for Envoy as wellas how to optionally configure a managed Envoy fleet. (see [below for nested schema](#nestedatt--spec--envoy))
-- `feature_flags` (List of String) FeatureFlags defines toggle to enable new contour features.Available toggles are:useEndpointSlices - configures contour to fetch endpoint datafrom k8s endpoint slices. defaults to false and reading endpointdata from the k8s endpoints.
+- `feature_flags` (List of String) FeatureFlags defines toggle to enable new contour features.Available toggles are:useEndpointSlices - Configures contour to fetch endpoint datafrom k8s endpoint slices. defaults to true,If false then reads endpoint data from the k8s endpoints.
 - `gateway` (Attributes) Gateway contains parameters for the gateway-api Gateway that Contouris configured to serve traffic. (see [below for nested schema](#nestedatt--spec--gateway))
 - `global_ext_auth` (Attributes) GlobalExternalAuthorization allows envoys external authorization filterto be enabled for all virtual hosts. (see [below for nested schema](#nestedatt--spec--global_ext_auth))
 - `health` (Attributes) Health defines the endpoints Contour uses to serve health checks.Contour's default is { address: '0.0.0.0', port: 8000 }. (see [below for nested schema](#nestedatt--spec--health))

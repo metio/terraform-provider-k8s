@@ -3,12 +3,12 @@
 page_title: "k8s_apps_kubeblocks_io_config_constraint_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "apps.kubeblocks.io"
 description: |-
-  ConfigConstraint is the Schema for the configconstraint API
+  ConfigConstraint manages the parameters across multiple configuration files contained in a single configure template. These configuration files should have the same format (e.g. ini, xml, properties, json).  It provides the following functionalities:  1. Parameter Value Validation: Validates and ensures compliance of parameter values with defined constraints. 2. Dynamic Reload on Modification: Monitors parameter changes and triggers dynamic reloads to apply updates. 3. Parameter Rendering in Templates: Injects parameters into templates to generate up-to-date configuration files.
 ---
 
 # k8s_apps_kubeblocks_io_config_constraint_v1alpha1_manifest (Data Source)
 
-ConfigConstraint is the Schema for the configconstraint API
+ConfigConstraint manages the parameters across multiple configuration files contained in a single configure template. These configuration files should have the same format (e.g. ini, xml, properties, json).  It provides the following functionalities:  1. **Parameter Value Validation**: Validates and ensures compliance of parameter values with defined constraints. 2. **Dynamic Reload on Modification**: Monitors parameter changes and triggers dynamic reloads to apply updates. 3. **Parameter Rendering in Templates**: Injects parameters into templates to generate up-to-date configuration files.
 
 ## Example Usage
 
@@ -54,22 +54,22 @@ Optional:
 
 Required:
 
-- `formatter_config` (Attributes) Describes the format of the config file. The controller works as follows: 1. Parse the config file 2. Get the modified parameters 3. Trigger the corresponding action (see [below for nested schema](#nestedatt--spec--formatter_config))
+- `formatter_config` (Attributes) Specifies the format of the configuration file and any associated parameters that are specific to the chosen format. Supported formats include 'ini', 'xml', 'yaml', 'json', 'hcl', 'dotenv', 'properties', and 'toml'.  Each format may have its own set of parameters that can be configured. For instance, when using the 'ini' format, you can specify the section name.  Example: ''' formatterConfig: format: ini iniConfig: sectionName: mysqld ''' (see [below for nested schema](#nestedatt--spec--formatter_config))
 
 Optional:
 
-- `cfg_schema_top_level_name` (String) Top level key used to get the cue rules to validate the config file. It must exist in 'ConfigSchema' TODO (refactored to ConfigSchemaTopLevelKey)
-- `configuration_schema` (Attributes) List constraints rules for each config parameters. TODO (refactored to ConfigSchema) (see [below for nested schema](#nestedatt--spec--configuration_schema))
-- `downward_api_options` (Attributes List) A set of actions for regenerating local configs.  It works when: - different engine roles have different config, such as redis primary & secondary - after a role switch, the local config will be regenerated with the help of DownwardActions TODO (refactored to DownwardActions) (see [below for nested schema](#nestedatt--spec--downward_api_options))
-- `dynamic_action_can_be_merged` (Boolean) Indicates the dynamic reload action and restart action can be merged to a restart action.  When a batch of parameters updates incur both restart & dynamic reload, it works as: - set to true, the two actions merged to only one restart action - set to false, the two actions cannot be merged, the actions executed in order [dynamic reload, restart]
-- `dynamic_parameter_selected_policy` (String) Specifies the policy for selecting the parameters of dynamic reload actions.
-- `dynamic_parameters` (List of String) A list of DynamicParameter. Modifications of dynamic parameters trigger a reload action without process restart.
-- `immutable_parameters` (List of String) Describes parameters that are prohibited to do any modifications.
-- `reload_options` (Attributes) Specifies the dynamic reload actions supported by the engine. If set, the controller call the scripts defined in the actions for a dynamic parameter upgrade. The actions are called only when the modified parameter is defined in dynamicParameters part && DynamicReloadActions != nil TODO (refactored to DynamicReloadActions) (see [below for nested schema](#nestedatt--spec--reload_options))
-- `script_configs` (Attributes List) A list of ScriptConfig used by the actions defined in dynamic reload and downward actions. (see [below for nested schema](#nestedatt--spec--script_configs))
-- `selector` (Attributes) Used to match labels on the pod to do a dynamic reload TODO (refactored to DynamicReloadSelector) (see [below for nested schema](#nestedatt--spec--selector))
-- `static_parameters` (List of String) A list of StaticParameter. Modifications of static parameters trigger a process restart.
-- `tools_image_spec` (Attributes) Tools used by the dynamic reload actions. Usually it is referenced by the 'init container' for 'cp' it to a binary volume. TODO (refactored to ReloadToolsImage) (see [below for nested schema](#nestedatt--spec--tools_image_spec))
+- `cfg_schema_top_level_name` (String) Specifies the top-level key in the 'configurationSchema.cue' that organizes the validation rules for parameters. This key must exist within the CUE script defined in 'configurationSchema.cue'.
+- `configuration_schema` (Attributes) Defines a list of parameters including their names, default values, descriptions, types, and constraints (permissible values or the range of valid values). (see [below for nested schema](#nestedatt--spec--configuration_schema))
+- `downward_api_options` (Attributes List) Specifies a list of actions to execute specified commands based on Pod labels.  It utilizes the K8s Downward API to mount label information as a volume into the pod. The 'config-manager' sidecar container watches for changes in the role label and dynamically invoke registered commands (usually execute some SQL statements) when a change is detected.  It is designed for scenarios where:  - Replicas with different roles have different configurations, such as Redis primary & secondary replicas. - After a role switch (e.g., from secondary to primary), some changes in configuration are needed to reflect the new role. (see [below for nested schema](#nestedatt--spec--downward_api_options))
+- `dynamic_action_can_be_merged` (Boolean) Indicates whether to consolidate dynamic reload and restart actions into a single restart.  - If true, updates requiring both actions will result in only a restart, merging the actions. - If false, updates will trigger both actions executed sequentially: first dynamic reload, then restart.  This flag allows for more efficient handling of configuration changes by potentially eliminating an unnecessary reload step.
+- `dynamic_parameter_selected_policy` (String) Configures whether the dynamic reload specified in 'reloadOptions' applies only to dynamic parameters or to all parameters (including static parameters).  - 'dynamic' (default): Only modifications to the dynamic parameters listed in 'dynamicParameters' will trigger a dynamic reload. - 'all': Modifications to both dynamic parameters listed in 'dynamicParameters' and static parameters listed in 'staticParameters' will trigger a dynamic reload. The 'all' option is for certain engines that require static parameters to be set via SQL statements before they can take effect on restart.
+- `dynamic_parameters` (List of String) List dynamic parameters. Modifications to these parameters trigger a configuration reload without requiring a process restart.
+- `immutable_parameters` (List of String) Lists the parameters that cannot be modified once set. Attempting to change any of these parameters will be ignored.
+- `reload_options` (Attributes) Specifies the dynamic reload action supported by the engine. When set, the controller executes the method defined here to execute hot parameter updates.  Dynamic reloading is triggered only if both of the following conditions are met:  1. The modified parameters are listed in the 'dynamicParameters' field. If 'dynamicParameterSelectedPolicy' is set to 'all', modifications to 'staticParameters' can also trigger a reload. 2. 'reloadOptions' is set.  If 'reloadOptions' is not set or the modified parameters are not listed in 'dynamicParameters', dynamic reloading will not be triggered.  Example: '''yaml reloadOptions: tplScriptTrigger: namespace: kb-system scriptConfigMapRef: mysql-reload-script sync: true ''' (see [below for nested schema](#nestedatt--spec--reload_options))
+- `script_configs` (Attributes List) A list of ScriptConfig Object.  Each ScriptConfig object specifies a ConfigMap that contains script files that should be mounted inside the pod. The scripts are mounted as volumes and can be referenced and executed by the dynamic reload and DownwardAction to perform specific tasks or configurations. (see [below for nested schema](#nestedatt--spec--script_configs))
+- `selector` (Attributes) Used to match labels on the pod to determine whether a dynamic reload should be performed.  In some scenarios, only specific pods (e.g., primary replicas) need to undergo a dynamic reload. The 'selector' allows you to specify label selectors to target the desired pods for the reload process.  If the 'selector' is not specified or is nil, all pods managed by the workload will be considered for the dynamic reload. (see [below for nested schema](#nestedatt--spec--selector))
+- `static_parameters` (List of String) List static parameters. Modifications to any of these parameters require a restart of the process to take effect.
+- `tools_image_spec` (Attributes) Specifies the tools container image used by ShellTrigger for dynamic reload. If the dynamic reload action is triggered by a ShellTrigger, this field is required. This image must contain all necessary tools for executing the ShellTrigger scripts.  Usually the specified image is referenced by the init container, which is then responsible for copy the tools from the image to a bin volume. This ensures that the tools are available to the 'config-manager' sidecar. (see [below for nested schema](#nestedatt--spec--tools_image_spec))
 
 <a id="nestedatt--spec--formatter_config"></a>
 ### Nested Schema for `spec.formatter_config`
@@ -80,7 +80,7 @@ Required:
 
 Optional:
 
-- `ini_config` (Attributes) A pointer to an IniConfig struct that holds the ini options. (see [below for nested schema](#nestedatt--spec--formatter_config--ini_config))
+- `ini_config` (Attributes) Holds options specific to the 'ini' file format. (see [below for nested schema](#nestedatt--spec--formatter_config--ini_config))
 
 <a id="nestedatt--spec--formatter_config--ini_config"></a>
 ### Nested Schema for `spec.formatter_config.ini_config`
@@ -96,8 +96,8 @@ Optional:
 
 Optional:
 
-- `cue` (String) Enables providers to verify user configurations using the CUE language.
-- `schema` (Map of String) Transforms the schema from CUE to json for further OpenAPI validation TODO (refactored to SchemaInJson)
+- `cue` (String) Hold a string that contains a script written in CUE language that defines a list of configuration items. Each item is detailed with its name, default value, description, type (e.g. string, integer, float), and constraints (permissible values or the valid range of values).  CUE (Configure, Unify, Execute) is a declarative language designed for defining and validating complex data configurations. It is particularly useful in environments like K8s where complex configurations and validation rules are common.  This script functions as a validator for user-provided configurations, ensuring compliance with the established specifications and constraints.
+- `schema` (Map of String) Generated from the 'cue' field and transformed into a JSON format.
 
 
 <a id="nestedatt--spec--downward_api_options"></a>
@@ -105,13 +105,13 @@ Optional:
 
 Required:
 
-- `items` (Attributes List) Represents a list of downward API volume files. (see [below for nested schema](#nestedatt--spec--downward_api_options--items))
-- `mount_point` (String) Specifies the mount point of the scripts file.
+- `items` (Attributes List) Represents a list of files under the Downward API volume. (see [below for nested schema](#nestedatt--spec--downward_api_options--items))
+- `mount_point` (String) Specifies the mount point of the Downward API volume.
 - `name` (String) Specifies the name of the field. It must be a string of maximum length 63. The name should match the regex pattern '^[a-z0-9]([a-z0-9.-]*[a-z0-9])?$'.
 
 Optional:
 
-- `command` (List of String) The command used to execute for the downward API.
+- `command` (List of String) Specifies the command to be triggered when changes are detected in Downward API volume files. It relies on the inotify mechanism in the config-manager sidecar to monitor file changes.
 
 <a id="nestedatt--spec--downward_api_options--items"></a>
 ### Nested Schema for `spec.downward_api_options.items`
@@ -158,10 +158,10 @@ Optional:
 
 Optional:
 
-- `auto_trigger` (Attributes) Used to automatically perform the reload command when conditions are met. (see [below for nested schema](#nestedatt--spec--reload_options--auto_trigger))
-- `shell_trigger` (Attributes) Used to perform the reload command in shell script. (see [below for nested schema](#nestedatt--spec--reload_options--shell_trigger))
-- `tpl_script_trigger` (Attributes) Used to perform the reload command by Go template script. (see [below for nested schema](#nestedatt--spec--reload_options--tpl_script_trigger))
-- `unix_signal_trigger` (Attributes) Used to trigger a reload by sending a Unix signal to the process. (see [below for nested schema](#nestedatt--spec--reload_options--unix_signal_trigger))
+- `auto_trigger` (Attributes) Automatically perform the reload when specified conditions are met. (see [below for nested schema](#nestedatt--spec--reload_options--auto_trigger))
+- `shell_trigger` (Attributes) Allows to execute a custom shell script to reload the process. (see [below for nested schema](#nestedatt--spec--reload_options--shell_trigger))
+- `tpl_script_trigger` (Attributes) Enables reloading process using a Go template script. (see [below for nested schema](#nestedatt--spec--reload_options--tpl_script_trigger))
+- `unix_signal_trigger` (Attributes) Used to trigger a reload by sending a specific Unix signal to the process. (see [below for nested schema](#nestedatt--spec--reload_options--unix_signal_trigger))
 
 <a id="nestedatt--spec--reload_options--auto_trigger"></a>
 ### Nested Schema for `spec.reload_options.auto_trigger`
@@ -176,11 +176,13 @@ Optional:
 
 Required:
 
-- `command` (List of String) Specifies the list of commands for reload.
+- `command` (List of String) Specifies the command to execute in order to reload the process. It should be a valid shell command.
 
 Optional:
 
-- `sync` (Boolean) Specifies whether to synchronize updates parameters to the config manager. Specifies two ways of controller to reload the parameter: - set to 'True', execute the reload action in sync mode, wait for the completion of reload - set to 'False', execute the reload action in async mode, just update the 'Configmap', no need to wait
+- `batch_parameters_template` (String) BatchParametersTemplate provides an optional Go template string to format the batch input data passed into the STDIN of the script when 'batchReload' is set to 'True'. The template uses the updated parameters' key-value pairs, accessible via the '$' variable. This allows for custom formatting of the input data. Example template:  '''yaml batchParametersTemplate: |- {{- range $pKey, $pValue := $ }} {{ printf '%s:%s' $pKey $pValue }} {{- end }} '''  This example generates batch input data in a key:value format, sorted by keys. ''' key1:value1 key2:value2 key3:value3 '''  If not specified, the default format is key=value, sorted by keys, for each updated parameter. ''' key1=value1 key2=value2 key3=value3 '''
+- `batch_reload` (Boolean) Specifies whether to process dynamic parameter updates individually or collectively in a batch:  - Set to 'True' to execute all parameter changes in one batch reload action. - Set to 'False' to execute a reload action for each individual parameter change. The default behavior, if not specified, is 'False'.
+- `sync` (Boolean) Determines whether parameter updates should be synchronized with the config manager. Specifies the controller's reload strategy:  - If set to 'True', the controller executes the reload action in synchronous mode, pausing execution until the reload completes. - If set to 'False', the controller executes the reload action in asynchronous mode, updating the ConfigMap without waiting for the reload process to finish.
 
 
 <a id="nestedatt--spec--reload_options--tpl_script_trigger"></a>
@@ -193,7 +195,7 @@ Required:
 Optional:
 
 - `namespace` (String) Specifies the namespace where the referenced tpl script ConfigMap in. If left empty, by default in the 'default' namespace.
-- `sync` (Boolean) Specifies whether to synchronize updates parameters to the config manager. Specifies two ways of controller to reload the parameter: - set to 'True', execute the reload action in sync mode, wait for the completion of reload - set to 'False', execute the reload action in async mode, just update the 'Configmap', no need to wait
+- `sync` (Boolean) Determines whether parameter updates should be synchronized with the config manager. Specifies the controller's reload strategy:  - If set to 'True', the controller executes the reload action in synchronous mode, pausing execution until the reload completes. - If set to 'False', the controller executes the reload action in asynchronous mode, updating the ConfigMap without waiting for the reload process to finish.
 
 
 <a id="nestedatt--spec--reload_options--unix_signal_trigger"></a>
@@ -201,8 +203,8 @@ Optional:
 
 Required:
 
-- `process_name` (String) Represents the name of the process that the Unix signal sent to.
-- `signal` (String) Represents a valid Unix signal. Refer to the following URL for a list of all Unix signals: ../../pkg/configuration/configmap/handler.go:allUnixSignals
+- `process_name` (String) Identifies the name of the process to which the Unix signal will be sent.
+- `signal` (String) Specifies a valid Unix signal to be sent. For a comprehensive list of all Unix signals, see: ../../pkg/configuration/configmap/handler.go:allUnixSignals
 
 
 
@@ -245,20 +247,20 @@ Optional:
 
 Required:
 
-- `mount_point` (String) Represents the point where the scripts file will be mounted.
+- `mount_point` (String) Specifies the directory path in the container where the tools-related files are to be copied. This field is typically used with an emptyDir volume to ensure a temporary, empty directory is provided at pod creation.
 
 Optional:
 
-- `tool_configs` (Attributes List) Used to configure the initialization container. (see [below for nested schema](#nestedatt--spec--tools_image_spec--tool_configs))
+- `tool_configs` (Attributes List) Specifies a list of settings of init containers that prepare tools for dynamic reload. (see [below for nested schema](#nestedatt--spec--tools_image_spec--tool_configs))
 
 <a id="nestedatt--spec--tools_image_spec--tool_configs"></a>
 ### Nested Schema for `spec.tools_image_spec.tool_configs`
 
 Required:
 
-- `command` (List of String) Commands to be executed when init containers.
+- `command` (List of String) Specifies the command to be executed by the init container.
 
 Optional:
 
-- `image` (String) Represents the url of the tool container image.
-- `name` (String) Specifies the name of the initContainer.
+- `image` (String) Specifies the tool container image.
+- `name` (String) Specifies the name of the init container.

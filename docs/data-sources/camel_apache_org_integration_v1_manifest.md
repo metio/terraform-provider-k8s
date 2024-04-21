@@ -159,6 +159,7 @@ Optional:
 - `readiness_probe` (Attributes) Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--template--spec--volumes--readiness_probe))
 - `resize_policy` (Attributes List) Resources resize policy for the container. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--resize_policy))
 - `resources` (Attributes) Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--template--spec--volumes--resources))
+- `restart_policy` (String) RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.
 - `security_context` (Attributes) SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ (see [below for nested schema](#nestedatt--spec--template--spec--volumes--security_context))
 - `startup_probe` (Attributes) StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--template--spec--volumes--startup_probe))
 - `stdin` (Boolean) Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false.
@@ -624,7 +625,7 @@ Required:
 
 Optional:
 
-- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.
+- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.
 
 
 <a id="nestedatt--spec--template--spec--volumes--security_context--windows_options"></a>
@@ -634,7 +635,7 @@ Optional:
 
 - `gmsa_credential_spec` (String) GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.
 - `gmsa_credential_spec_name` (String) GMSACredentialSpecName is the name of the GMSA credential spec to use.
-- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.
+- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.
 - `run_as_user_name` (String) The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
 
 
@@ -759,6 +760,7 @@ Optional:
 - `readiness_probe` (Attributes) Probes are not allowed for ephemeral containers. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--readiness_probe))
 - `resize_policy` (Attributes List) Resources resize policy for the container. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--resize_policy))
 - `resources` (Attributes) Resources are not allowed for ephemeral containers. Ephemeral containers use spare resources already allocated to the pod. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--resources))
+- `restart_policy` (String) Restart policy for the container to manage the restart behavior of each container within a pod. This may only be set for init containers. You cannot set this field on ephemeral containers.
 - `security_context` (Attributes) Optional: SecurityContext defines the security options the ephemeral container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--security_context))
 - `startup_probe` (Attributes) Probes are not allowed for ephemeral containers. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--startup_probe))
 - `stdin` (Boolean) Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false.
@@ -1225,7 +1227,7 @@ Required:
 
 Optional:
 
-- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.
+- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.
 
 
 <a id="nestedatt--spec--template--spec--volumes--security_context--windows_options"></a>
@@ -1235,7 +1237,7 @@ Optional:
 
 - `gmsa_credential_spec` (String) GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.
 - `gmsa_credential_spec_name` (String) GMSACredentialSpecName is the name of the GMSA credential spec to use.
-- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.
+- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.
 - `run_as_user_name` (String) The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
 
 
@@ -1360,6 +1362,7 @@ Optional:
 - `readiness_probe` (Attributes) Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--template--spec--volumes--readiness_probe))
 - `resize_policy` (Attributes List) Resources resize policy for the container. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--resize_policy))
 - `resources` (Attributes) Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--template--spec--volumes--resources))
+- `restart_policy` (String) RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.
 - `security_context` (Attributes) SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ (see [below for nested schema](#nestedatt--spec--template--spec--volumes--security_context))
 - `startup_probe` (Attributes) StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--template--spec--volumes--startup_probe))
 - `stdin` (Boolean) Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false.
@@ -1825,7 +1828,7 @@ Required:
 
 Optional:
 
-- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.
+- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.
 
 
 <a id="nestedatt--spec--template--spec--volumes--security_context--windows_options"></a>
@@ -1835,7 +1838,7 @@ Optional:
 
 - `gmsa_credential_spec` (String) GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.
 - `gmsa_credential_spec_name` (String) GMSACredentialSpecName is the name of the GMSA credential spec to use.
-- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.
+- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.
 - `run_as_user_name` (String) The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
 
 
@@ -1975,7 +1978,7 @@ Required:
 
 Optional:
 
-- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.
+- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.
 
 
 <a id="nestedatt--spec--template--spec--volumes--sysctls"></a>
@@ -1994,7 +1997,7 @@ Optional:
 
 - `gmsa_credential_spec` (String) GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.
 - `gmsa_credential_spec_name` (String) GMSACredentialSpecName is the name of the GMSA credential spec to use.
-- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.
+- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.
 - `run_as_user_name` (String) The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
 
 
@@ -2842,7 +2845,7 @@ Optional:
 - `prometheus` (Attributes) The configuration of Prometheus trait (see [below for nested schema](#nestedatt--spec--traits--prometheus))
 - `pull_secret` (Attributes) The configuration of Pull Secret trait (see [below for nested schema](#nestedatt--spec--traits--pull_secret))
 - `quarkus` (Attributes) The configuration of Quarkus trait (see [below for nested schema](#nestedatt--spec--traits--quarkus))
-- `registry` (Attributes) The configuration of Registry trait (see [below for nested schema](#nestedatt--spec--traits--registry))
+- `registry` (Attributes) The configuration of Registry trait Deprecated: use jvm trait or read documentation. (see [below for nested schema](#nestedatt--spec--traits--registry))
 - `route` (Attributes) The configuration of Route trait (see [below for nested schema](#nestedatt--spec--traits--route))
 - `service` (Attributes) The configuration of Service trait (see [below for nested schema](#nestedatt--spec--traits--service))
 - `service_binding` (Attributes) The configuration of Service Binding trait (see [below for nested schema](#nestedatt--spec--traits--service_binding))
@@ -2880,12 +2883,13 @@ Optional:
 - `maven_profiles` (List of String) A list of references pointing to configmaps/secrets that contains a maven profile. The content of the maven profile is expected to be a text containing a valid maven profile starting with '<profile>' and ending with '</profile>' that will be integrated as an inline profile in the POM. Syntax: [configmap|secret]:name[/key], where name represents the resource name, key optionally represents the resource key to be filtered (default key value = profile.xml).
 - `node_selector` (Map of String) Defines a set of nodes the builder pod is eligible to be scheduled on, based on labels on the node.
 - `order_strategy` (String) The build order strategy to use, either 'dependencies', 'fifo' or 'sequential' (default 'sequential')
+- `platforms` (List of String) The list of manifest platforms to use to build a container image (default 'linux/amd64').
 - `properties` (List of String) A list of properties to be provided to the build task
 - `request_cpu` (String) When using 'pod' strategy, the minimum amount of CPU required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.
 - `request_memory` (String) When using 'pod' strategy, the minimum amount of memory required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.
 - `strategy` (String) The strategy to use, either 'pod' or 'routine' (default 'routine')
 - `tasks` (List of String) A list of tasks to be executed (available only when using 'pod' strategy) with format '<name>;<container-image>;<container-command>'.
-- `tasks_filter` (String) A list of tasks sorted by the order of execution in a csv format, ie, '<taskName1>,<taskName2>,...'. Mind that you must include also the operator tasks ('builder', 'quarkus-native', 'package', 'jib', 'spectrum', 's2i') if you need to execute them. Useful only with 'pod' strategy.
+- `tasks_filter` (String) A list of tasks sorted by the order of execution in a csv format, ie, '<taskName1>,<taskName2>,...'. Mind that you must include also the operator tasks ('builder', 'quarkus-native', 'package', 'jib', 's2i') if you need to execute them. Useful only with 'pod' strategy.
 - `tasks_limit_cpu` (List of String) A list of limit cpu configuration for the specific task with format '<task-name>:<limit-cpu-conf>'.
 - `tasks_limit_memory` (List of String) A list of limit memory configuration for the specific task with format '<task-name>:<limit-memory-conf>'.
 - `tasks_request_cpu` (List of String) A list of request cpu configuration for the specific task with format '<task-name>:<request-cpu-conf>'.
@@ -2901,7 +2905,7 @@ Optional:
 - `configuration` (Map of String) Legacy trait configuration parameters. Deprecated: for backward compatibility.
 - `enabled` (Boolean) Deprecated: no longer in use.
 - `properties` (List of String) A list of properties to be provided to the Integration runtime
-- `runtime_version` (String) The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform.
+- `runtime_version` (String) The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform. You can use a fixed version (for example '3.2.3') or a semantic version (for example '3.x') which will try to resolve to the best matching Catalog existing on the cluster.
 
 
 <a id="nestedatt--spec--traits--container"></a>
@@ -2971,8 +2975,8 @@ Optional:
 - `configuration` (Map of String) Legacy trait configuration parameters. Deprecated: for backward compatibility.
 - `enabled` (Boolean) Deprecated: no longer in use.
 - `progress_deadline_seconds` (Number) The maximum time in seconds for the deployment to make progress before it is considered to be failed. It defaults to '60s'.
-- `rolling_update_max_surge` (Number) The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to '25%'.
-- `rolling_update_max_unavailable` (Number) The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to '25%'.
+- `rolling_update_max_surge` (String) The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to '25%'.
+- `rolling_update_max_unavailable` (String) The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to '25%'.
 - `strategy` (String) The deployment strategy to use to replace existing pods with new ones.
 
 
@@ -3186,8 +3190,9 @@ Optional:
 - `configs` (List of String) A list of configuration pointing to configmap/secret. The configuration are expected to be UTF-8 resources as they are processed by runtime Camel Context and tried to be parsed as property files. They are also made available on the classpath in order to ease their usage directly from the Route. Syntax: [configmap|secret]:name[/key], where name represents the resource name and key optionally represents the resource key to be filtered
 - `configuration` (Map of String) Legacy trait configuration parameters. Deprecated: for backward compatibility.
 - `enabled` (Boolean) Deprecated: no longer in use.
-- `hot_reload` (Boolean) Enable 'hot reload' when a secret/configmap mounted is edited (default 'false'). The configmap/secret must be marked with 'camel.apache.org/integration' label to be taken in account.
+- `hot_reload` (Boolean) Enable 'hot reload' when a secret/configmap mounted is edited (default 'false'). The configmap/secret must be marked with 'camel.apache.org/integration' label to be taken in account. The resource will be watched for any kind change, also for changes in metadata.
 - `resources` (List of String) A list of resources (text or binary content) pointing to configmap/secret. The resources are expected to be any resource type (text or binary content). The destination path can be either a default location or any path specified by the user. Syntax: [configmap|secret]:name[/key][@path], where name represents the resource name, key optionally represents the resource key to be filtered and path represents the destination path
+- `scan_kamelets_implicit_label_secrets` (Boolean) Deprecated: include your properties in an explicit property file backed by a secret. Let the operator to scan for secret labeled with 'camel.apache.org/kamelet' and 'camel.apache.org/kamelet.configuration'. These secrets are mounted to the application and treated as plain properties file with their key/value list (ie .spec.data['camel.my-property'] = my-value) (default 'true').
 - `volumes` (List of String) A list of Persistent Volume Claims to be mounted. Syntax: [pvcname:/container/path]
 
 
@@ -3228,11 +3233,11 @@ Optional:
 
 Optional:
 
-- `auto` (Boolean) To automatically detect from the environment if a default platform can be created (it will be created on OpenShift only).
+- `auto` (Boolean) To automatically detect from the environment if a default platform can be created (it will be created on OpenShift or when a registry address is set). Deprecated: Platform is auto generated by the operator install procedure - maintained for backward compatibility
 - `configuration` (Map of String) Legacy trait configuration parameters. Deprecated: for backward compatibility.
-- `create_default` (Boolean) To create a default (empty) platform when the platform is missing.
+- `create_default` (Boolean) To create a default (empty) platform when the platform is missing. Deprecated: Platform is auto generated by the operator install procedure - maintained for backward compatibility
 - `enabled` (Boolean) Deprecated: no longer in use.
-- `global` (Boolean) Indicates if the platform should be created globally in the case of global operator (default true).
+- `global` (Boolean) Indicates if the platform should be created globally in the case of global operator (default true). Deprecated: Platform is auto generated by the operator install procedure - maintained for backward compatibility
 
 
 <a id="nestedatt--spec--traits--pod"></a>

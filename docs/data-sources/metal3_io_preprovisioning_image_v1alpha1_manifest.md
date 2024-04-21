@@ -3,12 +3,12 @@
 page_title: "k8s_metal3_io_preprovisioning_image_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "metal3.io"
 description: |-
-  PreprovisioningImage is the Schema for the preprovisioningimages API
+  PreprovisioningImage is the Schema for the preprovisioningimages API.
 ---
 
 # k8s_metal3_io_preprovisioning_image_v1alpha1_manifest (Data Source)
 
-PreprovisioningImage is the Schema for the preprovisioningimages API
+PreprovisioningImage is the Schema for the preprovisioningimages API.
 
 ## Example Usage
 
@@ -30,7 +30,7 @@ data "k8s_metal3_io_preprovisioning_image_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) PreprovisioningImageSpec defines the desired state of PreprovisioningImage (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) PreprovisioningImageSpec defines the desired state of PreprovisioningImage. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 

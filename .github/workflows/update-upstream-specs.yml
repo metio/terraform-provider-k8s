@@ -41,9 +41,9 @@ jobs:
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           title: Update upstream specifications to their latest version
           body: |
-            - `make fetch`: ${{ steps.fetch.conclusion }}
-            - `make generate`: ${{ steps.generate.conclusion }}
-            - `make docs`: ${{ steps.docs.conclusion }}
+            - `make fetch`: ${{ steps.fetch.outcome }}
+            - `make generate`: ${{ steps.generate.outcome }}
+            - `make docs`: ${{ steps.docs.outcome }}
           labels: enhancement
           assignees: sebhoss
           draft: false

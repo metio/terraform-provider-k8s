@@ -166,6 +166,7 @@ Optional:
 - `shared_between_pods` (Boolean) whether to share volume between pods
 - `storage_bucket` (String) artifact bucket storage
 - `storage_class_name` (String) artifact storage class name for container executor
+- `use_default_storage_class_name` (Boolean) whether to use default storage class name
 - `volume_mount_path` (String) artifact volume mount path for container executor
 
 

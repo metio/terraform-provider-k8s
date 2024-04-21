@@ -3,12 +3,12 @@
 page_title: "k8s_velero_io_restore_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "velero.io"
 description: |-
-  Restore is a Velero resource that represents the application of resources from a Velero backup to a target Kubernetes cluster.
+  Restore is a Velero resource that represents the application ofresources from a Velero backup to a target Kubernetes cluster.
 ---
 
 # k8s_velero_io_restore_v1_manifest (Data Source)
 
-Restore is a Velero resource that represents the application of resources from a Velero backup to a target Kubernetes cluster.
+Restore is a Velero resource that represents the application ofresources from a Velero backup to a target Kubernetes cluster.
 
 ## Example Usage
 
@@ -53,28 +53,25 @@ Optional:
 <a id="nestedatt--spec"></a>
 ### Nested Schema for `spec`
 
-Required:
-
-- `backup_name` (String) BackupName is the unique name of the Velero backup to restore from.
-
 Optional:
 
-- `excluded_namespaces` (List of String) ExcludedNamespaces contains a list of namespaces that are not included in the restore.
-- `excluded_resources` (List of String) ExcludedResources is a slice of resource names that are not included in the restore.
+- `backup_name` (String) BackupName is the unique name of the Velero backup to restorefrom.
+- `excluded_namespaces` (List of String) ExcludedNamespaces contains a list of namespaces that are notincluded in the restore.
+- `excluded_resources` (List of String) ExcludedResources is a slice of resource names that are notincluded in the restore.
 - `existing_resource_policy` (String) ExistingResourcePolicy specifies the restore behavior for the Kubernetes resource to be restored
 - `hooks` (Attributes) Hooks represent custom behaviors that should be executed during or post restore. (see [below for nested schema](#nestedatt--spec--hooks))
-- `include_cluster_resources` (Boolean) IncludeClusterResources specifies whether cluster-scoped resources should be included for consideration in the restore. If null, defaults to true.
-- `included_namespaces` (List of String) IncludedNamespaces is a slice of namespace names to include objects from. If empty, all namespaces are included.
-- `included_resources` (List of String) IncludedResources is a slice of resource names to include in the restore. If empty, all resources in the backup are included.
-- `item_operation_timeout` (String) ItemOperationTimeout specifies the time used to wait for RestoreItemAction operations The default value is 4 hour.
-- `label_selector` (Attributes) LabelSelector is a metav1.LabelSelector to filter with when restoring individual objects from the backup. If empty or nil, all objects are included. Optional. (see [below for nested schema](#nestedatt--spec--label_selector))
-- `namespace_mapping` (Map of String) NamespaceMapping is a map of source namespace names to target namespace names to restore into. Any source namespaces not included in the map will be restored into namespaces of the same name.
-- `or_label_selectors` (Attributes List) OrLabelSelectors is list of metav1.LabelSelector to filter with when restoring individual objects from the backup. If multiple provided they will be joined by the OR operator. LabelSelector as well as OrLabelSelectors cannot co-exist in restore request, only one of them can be used (see [below for nested schema](#nestedatt--spec--or_label_selectors))
+- `include_cluster_resources` (Boolean) IncludeClusterResources specifies whether cluster-scoped resourcesshould be included for consideration in the restore. If null, defaultsto true.
+- `included_namespaces` (List of String) IncludedNamespaces is a slice of namespace names to include objectsfrom. If empty, all namespaces are included.
+- `included_resources` (List of String) IncludedResources is a slice of resource names to includein the restore. If empty, all resources in the backup are included.
+- `item_operation_timeout` (String) ItemOperationTimeout specifies the time used to wait for RestoreItemAction operationsThe default value is 4 hour.
+- `label_selector` (Attributes) LabelSelector is a metav1.LabelSelector to filter withwhen restoring individual objects from the backup. If emptyor nil, all objects are included. Optional. (see [below for nested schema](#nestedatt--spec--label_selector))
+- `namespace_mapping` (Map of String) NamespaceMapping is a map of source namespace namesto target namespace names to restore into. Any sourcenamespaces not included in the map will be restored intonamespaces of the same name.
+- `or_label_selectors` (Attributes List) OrLabelSelectors is list of metav1.LabelSelector to filter withwhen restoring individual objects from the backup. If multiple providedthey will be joined by the OR operator. LabelSelector as well asOrLabelSelectors cannot co-exist in restore request, only one of themcan be used (see [below for nested schema](#nestedatt--spec--or_label_selectors))
 - `preserve_node_ports` (Boolean) PreserveNodePorts specifies whether to restore old nodePorts from backup.
 - `resource_modifier` (Attributes) ResourceModifier specifies the reference to JSON resource patches that should be applied to resources before restoration. (see [below for nested schema](#nestedatt--spec--resource_modifier))
-- `restore_p_vs` (Boolean) RestorePVs specifies whether to restore all included PVs from snapshot
-- `restore_status` (Attributes) RestoreStatus specifies which resources we should restore the status field. If nil, no objects are included. Optional. (see [below for nested schema](#nestedatt--spec--restore_status))
-- `schedule_name` (String) ScheduleName is the unique name of the Velero schedule to restore from. If specified, and BackupName is empty, Velero will restore from the most recent successful backup created from this schedule.
+- `restore_p_vs` (Boolean) RestorePVs specifies whether to restore all includedPVs from snapshot
+- `restore_status` (Attributes) RestoreStatus specifies which resources we should restore the statusfield. If nil, no objects are included. Optional. (see [below for nested schema](#nestedatt--spec--restore_status))
+- `schedule_name` (String) ScheduleName is the unique name of the Velero schedule to restorefrom. If specified, and BackupName is empty, Velero will restorefrom the most recent successful backup created from this schedule.
 - `uploader_config` (Attributes) UploaderConfig specifies the configuration for the restore. (see [below for nested schema](#nestedatt--spec--uploader_config))
 
 <a id="nestedatt--spec--hooks"></a>
@@ -95,8 +92,8 @@ Optional:
 
 - `excluded_namespaces` (List of String) ExcludedNamespaces specifies the namespaces to which this hook spec does not apply.
 - `excluded_resources` (List of String) ExcludedResources specifies the resources to which this hook spec does not apply.
-- `included_namespaces` (List of String) IncludedNamespaces specifies the namespaces to which this hook spec applies. If empty, it applies to all namespaces.
-- `included_resources` (List of String) IncludedResources specifies the resources to which this hook spec applies. If empty, it applies to all resources.
+- `included_namespaces` (List of String) IncludedNamespaces specifies the namespaces to which this hook spec applies. If empty, it appliesto all namespaces.
+- `included_resources` (List of String) IncludedResources specifies the resources to which this hook spec applies. If empty, it appliesto all resources.
 - `label_selector` (Attributes) LabelSelector, if specified, filters the resources to which this hook spec applies. (see [below for nested schema](#nestedatt--spec--hooks--resources--label_selector))
 - `post_hooks` (Attributes List) PostHooks is a list of RestoreResourceHooks to execute during and after restoring a resource. (see [below for nested schema](#nestedatt--spec--hooks--resources--post_hooks))
 
@@ -106,7 +103,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--hooks--resources--post_hooks--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--hooks--resources--post_hooks--match_expressions"></a>
 ### Nested Schema for `spec.hooks.resources.post_hooks.match_expressions`
@@ -114,11 +111,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -139,11 +136,11 @@ Required:
 
 Optional:
 
-- `container` (String) Container is the container in the pod where the command should be executed. If not specified, the pod's first container is used.
-- `exec_timeout` (String) ExecTimeout defines the maximum amount of time Velero should wait for the hook to complete before considering the execution a failure.
+- `container` (String) Container is the container in the pod where the command should be executed. If not specified,the pod's first container is used.
+- `exec_timeout` (String) ExecTimeout defines the maximum amount of time Velero should wait for the hook to complete beforeconsidering the execution a failure.
 - `on_error` (String) OnError specifies how Velero should behave if it encounters an error executing this hook.
 - `wait_for_ready` (Boolean) WaitForReady ensures command will be launched when container is Ready instead of Running.
-- `wait_timeout` (String) WaitTimeout defines the maximum amount of time Velero should wait for the container to be Ready before attempting to run the command.
+- `wait_timeout` (String) WaitTimeout defines the maximum amount of time Velero should wait for the container to be Readybefore attempting to run the command.
 
 
 <a id="nestedatt--spec--hooks--resources--post_hooks--init"></a>
@@ -164,7 +161,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.label_selector.match_expressions`
@@ -172,11 +169,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -186,7 +183,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--or_label_selectors--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--or_label_selectors--match_expressions"></a>
 ### Nested Schema for `spec.or_label_selectors.match_expressions`
@@ -194,11 +191,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -212,7 +209,7 @@ Required:
 
 Optional:
 
-- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+- `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
 
 
 <a id="nestedatt--spec--restore_status"></a>
@@ -221,7 +218,7 @@ Optional:
 Optional:
 
 - `excluded_resources` (List of String) ExcludedResources specifies the resources to which will not restore the status.
-- `included_resources` (List of String) IncludedResources specifies the resources to which will restore the status. If empty, it applies to all resources.
+- `included_resources` (List of String) IncludedResources specifies the resources to which will restore the status.If empty, it applies to all resources.
 
 
 <a id="nestedatt--spec--uploader_config"></a>
@@ -229,4 +226,5 @@ Optional:
 
 Optional:
 
+- `parallel_files_download` (Number) ParallelFilesDownload is the concurrency number setting for restore.
 - `write_sparse_files` (Boolean) WriteSparseFiles is a flag to indicate whether write files sparsely or not.

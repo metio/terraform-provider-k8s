@@ -66,6 +66,7 @@ Optional:
 - `route` (Attributes) (see [below for nested schema](#nestedatt--spec--route))
 - `service` (Attributes) (see [below for nested schema](#nestedatt--spec--service))
 - `service_account` (Attributes) (see [below for nested schema](#nestedatt--spec--service_account))
+- `version` (String)
 
 <a id="nestedatt--spec--client"></a>
 ### Nested Schema for `spec.client`

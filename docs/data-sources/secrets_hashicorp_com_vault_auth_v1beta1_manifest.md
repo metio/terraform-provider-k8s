@@ -60,7 +60,7 @@ Required:
 
 Optional:
 
-- `allowed_namespaces` (List of String) AllowedNamespaces Kubernetes Namespaces which are allow-listed for use with this AuthMethod. This field allows administrators to customize which Kubernetes namespaces are authorized to use with this AuthMethod. While Vault will still enforce its own rules, this has the added configurability of restricting which VaultAuthMethods can be used by which namespaces. Accepted values: []{'*'} - wildcard, all namespaces. []{'a', 'b'} - list of namespaces. unset - disallow all namespaces except the Operator's the VaultAuthMethod's namespace, this is the default behavior.
+- `allowed_namespaces` (List of String) AllowedNamespaces Kubernetes Namespaces which are allow-listed for use with this AuthMethod.This field allows administrators to customize which Kubernetes namespaces are authorized touse with this AuthMethod. While Vault will still enforce its own rules, this has the addedconfigurability of restricting which VaultAuthMethods can be used by which namespaces.Accepted values:[]{'*'} - wildcard, all namespaces.[]{'a', 'b'} - list of namespaces.unset - disallow all namespaces except the Operator's the VaultAuthMethod's namespace, thisis the default behavior.
 - `app_role` (Attributes) AppRole specific auth configuration, requires that the Method be set to 'appRole'. (see [below for nested schema](#nestedatt--spec--app_role))
 - `aws` (Attributes) AWS specific auth configuration, requires that Method be set to 'aws'. (see [below for nested schema](#nestedatt--spec--aws))
 - `gcp` (Attributes) GCP specific auth configuration, requires that Method be set to 'gcp'. (see [below for nested schema](#nestedatt--spec--gcp))
@@ -69,8 +69,8 @@ Optional:
 - `kubernetes` (Attributes) Kubernetes specific auth configuration, requires that the Method be set to 'kubernetes'. (see [below for nested schema](#nestedatt--spec--kubernetes))
 - `namespace` (String) Namespace to auth to in Vault
 - `params` (Map of String) Params to use when authenticating to Vault
-- `storage_encryption` (Attributes) StorageEncryption provides the necessary configuration to encrypt the client storage cache. This should only be configured when client cache persistence with encryption is enabled. This is done by passing setting the manager's commandline argument --client-cache-persistence-model=direct-encrypted. Typically, there should only ever be one VaultAuth configured with StorageEncryption in the Cluster, and it should have the label: cacheStorageEncryption=true (see [below for nested schema](#nestedatt--spec--storage_encryption))
-- `vault_connection_ref` (String) VaultConnectionRef to the VaultConnection resource, can be prefixed with a namespace, eg: 'namespaceA/vaultConnectionRefB'. If no namespace prefix is provided it will default to namespace of the VaultConnection CR. If no value is specified for VaultConnectionRef the Operator will default to the 'default' VaultConnection, configured in the operator's namespace.
+- `storage_encryption` (Attributes) StorageEncryption provides the necessary configuration to encrypt the client storage cache.This should only be configured when client cache persistence with encryption is enabled.This is done by passing setting the manager's commandline argument--client-cache-persistence-model=direct-encrypted. Typically, there should only everbe one VaultAuth configured with StorageEncryption in the Cluster, and it should havethe label: cacheStorageEncryption=true (see [below for nested schema](#nestedatt--spec--storage_encryption))
+- `vault_connection_ref` (String) VaultConnectionRef to the VaultConnection resource, can be prefixed with a namespace,eg: 'namespaceA/vaultConnectionRefB'. If no namespace prefix is provided it will default tonamespace of the VaultConnection CR. If no value is specified for VaultConnectionRef theOperator will default to the 'default' VaultConnection, configured in the operator's namespace.
 
 <a id="nestedatt--spec--app_role"></a>
 ### Nested Schema for `spec.app_role`
@@ -78,7 +78,7 @@ Optional:
 Required:
 
 - `role_id` (String) RoleID of the AppRole Role to use for authenticating to Vault.
-- `secret_ref` (String) SecretRef is the name of a Kubernetes secret in the consumer's (VDS/VSS/PKI) namespace which provides the AppRole Role's SecretID. The secret must have a key named 'id' which holds the AppRole Role's secretID.
+- `secret_ref` (String) SecretRef is the name of a Kubernetes secret in the consumer's (VDS/VSS/PKI) namespace whichprovides the AppRole Role's SecretID. The secret must have a key named 'id' which holds theAppRole Role's secretID.
 
 
 <a id="nestedatt--spec--aws"></a>
@@ -92,9 +92,9 @@ Optional:
 
 - `header_value` (String) The Vault header value to include in the STS signing request
 - `iam_endpoint` (String) The IAM endpoint to use; if not set will use the default
-- `irsa_service_account` (String) IRSAServiceAccount name to use with IAM Roles for Service Accounts (IRSA), and should be annotated with 'eks.amazonaws.com/role-arn'. This ServiceAccount will be checked for other EKS annotations: eks.amazonaws.com/audience and eks.amazonaws.com/token-expiration
+- `irsa_service_account` (String) IRSAServiceAccount name to use with IAM Roles for Service Accounts(IRSA), and should be annotated with 'eks.amazonaws.com/role-arn'. ThisServiceAccount will be checked for other EKS annotations:eks.amazonaws.com/audience and eks.amazonaws.com/token-expiration
 - `region` (String) AWS Region to use for signing the authentication request
-- `secret_ref` (String) SecretRef is the name of a Kubernetes Secret in the consumer's (VDS/VSS/PKI) namespace which holds credentials for AWS. Expected keys include 'access_key_id', 'secret_access_key', 'session_token'
+- `secret_ref` (String) SecretRef is the name of a Kubernetes Secret in the consumer's (VDS/VSS/PKI) namespacewhich holds credentials for AWS. Expected keys include 'access_key_id', 'secret_access_key','session_token'
 - `session_name` (String) The role session name to use when creating a webidentity provider
 - `sts_endpoint` (String) The STS endpoint to use; if not set will use the default
 
@@ -105,13 +105,13 @@ Optional:
 Required:
 
 - `role` (String) Vault role to use for authenticating
-- `workload_identity_service_account` (String) WorkloadIdentityServiceAccount is the name of a Kubernetes service account (in the same Kubernetes namespace as the Vault*Secret referencing this resource) which has been configured for workload identity in GKE. Should be annotated with 'iam.gke.io/gcp-service-account'.
+- `workload_identity_service_account` (String) WorkloadIdentityServiceAccount is the name of a Kubernetes serviceaccount (in the same Kubernetes namespace as the Vault*Secret referencingthis resource) which has been configured for workload identity in GKE.Should be annotated with 'iam.gke.io/gcp-service-account'.
 
 Optional:
 
-- `cluster_name` (String) GKE cluster name. Defaults to the cluster-name returned from the operator pod's local metadata server.
-- `project_id` (String) GCP project ID. Defaults to the project-id returned from the operator pod's local metadata server.
-- `region` (String) GCP Region of the GKE cluster's identity provider. Defaults to the region returned from the operator pod's local metadata server.
+- `cluster_name` (String) GKE cluster name. Defaults to the cluster-name returned from the operatorpod's local metadata server.
+- `project_id` (String) GCP project ID. Defaults to the project-id returned from the operatorpod's local metadata server.
+- `region` (String) GCP Region of the GKE cluster's identity provider. Defaults to the regionreturned from the operator pod's local metadata server.
 
 
 <a id="nestedatt--spec--jwt"></a>
@@ -124,8 +124,8 @@ Required:
 Optional:
 
 - `audiences` (List of String) TokenAudiences to include in the ServiceAccount token.
-- `secret_ref` (String) SecretRef is the name of a Kubernetes secret in the consumer's (VDS/VSS/PKI) namespace which provides the JWT token to authenticate to Vault's JWT authentication backend. The secret must have a key named 'jwt' which holds the JWT token.
-- `service_account` (String) ServiceAccount to use when creating a ServiceAccount token to authenticate to Vault's JWT authentication backend.
+- `secret_ref` (String) SecretRef is the name of a Kubernetes secret in the consumer's (VDS/VSS/PKI) namespace whichprovides the JWT token to authenticate to Vault's JWT authentication backend. The secret musthave a key named 'jwt' which holds the JWT token.
+- `service_account` (String) ServiceAccount to use when creating a ServiceAccount token to authenticate to Vault'sJWT authentication backend.
 - `token_expiration_seconds` (Number) TokenExpirationSeconds to set the ServiceAccount token.
 
 
@@ -135,7 +135,7 @@ Optional:
 Required:
 
 - `role` (String) Role to use for authenticating to Vault.
-- `service_account` (String) ServiceAccount to use when authenticating to Vault's authentication backend. This must reside in the consuming secret's (VDS/VSS/PKI) namespace.
+- `service_account` (String) ServiceAccount to use when authenticating to Vault'sauthentication backend. This must reside in the consuming secret's (VDS/VSS/PKI) namespace.
 
 Optional:
 

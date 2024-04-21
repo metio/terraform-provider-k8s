@@ -78,7 +78,6 @@ Optional:
 - `log_level` (String) LogLevel for victoria metrics single to be configured with.
 - `node_selector` (Map of String) NodeSelector Define which Nodes the Pods are scheduled on.
 - `pod_metadata` (Attributes) PodMetadata configures Labels and Annotations which are propagated to the VMSingle pods. (see [below for nested schema](#nestedatt--spec--pod_metadata))
-- `pod_security_policy_name` (String) PodSecurityPolicyName - defines name for podSecurityPolicyin case of empty value, prefixedName will be used.
 - `port` (String) Port listen port
 - `priority_class_name` (String) PriorityClassName assigned to the Pods
 - `readiness_gates` (Attributes List) ReadinessGates defines pod readiness gates (see [below for nested schema](#nestedatt--spec--readiness_gates))
@@ -232,6 +231,7 @@ Required:
 Optional:
 
 - `metadata` (Attributes) EmbeddedObjectMetadata defines objectMeta for additional service. (see [below for nested schema](#nestedatt--spec--service_spec--metadata))
+- `use_as_default` (Boolean) UseAsDefault applies changes from given service definition to the main object ServiceChaning from headless service to clusterIP or loadbalancer may break cross-component communication
 
 <a id="nestedatt--spec--service_spec--metadata"></a>
 ### Nested Schema for `spec.service_spec.metadata`
@@ -377,7 +377,7 @@ Optional:
 - `labels` (Map of String) Labels is used together with Match for 'action: graphite'
 - `match` (String) Match is used together with Labels for 'action: graphite'
 - `modulus` (Number) Modulus to take of the hash of the source label values.
-- `regex` (String) Regular expression against which the extracted value is matched. Default is '(.*)'
+- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
 - `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
 - `separator` (String) Separator placed between concatenated source label values. default is ';'.
 - `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.
@@ -394,7 +394,7 @@ Optional:
 - `labels` (Map of String) Labels is used together with Match for 'action: graphite'
 - `match` (String) Match is used together with Labels for 'action: graphite'
 - `modulus` (Number) Modulus to take of the hash of the source label values.
-- `regex` (String) Regular expression against which the extracted value is matched. Default is '(.*)'
+- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
 - `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
 - `separator` (String) Separator placed between concatenated source label values. default is ';'.
 - `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.
@@ -433,8 +433,8 @@ Optional:
 - `extra_args` (Map of String) extra args like maxBytesPerSecond default 0
 - `extra_envs` (Attributes List) (see [below for nested schema](#nestedatt--spec--vm_backup--extra_envs))
 - `image` (Attributes) Image - docker image settings for VMBackuper (see [below for nested schema](#nestedatt--spec--vm_backup--image))
-- `log_format` (String) LogFormat for VMSelect to be configured with.default or json
-- `log_level` (String) LogLevel for VMSelect to be configured with.
+- `log_format` (String) LogFormat for VMBackup to be configured with.default or json
+- `log_level` (String) LogLevel for VMBackup to be configured with.
 - `port` (String) Port for health check connections
 - `resources` (Attributes) Resources container resource request and limits, https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/if not defined default resources from operator config will be used (see [below for nested schema](#nestedatt--spec--vm_backup--resources))
 - `restore` (Attributes) Restore Allows to enable restore options for podRead more: https://docs.victoriametrics.com/vmbackupmanager.html#restore-commands (see [below for nested schema](#nestedatt--spec--vm_backup--restore))

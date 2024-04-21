@@ -3,12 +3,12 @@
 page_title: "k8s_pkg_crossplane_io_controller_config_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "pkg.crossplane.io"
 description: |-
-  ControllerConfig is the CRD type for a packaged controller configuration.Deprecated: This API is replaced by DeploymentRuntimeConfig, and is scheduledto be removed in a future release. See the design doc for more details:https://github.com/crossplane/crossplane/blob/11bbe13ea3604928cc4e24e8d0d18f3f5f7e847c/design/one-pager-package-runtime-config.md
+  A ControllerConfig applies settings to controllers like Provider pods.Deprecated: Use theDeploymentRuntimeConfig https://docs.crossplane.io/latest/concepts/providers#runtime-configurationinstead.Read thePackage Runtime Configuration https://github.com/crossplane/crossplane/blob/11bbe13ea3604928cc4e24e8d0d18f3f5f7e847c/design/one-pager-package-runtime-config.mddesign document for more details.
 ---
 
 # k8s_pkg_crossplane_io_controller_config_v1alpha1_manifest (Data Source)
 
-ControllerConfig is the CRD type for a packaged controller configuration.Deprecated: This API is replaced by DeploymentRuntimeConfig, and is scheduledto be removed in a future release. See the design doc for more details:https://github.com/crossplane/crossplane/blob/11bbe13ea3604928cc4e24e8d0d18f3f5f7e847c/design/one-pager-package-runtime-config.md
+A ControllerConfig applies settings to controllers like Provider pods.Deprecated: Use the[DeploymentRuntimeConfig](https://docs.crossplane.io/latest/concepts/providers#runtime-configuration)instead.Read the[Package Runtime Configuration](https://github.com/crossplane/crossplane/blob/11bbe13ea3604928cc4e24e8d0d18f3f5f7e847c/design/one-pager-package-runtime-config.md)design document for more details.
 
 ## Example Usage
 
@@ -69,7 +69,7 @@ Optional:
 - `priority_class_name` (String) If specified, indicates the pod's priority. 'system-node-critical' and'system-cluster-critical' are two special keywords which indicate thehighest priorities with the former being the highest priority. Any othername must be defined by creating a PriorityClass object with that name.If not specified, the pod priority will be default or zero if there is nodefault.
 - `replicas` (Number) Number of desired pods. This is a pointer to distinguish between explicitzero and not specified. Defaults to 1.Note: If more than 1 replica is set and leader election is not enabled thencontrollers could conflict. Environment variable 'LEADER_ELECTION' can beused to enable leader election process.
 - `resources` (Attributes) Compute Resources required by this container.Cannot be updated.More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/ (see [below for nested schema](#nestedatt--spec--resources))
-- `runtime_class_name` (String) RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be usedto run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run.If unset or empty, the 'legacy' RuntimeClass will be used, which is an implicit class with anempty definition that uses the default runtime handler.More info: https://git.k8s.io/enhancements/keps/sig-node/runtime-class.mdThis is a beta feature as of Kubernetes v1.14.
+- `runtime_class_name` (String) RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be usedto run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run.If unset or empty, the 'legacy' RuntimeClass will be used, which is an implicit class with anempty definition that uses the default runtime handler.More info: https://github.com/kubernetes/enhancements/blob/master/keps/sig-node/585-runtime-class/README.mdThis is a beta feature as of Kubernetes v1.14.
 - `security_context` (Attributes) SecurityContext holds container-level security attributes and common container settings.Optional: Defaults to empty.  See type description for default values of each field. (see [below for nested schema](#nestedatt--spec--security_context))
 - `service_account_name` (String) ServiceAccountName is the name of the ServiceAccount to use to run this pod.More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/If specified, a ServiceAccount named this ServiceAccountName will be used forthe spec.serviceAccountName field in Pods to be created and for the subjects.name fieldin a ClusterRoleBinding to be created.If there is no ServiceAccount named this ServiceAccountName, a new ServiceAccountwill be created.If there is a pre-existing ServiceAccount named this ServiceAccountName, the ServiceAccountwill be used. The annotations in the ControllerConfig will be copied to the ServiceAccountand pre-existing annotations will be kept.Regardless of whether there is a ServiceAccount created by Crossplane or is in place already,the ServiceAccount will be deleted once the Provider and ControllerConfig are deleted.
 - `tolerations` (Attributes List) If specified, the pod's tolerations. (see [below for nested schema](#nestedatt--spec--tolerations))
@@ -574,8 +574,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http://kubernetes.io/docs/user-guide/annotations
-- `labels` (Map of String) Map of string keys and values that can be used to organize andcategorize (scope and select) objects. This will only affectlabels on the pod, not the pod selector. Labels will be mergedwith internal labels used by crossplane, and labels with acrossplane.io key might be overwritten.More info: http://kubernetes.io/docs/user-guide/labels
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http:https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+- `labels` (Map of String) Map of string keys and values that can be used to organize andcategorize (scope and select) objects. This will only affectlabels on the pod, not the pod selector. Labels will be mergedwith internal labels used by crossplane, and labels with acrossplane.io key might be overwritten.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
 
 
 <a id="nestedatt--spec--pod_security_context"></a>

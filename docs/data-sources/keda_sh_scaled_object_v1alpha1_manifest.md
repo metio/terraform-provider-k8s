@@ -61,6 +61,7 @@ Optional:
 - `cooldown_period` (Number)
 - `fallback` (Attributes) Fallback is the spec for fallback options (see [below for nested schema](#nestedatt--spec--fallback))
 - `idle_replica_count` (Number)
+- `initial_cooldown_period` (Number)
 - `max_replica_count` (Number)
 - `min_replica_count` (Number)
 - `polling_interval` (Number)

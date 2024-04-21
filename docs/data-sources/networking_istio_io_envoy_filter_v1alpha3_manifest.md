@@ -57,6 +57,7 @@ Optional:
 
 - `config_patches` (Attributes List) One or more patches with match conditions. (see [below for nested schema](#nestedatt--spec--config_patches))
 - `priority` (Number) Priority defines the order in which patch sets are applied within a context.
+- `target_refs` (Attributes List) Optional. (see [below for nested schema](#nestedatt--spec--target_refs))
 - `workload_selector` (Attributes) Criteria used to select the specific set of pods/VMs on which this patch configuration should be applied. (see [below for nested schema](#nestedatt--spec--workload_selector))
 
 <a id="nestedatt--spec--config_patches"></a>
@@ -181,6 +182,17 @@ Optional:
 - `operation` (String) Determines how the patch should be applied.Valid Options: MERGE, ADD, REMOVE, INSERT_BEFORE, INSERT_AFTER, INSERT_FIRST, REPLACE
 - `value` (Map of String) The JSON config of the object being patched.
 
+
+
+<a id="nestedatt--spec--target_refs"></a>
+### Nested Schema for `spec.target_refs`
+
+Optional:
+
+- `group` (String) group is the group of the target resource.
+- `kind` (String) kind is kind of the target resource.
+- `name` (String) name is the name of the target resource.
+- `namespace` (String) namespace is the namespace of the referent.
 
 
 <a id="nestedatt--spec--workload_selector"></a>

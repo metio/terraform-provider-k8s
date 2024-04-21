@@ -55,10 +55,10 @@ Optional:
 
 Required:
 
-- `backup_storage_location` (String) BackupStorageLocation is the name of the BackupStorageLocation that should contain this repository.
+- `backup_storage_location` (String) BackupStorageLocation is the name of the BackupStorageLocationthat should contain this repository.
 - `maintenance_frequency` (String) MaintenanceFrequency is how often maintenance should be run.
-- `restic_identifier` (String) ResticIdentifier is the full restic-compatible string for identifying this repository.
-- `volume_namespace` (String) VolumeNamespace is the namespace this backup repository contains pod volume backups for.
+- `restic_identifier` (String) ResticIdentifier is the full restic-compatible string for identifyingthis repository.
+- `volume_namespace` (String) VolumeNamespace is the namespace this backup repository containspod volume backups for.
 
 Optional:
 

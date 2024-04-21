@@ -55,6 +55,7 @@ Optional:
 
 Optional:
 
+- `capabilities` (List of String) features offered by the IntegrationKit
 - `configuration` (Attributes List) Deprecated: Use camel trait (camel.properties) to manage properties Use mount trait (mount.configs) to manage configs Use mount trait (mount.resources) to manage resources Use mount trait (mount.volumes) to manage volumes configuration used by the kit (see [below for nested schema](#nestedatt--spec--configuration))
 - `dependencies` (List of String) a list of Camel dependecies used by this kit
 - `image` (String) the container image as identified in the container registry
@@ -102,7 +103,7 @@ Optional:
 - `builder` (Attributes) The builder trait is internally used to determine the best strategy to build and configure IntegrationKits. (see [below for nested schema](#nestedatt--spec--traits--builder))
 - `camel` (Attributes) The Camel trait sets up Camel configuration. (see [below for nested schema](#nestedatt--spec--traits--camel))
 - `quarkus` (Attributes) The Quarkus trait configures the Quarkus runtime. It's enabled by default. NOTE: Compiling to a native executable, requires at least 4GiB of memory, so the Pod running the native build must have enough memory available. (see [below for nested schema](#nestedatt--spec--traits--quarkus))
-- `registry` (Attributes) The Registry trait sets up Maven to use the Image registry as a Maven repository. (see [below for nested schema](#nestedatt--spec--traits--registry))
+- `registry` (Attributes) The Registry trait sets up Maven to use the Image registry as a Maven repository. Deprecated: use jvm trait or read documentation. (see [below for nested schema](#nestedatt--spec--traits--registry))
 
 <a id="nestedatt--spec--traits--builder"></a>
 ### Nested Schema for `spec.traits.builder`
@@ -119,12 +120,13 @@ Optional:
 - `maven_profiles` (List of String) A list of references pointing to configmaps/secrets that contains a maven profile. The content of the maven profile is expected to be a text containing a valid maven profile starting with '<profile>' and ending with '</profile>' that will be integrated as an inline profile in the POM. Syntax: [configmap|secret]:name[/key], where name represents the resource name, key optionally represents the resource key to be filtered (default key value = profile.xml).
 - `node_selector` (Map of String) Defines a set of nodes the builder pod is eligible to be scheduled on, based on labels on the node.
 - `order_strategy` (String) The build order strategy to use, either 'dependencies', 'fifo' or 'sequential' (default 'sequential')
+- `platforms` (List of String) The list of manifest platforms to use to build a container image (default 'linux/amd64').
 - `properties` (List of String) A list of properties to be provided to the build task
 - `request_cpu` (String) When using 'pod' strategy, the minimum amount of CPU required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.
 - `request_memory` (String) When using 'pod' strategy, the minimum amount of memory required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.
 - `strategy` (String) The strategy to use, either 'pod' or 'routine' (default 'routine')
 - `tasks` (List of String) A list of tasks to be executed (available only when using 'pod' strategy) with format '<name>;<container-image>;<container-command>'.
-- `tasks_filter` (String) A list of tasks sorted by the order of execution in a csv format, ie, '<taskName1>,<taskName2>,...'. Mind that you must include also the operator tasks ('builder', 'quarkus-native', 'package', 'jib', 'spectrum', 's2i') if you need to execute them. Useful only with 'pod' strategy.
+- `tasks_filter` (String) A list of tasks sorted by the order of execution in a csv format, ie, '<taskName1>,<taskName2>,...'. Mind that you must include also the operator tasks ('builder', 'quarkus-native', 'package', 'jib', 's2i') if you need to execute them. Useful only with 'pod' strategy.
 - `tasks_limit_cpu` (List of String) A list of limit cpu configuration for the specific task with format '<task-name>:<limit-cpu-conf>'.
 - `tasks_limit_memory` (List of String) A list of limit memory configuration for the specific task with format '<task-name>:<limit-memory-conf>'.
 - `tasks_request_cpu` (List of String) A list of request cpu configuration for the specific task with format '<task-name>:<request-cpu-conf>'.
@@ -140,7 +142,7 @@ Optional:
 - `configuration` (Map of String) Legacy trait configuration parameters. Deprecated: for backward compatibility.
 - `enabled` (Boolean) Deprecated: no longer in use.
 - `properties` (List of String) A list of properties to be provided to the Integration runtime
-- `runtime_version` (String) The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform.
+- `runtime_version` (String) The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform. You can use a fixed version (for example '3.2.3') or a semantic version (for example '3.x') which will try to resolve to the best matching Catalog existing on the cluster.
 
 
 <a id="nestedatt--spec--traits--quarkus"></a>

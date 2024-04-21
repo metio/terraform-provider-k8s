@@ -59,6 +59,7 @@ Optional:
 - `config_maps` (List of String) ConfigMaps is a list of ConfigMaps in the same namespace as the VMAlertmanagerobject, which shall be mounted into the VMAlertmanager Pods.The ConfigMaps are mounted into /etc/vm/configs/<configmap-name>.
 - `config_namespace_selector` (Attributes) ConfigNamespaceSelector defines namespace selector for VMAlertmanagerConfig.Works in combination with Selector.NamespaceSelector nil - only objects at VMAlertmanager namespace.Selector nil - only objects at NamespaceSelector namespaces.If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--config_namespace_selector))
 - `config_raw_yaml` (String) ConfigRawYaml - raw configuration for alertmanager,it helps it to start without secret.priority -> hardcoded ConfigRaw -> ConfigRaw, provided by user -> ConfigSecret.
+- `config_reloader_extra_args` (Map of String) ConfigReloaderExtraArgs that will be passed to  VMAuths config-reloader containerfor example resyncInterval: '30s'
 - `config_secret` (String) ConfigSecret is the name of a Kubernetes Secret in the same namespace as theVMAlertmanager object, which contains configuration for this VMAlertmanager,configuration must be inside secret key: alertmanager.yaml.It must be created by user.instance. Defaults to 'vmalertmanager-<alertmanager-name>'The secret is mounted into /etc/alertmanager/config.
 - `config_selector` (Attributes) ConfigSelector defines selector for VMAlertmanagerConfig, result config will be merged with with Raw or Secret config.Works in combination with NamespaceSelector.NamespaceSelector nil - only objects at VMAlertmanager namespace.Selector nil - only objects at NamespaceSelector namespaces.If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--config_selector))
 - `containers` (List of Map of String) Containers allows injecting additional containers or patching existing containers.This is meant to allow adding an authentication proxy to an VMAlertmanager pod.
@@ -82,7 +83,6 @@ Optional:
 - `paused` (Boolean) Paused If set to true all actions on the underlaying managed objects are notgoint to be performed, except for delete actions.
 - `pod_disruption_budget` (Attributes) PodDisruptionBudget created by operator (see [below for nested schema](#nestedatt--spec--pod_disruption_budget))
 - `pod_metadata` (Attributes) PodMetadata configures Labels and Annotations which are propagated to the alertmanager pods. (see [below for nested schema](#nestedatt--spec--pod_metadata))
-- `pod_security_policy_name` (String) PodSecurityPolicyName - defines name for podSecurityPolicyin case of empty value, prefixedName will be used.
 - `port_name` (String) PortName used for the pods and governing service.This defaults to web
 - `priority_class_name` (String) PriorityClassName class assigned to the Pods
 - `readiness_gates` (Attributes List) ReadinessGates defines pod readiness gates (see [below for nested schema](#nestedatt--spec--readiness_gates))
@@ -371,6 +371,7 @@ Required:
 Optional:
 
 - `metadata` (Attributes) EmbeddedObjectMetadata defines objectMeta for additional service. (see [below for nested schema](#nestedatt--spec--service_spec--metadata))
+- `use_as_default` (Boolean) UseAsDefault applies changes from given service definition to the main object ServiceChaning from headless service to clusterIP or loadbalancer may break cross-component communication
 
 <a id="nestedatt--spec--service_spec--metadata"></a>
 ### Nested Schema for `spec.service_spec.metadata`

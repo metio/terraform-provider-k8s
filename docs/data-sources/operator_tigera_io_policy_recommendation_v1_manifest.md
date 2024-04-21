@@ -3,12 +3,12 @@
 page_title: "k8s_operator_tigera_io_policy_recommendation_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "operator.tigera.io"
 description: |-
-  PolicyRecommendation is the Schema for the policy recommendation API. At most one instance of this resource is supported. It must be named 'tigera-secure'.
+  PolicyRecommendation is the Schema for the policy recommendation API. At most one instanceof this resource is supported. It must be named 'tigera-secure'.
 ---
 
 # k8s_operator_tigera_io_policy_recommendation_v1_manifest (Data Source)
 
-PolicyRecommendation is the Schema for the policy recommendation API. At most one instance of this resource is supported. It must be named 'tigera-secure'.
+PolicyRecommendation is the Schema for the policy recommendation API. At most one instanceof this resource is supported. It must be named 'tigera-secure'.
 
 ## Example Usage
 
@@ -30,7 +30,7 @@ data "k8s_operator_tigera_io_policy_recommendation_v1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) PolicyRecommendationSpec defines configuration for the Calico Enterprise Policy Recommendation service. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) PolicyRecommendationSpec defines configuration for the Calico Enterprise Policy Recommendationservice. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -82,35 +82,35 @@ Optional:
 
 Optional:
 
-- `containers` (Attributes List) Containers is a list of PolicyRecommendation containers. If specified, this overrides the specified PolicyRecommendation Deployment containers. If omitted, the PolicyRecommendation Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--policy_recommendation_deployment--spec--template--spec--containers))
-- `init_containers` (Attributes List) InitContainers is a list of PolicyRecommendation init containers. If specified, this overrides the specified PolicyRecommendation Deployment init containers. If omitted, the PolicyRecommendation Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--policy_recommendation_deployment--spec--template--spec--init_containers))
+- `containers` (Attributes List) Containers is a list of PolicyRecommendation containers.If specified, this overrides the specified PolicyRecommendation Deployment containers.If omitted, the PolicyRecommendation Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--policy_recommendation_deployment--spec--template--spec--containers))
+- `init_containers` (Attributes List) InitContainers is a list of PolicyRecommendation init containers.If specified, this overrides the specified PolicyRecommendation Deployment init containers.If omitted, the PolicyRecommendation Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--policy_recommendation_deployment--spec--template--spec--init_containers))
 
 <a id="nestedatt--spec--policy_recommendation_deployment--spec--template--spec--containers"></a>
 ### Nested Schema for `spec.policy_recommendation_deployment.spec.template.spec.containers`
 
 Required:
 
-- `name` (String) Name is an enum which identifies the PolicyRecommendation Deployment container by name.
+- `name` (String) Name is an enum which identifies the PolicyRecommendation Deployment container by name.Supported values are: policy-recommendation-controller
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named PolicyRecommendation Deployment container's resources. If omitted, the PolicyRecommendation Deployment will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--policy_recommendation_deployment--spec--template--spec--init_containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named PolicyRecommendation Deployment container's resources.If omitted, the PolicyRecommendation Deployment will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--policy_recommendation_deployment--spec--template--spec--init_containers--resources))
 
 <a id="nestedatt--spec--policy_recommendation_deployment--spec--template--spec--init_containers--resources"></a>
 ### Nested Schema for `spec.policy_recommendation_deployment.spec.template.spec.init_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--policy_recommendation_deployment--spec--template--spec--init_containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--policy_recommendation_deployment--spec--template--spec--init_containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--policy_recommendation_deployment--spec--template--spec--init_containers--resources--claims"></a>
 ### Nested Schema for `spec.policy_recommendation_deployment.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -124,20 +124,20 @@ Required:
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named PolicyRecommendation Deployment init container's resources. If omitted, the PolicyRecommendation Deployment will use its default value for this init container's resources. (see [below for nested schema](#nestedatt--spec--policy_recommendation_deployment--spec--template--spec--init_containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named PolicyRecommendation Deployment init container's resources.If omitted, the PolicyRecommendation Deployment will use its default value for this init container's resources. (see [below for nested schema](#nestedatt--spec--policy_recommendation_deployment--spec--template--spec--init_containers--resources))
 
 <a id="nestedatt--spec--policy_recommendation_deployment--spec--template--spec--init_containers--resources"></a>
 ### Nested Schema for `spec.policy_recommendation_deployment.spec.template.spec.init_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--policy_recommendation_deployment--spec--template--spec--init_containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--policy_recommendation_deployment--spec--template--spec--init_containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--policy_recommendation_deployment--spec--template--spec--init_containers--resources--claims"></a>
 ### Nested Schema for `spec.policy_recommendation_deployment.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.

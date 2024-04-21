@@ -72,8 +72,10 @@ Optional:
 - `destination` (String)
 - `error` (String)
 - `last_transition` (String)
+- `latest_restorable_time` (String)
 - `pbm_name` (String)
 - `pbm_pod` (String)
+- `pbm_pods` (Map of String)
 - `replset_names` (List of String)
 - `s3` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--s3))
 - `start` (String)
@@ -91,6 +93,7 @@ Required:
 Optional:
 
 - `container` (String)
+- `endpoint_url` (String)
 - `prefix` (String)
 
 
@@ -104,14 +107,27 @@ Required:
 Optional:
 
 - `credentials_secret` (String)
+- `debug_log_levels` (String)
 - `endpoint_url` (String)
+- `force_path_style` (Boolean)
 - `insecure_skip_tls_verify` (Boolean)
 - `max_upload_parts` (Number)
 - `prefix` (String)
 - `region` (String)
+- `retryer` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--s3--retryer))
 - `server_side_encryption` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--s3--server_side_encryption))
 - `storage_class` (String)
 - `upload_part_size` (Number)
+
+<a id="nestedatt--spec--backup_source--s3--retryer"></a>
+### Nested Schema for `spec.backup_source.s3.retryer`
+
+Optional:
+
+- `max_retry_delay` (String)
+- `min_retry_delay` (String)
+- `num_max_retries` (Number)
+
 
 <a id="nestedatt--spec--backup_source--s3--server_side_encryption"></a>
 ### Nested Schema for `spec.backup_source.s3.server_side_encryption`

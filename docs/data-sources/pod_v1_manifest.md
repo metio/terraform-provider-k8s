@@ -66,7 +66,7 @@ Optional:
 - `dns_policy` (String) Set DNS policy for the pod. Defaults to 'ClusterFirst'. Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'. DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy. To have DNS options set along with hostNetwork, you have to specify DNS policy explicitly to 'ClusterFirstWithHostNet'.
 - `enable_service_links` (Boolean) EnableServiceLinks indicates whether information about services should be injected into pod's environment variables, matching the syntax of Docker links. Optional: Defaults to true.
 - `ephemeral_containers` (Attributes List) List of ephemeral containers run in this pod. Ephemeral containers may be run in an existing pod to perform user-initiated actions such as debugging. This list cannot be specified when creating a pod, and it cannot be modified by updating the pod spec. In order to add an ephemeral container to an existing pod, use the pod's ephemeralcontainers subresource. (see [below for nested schema](#nestedatt--spec--ephemeral_containers))
-- `host_aliases` (Attributes List) HostAliases is an optional list of hosts and IPs that will be injected into the pod's hosts file if specified. This is only valid for non-hostNetwork pods. (see [below for nested schema](#nestedatt--spec--host_aliases))
+- `host_aliases` (Attributes List) HostAliases is an optional list of hosts and IPs that will be injected into the pod's hosts file if specified. (see [below for nested schema](#nestedatt--spec--host_aliases))
 - `host_ipc` (Boolean) Use the host's ipc namespace. Optional: Default to false.
 - `host_network` (Boolean) Host networking requested for this pod. Use the host's network namespace. If this option is set, the ports that will be used must be specified. Default to false.
 - `host_pid` (Boolean) Use the host's pid namespace. Optional: Default to false.
@@ -74,7 +74,7 @@ Optional:
 - `hostname` (String) Specifies the hostname of the Pod If not specified, the pod's hostname will be set to a system-defined value.
 - `image_pull_secrets` (Attributes List) ImagePullSecrets is an optional list of references to secrets in the same namespace to use for pulling any of the images used by this PodSpec. If specified, these secrets will be passed to individual puller implementations for them to use. More info: https://kubernetes.io/docs/concepts/containers/images#specifying-imagepullsecrets-on-a-pod (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
 - `init_containers` (Attributes List) List of initialization containers belonging to the pod. Init containers are executed in order prior to containers being started. If any init container fails, the pod is considered to have failed and is handled according to its restartPolicy. The name for an init container or normal container must be unique among all containers. Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes. The resourceRequirements of an init container are taken into account during scheduling by finding the highest request/limit for each resource type, and then using the max of of that value or the sum of the normal containers. Limits are applied to init containers in a similar fashion. Init containers cannot currently be added or removed. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/ (see [below for nested schema](#nestedatt--spec--init_containers))
-- `node_name` (String) NodeName is a request to schedule this pod onto a specific node. If it is non-empty, the scheduler simply schedules this pod onto that node, assuming that it fits resource requirements.
+- `node_name` (String) NodeName indicates in which node this pod is scheduled. If empty, this pod is a candidate for scheduling by the scheduler defined in schedulerName. Once this field is set, the kubelet for this node becomes responsible for the lifecycle of this pod. This field should not be used to express a desire for the pod to be scheduled on a specific node. https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodename
 - `node_selector` (Map of String) NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
 - `os` (Attributes) PodOS defines the OS parameters of a pod. (see [below for nested schema](#nestedatt--spec--os))
 - `overhead` (Map of String) Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md
@@ -86,9 +86,9 @@ Optional:
 - `restart_policy` (String) Restart policy for all containers within the pod. One of Always, OnFailure, Never. In some contexts, only a subset of those values may be permitted. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 - `runtime_class_name` (String) RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the 'legacy' RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class
 - `scheduler_name` (String) If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler.
-- `scheduling_gates` (Attributes List) SchedulingGates is an opaque list of values that if specified will block scheduling the pod. If schedulingGates is not empty, the pod will stay in the SchedulingGated state and the scheduler will not attempt to schedule the pod.SchedulingGates can only be set at pod creation time, and be removed only afterwards.This is a beta feature enabled by the PodSchedulingReadiness feature gate. (see [below for nested schema](#nestedatt--spec--scheduling_gates))
+- `scheduling_gates` (Attributes List) SchedulingGates is an opaque list of values that if specified will block scheduling the pod. If schedulingGates is not empty, the pod will stay in the SchedulingGated state and the scheduler will not attempt to schedule the pod.SchedulingGates can only be set at pod creation time, and be removed only afterwards. (see [below for nested schema](#nestedatt--spec--scheduling_gates))
 - `security_context` (Attributes) PodSecurityContext holds pod-level security attributes and common container settings. Some fields are also present in container.securityContext.  Field values of container.securityContext take precedence over field values of PodSecurityContext. (see [below for nested schema](#nestedatt--spec--security_context))
-- `service_account` (String) DeprecatedServiceAccount is a depreciated alias for ServiceAccountName. Deprecated: Use serviceAccountName instead.
+- `service_account` (String) DeprecatedServiceAccount is a deprecated alias for ServiceAccountName. Deprecated: Use serviceAccountName instead.
 - `service_account_name` (String) ServiceAccountName is the name of the ServiceAccount to use to run this pod. More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
 - `set_hostname_as_fqdn` (Boolean) If true the pod's hostname will be configured as the pod's FQDN, rather than the leaf name (the default). In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname). In Windows containers, this means setting the registry value of hostname for the registry key HKEY_LOCAL_MACHINESYSTEMCurrentControlSetServicesTcpipParameters to FQDN. If a pod does not have FQDN, this has no effect. Default to false.
 - `share_process_namespace` (Boolean) Share a single process namespace between all of the containers in a pod. When this is set containers will be able to view and signal processes from other containers in the same pod, and the first process in each container will not be assigned PID 1. HostPID and ShareProcessNamespace cannot both be set. Optional: Default to false.
@@ -249,6 +249,7 @@ Optional:
 
 - `exec` (Attributes) ExecAction describes a 'run in container' action. (see [below for nested schema](#nestedatt--spec--containers--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) HTTPGetAction describes an action based on HTTP Get requests. (see [below for nested schema](#nestedatt--spec--containers--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) SleepAction describes a 'sleep' action. (see [below for nested schema](#nestedatt--spec--containers--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) TCPSocketAction describes an action based on opening a socket (see [below for nested schema](#nestedatt--spec--containers--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--containers--lifecycle--pre_stop--exec"></a>
@@ -281,6 +282,14 @@ Required:
 - `name` (String) The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
+
+
+<a id="nestedatt--spec--containers--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.containers.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number) Seconds is the number of seconds to sleep.
 
 
 <a id="nestedatt--spec--containers--lifecycle--pre_stop--tcp_socket"></a>
@@ -303,6 +312,7 @@ Optional:
 
 - `exec` (Attributes) ExecAction describes a 'run in container' action. (see [below for nested schema](#nestedatt--spec--containers--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) HTTPGetAction describes an action based on HTTP Get requests. (see [below for nested schema](#nestedatt--spec--containers--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) SleepAction describes a 'sleep' action. (see [below for nested schema](#nestedatt--spec--containers--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) TCPSocketAction describes an action based on opening a socket (see [below for nested schema](#nestedatt--spec--containers--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--containers--lifecycle--pre_stop--exec"></a>
@@ -335,6 +345,14 @@ Required:
 - `name` (String) The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
+
+
+<a id="nestedatt--spec--containers--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.containers.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number) Seconds is the number of seconds to sleep.
 
 
 <a id="nestedatt--spec--containers--lifecycle--pre_stop--tcp_socket"></a>
@@ -545,6 +563,7 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean) AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows.
+- `app_armor_profile` (Attributes) AppArmorProfile defines a pod or container's AppArmor settings. (see [below for nested schema](#nestedatt--spec--containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) Adds and removes POSIX capabilities from running containers. (see [below for nested schema](#nestedatt--spec--containers--security_context--capabilities))
 - `privileged` (Boolean) Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.
 - `proc_mount` (String) procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.
@@ -555,6 +574,18 @@ Optional:
 - `se_linux_options` (Attributes) SELinuxOptions are the labels to be applied to the container (see [below for nested schema](#nestedatt--spec--containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) SeccompProfile defines a pod/container's seccomp profile settings. Only one profile source may be set. (see [below for nested schema](#nestedatt--spec--containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) WindowsSecurityContextOptions contain Windows-specific options and credentials. (see [below for nested schema](#nestedatt--spec--containers--security_context--windows_options))
+
+<a id="nestedatt--spec--containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.containers.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String) type indicates which kind of AppArmor profile will be applied. Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.
+
+Optional:
+
+- `localhost_profile` (String) localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.
+
 
 <a id="nestedatt--spec--containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.containers.security_context.capabilities`
@@ -692,8 +723,9 @@ Required:
 
 Optional:
 
-- `mount_propagation` (String) mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.
+- `mount_propagation` (String) mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).
 - `read_only` (Boolean) Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.
+- `recursive_read_only` (String) RecursiveReadOnly specifies whether read-only mounts should be handled recursively.If ReadOnly is false, this field has no meaning and must be unspecified.If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only.  If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime.  If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason.If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None).If this field is not specified, it is treated as an equivalent of Disabled.
 - `sub_path` (String) Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).
 - `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.
 
@@ -830,6 +862,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `namespace_selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
@@ -889,6 +923,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `namespace_selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
@@ -964,6 +1000,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `namespace_selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
@@ -1023,6 +1061,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `namespace_selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
@@ -1244,6 +1284,7 @@ Optional:
 
 - `exec` (Attributes) ExecAction describes a 'run in container' action. (see [below for nested schema](#nestedatt--spec--ephemeral_containers--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) HTTPGetAction describes an action based on HTTP Get requests. (see [below for nested schema](#nestedatt--spec--ephemeral_containers--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) SleepAction describes a 'sleep' action. (see [below for nested schema](#nestedatt--spec--ephemeral_containers--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) TCPSocketAction describes an action based on opening a socket (see [below for nested schema](#nestedatt--spec--ephemeral_containers--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--ephemeral_containers--lifecycle--pre_stop--exec"></a>
@@ -1276,6 +1317,14 @@ Required:
 - `name` (String) The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
+
+
+<a id="nestedatt--spec--ephemeral_containers--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.ephemeral_containers.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number) Seconds is the number of seconds to sleep.
 
 
 <a id="nestedatt--spec--ephemeral_containers--lifecycle--pre_stop--tcp_socket"></a>
@@ -1298,6 +1347,7 @@ Optional:
 
 - `exec` (Attributes) ExecAction describes a 'run in container' action. (see [below for nested schema](#nestedatt--spec--ephemeral_containers--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) HTTPGetAction describes an action based on HTTP Get requests. (see [below for nested schema](#nestedatt--spec--ephemeral_containers--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) SleepAction describes a 'sleep' action. (see [below for nested schema](#nestedatt--spec--ephemeral_containers--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) TCPSocketAction describes an action based on opening a socket (see [below for nested schema](#nestedatt--spec--ephemeral_containers--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--ephemeral_containers--lifecycle--pre_stop--exec"></a>
@@ -1330,6 +1380,14 @@ Required:
 - `name` (String) The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
+
+
+<a id="nestedatt--spec--ephemeral_containers--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.ephemeral_containers.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number) Seconds is the number of seconds to sleep.
 
 
 <a id="nestedatt--spec--ephemeral_containers--lifecycle--pre_stop--tcp_socket"></a>
@@ -1540,6 +1598,7 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean) AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows.
+- `app_armor_profile` (Attributes) AppArmorProfile defines a pod or container's AppArmor settings. (see [below for nested schema](#nestedatt--spec--ephemeral_containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) Adds and removes POSIX capabilities from running containers. (see [below for nested schema](#nestedatt--spec--ephemeral_containers--security_context--capabilities))
 - `privileged` (Boolean) Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.
 - `proc_mount` (String) procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.
@@ -1550,6 +1609,18 @@ Optional:
 - `se_linux_options` (Attributes) SELinuxOptions are the labels to be applied to the container (see [below for nested schema](#nestedatt--spec--ephemeral_containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) SeccompProfile defines a pod/container's seccomp profile settings. Only one profile source may be set. (see [below for nested schema](#nestedatt--spec--ephemeral_containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) WindowsSecurityContextOptions contain Windows-specific options and credentials. (see [below for nested schema](#nestedatt--spec--ephemeral_containers--security_context--windows_options))
+
+<a id="nestedatt--spec--ephemeral_containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.ephemeral_containers.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String) type indicates which kind of AppArmor profile will be applied. Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.
+
+Optional:
+
+- `localhost_profile` (String) localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.
+
 
 <a id="nestedatt--spec--ephemeral_containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.ephemeral_containers.security_context.capabilities`
@@ -1687,8 +1758,9 @@ Required:
 
 Optional:
 
-- `mount_propagation` (String) mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.
+- `mount_propagation` (String) mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).
 - `read_only` (Boolean) Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.
+- `recursive_read_only` (String) RecursiveReadOnly specifies whether read-only mounts should be handled recursively.If ReadOnly is false, this field has no meaning and must be unspecified.If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only.  If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime.  If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason.If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None).If this field is not specified, it is treated as an equivalent of Disabled.
 - `sub_path` (String) Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).
 - `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.
 
@@ -1862,6 +1934,7 @@ Optional:
 
 - `exec` (Attributes) ExecAction describes a 'run in container' action. (see [below for nested schema](#nestedatt--spec--init_containers--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) HTTPGetAction describes an action based on HTTP Get requests. (see [below for nested schema](#nestedatt--spec--init_containers--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) SleepAction describes a 'sleep' action. (see [below for nested schema](#nestedatt--spec--init_containers--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) TCPSocketAction describes an action based on opening a socket (see [below for nested schema](#nestedatt--spec--init_containers--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--init_containers--lifecycle--pre_stop--exec"></a>
@@ -1894,6 +1967,14 @@ Required:
 - `name` (String) The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
+
+
+<a id="nestedatt--spec--init_containers--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.init_containers.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number) Seconds is the number of seconds to sleep.
 
 
 <a id="nestedatt--spec--init_containers--lifecycle--pre_stop--tcp_socket"></a>
@@ -1916,6 +1997,7 @@ Optional:
 
 - `exec` (Attributes) ExecAction describes a 'run in container' action. (see [below for nested schema](#nestedatt--spec--init_containers--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) HTTPGetAction describes an action based on HTTP Get requests. (see [below for nested schema](#nestedatt--spec--init_containers--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) SleepAction describes a 'sleep' action. (see [below for nested schema](#nestedatt--spec--init_containers--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) TCPSocketAction describes an action based on opening a socket (see [below for nested schema](#nestedatt--spec--init_containers--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--init_containers--lifecycle--pre_stop--exec"></a>
@@ -1948,6 +2030,14 @@ Required:
 - `name` (String) The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
+
+
+<a id="nestedatt--spec--init_containers--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.init_containers.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number) Seconds is the number of seconds to sleep.
 
 
 <a id="nestedatt--spec--init_containers--lifecycle--pre_stop--tcp_socket"></a>
@@ -2158,6 +2248,7 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean) AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows.
+- `app_armor_profile` (Attributes) AppArmorProfile defines a pod or container's AppArmor settings. (see [below for nested schema](#nestedatt--spec--init_containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) Adds and removes POSIX capabilities from running containers. (see [below for nested schema](#nestedatt--spec--init_containers--security_context--capabilities))
 - `privileged` (Boolean) Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.
 - `proc_mount` (String) procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.
@@ -2168,6 +2259,18 @@ Optional:
 - `se_linux_options` (Attributes) SELinuxOptions are the labels to be applied to the container (see [below for nested schema](#nestedatt--spec--init_containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) SeccompProfile defines a pod/container's seccomp profile settings. Only one profile source may be set. (see [below for nested schema](#nestedatt--spec--init_containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) WindowsSecurityContextOptions contain Windows-specific options and credentials. (see [below for nested schema](#nestedatt--spec--init_containers--security_context--windows_options))
+
+<a id="nestedatt--spec--init_containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.init_containers.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String) type indicates which kind of AppArmor profile will be applied. Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.
+
+Optional:
+
+- `localhost_profile` (String) localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.
+
 
 <a id="nestedatt--spec--init_containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.init_containers.security_context.capabilities`
@@ -2305,8 +2408,9 @@ Required:
 
 Optional:
 
-- `mount_propagation` (String) mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.
+- `mount_propagation` (String) mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).
 - `read_only` (Boolean) Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.
+- `recursive_read_only` (String) RecursiveReadOnly specifies whether read-only mounts should be handled recursively.If ReadOnly is false, this field has no meaning and must be unspecified.If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only.  If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime.  If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason.If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None).If this field is not specified, it is treated as an equivalent of Disabled.
 - `sub_path` (String) Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).
 - `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.
 
@@ -2362,6 +2466,7 @@ Required:
 
 Optional:
 
+- `app_armor_profile` (Attributes) AppArmorProfile defines a pod or container's AppArmor settings. (see [below for nested schema](#nestedatt--spec--security_context--app_armor_profile))
 - `fs_group` (Number) A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw----If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.
 - `fs_group_change_policy` (String) fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used. Note that this field cannot be set when spec.os.name is windows.
 - `run_as_group` (Number) The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.
@@ -2372,6 +2477,18 @@ Optional:
 - `supplemental_groups` (List of String) A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.
 - `sysctls` (Attributes List) Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security_context--sysctls))
 - `windows_options` (Attributes) WindowsSecurityContextOptions contain Windows-specific options and credentials. (see [below for nested schema](#nestedatt--spec--security_context--windows_options))
+
+<a id="nestedatt--spec--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String) type indicates which kind of AppArmor profile will be applied. Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.
+
+Optional:
+
+- `localhost_profile` (String) localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.
+
 
 <a id="nestedatt--spec--security_context--se_linux_options"></a>
 ### Nested Schema for `spec.security_context.se_linux_options`
@@ -2442,7 +2559,7 @@ Optional:
 
 - `label_selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects. (see [below for nested schema](#nestedatt--spec--topology_spread_constraints--label_selector))
 - `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).
-- `min_domains` (Number) MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).
+- `min_domains` (Number) MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.
 - `node_affinity_policy` (String) NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
 - `node_taints_policy` (String) NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
 
@@ -2730,6 +2847,7 @@ Optional:
 - `resources` (Attributes) VolumeResourceRequirements describes the storage resource requirements for a volume. (see [below for nested schema](#nestedatt--spec--volumes--ephemeral--volume_claim_template--spec--resources))
 - `selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects. (see [below for nested schema](#nestedatt--spec--volumes--ephemeral--volume_claim_template--spec--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
@@ -3034,10 +3152,48 @@ Optional:
 
 Optional:
 
+- `cluster_trust_bundle` (Attributes) ClusterTrustBundleProjection describes how to select a set of ClusterTrustBundle objects and project their contents into the pod filesystem. (see [below for nested schema](#nestedatt--spec--volumes--projected--sources--cluster_trust_bundle))
 - `config_map` (Attributes) Adapts a ConfigMap into a projected volume.The contents of the target ConfigMap's Data field will be presented in a projected volume as files using the keys in the Data field as the file names, unless the items element is populated with specific mappings of keys to paths. Note that this is identical to a configmap volume source without the default mode. (see [below for nested schema](#nestedatt--spec--volumes--projected--sources--config_map))
 - `downward_api` (Attributes) Represents downward API info for projecting into a projected volume. Note that this is identical to a downwardAPI volume source without the default mode. (see [below for nested schema](#nestedatt--spec--volumes--projected--sources--downward_api))
 - `secret` (Attributes) Adapts a secret into a projected volume.The contents of the target Secret's Data field will be presented in a projected volume as files using the keys in the Data field as the file names. Note that this is identical to a secret volume source without the default mode. (see [below for nested schema](#nestedatt--spec--volumes--projected--sources--secret))
 - `service_account_token` (Attributes) ServiceAccountTokenProjection represents a projected service account token volume. This projection can be used to insert a service account token into the pods runtime filesystem for use against APIs (Kubernetes API Server or otherwise). (see [below for nested schema](#nestedatt--spec--volumes--projected--sources--service_account_token))
+
+<a id="nestedatt--spec--volumes--projected--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.volumes.projected.sources.cluster_trust_bundle`
+
+Required:
+
+- `path` (String) Relative path from the volume root to write the bundle.
+
+Optional:
+
+- `label_selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects. (see [below for nested schema](#nestedatt--spec--volumes--projected--sources--cluster_trust_bundle--label_selector))
+- `name` (String) Select a single ClusterTrustBundle by object name.  Mutually-exclusive with signerName and labelSelector.
+- `optional` (Boolean) If true, don't block pod startup if the referenced ClusterTrustBundle(s) aren't available.  If using name, then the named ClusterTrustBundle is allowed not to exist.  If using signerName, then the combination of signerName and labelSelector is allowed to match zero ClusterTrustBundles.
+- `signer_name` (String) Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name.  The contents of all selected ClusterTrustBundles will be unified and deduplicated.
+
+<a id="nestedatt--spec--volumes--projected--sources--cluster_trust_bundle--label_selector"></a>
+### Nested Schema for `spec.volumes.projected.sources.cluster_trust_bundle.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--volumes--projected--sources--cluster_trust_bundle--signer_name--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--volumes--projected--sources--cluster_trust_bundle--signer_name--match_expressions"></a>
+### Nested Schema for `spec.volumes.projected.sources.cluster_trust_bundle.signer_name.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
 
 <a id="nestedatt--spec--volumes--projected--sources--config_map"></a>
 ### Nested Schema for `spec.volumes.projected.sources.config_map`

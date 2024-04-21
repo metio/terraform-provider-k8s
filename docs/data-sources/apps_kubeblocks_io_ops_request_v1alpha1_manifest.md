@@ -64,7 +64,9 @@ Optional:
 - `cancel` (Boolean) Defines the action to cancel the 'Pending/Creating/Running' opsRequest, supported types: 'VerticalScaling/HorizontalScaling'. Once set to true, this opsRequest will be canceled and modifying this property again will not take effect.
 - `custom_spec` (Attributes) Specifies a custom operation as defined by OpsDefinition. (see [below for nested schema](#nestedatt--spec--custom_spec))
 - `expose` (Attributes List) Defines services the component needs to expose. (see [below for nested schema](#nestedatt--spec--expose))
+- `force` (Boolean) Indicates if pre-checks should be bypassed, allowing the opsRequest to execute immediately. If set to true, pre-checks are skipped except for 'Start' type. Particularly useful when concurrent execution of VerticalScaling and HorizontalScaling opsRequests is required, achievable through the use of the Force flag.
 - `horizontal_scaling` (Attributes List) Defines what component need to horizontal scale the specified replicas. (see [below for nested schema](#nestedatt--spec--horizontal_scaling))
+- `rebuild_from` (Attributes List) Specifies the instances that require re-creation. (see [below for nested schema](#nestedatt--spec--rebuild_from))
 - `reconfigure` (Attributes) Deprecated: replace by reconfigures. Defines the variables that need to input when updating configuration. (see [below for nested schema](#nestedatt--spec--reconfigure))
 - `reconfigures` (Attributes List) Defines the variables that need to input when updating configuration. (see [below for nested schema](#nestedatt--spec--reconfigures))
 - `restart` (Attributes List) Restarts the specified components. (see [below for nested schema](#nestedatt--spec--restart))
@@ -145,6 +147,8 @@ Required:
 Optional:
 
 - `annotations` (Map of String) Contains cloud provider related parameters if ServiceType is LoadBalancer. More info: https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer.
+- `ip_families` (List of String) IPFamilies is a list of IP families (e.g. IPv4, IPv6) assigned to this service. This field is usually assigned automatically based on cluster configuration and the ipFamilyPolicy field. If this field is specified manually, the requested family is available in the cluster, and ipFamilyPolicy allows it, it will be used; otherwise creation of the service will fail. This field is conditionally mutable: it allows for adding or removing a secondary IP family, but it does not allow changing the primary IP family of the Service. Valid values are 'IPv4' and 'IPv6'.  This field only applies to Services of types ClusterIP, NodePort, and LoadBalancer, and does apply to 'headless' services. This field will be wiped when updating a Service to type ExternalName.  This field may hold a maximum of two entries (dual-stack families, in either order).  These families must correspond to the values of the clusterIPs field, if specified. Both clusterIPs and ipFamilies are governed by the ipFamilyPolicy field.
+- `ip_family_policy` (String) IPFamilyPolicy represents the dual-stack-ness requested or required by this Service. If there is no value provided, then this field will be set to SingleStack. Services can be 'SingleStack' (a single IP family), 'PreferDualStack' (two IP families on dual-stack configured clusters or a single IP family on single-stack clusters), or 'RequireDualStack' (two IP families on dual-stack configured clusters, otherwise fail). The ipFamilies and clusterIPs fields depend on the value of this field. This field will be wiped when updating a service to type ExternalName.
 - `ports` (Attributes List) Lists the ports that are exposed by this service. If not provided, the default Services Ports defined in the ClusterDefinition or ComponentDefinition that are neither of NodePort nor LoadBalancer service type will be used. If there is no corresponding Service defined in the ClusterDefinition or ComponentDefinition, the expose operation will fail. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies (see [below for nested schema](#nestedatt--spec--expose--services--ports))
 - `role_selector` (String) Allows you to specify a defined role as a selector for the service, extending the ServiceSpec.Selector.
 - `selector` (Map of String) Routes service traffic to pods with label keys and values matching this selector. If empty or not present, the service is assumed to have an external process managing its endpoints, which Kubernetes will not modify. This only applies to types ClusterIP, NodePort, and LoadBalancer and is ignored if type is ExternalName. More info: https://kubernetes.io/docs/concepts/services-networking/service/
@@ -178,8 +182,1089 @@ Required:
 
 Optional:
 
-- `instances` (List of String) Defines the names of instances that the rsm should prioritize for scale-down operations. If the RsmTransformPolicy is set to ToPod and the expected number of replicas is less than the current number, the list of Instances will be used.  - 'current replicas - expected replicas > len(Instances)': Scale down from the list of Instances priorly, the others will select from NodeAssignment. - 'current replicas - expected replicas < len(Instances)': Scale down from the list of Instances. - 'current replicas - expected replicas < len(Instances)': Scale down from a part of Instances.
-- `nodes` (List of String) Defines the list of nodes where pods can be scheduled during a scale-up operation. If the RsmTransformPolicy is set to ToPod and the expected number of replicas is greater than the current number, the list of Nodes will be used. If the list of Nodes is empty, pods will not be assigned to any specific node. However, if the list of Nodes is populated, pods will be evenly distributed across the nodes in the list during scale-up.
+- `instances` (Attributes List) Specifies instances to be added and/or deleted for the workloads. Name and Replicas should be provided. Other fields will simply be ignored. The Replicas will be overridden if an existing InstanceTemplate is matched by Name. Or the InstanceTemplate will be added as a new one. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances))
+- `offline_instances` (List of String) Specifies instances to be scaled in with dedicated names in the list.
+
+<a id="nestedatt--spec--horizontal_scaling--instances"></a>
+### Nested Schema for `spec.horizontal_scaling.instances`
+
+Required:
+
+- `name` (String) Name specifies the unique name of the instance Pod created using this InstanceTemplate. This name is constructed by concatenating the component's name, the template's name, and the instance's ordinal using the pattern: $(cluster.name)-$(component.name)-$(template.name)-$(ordinal). Ordinals start from 0. The specified name overrides any default naming conventions or patterns.
+
+Optional:
+
+- `annotations` (Map of String) Specifies a map of key-value pairs to be merged into the Pod's existing annotations. Existing keys will have their values overwritten, while new keys will be added to the annotations.
+- `env` (Attributes List) Defines Env to override. Add new or override existing envs. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--env))
+- `image` (String) Specifies an override for the first container's image in the pod.
+- `labels` (Map of String) Specifies a map of key-value pairs that will be merged into the Pod's existing labels. Values for existing keys will be overwritten, and new keys will be added.
+- `node_name` (String) Specifies the name of the node where the Pod should be scheduled. If set, the Pod will be directly assigned to the specified node, bypassing the Kubernetes scheduler. This is useful for controlling Pod placement on specific nodes.  Important considerations: - 'nodeName' bypasses default scheduling constraints (e.g., resource requirements, node selectors, affinity rules). - It is the user's responsibility to ensure the node is suitable for the Pod. - If the node is unavailable, the Pod will remain in 'Pending' state until the node is available or the Pod is deleted.
+- `node_selector` (Map of String) Defines NodeSelector to override.
+- `replicas` (Number) Specifies the number of instances (Pods) to create from this InstanceTemplate. This field allows setting how many replicated instances of the component, with the specific overrides in the InstanceTemplate, are created. The default value is 1. A value of 0 disables instance creation.
+- `resources` (Attributes) Specifies an override for the resource requirements of the first container in the Pod. This field allows for customizing resource allocation (CPU, memory, etc.) for the container. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--resources))
+- `tolerations` (Attributes List) Tolerations specifies a list of tolerations to be applied to the Pod, allowing it to tolerate node taints. This field can be used to add new tolerations or override existing ones. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--tolerations))
+- `volume_claim_templates` (Attributes List) Defines VolumeClaimTemplates to override. Add new or override existing volume claim templates. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volume_claim_templates))
+- `volume_mounts` (Attributes List) Defines VolumeMounts to override. Add new or override existing volume mounts of the first container in the pod. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volume_mounts))
+- `volumes` (Attributes List) Defines Volumes to override. Add new or override existing volumes. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes))
+
+<a id="nestedatt--spec--horizontal_scaling--instances--env"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.env`
+
+Required:
+
+- `name` (String) Name of the environment variable. Must be a C_IDENTIFIER.
+
+Optional:
+
+- `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
+- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--value_from))
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--value_from"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--value_from--field_ref"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.value_from.field_ref`
+
+Required:
+
+- `field_path` (String) Path of the field to select in the specified API version.
+
+Optional:
+
+- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.value_from.resource_field_ref`
+
+Required:
+
+- `resource` (String) Required: resource to select
+
+Optional:
+
+- `container_name` (String) Container name: required for volumes, optional for env vars
+- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--resources"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.resources`
+
+Optional:
+
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--claims"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--tolerations"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.tolerations`
+
+Optional:
+
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volume_claim_templates"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volume_claim_templates`
+
+Optional:
+
+- `api_version` (String) APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+- `kind` (String) Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `metadata` (Attributes) Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--metadata))
+- `spec` (Attributes) spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--spec))
+- `status` (Attributes) status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--status))
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--metadata"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.metadata`
+
+Optional:
+
+- `annotations` (Map of String)
+- `finalizers` (List of String)
+- `labels` (Map of String)
+- `name` (String)
+- `namespace` (String)
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--spec"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.spec`
+
+Optional:
+
+- `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
+- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--spec--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--spec--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--spec--resources))
+- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--spec--selector))
+- `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
+- `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--spec--data_source"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.spec.data_source`
+
+Required:
+
+- `kind` (String) Kind is the type of resource being referenced
+- `name` (String) Name is the name of resource being referenced
+
+Optional:
+
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--spec--data_source_ref"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.spec.data_source_ref`
+
+Required:
+
+- `kind` (String) Kind is the type of resource being referenced
+- `name` (String) Name is the name of resource being referenced
+
+Optional:
+
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+- `namespace` (String) Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--spec--resources"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.spec.resources`
+
+Optional:
+
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--spec--volume_name--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--spec--volume_name--claims"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.spec.volume_name.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--spec--selector"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.spec.selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--spec--volume_name--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--spec--volume_name--match_expressions"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.spec.volume_name.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--status"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.status`
+
+Optional:
+
+- `access_modes` (List of String) accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
+- `allocated_resource_statuses` (Map of String) allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  ClaimResourceStatus can be in any of following states: - ControllerResizeInProgress: State set when resize controller starts resizing the volume in control-plane. - ControllerResizeFailed: State set when resize has failed in resize controller with a terminal error. - NodeResizePending: State set when resize controller has finished resizing the volume but further resizing of volume is needed on the node. - NodeResizeInProgress: State set when kubelet starts resizing the volume. - NodeResizeFailed: State set when resizing has failed in kubelet with a terminal error. Transient errors don't set NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed' When this field is not set, it means that no resize operation is in progress for the given PVC.  A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
+- `allocated_resources` (Map of String) allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity.  A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
+- `capacity` (Map of String) capacity represents the actual resources of the underlying volume.
+- `conditions` (Attributes List) conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--status--conditions))
+- `phase` (String) phase represents the current phase of PersistentVolumeClaim.
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--status--conditions"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.status.conditions`
+
+Required:
+
+- `status` (String)
+- `type` (String) PersistentVolumeClaimConditionType is a valid value of PersistentVolumeClaimCondition.Type
+
+Optional:
+
+- `last_probe_time` (String) lastProbeTime is the time we probed the condition.
+- `last_transition_time` (String) lastTransitionTime is the time the condition transitioned from one status to another.
+- `message` (String) message is the human-readable message indicating details about last transition.
+- `reason` (String) reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.
+
+
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volume_mounts"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volume_mounts`
+
+Required:
+
+- `mount_path` (String) Path within the container at which the volume should be mounted.  Must not contain ':'.
+- `name` (String) This must match the Name of a Volume.
+
+Optional:
+
+- `mount_propagation` (String) mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.
+- `read_only` (Boolean) Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.
+- `sub_path` (String) Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).
+- `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes`
+
+Required:
+
+- `name` (String) name of the volume. Must be a DNS_LABEL and unique within the pod. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+
+Optional:
+
+- `aws_elastic_block_store` (Attributes) awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--aws_elastic_block_store))
+- `azure_disk` (Attributes) azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--azure_disk))
+- `azure_file` (Attributes) azureFile represents an Azure File Service mount on the host and bind mount to the pod. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--azure_file))
+- `cephfs` (Attributes) cephFS represents a Ceph FS mount on the host that shares a pod's lifetime (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--cephfs))
+- `cinder` (Attributes) cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--cinder))
+- `config_map` (Attributes) configMap represents a configMap that should populate this volume (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--config_map))
+- `csi` (Attributes) csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature). (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--csi))
+- `downward_api` (Attributes) downwardAPI represents downward API about the pod that should populate this volume (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--downward_api))
+- `empty_dir` (Attributes) emptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--empty_dir))
+- `ephemeral` (Attributes) ephemeral represents a volume that is handled by a cluster storage driver. The volume's lifecycle is tied to the pod that defines it - it will be created before the pod starts, and deleted when the pod is removed.  Use this if: a) the volume is only needed while the pod runs, b) features of normal volumes like restoring from snapshot or capacity tracking are needed, c) the storage driver is specified through a storage class, and d) the storage driver supports dynamic volume provisioning through a PersistentVolumeClaim (see EphemeralVolumeSource for more information on the connection between this volume type and PersistentVolumeClaim).  Use PersistentVolumeClaim or one of the vendor-specific APIs for volumes that persist for longer than the lifecycle of an individual pod.  Use CSI for light-weight local ephemeral volumes if the CSI driver is meant to be used that way - see the documentation of the driver for more information.  A pod can use both types of ephemeral volumes and persistent volumes at the same time. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral))
+- `fc` (Attributes) fc represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--fc))
+- `flex_volume` (Attributes) flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--flex_volume))
+- `flocker` (Attributes) flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--flocker))
+- `gce_persistent_disk` (Attributes) gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--gce_persistent_disk))
+- `git_repo` (Attributes) gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--git_repo))
+- `glusterfs` (Attributes) glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--glusterfs))
+- `host_path` (Attributes) hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath --- TODO(jonesdl) We need to restrict who can use host directory mounts and who can/can not mount host directories as read/write. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--host_path))
+- `iscsi` (Attributes) iscsi represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://examples.k8s.io/volumes/iscsi/README.md (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--iscsi))
+- `nfs` (Attributes) nfs represents an NFS mount on the host that shares a pod's lifetime More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--nfs))
+- `persistent_volume_claim` (Attributes) persistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--persistent_volume_claim))
+- `photon_persistent_disk` (Attributes) photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--photon_persistent_disk))
+- `portworx_volume` (Attributes) portworxVolume represents a portworx volume attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--portworx_volume))
+- `projected` (Attributes) projected items for all in one resources secrets, configmaps, and downward API (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--projected))
+- `quobyte` (Attributes) quobyte represents a Quobyte mount on the host that shares a pod's lifetime (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--quobyte))
+- `rbd` (Attributes) rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--rbd))
+- `scale_io` (Attributes) scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--scale_io))
+- `secret` (Attributes) secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--secret))
+- `storageos` (Attributes) storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--storageos))
+- `vsphere_volume` (Attributes) vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--vsphere_volume))
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--aws_elastic_block_store"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.aws_elastic_block_store`
+
+Required:
+
+- `volume_id` (String) volumeID is unique ID of the persistent disk resource in AWS (Amazon EBS volume). More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
+
+Optional:
+
+- `fs_type` (String) fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore TODO: how do we prevent errors in the filesystem from compromising the machine
+- `partition` (Number) partition is the partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as '1'. Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty).
+- `read_only` (Boolean) readOnly value true will force the readOnly setting in VolumeMounts. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--azure_disk"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.azure_disk`
+
+Required:
+
+- `disk_name` (String) diskName is the Name of the data disk in the blob storage
+- `disk_uri` (String) diskURI is the URI of data disk in the blob storage
+
+Optional:
+
+- `caching_mode` (String) cachingMode is the Host Caching mode: None, Read Only, Read Write.
+- `fs_type` (String) fsType is Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
+- `kind` (String) kind expected values are Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared
+- `read_only` (Boolean) readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--azure_file"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.azure_file`
+
+Required:
+
+- `secret_name` (String) secretName is the  name of secret that contains Azure Storage Account Name and Key
+- `share_name` (String) shareName is the azure share Name
+
+Optional:
+
+- `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--cephfs"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.cephfs`
+
+Required:
+
+- `monitors` (List of String) monitors is Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
+
+Optional:
+
+- `path` (String) path is Optional: Used as the mounted root, rather than the full Ceph tree, default is /
+- `read_only` (Boolean) readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
+- `secret_file` (String) secretFile is Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
+- `secret_ref` (Attributes) secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--cephfs--secret_ref))
+- `user` (String) user is optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--cephfs--secret_ref"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.cephfs.secret_ref`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--cinder"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.cinder`
+
+Required:
+
+- `volume_id` (String) volumeID used to identify the volume in cinder. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
+
+Optional:
+
+- `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
+- `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
+- `secret_ref` (Attributes) secretRef is optional: points to a secret object containing parameters used to connect to OpenStack. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--cinder--secret_ref))
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--cinder--secret_ref"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.cinder.secret_ref`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--config_map"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.config_map`
+
+Optional:
+
+- `default_mode` (Number) defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--config_map--items))
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--config_map--items"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.config_map.items`
+
+Required:
+
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+
+Optional:
+
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--csi"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.csi`
+
+Required:
+
+- `driver` (String) driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.
+
+Optional:
+
+- `fs_type` (String) fsType to mount. Ex. 'ext4', 'xfs', 'ntfs'. If not provided, the empty value is passed to the associated CSI driver which will determine the default filesystem to apply.
+- `node_publish_secret_ref` (Attributes) nodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and  may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--csi--node_publish_secret_ref))
+- `read_only` (Boolean) readOnly specifies a read-only configuration for the volume. Defaults to false (read/write).
+- `volume_attributes` (Map of String) volumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--csi--node_publish_secret_ref"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.csi.node_publish_secret_ref`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--downward_api"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.downward_api`
+
+Optional:
+
+- `default_mode` (Number) Optional: mode bits to use on created files by default. Must be a Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `items` (Attributes List) Items is a list of downward API volume file (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--downward_api--items))
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--downward_api--items"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.downward_api.items`
+
+Required:
+
+- `path` (String) Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'
+
+Optional:
+
+- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--downward_api--items--field_ref))
+- `mode` (Number) Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--downward_api--items--resource_field_ref))
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.downward_api.items.field_ref`
+
+Required:
+
+- `field_path` (String) Path of the field to select in the specified API version.
+
+Optional:
+
+- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.downward_api.items.resource_field_ref`
+
+Required:
+
+- `resource` (String) Required: resource to select
+
+Optional:
+
+- `container_name` (String) Container name: required for volumes, optional for env vars
+- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+
+
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--empty_dir"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.empty_dir`
+
+Optional:
+
+- `medium` (String) medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
+- `size_limit` (String) sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.ephemeral`
+
+Optional:
+
+- `volume_claim_template` (Attributes) Will be used to create a stand-alone PVC to provision the volume. The pod in which this EphemeralVolumeSource is embedded will be the owner of the PVC, i.e. the PVC will be deleted together with the pod.  The name of the PVC will be '<pod name>-<volume name>' where '<volume name>' is the name from the 'PodSpec.Volumes' array entry. Pod validation will reject the pod if the concatenated name is not valid for a PVC (for example, too long).  An existing PVC with that name that is not owned by the pod will *not* be used for the pod to avoid using an unrelated volume by mistake. Starting the pod is then blocked until the unrelated PVC is removed. If such a pre-created PVC is meant to be used by the pod, the PVC has to updated with an owner reference to the pod once the pod exists. Normally this should not be necessary, but it may be useful when manually reconstructing a broken cluster.  This field is read-only and no changes will be made by Kubernetes to the PVC after it has been created.  Required, must not be nil. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template))
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.ephemeral.volume_claim_template`
+
+Required:
+
+- `spec` (Attributes) The specification for the PersistentVolumeClaim. The entire content is copied unchanged into the PVC that gets created from this template. The same fields as in a PersistentVolumeClaim are also valid here. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--spec))
+
+Optional:
+
+- `metadata` (Attributes) May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--metadata))
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--spec"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.ephemeral.volume_claim_template.spec`
+
+Optional:
+
+- `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
+- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--metadata--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--metadata--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--metadata--resources))
+- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--metadata--selector))
+- `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
+- `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--metadata--data_source"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.ephemeral.volume_claim_template.metadata.data_source`
+
+Required:
+
+- `kind` (String) Kind is the type of resource being referenced
+- `name` (String) Name is the name of resource being referenced
+
+Optional:
+
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--metadata--data_source_ref"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.ephemeral.volume_claim_template.metadata.data_source_ref`
+
+Required:
+
+- `kind` (String) Kind is the type of resource being referenced
+- `name` (String) Name is the name of resource being referenced
+
+Optional:
+
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+- `namespace` (String) Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--metadata--resources"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.ephemeral.volume_claim_template.metadata.resources`
+
+Optional:
+
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--metadata--volume_name--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--metadata--volume_name--claims"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.ephemeral.volume_claim_template.metadata.volume_name.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--metadata--selector"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.ephemeral.volume_claim_template.metadata.selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--metadata--volume_name--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--metadata--volume_name--match_expressions"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.ephemeral.volume_claim_template.metadata.volume_name.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--metadata"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.ephemeral.volume_claim_template.metadata`
+
+Optional:
+
+- `annotations` (Map of String)
+- `finalizers` (List of String)
+- `labels` (Map of String)
+- `name` (String)
+- `namespace` (String)
+
+
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--fc"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.fc`
+
+Optional:
+
+- `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. TODO: how do we prevent errors in the filesystem from compromising the machine
+- `lun` (Number) lun is Optional: FC target lun number
+- `read_only` (Boolean) readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+- `target_ww_ns` (List of String) targetWWNs is Optional: FC target worldwide names (WWNs)
+- `wwids` (List of String) wwids Optional: FC volume world wide identifiers (wwids) Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously.
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--flex_volume"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.flex_volume`
+
+Required:
+
+- `driver` (String) driver is the name of the driver to use for this volume.
+
+Optional:
+
+- `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. The default filesystem depends on FlexVolume script.
+- `options` (Map of String) options is Optional: this field holds extra command options if any.
+- `read_only` (Boolean) readOnly is Optional: defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+- `secret_ref` (Attributes) secretRef is Optional: secretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--flex_volume--secret_ref))
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--flex_volume--secret_ref"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.flex_volume.secret_ref`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--flocker"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.flocker`
+
+Optional:
+
+- `dataset_name` (String) datasetName is Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated
+- `dataset_uuid` (String) datasetUUID is the UUID of the dataset. This is unique identifier of a Flocker dataset
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--gce_persistent_disk"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.gce_persistent_disk`
+
+Required:
+
+- `pd_name` (String) pdName is unique name of the PD resource in GCE. Used to identify the disk in GCE. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
+
+Optional:
+
+- `fs_type` (String) fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk TODO: how do we prevent errors in the filesystem from compromising the machine
+- `partition` (Number) partition is the partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as '1'. Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty). More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
+- `read_only` (Boolean) readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--git_repo"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.git_repo`
+
+Required:
+
+- `repository` (String) repository is the URL
+
+Optional:
+
+- `directory` (String) directory is the target directory name. Must not contain or start with '..'.  If '.' is supplied, the volume directory will be the git repository.  Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.
+- `revision` (String) revision is the commit hash for the specified revision.
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--glusterfs"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.glusterfs`
+
+Required:
+
+- `endpoints` (String) endpoints is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
+- `path` (String) path is the Glusterfs volume path. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
+
+Optional:
+
+- `read_only` (Boolean) readOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--host_path"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.host_path`
+
+Required:
+
+- `path` (String) path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
+
+Optional:
+
+- `type` (String) type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--iscsi"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.iscsi`
+
+Required:
+
+- `iqn` (String) iqn is the target iSCSI Qualified Name.
+- `lun` (Number) lun represents iSCSI Target Lun number.
+- `target_portal` (String) targetPortal is iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
+
+Optional:
+
+- `chap_auth_discovery` (Boolean) chapAuthDiscovery defines whether support iSCSI Discovery CHAP authentication
+- `chap_auth_session` (Boolean) chapAuthSession defines whether support iSCSI Session CHAP authentication
+- `fs_type` (String) fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi TODO: how do we prevent errors in the filesystem from compromising the machine
+- `initiator_name` (String) initiatorName is the custom iSCSI Initiator Name. If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface <target portal>:<volume name> will be created for the connection.
+- `iscsi_interface` (String) iscsiInterface is the interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).
+- `portals` (List of String) portals is the iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
+- `read_only` (Boolean) readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.
+- `secret_ref` (Attributes) secretRef is the CHAP Secret for iSCSI target and initiator authentication (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--iscsi--secret_ref))
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--iscsi--secret_ref"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.iscsi.secret_ref`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--nfs"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.nfs`
+
+Required:
+
+- `path` (String) path that is exported by the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
+- `server` (String) server is the hostname or IP address of the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
+
+Optional:
+
+- `read_only` (Boolean) readOnly here will force the NFS export to be mounted with read-only permissions. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--persistent_volume_claim"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.persistent_volume_claim`
+
+Required:
+
+- `claim_name` (String) claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
+
+Optional:
+
+- `read_only` (Boolean) readOnly Will force the ReadOnly setting in VolumeMounts. Default false.
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--photon_persistent_disk"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.photon_persistent_disk`
+
+Required:
+
+- `pd_id` (String) pdID is the ID that identifies Photon Controller persistent disk
+
+Optional:
+
+- `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--portworx_volume"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.portworx_volume`
+
+Required:
+
+- `volume_id` (String) volumeID uniquely identifies a Portworx volume
+
+Optional:
+
+- `fs_type` (String) fSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs'. Implicitly inferred to be 'ext4' if unspecified.
+- `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--projected"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.projected`
+
+Optional:
+
+- `default_mode` (Number) defaultMode are the mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `sources` (Attributes List) sources is the list of volume projections (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources))
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.projected.sources`
+
+Optional:
+
+- `config_map` (Attributes) configMap information about the configMap data to project (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--config_map))
+- `downward_api` (Attributes) downwardAPI information about the downwardAPI data to project (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--downward_api))
+- `secret` (Attributes) secret information about the secret data to project (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--secret))
+- `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--service_account_token))
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--config_map"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.projected.sources.config_map`
+
+Optional:
+
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--service_account_token--items))
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--service_account_token--items"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.projected.sources.service_account_token.items`
+
+Required:
+
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+
+Optional:
+
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--downward_api"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.projected.sources.downward_api`
+
+Optional:
+
+- `items` (Attributes List) Items is a list of DownwardAPIVolume file (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--service_account_token--items))
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--service_account_token--items"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.projected.sources.service_account_token.items`
+
+Required:
+
+- `path` (String) Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'
+
+Optional:
+
+- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--service_account_token--items--field_ref))
+- `mode` (Number) Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--service_account_token--items--resource_field_ref))
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--service_account_token--items--field_ref"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.projected.sources.service_account_token.items.field_ref`
+
+Required:
+
+- `field_path` (String) Path of the field to select in the specified API version.
+
+Optional:
+
+- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--service_account_token--items--resource_field_ref"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.projected.sources.service_account_token.items.resource_field_ref`
+
+Required:
+
+- `resource` (String) Required: resource to select
+
+Optional:
+
+- `container_name` (String) Container name: required for volumes, optional for env vars
+- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+
+
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--secret"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.projected.sources.secret`
+
+Optional:
+
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--service_account_token--items))
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) optional field specify whether the Secret or its key must be defined
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--service_account_token--items"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.projected.sources.service_account_token.items`
+
+Required:
+
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+
+Optional:
+
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--service_account_token"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.projected.sources.service_account_token`
+
+Required:
+
+- `path` (String) path is the path relative to the mount point of the file to project the token into.
+
+Optional:
+
+- `audience` (String) audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.
+- `expiration_seconds` (Number) expirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.
+
+
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--quobyte"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.quobyte`
+
+Required:
+
+- `registry` (String) registry represents a single or multiple Quobyte Registry services specified as a string as host:port pair (multiple entries are separated with commas) which acts as the central registry for volumes
+- `volume` (String) volume is a string that references an already created Quobyte volume by name.
+
+Optional:
+
+- `group` (String) group to map volume access to Default is no group
+- `read_only` (Boolean) readOnly here will force the Quobyte volume to be mounted with read-only permissions. Defaults to false.
+- `tenant` (String) tenant owning the given Quobyte volume in the Backend Used with dynamically provisioned Quobyte volumes, value is set by the plugin
+- `user` (String) user to map volume access to Defaults to serivceaccount user
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--rbd"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.rbd`
+
+Required:
+
+- `image` (String) image is the rados image name. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+- `monitors` (List of String) monitors is a collection of Ceph monitors. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+
+Optional:
+
+- `fs_type` (String) fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd TODO: how do we prevent errors in the filesystem from compromising the machine
+- `keyring` (String) keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+- `pool` (String) pool is the rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+- `read_only` (Boolean) readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+- `secret_ref` (Attributes) secretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--rbd--secret_ref))
+- `user` (String) user is the rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--rbd--secret_ref"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.rbd.secret_ref`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--scale_io"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.scale_io`
+
+Required:
+
+- `gateway` (String) gateway is the host address of the ScaleIO API Gateway.
+- `secret_ref` (Attributes) secretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--scale_io--secret_ref))
+- `system` (String) system is the name of the storage system as configured in ScaleIO.
+
+Optional:
+
+- `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Default is 'xfs'.
+- `protection_domain` (String) protectionDomain is the name of the ScaleIO Protection Domain for the configured storage.
+- `read_only` (Boolean) readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+- `ssl_enabled` (Boolean) sslEnabled Flag enable/disable SSL communication with Gateway, default false
+- `storage_mode` (String) storageMode indicates whether the storage for a volume should be ThickProvisioned or ThinProvisioned. Default is ThinProvisioned.
+- `storage_pool` (String) storagePool is the ScaleIO Storage Pool associated with the protection domain.
+- `volume_name` (String) volumeName is the name of a volume already created in the ScaleIO system that is associated with this volume source.
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--scale_io--secret_ref"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.scale_io.secret_ref`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--secret"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.secret`
+
+Optional:
+
+- `default_mode` (Number) defaultMode is Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `items` (Attributes List) items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--secret--items))
+- `optional` (Boolean) optional field specify whether the Secret or its keys must be defined
+- `secret_name` (String) secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--secret--items"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.secret.items`
+
+Required:
+
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+
+Optional:
+
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--storageos"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.storageos`
+
+Optional:
+
+- `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
+- `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+- `secret_ref` (Attributes) secretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--storageos--secret_ref))
+- `volume_name` (String) volumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.
+- `volume_namespace` (String) volumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--storageos--secret_ref"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.storageos.secret_ref`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--vsphere_volume"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.vsphere_volume`
+
+Required:
+
+- `volume_path` (String) volumePath is the path that identifies vSphere volume vmdk
+
+Optional:
+
+- `fs_type` (String) fsType is filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
+- `storage_policy_id` (String) storagePolicyID is the storage Policy Based Management (SPBM) profile ID associated with the StoragePolicyName.
+- `storage_policy_name` (String) storagePolicyName is the storage Policy Based Management (SPBM) profile name.
+
+
+
+
+
+<a id="nestedatt--spec--rebuild_from"></a>
+### Nested Schema for `spec.rebuild_from`
+
+Required:
+
+- `component_name` (String) Specifies the name of the cluster component.
+- `instances` (Attributes List) Defines the instances that need to be rebuilt. (see [below for nested schema](#nestedatt--spec--rebuild_from--instances))
+
+Optional:
+
+- `backup_name` (String) Indicates the name of the backup from which to recover. Currently, only a full physical backup is supported unless your component only has one replica. Such as 'xtrabackup' is full physical backup for mysql and 'mysqldump' is not. And if no specified backupName, the instance will be recreated with empty 'PersistentVolumes'.
+- `env_for_restore` (Map of String) List of environment variables to set in the container for restore. These will be merged with the env of Backup and ActionSet.  The priority of merging is as follows: 'Restore env > Backup env > ActionSet env'.
+
+<a id="nestedatt--spec--rebuild_from--instances"></a>
+### Nested Schema for `spec.rebuild_from.instances`
+
+Required:
+
+- `name` (String) Pod name of the instance.
+
+Optional:
+
+- `target_node_name` (String) The instance will rebuild on the specified node when the instance uses local PersistentVolume as the storage disk. If not set, it will rebuild on a random node.
+
 
 
 <a id="nestedatt--spec--reconfigure"></a>

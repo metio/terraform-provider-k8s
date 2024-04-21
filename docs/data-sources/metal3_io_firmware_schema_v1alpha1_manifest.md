@@ -3,12 +3,12 @@
 page_title: "k8s_metal3_io_firmware_schema_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "metal3.io"
 description: |-
-  FirmwareSchema is the Schema for the firmwareschemas API
+  FirmwareSchema is the Schema for the firmwareschemas API.
 ---
 
 # k8s_metal3_io_firmware_schema_v1alpha1_manifest (Data Source)
 
-FirmwareSchema is the Schema for the firmwareschemas API
+FirmwareSchema is the Schema for the firmwareschemas API.
 
 ## Example Usage
 
@@ -30,7 +30,7 @@ data "k8s_metal3_io_firmware_schema_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) FirmwareSchemaSpec defines the desired state of FirmwareSchema (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) FirmwareSchemaSpec defines the desired state of FirmwareSchema. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 

@@ -85,6 +85,7 @@ Optional:
 - `snapshot` (String)
 - `successful_jobs_history_limit` (Number) SuccessfulJobsHistoryLimit amount of successful jobs to keep for later analysis.KeepJobs is used property is not specified.
 - `tags` (List of String) Tags is a list of arbitrary tags that get added to the backup via Restic's tagging system
+- `volumes` (Attributes List) Volumes List of volumes that can be mounted by containers belonging to the pod. (see [below for nested schema](#nestedatt--spec--archive--volumes))
 
 <a id="nestedatt--spec--archive--backend"></a>
 ### Nested Schema for `spec.archive.backend`
@@ -100,19 +101,21 @@ Optional:
 - `rest` (Attributes) (see [below for nested schema](#nestedatt--spec--archive--backend--rest))
 - `s3` (Attributes) (see [below for nested schema](#nestedatt--spec--archive--backend--s3))
 - `swift` (Attributes) (see [below for nested schema](#nestedatt--spec--archive--backend--swift))
+- `tls_options` (Attributes) (see [below for nested schema](#nestedatt--spec--archive--backend--tls_options))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--archive--backend--volume_mounts))
 
 <a id="nestedatt--spec--archive--backend--azure"></a>
 ### Nested Schema for `spec.archive.backend.azure`
 
 Optional:
 
-- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--swift--account_key_secret_ref))
-- `account_name_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--swift--account_name_secret_ref))
+- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--volume_mounts--account_key_secret_ref))
+- `account_name_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--volume_mounts--account_name_secret_ref))
 - `container` (String)
 - `path` (String)
 
-<a id="nestedatt--spec--archive--backend--swift--account_key_secret_ref"></a>
-### Nested Schema for `spec.archive.backend.swift.account_key_secret_ref`
+<a id="nestedatt--spec--archive--backend--volume_mounts--account_key_secret_ref"></a>
+### Nested Schema for `spec.archive.backend.volume_mounts.account_key_secret_ref`
 
 Required:
 
@@ -124,8 +127,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--archive--backend--swift--account_name_secret_ref"></a>
-### Nested Schema for `spec.archive.backend.swift.account_name_secret_ref`
+<a id="nestedatt--spec--archive--backend--volume_mounts--account_name_secret_ref"></a>
+### Nested Schema for `spec.archive.backend.volume_mounts.account_name_secret_ref`
 
 Required:
 
@@ -143,13 +146,13 @@ Optional:
 
 Optional:
 
-- `account_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--swift--account_id_secret_ref))
-- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--swift--account_key_secret_ref))
+- `account_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--volume_mounts--account_id_secret_ref))
+- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--volume_mounts--account_key_secret_ref))
 - `bucket` (String)
 - `path` (String)
 
-<a id="nestedatt--spec--archive--backend--swift--account_id_secret_ref"></a>
-### Nested Schema for `spec.archive.backend.swift.account_id_secret_ref`
+<a id="nestedatt--spec--archive--backend--volume_mounts--account_id_secret_ref"></a>
+### Nested Schema for `spec.archive.backend.volume_mounts.account_id_secret_ref`
 
 Required:
 
@@ -161,8 +164,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--archive--backend--swift--account_key_secret_ref"></a>
-### Nested Schema for `spec.archive.backend.swift.account_key_secret_ref`
+<a id="nestedatt--spec--archive--backend--volume_mounts--account_key_secret_ref"></a>
+### Nested Schema for `spec.archive.backend.volume_mounts.account_key_secret_ref`
 
 Required:
 
@@ -180,12 +183,12 @@ Optional:
 
 Optional:
 
-- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--archive--backend--swift--config_map_ref))
+- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--archive--backend--volume_mounts--config_map_ref))
 - `prefix` (String) An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.
-- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--archive--backend--swift--secret_ref))
+- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--archive--backend--volume_mounts--secret_ref))
 
-<a id="nestedatt--spec--archive--backend--swift--config_map_ref"></a>
-### Nested Schema for `spec.archive.backend.swift.config_map_ref`
+<a id="nestedatt--spec--archive--backend--volume_mounts--config_map_ref"></a>
+### Nested Schema for `spec.archive.backend.volume_mounts.config_map_ref`
 
 Optional:
 
@@ -193,8 +196,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap must be defined
 
 
-<a id="nestedatt--spec--archive--backend--swift--secret_ref"></a>
-### Nested Schema for `spec.archive.backend.swift.secret_ref`
+<a id="nestedatt--spec--archive--backend--volume_mounts--secret_ref"></a>
+### Nested Schema for `spec.archive.backend.volume_mounts.secret_ref`
 
 Optional:
 
@@ -208,12 +211,12 @@ Optional:
 
 Optional:
 
-- `access_token_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--swift--access_token_secret_ref))
+- `access_token_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--volume_mounts--access_token_secret_ref))
 - `bucket` (String)
-- `project_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--swift--project_id_secret_ref))
+- `project_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--volume_mounts--project_id_secret_ref))
 
-<a id="nestedatt--spec--archive--backend--swift--access_token_secret_ref"></a>
-### Nested Schema for `spec.archive.backend.swift.access_token_secret_ref`
+<a id="nestedatt--spec--archive--backend--volume_mounts--access_token_secret_ref"></a>
+### Nested Schema for `spec.archive.backend.volume_mounts.access_token_secret_ref`
 
 Required:
 
@@ -225,8 +228,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--archive--backend--swift--project_id_secret_ref"></a>
-### Nested Schema for `spec.archive.backend.swift.project_id_secret_ref`
+<a id="nestedatt--spec--archive--backend--volume_mounts--project_id_secret_ref"></a>
+### Nested Schema for `spec.archive.backend.volume_mounts.project_id_secret_ref`
 
 Required:
 
@@ -265,12 +268,12 @@ Optional:
 
 Optional:
 
-- `password_secret_reg` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--swift--password_secret_reg))
+- `password_secret_reg` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--volume_mounts--password_secret_reg))
 - `url` (String)
-- `user_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--swift--user_secret_ref))
+- `user_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--volume_mounts--user_secret_ref))
 
-<a id="nestedatt--spec--archive--backend--swift--password_secret_reg"></a>
-### Nested Schema for `spec.archive.backend.swift.password_secret_reg`
+<a id="nestedatt--spec--archive--backend--volume_mounts--password_secret_reg"></a>
+### Nested Schema for `spec.archive.backend.volume_mounts.password_secret_reg`
 
 Required:
 
@@ -282,8 +285,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--archive--backend--swift--user_secret_ref"></a>
-### Nested Schema for `spec.archive.backend.swift.user_secret_ref`
+<a id="nestedatt--spec--archive--backend--volume_mounts--user_secret_ref"></a>
+### Nested Schema for `spec.archive.backend.volume_mounts.user_secret_ref`
 
 Required:
 
@@ -301,13 +304,13 @@ Optional:
 
 Optional:
 
-- `access_key_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--swift--access_key_id_secret_ref))
+- `access_key_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--volume_mounts--access_key_id_secret_ref))
 - `bucket` (String)
 - `endpoint` (String)
-- `secret_access_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--swift--secret_access_key_secret_ref))
+- `secret_access_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--volume_mounts--secret_access_key_secret_ref))
 
-<a id="nestedatt--spec--archive--backend--swift--access_key_id_secret_ref"></a>
-### Nested Schema for `spec.archive.backend.swift.access_key_id_secret_ref`
+<a id="nestedatt--spec--archive--backend--volume_mounts--access_key_id_secret_ref"></a>
+### Nested Schema for `spec.archive.backend.volume_mounts.access_key_id_secret_ref`
 
 Required:
 
@@ -319,8 +322,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--archive--backend--swift--secret_access_key_secret_ref"></a>
-### Nested Schema for `spec.archive.backend.swift.secret_access_key_secret_ref`
+<a id="nestedatt--spec--archive--backend--volume_mounts--secret_access_key_secret_ref"></a>
+### Nested Schema for `spec.archive.backend.volume_mounts.secret_access_key_secret_ref`
 
 Required:
 
@@ -340,6 +343,32 @@ Optional:
 
 - `container` (String)
 - `path` (String)
+
+
+<a id="nestedatt--spec--archive--backend--tls_options"></a>
+### Nested Schema for `spec.archive.backend.tls_options`
+
+Optional:
+
+- `ca_cert` (String)
+- `client_cert` (String)
+- `client_key` (String)
+
+
+<a id="nestedatt--spec--archive--backend--volume_mounts"></a>
+### Nested Schema for `spec.archive.backend.volume_mounts`
+
+Required:
+
+- `mount_path` (String) Path within the container at which the volume should be mounted.  Mustnot contain ':'.
+- `name` (String) This must match the Name of a Volume.
+
+Optional:
+
+- `mount_propagation` (String) mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.
+- `read_only` (Boolean) Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.
+- `sub_path` (String) Path within the volume from which the container's volume should be mounted.Defaults to '' (volume's root).
+- `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted.Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment.Defaults to '' (volume's root).SubPathExpr and SubPath are mutually exclusive.
 
 
 
@@ -428,6 +457,8 @@ Optional:
 
 - `folder` (Attributes) (see [below for nested schema](#nestedatt--spec--archive--restore_method--folder))
 - `s3` (Attributes) (see [below for nested schema](#nestedatt--spec--archive--restore_method--s3))
+- `tls_options` (Attributes) (see [below for nested schema](#nestedatt--spec--archive--restore_method--tls_options))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--archive--restore_method--volume_mounts))
 
 <a id="nestedatt--spec--archive--restore_method--folder"></a>
 ### Nested Schema for `spec.archive.restore_method.folder`
@@ -446,13 +477,26 @@ Optional:
 
 Optional:
 
-- `access_key_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--restore_method--s3--access_key_id_secret_ref))
+- `access_key_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--restore_method--volume_mounts--access_key_id_secret_ref))
 - `bucket` (String)
 - `endpoint` (String)
-- `secret_access_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--restore_method--s3--secret_access_key_secret_ref))
+- `secret_access_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--restore_method--volume_mounts--secret_access_key_secret_ref))
 
-<a id="nestedatt--spec--archive--restore_method--s3--access_key_id_secret_ref"></a>
-### Nested Schema for `spec.archive.restore_method.s3.access_key_id_secret_ref`
+<a id="nestedatt--spec--archive--restore_method--volume_mounts--access_key_id_secret_ref"></a>
+### Nested Schema for `spec.archive.restore_method.volume_mounts.access_key_id_secret_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--archive--restore_method--volume_mounts--secret_access_key_secret_ref"></a>
+### Nested Schema for `spec.archive.restore_method.volume_mounts.secret_access_key_secret_ref`
 
 Required:
 
@@ -464,17 +508,104 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--archive--restore_method--s3--secret_access_key_secret_ref"></a>
-### Nested Schema for `spec.archive.restore_method.s3.secret_access_key_secret_ref`
 
-Required:
-
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+<a id="nestedatt--spec--archive--restore_method--tls_options"></a>
+### Nested Schema for `spec.archive.restore_method.tls_options`
 
 Optional:
 
+- `ca_cert` (String)
+- `client_cert` (String)
+- `client_key` (String)
+
+
+<a id="nestedatt--spec--archive--restore_method--volume_mounts"></a>
+### Nested Schema for `spec.archive.restore_method.volume_mounts`
+
+Required:
+
+- `mount_path` (String) Path within the container at which the volume should be mounted.  Mustnot contain ':'.
+- `name` (String) This must match the Name of a Volume.
+
+Optional:
+
+- `mount_propagation` (String) mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.
+- `read_only` (Boolean) Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.
+- `sub_path` (String) Path within the volume from which the container's volume should be mounted.Defaults to '' (volume's root).
+- `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted.Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment.Defaults to '' (volume's root).SubPathExpr and SubPath are mutually exclusive.
+
+
+
+<a id="nestedatt--spec--archive--volumes"></a>
+### Nested Schema for `spec.archive.volumes`
+
+Required:
+
+- `name` (String) name of the volume.Must be a DNS_LABEL and unique within the pod.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+
+Optional:
+
+- `config_map` (Attributes) configMap represents a configMap that should populate this volume (see [below for nested schema](#nestedatt--spec--archive--volumes--config_map))
+- `persistent_volume_claim` (Attributes) persistentVolumeClaimVolumeSource represents a reference to aPersistentVolumeClaim in the same namespace.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--archive--volumes--persistent_volume_claim))
+- `secret` (Attributes) secret represents a secret that should populate this volume.More info: https://kubernetes.io/docs/concepts/storage/volumes#secret (see [below for nested schema](#nestedatt--spec--archive--volumes--secret))
+
+<a id="nestedatt--spec--archive--volumes--config_map"></a>
+### Nested Schema for `spec.archive.volumes.config_map`
+
+Optional:
+
+- `default_mode` (Number) defaultMode is optional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--archive--volumes--secret--items))
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
+- `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
+
+<a id="nestedatt--spec--archive--volumes--secret--items"></a>
+### Nested Schema for `spec.archive.volumes.secret.items`
+
+Required:
+
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.
+
+Optional:
+
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
+
+
+
+<a id="nestedatt--spec--archive--volumes--persistent_volume_claim"></a>
+### Nested Schema for `spec.archive.volumes.persistent_volume_claim`
+
+Required:
+
+- `claim_name` (String) claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
+
+Optional:
+
+- `read_only` (Boolean) readOnly Will force the ReadOnly setting in VolumeMounts.Default false.
+
+
+<a id="nestedatt--spec--archive--volumes--secret"></a>
+### Nested Schema for `spec.archive.volumes.secret`
+
+Optional:
+
+- `default_mode` (Number) defaultMode is Optional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal valuesfor mode bits. Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
+- `items` (Attributes List) items If unspecified, each key-value pair in the Data field of the referencedSecret will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the Secret,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--archive--volumes--secret--items))
+- `optional` (Boolean) optional field specify whether the Secret or its keys must be defined
+- `secret_name` (String) secretName is the name of the secret in the pod's namespace to use.More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
+
+<a id="nestedatt--spec--archive--volumes--secret--items"></a>
+### Nested Schema for `spec.archive.volumes.secret.items`
+
+Required:
+
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.
+
+Optional:
+
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
 
 
 
@@ -494,6 +625,8 @@ Optional:
 - `rest` (Attributes) (see [below for nested schema](#nestedatt--spec--backend--rest))
 - `s3` (Attributes) (see [below for nested schema](#nestedatt--spec--backend--s3))
 - `swift` (Attributes) (see [below for nested schema](#nestedatt--spec--backend--swift))
+- `tls_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backend--tls_options))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--backend--volume_mounts))
 
 <a id="nestedatt--spec--backend--azure"></a>
 ### Nested Schema for `spec.backend.azure`
@@ -736,6 +869,32 @@ Optional:
 - `path` (String)
 
 
+<a id="nestedatt--spec--backend--tls_options"></a>
+### Nested Schema for `spec.backend.tls_options`
+
+Optional:
+
+- `ca_cert` (String)
+- `client_cert` (String)
+- `client_key` (String)
+
+
+<a id="nestedatt--spec--backend--volume_mounts"></a>
+### Nested Schema for `spec.backend.volume_mounts`
+
+Required:
+
+- `mount_path` (String) Path within the container at which the volume should be mounted.  Mustnot contain ':'.
+- `name` (String) This must match the Name of a Volume.
+
+Optional:
+
+- `mount_propagation` (String) mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.
+- `read_only` (Boolean) Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.
+- `sub_path` (String) Path within the volume from which the container's volume should be mounted.Defaults to '' (volume's root).
+- `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted.Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment.Defaults to '' (volume's root).SubPathExpr and SubPath are mutually exclusive.
+
+
 
 <a id="nestedatt--spec--backup"></a>
 ### Nested Schema for `spec.backup`
@@ -754,6 +913,7 @@ Optional:
 - `stats_url` (String) StatsURL sets an arbitrary URL where the restic container posts metrics andinformation about the snapshots to. This is in addition to the prometheuspushgateway.
 - `successful_jobs_history_limit` (Number) SuccessfulJobsHistoryLimit amount of successful jobs to keep for later analysis.KeepJobs is used property is not specified.
 - `tags` (List of String) Tags is a list of arbitrary tags that get added to the backup via Restic's tagging system
+- `volumes` (Attributes List) Volumes List of volumes that can be mounted by containers belonging to the pod. (see [below for nested schema](#nestedatt--spec--backup--volumes))
 
 <a id="nestedatt--spec--backup--backend"></a>
 ### Nested Schema for `spec.backup.backend`
@@ -769,19 +929,21 @@ Optional:
 - `rest` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--backend--rest))
 - `s3` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--backend--s3))
 - `swift` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--backend--swift))
+- `tls_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--backend--tls_options))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--backend--volume_mounts))
 
 <a id="nestedatt--spec--backup--backend--azure"></a>
 ### Nested Schema for `spec.backup.backend.azure`
 
 Optional:
 
-- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--swift--account_key_secret_ref))
-- `account_name_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--swift--account_name_secret_ref))
+- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--volume_mounts--account_key_secret_ref))
+- `account_name_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--volume_mounts--account_name_secret_ref))
 - `container` (String)
 - `path` (String)
 
-<a id="nestedatt--spec--backup--backend--swift--account_key_secret_ref"></a>
-### Nested Schema for `spec.backup.backend.swift.account_key_secret_ref`
+<a id="nestedatt--spec--backup--backend--volume_mounts--account_key_secret_ref"></a>
+### Nested Schema for `spec.backup.backend.volume_mounts.account_key_secret_ref`
 
 Required:
 
@@ -793,8 +955,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--backup--backend--swift--account_name_secret_ref"></a>
-### Nested Schema for `spec.backup.backend.swift.account_name_secret_ref`
+<a id="nestedatt--spec--backup--backend--volume_mounts--account_name_secret_ref"></a>
+### Nested Schema for `spec.backup.backend.volume_mounts.account_name_secret_ref`
 
 Required:
 
@@ -812,13 +974,13 @@ Optional:
 
 Optional:
 
-- `account_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--swift--account_id_secret_ref))
-- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--swift--account_key_secret_ref))
+- `account_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--volume_mounts--account_id_secret_ref))
+- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--volume_mounts--account_key_secret_ref))
 - `bucket` (String)
 - `path` (String)
 
-<a id="nestedatt--spec--backup--backend--swift--account_id_secret_ref"></a>
-### Nested Schema for `spec.backup.backend.swift.account_id_secret_ref`
+<a id="nestedatt--spec--backup--backend--volume_mounts--account_id_secret_ref"></a>
+### Nested Schema for `spec.backup.backend.volume_mounts.account_id_secret_ref`
 
 Required:
 
@@ -830,8 +992,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--backup--backend--swift--account_key_secret_ref"></a>
-### Nested Schema for `spec.backup.backend.swift.account_key_secret_ref`
+<a id="nestedatt--spec--backup--backend--volume_mounts--account_key_secret_ref"></a>
+### Nested Schema for `spec.backup.backend.volume_mounts.account_key_secret_ref`
 
 Required:
 
@@ -849,12 +1011,12 @@ Optional:
 
 Optional:
 
-- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--backup--backend--swift--config_map_ref))
+- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--backup--backend--volume_mounts--config_map_ref))
 - `prefix` (String) An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.
-- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--backup--backend--swift--secret_ref))
+- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--backup--backend--volume_mounts--secret_ref))
 
-<a id="nestedatt--spec--backup--backend--swift--config_map_ref"></a>
-### Nested Schema for `spec.backup.backend.swift.config_map_ref`
+<a id="nestedatt--spec--backup--backend--volume_mounts--config_map_ref"></a>
+### Nested Schema for `spec.backup.backend.volume_mounts.config_map_ref`
 
 Optional:
 
@@ -862,8 +1024,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap must be defined
 
 
-<a id="nestedatt--spec--backup--backend--swift--secret_ref"></a>
-### Nested Schema for `spec.backup.backend.swift.secret_ref`
+<a id="nestedatt--spec--backup--backend--volume_mounts--secret_ref"></a>
+### Nested Schema for `spec.backup.backend.volume_mounts.secret_ref`
 
 Optional:
 
@@ -877,12 +1039,12 @@ Optional:
 
 Optional:
 
-- `access_token_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--swift--access_token_secret_ref))
+- `access_token_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--volume_mounts--access_token_secret_ref))
 - `bucket` (String)
-- `project_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--swift--project_id_secret_ref))
+- `project_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--volume_mounts--project_id_secret_ref))
 
-<a id="nestedatt--spec--backup--backend--swift--access_token_secret_ref"></a>
-### Nested Schema for `spec.backup.backend.swift.access_token_secret_ref`
+<a id="nestedatt--spec--backup--backend--volume_mounts--access_token_secret_ref"></a>
+### Nested Schema for `spec.backup.backend.volume_mounts.access_token_secret_ref`
 
 Required:
 
@@ -894,8 +1056,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--backup--backend--swift--project_id_secret_ref"></a>
-### Nested Schema for `spec.backup.backend.swift.project_id_secret_ref`
+<a id="nestedatt--spec--backup--backend--volume_mounts--project_id_secret_ref"></a>
+### Nested Schema for `spec.backup.backend.volume_mounts.project_id_secret_ref`
 
 Required:
 
@@ -934,12 +1096,12 @@ Optional:
 
 Optional:
 
-- `password_secret_reg` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--swift--password_secret_reg))
+- `password_secret_reg` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--volume_mounts--password_secret_reg))
 - `url` (String)
-- `user_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--swift--user_secret_ref))
+- `user_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--volume_mounts--user_secret_ref))
 
-<a id="nestedatt--spec--backup--backend--swift--password_secret_reg"></a>
-### Nested Schema for `spec.backup.backend.swift.password_secret_reg`
+<a id="nestedatt--spec--backup--backend--volume_mounts--password_secret_reg"></a>
+### Nested Schema for `spec.backup.backend.volume_mounts.password_secret_reg`
 
 Required:
 
@@ -951,8 +1113,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--backup--backend--swift--user_secret_ref"></a>
-### Nested Schema for `spec.backup.backend.swift.user_secret_ref`
+<a id="nestedatt--spec--backup--backend--volume_mounts--user_secret_ref"></a>
+### Nested Schema for `spec.backup.backend.volume_mounts.user_secret_ref`
 
 Required:
 
@@ -970,13 +1132,13 @@ Optional:
 
 Optional:
 
-- `access_key_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--swift--access_key_id_secret_ref))
+- `access_key_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--volume_mounts--access_key_id_secret_ref))
 - `bucket` (String)
 - `endpoint` (String)
-- `secret_access_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--swift--secret_access_key_secret_ref))
+- `secret_access_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--volume_mounts--secret_access_key_secret_ref))
 
-<a id="nestedatt--spec--backup--backend--swift--access_key_id_secret_ref"></a>
-### Nested Schema for `spec.backup.backend.swift.access_key_id_secret_ref`
+<a id="nestedatt--spec--backup--backend--volume_mounts--access_key_id_secret_ref"></a>
+### Nested Schema for `spec.backup.backend.volume_mounts.access_key_id_secret_ref`
 
 Required:
 
@@ -988,8 +1150,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--backup--backend--swift--secret_access_key_secret_ref"></a>
-### Nested Schema for `spec.backup.backend.swift.secret_access_key_secret_ref`
+<a id="nestedatt--spec--backup--backend--volume_mounts--secret_access_key_secret_ref"></a>
+### Nested Schema for `spec.backup.backend.volume_mounts.secret_access_key_secret_ref`
 
 Required:
 
@@ -1009,6 +1171,32 @@ Optional:
 
 - `container` (String)
 - `path` (String)
+
+
+<a id="nestedatt--spec--backup--backend--tls_options"></a>
+### Nested Schema for `spec.backup.backend.tls_options`
+
+Optional:
+
+- `ca_cert` (String)
+- `client_cert` (String)
+- `client_key` (String)
+
+
+<a id="nestedatt--spec--backup--backend--volume_mounts"></a>
+### Nested Schema for `spec.backup.backend.volume_mounts`
+
+Required:
+
+- `mount_path` (String) Path within the container at which the volume should be mounted.  Mustnot contain ':'.
+- `name` (String) This must match the Name of a Volume.
+
+Optional:
+
+- `mount_propagation` (String) mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.
+- `read_only` (Boolean) Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.
+- `sub_path` (String) Path within the volume from which the container's volume should be mounted.Defaults to '' (volume's root).
+- `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted.Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment.Defaults to '' (volume's root).SubPathExpr and SubPath are mutually exclusive.
 
 
 
@@ -1090,6 +1278,80 @@ Required:
 
 
 
+<a id="nestedatt--spec--backup--volumes"></a>
+### Nested Schema for `spec.backup.volumes`
+
+Required:
+
+- `name` (String) name of the volume.Must be a DNS_LABEL and unique within the pod.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+
+Optional:
+
+- `config_map` (Attributes) configMap represents a configMap that should populate this volume (see [below for nested schema](#nestedatt--spec--backup--volumes--config_map))
+- `persistent_volume_claim` (Attributes) persistentVolumeClaimVolumeSource represents a reference to aPersistentVolumeClaim in the same namespace.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--backup--volumes--persistent_volume_claim))
+- `secret` (Attributes) secret represents a secret that should populate this volume.More info: https://kubernetes.io/docs/concepts/storage/volumes#secret (see [below for nested schema](#nestedatt--spec--backup--volumes--secret))
+
+<a id="nestedatt--spec--backup--volumes--config_map"></a>
+### Nested Schema for `spec.backup.volumes.config_map`
+
+Optional:
+
+- `default_mode` (Number) defaultMode is optional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--backup--volumes--secret--items))
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
+
+<a id="nestedatt--spec--backup--volumes--secret--items"></a>
+### Nested Schema for `spec.backup.volumes.secret.items`
+
+Required:
+
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.
+
+Optional:
+
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
+
+
+
+<a id="nestedatt--spec--backup--volumes--persistent_volume_claim"></a>
+### Nested Schema for `spec.backup.volumes.persistent_volume_claim`
+
+Required:
+
+- `claim_name` (String) claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
+
+Optional:
+
+- `read_only` (Boolean) readOnly Will force the ReadOnly setting in VolumeMounts.Default false.
+
+
+<a id="nestedatt--spec--backup--volumes--secret"></a>
+### Nested Schema for `spec.backup.volumes.secret`
+
+Optional:
+
+- `default_mode` (Number) defaultMode is Optional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal valuesfor mode bits. Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
+- `items` (Attributes List) items If unspecified, each key-value pair in the Data field of the referencedSecret will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the Secret,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--backup--volumes--secret--items))
+- `optional` (Boolean) optional field specify whether the Secret or its keys must be defined
+- `secret_name` (String) secretName is the name of the secret in the pod's namespace to use.More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
+
+<a id="nestedatt--spec--backup--volumes--secret--items"></a>
+### Nested Schema for `spec.backup.volumes.secret.items`
+
+Required:
+
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.
+
+Optional:
+
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
+
+
+
+
 
 <a id="nestedatt--spec--check"></a>
 ### Nested Schema for `spec.check`
@@ -1106,6 +1368,7 @@ Optional:
 - `resources` (Attributes) Resources describes the compute resource requirements (cpu, memory, etc.) (see [below for nested schema](#nestedatt--spec--check--resources))
 - `schedule` (String) ScheduleDefinition is the actual cron-type expression that defines the interval of the actions.
 - `successful_jobs_history_limit` (Number) SuccessfulJobsHistoryLimit amount of successful jobs to keep for later analysis.KeepJobs is used property is not specified.
+- `volumes` (Attributes List) Volumes List of volumes that can be mounted by containers belonging to the pod. (see [below for nested schema](#nestedatt--spec--check--volumes))
 
 <a id="nestedatt--spec--check--backend"></a>
 ### Nested Schema for `spec.check.backend`
@@ -1121,19 +1384,21 @@ Optional:
 - `rest` (Attributes) (see [below for nested schema](#nestedatt--spec--check--backend--rest))
 - `s3` (Attributes) (see [below for nested schema](#nestedatt--spec--check--backend--s3))
 - `swift` (Attributes) (see [below for nested schema](#nestedatt--spec--check--backend--swift))
+- `tls_options` (Attributes) (see [below for nested schema](#nestedatt--spec--check--backend--tls_options))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--check--backend--volume_mounts))
 
 <a id="nestedatt--spec--check--backend--azure"></a>
 ### Nested Schema for `spec.check.backend.azure`
 
 Optional:
 
-- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--swift--account_key_secret_ref))
-- `account_name_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--swift--account_name_secret_ref))
+- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--volume_mounts--account_key_secret_ref))
+- `account_name_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--volume_mounts--account_name_secret_ref))
 - `container` (String)
 - `path` (String)
 
-<a id="nestedatt--spec--check--backend--swift--account_key_secret_ref"></a>
-### Nested Schema for `spec.check.backend.swift.account_key_secret_ref`
+<a id="nestedatt--spec--check--backend--volume_mounts--account_key_secret_ref"></a>
+### Nested Schema for `spec.check.backend.volume_mounts.account_key_secret_ref`
 
 Required:
 
@@ -1145,8 +1410,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--check--backend--swift--account_name_secret_ref"></a>
-### Nested Schema for `spec.check.backend.swift.account_name_secret_ref`
+<a id="nestedatt--spec--check--backend--volume_mounts--account_name_secret_ref"></a>
+### Nested Schema for `spec.check.backend.volume_mounts.account_name_secret_ref`
 
 Required:
 
@@ -1164,13 +1429,13 @@ Optional:
 
 Optional:
 
-- `account_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--swift--account_id_secret_ref))
-- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--swift--account_key_secret_ref))
+- `account_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--volume_mounts--account_id_secret_ref))
+- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--volume_mounts--account_key_secret_ref))
 - `bucket` (String)
 - `path` (String)
 
-<a id="nestedatt--spec--check--backend--swift--account_id_secret_ref"></a>
-### Nested Schema for `spec.check.backend.swift.account_id_secret_ref`
+<a id="nestedatt--spec--check--backend--volume_mounts--account_id_secret_ref"></a>
+### Nested Schema for `spec.check.backend.volume_mounts.account_id_secret_ref`
 
 Required:
 
@@ -1182,8 +1447,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--check--backend--swift--account_key_secret_ref"></a>
-### Nested Schema for `spec.check.backend.swift.account_key_secret_ref`
+<a id="nestedatt--spec--check--backend--volume_mounts--account_key_secret_ref"></a>
+### Nested Schema for `spec.check.backend.volume_mounts.account_key_secret_ref`
 
 Required:
 
@@ -1201,12 +1466,12 @@ Optional:
 
 Optional:
 
-- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--check--backend--swift--config_map_ref))
+- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--check--backend--volume_mounts--config_map_ref))
 - `prefix` (String) An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.
-- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--check--backend--swift--secret_ref))
+- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--check--backend--volume_mounts--secret_ref))
 
-<a id="nestedatt--spec--check--backend--swift--config_map_ref"></a>
-### Nested Schema for `spec.check.backend.swift.config_map_ref`
+<a id="nestedatt--spec--check--backend--volume_mounts--config_map_ref"></a>
+### Nested Schema for `spec.check.backend.volume_mounts.config_map_ref`
 
 Optional:
 
@@ -1214,8 +1479,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap must be defined
 
 
-<a id="nestedatt--spec--check--backend--swift--secret_ref"></a>
-### Nested Schema for `spec.check.backend.swift.secret_ref`
+<a id="nestedatt--spec--check--backend--volume_mounts--secret_ref"></a>
+### Nested Schema for `spec.check.backend.volume_mounts.secret_ref`
 
 Optional:
 
@@ -1229,12 +1494,12 @@ Optional:
 
 Optional:
 
-- `access_token_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--swift--access_token_secret_ref))
+- `access_token_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--volume_mounts--access_token_secret_ref))
 - `bucket` (String)
-- `project_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--swift--project_id_secret_ref))
+- `project_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--volume_mounts--project_id_secret_ref))
 
-<a id="nestedatt--spec--check--backend--swift--access_token_secret_ref"></a>
-### Nested Schema for `spec.check.backend.swift.access_token_secret_ref`
+<a id="nestedatt--spec--check--backend--volume_mounts--access_token_secret_ref"></a>
+### Nested Schema for `spec.check.backend.volume_mounts.access_token_secret_ref`
 
 Required:
 
@@ -1246,8 +1511,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--check--backend--swift--project_id_secret_ref"></a>
-### Nested Schema for `spec.check.backend.swift.project_id_secret_ref`
+<a id="nestedatt--spec--check--backend--volume_mounts--project_id_secret_ref"></a>
+### Nested Schema for `spec.check.backend.volume_mounts.project_id_secret_ref`
 
 Required:
 
@@ -1286,12 +1551,12 @@ Optional:
 
 Optional:
 
-- `password_secret_reg` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--swift--password_secret_reg))
+- `password_secret_reg` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--volume_mounts--password_secret_reg))
 - `url` (String)
-- `user_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--swift--user_secret_ref))
+- `user_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--volume_mounts--user_secret_ref))
 
-<a id="nestedatt--spec--check--backend--swift--password_secret_reg"></a>
-### Nested Schema for `spec.check.backend.swift.password_secret_reg`
+<a id="nestedatt--spec--check--backend--volume_mounts--password_secret_reg"></a>
+### Nested Schema for `spec.check.backend.volume_mounts.password_secret_reg`
 
 Required:
 
@@ -1303,8 +1568,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--check--backend--swift--user_secret_ref"></a>
-### Nested Schema for `spec.check.backend.swift.user_secret_ref`
+<a id="nestedatt--spec--check--backend--volume_mounts--user_secret_ref"></a>
+### Nested Schema for `spec.check.backend.volume_mounts.user_secret_ref`
 
 Required:
 
@@ -1322,13 +1587,13 @@ Optional:
 
 Optional:
 
-- `access_key_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--swift--access_key_id_secret_ref))
+- `access_key_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--volume_mounts--access_key_id_secret_ref))
 - `bucket` (String)
 - `endpoint` (String)
-- `secret_access_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--swift--secret_access_key_secret_ref))
+- `secret_access_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--volume_mounts--secret_access_key_secret_ref))
 
-<a id="nestedatt--spec--check--backend--swift--access_key_id_secret_ref"></a>
-### Nested Schema for `spec.check.backend.swift.access_key_id_secret_ref`
+<a id="nestedatt--spec--check--backend--volume_mounts--access_key_id_secret_ref"></a>
+### Nested Schema for `spec.check.backend.volume_mounts.access_key_id_secret_ref`
 
 Required:
 
@@ -1340,8 +1605,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--check--backend--swift--secret_access_key_secret_ref"></a>
-### Nested Schema for `spec.check.backend.swift.secret_access_key_secret_ref`
+<a id="nestedatt--spec--check--backend--volume_mounts--secret_access_key_secret_ref"></a>
+### Nested Schema for `spec.check.backend.volume_mounts.secret_access_key_secret_ref`
 
 Required:
 
@@ -1361,6 +1626,32 @@ Optional:
 
 - `container` (String)
 - `path` (String)
+
+
+<a id="nestedatt--spec--check--backend--tls_options"></a>
+### Nested Schema for `spec.check.backend.tls_options`
+
+Optional:
+
+- `ca_cert` (String)
+- `client_cert` (String)
+- `client_key` (String)
+
+
+<a id="nestedatt--spec--check--backend--volume_mounts"></a>
+### Nested Schema for `spec.check.backend.volume_mounts`
+
+Required:
+
+- `mount_path` (String) Path within the container at which the volume should be mounted.  Mustnot contain ':'.
+- `name` (String) This must match the Name of a Volume.
+
+Optional:
+
+- `mount_propagation` (String) mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.
+- `read_only` (Boolean) Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.
+- `sub_path` (String) Path within the volume from which the container's volume should be mounted.Defaults to '' (volume's root).
+- `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted.Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment.Defaults to '' (volume's root).SubPathExpr and SubPath are mutually exclusive.
 
 
 
@@ -1442,6 +1733,80 @@ Required:
 
 
 
+<a id="nestedatt--spec--check--volumes"></a>
+### Nested Schema for `spec.check.volumes`
+
+Required:
+
+- `name` (String) name of the volume.Must be a DNS_LABEL and unique within the pod.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+
+Optional:
+
+- `config_map` (Attributes) configMap represents a configMap that should populate this volume (see [below for nested schema](#nestedatt--spec--check--volumes--config_map))
+- `persistent_volume_claim` (Attributes) persistentVolumeClaimVolumeSource represents a reference to aPersistentVolumeClaim in the same namespace.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--check--volumes--persistent_volume_claim))
+- `secret` (Attributes) secret represents a secret that should populate this volume.More info: https://kubernetes.io/docs/concepts/storage/volumes#secret (see [below for nested schema](#nestedatt--spec--check--volumes--secret))
+
+<a id="nestedatt--spec--check--volumes--config_map"></a>
+### Nested Schema for `spec.check.volumes.config_map`
+
+Optional:
+
+- `default_mode` (Number) defaultMode is optional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--check--volumes--secret--items))
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
+
+<a id="nestedatt--spec--check--volumes--secret--items"></a>
+### Nested Schema for `spec.check.volumes.secret.items`
+
+Required:
+
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.
+
+Optional:
+
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
+
+
+
+<a id="nestedatt--spec--check--volumes--persistent_volume_claim"></a>
+### Nested Schema for `spec.check.volumes.persistent_volume_claim`
+
+Required:
+
+- `claim_name` (String) claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
+
+Optional:
+
+- `read_only` (Boolean) readOnly Will force the ReadOnly setting in VolumeMounts.Default false.
+
+
+<a id="nestedatt--spec--check--volumes--secret"></a>
+### Nested Schema for `spec.check.volumes.secret`
+
+Optional:
+
+- `default_mode` (Number) defaultMode is Optional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal valuesfor mode bits. Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
+- `items` (Attributes List) items If unspecified, each key-value pair in the Data field of the referencedSecret will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the Secret,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--check--volumes--secret--items))
+- `optional` (Boolean) optional field specify whether the Secret or its keys must be defined
+- `secret_name` (String) secretName is the name of the secret in the pod's namespace to use.More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
+
+<a id="nestedatt--spec--check--volumes--secret--items"></a>
+### Nested Schema for `spec.check.volumes.secret.items`
+
+Required:
+
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.
+
+Optional:
+
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
+
+
+
+
 
 <a id="nestedatt--spec--pod_security_context"></a>
 ### Nested Schema for `spec.pod_security_context`
@@ -1518,6 +1883,7 @@ Optional:
 - `retention` (Attributes) Retention sets how many backups should be kept after a forget and prune (see [below for nested schema](#nestedatt--spec--prune--retention))
 - `schedule` (String) ScheduleDefinition is the actual cron-type expression that defines the interval of the actions.
 - `successful_jobs_history_limit` (Number) SuccessfulJobsHistoryLimit amount of successful jobs to keep for later analysis.KeepJobs is used property is not specified.
+- `volumes` (Attributes List) Volumes List of volumes that can be mounted by containers belonging to the pod. (see [below for nested schema](#nestedatt--spec--prune--volumes))
 
 <a id="nestedatt--spec--prune--backend"></a>
 ### Nested Schema for `spec.prune.backend`
@@ -1533,19 +1899,21 @@ Optional:
 - `rest` (Attributes) (see [below for nested schema](#nestedatt--spec--prune--backend--rest))
 - `s3` (Attributes) (see [below for nested schema](#nestedatt--spec--prune--backend--s3))
 - `swift` (Attributes) (see [below for nested schema](#nestedatt--spec--prune--backend--swift))
+- `tls_options` (Attributes) (see [below for nested schema](#nestedatt--spec--prune--backend--tls_options))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--prune--backend--volume_mounts))
 
 <a id="nestedatt--spec--prune--backend--azure"></a>
 ### Nested Schema for `spec.prune.backend.azure`
 
 Optional:
 
-- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--swift--account_key_secret_ref))
-- `account_name_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--swift--account_name_secret_ref))
+- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--volume_mounts--account_key_secret_ref))
+- `account_name_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--volume_mounts--account_name_secret_ref))
 - `container` (String)
 - `path` (String)
 
-<a id="nestedatt--spec--prune--backend--swift--account_key_secret_ref"></a>
-### Nested Schema for `spec.prune.backend.swift.account_key_secret_ref`
+<a id="nestedatt--spec--prune--backend--volume_mounts--account_key_secret_ref"></a>
+### Nested Schema for `spec.prune.backend.volume_mounts.account_key_secret_ref`
 
 Required:
 
@@ -1557,8 +1925,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--prune--backend--swift--account_name_secret_ref"></a>
-### Nested Schema for `spec.prune.backend.swift.account_name_secret_ref`
+<a id="nestedatt--spec--prune--backend--volume_mounts--account_name_secret_ref"></a>
+### Nested Schema for `spec.prune.backend.volume_mounts.account_name_secret_ref`
 
 Required:
 
@@ -1576,13 +1944,13 @@ Optional:
 
 Optional:
 
-- `account_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--swift--account_id_secret_ref))
-- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--swift--account_key_secret_ref))
+- `account_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--volume_mounts--account_id_secret_ref))
+- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--volume_mounts--account_key_secret_ref))
 - `bucket` (String)
 - `path` (String)
 
-<a id="nestedatt--spec--prune--backend--swift--account_id_secret_ref"></a>
-### Nested Schema for `spec.prune.backend.swift.account_id_secret_ref`
+<a id="nestedatt--spec--prune--backend--volume_mounts--account_id_secret_ref"></a>
+### Nested Schema for `spec.prune.backend.volume_mounts.account_id_secret_ref`
 
 Required:
 
@@ -1594,8 +1962,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--prune--backend--swift--account_key_secret_ref"></a>
-### Nested Schema for `spec.prune.backend.swift.account_key_secret_ref`
+<a id="nestedatt--spec--prune--backend--volume_mounts--account_key_secret_ref"></a>
+### Nested Schema for `spec.prune.backend.volume_mounts.account_key_secret_ref`
 
 Required:
 
@@ -1613,12 +1981,12 @@ Optional:
 
 Optional:
 
-- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--prune--backend--swift--config_map_ref))
+- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--prune--backend--volume_mounts--config_map_ref))
 - `prefix` (String) An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.
-- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--prune--backend--swift--secret_ref))
+- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--prune--backend--volume_mounts--secret_ref))
 
-<a id="nestedatt--spec--prune--backend--swift--config_map_ref"></a>
-### Nested Schema for `spec.prune.backend.swift.config_map_ref`
+<a id="nestedatt--spec--prune--backend--volume_mounts--config_map_ref"></a>
+### Nested Schema for `spec.prune.backend.volume_mounts.config_map_ref`
 
 Optional:
 
@@ -1626,8 +1994,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap must be defined
 
 
-<a id="nestedatt--spec--prune--backend--swift--secret_ref"></a>
-### Nested Schema for `spec.prune.backend.swift.secret_ref`
+<a id="nestedatt--spec--prune--backend--volume_mounts--secret_ref"></a>
+### Nested Schema for `spec.prune.backend.volume_mounts.secret_ref`
 
 Optional:
 
@@ -1641,12 +2009,12 @@ Optional:
 
 Optional:
 
-- `access_token_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--swift--access_token_secret_ref))
+- `access_token_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--volume_mounts--access_token_secret_ref))
 - `bucket` (String)
-- `project_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--swift--project_id_secret_ref))
+- `project_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--volume_mounts--project_id_secret_ref))
 
-<a id="nestedatt--spec--prune--backend--swift--access_token_secret_ref"></a>
-### Nested Schema for `spec.prune.backend.swift.access_token_secret_ref`
+<a id="nestedatt--spec--prune--backend--volume_mounts--access_token_secret_ref"></a>
+### Nested Schema for `spec.prune.backend.volume_mounts.access_token_secret_ref`
 
 Required:
 
@@ -1658,8 +2026,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--prune--backend--swift--project_id_secret_ref"></a>
-### Nested Schema for `spec.prune.backend.swift.project_id_secret_ref`
+<a id="nestedatt--spec--prune--backend--volume_mounts--project_id_secret_ref"></a>
+### Nested Schema for `spec.prune.backend.volume_mounts.project_id_secret_ref`
 
 Required:
 
@@ -1698,12 +2066,12 @@ Optional:
 
 Optional:
 
-- `password_secret_reg` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--swift--password_secret_reg))
+- `password_secret_reg` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--volume_mounts--password_secret_reg))
 - `url` (String)
-- `user_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--swift--user_secret_ref))
+- `user_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--volume_mounts--user_secret_ref))
 
-<a id="nestedatt--spec--prune--backend--swift--password_secret_reg"></a>
-### Nested Schema for `spec.prune.backend.swift.password_secret_reg`
+<a id="nestedatt--spec--prune--backend--volume_mounts--password_secret_reg"></a>
+### Nested Schema for `spec.prune.backend.volume_mounts.password_secret_reg`
 
 Required:
 
@@ -1715,8 +2083,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--prune--backend--swift--user_secret_ref"></a>
-### Nested Schema for `spec.prune.backend.swift.user_secret_ref`
+<a id="nestedatt--spec--prune--backend--volume_mounts--user_secret_ref"></a>
+### Nested Schema for `spec.prune.backend.volume_mounts.user_secret_ref`
 
 Required:
 
@@ -1734,13 +2102,13 @@ Optional:
 
 Optional:
 
-- `access_key_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--swift--access_key_id_secret_ref))
+- `access_key_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--volume_mounts--access_key_id_secret_ref))
 - `bucket` (String)
 - `endpoint` (String)
-- `secret_access_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--swift--secret_access_key_secret_ref))
+- `secret_access_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--volume_mounts--secret_access_key_secret_ref))
 
-<a id="nestedatt--spec--prune--backend--swift--access_key_id_secret_ref"></a>
-### Nested Schema for `spec.prune.backend.swift.access_key_id_secret_ref`
+<a id="nestedatt--spec--prune--backend--volume_mounts--access_key_id_secret_ref"></a>
+### Nested Schema for `spec.prune.backend.volume_mounts.access_key_id_secret_ref`
 
 Required:
 
@@ -1752,8 +2120,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--prune--backend--swift--secret_access_key_secret_ref"></a>
-### Nested Schema for `spec.prune.backend.swift.secret_access_key_secret_ref`
+<a id="nestedatt--spec--prune--backend--volume_mounts--secret_access_key_secret_ref"></a>
+### Nested Schema for `spec.prune.backend.volume_mounts.secret_access_key_secret_ref`
 
 Required:
 
@@ -1773,6 +2141,32 @@ Optional:
 
 - `container` (String)
 - `path` (String)
+
+
+<a id="nestedatt--spec--prune--backend--tls_options"></a>
+### Nested Schema for `spec.prune.backend.tls_options`
+
+Optional:
+
+- `ca_cert` (String)
+- `client_cert` (String)
+- `client_key` (String)
+
+
+<a id="nestedatt--spec--prune--backend--volume_mounts"></a>
+### Nested Schema for `spec.prune.backend.volume_mounts`
+
+Required:
+
+- `mount_path` (String) Path within the container at which the volume should be mounted.  Mustnot contain ':'.
+- `name` (String) This must match the Name of a Volume.
+
+Optional:
+
+- `mount_propagation` (String) mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.
+- `read_only` (Boolean) Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.
+- `sub_path` (String) Path within the volume from which the container's volume should be mounted.Defaults to '' (volume's root).
+- `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted.Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment.Defaults to '' (volume's root).SubPathExpr and SubPath are mutually exclusive.
 
 
 
@@ -1870,6 +2264,80 @@ Optional:
 - `tags` (List of String) Tags is a filter on what tags the policy should be appliedDO NOT CONFUSE THIS WITH KeepTags OR YOU'LL have a bad time
 
 
+<a id="nestedatt--spec--prune--volumes"></a>
+### Nested Schema for `spec.prune.volumes`
+
+Required:
+
+- `name` (String) name of the volume.Must be a DNS_LABEL and unique within the pod.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+
+Optional:
+
+- `config_map` (Attributes) configMap represents a configMap that should populate this volume (see [below for nested schema](#nestedatt--spec--prune--volumes--config_map))
+- `persistent_volume_claim` (Attributes) persistentVolumeClaimVolumeSource represents a reference to aPersistentVolumeClaim in the same namespace.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--prune--volumes--persistent_volume_claim))
+- `secret` (Attributes) secret represents a secret that should populate this volume.More info: https://kubernetes.io/docs/concepts/storage/volumes#secret (see [below for nested schema](#nestedatt--spec--prune--volumes--secret))
+
+<a id="nestedatt--spec--prune--volumes--config_map"></a>
+### Nested Schema for `spec.prune.volumes.config_map`
+
+Optional:
+
+- `default_mode` (Number) defaultMode is optional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--prune--volumes--secret--items))
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
+
+<a id="nestedatt--spec--prune--volumes--secret--items"></a>
+### Nested Schema for `spec.prune.volumes.secret.items`
+
+Required:
+
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.
+
+Optional:
+
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
+
+
+
+<a id="nestedatt--spec--prune--volumes--persistent_volume_claim"></a>
+### Nested Schema for `spec.prune.volumes.persistent_volume_claim`
+
+Required:
+
+- `claim_name` (String) claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
+
+Optional:
+
+- `read_only` (Boolean) readOnly Will force the ReadOnly setting in VolumeMounts.Default false.
+
+
+<a id="nestedatt--spec--prune--volumes--secret"></a>
+### Nested Schema for `spec.prune.volumes.secret`
+
+Optional:
+
+- `default_mode` (Number) defaultMode is Optional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal valuesfor mode bits. Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
+- `items` (Attributes List) items If unspecified, each key-value pair in the Data field of the referencedSecret will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the Secret,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--prune--volumes--secret--items))
+- `optional` (Boolean) optional field specify whether the Secret or its keys must be defined
+- `secret_name` (String) secretName is the name of the secret in the pod's namespace to use.More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
+
+<a id="nestedatt--spec--prune--volumes--secret--items"></a>
+### Nested Schema for `spec.prune.volumes.secret.items`
+
+Required:
+
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.
+
+Optional:
+
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
+
+
+
+
 
 <a id="nestedatt--spec--resource_requirements_template"></a>
 ### Nested Schema for `spec.resource_requirements_template`
@@ -1907,6 +2375,7 @@ Optional:
 - `snapshot` (String)
 - `successful_jobs_history_limit` (Number) SuccessfulJobsHistoryLimit amount of successful jobs to keep for later analysis.KeepJobs is used property is not specified.
 - `tags` (List of String) Tags is a list of arbitrary tags that get added to the backup via Restic's tagging system
+- `volumes` (Attributes List) Volumes List of volumes that can be mounted by containers belonging to the pod. (see [below for nested schema](#nestedatt--spec--restore--volumes))
 
 <a id="nestedatt--spec--restore--backend"></a>
 ### Nested Schema for `spec.restore.backend`
@@ -1922,19 +2391,21 @@ Optional:
 - `rest` (Attributes) (see [below for nested schema](#nestedatt--spec--restore--backend--rest))
 - `s3` (Attributes) (see [below for nested schema](#nestedatt--spec--restore--backend--s3))
 - `swift` (Attributes) (see [below for nested schema](#nestedatt--spec--restore--backend--swift))
+- `tls_options` (Attributes) (see [below for nested schema](#nestedatt--spec--restore--backend--tls_options))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--restore--backend--volume_mounts))
 
 <a id="nestedatt--spec--restore--backend--azure"></a>
 ### Nested Schema for `spec.restore.backend.azure`
 
 Optional:
 
-- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--swift--account_key_secret_ref))
-- `account_name_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--swift--account_name_secret_ref))
+- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--volume_mounts--account_key_secret_ref))
+- `account_name_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--volume_mounts--account_name_secret_ref))
 - `container` (String)
 - `path` (String)
 
-<a id="nestedatt--spec--restore--backend--swift--account_key_secret_ref"></a>
-### Nested Schema for `spec.restore.backend.swift.account_key_secret_ref`
+<a id="nestedatt--spec--restore--backend--volume_mounts--account_key_secret_ref"></a>
+### Nested Schema for `spec.restore.backend.volume_mounts.account_key_secret_ref`
 
 Required:
 
@@ -1946,8 +2417,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--restore--backend--swift--account_name_secret_ref"></a>
-### Nested Schema for `spec.restore.backend.swift.account_name_secret_ref`
+<a id="nestedatt--spec--restore--backend--volume_mounts--account_name_secret_ref"></a>
+### Nested Schema for `spec.restore.backend.volume_mounts.account_name_secret_ref`
 
 Required:
 
@@ -1965,13 +2436,13 @@ Optional:
 
 Optional:
 
-- `account_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--swift--account_id_secret_ref))
-- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--swift--account_key_secret_ref))
+- `account_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--volume_mounts--account_id_secret_ref))
+- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--volume_mounts--account_key_secret_ref))
 - `bucket` (String)
 - `path` (String)
 
-<a id="nestedatt--spec--restore--backend--swift--account_id_secret_ref"></a>
-### Nested Schema for `spec.restore.backend.swift.account_id_secret_ref`
+<a id="nestedatt--spec--restore--backend--volume_mounts--account_id_secret_ref"></a>
+### Nested Schema for `spec.restore.backend.volume_mounts.account_id_secret_ref`
 
 Required:
 
@@ -1983,8 +2454,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--restore--backend--swift--account_key_secret_ref"></a>
-### Nested Schema for `spec.restore.backend.swift.account_key_secret_ref`
+<a id="nestedatt--spec--restore--backend--volume_mounts--account_key_secret_ref"></a>
+### Nested Schema for `spec.restore.backend.volume_mounts.account_key_secret_ref`
 
 Required:
 
@@ -2002,12 +2473,12 @@ Optional:
 
 Optional:
 
-- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--restore--backend--swift--config_map_ref))
+- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--restore--backend--volume_mounts--config_map_ref))
 - `prefix` (String) An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.
-- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--restore--backend--swift--secret_ref))
+- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--restore--backend--volume_mounts--secret_ref))
 
-<a id="nestedatt--spec--restore--backend--swift--config_map_ref"></a>
-### Nested Schema for `spec.restore.backend.swift.config_map_ref`
+<a id="nestedatt--spec--restore--backend--volume_mounts--config_map_ref"></a>
+### Nested Schema for `spec.restore.backend.volume_mounts.config_map_ref`
 
 Optional:
 
@@ -2015,8 +2486,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap must be defined
 
 
-<a id="nestedatt--spec--restore--backend--swift--secret_ref"></a>
-### Nested Schema for `spec.restore.backend.swift.secret_ref`
+<a id="nestedatt--spec--restore--backend--volume_mounts--secret_ref"></a>
+### Nested Schema for `spec.restore.backend.volume_mounts.secret_ref`
 
 Optional:
 
@@ -2030,12 +2501,12 @@ Optional:
 
 Optional:
 
-- `access_token_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--swift--access_token_secret_ref))
+- `access_token_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--volume_mounts--access_token_secret_ref))
 - `bucket` (String)
-- `project_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--swift--project_id_secret_ref))
+- `project_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--volume_mounts--project_id_secret_ref))
 
-<a id="nestedatt--spec--restore--backend--swift--access_token_secret_ref"></a>
-### Nested Schema for `spec.restore.backend.swift.access_token_secret_ref`
+<a id="nestedatt--spec--restore--backend--volume_mounts--access_token_secret_ref"></a>
+### Nested Schema for `spec.restore.backend.volume_mounts.access_token_secret_ref`
 
 Required:
 
@@ -2047,8 +2518,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--restore--backend--swift--project_id_secret_ref"></a>
-### Nested Schema for `spec.restore.backend.swift.project_id_secret_ref`
+<a id="nestedatt--spec--restore--backend--volume_mounts--project_id_secret_ref"></a>
+### Nested Schema for `spec.restore.backend.volume_mounts.project_id_secret_ref`
 
 Required:
 
@@ -2087,12 +2558,12 @@ Optional:
 
 Optional:
 
-- `password_secret_reg` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--swift--password_secret_reg))
+- `password_secret_reg` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--volume_mounts--password_secret_reg))
 - `url` (String)
-- `user_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--swift--user_secret_ref))
+- `user_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--volume_mounts--user_secret_ref))
 
-<a id="nestedatt--spec--restore--backend--swift--password_secret_reg"></a>
-### Nested Schema for `spec.restore.backend.swift.password_secret_reg`
+<a id="nestedatt--spec--restore--backend--volume_mounts--password_secret_reg"></a>
+### Nested Schema for `spec.restore.backend.volume_mounts.password_secret_reg`
 
 Required:
 
@@ -2104,8 +2575,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--restore--backend--swift--user_secret_ref"></a>
-### Nested Schema for `spec.restore.backend.swift.user_secret_ref`
+<a id="nestedatt--spec--restore--backend--volume_mounts--user_secret_ref"></a>
+### Nested Schema for `spec.restore.backend.volume_mounts.user_secret_ref`
 
 Required:
 
@@ -2123,13 +2594,13 @@ Optional:
 
 Optional:
 
-- `access_key_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--swift--access_key_id_secret_ref))
+- `access_key_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--volume_mounts--access_key_id_secret_ref))
 - `bucket` (String)
 - `endpoint` (String)
-- `secret_access_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--swift--secret_access_key_secret_ref))
+- `secret_access_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--volume_mounts--secret_access_key_secret_ref))
 
-<a id="nestedatt--spec--restore--backend--swift--access_key_id_secret_ref"></a>
-### Nested Schema for `spec.restore.backend.swift.access_key_id_secret_ref`
+<a id="nestedatt--spec--restore--backend--volume_mounts--access_key_id_secret_ref"></a>
+### Nested Schema for `spec.restore.backend.volume_mounts.access_key_id_secret_ref`
 
 Required:
 
@@ -2141,8 +2612,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--restore--backend--swift--secret_access_key_secret_ref"></a>
-### Nested Schema for `spec.restore.backend.swift.secret_access_key_secret_ref`
+<a id="nestedatt--spec--restore--backend--volume_mounts--secret_access_key_secret_ref"></a>
+### Nested Schema for `spec.restore.backend.volume_mounts.secret_access_key_secret_ref`
 
 Required:
 
@@ -2162,6 +2633,32 @@ Optional:
 
 - `container` (String)
 - `path` (String)
+
+
+<a id="nestedatt--spec--restore--backend--tls_options"></a>
+### Nested Schema for `spec.restore.backend.tls_options`
+
+Optional:
+
+- `ca_cert` (String)
+- `client_cert` (String)
+- `client_key` (String)
+
+
+<a id="nestedatt--spec--restore--backend--volume_mounts"></a>
+### Nested Schema for `spec.restore.backend.volume_mounts`
+
+Required:
+
+- `mount_path` (String) Path within the container at which the volume should be mounted.  Mustnot contain ':'.
+- `name` (String) This must match the Name of a Volume.
+
+Optional:
+
+- `mount_propagation` (String) mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.
+- `read_only` (Boolean) Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.
+- `sub_path` (String) Path within the volume from which the container's volume should be mounted.Defaults to '' (volume's root).
+- `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted.Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment.Defaults to '' (volume's root).SubPathExpr and SubPath are mutually exclusive.
 
 
 
@@ -2250,6 +2747,8 @@ Optional:
 
 - `folder` (Attributes) (see [below for nested schema](#nestedatt--spec--restore--restore_method--folder))
 - `s3` (Attributes) (see [below for nested schema](#nestedatt--spec--restore--restore_method--s3))
+- `tls_options` (Attributes) (see [below for nested schema](#nestedatt--spec--restore--restore_method--tls_options))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--restore--restore_method--volume_mounts))
 
 <a id="nestedatt--spec--restore--restore_method--folder"></a>
 ### Nested Schema for `spec.restore.restore_method.folder`
@@ -2268,13 +2767,26 @@ Optional:
 
 Optional:
 
-- `access_key_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--restore_method--s3--access_key_id_secret_ref))
+- `access_key_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--restore_method--volume_mounts--access_key_id_secret_ref))
 - `bucket` (String)
 - `endpoint` (String)
-- `secret_access_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--restore_method--s3--secret_access_key_secret_ref))
+- `secret_access_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--restore_method--volume_mounts--secret_access_key_secret_ref))
 
-<a id="nestedatt--spec--restore--restore_method--s3--access_key_id_secret_ref"></a>
-### Nested Schema for `spec.restore.restore_method.s3.access_key_id_secret_ref`
+<a id="nestedatt--spec--restore--restore_method--volume_mounts--access_key_id_secret_ref"></a>
+### Nested Schema for `spec.restore.restore_method.volume_mounts.access_key_id_secret_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--restore--restore_method--volume_mounts--secret_access_key_secret_ref"></a>
+### Nested Schema for `spec.restore.restore_method.volume_mounts.secret_access_key_secret_ref`
 
 Required:
 
@@ -2286,14 +2798,101 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--restore--restore_method--s3--secret_access_key_secret_ref"></a>
-### Nested Schema for `spec.restore.restore_method.s3.secret_access_key_secret_ref`
 
-Required:
-
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+<a id="nestedatt--spec--restore--restore_method--tls_options"></a>
+### Nested Schema for `spec.restore.restore_method.tls_options`
 
 Optional:
 
+- `ca_cert` (String)
+- `client_cert` (String)
+- `client_key` (String)
+
+
+<a id="nestedatt--spec--restore--restore_method--volume_mounts"></a>
+### Nested Schema for `spec.restore.restore_method.volume_mounts`
+
+Required:
+
+- `mount_path` (String) Path within the container at which the volume should be mounted.  Mustnot contain ':'.
+- `name` (String) This must match the Name of a Volume.
+
+Optional:
+
+- `mount_propagation` (String) mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.
+- `read_only` (Boolean) Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.
+- `sub_path` (String) Path within the volume from which the container's volume should be mounted.Defaults to '' (volume's root).
+- `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted.Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment.Defaults to '' (volume's root).SubPathExpr and SubPath are mutually exclusive.
+
+
+
+<a id="nestedatt--spec--restore--volumes"></a>
+### Nested Schema for `spec.restore.volumes`
+
+Required:
+
+- `name` (String) name of the volume.Must be a DNS_LABEL and unique within the pod.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+
+Optional:
+
+- `config_map` (Attributes) configMap represents a configMap that should populate this volume (see [below for nested schema](#nestedatt--spec--restore--volumes--config_map))
+- `persistent_volume_claim` (Attributes) persistentVolumeClaimVolumeSource represents a reference to aPersistentVolumeClaim in the same namespace.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--restore--volumes--persistent_volume_claim))
+- `secret` (Attributes) secret represents a secret that should populate this volume.More info: https://kubernetes.io/docs/concepts/storage/volumes#secret (see [below for nested schema](#nestedatt--spec--restore--volumes--secret))
+
+<a id="nestedatt--spec--restore--volumes--config_map"></a>
+### Nested Schema for `spec.restore.volumes.config_map`
+
+Optional:
+
+- `default_mode` (Number) defaultMode is optional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--restore--volumes--secret--items))
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
+- `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
+
+<a id="nestedatt--spec--restore--volumes--secret--items"></a>
+### Nested Schema for `spec.restore.volumes.secret.items`
+
+Required:
+
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.
+
+Optional:
+
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
+
+
+
+<a id="nestedatt--spec--restore--volumes--persistent_volume_claim"></a>
+### Nested Schema for `spec.restore.volumes.persistent_volume_claim`
+
+Required:
+
+- `claim_name` (String) claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
+
+Optional:
+
+- `read_only` (Boolean) readOnly Will force the ReadOnly setting in VolumeMounts.Default false.
+
+
+<a id="nestedatt--spec--restore--volumes--secret"></a>
+### Nested Schema for `spec.restore.volumes.secret`
+
+Optional:
+
+- `default_mode` (Number) defaultMode is Optional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal valuesfor mode bits. Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
+- `items` (Attributes List) items If unspecified, each key-value pair in the Data field of the referencedSecret will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the Secret,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--restore--volumes--secret--items))
+- `optional` (Boolean) optional field specify whether the Secret or its keys must be defined
+- `secret_name` (String) secretName is the name of the secret in the pod's namespace to use.More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
+
+<a id="nestedatt--spec--restore--volumes--secret--items"></a>
+### Nested Schema for `spec.restore.volumes.secret.items`
+
+Required:
+
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.
+
+Optional:
+
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.

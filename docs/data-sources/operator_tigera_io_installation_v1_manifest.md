@@ -3,12 +3,12 @@
 page_title: "k8s_operator_tigera_io_installation_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "operator.tigera.io"
 description: |-
-  Installation configures an installation of Calico or Calico Enterprise. At most one instance of this resource is supported. It must be named 'default'. The Installation API installs core networking and network policy components, and provides general install-time configuration.
+  Installation configures an installation of Calico or Calico Enterprise. At most one instanceof this resource is supported. It must be named 'default'. The Installation API installs core networkingand network policy components, and provides general install-time configuration.
 ---
 
 # k8s_operator_tigera_io_installation_v1_manifest (Data Source)
 
-Installation configures an installation of Calico or Calico Enterprise. At most one instance of this resource is supported. It must be named 'default'. The Installation API installs core networking and network policy components, and provides general install-time configuration.
+Installation configures an installation of Calico or Calico Enterprise. At most one instanceof this resource is supported. It must be named 'default'. The Installation API installs core networkingand network policy components, and provides general install-time configuration.
 
 ## Example Usage
 
@@ -54,35 +54,35 @@ Optional:
 
 Optional:
 
-- `calico_kube_controllers_deployment` (Attributes) CalicoKubeControllersDeployment configures the calico-kube-controllers Deployment. If used in conjunction with the deprecated ComponentResources, then these overrides take precedence. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment))
+- `calico_kube_controllers_deployment` (Attributes) CalicoKubeControllersDeployment configures the calico-kube-controllers Deployment. If used inconjunction with the deprecated ComponentResources, then these overrides take precedence. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment))
 - `calico_network` (Attributes) CalicoNetwork specifies networking configuration options for Calico. (see [below for nested schema](#nestedatt--spec--calico_network))
-- `calico_node_daemon_set` (Attributes) CalicoNodeDaemonSet configures the calico-node DaemonSet. If used in conjunction with the deprecated ComponentResources, then these overrides take precedence. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set))
+- `calico_node_daemon_set` (Attributes) CalicoNodeDaemonSet configures the calico-node DaemonSet. If used inconjunction with the deprecated ComponentResources, then these overrides take precedence. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set))
 - `calico_node_windows_daemon_set` (Attributes) CalicoNodeWindowsDaemonSet configures the calico-node-windows DaemonSet. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set))
-- `calico_windows_upgrade_daemon_set` (Attributes) Deprecated. The CalicoWindowsUpgradeDaemonSet is deprecated and will be removed from the API in the future. CalicoWindowsUpgradeDaemonSet configures the calico-windows-upgrade DaemonSet. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set))
-- `certificate_management` (Attributes) CertificateManagement configures pods to submit a CertificateSigningRequest to the certificates.k8s.io/v1beta1 API in order to obtain TLS certificates. This feature requires that you bring your own CSR signing and approval process, otherwise pods will be stuck during initialization. (see [below for nested schema](#nestedatt--spec--certificate_management))
+- `calico_windows_upgrade_daemon_set` (Attributes) Deprecated. The CalicoWindowsUpgradeDaemonSet is deprecated and will be removed from the API in the future.CalicoWindowsUpgradeDaemonSet configures the calico-windows-upgrade DaemonSet. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set))
+- `certificate_management` (Attributes) CertificateManagement configures pods to submit a CertificateSigningRequest to the certificates.k8s.io/v1beta1 API in orderto obtain TLS certificates. This feature requires that you bring your own CSR signing and approval process, otherwisepods will be stuck during initialization. (see [below for nested schema](#nestedatt--spec--certificate_management))
 - `cni` (Attributes) CNI specifies the CNI that will be used by this installation. (see [below for nested schema](#nestedatt--spec--cni))
-- `component_resources` (Attributes List) Deprecated. Please use CalicoNodeDaemonSet, TyphaDeployment, and KubeControllersDeployment. ComponentResources can be used to customize the resource requirements for each component. Node, Typha, and KubeControllers are supported for installations. (see [below for nested schema](#nestedatt--spec--component_resources))
-- `control_plane_node_selector` (Map of String) ControlPlaneNodeSelector is used to select control plane nodes on which to run Calico components. This is globally applied to all resources created by the operator excluding daemonsets.
-- `control_plane_replicas` (Number) ControlPlaneReplicas defines how many replicas of the control plane core components will be deployed. This field applies to all control plane components that support High Availability. Defaults to 2.
-- `control_plane_tolerations` (Attributes List) ControlPlaneTolerations specify tolerations which are then globally applied to all resources created by the operator. (see [below for nested schema](#nestedatt--spec--control_plane_tolerations))
+- `component_resources` (Attributes List) Deprecated. Please use CalicoNodeDaemonSet, TyphaDeployment, and KubeControllersDeployment.ComponentResources can be used to customize the resource requirements for each component.Node, Typha, and KubeControllers are supported for installations. (see [below for nested schema](#nestedatt--spec--component_resources))
+- `control_plane_node_selector` (Map of String) ControlPlaneNodeSelector is used to select control plane nodes on which to run Calicocomponents. This is globally applied to all resources created by the operator excluding daemonsets.
+- `control_plane_replicas` (Number) ControlPlaneReplicas defines how many replicas of the control plane core components will be deployed.This field applies to all control plane components that support High Availability. Defaults to 2.
+- `control_plane_tolerations` (Attributes List) ControlPlaneTolerations specify tolerations which are then globally applied to all resourcescreated by the operator. (see [below for nested schema](#nestedatt--spec--control_plane_tolerations))
 - `csi_node_driver_daemon_set` (Attributes) CSINodeDriverDaemonSet configures the csi-node-driver DaemonSet. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set))
-- `fips_mode` (String) FIPSMode uses images and features only that are using FIPS 140-2 validated cryptographic modules and standards. Default: Disabled
-- `flex_volume_path` (String) FlexVolumePath optionally specifies a custom path for FlexVolume. If not specified, FlexVolume will be enabled by default. If set to 'None', FlexVolume will be disabled. The default is based on the kubernetesProvider.
-- `image_path` (String) ImagePath allows for the path part of an image to be specified. If specified then the specified value will be used as the image path for each image. If not specified or empty, the default for each image will be used. A special case value, UseDefault, is supported to explicitly specify the default image path will be used for each image.  Image format: '<registry><imagePath>/<imagePrefix><imageName>:<image-tag>'  This option allows configuring the '<imagePath>' portion of the above format.
-- `image_prefix` (String) ImagePrefix allows for the prefix part of an image to be specified. If specified then the given value will be used as a prefix on each image. If not specified or empty, no prefix will be used. A special case value, UseDefault, is supported to explicitly specify the default image prefix will be used for each image.  Image format: '<registry><imagePath>/<imagePrefix><imageName>:<image-tag>'  This option allows configuring the '<imagePrefix>' portion of the above format.
-- `image_pull_secrets` (Attributes List) ImagePullSecrets is an array of references to container registry pull secrets to use. These are applied to all images to be pulled. (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
-- `kubelet_volume_plugin_path` (String) KubeletVolumePluginPath optionally specifies enablement of Calico CSI plugin. If not specified, CSI will be enabled by default. If set to 'None', CSI will be disabled. Default: /var/lib/kubelet
-- `kubernetes_provider` (String) KubernetesProvider specifies a particular provider of the Kubernetes platform and enables provider-specific configuration. If the specified value is empty, the Operator will attempt to automatically determine the current provider. If the specified value is not empty, the Operator will still attempt auto-detection, but will additionally compare the auto-detected value to the specified value to confirm they match.
+- `fips_mode` (String) FIPSMode uses images and features only that are using FIPS 140-2 validated cryptographic modules and standards.Default: Disabled
+- `flex_volume_path` (String) FlexVolumePath optionally specifies a custom path for FlexVolume. If not specified, FlexVolume will beenabled by default. If set to 'None', FlexVolume will be disabled. The default is based on thekubernetesProvider.
+- `image_path` (String) ImagePath allows for the path part of an image to be specified. If specifiedthen the specified value will be used as the image path for each image. If not specifiedor empty, the default for each image will be used.A special case value, UseDefault, is supported to explicitly specify the defaultimage path will be used for each image.Image format:   '<registry><imagePath>/<imagePrefix><imageName>:<image-tag>'This option allows configuring the '<imagePath>' portion of the above format.
+- `image_prefix` (String) ImagePrefix allows for the prefix part of an image to be specified. If specifiedthen the given value will be used as a prefix on each image. If not specifiedor empty, no prefix will be used.A special case value, UseDefault, is supported to explicitly specify the defaultimage prefix will be used for each image.Image format:   '<registry><imagePath>/<imagePrefix><imageName>:<image-tag>'This option allows configuring the '<imagePrefix>' portion of the above format.
+- `image_pull_secrets` (Attributes List) ImagePullSecrets is an array of references to container registry pull secrets to use. These areapplied to all images to be pulled. (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
+- `kubelet_volume_plugin_path` (String) KubeletVolumePluginPath optionally specifies enablement of Calico CSI plugin. If not specified,CSI will be enabled by default. If set to 'None', CSI will be disabled.Default: /var/lib/kubelet
+- `kubernetes_provider` (String) KubernetesProvider specifies a particular provider of the Kubernetes platform and enables provider-specific configuration.If the specified value is empty, the Operator will attempt to automatically determine the current provider.If the specified value is not empty, the Operator will still attempt auto-detection, butwill additionally compare the auto-detected value to the specified value to confirm they match.
 - `logging` (Attributes) Logging Configuration for Components (see [below for nested schema](#nestedatt--spec--logging))
-- `node_metrics_port` (Number) NodeMetricsPort specifies which port calico/node serves prometheus metrics on. By default, metrics are not enabled. If specified, this overrides any FelixConfiguration resources which may exist. If omitted, then prometheus metrics may still be configured through FelixConfiguration.
-- `node_update_strategy` (Attributes) NodeUpdateStrategy can be used to customize the desired update strategy, such as the MaxUnavailable field. (see [below for nested schema](#nestedatt--spec--node_update_strategy))
+- `node_metrics_port` (Number) NodeMetricsPort specifies which port calico/node serves prometheus metrics on. By default, metrics are not enabled.If specified, this overrides any FelixConfiguration resources which may exist. If omitted, thenprometheus metrics may still be configured through FelixConfiguration.
+- `node_update_strategy` (Attributes) NodeUpdateStrategy can be used to customize the desired update strategy, such as the MaxUnavailablefield. (see [below for nested schema](#nestedatt--spec--node_update_strategy))
 - `non_privileged` (String) NonPrivileged configures Calico to be run in non-privileged containers as non-root users where possible.
-- `registry` (String) Registry is the default Docker registry used for component Docker images. If specified then the given value must end with a slash character ('/') and all images will be pulled from this registry. If not specified then the default registries will be used. A special case value, UseDefault, is supported to explicitly specify the default registries will be used.  Image format: '<registry><imagePath>/<imagePrefix><imageName>:<image-tag>'  This option allows configuring the '<registry>' portion of the above format.
+- `registry` (String) Registry is the default Docker registry used for component Docker images.If specified then the given value must end with a slash character ('/') and all images will be pulled from this registry.If not specified then the default registries will be used. A special case value, UseDefault, issupported to explicitly specify the default registries will be used.Image format:   '<registry><imagePath>/<imagePrefix><imageName>:<image-tag>'This option allows configuring the '<registry>' portion of the above format.
 - `service_cid_rs` (List of String) Kubernetes Service CIDRs. Specifying this is required when using Calico for Windows.
-- `typha_affinity` (Attributes) Deprecated. Please use Installation.Spec.TyphaDeployment instead. TyphaAffinity allows configuration of node affinity characteristics for Typha pods. (see [below for nested schema](#nestedatt--spec--typha_affinity))
-- `typha_deployment` (Attributes) TyphaDeployment configures the typha Deployment. If used in conjunction with the deprecated ComponentResources or TyphaAffinity, then these overrides take precedence. (see [below for nested schema](#nestedatt--spec--typha_deployment))
+- `typha_affinity` (Attributes) Deprecated. Please use Installation.Spec.TyphaDeployment instead.TyphaAffinity allows configuration of node affinity characteristics for Typha pods. (see [below for nested schema](#nestedatt--spec--typha_affinity))
+- `typha_deployment` (Attributes) TyphaDeployment configures the typha Deployment. If used in conjunction with the deprecatedComponentResources or TyphaAffinity, then these overrides take precedence. (see [below for nested schema](#nestedatt--spec--typha_deployment))
 - `typha_metrics_port` (Number) TyphaMetricsPort specifies which port calico/typha serves prometheus metrics on. By default, metrics are not enabled.
-- `variant` (String) Variant is the product to install - one of Calico or TigeraSecureEnterprise Default: Calico
+- `variant` (String) Variant is the product to install - one of Calico or TigeraSecureEnterpriseDefault: Calico
 - `windows_nodes` (Attributes) Windows Configuration (see [below for nested schema](#nestedatt--spec--windows_nodes))
 
 <a id="nestedatt--spec--calico_kube_controllers_deployment"></a>
@@ -98,8 +98,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is a map of arbitrary non-identifying metadata. Each of these key/value pairs are added to the object's annotations provided the key does not already exist in the object's annotations.
-- `labels` (Map of String) Labels is a map of string keys and values that may match replicaset and service selectors. Each of these key/value pairs are added to the object's labels provided the key does not already exist in the object's labels.
+- `annotations` (Map of String) Annotations is a map of arbitrary non-identifying metadata. Each of thesekey/value pairs are added to the object's annotations provided the key does notalready exist in the object's annotations.
+- `labels` (Map of String) Labels is a map of string keys and values that may match replicaset andservice selectors. Each of these key/value pairs are added to theobject's labels provided the key does not already exist in the object's labels.
 
 
 <a id="nestedatt--spec--calico_kube_controllers_deployment--spec"></a>
@@ -107,7 +107,7 @@ Optional:
 
 Optional:
 
-- `min_ready_seconds` (Number) MinReadySeconds is the minimum number of seconds for which a newly created Deployment pod should be ready without any of its container crashing, for it to be considered available. If specified, this overrides any minReadySeconds value that may be set on the calico-kube-controllers Deployment. If omitted, the calico-kube-controllers Deployment will use its default value for minReadySeconds.
+- `min_ready_seconds` (Number) MinReadySeconds is the minimum number of seconds for which a newly created Deployment pod shouldbe ready without any of its container crashing, for it to be considered available.If specified, this overrides any minReadySeconds value that may be set on the calico-kube-controllers Deployment.If omitted, the calico-kube-controllers Deployment will use its default value for minReadySeconds.
 - `template` (Attributes) Template describes the calico-kube-controllers Deployment pod that will be created. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template))
 
 <a id="nestedatt--spec--calico_kube_controllers_deployment--spec--template"></a>
@@ -115,7 +115,7 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Metadata is a subset of a Kubernetes object's metadata that is added to the pod's metadata. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--metadata))
+- `metadata` (Attributes) Metadata is a subset of a Kubernetes object's metadata that is added tothe pod's metadata. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--metadata))
 - `spec` (Attributes) Spec is the calico-kube-controllers Deployment's PodSpec. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec))
 
 <a id="nestedatt--spec--calico_kube_controllers_deployment--spec--template--metadata"></a>
@@ -123,8 +123,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is a map of arbitrary non-identifying metadata. Each of these key/value pairs are added to the object's annotations provided the key does not already exist in the object's annotations.
-- `labels` (Map of String) Labels is a map of string keys and values that may match replicaset and service selectors. Each of these key/value pairs are added to the object's labels provided the key does not already exist in the object's labels.
+- `annotations` (Map of String) Annotations is a map of arbitrary non-identifying metadata. Each of thesekey/value pairs are added to the object's annotations provided the key does notalready exist in the object's annotations.
+- `labels` (Map of String) Labels is a map of string keys and values that may match replicaset andservice selectors. Each of these key/value pairs are added to theobject's labels provided the key does not already exist in the object's labels.
 
 
 <a id="nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec"></a>
@@ -132,10 +132,10 @@ Optional:
 
 Optional:
 
-- `affinity` (Attributes) Affinity is a group of affinity scheduling rules for the calico-kube-controllers pods. If specified, this overrides any affinity that may be set on the calico-kube-controllers Deployment. If omitted, the calico-kube-controllers Deployment will use its default value for affinity. WARNING: Please note that this field will override the default calico-kube-controllers Deployment affinity. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--affinity))
-- `containers` (Attributes List) Containers is a list of calico-kube-controllers containers. If specified, this overrides the specified calico-kube-controllers Deployment containers. If omitted, the calico-kube-controllers Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--containers))
-- `node_selector` (Map of String) NodeSelector is the calico-kube-controllers pod's scheduling constraints. If specified, each of the key/value pairs are added to the calico-kube-controllers Deployment nodeSelector provided the key does not already exist in the object's nodeSelector. If used in conjunction with ControlPlaneNodeSelector, that nodeSelector is set on the calico-kube-controllers Deployment and each of this field's key/value pairs are added to the calico-kube-controllers Deployment nodeSelector provided the key does not already exist in the object's nodeSelector. If omitted, the calico-kube-controllers Deployment will use its default value for nodeSelector. WARNING: Please note that this field will modify the default calico-kube-controllers Deployment nodeSelector.
-- `tolerations` (Attributes List) Tolerations is the calico-kube-controllers pod's tolerations. If specified, this overrides any tolerations that may be set on the calico-kube-controllers Deployment. If omitted, the calico-kube-controllers Deployment will use its default value for tolerations. WARNING: Please note that this field will override the default calico-kube-controllers Deployment tolerations. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations))
+- `affinity` (Attributes) Affinity is a group of affinity scheduling rules for the calico-kube-controllers pods.If specified, this overrides any affinity that may be set on the calico-kube-controllers Deployment.If omitted, the calico-kube-controllers Deployment will use its default value for affinity.WARNING: Please note that this field will override the default calico-kube-controllers Deployment affinity. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--affinity))
+- `containers` (Attributes List) Containers is a list of calico-kube-controllers containers.If specified, this overrides the specified calico-kube-controllers Deployment containers.If omitted, the calico-kube-controllers Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--containers))
+- `node_selector` (Map of String) NodeSelector is the calico-kube-controllers pod's scheduling constraints.If specified, each of the key/value pairs are added to the calico-kube-controllers Deployment nodeSelector providedthe key does not already exist in the object's nodeSelector.If used in conjunction with ControlPlaneNodeSelector, that nodeSelector is set on the calico-kube-controllers Deploymentand each of this field's key/value pairs are added to the calico-kube-controllers Deployment nodeSelector providedthe key does not already exist in the object's nodeSelector.If omitted, the calico-kube-controllers Deployment will use its default value for nodeSelector.WARNING: Please note that this field will modify the default calico-kube-controllers Deployment nodeSelector.
+- `tolerations` (Attributes List) Tolerations is the calico-kube-controllers pod's tolerations.If specified, this overrides any tolerations that may be set on the calico-kube-controllers Deployment.If omitted, the calico-kube-controllers Deployment will use its default value for tolerations.WARNING: Please note that this field will override the default calico-kube-controllers Deployment tolerations. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations))
 
 <a id="nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--affinity"></a>
 ### Nested Schema for `spec.calico_kube_controllers_deployment.spec.template.spec.affinity`
@@ -151,8 +151,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.calico_kube_controllers_deployment.spec.template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -176,11 +176,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 <a id="nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference--match_fields"></a>
@@ -189,11 +189,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 
@@ -219,11 +219,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 <a id="nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
@@ -232,11 +232,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 
@@ -247,8 +247,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.calico_kube_controllers_deployment.spec.template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -256,20 +256,20 @@ Optional:
 Required:
 
 - `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
-- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
 <a id="nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
 ### Nested Schema for `spec.calico_kube_controllers_deployment.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
 ### Nested Schema for `spec.calico_kube_controllers_deployment.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
@@ -277,7 +277,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.calico_kube_controllers_deployment.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
@@ -285,11 +285,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -299,7 +299,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.calico_kube_controllers_deployment.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
@@ -307,11 +307,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -322,13 +322,13 @@ Optional:
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.calico_kube_controllers_deployment.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
@@ -336,7 +336,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.calico_kube_controllers_deployment.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
@@ -344,11 +344,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -358,7 +358,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.calico_kube_controllers_deployment.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
@@ -366,11 +366,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -381,8 +381,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.calico_kube_controllers_deployment.spec.template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -390,20 +390,20 @@ Optional:
 Required:
 
 - `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
-- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
 <a id="nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
 ### Nested Schema for `spec.calico_kube_controllers_deployment.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
 ### Nested Schema for `spec.calico_kube_controllers_deployment.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
@@ -411,7 +411,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.calico_kube_controllers_deployment.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
@@ -419,11 +419,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -433,7 +433,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.calico_kube_controllers_deployment.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
@@ -441,11 +441,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -456,13 +456,13 @@ Optional:
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.calico_kube_controllers_deployment.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
@@ -470,7 +470,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.calico_kube_controllers_deployment.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
@@ -478,11 +478,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -492,7 +492,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.calico_kube_controllers_deployment.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
@@ -500,11 +500,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -516,27 +516,27 @@ Optional:
 
 Required:
 
-- `name` (String) Name is an enum which identifies the calico-kube-controllers Deployment container by name.
+- `name` (String) Name is an enum which identifies the calico-kube-controllers Deployment container by name.Supported values are: calico-kube-controllers
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named calico-kube-controllers Deployment container's resources. If omitted, the calico-kube-controllers Deployment will use its default value for this container's resources. If used in conjunction with the deprecated ComponentResources, then this value takes precedence. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named calico-kube-controllers Deployment container's resources.If omitted, the calico-kube-controllers Deployment will use its default value for this container's resources.If used in conjunction with the deprecated ComponentResources, then this value takes precedence. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--resources))
 
 <a id="nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--resources"></a>
 ### Nested Schema for `spec.calico_kube_controllers_deployment.spec.template.spec.tolerations.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--calico_kube_controllers_deployment--spec--template--spec--tolerations--resources--claims"></a>
 ### Nested Schema for `spec.calico_kube_controllers_deployment.spec.template.spec.tolerations.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -546,11 +546,11 @@ Required:
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 
@@ -563,17 +563,17 @@ Optional:
 Optional:
 
 - `bgp` (String) BGP configures whether or not to enable Calico's BGP capabilities.
-- `container_ip_forwarding` (String) ContainerIPForwarding configures whether ip forwarding will be enabled for containers in the CNI configuration. Default: Disabled
-- `host_ports` (String) HostPorts configures whether or not Calico will support Kubernetes HostPorts. Valid only when using the Calico CNI plugin. Default: Enabled
-- `ip_pools` (Attributes List) IPPools contains a list of IP pools to create if none exist. At most one IP pool of each address family may be specified. If omitted, a single pool will be configured if needed. (see [below for nested schema](#nestedatt--spec--calico_network--ip_pools))
-- `linux_dataplane` (String) LinuxDataplane is used to select the dataplane used for Linux nodes. In particular, it causes the operator to add required mounts and environment variables for the particular dataplane. If not specified, iptables mode is used. Default: Iptables
-- `linux_policy_setup_timeout_seconds` (Number) LinuxPolicySetupTimeoutSeconds delays new pods from running containers until their policy has been programmed in the dataplane. The specified delay defines the maximum amount of time that the Calico CNI plugin will wait for policy to be programmed.  Only applies to pods created on Linux nodes.  * A value of 0 disables pod startup delays.  Default: 0
-- `mtu` (Number) MTU specifies the maximum transmission unit to use on the pod network. If not specified, Calico will perform MTU auto-detection based on the cluster network.
-- `multi_interface_mode` (String) MultiInterfaceMode configures what will configure multiple interface per pod. Only valid for Calico Enterprise installations using the Calico CNI plugin. Default: None
-- `node_address_autodetection_v4` (Attributes) NodeAddressAutodetectionV4 specifies an approach to automatically detect node IPv4 addresses. If not specified, will use default auto-detection settings to acquire an IPv4 address for each node. (see [below for nested schema](#nestedatt--spec--calico_network--node_address_autodetection_v4))
-- `node_address_autodetection_v6` (Attributes) NodeAddressAutodetectionV6 specifies an approach to automatically detect node IPv6 addresses. If not specified, IPv6 addresses will not be auto-detected. (see [below for nested schema](#nestedatt--spec--calico_network--node_address_autodetection_v6))
+- `container_ip_forwarding` (String) ContainerIPForwarding configures whether ip forwarding will be enabled for containers in the CNI configuration.Default: Disabled
+- `host_ports` (String) HostPorts configures whether or not Calico will support Kubernetes HostPorts. Valid only when using the Calico CNI plugin.Default: Enabled
+- `ip_pools` (Attributes List) IPPools contains a list of IP pools to create if none exist. At most one IP pool of eachaddress family may be specified. If omitted, a single pool will be configured if needed. (see [below for nested schema](#nestedatt--spec--calico_network--ip_pools))
+- `linux_dataplane` (String) LinuxDataplane is used to select the dataplane used for Linux nodes. In particular, itcauses the operator to add required mounts and environment variables for the particular dataplane.If not specified, iptables mode is used.Default: Iptables
+- `linux_policy_setup_timeout_seconds` (Number) LinuxPolicySetupTimeoutSeconds delays new pods from running containersuntil their policy has been programmed in the dataplane.The specified delay defines the maximum amount of timethat the Calico CNI plugin will wait for policy to be programmed.Only applies to pods created on Linux nodes.* A value of 0 disables pod startup delays.Default: 0
+- `mtu` (Number) MTU specifies the maximum transmission unit to use on the pod network.If not specified, Calico will perform MTU auto-detection based on the cluster network.
+- `multi_interface_mode` (String) MultiInterfaceMode configures what will configure multiple interface per pod. Only valid for Calico Enterprise installationsusing the Calico CNI plugin.Default: None
+- `node_address_autodetection_v4` (Attributes) NodeAddressAutodetectionV4 specifies an approach to automatically detect node IPv4 addresses. If not specified,will use default auto-detection settings to acquire an IPv4 address for each node. (see [below for nested schema](#nestedatt--spec--calico_network--node_address_autodetection_v4))
+- `node_address_autodetection_v6` (Attributes) NodeAddressAutodetectionV6 specifies an approach to automatically detect node IPv6 addresses. If not specified,IPv6 addresses will not be auto-detected. (see [below for nested schema](#nestedatt--spec--calico_network--node_address_autodetection_v6))
 - `sysctl` (Attributes List) Sysctl configures sysctl parameters for tuning plugin (see [below for nested schema](#nestedatt--spec--calico_network--sysctl))
-- `windows_dataplane` (String) WindowsDataplane is used to select the dataplane used for Windows nodes. In particular, it causes the operator to add required mounts and environment variables for the particular dataplane. If not specified, it is disabled and the operator will not render the Calico Windows nodes daemonset. Default: Disabled
+- `windows_dataplane` (String) WindowsDataplane is used to select the dataplane used for Windows nodes. In particular, itcauses the operator to add required mounts and environment variables for the particular dataplane.If not specified, it is disabled and the operator will not render the Calico Windows nodes daemonset.Default: Disabled
 
 <a id="nestedatt--spec--calico_network--ip_pools"></a>
 ### Nested Schema for `spec.calico_network.ip_pools`
@@ -584,11 +584,13 @@ Required:
 
 Optional:
 
-- `block_size` (Number) BlockSize specifies the CIDR prefex length to use when allocating per-node IP blocks from the main IP pool CIDR. Default: 26 (IPv4), 122 (IPv6)
-- `disable_bgp_export` (Boolean) DisableBGPExport specifies whether routes from this IP pool's CIDR are exported over BGP. Default: false
-- `encapsulation` (String) Encapsulation specifies the encapsulation type that will be used with the IP Pool. Default: IPIP
-- `nat_outgoing` (String) NATOutgoing specifies if NAT will be enabled or disabled for outgoing traffic. Default: Enabled
-- `node_selector` (String) NodeSelector specifies the node selector that will be set for the IP Pool. Default: 'all()'
+- `allowed_uses` (List of String) AllowedUse controls what the IP pool will be used for.  If not specified or empty, defaults to['Tunnel', 'Workload'] for back-compatibility
+- `block_size` (Number) BlockSize specifies the CIDR prefex length to use when allocating per-node IP blocks fromthe main IP pool CIDR.Default: 26 (IPv4), 122 (IPv6)
+- `disable_bgp_export` (Boolean) DisableBGPExport specifies whether routes from this IP pool's CIDR are exported over BGP.Default: false
+- `encapsulation` (String) Encapsulation specifies the encapsulation type that will be used withthe IP Pool.Default: IPIP
+- `name` (String) Name is the name of the IP pool. If omitted, this will be generated.
+- `nat_outgoing` (String) NATOutgoing specifies if NAT will be enabled or disabled for outgoing traffic.Default: Enabled
+- `node_selector` (String) NodeSelector specifies the node selector that will be set for the IP Pool.Default: 'all()'
 
 
 <a id="nestedatt--spec--calico_network--node_address_autodetection_v4"></a>
@@ -596,12 +598,12 @@ Optional:
 
 Optional:
 
-- `can_reach` (String) CanReach enables IP auto-detection based on which source address on the node is used to reach the specified IP or domain.
-- `cidrs` (List of String) CIDRS enables IP auto-detection based on which addresses on the nodes are within one of the provided CIDRs.
-- `first_found` (Boolean) FirstFound uses default interface matching parameters to select an interface, performing best-effort filtering based on well-known interface names.
+- `can_reach` (String) CanReach enables IP auto-detection based on which source address on the node is used to reach thespecified IP or domain.
+- `cidrs` (List of String) CIDRS enables IP auto-detection based on which addresses on the nodes are withinone of the provided CIDRs.
+- `first_found` (Boolean) FirstFound uses default interface matching parameters to select an interface, performing best-effortfiltering based on well-known interface names.
 - `interface` (String) Interface enables IP auto-detection based on interfaces that match the given regex.
 - `kubernetes` (String) Kubernetes configures Calico to detect node addresses based on the Kubernetes API.
-- `skip_interface` (String) SkipInterface enables IP auto-detection based on interfaces that do not match the given regex.
+- `skip_interface` (String) SkipInterface enables IP auto-detection based on interfaces that do not matchthe given regex.
 
 
 <a id="nestedatt--spec--calico_network--node_address_autodetection_v6"></a>
@@ -609,12 +611,12 @@ Optional:
 
 Optional:
 
-- `can_reach` (String) CanReach enables IP auto-detection based on which source address on the node is used to reach the specified IP or domain.
-- `cidrs` (List of String) CIDRS enables IP auto-detection based on which addresses on the nodes are within one of the provided CIDRs.
-- `first_found` (Boolean) FirstFound uses default interface matching parameters to select an interface, performing best-effort filtering based on well-known interface names.
+- `can_reach` (String) CanReach enables IP auto-detection based on which source address on the node is used to reach thespecified IP or domain.
+- `cidrs` (List of String) CIDRS enables IP auto-detection based on which addresses on the nodes are withinone of the provided CIDRs.
+- `first_found` (Boolean) FirstFound uses default interface matching parameters to select an interface, performing best-effortfiltering based on well-known interface names.
 - `interface` (String) Interface enables IP auto-detection based on interfaces that match the given regex.
 - `kubernetes` (String) Kubernetes configures Calico to detect node addresses based on the Kubernetes API.
-- `skip_interface` (String) SkipInterface enables IP auto-detection based on interfaces that do not match the given regex.
+- `skip_interface` (String) SkipInterface enables IP auto-detection based on interfaces that do not matchthe given regex.
 
 
 <a id="nestedatt--spec--calico_network--sysctl"></a>
@@ -640,8 +642,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is a map of arbitrary non-identifying metadata. Each of these key/value pairs are added to the object's annotations provided the key does not already exist in the object's annotations.
-- `labels` (Map of String) Labels is a map of string keys and values that may match replicaset and service selectors. Each of these key/value pairs are added to the object's labels provided the key does not already exist in the object's labels.
+- `annotations` (Map of String) Annotations is a map of arbitrary non-identifying metadata. Each of thesekey/value pairs are added to the object's annotations provided the key does notalready exist in the object's annotations.
+- `labels` (Map of String) Labels is a map of string keys and values that may match replicaset andservice selectors. Each of these key/value pairs are added to theobject's labels provided the key does not already exist in the object's labels.
 
 
 <a id="nestedatt--spec--calico_node_daemon_set--spec"></a>
@@ -649,7 +651,7 @@ Optional:
 
 Optional:
 
-- `min_ready_seconds` (Number) MinReadySeconds is the minimum number of seconds for which a newly created DaemonSet pod should be ready without any of its container crashing, for it to be considered available. If specified, this overrides any minReadySeconds value that may be set on the calico-node DaemonSet. If omitted, the calico-node DaemonSet will use its default value for minReadySeconds.
+- `min_ready_seconds` (Number) MinReadySeconds is the minimum number of seconds for which a newly created DaemonSet pod shouldbe ready without any of its container crashing, for it to be considered available.If specified, this overrides any minReadySeconds value that may be set on the calico-node DaemonSet.If omitted, the calico-node DaemonSet will use its default value for minReadySeconds.
 - `template` (Attributes) Template describes the calico-node DaemonSet pod that will be created. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template))
 
 <a id="nestedatt--spec--calico_node_daemon_set--spec--template"></a>
@@ -657,7 +659,7 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Metadata is a subset of a Kubernetes object's metadata that is added to the pod's metadata. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--metadata))
+- `metadata` (Attributes) Metadata is a subset of a Kubernetes object's metadata that is added tothe pod's metadata. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--metadata))
 - `spec` (Attributes) Spec is the calico-node DaemonSet's PodSpec. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec))
 
 <a id="nestedatt--spec--calico_node_daemon_set--spec--template--metadata"></a>
@@ -665,8 +667,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is a map of arbitrary non-identifying metadata. Each of these key/value pairs are added to the object's annotations provided the key does not already exist in the object's annotations.
-- `labels` (Map of String) Labels is a map of string keys and values that may match replicaset and service selectors. Each of these key/value pairs are added to the object's labels provided the key does not already exist in the object's labels.
+- `annotations` (Map of String) Annotations is a map of arbitrary non-identifying metadata. Each of thesekey/value pairs are added to the object's annotations provided the key does notalready exist in the object's annotations.
+- `labels` (Map of String) Labels is a map of string keys and values that may match replicaset andservice selectors. Each of these key/value pairs are added to theobject's labels provided the key does not already exist in the object's labels.
 
 
 <a id="nestedatt--spec--calico_node_daemon_set--spec--template--spec"></a>
@@ -674,11 +676,11 @@ Optional:
 
 Optional:
 
-- `affinity` (Attributes) Affinity is a group of affinity scheduling rules for the calico-node pods. If specified, this overrides any affinity that may be set on the calico-node DaemonSet. If omitted, the calico-node DaemonSet will use its default value for affinity. WARNING: Please note that this field will override the default calico-node DaemonSet affinity. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--affinity))
-- `containers` (Attributes List) Containers is a list of calico-node containers. If specified, this overrides the specified calico-node DaemonSet containers. If omitted, the calico-node DaemonSet will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--containers))
-- `init_containers` (Attributes List) InitContainers is a list of calico-node init containers. If specified, this overrides the specified calico-node DaemonSet init containers. If omitted, the calico-node DaemonSet will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--init_containers))
-- `node_selector` (Map of String) NodeSelector is the calico-node pod's scheduling constraints. If specified, each of the key/value pairs are added to the calico-node DaemonSet nodeSelector provided the key does not already exist in the object's nodeSelector. If omitted, the calico-node DaemonSet will use its default value for nodeSelector. WARNING: Please note that this field will modify the default calico-node DaemonSet nodeSelector.
-- `tolerations` (Attributes List) Tolerations is the calico-node pod's tolerations. If specified, this overrides any tolerations that may be set on the calico-node DaemonSet. If omitted, the calico-node DaemonSet will use its default value for tolerations. WARNING: Please note that this field will override the default calico-node DaemonSet tolerations. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations))
+- `affinity` (Attributes) Affinity is a group of affinity scheduling rules for the calico-node pods.If specified, this overrides any affinity that may be set on the calico-node DaemonSet.If omitted, the calico-node DaemonSet will use its default value for affinity.WARNING: Please note that this field will override the default calico-node DaemonSet affinity. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--affinity))
+- `containers` (Attributes List) Containers is a list of calico-node containers.If specified, this overrides the specified calico-node DaemonSet containers.If omitted, the calico-node DaemonSet will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--containers))
+- `init_containers` (Attributes List) InitContainers is a list of calico-node init containers.If specified, this overrides the specified calico-node DaemonSet init containers.If omitted, the calico-node DaemonSet will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--init_containers))
+- `node_selector` (Map of String) NodeSelector is the calico-node pod's scheduling constraints.If specified, each of the key/value pairs are added to the calico-node DaemonSet nodeSelector providedthe key does not already exist in the object's nodeSelector.If omitted, the calico-node DaemonSet will use its default value for nodeSelector.WARNING: Please note that this field will modify the default calico-node DaemonSet nodeSelector.
+- `tolerations` (Attributes List) Tolerations is the calico-node pod's tolerations.If specified, this overrides any tolerations that may be set on the calico-node DaemonSet.If omitted, the calico-node DaemonSet will use its default value for tolerations.WARNING: Please note that this field will override the default calico-node DaemonSet tolerations. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations))
 
 <a id="nestedatt--spec--calico_node_daemon_set--spec--template--spec--affinity"></a>
 ### Nested Schema for `spec.calico_node_daemon_set.spec.template.spec.affinity`
@@ -694,8 +696,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.calico_node_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -719,11 +721,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 <a id="nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference--match_fields"></a>
@@ -732,11 +734,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 
@@ -762,11 +764,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 <a id="nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
@@ -775,11 +777,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 
@@ -790,8 +792,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.calico_node_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -799,20 +801,20 @@ Optional:
 Required:
 
 - `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
-- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
 <a id="nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
 ### Nested Schema for `spec.calico_node_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
 ### Nested Schema for `spec.calico_node_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
@@ -820,7 +822,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.calico_node_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
@@ -828,11 +830,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -842,7 +844,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.calico_node_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
@@ -850,11 +852,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -865,13 +867,13 @@ Optional:
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.calico_node_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
@@ -879,7 +881,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.calico_node_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
@@ -887,11 +889,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -901,7 +903,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.calico_node_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
@@ -909,11 +911,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -924,8 +926,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.calico_node_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -933,20 +935,20 @@ Optional:
 Required:
 
 - `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
-- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
 <a id="nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
 ### Nested Schema for `spec.calico_node_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
 ### Nested Schema for `spec.calico_node_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
@@ -954,7 +956,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.calico_node_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
@@ -962,11 +964,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -976,7 +978,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.calico_node_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
@@ -984,11 +986,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -999,13 +1001,13 @@ Optional:
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.calico_node_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
@@ -1013,7 +1015,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.calico_node_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
@@ -1021,11 +1023,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1035,7 +1037,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.calico_node_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
@@ -1043,11 +1045,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1059,27 +1061,27 @@ Optional:
 
 Required:
 
-- `name` (String) Name is an enum which identifies the calico-node DaemonSet container by name.
+- `name` (String) Name is an enum which identifies the calico-node DaemonSet container by name.Supported values are: calico-node
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named calico-node DaemonSet container's resources. If omitted, the calico-node DaemonSet will use its default value for this container's resources. If used in conjunction with the deprecated ComponentResources, then this value takes precedence. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named calico-node DaemonSet container's resources.If omitted, the calico-node DaemonSet will use its default value for this container's resources.If used in conjunction with the deprecated ComponentResources, then this value takes precedence. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--resources))
 
 <a id="nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--resources"></a>
 ### Nested Schema for `spec.calico_node_daemon_set.spec.template.spec.tolerations.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--resources--claims"></a>
 ### Nested Schema for `spec.calico_node_daemon_set.spec.template.spec.tolerations.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -1089,27 +1091,27 @@ Required:
 
 Required:
 
-- `name` (String) Name is an enum which identifies the calico-node DaemonSet init container by name.
+- `name` (String) Name is an enum which identifies the calico-node DaemonSet init container by name.Supported values are: install-cni, hostpath-init, flexvol-driver, mount-bpffs, node-certs-key-cert-provisioner, calico-node-prometheus-server-tls-key-cert-provisioner
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named calico-node DaemonSet init container's resources. If omitted, the calico-node DaemonSet will use its default value for this container's resources. If used in conjunction with the deprecated ComponentResources, then this value takes precedence. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named calico-node DaemonSet init container's resources.If omitted, the calico-node DaemonSet will use its default value for this container's resources.If used in conjunction with the deprecated ComponentResources, then this value takes precedence. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--resources))
 
 <a id="nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--resources"></a>
 ### Nested Schema for `spec.calico_node_daemon_set.spec.template.spec.tolerations.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--calico_node_daemon_set--spec--template--spec--tolerations--resources--claims"></a>
 ### Nested Schema for `spec.calico_node_daemon_set.spec.template.spec.tolerations.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -1119,11 +1121,11 @@ Required:
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 
@@ -1143,8 +1145,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is a map of arbitrary non-identifying metadata. Each of these key/value pairs are added to the object's annotations provided the key does not already exist in the object's annotations.
-- `labels` (Map of String) Labels is a map of string keys and values that may match replicaset and service selectors. Each of these key/value pairs are added to the object's labels provided the key does not already exist in the object's labels.
+- `annotations` (Map of String) Annotations is a map of arbitrary non-identifying metadata. Each of thesekey/value pairs are added to the object's annotations provided the key does notalready exist in the object's annotations.
+- `labels` (Map of String) Labels is a map of string keys and values that may match replicaset andservice selectors. Each of these key/value pairs are added to theobject's labels provided the key does not already exist in the object's labels.
 
 
 <a id="nestedatt--spec--calico_node_windows_daemon_set--spec"></a>
@@ -1152,7 +1154,7 @@ Optional:
 
 Optional:
 
-- `min_ready_seconds` (Number) MinReadySeconds is the minimum number of seconds for which a newly created DaemonSet pod should be ready without any of its container crashing, for it to be considered available. If specified, this overrides any minReadySeconds value that may be set on the calico-node-windows DaemonSet. If omitted, the calico-node-windows DaemonSet will use its default value for minReadySeconds.
+- `min_ready_seconds` (Number) MinReadySeconds is the minimum number of seconds for which a newly created DaemonSet pod shouldbe ready without any of its container crashing, for it to be considered available.If specified, this overrides any minReadySeconds value that may be set on the calico-node-windows DaemonSet.If omitted, the calico-node-windows DaemonSet will use its default value for minReadySeconds.
 - `template` (Attributes) Template describes the calico-node-windows DaemonSet pod that will be created. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template))
 
 <a id="nestedatt--spec--calico_node_windows_daemon_set--spec--template"></a>
@@ -1160,7 +1162,7 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Metadata is a subset of a Kubernetes object's metadata that is added to the pod's metadata. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--metadata))
+- `metadata` (Attributes) Metadata is a subset of a Kubernetes object's metadata that is added tothe pod's metadata. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--metadata))
 - `spec` (Attributes) Spec is the calico-node-windows DaemonSet's PodSpec. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec))
 
 <a id="nestedatt--spec--calico_node_windows_daemon_set--spec--template--metadata"></a>
@@ -1168,8 +1170,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is a map of arbitrary non-identifying metadata. Each of these key/value pairs are added to the object's annotations provided the key does not already exist in the object's annotations.
-- `labels` (Map of String) Labels is a map of string keys and values that may match replicaset and service selectors. Each of these key/value pairs are added to the object's labels provided the key does not already exist in the object's labels.
+- `annotations` (Map of String) Annotations is a map of arbitrary non-identifying metadata. Each of thesekey/value pairs are added to the object's annotations provided the key does notalready exist in the object's annotations.
+- `labels` (Map of String) Labels is a map of string keys and values that may match replicaset andservice selectors. Each of these key/value pairs are added to theobject's labels provided the key does not already exist in the object's labels.
 
 
 <a id="nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec"></a>
@@ -1177,11 +1179,11 @@ Optional:
 
 Optional:
 
-- `affinity` (Attributes) Affinity is a group of affinity scheduling rules for the calico-node-windows pods. If specified, this overrides any affinity that may be set on the calico-node-windows DaemonSet. If omitted, the calico-node-windows DaemonSet will use its default value for affinity. WARNING: Please note that this field will override the default calico-node-windows DaemonSet affinity. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--affinity))
-- `containers` (Attributes List) Containers is a list of calico-node-windows containers. If specified, this overrides the specified calico-node-windows DaemonSet containers. If omitted, the calico-node-windows DaemonSet will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--containers))
-- `init_containers` (Attributes List) InitContainers is a list of calico-node-windows init containers. If specified, this overrides the specified calico-node-windows DaemonSet init containers. If omitted, the calico-node-windows DaemonSet will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--init_containers))
-- `node_selector` (Map of String) NodeSelector is the calico-node-windows pod's scheduling constraints. If specified, each of the key/value pairs are added to the calico-node-windows DaemonSet nodeSelector provided the key does not already exist in the object's nodeSelector. If omitted, the calico-node-windows DaemonSet will use its default value for nodeSelector. WARNING: Please note that this field will modify the default calico-node-windows DaemonSet nodeSelector.
-- `tolerations` (Attributes List) Tolerations is the calico-node-windows pod's tolerations. If specified, this overrides any tolerations that may be set on the calico-node-windows DaemonSet. If omitted, the calico-node-windows DaemonSet will use its default value for tolerations. WARNING: Please note that this field will override the default calico-node-windows DaemonSet tolerations. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations))
+- `affinity` (Attributes) Affinity is a group of affinity scheduling rules for the calico-node-windows pods.If specified, this overrides any affinity that may be set on the calico-node-windows DaemonSet.If omitted, the calico-node-windows DaemonSet will use its default value for affinity.WARNING: Please note that this field will override the default calico-node-windows DaemonSet affinity. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--affinity))
+- `containers` (Attributes List) Containers is a list of calico-node-windows containers.If specified, this overrides the specified calico-node-windows DaemonSet containers.If omitted, the calico-node-windows DaemonSet will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--containers))
+- `init_containers` (Attributes List) InitContainers is a list of calico-node-windows init containers.If specified, this overrides the specified calico-node-windows DaemonSet init containers.If omitted, the calico-node-windows DaemonSet will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--init_containers))
+- `node_selector` (Map of String) NodeSelector is the calico-node-windows pod's scheduling constraints.If specified, each of the key/value pairs are added to the calico-node-windows DaemonSet nodeSelector providedthe key does not already exist in the object's nodeSelector.If omitted, the calico-node-windows DaemonSet will use its default value for nodeSelector.WARNING: Please note that this field will modify the default calico-node-windows DaemonSet nodeSelector.
+- `tolerations` (Attributes List) Tolerations is the calico-node-windows pod's tolerations.If specified, this overrides any tolerations that may be set on the calico-node-windows DaemonSet.If omitted, the calico-node-windows DaemonSet will use its default value for tolerations.WARNING: Please note that this field will override the default calico-node-windows DaemonSet tolerations. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations))
 
 <a id="nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--affinity"></a>
 ### Nested Schema for `spec.calico_node_windows_daemon_set.spec.template.spec.affinity`
@@ -1197,8 +1199,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.calico_node_windows_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -1222,11 +1224,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 <a id="nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference--match_fields"></a>
@@ -1235,11 +1237,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 
@@ -1265,11 +1267,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 <a id="nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
@@ -1278,11 +1280,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 
@@ -1293,8 +1295,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.calico_node_windows_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -1302,20 +1304,20 @@ Optional:
 Required:
 
 - `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
-- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
 <a id="nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
 ### Nested Schema for `spec.calico_node_windows_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
 ### Nested Schema for `spec.calico_node_windows_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
@@ -1323,7 +1325,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.calico_node_windows_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
@@ -1331,11 +1333,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1345,7 +1347,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.calico_node_windows_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
@@ -1353,11 +1355,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1368,13 +1370,13 @@ Optional:
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.calico_node_windows_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
@@ -1382,7 +1384,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.calico_node_windows_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
@@ -1390,11 +1392,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1404,7 +1406,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.calico_node_windows_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
@@ -1412,11 +1414,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1427,8 +1429,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.calico_node_windows_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -1436,20 +1438,20 @@ Optional:
 Required:
 
 - `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
-- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
 <a id="nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
 ### Nested Schema for `spec.calico_node_windows_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
 ### Nested Schema for `spec.calico_node_windows_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
@@ -1457,7 +1459,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.calico_node_windows_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
@@ -1465,11 +1467,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1479,7 +1481,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.calico_node_windows_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
@@ -1487,11 +1489,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1502,13 +1504,13 @@ Optional:
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.calico_node_windows_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
@@ -1516,7 +1518,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.calico_node_windows_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
@@ -1524,11 +1526,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1538,7 +1540,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.calico_node_windows_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
@@ -1546,11 +1548,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1562,27 +1564,27 @@ Optional:
 
 Required:
 
-- `name` (String) Name is an enum which identifies the calico-node-windows DaemonSet container by name.
+- `name` (String) Name is an enum which identifies the calico-node-windows DaemonSet container by name.Supported values are: calico-node-windows
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named calico-node-windows DaemonSet container's resources. If omitted, the calico-node-windows DaemonSet will use its default value for this container's resources. If used in conjunction with the deprecated ComponentResources, then this value takes precedence. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named calico-node-windows DaemonSet container's resources.If omitted, the calico-node-windows DaemonSet will use its default value for this container's resources.If used in conjunction with the deprecated ComponentResources, then this value takes precedence. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--resources))
 
 <a id="nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--resources"></a>
 ### Nested Schema for `spec.calico_node_windows_daemon_set.spec.template.spec.tolerations.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--resources--claims"></a>
 ### Nested Schema for `spec.calico_node_windows_daemon_set.spec.template.spec.tolerations.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -1592,27 +1594,27 @@ Required:
 
 Required:
 
-- `name` (String) Name is an enum which identifies the calico-node-windows DaemonSet init container by name.
+- `name` (String) Name is an enum which identifies the calico-node-windows DaemonSet init container by name.Supported values are: install-cni;hostpath-init, flexvol-driver, mount-bpffs, node-certs-key-cert-provisioner, calico-node-windows-prometheus-server-tls-key-cert-provisioner
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named calico-node-windows DaemonSet init container's resources. If omitted, the calico-node-windows DaemonSet will use its default value for this container's resources. If used in conjunction with the deprecated ComponentResources, then this value takes precedence. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named calico-node-windows DaemonSet init container's resources.If omitted, the calico-node-windows DaemonSet will use its default value for this container's resources.If used in conjunction with the deprecated ComponentResources, then this value takes precedence. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--resources))
 
 <a id="nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--resources"></a>
 ### Nested Schema for `spec.calico_node_windows_daemon_set.spec.template.spec.tolerations.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--calico_node_windows_daemon_set--spec--template--spec--tolerations--resources--claims"></a>
 ### Nested Schema for `spec.calico_node_windows_daemon_set.spec.template.spec.tolerations.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -1622,11 +1624,11 @@ Required:
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 
@@ -1646,8 +1648,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is a map of arbitrary non-identifying metadata. Each of these key/value pairs are added to the object's annotations provided the key does not already exist in the object's annotations.
-- `labels` (Map of String) Labels is a map of string keys and values that may match replicaset and service selectors. Each of these key/value pairs are added to the object's labels provided the key does not already exist in the object's labels.
+- `annotations` (Map of String) Annotations is a map of arbitrary non-identifying metadata. Each of thesekey/value pairs are added to the object's annotations provided the key does notalready exist in the object's annotations.
+- `labels` (Map of String) Labels is a map of string keys and values that may match replicaset andservice selectors. Each of these key/value pairs are added to theobject's labels provided the key does not already exist in the object's labels.
 
 
 <a id="nestedatt--spec--calico_windows_upgrade_daemon_set--spec"></a>
@@ -1655,7 +1657,7 @@ Optional:
 
 Optional:
 
-- `min_ready_seconds` (Number) MinReadySeconds is the minimum number of seconds for which a newly created Deployment pod should be ready without any of its container crashing, for it to be considered available. If specified, this overrides any minReadySeconds value that may be set on the calico-windows-upgrade DaemonSet. If omitted, the calico-windows-upgrade DaemonSet will use its default value for minReadySeconds.
+- `min_ready_seconds` (Number) MinReadySeconds is the minimum number of seconds for which a newly created Deployment pod shouldbe ready without any of its container crashing, for it to be considered available.If specified, this overrides any minReadySeconds value that may be set on the calico-windows-upgrade DaemonSet.If omitted, the calico-windows-upgrade DaemonSet will use its default value for minReadySeconds.
 - `template` (Attributes) Template describes the calico-windows-upgrade DaemonSet pod that will be created. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template))
 
 <a id="nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template"></a>
@@ -1663,7 +1665,7 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Metadata is a subset of a Kubernetes object's metadata that is added to the pod's metadata. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--metadata))
+- `metadata` (Attributes) Metadata is a subset of a Kubernetes object's metadata that is added tothe pod's metadata. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--metadata))
 - `spec` (Attributes) Spec is the calico-windows-upgrade DaemonSet's PodSpec. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec))
 
 <a id="nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--metadata"></a>
@@ -1671,8 +1673,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is a map of arbitrary non-identifying metadata. Each of these key/value pairs are added to the object's annotations provided the key does not already exist in the object's annotations.
-- `labels` (Map of String) Labels is a map of string keys and values that may match replicaset and service selectors. Each of these key/value pairs are added to the object's labels provided the key does not already exist in the object's labels.
+- `annotations` (Map of String) Annotations is a map of arbitrary non-identifying metadata. Each of thesekey/value pairs are added to the object's annotations provided the key does notalready exist in the object's annotations.
+- `labels` (Map of String) Labels is a map of string keys and values that may match replicaset andservice selectors. Each of these key/value pairs are added to theobject's labels provided the key does not already exist in the object's labels.
 
 
 <a id="nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec"></a>
@@ -1680,10 +1682,10 @@ Optional:
 
 Optional:
 
-- `affinity` (Attributes) Affinity is a group of affinity scheduling rules for the calico-windows-upgrade pods. If specified, this overrides any affinity that may be set on the calico-windows-upgrade DaemonSet. If omitted, the calico-windows-upgrade DaemonSet will use its default value for affinity. WARNING: Please note that this field will override the default calico-windows-upgrade DaemonSet affinity. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--affinity))
-- `containers` (Attributes List) Containers is a list of calico-windows-upgrade containers. If specified, this overrides the specified calico-windows-upgrade DaemonSet containers. If omitted, the calico-windows-upgrade DaemonSet will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--containers))
-- `node_selector` (Map of String) NodeSelector is the calico-windows-upgrade pod's scheduling constraints. If specified, each of the key/value pairs are added to the calico-windows-upgrade DaemonSet nodeSelector provided the key does not already exist in the object's nodeSelector. If omitted, the calico-windows-upgrade DaemonSet will use its default value for nodeSelector. WARNING: Please note that this field will modify the default calico-windows-upgrade DaemonSet nodeSelector.
-- `tolerations` (Attributes List) Tolerations is the calico-windows-upgrade pod's tolerations. If specified, this overrides any tolerations that may be set on the calico-windows-upgrade DaemonSet. If omitted, the calico-windows-upgrade DaemonSet will use its default value for tolerations. WARNING: Please note that this field will override the default calico-windows-upgrade DaemonSet tolerations. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations))
+- `affinity` (Attributes) Affinity is a group of affinity scheduling rules for the calico-windows-upgrade pods.If specified, this overrides any affinity that may be set on the calico-windows-upgrade DaemonSet.If omitted, the calico-windows-upgrade DaemonSet will use its default value for affinity.WARNING: Please note that this field will override the default calico-windows-upgrade DaemonSet affinity. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--affinity))
+- `containers` (Attributes List) Containers is a list of calico-windows-upgrade containers.If specified, this overrides the specified calico-windows-upgrade DaemonSet containers.If omitted, the calico-windows-upgrade DaemonSet will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--containers))
+- `node_selector` (Map of String) NodeSelector is the calico-windows-upgrade pod's scheduling constraints.If specified, each of the key/value pairs are added to the calico-windows-upgrade DaemonSet nodeSelector providedthe key does not already exist in the object's nodeSelector.If omitted, the calico-windows-upgrade DaemonSet will use its default value for nodeSelector.WARNING: Please note that this field will modify the default calico-windows-upgrade DaemonSet nodeSelector.
+- `tolerations` (Attributes List) Tolerations is the calico-windows-upgrade pod's tolerations.If specified, this overrides any tolerations that may be set on the calico-windows-upgrade DaemonSet.If omitted, the calico-windows-upgrade DaemonSet will use its default value for tolerations.WARNING: Please note that this field will override the default calico-windows-upgrade DaemonSet tolerations. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations))
 
 <a id="nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--affinity"></a>
 ### Nested Schema for `spec.calico_windows_upgrade_daemon_set.spec.template.spec.affinity`
@@ -1699,8 +1701,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.calico_windows_upgrade_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -1724,11 +1726,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 <a id="nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference--match_fields"></a>
@@ -1737,11 +1739,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 
@@ -1767,11 +1769,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 <a id="nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
@@ -1780,11 +1782,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 
@@ -1795,8 +1797,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.calico_windows_upgrade_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -1804,20 +1806,20 @@ Optional:
 Required:
 
 - `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
-- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
 <a id="nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
 ### Nested Schema for `spec.calico_windows_upgrade_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
 ### Nested Schema for `spec.calico_windows_upgrade_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
@@ -1825,7 +1827,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.calico_windows_upgrade_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
@@ -1833,11 +1835,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1847,7 +1849,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.calico_windows_upgrade_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
@@ -1855,11 +1857,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1870,13 +1872,13 @@ Optional:
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.calico_windows_upgrade_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
@@ -1884,7 +1886,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.calico_windows_upgrade_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
@@ -1892,11 +1894,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1906,7 +1908,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.calico_windows_upgrade_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
@@ -1914,11 +1916,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1929,8 +1931,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.calico_windows_upgrade_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -1938,20 +1940,20 @@ Optional:
 Required:
 
 - `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
-- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
 <a id="nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
 ### Nested Schema for `spec.calico_windows_upgrade_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
 ### Nested Schema for `spec.calico_windows_upgrade_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
@@ -1959,7 +1961,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.calico_windows_upgrade_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
@@ -1967,11 +1969,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1981,7 +1983,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.calico_windows_upgrade_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
@@ -1989,11 +1991,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -2004,13 +2006,13 @@ Optional:
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.calico_windows_upgrade_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
@@ -2018,7 +2020,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.calico_windows_upgrade_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
@@ -2026,11 +2028,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -2040,7 +2042,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.calico_windows_upgrade_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
@@ -2048,11 +2050,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -2068,23 +2070,23 @@ Required:
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named calico-windows-upgrade DaemonSet container's resources. If omitted, the calico-windows-upgrade DaemonSet will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named calico-windows-upgrade DaemonSet container's resources.If omitted, the calico-windows-upgrade DaemonSet will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--resources))
 
 <a id="nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--resources"></a>
 ### Nested Schema for `spec.calico_windows_upgrade_daemon_set.spec.template.spec.tolerations.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--calico_windows_upgrade_daemon_set--spec--template--spec--tolerations--resources--claims"></a>
 ### Nested Schema for `spec.calico_windows_upgrade_daemon_set.spec.template.spec.tolerations.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -2094,11 +2096,11 @@ Required:
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 
@@ -2111,12 +2113,12 @@ Optional:
 Required:
 
 - `ca_cert` (String) Certificate of the authority that signs the CertificateSigningRequests in PEM format.
-- `signer_name` (String) When a CSR is issued to the certificates.k8s.io API, the signerName is added to the request in order to accommodate for clusters with multiple signers. Must be formatted as: '<my-domain>/<my-signername>'.
+- `signer_name` (String) When a CSR is issued to the certificates.k8s.io API, the signerName is added to the request in order to accommodate for clusterswith multiple signers.Must be formatted as: '<my-domain>/<my-signername>'.
 
 Optional:
 
-- `key_algorithm` (String) Specify the algorithm used by pods to generate a key pair that is associated with the X.509 certificate request. Default: RSAWithSize2048
-- `signature_algorithm` (String) Specify the algorithm used for the signature of the X.509 certificate request. Default: SHA256WithRSA
+- `key_algorithm` (String) Specify the algorithm used by pods to generate a key pair that is associated with the X.509 certificate request.Default: RSAWithSize2048
+- `signature_algorithm` (String) Specify the algorithm used for the signature of the X.509 certificate request.Default: SHA256WithRSA
 
 
 <a id="nestedatt--spec--cni"></a>
@@ -2124,18 +2126,18 @@ Optional:
 
 Required:
 
-- `type` (String) Specifies the CNI plugin that will be used in the Calico or Calico Enterprise installation. * For KubernetesProvider GKE, this field defaults to GKE. * For KubernetesProvider AKS, this field defaults to AzureVNET. * For KubernetesProvider EKS, this field defaults to AmazonVPC. * If aws-node daemonset exists in kube-system when the Installation resource is created, this field defaults to AmazonVPC. * For all other cases this field defaults to Calico.  For the value Calico, the CNI plugin binaries and CNI config will be installed as part of deployment, for all other values the CNI plugin binaries and CNI config is a dependency that is expected to be installed separately.  Default: Calico
+- `type` (String) Specifies the CNI plugin that will be used in the Calico or Calico Enterprise installation.* For KubernetesProvider GKE, this field defaults to GKE.* For KubernetesProvider AKS, this field defaults to AzureVNET.* For KubernetesProvider EKS, this field defaults to AmazonVPC.* If aws-node daemonset exists in kube-system when the Installation resource is created, this field defaults to AmazonVPC.* For all other cases this field defaults to Calico.For the value Calico, the CNI plugin binaries and CNI config will be installed as part of deployment,for all other values the CNI plugin binaries and CNI config is a dependency that is expectedto be installed separately.Default: Calico
 
 Optional:
 
-- `ipam` (Attributes) IPAM specifies the pod IP address management that will be used in the Calico or Calico Enterprise installation. (see [below for nested schema](#nestedatt--spec--cni--ipam))
+- `ipam` (Attributes) IPAM specifies the pod IP address management that will be used in the Calico orCalico Enterprise installation. (see [below for nested schema](#nestedatt--spec--cni--ipam))
 
 <a id="nestedatt--spec--cni--ipam"></a>
 ### Nested Schema for `spec.cni.ipam`
 
 Required:
 
-- `type` (String) Specifies the IPAM plugin that will be used in the Calico or Calico Enterprise installation. * For CNI Plugin Calico, this field defaults to Calico. * For CNI Plugin GKE, this field defaults to HostLocal. * For CNI Plugin AzureVNET, this field defaults to AzureVNET. * For CNI Plugin AmazonVPC, this field defaults to AmazonVPC.  The IPAM plugin is installed and configured only if the CNI plugin is set to Calico, for all other values of the CNI plugin the plugin binaries and CNI config is a dependency that is expected to be installed separately.  Default: Calico
+- `type` (String) Specifies the IPAM plugin that will be used in the Calico or Calico Enterprise installation.* For CNI Plugin Calico, this field defaults to Calico.* For CNI Plugin GKE, this field defaults to HostLocal.* For CNI Plugin AzureVNET, this field defaults to AzureVNET.* For CNI Plugin AmazonVPC, this field defaults to AmazonVPC.The IPAM plugin is installed and configured only if the CNI plugin is set to Calico,for all other values of the CNI plugin the plugin binaries and CNI config is a dependencythat is expected to be installed separately.Default: Calico
 
 
 
@@ -2152,16 +2154,16 @@ Required:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--component_resources--resource_requirements--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--component_resources--resource_requirements--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--component_resources--resource_requirements--claims"></a>
 ### Nested Schema for `spec.component_resources.resource_requirements.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -2171,11 +2173,11 @@ Required:
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 <a id="nestedatt--spec--csi_node_driver_daemon_set"></a>
@@ -2191,8 +2193,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is a map of arbitrary non-identifying metadata. Each of these key/value pairs are added to the object's annotations provided the key does not already exist in the object's annotations.
-- `labels` (Map of String) Labels is a map of string keys and values that may match replicaset and service selectors. Each of these key/value pairs are added to the object's labels provided the key does not already exist in the object's labels.
+- `annotations` (Map of String) Annotations is a map of arbitrary non-identifying metadata. Each of thesekey/value pairs are added to the object's annotations provided the key does notalready exist in the object's annotations.
+- `labels` (Map of String) Labels is a map of string keys and values that may match replicaset andservice selectors. Each of these key/value pairs are added to theobject's labels provided the key does not already exist in the object's labels.
 
 
 <a id="nestedatt--spec--csi_node_driver_daemon_set--spec"></a>
@@ -2200,7 +2202,7 @@ Optional:
 
 Optional:
 
-- `min_ready_seconds` (Number) MinReadySeconds is the minimum number of seconds for which a newly created DaemonSet pod should be ready without any of its container crashing, for it to be considered available. If specified, this overrides any minReadySeconds value that may be set on the csi-node-driver DaemonSet. If omitted, the csi-node-driver DaemonSet will use its default value for minReadySeconds.
+- `min_ready_seconds` (Number) MinReadySeconds is the minimum number of seconds for which a newly created DaemonSet pod shouldbe ready without any of its container crashing, for it to be considered available.If specified, this overrides any minReadySeconds value that may be set on the csi-node-driver DaemonSet.If omitted, the csi-node-driver DaemonSet will use its default value for minReadySeconds.
 - `template` (Attributes) Template describes the csi-node-driver DaemonSet pod that will be created. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template))
 
 <a id="nestedatt--spec--csi_node_driver_daemon_set--spec--template"></a>
@@ -2208,7 +2210,7 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Metadata is a subset of a Kubernetes object's metadata that is added to the pod's metadata. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--metadata))
+- `metadata` (Attributes) Metadata is a subset of a Kubernetes object's metadata that is added tothe pod's metadata. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--metadata))
 - `spec` (Attributes) Spec is the csi-node-driver DaemonSet's PodSpec. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec))
 
 <a id="nestedatt--spec--csi_node_driver_daemon_set--spec--template--metadata"></a>
@@ -2216,8 +2218,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is a map of arbitrary non-identifying metadata. Each of these key/value pairs are added to the object's annotations provided the key does not already exist in the object's annotations.
-- `labels` (Map of String) Labels is a map of string keys and values that may match replicaset and service selectors. Each of these key/value pairs are added to the object's labels provided the key does not already exist in the object's labels.
+- `annotations` (Map of String) Annotations is a map of arbitrary non-identifying metadata. Each of thesekey/value pairs are added to the object's annotations provided the key does notalready exist in the object's annotations.
+- `labels` (Map of String) Labels is a map of string keys and values that may match replicaset andservice selectors. Each of these key/value pairs are added to theobject's labels provided the key does not already exist in the object's labels.
 
 
 <a id="nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec"></a>
@@ -2225,10 +2227,10 @@ Optional:
 
 Optional:
 
-- `affinity` (Attributes) Affinity is a group of affinity scheduling rules for the csi-node-driver pods. If specified, this overrides any affinity that may be set on the csi-node-driver DaemonSet. If omitted, the csi-node-driver DaemonSet will use its default value for affinity. WARNING: Please note that this field will override the default csi-node-driver DaemonSet affinity. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--affinity))
-- `containers` (Attributes List) Containers is a list of csi-node-driver containers. If specified, this overrides the specified csi-node-driver DaemonSet containers. If omitted, the csi-node-driver DaemonSet will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--containers))
-- `node_selector` (Map of String) NodeSelector is the csi-node-driver pod's scheduling constraints. If specified, each of the key/value pairs are added to the csi-node-driver DaemonSet nodeSelector provided the key does not already exist in the object's nodeSelector. If omitted, the csi-node-driver DaemonSet will use its default value for nodeSelector. WARNING: Please note that this field will modify the default csi-node-driver DaemonSet nodeSelector.
-- `tolerations` (Attributes List) Tolerations is the csi-node-driver pod's tolerations. If specified, this overrides any tolerations that may be set on the csi-node-driver DaemonSet. If omitted, the csi-node-driver DaemonSet will use its default value for tolerations. WARNING: Please note that this field will override the default csi-node-driver DaemonSet tolerations. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations))
+- `affinity` (Attributes) Affinity is a group of affinity scheduling rules for the csi-node-driver pods.If specified, this overrides any affinity that may be set on the csi-node-driver DaemonSet.If omitted, the csi-node-driver DaemonSet will use its default value for affinity.WARNING: Please note that this field will override the default csi-node-driver DaemonSet affinity. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--affinity))
+- `containers` (Attributes List) Containers is a list of csi-node-driver containers.If specified, this overrides the specified csi-node-driver DaemonSet containers.If omitted, the csi-node-driver DaemonSet will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--containers))
+- `node_selector` (Map of String) NodeSelector is the csi-node-driver pod's scheduling constraints.If specified, each of the key/value pairs are added to the csi-node-driver DaemonSet nodeSelector providedthe key does not already exist in the object's nodeSelector.If omitted, the csi-node-driver DaemonSet will use its default value for nodeSelector.WARNING: Please note that this field will modify the default csi-node-driver DaemonSet nodeSelector.
+- `tolerations` (Attributes List) Tolerations is the csi-node-driver pod's tolerations.If specified, this overrides any tolerations that may be set on the csi-node-driver DaemonSet.If omitted, the csi-node-driver DaemonSet will use its default value for tolerations.WARNING: Please note that this field will override the default csi-node-driver DaemonSet tolerations. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations))
 
 <a id="nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--affinity"></a>
 ### Nested Schema for `spec.csi_node_driver_daemon_set.spec.template.spec.affinity`
@@ -2244,8 +2246,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.csi_node_driver_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -2269,11 +2271,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 <a id="nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference--match_fields"></a>
@@ -2282,11 +2284,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 
@@ -2312,11 +2314,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 <a id="nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
@@ -2325,11 +2327,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 
@@ -2340,8 +2342,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.csi_node_driver_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -2349,20 +2351,20 @@ Optional:
 Required:
 
 - `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
-- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
 <a id="nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
 ### Nested Schema for `spec.csi_node_driver_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
 ### Nested Schema for `spec.csi_node_driver_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
@@ -2370,7 +2372,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.csi_node_driver_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
@@ -2378,11 +2380,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -2392,7 +2394,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.csi_node_driver_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
@@ -2400,11 +2402,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -2415,13 +2417,13 @@ Optional:
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.csi_node_driver_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
@@ -2429,7 +2431,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.csi_node_driver_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
@@ -2437,11 +2439,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -2451,7 +2453,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.csi_node_driver_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
@@ -2459,11 +2461,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -2474,8 +2476,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.csi_node_driver_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -2483,20 +2485,20 @@ Optional:
 Required:
 
 - `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
-- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
 <a id="nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
 ### Nested Schema for `spec.csi_node_driver_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
 ### Nested Schema for `spec.csi_node_driver_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
@@ -2504,7 +2506,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.csi_node_driver_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
@@ -2512,11 +2514,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -2526,7 +2528,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.csi_node_driver_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
@@ -2534,11 +2536,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -2549,13 +2551,13 @@ Optional:
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.csi_node_driver_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
@@ -2563,7 +2565,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.csi_node_driver_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
@@ -2571,11 +2573,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -2585,7 +2587,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.csi_node_driver_daemon_set.spec.template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
@@ -2593,11 +2595,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -2609,27 +2611,27 @@ Optional:
 
 Required:
 
-- `name` (String) Name is an enum which identifies the csi-node-driver DaemonSet container by name.
+- `name` (String) Name is an enum which identifies the csi-node-driver DaemonSet container by name.Supported values are: calico-csi, csi-node-driver-registrar.
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named csi-node-driver DaemonSet container's resources. If omitted, the csi-node-driver DaemonSet will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named csi-node-driver DaemonSet container's resources.If omitted, the csi-node-driver DaemonSet will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--resources))
 
 <a id="nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--resources"></a>
 ### Nested Schema for `spec.csi_node_driver_daemon_set.spec.template.spec.tolerations.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--csi_node_driver_daemon_set--spec--template--spec--tolerations--resources--claims"></a>
 ### Nested Schema for `spec.csi_node_driver_daemon_set.spec.template.spec.tolerations.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -2639,11 +2641,11 @@ Required:
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 
@@ -2655,7 +2657,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 
 
 <a id="nestedatt--spec--logging"></a>
@@ -2682,7 +2684,7 @@ Optional:
 
 Optional:
 
-- `rolling_update` (Attributes) Rolling update config params. Present only if type = 'RollingUpdate'. --- TODO: Update this to follow our convention for oneOf, whatever we decide it to be. Same as Deployment 'strategy.rollingUpdate'. See https://github.com/kubernetes/kubernetes/issues/35345 (see [below for nested schema](#nestedatt--spec--node_update_strategy--rolling_update))
+- `rolling_update` (Attributes) Rolling update config params. Present only if type = 'RollingUpdate'.---TODO: Update this to follow our convention for oneOf, whatever we decide itto be. Same as Deployment 'strategy.rollingUpdate'.See https://github.com/kubernetes/kubernetes/issues/35345 (see [below for nested schema](#nestedatt--spec--node_update_strategy--rolling_update))
 - `type` (String) Type of daemon set update. Can be 'RollingUpdate' or 'OnDelete'. Default is RollingUpdate.
 
 <a id="nestedatt--spec--node_update_strategy--rolling_update"></a>
@@ -2690,8 +2692,8 @@ Optional:
 
 Optional:
 
-- `max_surge` (String) The maximum number of nodes with an existing available DaemonSet pod that can have an updated DaemonSet pod during during an update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up to a minimum of 1. Default value is 0. Example: when this is set to 30%, at most 30% of the total number of nodes that should be running the daemon pod (i.e. status.desiredNumberScheduled) can have their a new pod created before the old pod is marked as deleted. The update starts by launching new pods on 30% of nodes. Once an updated pod is available (Ready for at least minReadySeconds) the old DaemonSet pod on that node is marked deleted. If the old pod becomes unavailable for any reason (Ready transitions to false, is evicted, or is drained) an updated pod is immediatedly created on that node without considering surge limits. Allowing surge implies the possibility that the resources consumed by the daemonset on any given node can double if the readiness check fails, and so resource intensive daemonsets should take into account that they may cause evictions during disruption.
-- `max_unavailable` (String) The maximum number of DaemonSet pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of total number of DaemonSet pods at the start of the update (ex: 10%). Absolute number is calculated from percentage by rounding up. This cannot be 0 if MaxSurge is 0 Default value is 1. Example: when this is set to 30%, at most 30% of the total number of nodes that should be running the daemon pod (i.e. status.desiredNumberScheduled) can have their pods stopped for an update at any given time. The update starts by stopping at most 30% of those DaemonSet pods and then brings up new DaemonSet pods in their place. Once the new pods are available, it then proceeds onto other DaemonSet pods, thus ensuring that at least 70% of original number of DaemonSet pods are available at all times during the update.
+- `max_surge` (String) The maximum number of nodes with an existing available DaemonSet pod thatcan have an updated DaemonSet pod during during an update.Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%).This can not be 0 if MaxUnavailable is 0.Absolute number is calculated from percentage by rounding up to a minimum of 1.Default value is 0.Example: when this is set to 30%, at most 30% of the total number of nodesthat should be running the daemon pod (i.e. status.desiredNumberScheduled)can have their a new pod created before the old pod is marked as deleted.The update starts by launching new pods on 30% of nodes. Once an updatedpod is available (Ready for at least minReadySeconds) the old DaemonSet podon that node is marked deleted. If the old pod becomes unavailable for anyreason (Ready transitions to false, is evicted, or is drained) an updatedpod is immediatedly created on that node without considering surge limits.Allowing surge implies the possibility that the resources consumed by thedaemonset on any given node can double if the readiness check fails, andso resource intensive daemonsets should take into account that they maycause evictions during disruption.
+- `max_unavailable` (String) The maximum number of DaemonSet pods that can be unavailable during theupdate. Value can be an absolute number (ex: 5) or a percentage of totalnumber of DaemonSet pods at the start of the update (ex: 10%). Absolutenumber is calculated from percentage by rounding up.This cannot be 0 if MaxSurge is 0Default value is 1.Example: when this is set to 30%, at most 30% of the total number of nodesthat should be running the daemon pod (i.e. status.desiredNumberScheduled)can have their pods stopped for an update at any given time. The updatestarts by stopping at most 30% of those DaemonSet pods and then bringsup new DaemonSet pods in their place. Once the new pods are available,it then proceeds onto other DaemonSet pods, thus ensuring that at least70% of original number of DaemonSet pods are available at all times duringthe update.
 
 
 
@@ -2707,8 +2709,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. (see [below for nested schema](#nestedatt--spec--typha_affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) WARNING: Please note that if the affinity requirements specified by this field are not met at scheduling time, the pod will NOT be scheduled onto the node. There is no fallback to another affinity rules with this setting. This may cause networking disruption or even catastrophic failure! PreferredDuringSchedulingIgnoredDuringExecution should be used for affinity unless there is a specific well understood reason to use RequiredDuringSchedulingIgnoredDuringExecution and you can guarantee that the RequiredDuringSchedulingIgnoredDuringExecution will always have sufficient nodes to satisfy the requirement. NOTE: RequiredDuringSchedulingIgnoredDuringExecution is set by default for AKS nodes, to avoid scheduling Typhas on virtual-nodes. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--typha_affinity--node_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. (see [below for nested schema](#nestedatt--spec--typha_affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) WARNING: Please note that if the affinity requirements specified by this field are not met atscheduling time, the pod will NOT be scheduled onto the node.There is no fallback to another affinity rules with this setting.This may cause networking disruption or even catastrophic failure!PreferredDuringSchedulingIgnoredDuringExecution should be used for affinityunless there is a specific well understood reason to use RequiredDuringSchedulingIgnoredDuringExecution andyou can guarantee that the RequiredDuringSchedulingIgnoredDuringExecution will always have sufficient nodes to satisfy the requirement.NOTE: RequiredDuringSchedulingIgnoredDuringExecution is set by default for AKS nodes,to avoid scheduling Typhas on virtual-nodes.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--typha_affinity--node_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--typha_affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.typha_affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -2732,11 +2734,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 <a id="nestedatt--spec--typha_affinity--node_affinity--required_during_scheduling_ignored_during_execution--preference--match_fields"></a>
@@ -2745,11 +2747,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 
@@ -2775,11 +2777,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 <a id="nestedatt--spec--typha_affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
@@ -2788,11 +2790,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 
@@ -2812,8 +2814,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is a map of arbitrary non-identifying metadata. Each of these key/value pairs are added to the object's annotations provided the key does not already exist in the object's annotations.
-- `labels` (Map of String) Labels is a map of string keys and values that may match replicaset and service selectors. Each of these key/value pairs are added to the object's labels provided the key does not already exist in the object's labels.
+- `annotations` (Map of String) Annotations is a map of arbitrary non-identifying metadata. Each of thesekey/value pairs are added to the object's annotations provided the key does notalready exist in the object's annotations.
+- `labels` (Map of String) Labels is a map of string keys and values that may match replicaset andservice selectors. Each of these key/value pairs are added to theobject's labels provided the key does not already exist in the object's labels.
 
 
 <a id="nestedatt--spec--typha_deployment--spec"></a>
@@ -2821,7 +2823,7 @@ Optional:
 
 Optional:
 
-- `min_ready_seconds` (Number) MinReadySeconds is the minimum number of seconds for which a newly created Deployment pod should be ready without any of its container crashing, for it to be considered available. If specified, this overrides any minReadySeconds value that may be set on the typha Deployment. If omitted, the typha Deployment will use its default value for minReadySeconds.
+- `min_ready_seconds` (Number) MinReadySeconds is the minimum number of seconds for which a newly created Deployment pod shouldbe ready without any of its container crashing, for it to be considered available.If specified, this overrides any minReadySeconds value that may be set on the typha Deployment.If omitted, the typha Deployment will use its default value for minReadySeconds.
 - `strategy` (Attributes) The deployment strategy to use to replace existing pods with new ones. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--strategy))
 - `template` (Attributes) Template describes the typha Deployment pod that will be created. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template))
 
@@ -2830,15 +2832,15 @@ Optional:
 
 Optional:
 
-- `rolling_update` (Attributes) Rolling update config params. Present only if DeploymentStrategyType = RollingUpdate. to be. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--rolling_update))
+- `rolling_update` (Attributes) Rolling update config params. Present only if DeploymentStrategyType =RollingUpdate.to be. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--rolling_update))
 
 <a id="nestedatt--spec--typha_deployment--spec--template--rolling_update"></a>
 ### Nested Schema for `spec.typha_deployment.spec.template.rolling_update`
 
 Optional:
 
-- `max_surge` (String) The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to 25%. Example: when this is set to 30%, the new ReplicaSet can be scaled up immediately when the rolling update starts, such that the total number of old and new pods do not exceed 130% of desired pods. Once old pods have been killed, new ReplicaSet can be scaled up further, ensuring that total number of pods running at any time during the update is at most 130% of desired pods.
-- `max_unavailable` (String) The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to 25%. Example: when this is set to 30%, the old ReplicaSet can be scaled down to 70% of desired pods immediately when the rolling update starts. Once new pods are ready, old ReplicaSet can be scaled down further, followed by scaling up the new ReplicaSet, ensuring that the total number of pods available at all times during the update is at least 70% of desired pods.
+- `max_surge` (String) The maximum number of pods that can be scheduled above the desired number ofpods.Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%).This can not be 0 if MaxUnavailable is 0.Absolute number is calculated from percentage by rounding up.Defaults to 25%.Example: when this is set to 30%, the new ReplicaSet can be scaled up immediately whenthe rolling update starts, such that the total number of old and new pods do not exceed130% of desired pods. Once old pods have been killed,new ReplicaSet can be scaled up further, ensuring that total number of pods runningat any time during the update is at most 130% of desired pods.
+- `max_unavailable` (String) The maximum number of pods that can be unavailable during the update.Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%).Absolute number is calculated from percentage by rounding down.This can not be 0 if MaxSurge is 0.Defaults to 25%.Example: when this is set to 30%, the old ReplicaSet can be scaled down to 70% of desired podsimmediately when the rolling update starts. Once new pods are ready, old ReplicaSetcan be scaled down further, followed by scaling up the new ReplicaSet, ensuringthat the total number of pods available at all times during the update is atleast 70% of desired pods.
 
 
 
@@ -2847,7 +2849,7 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Metadata is a subset of a Kubernetes object's metadata that is added to the pod's metadata. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--metadata))
+- `metadata` (Attributes) Metadata is a subset of a Kubernetes object's metadata that is added tothe pod's metadata. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--metadata))
 - `spec` (Attributes) Spec is the typha Deployment's PodSpec. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec))
 
 <a id="nestedatt--spec--typha_deployment--spec--template--metadata"></a>
@@ -2855,8 +2857,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is a map of arbitrary non-identifying metadata. Each of these key/value pairs are added to the object's annotations provided the key does not already exist in the object's annotations.
-- `labels` (Map of String) Labels is a map of string keys and values that may match replicaset and service selectors. Each of these key/value pairs are added to the object's labels provided the key does not already exist in the object's labels.
+- `annotations` (Map of String) Annotations is a map of arbitrary non-identifying metadata. Each of thesekey/value pairs are added to the object's annotations provided the key does notalready exist in the object's annotations.
+- `labels` (Map of String) Labels is a map of string keys and values that may match replicaset andservice selectors. Each of these key/value pairs are added to theobject's labels provided the key does not already exist in the object's labels.
 
 
 <a id="nestedatt--spec--typha_deployment--spec--template--spec"></a>
@@ -2864,13 +2866,13 @@ Optional:
 
 Optional:
 
-- `affinity` (Attributes) Affinity is a group of affinity scheduling rules for the typha pods. If specified, this overrides any affinity that may be set on the typha Deployment. If omitted, the typha Deployment will use its default value for affinity. If used in conjunction with the deprecated TyphaAffinity, then this value takes precedence. WARNING: Please note that this field will override the default calico-typha Deployment affinity. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--affinity))
-- `containers` (Attributes List) Containers is a list of typha containers. If specified, this overrides the specified typha Deployment containers. If omitted, the typha Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--containers))
-- `init_containers` (Attributes List) InitContainers is a list of typha init containers. If specified, this overrides the specified typha Deployment init containers. If omitted, the typha Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--init_containers))
-- `node_selector` (Map of String) NodeSelector is the calico-typha pod's scheduling constraints. If specified, each of the key/value pairs are added to the calico-typha Deployment nodeSelector provided the key does not already exist in the object's nodeSelector. If omitted, the calico-typha Deployment will use its default value for nodeSelector. WARNING: Please note that this field will modify the default calico-typha Deployment nodeSelector.
-- `termination_grace_period_seconds` (Number) Optional duration in seconds the pod needs to terminate gracefully. May be decreased in delete request. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). If this value is nil, the default grace period will be used instead. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. Defaults to 30 seconds.
-- `tolerations` (Attributes List) Tolerations is the typha pod's tolerations. If specified, this overrides any tolerations that may be set on the typha Deployment. If omitted, the typha Deployment will use its default value for tolerations. WARNING: Please note that this field will override the default calico-typha Deployment tolerations. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--tolerations))
-- `topology_spread_constraints` (Attributes List) TopologySpreadConstraints describes how a group of pods ought to spread across topology domains. Scheduler will schedule pods in a way which abides by the constraints. All topologySpreadConstraints are ANDed. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints))
+- `affinity` (Attributes) Affinity is a group of affinity scheduling rules for the typha pods.If specified, this overrides any affinity that may be set on the typha Deployment.If omitted, the typha Deployment will use its default value for affinity.If used in conjunction with the deprecated TyphaAffinity, then this value takes precedence.WARNING: Please note that this field will override the default calico-typha Deployment affinity. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--affinity))
+- `containers` (Attributes List) Containers is a list of typha containers.If specified, this overrides the specified typha Deployment containers.If omitted, the typha Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--containers))
+- `init_containers` (Attributes List) InitContainers is a list of typha init containers.If specified, this overrides the specified typha Deployment init containers.If omitted, the typha Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--init_containers))
+- `node_selector` (Map of String) NodeSelector is the calico-typha pod's scheduling constraints.If specified, each of the key/value pairs are added to the calico-typha Deployment nodeSelector providedthe key does not already exist in the object's nodeSelector.If omitted, the calico-typha Deployment will use its default value for nodeSelector.WARNING: Please note that this field will modify the default calico-typha Deployment nodeSelector.
+- `termination_grace_period_seconds` (Number) Optional duration in seconds the pod needs to terminate gracefully. May be decreased in delete request.Value must be non-negative integer. The value zero indicates stop immediately viathe kill signal (no opportunity to shut down).If this value is nil, the default grace period will be used instead.The grace period is the duration in seconds after the processes running in the pod are senta termination signal and the time when the processes are forcibly halted with a kill signal.Set this value longer than the expected cleanup time for your process.Defaults to 30 seconds.
+- `tolerations` (Attributes List) Tolerations is the typha pod's tolerations.If specified, this overrides any tolerations that may be set on the typha Deployment.If omitted, the typha Deployment will use its default value for tolerations.WARNING: Please note that this field will override the default calico-typha Deployment tolerations. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--tolerations))
+- `topology_spread_constraints` (Attributes List) TopologySpreadConstraints describes how a group of pods ought to spread across topologydomains. Scheduler will schedule pods in a way which abides by the constraints.All topologySpreadConstraints are ANDed. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints))
 
 <a id="nestedatt--spec--typha_deployment--spec--template--spec--affinity"></a>
 ### Nested Schema for `spec.typha_deployment.spec.template.spec.affinity`
@@ -2886,8 +2888,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.typha_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -2911,11 +2913,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 <a id="nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference--match_fields"></a>
@@ -2924,11 +2926,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 
@@ -2954,11 +2956,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 <a id="nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
@@ -2967,11 +2969,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 
@@ -2982,8 +2984,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.typha_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -2991,20 +2993,20 @@ Optional:
 Required:
 
 - `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
-- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
 <a id="nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
 ### Nested Schema for `spec.typha_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
 ### Nested Schema for `spec.typha_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
@@ -3012,7 +3014,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.typha_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
@@ -3020,11 +3022,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -3034,7 +3036,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.typha_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
@@ -3042,11 +3044,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -3057,13 +3059,13 @@ Optional:
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.typha_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
@@ -3071,7 +3073,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.typha_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
@@ -3079,11 +3081,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -3093,7 +3095,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.typha_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
@@ -3101,11 +3103,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -3116,8 +3118,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.typha_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -3125,20 +3127,20 @@ Optional:
 Required:
 
 - `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
-- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
 <a id="nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
 ### Nested Schema for `spec.typha_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
 ### Nested Schema for `spec.typha_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
@@ -3146,7 +3148,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.typha_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
@@ -3154,11 +3156,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -3168,7 +3170,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.typha_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
@@ -3176,11 +3178,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -3191,13 +3193,13 @@ Optional:
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.typha_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
@@ -3205,7 +3207,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.typha_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
@@ -3213,11 +3215,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -3227,7 +3229,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.typha_deployment.spec.template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
@@ -3235,11 +3237,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -3251,27 +3253,27 @@ Optional:
 
 Required:
 
-- `name` (String) Name is an enum which identifies the typha Deployment container by name.
+- `name` (String) Name is an enum which identifies the typha Deployment container by name.Supported values are: calico-typha
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named typha Deployment container's resources. If omitted, the typha Deployment will use its default value for this container's resources. If used in conjunction with the deprecated ComponentResources, then this value takes precedence. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named typha Deployment container's resources.If omitted, the typha Deployment will use its default value for this container's resources.If used in conjunction with the deprecated ComponentResources, then this value takes precedence. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--resources))
 
 <a id="nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--resources"></a>
 ### Nested Schema for `spec.typha_deployment.spec.template.spec.topology_spread_constraints.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--resources--claims"></a>
 ### Nested Schema for `spec.typha_deployment.spec.template.spec.topology_spread_constraints.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -3281,27 +3283,27 @@ Required:
 
 Required:
 
-- `name` (String) Name is an enum which identifies the typha Deployment init container by name.
+- `name` (String) Name is an enum which identifies the typha Deployment init container by name.Supported values are: typha-certs-key-cert-provisioner
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named typha Deployment init container's resources. If omitted, the typha Deployment will use its default value for this init container's resources. If used in conjunction with the deprecated ComponentResources, then this value takes precedence. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named typha Deployment init container's resources.If omitted, the typha Deployment will use its default value for this init container's resources.If used in conjunction with the deprecated ComponentResources, then this value takes precedence. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--resources))
 
 <a id="nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--resources"></a>
 ### Nested Schema for `spec.typha_deployment.spec.template.spec.topology_spread_constraints.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--resources--claims"></a>
 ### Nested Schema for `spec.typha_deployment.spec.template.spec.topology_spread_constraints.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -3311,11 +3313,11 @@ Required:
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 <a id="nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints"></a>
@@ -3323,17 +3325,17 @@ Optional:
 
 Required:
 
-- `max_skew` (Number) MaxSkew describes the degree to which pods may be unevenly distributed. When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. | zone1 | zone2 | zone3 | |  P P  |  P P  |   P   | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.
-- `topology_key` (String) TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a 'bucket', and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes meet the requirements of nodeAffinityPolicy and nodeTaintsPolicy. e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology. And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology. It's a required field.
-- `when_unsatisfiable` (String) WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location, but giving higher precedence to topologies that would help reduce the skew. A constraint is considered 'Unsatisfiable' for an incoming pod if and only if every possible node assignment for that pod would violate 'MaxSkew' on some topology. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: | zone1 | zone2 | zone3 | | P P P |   P   |   P   | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field.
+- `max_skew` (Number) MaxSkew describes the degree to which pods may be unevenly distributed.When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted differencebetween the number of matching pods in the target topology and the global minimum.The global minimum is the minimum number of matching pods in an eligible domainor zero if the number of eligible domains is less than MinDomains.For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the samelabelSelector spread as 2/2/1:In this case, the global minimum is 1.| zone1 | zone2 | zone3 ||  P P  |  P P  |   P   |- if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2;scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2)violate MaxSkew(1).- if MaxSkew is 2, incoming pod can be scheduled onto any zone.When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedenceto topologies that satisfy it.It's a required field. Default value is 1 and 0 is not allowed.
+- `topology_key` (String) TopologyKey is the key of node labels. Nodes that have a label with this keyand identical values are considered to be in the same topology.We consider each <key, value> as a 'bucket', and try to put balanced numberof pods into each bucket.We define a domain as a particular instance of a topology.Also, we define an eligible domain as a domain whose nodes meet the requirements ofnodeAffinityPolicy and nodeTaintsPolicy.e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology.And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology.It's a required field.
+- `when_unsatisfiable` (String) WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfythe spread constraint.- DoNotSchedule (default) tells the scheduler not to schedule it.- ScheduleAnyway tells the scheduler to schedule the pod in any location,  but giving higher precedence to topologies that would help reduce the  skew.A constraint is considered 'Unsatisfiable' for an incoming podif and only if every possible node assignment for that pod would violate'MaxSkew' on some topology.For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the samelabelSelector spread as 3/1/1:| zone1 | zone2 | zone3 || P P P |   P   |   P   |If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduledto zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfiesMaxSkew(1). In other words, the cluster can still be imbalanced, but schedulerwon't make it *more* imbalanced.It's a required field.
 
 Optional:
 
-- `label_selector` (Attributes) LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--label_selector))
-- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.  This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).
-- `min_domains` (Number) MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.  For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.  This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).
-- `node_affinity_policy` (String) NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
-- `node_taints_policy` (String) NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+- `label_selector` (Attributes) LabelSelector is used to find matching pods.Pods that match this label selector are counted to determine the number of podsin their corresponding topology domain. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select the pods over whichspreading will be calculated. The keys are used to lookup values from theincoming pod labels, those key-value labels are ANDed with labelSelectorto select the group of existing pods over which spreading will be calculatedfor the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.MatchLabelKeys cannot be set when LabelSelector isn't set.Keys that don't exist in the incoming pod labels willbe ignored. A null or empty list means only match against labelSelector.This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).
+- `min_domains` (Number) MinDomains indicates a minimum number of eligible domains.When the number of eligible domains with matching topology keys is less than minDomains,Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed.And when the number of eligible domains with matching topology keys equals or greater than minDomains,this value has no effect on scheduling.As a result, when the number of eligible domains is less than minDomains,scheduler won't schedule more than maxSkew Pods to those domains.If value is nil, the constraint behaves as if MinDomains is equal to 1.Valid values are integers greater than 0.When value is not nil, WhenUnsatisfiable must be DoNotSchedule.For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the samelabelSelector spread as 2/2/2:| zone1 | zone2 | zone3 ||  P P  |  P P  |  P P  |The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0.In this situation, new pod with the same labelSelector cannot be scheduled,because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones,it will violate MaxSkew.This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).
+- `node_affinity_policy` (String) NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelectorwhen calculating pod topology spread skew. Options are:- Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations.- Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.If this value is nil, the behavior is equivalent to the Honor policy.This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+- `node_taints_policy` (String) NodeTaintsPolicy indicates how we will treat node taints when calculatingpod topology spread skew. Options are:- Honor: nodes without taints, along with tainted nodes for which the incoming podhas a toleration, are included.- Ignore: node taints are ignored. All nodes are included.If this value is nil, the behavior is equivalent to the Ignore policy.This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
 
 <a id="nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--label_selector"></a>
 ### Nested Schema for `spec.typha_deployment.spec.template.spec.topology_spread_constraints.label_selector`
@@ -3341,7 +3343,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--node_taints_policy--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--typha_deployment--spec--template--spec--topology_spread_constraints--node_taints_policy--match_expressions"></a>
 ### Nested Schema for `spec.typha_deployment.spec.template.spec.topology_spread_constraints.node_taints_policy.match_expressions`
@@ -3349,11 +3351,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -3367,8 +3369,8 @@ Optional:
 
 Optional:
 
-- `cni_bin_dir` (String) CNIBinDir is the path to the CNI binaries directory on Windows, it must match what is used as 'bin_dir' under [plugins] [plugins.'io.containerd.grpc.v1.cri'] [plugins.'io.containerd.grpc.v1.cri'.cni] on the containerd 'config.toml' file on the Windows nodes.
-- `cni_config_dir` (String) CNIConfigDir is the path to the CNI configuration directory on Windows, it must match what is used as 'conf_dir' under [plugins] [plugins.'io.containerd.grpc.v1.cri'] [plugins.'io.containerd.grpc.v1.cri'.cni] on the containerd 'config.toml' file on the Windows nodes.
+- `cni_bin_dir` (String) CNIBinDir is the path to the CNI binaries directory on Windows, it must match what is used as 'bin_dir' under[plugins]  [plugins.'io.containerd.grpc.v1.cri']    [plugins.'io.containerd.grpc.v1.cri'.cni]on the containerd 'config.toml' file on the Windows nodes.
+- `cni_config_dir` (String) CNIConfigDir is the path to the CNI configuration directory on Windows, it must match what is used as 'conf_dir' under[plugins]  [plugins.'io.containerd.grpc.v1.cri']    [plugins.'io.containerd.grpc.v1.cri'.cni]on the containerd 'config.toml' file on the Windows nodes.
 - `cni_log_dir` (String) CNILogDir is the path to the Calico CNI logs directory on Windows.
 - `vxlan_adapter` (String) VXLANAdapter is the Network Adapter used for VXLAN, leave blank for primary NIC
 - `vxlan_mac_prefix` (String) VXLANMACPrefix is the prefix used when generating MAC addresses for virtual NICs

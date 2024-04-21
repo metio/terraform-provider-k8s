@@ -137,6 +137,7 @@ Optional:
 Optional:
 
 - `certificate_refs` (Attributes List) CertificateRefs contains a series of references to Kubernetes objects thatcontains TLS certificates and private keys. These certificates are used toestablish a TLS handshake for requests that match the hostname of theassociated listener.A single CertificateRef to a Kubernetes Secret has 'Core' support.Implementations MAY choose to support attaching multiple certificates toa Listener, but this behavior is implementation-specific.References to a resource in different namespace are invalid UNLESS thereis a ReferenceGrant in the target namespace that allows the certificateto be attached. If a ReferenceGrant does not allow this reference, the'ResolvedRefs' condition MUST be set to False for this listener with the'RefNotPermitted' reason.This field is required to have at least one element when the mode is setto 'Terminate' (default) and is optional otherwise.CertificateRefs can reference to standard Kubernetes resources, i.e.Secret, or implementation-specific custom resources.Support: Core - A single reference to a Kubernetes Secret of type kubernetes.io/tlsSupport: Implementation-specific (More than one reference or other resource types) (see [below for nested schema](#nestedatt--spec--listeners--tls--certificate_refs))
+- `frontend_validation` (Attributes) FrontendValidation holds configuration information for validating the frontend (client).Setting this field will require clients to send a client certificaterequired for validation during the TLS handshake. In browsers this may result in a dialog appearingthat requests a user to specify the client certificate.The maximum depth of a certificate chain accepted in verification is Implementation specific.Support: Extended (see [below for nested schema](#nestedatt--spec--listeners--tls--frontend_validation))
 - `mode` (String) Mode defines the TLS behavior for the TLS session initiated by the client.There are two possible modes:- Terminate: The TLS session between the downstream client and the  Gateway is terminated at the Gateway. This mode requires certificates  to be specified in some way, such as populating the certificateRefs  field.- Passthrough: The TLS session is NOT terminated by the Gateway. This  implies that the Gateway can't decipher the TLS stream except for  the ClientHello message of the TLS protocol. The certificateRefs field  is ignored in this mode.Support: Core
 - `options` (Map of String) Options are a list of key/value pairs to enable extended TLSconfiguration for each implementation. For example, configuring theminimum TLS version or supported cipher suites.A set of common keys MAY be defined by the API in the future. To avoidany ambiguity, implementation-specific definitions MUST usedomain-prefixed names, such as 'example.com/my-custom-option'.Un-prefixed names are reserved for key names defined by Gateway API.Support: Implementation-specific
 
@@ -152,6 +153,28 @@ Optional:
 - `group` (String) Group is the group of the referent. For example, 'gateway.networking.k8s.io'.When unspecified or empty string, core API group is inferred.
 - `kind` (String) Kind is kind of the referent. For example 'Secret'.
 - `namespace` (String) Namespace is the namespace of the referenced object. When unspecified, the localnamespace is inferred.Note that when a namespace different than the local namespace is specified,a ReferenceGrant object is required in the referent namespace to allow thatnamespace's owner to accept the reference. See the ReferenceGrantdocumentation for details.Support: Core
+
+
+<a id="nestedatt--spec--listeners--tls--frontend_validation"></a>
+### Nested Schema for `spec.listeners.tls.frontend_validation`
+
+Optional:
+
+- `ca_certificate_refs` (Attributes List) CACertificateRefs contains one or more references toKubernetes objects that contain TLS certificates ofthe Certificate Authorities that can be usedas a trust anchor to validate the certificates presented by the client.A single CA certificate reference to a Kubernetes ConfigMaphas 'Core' support.Implementations MAY choose to support attaching multiple CA certificates toa Listener, but this behavior is implementation-specific.Support: Core - A single reference to a Kubernetes ConfigMapwith the CA certificate in a key named 'ca.crt'.Support: Implementation-specific (More than one reference, or other kindsof resources).References to a resource in a different namespace are invalid UNLESS thereis a ReferenceGrant in the target namespace that allows the certificateto be attached. If a ReferenceGrant does not allow this reference, the'ResolvedRefs' condition MUST be set to False for this listener with the'RefNotPermitted' reason. (see [below for nested schema](#nestedatt--spec--listeners--tls--options--ca_certificate_refs))
+
+<a id="nestedatt--spec--listeners--tls--options--ca_certificate_refs"></a>
+### Nested Schema for `spec.listeners.tls.options.ca_certificate_refs`
+
+Required:
+
+- `group` (String) Group is the group of the referent. For example, 'gateway.networking.k8s.io'.When unspecified or empty string, core API group is inferred.
+- `kind` (String) Kind is kind of the referent. For example 'ConfigMap' or 'Service'.
+- `name` (String) Name is the name of the referent.
+
+Optional:
+
+- `namespace` (String) Namespace is the namespace of the referenced object. When unspecified, the localnamespace is inferred.Note that when a namespace different than the local namespace is specified,a ReferenceGrant object is required in the referent namespace to allow thatnamespace's owner to accept the reference. See the ReferenceGrantdocumentation for details.Support: Core
+
 
 
 
@@ -175,3 +198,13 @@ Optional:
 
 - `annotations` (Map of String) Annotations that SHOULD be applied to any resources created in response to this Gateway.For implementations creating other Kubernetes objects, this should be the 'metadata.annotations' field on resources.For other implementations, this refers to any relevant (implementation specific) 'annotations' concepts.An implementation may chose to add additional implementation-specific annotations as they see fit.Support: Extended
 - `labels` (Map of String) Labels that SHOULD be applied to any resources created in response to this Gateway.For implementations creating other Kubernetes objects, this should be the 'metadata.labels' field on resources.For other implementations, this refers to any relevant (implementation specific) 'labels' concepts.An implementation may chose to add additional implementation-specific labels as they see fit.Support: Extended
+- `parameters_ref` (Attributes) ParametersRef is a reference to a resource that contains the configurationparameters corresponding to the Gateway. This is optional if thecontroller does not require any additional configuration.This follows the same semantics as GatewayClass's 'parametersRef', but on a per-Gateway basisThe Gateway's GatewayClass may provide its own 'parametersRef'. When both are specified,the merging behavior is implementation specific.It is generally recommended that GatewayClass provides defaults that can be overridden by a Gateway.Support: Implementation-specific (see [below for nested schema](#nestedatt--spec--infrastructure--parameters_ref))
+
+<a id="nestedatt--spec--infrastructure--parameters_ref"></a>
+### Nested Schema for `spec.infrastructure.parameters_ref`
+
+Required:
+
+- `group` (String) Group is the group of the referent.
+- `kind` (String) Kind is kind of the referent.
+- `name` (String) Name is the name of the referent.

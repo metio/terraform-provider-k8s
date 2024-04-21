@@ -28,7 +28,7 @@ data "k8s_ceph_rook_io_ceph_block_pool_v1_manifest" "example" {
 ### Required
 
 - `metadata` (Attributes) Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details. (see [below for nested schema](#nestedatt--metadata))
-- `spec` (Attributes) NamedBlockPoolSpec allows a block pool to be created with a non-default name. This is more specific than the NamedPoolSpec so we get schema validation on the allowed pool names that can be specified. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) NamedBlockPoolSpec allows a block pool to be created with a non-default name.This is more specific than the NamedPoolSpec so we get schema validation on theallowed pool names that can be specified. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -54,7 +54,7 @@ Optional:
 Optional:
 
 - `application` (String) The application name to set on the pool. Only expected to be set for rgw pools.
-- `compression_mode` (String) DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force' The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force) Do NOT set a default value for kubebuilder as this will override the Parameters
+- `compression_mode` (String) DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force'The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force)Do NOT set a default value for kubebuilder as this will override the Parameters
 - `crush_root` (String) The root of the crush hierarchy utilized by the pool
 - `device_class` (String) The device class the OSD should set to for use in the pool
 - `enable_rbd_stats` (Boolean) EnableRBDStats is used to enable gathering of statistics for all RBD images in the pool
@@ -72,8 +72,8 @@ Optional:
 
 Required:
 
-- `coding_chunks` (Number) Number of coding chunks per object in an erasure coded storage pool (required for erasure-coded pool type). This is the number of OSDs that can be lost simultaneously before data cannot be recovered.
-- `data_chunks` (Number) Number of data chunks per object in an erasure coded storage pool (required for erasure-coded pool type). The number of chunks required to recover an object when any single OSD is lost is the same as dataChunks so be aware that the larger the number of data chunks, the higher the cost of recovery.
+- `coding_chunks` (Number) Number of coding chunks per object in an erasure coded storage pool (required for erasure-coded pool type).This is the number of OSDs that can be lost simultaneously before data cannot be recovered.
+- `data_chunks` (Number) Number of data chunks per object in an erasure coded storage pool (required for erasure-coded pool type).The number of chunks required to recover an object when any single OSD is lost is the sameas dataChunks so be aware that the larger the number of data chunks, the higher the cost of recovery.
 
 Optional:
 
@@ -114,7 +114,7 @@ Optional:
 
 Optional:
 
-- `max_bytes` (Number) MaxBytes represents the quota in bytes Deprecated in favor of MaxSize
+- `max_bytes` (Number) MaxBytes represents the quota in bytesDeprecated in favor of MaxSize
 - `max_objects` (Number) MaxObjects represents the quota in objects
 - `max_size` (String) MaxSize represents the quota in bytes as a string
 

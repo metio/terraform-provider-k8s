@@ -3,12 +3,12 @@
 page_title: "k8s_flow_volcano_sh_job_flow_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "flow.volcano.sh"
 description: |-
-  JobFlow is the Schema for the jobflows API
+  
 ---
 
 # k8s_flow_volcano_sh_job_flow_v1alpha1_manifest (Data Source)
 
-JobFlow is the Schema for the jobflows API
+
 
 ## Example Usage
 
@@ -30,7 +30,7 @@ data "k8s_flow_volcano_sh_job_flow_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) JobFlowSpec defines the desired state of JobFlow (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -55,7 +55,7 @@ Optional:
 
 Optional:
 
-- `flows` (Attributes List) Foo is an example field of JobFlow. Edit jobflow_types.go to remove/update (see [below for nested schema](#nestedatt--spec--flows))
+- `flows` (Attributes List) (see [below for nested schema](#nestedatt--spec--flows))
 - `job_retain_policy` (String)
 
 <a id="nestedatt--spec--flows"></a>
@@ -91,7 +91,7 @@ Optional:
 
 Optional:
 
-- `http_header` (Attributes) HTTPHeader describes a custom header to be used in HTTP probes (see [below for nested schema](#nestedatt--spec--flows--depends_on--targets--http_get_list--http_header))
+- `http_header` (Attributes) (see [below for nested schema](#nestedatt--spec--flows--depends_on--targets--http_get_list--http_header))
 - `path` (String)
 - `port` (Number)
 - `task_name` (String)
@@ -101,8 +101,8 @@ Optional:
 
 Required:
 
-- `name` (String) The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
-- `value` (String) The header field value
+- `name` (String)
+- `value` (String)
 
 
 

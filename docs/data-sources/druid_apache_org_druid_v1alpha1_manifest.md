@@ -98,6 +98,7 @@ Optional:
 - `volume_claim_templates` (Attributes List) VolumeClaimTemplates Kubernetes Native 'VolumeClaimTemplate' specification. (see [below for nested schema](#nestedatt--spec--volume_claim_templates))
 - `volume_mounts` (Attributes List) VolumeMounts Kubernetes Native 'VolumeMount' specification. (see [below for nested schema](#nestedatt--spec--volume_mounts))
 - `volumes` (Attributes List) Volumes Kubernetes Native 'Volumes' specification. (see [below for nested schema](#nestedatt--spec--volumes))
+- `workload_annotations` (Map of String) WorkloadAnnotations annotations to be populated in StatefulSet or Deployment spec. if the same key is specified at both the DruidNodeSpec level and DruidSpec level, the DruidNodeSpec WorkloadAnnotations will take precedence.
 - `zookeeper` (Attributes) Zookeeper IGNORED (Future API): In order to make Druid dependency setup extensible from within Druid operator. (see [below for nested schema](#nestedatt--spec--zookeeper))
 
 <a id="nestedatt--spec--nodes"></a>
@@ -152,6 +153,7 @@ Optional:
 - `volume_claim_templates` (Attributes List) VolumeClaimTemplates Kubernetes Native 'volumeClaimTemplates' specification. (see [below for nested schema](#nestedatt--spec--nodes--volume_claim_templates))
 - `volume_mounts` (Attributes List) VolumeMounts Kubernetes Native 'volumeMounts' specification. (see [below for nested schema](#nestedatt--spec--nodes--volume_mounts))
 - `volumes` (Attributes List) Volumes Kubernetes Native 'volumes' specification. (see [below for nested schema](#nestedatt--spec--nodes--volumes))
+- `workload_annotations` (Map of String) WorkloadAnnotations annotations to be populated in StatefulSet or Deployment spec.
 
 <a id="nestedatt--spec--nodes--additional_container"></a>
 ### Nested Schema for `spec.nodes.additional_container`

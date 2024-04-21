@@ -3,12 +3,12 @@
 page_title: "k8s_secrets_crossplane_io_store_config_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "secrets.crossplane.io"
 description: |-
-  A StoreConfig configures how Crossplane controllers should store connection details.
+  A StoreConfig configures how Crossplane controllers should store connectiondetails in an external secret store.
 ---
 
 # k8s_secrets_crossplane_io_store_config_v1alpha1_manifest (Data Source)
 
-A StoreConfig configures how Crossplane controllers should store connection details.
+A StoreConfig configures how Crossplane controllers should store connectiondetails in an external secret store.
 
 ## Example Usage
 

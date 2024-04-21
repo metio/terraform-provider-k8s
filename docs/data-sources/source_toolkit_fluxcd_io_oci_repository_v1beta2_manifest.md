@@ -96,6 +96,7 @@ Optional:
 
 - `digest` (String) Digest is the image digest to pull, takes precedence over SemVer.The value should be in the format 'sha256:<HASH>'.
 - `semver` (String) SemVer is the range of tags to pull selecting the latest withinthe range, takes precedence over Tag.
+- `semver_filter` (String) SemverFilter is a regex pattern to filter the tags within the SemVer range.
 - `tag` (String) Tag is the image tag to pull, defaults to latest.
 
 

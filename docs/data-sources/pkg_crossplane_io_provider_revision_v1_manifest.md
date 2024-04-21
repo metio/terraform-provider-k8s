@@ -3,12 +3,12 @@
 page_title: "k8s_pkg_crossplane_io_provider_revision_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "pkg.crossplane.io"
 description: |-
-  A ProviderRevision that has been added to Crossplane.
+  A ProviderRevision represents a revision of a Provider. Crossplanecreates new revisions when there are changes to a Provider.Crossplane creates and manages ProviderRevisions. Don't directly editProviderRevisions.
 ---
 
 # k8s_pkg_crossplane_io_provider_revision_v1_manifest (Data Source)
 
-A ProviderRevision that has been added to Crossplane.
+A ProviderRevision represents a revision of a Provider. Crossplanecreates new revisions when there are changes to a Provider.Crossplane creates and manages ProviderRevisions. Don't directly editProviderRevisions.
 
 ## Example Usage
 
@@ -60,7 +60,7 @@ Required:
 
 Optional:
 
-- `common_labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels
+- `common_labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
 - `controller_config_ref` (Attributes) ControllerConfigRef references a ControllerConfig resource that will beused to configure the packaged controller Deployment.Deprecated: Use RuntimeConfigReference instead. (see [below for nested schema](#nestedatt--spec--controller_config_ref))
 - `ignore_crossplane_constraints` (Boolean) IgnoreCrossplaneConstraints indicates to the package manager whether tohonor Crossplane version constrains specified by the package.Default is false.
 - `package_pull_policy` (String) PackagePullPolicy defines the pull policy for the package. It is alsoapplied to any images pulled for the package, such as a provider'scontroller image.Default is IfNotPresent.

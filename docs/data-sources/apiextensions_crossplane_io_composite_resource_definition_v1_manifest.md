@@ -3,12 +3,12 @@
 page_title: "k8s_apiextensions_crossplane_io_composite_resource_definition_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "apiextensions.crossplane.io"
 description: |-
-  A CompositeResourceDefinition defines a new kind of composite infrastructureresource. The new resource is composed of other composite or managedinfrastructure resources.
+  A CompositeResourceDefinition defines the schema for a new custom KubernetesAPI.Read the Crossplane documentation formore information about CustomResourceDefinitions https://docs.crossplane.io/latest/concepts/composite-resource-definitions.
 ---
 
 # k8s_apiextensions_crossplane_io_composite_resource_definition_v1_manifest (Data Source)
 
-A CompositeResourceDefinition defines a new kind of composite infrastructureresource. The new resource is composed of other composite or managedinfrastructure resources.
+A CompositeResourceDefinition defines the schema for a new custom KubernetesAPI.Read the Crossplane documentation for[more information about CustomResourceDefinitions](https://docs.crossplane.io/latest/concepts/composite-resource-definitions).
 
 ## Example Usage
 

@@ -93,6 +93,7 @@ Optional:
 - `retry_status_codes` (List of String) RetryStatusCodes defines http status codes in numeric format for request retriesCan be defined per target or at VMUser.spec levele.g. [429,503]
 - `static` (Attributes) Static - user defined url for traffic forward,for instance http://vmsingle:8429 (see [below for nested schema](#nestedatt--spec--target_refs--static))
 - `target_path_suffix` (String) QueryParams []string 'json:'queryParams,omitempty''TargetPathSuffix allows to add some suffix to the target pathIt allows to hide tenant configuration from user with crd as ref.it also may contain any url encoded params.
+- `target_ref_basic_auth` (Attributes) TargetRefBasicAuth allow an target endpoint to authenticate over basic authentication (see [below for nested schema](#nestedatt--spec--target_refs--target_ref_basic_auth))
 
 <a id="nestedatt--spec--target_refs--crd"></a>
 ### Nested Schema for `spec.target_refs.crd`
@@ -111,6 +112,41 @@ Optional:
 
 - `url` (String) URL http url for given staticRef.
 - `urls` (List of String) URLs allows setting multiple urls for load-balancing at vmauth-side.
+
+
+<a id="nestedatt--spec--target_refs--target_ref_basic_auth"></a>
+### Nested Schema for `spec.target_refs.target_ref_basic_auth`
+
+Required:
+
+- `password` (Attributes) The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--target_refs--target_ref_basic_auth--password))
+- `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--target_refs--target_ref_basic_auth--username))
+
+<a id="nestedatt--spec--target_refs--target_ref_basic_auth--password"></a>
+### Nested Schema for `spec.target_refs.target_ref_basic_auth.password`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--target_refs--target_ref_basic_auth--username"></a>
+### Nested Schema for `spec.target_refs.target_ref_basic_auth.username`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
 
 
 

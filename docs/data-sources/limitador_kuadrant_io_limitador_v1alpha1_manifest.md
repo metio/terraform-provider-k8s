@@ -64,6 +64,7 @@ Optional:
 - `resource_requirements` (Attributes) ResourceRequirements describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--resource_requirements))
 - `storage` (Attributes) Storage contains the options for Limitador counters database or in-memory data storage (see [below for nested schema](#nestedatt--spec--storage))
 - `telemetry` (String) Telemetry defines the level of metrics Limitador will expose to the user
+- `tracing` (Attributes) (see [below for nested schema](#nestedatt--spec--tracing))
 - `verbosity` (Number) Sets the level of verbosity
 - `version` (String)
 
@@ -585,4 +586,15 @@ Optional:
 - `flush_period` (Number) FlushPeriod for counters in milliseconds [default: 1000]
 - `max_cached` (Number) MaxCached refers to the maximum amount of counters cached [default: 10000]
 - `ratio` (Number) Ratio to apply to the TTL from Redis on cached counters [default: 10]
+- `response_timeout` (Number) ResponseTimeout defines the timeout for Redis commands in milliseconds [default: 350]
 - `ttl` (Number) TTL for cached counters in milliseconds [default: 5000]
+
+
+
+
+<a id="nestedatt--spec--tracing"></a>
+### Nested Schema for `spec.tracing`
+
+Required:
+
+- `endpoint` (String)

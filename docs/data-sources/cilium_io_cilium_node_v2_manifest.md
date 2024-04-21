@@ -54,6 +54,7 @@ Optional:
 - `addresses` (Attributes List) Addresses is the list of all node addresses. (see [below for nested schema](#nestedatt--spec--addresses))
 - `alibaba_cloud` (Attributes) AlibabaCloud is the AlibabaCloud IPAM specific configuration. (see [below for nested schema](#nestedatt--spec--alibaba_cloud))
 - `azure` (Attributes) Azure is the Azure IPAM specific configuration. (see [below for nested schema](#nestedatt--spec--azure))
+- `bootid` (String) BootID is a unique node identifier generated on boot
 - `encryption` (Attributes) Encryption is the encryption configuration of the node. (see [below for nested schema](#nestedatt--spec--encryption))
 - `eni` (Attributes) ENI is the AWS ENI specific configuration. (see [below for nested schema](#nestedatt--spec--eni))
 - `health` (Attributes) HealthAddressing is the addressing information for health connectivity checking. (see [below for nested schema](#nestedatt--spec--health))

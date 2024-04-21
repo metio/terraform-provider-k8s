@@ -60,10 +60,10 @@ Optional:
 - `max_replicas` (Number) MaxReplicas is the maximum number of replicas the deployment is allowed to scale
 - `metrics` (Attributes List) Metrics is the collection of various metric targets to calculate desired number of runners (see [below for nested schema](#nestedatt--spec--metrics))
 - `min_replicas` (Number) MinReplicas is the minimum number of replicas the deployment is allowed to scale
-- `scale_down_delay_seconds_after_scale_out` (Number) ScaleDownDelaySecondsAfterScaleUp is the approximate delay for a scale down followed by a scale up Used to prevent flapping (down->up->down->... loop)
+- `scale_down_delay_seconds_after_scale_out` (Number) ScaleDownDelaySecondsAfterScaleUp is the approximate delay for a scale down followed by a scale upUsed to prevent flapping (down->up->down->... loop)
 - `scale_target_ref` (Attributes) ScaleTargetRef is the reference to scaled resource like RunnerDeployment (see [below for nested schema](#nestedatt--spec--scale_target_ref))
-- `scale_up_triggers` (Attributes List) ScaleUpTriggers is an experimental feature to increase the desired replicas by 1 on each webhook requested received by the webhookBasedAutoscaler.  This feature requires you to also enable and deploy the webhookBasedAutoscaler onto your cluster.  Note that the added runners remain until the next sync period at least, and they may or may not be used by GitHub Actions depending on the timing. They are intended to be used to gain 'resource slack' immediately after you receive a webhook from GitHub, so that you can loosely expect MinReplicas runners to be always available. (see [below for nested schema](#nestedatt--spec--scale_up_triggers))
-- `scheduled_overrides` (Attributes List) ScheduledOverrides is the list of ScheduledOverride. It can be used to override a few fields of HorizontalRunnerAutoscalerSpec on schedule. The earlier a scheduled override is, the higher it is prioritized. (see [below for nested schema](#nestedatt--spec--scheduled_overrides))
+- `scale_up_triggers` (Attributes List) ScaleUpTriggers is an experimental feature to increase the desired replicas by 1on each webhook requested received by the webhookBasedAutoscaler.This feature requires you to also enable and deploy the webhookBasedAutoscaler onto your cluster.Note that the added runners remain until the next sync period at least,and they may or may not be used by GitHub Actions depending on the timing.They are intended to be used to gain 'resource slack' immediately after youreceive a webhook from GitHub, so that you can loosely expect MinReplicas runners to be always available. (see [below for nested schema](#nestedatt--spec--scale_up_triggers))
+- `scheduled_overrides` (Attributes List) ScheduledOverrides is the list of ScheduledOverride.It can be used to override a few fields of HorizontalRunnerAutoscalerSpec on schedule.The earlier a scheduled override is, the higher it is prioritized. (see [below for nested schema](#nestedatt--spec--scheduled_overrides))
 
 <a id="nestedatt--spec--capacity_reservations"></a>
 ### Nested Schema for `spec.capacity_reservations`
@@ -97,14 +97,14 @@ Required:
 
 Optional:
 
-- `repository_names` (List of String) RepositoryNames is the list of repository names to be used for calculating the metric. For example, a repository name is the REPO part of 'github.com/USER/REPO'.
-- `scale_down_adjustment` (Number) ScaleDownAdjustment is the number of runners removed on scale-down. You can only specify either ScaleDownFactor or ScaleDownAdjustment.
-- `scale_down_factor` (String) ScaleDownFactor is the multiplicative factor applied to the current number of runners used to determine how many pods should be removed.
-- `scale_down_threshold` (String) ScaleDownThreshold is the percentage of busy runners less than which will trigger the hpa to scale the runners down.
-- `scale_up_adjustment` (Number) ScaleUpAdjustment is the number of runners added on scale-up. You can only specify either ScaleUpFactor or ScaleUpAdjustment.
-- `scale_up_factor` (String) ScaleUpFactor is the multiplicative factor applied to the current number of runners used to determine how many pods should be added.
-- `scale_up_threshold` (String) ScaleUpThreshold is the percentage of busy runners greater than which will trigger the hpa to scale runners up.
-- `type` (String) Type is the type of metric to be used for autoscaling. It can be TotalNumberOfQueuedAndInProgressWorkflowRuns or PercentageRunnersBusy.
+- `repository_names` (List of String) RepositoryNames is the list of repository names to be used for calculating the metric.For example, a repository name is the REPO part of 'github.com/USER/REPO'.
+- `scale_down_adjustment` (Number) ScaleDownAdjustment is the number of runners removed on scale-down.You can only specify either ScaleDownFactor or ScaleDownAdjustment.
+- `scale_down_factor` (String) ScaleDownFactor is the multiplicative factor applied to the current number of runners usedto determine how many pods should be removed.
+- `scale_down_threshold` (String) ScaleDownThreshold is the percentage of busy runners less than which willtrigger the hpa to scale the runners down.
+- `scale_up_adjustment` (Number) ScaleUpAdjustment is the number of runners added on scale-up.You can only specify either ScaleUpFactor or ScaleUpAdjustment.
+- `scale_up_factor` (String) ScaleUpFactor is the multiplicative factor applied to the current number of runners usedto determine how many pods should be added.
+- `scale_up_threshold` (String) ScaleUpThreshold is the percentage of busy runners greater than which willtrigger the hpa to scale runners up.
+- `type` (String) Type is the type of metric to be used for autoscaling.It can be TotalNumberOfQueuedAndInProgressWorkflowRuns or PercentageRunnersBusy.
 
 
 <a id="nestedatt--spec--scale_target_ref"></a>
@@ -132,7 +132,7 @@ Optional:
 
 - `check_run` (Attributes) https://docs.github.com/en/actions/reference/events-that-trigger-workflows#check_run (see [below for nested schema](#nestedatt--spec--scale_up_triggers--github_event--check_run))
 - `pull_request` (Attributes) https://docs.github.com/en/actions/reference/events-that-trigger-workflows#pull_request (see [below for nested schema](#nestedatt--spec--scale_up_triggers--github_event--pull_request))
-- `push` (Map of String) PushSpec is the condition for triggering scale-up on push event Also see https://docs.github.com/en/actions/reference/events-that-trigger-workflows#push
+- `push` (Map of String) PushSpec is the condition for triggering scale-up on push eventAlso see https://docs.github.com/en/actions/reference/events-that-trigger-workflows#push
 - `workflow_job` (Map of String) https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#workflow_job
 
 <a id="nestedatt--spec--scale_up_triggers--github_event--check_run"></a>
@@ -140,8 +140,8 @@ Optional:
 
 Optional:
 
-- `names` (List of String) Names is a list of GitHub Actions glob patterns. Any check_run event whose name matches one of patterns in the list can trigger autoscaling. Note that check_run name seem to equal to the job name you've defined in your actions workflow yaml file. So it is very likely that you can utilize this to trigger depending on the job.
-- `repositories` (List of String) Repositories is a list of GitHub repositories. Any check_run event whose repository matches one of repositories in the list can trigger autoscaling.
+- `names` (List of String) Names is a list of GitHub Actions glob patterns.Any check_run event whose name matches one of patterns in the list can trigger autoscaling.Note that check_run name seem to equal to the job name you've defined in your actions workflow yaml file.So it is very likely that you can utilize this to trigger depending on the job.
+- `repositories` (List of String) Repositories is a list of GitHub repositories.Any check_run event whose repository matches one of repositories in the list can trigger autoscaling.
 - `status` (String)
 - `types` (List of String) One of: created, rerequested, or completed
 
@@ -167,7 +167,7 @@ Required:
 
 Optional:
 
-- `min_replicas` (Number) MinReplicas is the number of runners while overriding. If omitted, it doesn't override minReplicas.
+- `min_replicas` (Number) MinReplicas is the number of runners while overriding.If omitted, it doesn't override minReplicas.
 - `recurrence_rule` (Attributes) (see [below for nested schema](#nestedatt--spec--scheduled_overrides--recurrence_rule))
 
 <a id="nestedatt--spec--scheduled_overrides--recurrence_rule"></a>
@@ -175,5 +175,5 @@ Optional:
 
 Optional:
 
-- `frequency` (String) Frequency is the name of a predefined interval of each recurrence. The valid values are 'Daily', 'Weekly', 'Monthly', and 'Yearly'. If empty, the corresponding override happens only once.
-- `until_time` (String) UntilTime is the time of the final recurrence. If empty, the schedule recurs forever.
+- `frequency` (String) Frequency is the name of a predefined interval of each recurrence.The valid values are 'Daily', 'Weekly', 'Monthly', and 'Yearly'.If empty, the corresponding override happens only once.
+- `until_time` (String) UntilTime is the time of the final recurrence.If empty, the schedule recurs forever.

@@ -3,12 +3,12 @@
 page_title: "k8s_kyverno_io_policy_v2beta1_manifest Data Source - terraform-provider-k8s"
 subcategory: "kyverno.io"
 description: |-
-  Policy declares validation, mutation, and generation behaviors for matching resources. See:  for more information.
+  Policy declares validation, mutation, and generation behaviors for matching resources.See:  for more information.
 ---
 
 # k8s_kyverno_io_policy_v2beta1_manifest (Data Source)
 
-Policy declares validation, mutation, and generation behaviors for matching resources. See: https://kyverno.io/docs/writing-policies/ for more information.
+Policy declares validation, mutation, and generation behaviors for matching resources.See: https://kyverno.io/docs/writing-policies/ for more information.
 
 ## Example Usage
 
@@ -53,19 +53,20 @@ Optional:
 
 Optional:
 
-- `admission` (Boolean) Admission controls if rules are applied during admission. Optional. Default value is 'true'.
-- `apply_rules` (String) ApplyRules controls how rules in a policy are applied. Rule are processed in the order of declaration. When set to 'One' processing stops after a rule has been applied i.e. the rule matches and results in a pass, fail, or error. When set to 'All' all rules in the policy are processed. The default is 'All'.
-- `background` (Boolean) Background controls if rules are applied to existing resources during a background scan. Optional. Default value is 'true'. The value must be set to 'false' if the policy rule uses variables that are only available in the admission review request (e.g. user name).
-- `failure_policy` (String) FailurePolicy defines how unexpected policy errors and webhook response timeout errors are handled. Rules within the same policy share the same failure behavior. Allowed values are Ignore or Fail. Defaults to Fail.
-- `generate_existing` (Boolean) GenerateExisting controls whether to trigger generate rule in existing resources If is set to 'true' generate rule will be triggered and applied to existing matched resources. Defaults to 'false' if not specified.
+- `admission` (Boolean) Admission controls if rules are applied during admission.Optional. Default value is 'true'.
+- `apply_rules` (String) ApplyRules controls how rules in a policy are applied. Rule are processed inthe order of declaration. When set to 'One' processing stops after a rule hasbeen applied i.e. the rule matches and results in a pass, fail, or error. Whenset to 'All' all rules in the policy are processed. The default is 'All'.
+- `background` (Boolean) Background controls if rules are applied to existing resources during a background scan.Optional. Default value is 'true'. The value must be set to 'false' if the policy ruleuses variables that are only available in the admission review request (e.g. user name).
+- `failure_policy` (String) FailurePolicy defines how unexpected policy errors and webhook response timeout errors are handled.Rules within the same policy share the same failure behavior.Allowed values are Ignore or Fail. Defaults to Fail.
+- `generate_existing` (Boolean) GenerateExisting controls whether to trigger generate rule in existing resourcesIf is set to 'true' generate rule will be triggered and applied to existing matched resources.Defaults to 'false' if not specified.
 - `generate_existing_on_policy_update` (Boolean) Deprecated, use generateExisting instead
-- `mutate_existing_on_policy_update` (Boolean) MutateExistingOnPolicyUpdate controls if a mutateExisting policy is applied on policy events. Default value is 'false'.
-- `rules` (Attributes List) Rules is a list of Rule instances. A Policy contains multiple rules and each rule can validate, mutate, or generate resources. (see [below for nested schema](#nestedatt--spec--rules))
+- `mutate_existing_on_policy_update` (Boolean) MutateExistingOnPolicyUpdate controls if a mutateExisting policy is applied on policy events.Default value is 'false'.
+- `rules` (Attributes List) Rules is a list of Rule instances. A Policy contains multiple rules andeach rule can validate, mutate, or generate resources. (see [below for nested schema](#nestedatt--spec--rules))
 - `schema_validation` (Boolean) Deprecated.
-- `use_server_side_apply` (Boolean) UseServerSideApply controls whether to use server-side apply for generate rules If is set to 'true' create & update for generate rules will use apply instead of create/update. Defaults to 'false' if not specified.
-- `validation_failure_action` (String) ValidationFailureAction defines if a validation policy rule violation should block the admission review request (enforce), or allow (audit) the admission review request and report an error in a policy report. Optional. Allowed values are audit or enforce. The default value is 'Audit'.
-- `validation_failure_action_overrides` (Attributes List) ValidationFailureActionOverrides is a Cluster Policy attribute that specifies ValidationFailureAction namespace-wise. It overrides ValidationFailureAction for the specified namespaces. (see [below for nested schema](#nestedatt--spec--validation_failure_action_overrides))
-- `webhook_timeout_seconds` (Number) WebhookTimeoutSeconds specifies the maximum time in seconds allowed to apply this policy. After the configured time expires, the admission request may fail, or may simply ignore the policy results, based on the failure policy. The default timeout is 10s, the value must be between 1 and 30 seconds.
+- `use_server_side_apply` (Boolean) UseServerSideApply controls whether to use server-side apply for generate rulesIf is set to 'true' create & update for generate rules will use apply instead of create/update.Defaults to 'false' if not specified.
+- `validation_failure_action` (String) ValidationFailureAction defines if a validation policy rule violation should blockthe admission review request (enforce), or allow (audit) the admission review requestand report an error in a policy report. Optional.Allowed values are audit or enforce. The default value is 'Audit'.
+- `validation_failure_action_overrides` (Attributes List) ValidationFailureActionOverrides is a Cluster Policy attribute that specifies ValidationFailureActionnamespace-wise. It overrides ValidationFailureAction for the specified namespaces. (see [below for nested schema](#nestedatt--spec--validation_failure_action_overrides))
+- `webhook_configuration` (Attributes) WebhookConfiguration specifies the custom configuration for Kubernetes admission webhookconfiguration.Requires Kubernetes 1.27 or later. (see [below for nested schema](#nestedatt--spec--webhook_configuration))
+- `webhook_timeout_seconds` (Number) WebhookTimeoutSeconds specifies the maximum time in seconds allowed to apply this policy.After the configured time expires, the admission request may fail, or may simply ignore the policy results,based on the failure policy. The default timeout is 10s, the value must be between 1 and 30 seconds.
 
 <a id="nestedatt--spec--rules"></a>
 ### Nested Schema for `spec.rules`
@@ -76,15 +77,15 @@ Required:
 
 Optional:
 
-- `cel_preconditions` (Attributes List) CELPreconditions are used to determine if a policy rule should be applied by evaluating a set of CEL conditions. It can only be used with the validate.cel subrule (see [below for nested schema](#nestedatt--spec--rules--cel_preconditions))
+- `cel_preconditions` (Attributes List) CELPreconditions are used to determine if a policy rule should be applied by evaluating aset of CEL conditions. It can only be used with the validate.cel subrule (see [below for nested schema](#nestedatt--spec--rules--cel_preconditions))
 - `context` (Attributes List) Context defines variables and data sources that can be used during rule execution. (see [below for nested schema](#nestedatt--spec--rules--context))
-- `exclude` (Attributes) ExcludeResources defines when this policy rule should not be applied. The exclude criteria can include resource information (e.g. kind, name, namespace, labels) and admission review request information like the name or role. (see [below for nested schema](#nestedatt--spec--rules--exclude))
+- `exclude` (Attributes) ExcludeResources defines when this policy rule should not be applied. The excludecriteria can include resource information (e.g. kind, name, namespace, labels)and admission review request information like the name or role. (see [below for nested schema](#nestedatt--spec--rules--exclude))
 - `generate` (Attributes) Generation is used to create new resources. (see [below for nested schema](#nestedatt--spec--rules--generate))
-- `image_extractors` (Map of String) ImageExtractors defines a mapping from kinds to ImageExtractorConfigs. This config is only valid for verifyImages rules.
-- `match` (Attributes) MatchResources defines when this policy rule should be applied. The match criteria can include resource information (e.g. kind, name, namespace, labels) and admission review request information like the user name or role. At least one kind is required. (see [below for nested schema](#nestedatt--spec--rules--match))
+- `image_extractors` (Map of String) ImageExtractors defines a mapping from kinds to ImageExtractorConfigs.This config is only valid for verifyImages rules.
+- `match` (Attributes) MatchResources defines when this policy rule should be applied. The matchcriteria can include resource information (e.g. kind, name, namespace, labels)and admission review request information like the user name or role.At least one kind is required. (see [below for nested schema](#nestedatt--spec--rules--match))
 - `mutate` (Attributes) Mutation is used to modify matching resources. (see [below for nested schema](#nestedatt--spec--rules--mutate))
-- `preconditions` (Attributes) Preconditions are used to determine if a policy rule should be applied by evaluating a set of conditions. The declaration can contain nested 'any' or 'all' statements. See: https://kyverno.io/docs/writing-policies/preconditions/ (see [below for nested schema](#nestedatt--spec--rules--preconditions))
-- `skip_background_requests` (Boolean) SkipBackgroundRequests bypasses admission requests that are sent by the background controller. The default value is set to 'true', it must be set to 'false' to apply generate and mutateExisting rules to those requests.
+- `preconditions` (Attributes) Preconditions are used to determine if a policy rule should be applied by evaluating aset of conditions. The declaration can contain nested 'any' or 'all' statements.See: https://kyverno.io/docs/writing-policies/preconditions/ (see [below for nested schema](#nestedatt--spec--rules--preconditions))
+- `skip_background_requests` (Boolean) SkipBackgroundRequests bypasses admission requests that are sent by the background controller.The default value is set to 'true', it must be set to 'false' to applygenerate and mutateExisting rules to those requests.
 - `validate` (Attributes) Validation is used to validate matching resources. (see [below for nested schema](#nestedatt--spec--rules--validate))
 - `verify_images` (Attributes List) VerifyImages is used to verify image signatures and mutate them to add a digest (see [below for nested schema](#nestedatt--spec--rules--verify_images))
 
@@ -93,8 +94,8 @@ Optional:
 
 Required:
 
-- `expression` (String) Expression represents the expression which will be evaluated by CEL. Must evaluate to bool. CEL expressions have access to the contents of the AdmissionRequest and Authorizer, organized into CEL variables:  'object' - The object from the incoming request. The value is null for DELETE requests. 'oldObject' - The existing object. The value is null for CREATE requests. 'request' - Attributes of the admission request(/pkg/apis/admission/types.go#AdmissionRequest). 'authorizer' - A CEL Authorizer. May be used to perform authorization checks for the principal (user or service account) of the request. See https://pkg.go.dev/k8s.io/apiserver/pkg/cel/library#Authz 'authorizer.requestResource' - A CEL ResourceCheck constructed from the 'authorizer' and configured with the request resource. Documentation on CEL: https://kubernetes.io/docs/reference/using-api/cel/  Required.
-- `name` (String) Name is an identifier for this match condition, used for strategic merging of MatchConditions, as well as providing an identifier for logging purposes. A good name should be descriptive of the associated expression. Name must be a qualified name consisting of alphanumeric characters, '-', '_' or '.', and must start and end with an alphanumeric character (e.g. 'MyName',  or 'my.name',  or '123-abc', regex used for validation is '([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]') with an optional DNS subdomain prefix and '/' (e.g. 'example.com/MyName')  Required.
+- `expression` (String) Expression represents the expression which will be evaluated by CEL. Must evaluate to bool.CEL expressions have access to the contents of the AdmissionRequest and Authorizer, organized into CEL variables:'object' - The object from the incoming request. The value is null for DELETE requests.'oldObject' - The existing object. The value is null for CREATE requests.'request' - Attributes of the admission request(/pkg/apis/admission/types.go#AdmissionRequest).'authorizer' - A CEL Authorizer. May be used to perform authorization checks for the principal (user or service account) of the request.  See https://pkg.go.dev/k8s.io/apiserver/pkg/cel/library#Authz'authorizer.requestResource' - A CEL ResourceCheck constructed from the 'authorizer' and configured with the  request resource.Documentation on CEL: https://kubernetes.io/docs/reference/using-api/cel/Required.
+- `name` (String) Name is an identifier for this match condition, used for strategic merging of MatchConditions,as well as providing an identifier for logging purposes. A good name should be descriptive ofthe associated expression.Name must be a qualified name consisting of alphanumeric characters, '-', '_' or '.', andmust start and end with an alphanumeric character (e.g. 'MyName',  or 'my.name',  or'123-abc', regex used for validation is '([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]') with anoptional DNS subdomain prefix and '/' (e.g. 'example.com/MyName')Required.
 
 
 <a id="nestedatt--spec--rules--context"></a>
@@ -102,9 +103,10 @@ Required:
 
 Optional:
 
-- `api_call` (Attributes) APICall is an HTTP request to the Kubernetes API server, or other JSON web service. The data returned is stored in the context with the name for the context entry. (see [below for nested schema](#nestedatt--spec--rules--context--api_call))
+- `api_call` (Attributes) APICall is an HTTP request to the Kubernetes API server, or other JSON web service.The data returned is stored in the context with the name for the context entry. (see [below for nested schema](#nestedatt--spec--rules--context--api_call))
 - `config_map` (Attributes) ConfigMap is the ConfigMap reference. (see [below for nested schema](#nestedatt--spec--rules--context--config_map))
-- `image_registry` (Attributes) ImageRegistry defines requests to an OCI/Docker V2 registry to fetch image details. (see [below for nested schema](#nestedatt--spec--rules--context--image_registry))
+- `global_reference` (Attributes) GlobalContextEntryReference is a reference to a cached global context entry. (see [below for nested schema](#nestedatt--spec--rules--context--global_reference))
+- `image_registry` (Attributes) ImageRegistry defines requests to an OCI/Docker V2 registry to fetch imagedetails. (see [below for nested schema](#nestedatt--spec--rules--context--image_registry))
 - `name` (String) Name is the variable name.
 - `variable` (Attributes) Variable defines an arbitrary JMESPath context variable that can be defined inline. (see [below for nested schema](#nestedatt--spec--rules--context--variable))
 
@@ -113,11 +115,11 @@ Optional:
 
 Optional:
 
-- `data` (Attributes List) Data specifies the POST data sent to the server. (see [below for nested schema](#nestedatt--spec--rules--context--variable--data))
-- `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used to transform the JSON response returned from the server. For example a JMESPath of 'items | length(@)' applied to the API server response for the URLPath '/apis/apps/v1/deployments' will return the total count of deployments across all namespaces.
-- `method` (String) Method is the HTTP request type (GET or POST).
-- `service` (Attributes) Service is an API call to a JSON web service (see [below for nested schema](#nestedatt--spec--rules--context--variable--service))
-- `url_path` (String) URLPath is the URL path to be used in the HTTP GET or POST request to the Kubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments'). The format required is the same format used by the 'kubectl get --raw' command. See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-calls for details.
+- `data` (Attributes List) The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST. (see [below for nested schema](#nestedatt--spec--rules--context--variable--data))
+- `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.
+- `method` (String) Method is the HTTP request type (GET or POST). Defaults to GET.
+- `service` (Attributes) Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field. (see [below for nested schema](#nestedatt--spec--rules--context--variable--service))
+- `url_path` (String) URLPath is the URL path to be used in the HTTP GET or POST request to theKubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments').The format required is the same format used by the 'kubectl get --raw' command.See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-callsfor details.It's mutually exclusive with the Service field.
 
 <a id="nestedatt--spec--rules--context--variable--data"></a>
 ### Nested Schema for `spec.rules.context.variable.data`
@@ -133,11 +135,11 @@ Required:
 
 Required:
 
-- `url` (String) URL is the JSON web service URL. A typical form is 'https://{service}.{namespace}:{port}/{path}'.
+- `url` (String) URL is the JSON web service URL. A typical form is'https://{service}.{namespace}:{port}/{path}'.
 
 Optional:
 
-- `ca_bundle` (String) CABundle is a PEM encoded CA bundle which will be used to validate the server certificate.
+- `ca_bundle` (String) CABundle is a PEM encoded CA bundle which will be used to validatethe server certificate.
 
 
 
@@ -153,17 +155,26 @@ Optional:
 - `namespace` (String) Namespace is the ConfigMap namespace.
 
 
+<a id="nestedatt--spec--rules--context--global_reference"></a>
+### Nested Schema for `spec.rules.context.global_reference`
+
+Optional:
+
+- `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.
+- `name` (String) Name of the global context entry
+
+
 <a id="nestedatt--spec--rules--context--image_registry"></a>
 ### Nested Schema for `spec.rules.context.image_registry`
 
 Required:
 
-- `reference` (String) Reference is image reference to a container image in the registry. Example: ghcr.io/kyverno/kyverno:latest
+- `reference` (String) Reference is image reference to a container image in the registry.Example: ghcr.io/kyverno/kyverno:latest
 
 Optional:
 
 - `image_registry_credentials` (Attributes) ImageRegistryCredentials provides credentials that will be used for authentication with registry (see [below for nested schema](#nestedatt--spec--rules--context--variable--image_registry_credentials))
-- `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used to transform the ImageData struct returned as a result of processing the image reference.
+- `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the ImageData struct returned as a result of processingthe image reference.
 
 <a id="nestedatt--spec--rules--context--variable--image_registry_credentials"></a>
 ### Nested Schema for `spec.rules.context.variable.image_registry_credentials`
@@ -171,8 +182,8 @@ Optional:
 Optional:
 
 - `allow_insecure_registry` (Boolean) AllowInsecureRegistry allows insecure access to a registry.
-- `providers` (List of String) Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.
-- `secrets` (List of String) Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.
+- `providers` (List of String) Providers specifies a list of OCI Registry names, whose authentication providers are provided.It can be of one of these values: default,google,azure,amazon,github.
+- `secrets` (List of String) Secrets specifies a list of secrets that are provided for credentials.Secrets must live in the Kyverno namespace.
 
 
 
@@ -181,8 +192,8 @@ Optional:
 
 Optional:
 
-- `default` (Map of String) Default is an optional arbitrary JSON object that the variable may take if the JMESPath expression evaluates to nil
-- `jmes_path` (String) JMESPath is an optional JMESPath Expression that can be used to transform the variable.
+- `default` (Map of String) Default is an optional arbitrary JSON object that the variable may take if the JMESPathexpression evaluates to nil
+- `jmes_path` (String) JMESPath is an optional JMESPath Expression that can be used totransform the variable.
 - `value` (Map of String) Value is any arbitrary JSON object representable in YAML or JSON form.
 
 
@@ -210,14 +221,14 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is a  map of annotations (key-value pairs of type string). Annotation keys and values support the wildcard characters '*' (matches zero or many characters) and '?' (matches at least one character).
+- `annotations` (Map of String) Annotations is a  map of annotations (key-value pairs of type string). Annotation keysand values support the wildcard characters '*' (matches zero or many characters) and'?' (matches at least one character).
 - `kinds` (List of String) Kinds is a list of resource kinds.
-- `name` (String) Name is the name of the resource. The name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character). NOTE: 'Name' is being deprecated in favor of 'Names'.
-- `names` (List of String) Names are the names of the resources. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).
-- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--exclude--any--resources--namespace_selector))
-- `namespaces` (List of String) Namespaces is a list of namespaces names. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).
+- `name` (String) Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.
+- `names` (List of String) Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
+- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--exclude--any--resources--namespace_selector))
+- `namespaces` (List of String) Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
 - `operations` (List of String) Operations can contain values ['CREATE, 'UPDATE', 'CONNECT', 'DELETE'], which are used to match a specific action.
-- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character). Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--exclude--any--resources--selector))
+- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--exclude--any--resources--selector))
 
 <a id="nestedatt--spec--rules--exclude--any--resources--namespace_selector"></a>
 ### Nested Schema for `spec.rules.exclude.any.resources.namespace_selector`
@@ -225,7 +236,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--exclude--any--resources--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--exclude--any--resources--selector--match_expressions"></a>
 ### Nested Schema for `spec.rules.exclude.any.resources.selector.match_expressions`
@@ -233,11 +244,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -247,7 +258,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--exclude--any--resources--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--exclude--any--resources--selector--match_expressions"></a>
 ### Nested Schema for `spec.rules.exclude.any.resources.selector.match_expressions`
@@ -255,11 +266,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -269,13 +280,13 @@ Optional:
 
 Required:
 
-- `kind` (String) Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'. If the Authorizer does not recognized the kind value, the Authorizer should report an error.
+- `kind` (String) Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'.If the Authorizer does not recognized the kind value, the Authorizer should report an error.
 - `name` (String) Name of the object being referenced.
 
 Optional:
 
-- `api_group` (String) APIGroup holds the API group of the referenced subject. Defaults to '' for ServiceAccount subjects. Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.
-- `namespace` (String) Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not empty the Authorizer should report an error.
+- `api_group` (String) APIGroup holds the API group of the referenced subject.Defaults to '' for ServiceAccount subjects.Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.
+- `namespace` (String) Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not emptythe Authorizer should report an error.
 
 
 
@@ -294,14 +305,14 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is a  map of annotations (key-value pairs of type string). Annotation keys and values support the wildcard characters '*' (matches zero or many characters) and '?' (matches at least one character).
+- `annotations` (Map of String) Annotations is a  map of annotations (key-value pairs of type string). Annotation keysand values support the wildcard characters '*' (matches zero or many characters) and'?' (matches at least one character).
 - `kinds` (List of String) Kinds is a list of resource kinds.
-- `name` (String) Name is the name of the resource. The name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character). NOTE: 'Name' is being deprecated in favor of 'Names'.
-- `names` (List of String) Names are the names of the resources. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).
-- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--exclude--any--resources--namespace_selector))
-- `namespaces` (List of String) Namespaces is a list of namespaces names. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).
+- `name` (String) Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.
+- `names` (List of String) Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
+- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--exclude--any--resources--namespace_selector))
+- `namespaces` (List of String) Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
 - `operations` (List of String) Operations can contain values ['CREATE, 'UPDATE', 'CONNECT', 'DELETE'], which are used to match a specific action.
-- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character). Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--exclude--any--resources--selector))
+- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--exclude--any--resources--selector))
 
 <a id="nestedatt--spec--rules--exclude--any--resources--namespace_selector"></a>
 ### Nested Schema for `spec.rules.exclude.any.resources.namespace_selector`
@@ -309,7 +320,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--exclude--any--resources--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--exclude--any--resources--selector--match_expressions"></a>
 ### Nested Schema for `spec.rules.exclude.any.resources.selector.match_expressions`
@@ -317,11 +328,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -331,7 +342,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--exclude--any--resources--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--exclude--any--resources--selector--match_expressions"></a>
 ### Nested Schema for `spec.rules.exclude.any.resources.selector.match_expressions`
@@ -339,11 +350,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -353,13 +364,13 @@ Optional:
 
 Required:
 
-- `kind` (String) Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'. If the Authorizer does not recognized the kind value, the Authorizer should report an error.
+- `kind` (String) Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'.If the Authorizer does not recognized the kind value, the Authorizer should report an error.
 - `name` (String) Name of the object being referenced.
 
 Optional:
 
-- `api_group` (String) APIGroup holds the API group of the referenced subject. Defaults to '' for ServiceAccount subjects. Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.
-- `namespace` (String) Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not empty the Authorizer should report an error.
+- `api_group` (String) APIGroup holds the API group of the referenced subject.Defaults to '' for ServiceAccount subjects.Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.
+- `namespace` (String) Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not emptythe Authorizer should report an error.
 
 
 
@@ -370,13 +381,14 @@ Optional:
 Optional:
 
 - `api_version` (String) APIVersion specifies resource apiVersion.
-- `clone` (Attributes) Clone specifies the source resource used to populate each generated resource. At most one of Data or Clone can be specified. If neither are provided, the generated resource will be created with default data only. (see [below for nested schema](#nestedatt--spec--rules--generate--clone))
+- `clone` (Attributes) Clone specifies the source resource used to populate each generated resource.At most one of Data or Clone can be specified. If neither are provided, the generatedresource will be created with default data only. (see [below for nested schema](#nestedatt--spec--rules--generate--clone))
 - `clone_list` (Attributes) CloneList specifies the list of source resource used to populate each generated resource. (see [below for nested schema](#nestedatt--spec--rules--generate--clone_list))
-- `data` (Map of String) Data provides the resource declaration used to populate each generated resource. At most one of Data or Clone must be specified. If neither are provided, the generated resource will be created with default data only.
+- `data` (Map of String) Data provides the resource declaration used to populate each generated resource.At most one of Data or Clone must be specified. If neither are provided, the generatedresource will be created with default data only.
 - `kind` (String) Kind specifies resource kind.
 - `name` (String) Name specifies the resource name.
 - `namespace` (String) Namespace specifies resource namespace.
-- `synchronize` (Boolean) Synchronize controls if generated resources should be kept in-sync with their source resource. If Synchronize is set to 'true' changes to generated resources will be overwritten with resource data from Data or the resource specified in the Clone declaration. Optional. Defaults to 'false' if not specified.
+- `orphan_downstream_on_policy_delete` (Boolean) OrphanDownstreamOnPolicyDelete controls whether generated resources should be deleted when the rule that generatedthem is deleted with synchronization enabled. This option is only applicable to generate rules of the data type.See https://kyverno.io/docs/writing-policies/generate/#data-examples.Defaults to 'false' if not specified.
+- `synchronize` (Boolean) Synchronize controls if generated resources should be kept in-sync with their source resource.If Synchronize is set to 'true' changes to generated resources will be overwritten with resourcedata from Data or the resource specified in the Clone declaration.Optional. Defaults to 'false' if not specified.
 - `uid` (String) UID specifies the resource uid.
 
 <a id="nestedatt--spec--rules--generate--clone"></a>
@@ -395,7 +407,7 @@ Optional:
 
 - `kinds` (List of String) Kinds is a list of resource kinds.
 - `namespace` (String) Namespace specifies source resource namespace.
-- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels'. wildcard characters are not supported. (see [below for nested schema](#nestedatt--spec--rules--generate--uid--selector))
+- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels'.wildcard characters are not supported. (see [below for nested schema](#nestedatt--spec--rules--generate--uid--selector))
 
 <a id="nestedatt--spec--rules--generate--uid--selector"></a>
 ### Nested Schema for `spec.rules.generate.uid.selector`
@@ -403,7 +415,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--generate--uid--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--generate--uid--selector--match_expressions"></a>
 ### Nested Schema for `spec.rules.generate.uid.selector.match_expressions`
@@ -411,11 +423,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -444,14 +456,14 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is a  map of annotations (key-value pairs of type string). Annotation keys and values support the wildcard characters '*' (matches zero or many characters) and '?' (matches at least one character).
+- `annotations` (Map of String) Annotations is a  map of annotations (key-value pairs of type string). Annotation keysand values support the wildcard characters '*' (matches zero or many characters) and'?' (matches at least one character).
 - `kinds` (List of String) Kinds is a list of resource kinds.
-- `name` (String) Name is the name of the resource. The name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character). NOTE: 'Name' is being deprecated in favor of 'Names'.
-- `names` (List of String) Names are the names of the resources. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).
-- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--any--resources--namespace_selector))
-- `namespaces` (List of String) Namespaces is a list of namespaces names. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).
+- `name` (String) Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.
+- `names` (List of String) Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
+- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--any--resources--namespace_selector))
+- `namespaces` (List of String) Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
 - `operations` (List of String) Operations can contain values ['CREATE, 'UPDATE', 'CONNECT', 'DELETE'], which are used to match a specific action.
-- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character). Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--any--resources--selector))
+- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--any--resources--selector))
 
 <a id="nestedatt--spec--rules--match--any--resources--namespace_selector"></a>
 ### Nested Schema for `spec.rules.match.any.resources.namespace_selector`
@@ -459,7 +471,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--match--any--resources--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--match--any--resources--selector--match_expressions"></a>
 ### Nested Schema for `spec.rules.match.any.resources.selector.match_expressions`
@@ -467,11 +479,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -481,7 +493,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--match--any--resources--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--match--any--resources--selector--match_expressions"></a>
 ### Nested Schema for `spec.rules.match.any.resources.selector.match_expressions`
@@ -489,11 +501,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -503,13 +515,13 @@ Optional:
 
 Required:
 
-- `kind` (String) Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'. If the Authorizer does not recognized the kind value, the Authorizer should report an error.
+- `kind` (String) Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'.If the Authorizer does not recognized the kind value, the Authorizer should report an error.
 - `name` (String) Name of the object being referenced.
 
 Optional:
 
-- `api_group` (String) APIGroup holds the API group of the referenced subject. Defaults to '' for ServiceAccount subjects. Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.
-- `namespace` (String) Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not empty the Authorizer should report an error.
+- `api_group` (String) APIGroup holds the API group of the referenced subject.Defaults to '' for ServiceAccount subjects.Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.
+- `namespace` (String) Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not emptythe Authorizer should report an error.
 
 
 
@@ -528,14 +540,14 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is a  map of annotations (key-value pairs of type string). Annotation keys and values support the wildcard characters '*' (matches zero or many characters) and '?' (matches at least one character).
+- `annotations` (Map of String) Annotations is a  map of annotations (key-value pairs of type string). Annotation keysand values support the wildcard characters '*' (matches zero or many characters) and'?' (matches at least one character).
 - `kinds` (List of String) Kinds is a list of resource kinds.
-- `name` (String) Name is the name of the resource. The name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character). NOTE: 'Name' is being deprecated in favor of 'Names'.
-- `names` (List of String) Names are the names of the resources. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).
-- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--any--resources--namespace_selector))
-- `namespaces` (List of String) Namespaces is a list of namespaces names. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).
+- `name` (String) Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.
+- `names` (List of String) Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
+- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--any--resources--namespace_selector))
+- `namespaces` (List of String) Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
 - `operations` (List of String) Operations can contain values ['CREATE, 'UPDATE', 'CONNECT', 'DELETE'], which are used to match a specific action.
-- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character). Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--any--resources--selector))
+- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--any--resources--selector))
 
 <a id="nestedatt--spec--rules--match--any--resources--namespace_selector"></a>
 ### Nested Schema for `spec.rules.match.any.resources.namespace_selector`
@@ -543,7 +555,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--match--any--resources--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--match--any--resources--selector--match_expressions"></a>
 ### Nested Schema for `spec.rules.match.any.resources.selector.match_expressions`
@@ -551,11 +563,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -565,7 +577,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--match--any--resources--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--match--any--resources--selector--match_expressions"></a>
 ### Nested Schema for `spec.rules.match.any.resources.selector.match_expressions`
@@ -573,11 +585,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -587,13 +599,13 @@ Optional:
 
 Required:
 
-- `kind` (String) Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'. If the Authorizer does not recognized the kind value, the Authorizer should report an error.
+- `kind` (String) Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'.If the Authorizer does not recognized the kind value, the Authorizer should report an error.
 - `name` (String) Name of the object being referenced.
 
 Optional:
 
-- `api_group` (String) APIGroup holds the API group of the referenced subject. Defaults to '' for ServiceAccount subjects. Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.
-- `namespace` (String) Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not empty the Authorizer should report an error.
+- `api_group` (String) APIGroup holds the API group of the referenced subject.Defaults to '' for ServiceAccount subjects.Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.
+- `namespace` (String) Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not emptythe Authorizer should report an error.
 
 
 
@@ -604,8 +616,8 @@ Optional:
 Optional:
 
 - `foreach` (Attributes List) ForEach applies mutation rules to a list of sub-elements by creating a context for each entry in the list and looping over it to apply the specified logic. (see [below for nested schema](#nestedatt--spec--rules--mutate--foreach))
-- `patch_strategic_merge` (Map of String) PatchStrategicMerge is a strategic merge patch used to modify resources. See https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/ and https://kubectl.docs.kubernetes.io/references/kustomize/patchesstrategicmerge/.
-- `patches_json6902` (String) PatchesJSON6902 is a list of RFC 6902 JSON Patch declarations used to modify resources. See https://tools.ietf.org/html/rfc6902 and https://kubectl.docs.kubernetes.io/references/kustomize/patchesjson6902/.
+- `patch_strategic_merge` (Map of String) PatchStrategicMerge is a strategic merge patch used to modify resources.See https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/and https://kubectl.docs.kubernetes.io/references/kustomize/patchesstrategicmerge/.
+- `patches_json6902` (String) PatchesJSON6902 is a list of RFC 6902 JSON Patch declarations used to modify resources.See https://tools.ietf.org/html/rfc6902 and https://kubectl.docs.kubernetes.io/references/kustomize/patchesjson6902/.
 - `targets` (Attributes List) Targets defines the target resources to be mutated. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets))
 
 <a id="nestedatt--spec--rules--mutate--foreach"></a>
@@ -615,20 +627,21 @@ Optional:
 
 - `context` (Attributes List) Context defines variables and data sources that can be used during rule execution. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context))
 - `foreach` (Map of String) Foreach declares a nested foreach iterator
-- `list` (String) List specifies a JMESPath expression that results in one or more elements to which the validation logic is applied.
-- `order` (String) Order defines the iteration order on the list. Can be Ascending to iterate from first to last element or Descending to iterate in from last to first element.
-- `patch_strategic_merge` (Map of String) PatchStrategicMerge is a strategic merge patch used to modify resources. See https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/ and https://kubectl.docs.kubernetes.io/references/kustomize/patchesstrategicmerge/.
-- `patches_json6902` (String) PatchesJSON6902 is a list of RFC 6902 JSON Patch declarations used to modify resources. See https://tools.ietf.org/html/rfc6902 and https://kubectl.docs.kubernetes.io/references/kustomize/patchesjson6902/.
-- `preconditions` (Attributes) AnyAllConditions are used to determine if a policy rule should be applied by evaluating a set of conditions. The declaration can contain nested 'any' or 'all' statements. See: https://kyverno.io/docs/writing-policies/preconditions/ (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--preconditions))
+- `list` (String) List specifies a JMESPath expression that results in one or more elementsto which the validation logic is applied.
+- `order` (String) Order defines the iteration order on the list.Can be Ascending to iterate from first to last element or Descending to iterate in from last to first element.
+- `patch_strategic_merge` (Map of String) PatchStrategicMerge is a strategic merge patch used to modify resources.See https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/and https://kubectl.docs.kubernetes.io/references/kustomize/patchesstrategicmerge/.
+- `patches_json6902` (String) PatchesJSON6902 is a list of RFC 6902 JSON Patch declarations used to modify resources.See https://tools.ietf.org/html/rfc6902 and https://kubectl.docs.kubernetes.io/references/kustomize/patchesjson6902/.
+- `preconditions` (Attributes) AnyAllConditions are used to determine if a policy rule should be applied by evaluating aset of conditions. The declaration can contain nested 'any' or 'all' statements.See: https://kyverno.io/docs/writing-policies/preconditions/ (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--preconditions))
 
 <a id="nestedatt--spec--rules--mutate--targets--context"></a>
 ### Nested Schema for `spec.rules.mutate.targets.context`
 
 Optional:
 
-- `api_call` (Attributes) APICall is an HTTP request to the Kubernetes API server, or other JSON web service. The data returned is stored in the context with the name for the context entry. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--api_call))
+- `api_call` (Attributes) APICall is an HTTP request to the Kubernetes API server, or other JSON web service.The data returned is stored in the context with the name for the context entry. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--api_call))
 - `config_map` (Attributes) ConfigMap is the ConfigMap reference. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--config_map))
-- `image_registry` (Attributes) ImageRegistry defines requests to an OCI/Docker V2 registry to fetch image details. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--image_registry))
+- `global_reference` (Attributes) GlobalContextEntryReference is a reference to a cached global context entry. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--global_reference))
+- `image_registry` (Attributes) ImageRegistry defines requests to an OCI/Docker V2 registry to fetch imagedetails. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--image_registry))
 - `name` (String) Name is the variable name.
 - `variable` (Attributes) Variable defines an arbitrary JMESPath context variable that can be defined inline. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--variable))
 
@@ -637,11 +650,11 @@ Optional:
 
 Optional:
 
-- `data` (Attributes List) Data specifies the POST data sent to the server. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--variable--data))
-- `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used to transform the JSON response returned from the server. For example a JMESPath of 'items | length(@)' applied to the API server response for the URLPath '/apis/apps/v1/deployments' will return the total count of deployments across all namespaces.
-- `method` (String) Method is the HTTP request type (GET or POST).
-- `service` (Attributes) Service is an API call to a JSON web service (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--variable--service))
-- `url_path` (String) URLPath is the URL path to be used in the HTTP GET or POST request to the Kubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments'). The format required is the same format used by the 'kubectl get --raw' command. See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-calls for details.
+- `data` (Attributes List) The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--variable--data))
+- `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.
+- `method` (String) Method is the HTTP request type (GET or POST). Defaults to GET.
+- `service` (Attributes) Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--variable--service))
+- `url_path` (String) URLPath is the URL path to be used in the HTTP GET or POST request to theKubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments').The format required is the same format used by the 'kubectl get --raw' command.See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-callsfor details.It's mutually exclusive with the Service field.
 
 <a id="nestedatt--spec--rules--mutate--targets--context--variable--data"></a>
 ### Nested Schema for `spec.rules.mutate.targets.context.variable.data`
@@ -657,11 +670,11 @@ Required:
 
 Required:
 
-- `url` (String) URL is the JSON web service URL. A typical form is 'https://{service}.{namespace}:{port}/{path}'.
+- `url` (String) URL is the JSON web service URL. A typical form is'https://{service}.{namespace}:{port}/{path}'.
 
 Optional:
 
-- `ca_bundle` (String) CABundle is a PEM encoded CA bundle which will be used to validate the server certificate.
+- `ca_bundle` (String) CABundle is a PEM encoded CA bundle which will be used to validatethe server certificate.
 
 
 
@@ -677,17 +690,26 @@ Optional:
 - `namespace` (String) Namespace is the ConfigMap namespace.
 
 
+<a id="nestedatt--spec--rules--mutate--targets--context--global_reference"></a>
+### Nested Schema for `spec.rules.mutate.targets.context.global_reference`
+
+Optional:
+
+- `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.
+- `name` (String) Name of the global context entry
+
+
 <a id="nestedatt--spec--rules--mutate--targets--context--image_registry"></a>
 ### Nested Schema for `spec.rules.mutate.targets.context.image_registry`
 
 Required:
 
-- `reference` (String) Reference is image reference to a container image in the registry. Example: ghcr.io/kyverno/kyverno:latest
+- `reference` (String) Reference is image reference to a container image in the registry.Example: ghcr.io/kyverno/kyverno:latest
 
 Optional:
 
 - `image_registry_credentials` (Attributes) ImageRegistryCredentials provides credentials that will be used for authentication with registry (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--variable--image_registry_credentials))
-- `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used to transform the ImageData struct returned as a result of processing the image reference.
+- `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the ImageData struct returned as a result of processingthe image reference.
 
 <a id="nestedatt--spec--rules--mutate--targets--context--variable--image_registry_credentials"></a>
 ### Nested Schema for `spec.rules.mutate.targets.context.variable.image_registry_credentials`
@@ -695,8 +717,8 @@ Optional:
 Optional:
 
 - `allow_insecure_registry` (Boolean) AllowInsecureRegistry allows insecure access to a registry.
-- `providers` (List of String) Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.
-- `secrets` (List of String) Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.
+- `providers` (List of String) Providers specifies a list of OCI Registry names, whose authentication providers are provided.It can be of one of these values: default,google,azure,amazon,github.
+- `secrets` (List of String) Secrets specifies a list of secrets that are provided for credentials.Secrets must live in the Kyverno namespace.
 
 
 
@@ -705,8 +727,8 @@ Optional:
 
 Optional:
 
-- `default` (Map of String) Default is an optional arbitrary JSON object that the variable may take if the JMESPath expression evaluates to nil
-- `jmes_path` (String) JMESPath is an optional JMESPath Expression that can be used to transform the variable.
+- `default` (Map of String) Default is an optional arbitrary JSON object that the variable may take if the JMESPathexpression evaluates to nil
+- `jmes_path` (String) JMESPath is an optional JMESPath Expression that can be used totransform the variable.
 - `value` (Map of String) Value is any arbitrary JSON object representable in YAML or JSON form.
 
 
@@ -716,8 +738,8 @@ Optional:
 
 Optional:
 
-- `all` (Attributes List) AllConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, all of the conditions need to pass (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--preconditions--all))
-- `any` (Attributes List) AnyConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, at least one of the conditions need to pass (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--preconditions--any))
+- `all` (Attributes List) AllConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, all of the conditions need to pass (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--preconditions--all))
+- `any` (Attributes List) AnyConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, at least one of the conditions need to pass (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--preconditions--any))
 
 <a id="nestedatt--spec--rules--mutate--targets--preconditions--all"></a>
 ### Nested Schema for `spec.rules.mutate.targets.preconditions.all`
@@ -726,8 +748,8 @@ Optional:
 
 - `key` (Map of String) Key is the context entry (using JMESPath) for conditional rule evaluation.
 - `message` (String) Message is an optional display message
-- `operator` (String) Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan
-- `value` (Map of String) Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.
+- `operator` (String) Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan
+- `value` (Map of String) Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.
 
 
 <a id="nestedatt--spec--rules--mutate--targets--preconditions--any"></a>
@@ -737,8 +759,8 @@ Optional:
 
 - `key` (Map of String) Key is the context entry (using JMESPath) for conditional rule evaluation.
 - `message` (String) Message is an optional display message
-- `operator` (String) Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan
-- `value` (Map of String) Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.
+- `operator` (String) Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan
+- `value` (Map of String) Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.
 
 
 
@@ -753,7 +775,7 @@ Optional:
 - `kind` (String) Kind specifies resource kind.
 - `name` (String) Name specifies the resource name.
 - `namespace` (String) Namespace specifies resource namespace.
-- `preconditions` (Map of String) Preconditions are used to determine if a policy rule should be applied by evaluating a set of conditions. The declaration can contain nested 'any' or 'all' statements. A direct list of conditions (without 'any' or 'all' statements is supported for backwards compatibility but will be deprecated in the next major release. See: https://kyverno.io/docs/writing-policies/preconditions/
+- `preconditions` (Map of String) Preconditions are used to determine if a policy rule should be applied by evaluating aset of conditions. The declaration can contain nested 'any' or 'all' statements. A direct listof conditions (without 'any' or 'all' statements is supported for backwards compatibility butwill be deprecated in the next major release.See: https://kyverno.io/docs/writing-policies/preconditions/
 - `uid` (String) UID specifies the resource uid.
 
 <a id="nestedatt--spec--rules--mutate--targets--context"></a>
@@ -761,9 +783,10 @@ Optional:
 
 Optional:
 
-- `api_call` (Attributes) APICall is an HTTP request to the Kubernetes API server, or other JSON web service. The data returned is stored in the context with the name for the context entry. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--api_call))
+- `api_call` (Attributes) APICall is an HTTP request to the Kubernetes API server, or other JSON web service.The data returned is stored in the context with the name for the context entry. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--api_call))
 - `config_map` (Attributes) ConfigMap is the ConfigMap reference. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--config_map))
-- `image_registry` (Attributes) ImageRegistry defines requests to an OCI/Docker V2 registry to fetch image details. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--image_registry))
+- `global_reference` (Attributes) GlobalContextEntryReference is a reference to a cached global context entry. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--global_reference))
+- `image_registry` (Attributes) ImageRegistry defines requests to an OCI/Docker V2 registry to fetch imagedetails. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--image_registry))
 - `name` (String) Name is the variable name.
 - `variable` (Attributes) Variable defines an arbitrary JMESPath context variable that can be defined inline. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--variable))
 
@@ -772,11 +795,11 @@ Optional:
 
 Optional:
 
-- `data` (Attributes List) Data specifies the POST data sent to the server. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--variable--data))
-- `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used to transform the JSON response returned from the server. For example a JMESPath of 'items | length(@)' applied to the API server response for the URLPath '/apis/apps/v1/deployments' will return the total count of deployments across all namespaces.
-- `method` (String) Method is the HTTP request type (GET or POST).
-- `service` (Attributes) Service is an API call to a JSON web service (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--variable--service))
-- `url_path` (String) URLPath is the URL path to be used in the HTTP GET or POST request to the Kubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments'). The format required is the same format used by the 'kubectl get --raw' command. See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-calls for details.
+- `data` (Attributes List) The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--variable--data))
+- `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.
+- `method` (String) Method is the HTTP request type (GET or POST). Defaults to GET.
+- `service` (Attributes) Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--variable--service))
+- `url_path` (String) URLPath is the URL path to be used in the HTTP GET or POST request to theKubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments').The format required is the same format used by the 'kubectl get --raw' command.See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-callsfor details.It's mutually exclusive with the Service field.
 
 <a id="nestedatt--spec--rules--mutate--targets--context--variable--data"></a>
 ### Nested Schema for `spec.rules.mutate.targets.context.variable.data`
@@ -792,11 +815,11 @@ Required:
 
 Required:
 
-- `url` (String) URL is the JSON web service URL. A typical form is 'https://{service}.{namespace}:{port}/{path}'.
+- `url` (String) URL is the JSON web service URL. A typical form is'https://{service}.{namespace}:{port}/{path}'.
 
 Optional:
 
-- `ca_bundle` (String) CABundle is a PEM encoded CA bundle which will be used to validate the server certificate.
+- `ca_bundle` (String) CABundle is a PEM encoded CA bundle which will be used to validatethe server certificate.
 
 
 
@@ -812,17 +835,26 @@ Optional:
 - `namespace` (String) Namespace is the ConfigMap namespace.
 
 
+<a id="nestedatt--spec--rules--mutate--targets--context--global_reference"></a>
+### Nested Schema for `spec.rules.mutate.targets.context.global_reference`
+
+Optional:
+
+- `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.
+- `name` (String) Name of the global context entry
+
+
 <a id="nestedatt--spec--rules--mutate--targets--context--image_registry"></a>
 ### Nested Schema for `spec.rules.mutate.targets.context.image_registry`
 
 Required:
 
-- `reference` (String) Reference is image reference to a container image in the registry. Example: ghcr.io/kyverno/kyverno:latest
+- `reference` (String) Reference is image reference to a container image in the registry.Example: ghcr.io/kyverno/kyverno:latest
 
 Optional:
 
 - `image_registry_credentials` (Attributes) ImageRegistryCredentials provides credentials that will be used for authentication with registry (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--variable--image_registry_credentials))
-- `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used to transform the ImageData struct returned as a result of processing the image reference.
+- `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the ImageData struct returned as a result of processingthe image reference.
 
 <a id="nestedatt--spec--rules--mutate--targets--context--variable--image_registry_credentials"></a>
 ### Nested Schema for `spec.rules.mutate.targets.context.variable.image_registry_credentials`
@@ -830,8 +862,8 @@ Optional:
 Optional:
 
 - `allow_insecure_registry` (Boolean) AllowInsecureRegistry allows insecure access to a registry.
-- `providers` (List of String) Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.
-- `secrets` (List of String) Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.
+- `providers` (List of String) Providers specifies a list of OCI Registry names, whose authentication providers are provided.It can be of one of these values: default,google,azure,amazon,github.
+- `secrets` (List of String) Secrets specifies a list of secrets that are provided for credentials.Secrets must live in the Kyverno namespace.
 
 
 
@@ -840,8 +872,8 @@ Optional:
 
 Optional:
 
-- `default` (Map of String) Default is an optional arbitrary JSON object that the variable may take if the JMESPath expression evaluates to nil
-- `jmes_path` (String) JMESPath is an optional JMESPath Expression that can be used to transform the variable.
+- `default` (Map of String) Default is an optional arbitrary JSON object that the variable may take if the JMESPathexpression evaluates to nil
+- `jmes_path` (String) JMESPath is an optional JMESPath Expression that can be used totransform the variable.
 - `value` (Map of String) Value is any arbitrary JSON object representable in YAML or JSON form.
 
 
@@ -853,8 +885,8 @@ Optional:
 
 Optional:
 
-- `all` (Attributes List) AllConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, all of the conditions need to pass. (see [below for nested schema](#nestedatt--spec--rules--preconditions--all))
-- `any` (Attributes List) AnyConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, at least one of the conditions need to pass. (see [below for nested schema](#nestedatt--spec--rules--preconditions--any))
+- `all` (Attributes List) AllConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, all of the conditions need to pass. (see [below for nested schema](#nestedatt--spec--rules--preconditions--all))
+- `any` (Attributes List) AnyConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, at least one of the conditions need to pass. (see [below for nested schema](#nestedatt--spec--rules--preconditions--any))
 
 <a id="nestedatt--spec--rules--preconditions--all"></a>
 ### Nested Schema for `spec.rules.preconditions.all`
@@ -863,8 +895,8 @@ Optional:
 
 - `key` (Map of String) Key is the context entry (using JMESPath) for conditional rule evaluation.
 - `message` (String) Message is an optional display message
-- `operator` (String) Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan
-- `value` (Map of String) Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.
+- `operator` (String) Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan
+- `value` (Map of String) Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.
 
 
 <a id="nestedatt--spec--rules--preconditions--any"></a>
@@ -874,8 +906,8 @@ Optional:
 
 - `key` (Map of String) Key is the context entry (using JMESPath) for conditional rule evaluation.
 - `message` (String) Message is an optional display message
-- `operator` (String) Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan
-- `value` (Map of String) Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.
+- `operator` (String) Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan
+- `value` (Map of String) Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.
 
 
 
@@ -884,14 +916,14 @@ Optional:
 
 Optional:
 
-- `any_pattern` (Map of String) AnyPattern specifies list of validation patterns. At least one of the patterns must be satisfied for the validation rule to succeed.
+- `any_pattern` (Map of String) AnyPattern specifies list of validation patterns. At least one of the patternsmust be satisfied for the validation rule to succeed.
 - `cel` (Attributes) CEL allows validation checks using the Common Expression Language (https://kubernetes.io/docs/reference/using-api/cel/). (see [below for nested schema](#nestedatt--spec--rules--validate--cel))
 - `deny` (Attributes) Deny defines conditions used to pass or fail a validation rule. (see [below for nested schema](#nestedatt--spec--rules--validate--deny))
 - `foreach` (Attributes List) ForEach applies validate rules to a list of sub-elements by creating a context for each entry in the list and looping over it to apply the specified logic. (see [below for nested schema](#nestedatt--spec--rules--validate--foreach))
 - `manifests` (Attributes) Manifest specifies conditions for manifest verification (see [below for nested schema](#nestedatt--spec--rules--validate--manifests))
 - `message` (String) Message specifies a custom message to be displayed on failure.
 - `pattern` (Map of String) Pattern specifies an overlay-style pattern used to check resources.
-- `pod_security` (Attributes) PodSecurity applies exemptions for Kubernetes Pod Security admission by specifying exclusions for Pod Security Standards controls. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security))
+- `pod_security` (Attributes) PodSecurity applies exemptions for Kubernetes Pod Security admissionby specifying exclusions for Pod Security Standards controls. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security))
 
 <a id="nestedatt--spec--rules--validate--cel"></a>
 ### Nested Schema for `spec.rules.validate.cel`
@@ -902,15 +934,15 @@ Optional:
 - `expressions` (Attributes List) Expressions is a list of CELExpression types. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--expressions))
 - `param_kind` (Attributes) ParamKind is a tuple of Group Kind and Version. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--param_kind))
 - `param_ref` (Attributes) ParamRef references a parameter resource. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--param_ref))
-- `variables` (Attributes List) Variables contain definitions of variables that can be used in composition of other expressions. Each variable is defined as a named CEL expression. The variables defined here will be available under 'variables' in other expressions of the policy. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--variables))
+- `variables` (Attributes List) Variables contain definitions of variables that can be used in composition of other expressions.Each variable is defined as a named CEL expression.The variables defined here will be available under 'variables' in other expressions of the policy. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--variables))
 
 <a id="nestedatt--spec--rules--validate--pod_security--audit_annotations"></a>
 ### Nested Schema for `spec.rules.validate.pod_security.audit_annotations`
 
 Required:
 
-- `key` (String) key specifies the audit annotation key. The audit annotation keys of a ValidatingAdmissionPolicy must be unique. The key must be a qualified name ([A-Za-z0-9][-A-Za-z0-9_.]*) no more than 63 bytes in length.  The key is combined with the resource name of the ValidatingAdmissionPolicy to construct an audit annotation key: '{ValidatingAdmissionPolicy name}/{key}'.  If an admission webhook uses the same resource name as this ValidatingAdmissionPolicy and the same audit annotation key, the annotation key will be identical. In this case, the first annotation written with the key will be included in the audit event and all subsequent annotations with the same key will be discarded.  Required.
-- `value_expression` (String) valueExpression represents the expression which is evaluated by CEL to produce an audit annotation value. The expression must evaluate to either a string or null value. If the expression evaluates to a string, the audit annotation is included with the string value. If the expression evaluates to null or empty string the audit annotation will be omitted. The valueExpression may be no longer than 5kb in length. If the result of the valueExpression is more than 10kb in length, it will be truncated to 10kb.  If multiple ValidatingAdmissionPolicyBinding resources match an API request, then the valueExpression will be evaluated for each binding. All unique values produced by the valueExpressions will be joined together in a comma-separated list.  Required.
+- `key` (String) key specifies the audit annotation key. The audit annotation keys ofa ValidatingAdmissionPolicy must be unique. The key must be a qualifiedname ([A-Za-z0-9][-A-Za-z0-9_.]*) no more than 63 bytes in length.The key is combined with the resource name of theValidatingAdmissionPolicy to construct an audit annotation key:'{ValidatingAdmissionPolicy name}/{key}'.If an admission webhook uses the same resource name as this ValidatingAdmissionPolicyand the same audit annotation key, the annotation key will be identical.In this case, the first annotation written with the key will be includedin the audit event and all subsequent annotations with the same keywill be discarded.Required.
+- `value_expression` (String) valueExpression represents the expression which is evaluated by CEL toproduce an audit annotation value. The expression must evaluate to eithera string or null value. If the expression evaluates to a string, theaudit annotation is included with the string value. If the expressionevaluates to null or empty string the audit annotation will be omitted.The valueExpression may be no longer than 5kb in length.If the result of the valueExpression is more than 10kb in length, itwill be truncated to 10kb.If multiple ValidatingAdmissionPolicyBinding resources match anAPI request, then the valueExpression will be evaluated foreach binding. All unique values produced by the valueExpressionswill be joined together in a comma-separated list.Required.
 
 
 <a id="nestedatt--spec--rules--validate--pod_security--expressions"></a>
@@ -918,13 +950,13 @@ Required:
 
 Required:
 
-- `expression` (String) Expression represents the expression which will be evaluated by CEL. ref: https://github.com/google/cel-spec CEL expressions have access to the contents of the API request/response, organized into CEL variables as well as some other useful variables:  - 'object' - The object from the incoming request. The value is null for DELETE requests. - 'oldObject' - The existing object. The value is null for CREATE requests. - 'request' - Attributes of the API request([ref](/pkg/apis/admission/types.go#AdmissionRequest)). - 'params' - Parameter resource referred to by the policy binding being evaluated. Only populated if the policy has a ParamKind. - 'namespaceObject' - The namespace object that the incoming object belongs to. The value is null for cluster-scoped resources. - 'variables' - Map of composited variables, from its name to its lazily evaluated value. For example, a variable named 'foo' can be accessed as 'variables.foo'. - 'authorizer' - A CEL Authorizer. May be used to perform authorization checks for the principal (user or service account) of the request. See https://pkg.go.dev/k8s.io/apiserver/pkg/cel/library#Authz - 'authorizer.requestResource' - A CEL ResourceCheck constructed from the 'authorizer' and configured with the request resource.  The 'apiVersion', 'kind', 'metadata.name' and 'metadata.generateName' are always accessible from the root of the object. No other metadata properties are accessible.  Only property names of the form '[a-zA-Z_.-/][a-zA-Z0-9_.-/]*' are accessible. Accessible property names are escaped according to the following rules when accessed in the expression: - '__' escapes to '__underscores__' - '.' escapes to '__dot__' - '-' escapes to '__dash__' - '/' escapes to '__slash__' - Property names that exactly match a CEL RESERVED keyword escape to '__{keyword}__'. The keywords are: 'true', 'false', 'null', 'in', 'as', 'break', 'const', 'continue', 'else', 'for', 'function', 'if', 'import', 'let', 'loop', 'package', 'namespace', 'return'. Examples: - Expression accessing a property named 'namespace': {'Expression': 'object.__namespace__ > 0'} - Expression accessing a property named 'x-prop': {'Expression': 'object.x__dash__prop > 0'} - Expression accessing a property named 'redact__d': {'Expression': 'object.redact__underscores__d > 0'}  Equality on arrays with list type of 'set' or 'map' ignores element order, i.e. [1, 2] == [2, 1]. Concatenation on arrays with x-kubernetes-list-type use the semantics of the list type: - 'set': 'X + Y' performs a union where the array positions of all elements in 'X' are preserved and non-intersecting elements in 'Y' are appended, retaining their partial order. - 'map': 'X + Y' performs a merge where the array positions of all keys in 'X' are preserved but the values are overwritten by values in 'Y' when the key sets of 'X' and 'Y' intersect. Elements in 'Y' with non-intersecting keys are appended, retaining their partial order. Required.
+- `expression` (String) Expression represents the expression which will be evaluated by CEL.ref: https://github.com/google/cel-specCEL expressions have access to the contents of the API request/response, organized into CEL variables as well as some other useful variables:- 'object' - The object from the incoming request. The value is null for DELETE requests.- 'oldObject' - The existing object. The value is null for CREATE requests.- 'request' - Attributes of the API request([ref](/pkg/apis/admission/types.go#AdmissionRequest)).- 'params' - Parameter resource referred to by the policy binding being evaluated. Only populated if the policy has a ParamKind.- 'namespaceObject' - The namespace object that the incoming object belongs to. The value is null for cluster-scoped resources.- 'variables' - Map of composited variables, from its name to its lazily evaluated value.  For example, a variable named 'foo' can be accessed as 'variables.foo'.- 'authorizer' - A CEL Authorizer. May be used to perform authorization checks for the principal (user or service account) of the request.  See https://pkg.go.dev/k8s.io/apiserver/pkg/cel/library#Authz- 'authorizer.requestResource' - A CEL ResourceCheck constructed from the 'authorizer' and configured with the  request resource.The 'apiVersion', 'kind', 'metadata.name' and 'metadata.generateName' are always accessible from the root of theobject. No other metadata properties are accessible.Only property names of the form '[a-zA-Z_.-/][a-zA-Z0-9_.-/]*' are accessible.Accessible property names are escaped according to the following rules when accessed in the expression:- '__' escapes to '__underscores__'- '.' escapes to '__dot__'- '-' escapes to '__dash__'- '/' escapes to '__slash__'- Property names that exactly match a CEL RESERVED keyword escape to '__{keyword}__'. The keywords are:	  'true', 'false', 'null', 'in', 'as', 'break', 'const', 'continue', 'else', 'for', 'function', 'if',	  'import', 'let', 'loop', 'package', 'namespace', 'return'.Examples:  - Expression accessing a property named 'namespace': {'Expression': 'object.__namespace__ > 0'}  - Expression accessing a property named 'x-prop': {'Expression': 'object.x__dash__prop > 0'}  - Expression accessing a property named 'redact__d': {'Expression': 'object.redact__underscores__d > 0'}Equality on arrays with list type of 'set' or 'map' ignores element order, i.e. [1, 2] == [2, 1].Concatenation on arrays with x-kubernetes-list-type use the semantics of the list type:  - 'set': 'X + Y' performs a union where the array positions of all elements in 'X' are preserved and    non-intersecting elements in 'Y' are appended, retaining their partial order.  - 'map': 'X + Y' performs a merge where the array positions of all keys in 'X' are preserved but the values    are overwritten by values in 'Y' when the key sets of 'X' and 'Y' intersect. Elements in 'Y' with    non-intersecting keys are appended, retaining their partial order.Required.
 
 Optional:
 
-- `message` (String) Message represents the message displayed when validation fails. The message is required if the Expression contains line breaks. The message must not contain line breaks. If unset, the message is 'failed rule: {Rule}'. e.g. 'must be a URL with the host matching spec.host' If the Expression contains line breaks. Message is required. The message must not contain line breaks. If unset, the message is 'failed Expression: {Expression}'.
-- `message_expression` (String) messageExpression declares a CEL expression that evaluates to the validation failure message that is returned when this rule fails. Since messageExpression is used as a failure message, it must evaluate to a string. If both message and messageExpression are present on a validation, then messageExpression will be used if validation fails. If messageExpression results in a runtime error, the runtime error is logged, and the validation failure message is produced as if the messageExpression field were unset. If messageExpression evaluates to an empty string, a string with only spaces, or a string that contains line breaks, then the validation failure message will also be produced as if the messageExpression field were unset, and the fact that messageExpression produced an empty string/string with only spaces/string with line breaks will be logged. messageExpression has access to all the same variables as the 'expression' except for 'authorizer' and 'authorizer.requestResource'. Example: 'object.x must be less than max ('+string(params.max)+')'
-- `reason` (String) Reason represents a machine-readable description of why this validation failed. If this is the first validation in the list to fail, this reason, as well as the corresponding HTTP response code, are used in the HTTP response to the client. The currently supported reasons are: 'Unauthorized', 'Forbidden', 'Invalid', 'RequestEntityTooLarge'. If not set, StatusReasonInvalid is used in the response to the client.
+- `message` (String) Message represents the message displayed when validation fails. The message is required if the Expression containsline breaks. The message must not contain line breaks.If unset, the message is 'failed rule: {Rule}'.e.g. 'must be a URL with the host matching spec.host'If the Expression contains line breaks. Message is required.The message must not contain line breaks.If unset, the message is 'failed Expression: {Expression}'.
+- `message_expression` (String) messageExpression declares a CEL expression that evaluates to the validation failure message that is returned when this rule fails.Since messageExpression is used as a failure message, it must evaluate to a string.If both message and messageExpression are present on a validation, then messageExpression will be used if validation fails.If messageExpression results in a runtime error, the runtime error is logged, and the validation failure message is producedas if the messageExpression field were unset. If messageExpression evaluates to an empty string, a string with only spaces, or a stringthat contains line breaks, then the validation failure message will also be produced as if the messageExpression field were unset, andthe fact that messageExpression produced an empty string/string with only spaces/string with line breaks will be logged.messageExpression has access to all the same variables as the 'expression' except for 'authorizer' and 'authorizer.requestResource'.Example:'object.x must be less than max ('+string(params.max)+')'
+- `reason` (String) Reason represents a machine-readable description of why this validation failed.If this is the first validation in the list to fail, this reason, as well as thecorresponding HTTP response code, are used in theHTTP response to the client.The currently supported reasons are: 'Unauthorized', 'Forbidden', 'Invalid', 'RequestEntityTooLarge'.If not set, StatusReasonInvalid is used in the response to the client.
 
 
 <a id="nestedatt--spec--rules--validate--pod_security--param_kind"></a>
@@ -932,8 +964,8 @@ Optional:
 
 Optional:
 
-- `api_version` (String) APIVersion is the API group version the resources belong to. In format of 'group/version'. Required.
-- `kind` (String) Kind is the API kind the resources belong to. Required.
+- `api_version` (String) APIVersion is the API group version the resources belong to.In format of 'group/version'.Required.
+- `kind` (String) Kind is the API kind the resources belong to.Required.
 
 
 <a id="nestedatt--spec--rules--validate--pod_security--param_ref"></a>
@@ -941,10 +973,10 @@ Optional:
 
 Optional:
 
-- `name` (String) 'name' is the name of the resource being referenced.  'name' and 'selector' are mutually exclusive properties. If one is set, the other must be unset.
-- `namespace` (String) namespace is the namespace of the referenced resource. Allows limiting the search for params to a specific namespace. Applies to both 'name' and 'selector' fields.  A per-namespace parameter may be used by specifying a namespace-scoped 'paramKind' in the policy and leaving this field empty.  - If 'paramKind' is cluster-scoped, this field MUST be unset. Setting this field results in a configuration error.  - If 'paramKind' is namespace-scoped, the namespace of the object being evaluated for admission will be used when this field is left unset. Take care that if this is left empty the binding must not match any cluster-scoped resources, which will result in an error.
-- `parameter_not_found_action` (String) 'parameterNotFoundAction' controls the behavior of the binding when the resource exists, and name or selector is valid, but there are no parameters matched by the binding. If the value is set to 'Allow', then no matched parameters will be treated as successful validation by the binding. If set to 'Deny', then no matched parameters will be subject to the 'failurePolicy' of the policy.  Allowed values are 'Allow' or 'Deny' Default to 'Deny'
-- `selector` (Attributes) selector can be used to match multiple param objects based on their labels. Supply selector: {} to match all resources of the ParamKind.  If multiple params are found, they are all evaluated with the policy expressions and the results are ANDed together.  One of 'name' or 'selector' must be set, but 'name' and 'selector' are mutually exclusive properties. If one is set, the other must be unset. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--param_ref--selector))
+- `name` (String) 'name' is the name of the resource being referenced.'name' and 'selector' are mutually exclusive properties. If one is set,the other must be unset.
+- `namespace` (String) namespace is the namespace of the referenced resource. Allows limitingthe search for params to a specific namespace. Applies to both 'name' and'selector' fields.A per-namespace parameter may be used by specifying a namespace-scoped'paramKind' in the policy and leaving this field empty.- If 'paramKind' is cluster-scoped, this field MUST be unset. Setting thisfield results in a configuration error.- If 'paramKind' is namespace-scoped, the namespace of the object beingevaluated for admission will be used when this field is left unset. Takecare that if this is left empty the binding must not match any cluster-scopedresources, which will result in an error.
+- `parameter_not_found_action` (String) 'parameterNotFoundAction' controls the behavior of the binding when the resourceexists, and name or selector is valid, but there are no parametersmatched by the binding. If the value is set to 'Allow', then nomatched parameters will be treated as successful validation by the binding.If set to 'Deny', then no matched parameters will be subject to the'failurePolicy' of the policy.Allowed values are 'Allow' or 'Deny'Default to 'Deny'
+- `selector` (Attributes) selector can be used to match multiple param objects based on their labels.Supply selector: {} to match all resources of the ParamKind.If multiple params are found, they are all evaluated with the policy expressionsand the results are ANDed together.One of 'name' or 'selector' must be set, but 'name' and 'selector' aremutually exclusive properties. If one is set, the other must be unset. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--param_ref--selector))
 
 <a id="nestedatt--spec--rules--validate--pod_security--param_ref--selector"></a>
 ### Nested Schema for `spec.rules.validate.pod_security.param_ref.selector`
@@ -952,7 +984,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--param_ref--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--validate--pod_security--param_ref--selector--match_expressions"></a>
 ### Nested Schema for `spec.rules.validate.pod_security.param_ref.selector.match_expressions`
@@ -960,11 +992,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -974,8 +1006,8 @@ Optional:
 
 Required:
 
-- `expression` (String) Expression is the expression that will be evaluated as the value of the variable. The CEL expression has access to the same identifiers as the CEL expressions in Validation.
-- `name` (String) Name is the name of the variable. The name must be a valid CEL identifier and unique among all variables. The variable can be accessed in other expressions through 'variables' For example, if name is 'foo', the variable will be available as 'variables.foo'
+- `expression` (String) Expression is the expression that will be evaluated as the value of the variable.The CEL expression has access to the same identifiers as the CEL expressions in Validation.
+- `name` (String) Name is the name of the variable. The name must be a valid CEL identifier and unique among all variables.The variable can be accessed in other expressions through 'variables'For example, if name is 'foo', the variable will be available as 'variables.foo'
 
 
 
@@ -984,15 +1016,15 @@ Required:
 
 Optional:
 
-- `conditions` (Attributes) Multiple conditions can be declared under an 'any' or 'all' statement. See: https://kyverno.io/docs/writing-policies/validate/#deny-rules (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--conditions))
+- `conditions` (Attributes) Multiple conditions can be declared under an 'any' or 'all' statement.See: https://kyverno.io/docs/writing-policies/validate/#deny-rules (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--conditions))
 
 <a id="nestedatt--spec--rules--validate--pod_security--conditions"></a>
 ### Nested Schema for `spec.rules.validate.pod_security.conditions`
 
 Optional:
 
-- `all` (Attributes List) AllConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, all of the conditions need to pass. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--conditions--all))
-- `any` (Attributes List) AnyConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, at least one of the conditions need to pass. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--conditions--any))
+- `all` (Attributes List) AllConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, all of the conditions need to pass. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--conditions--all))
+- `any` (Attributes List) AnyConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, at least one of the conditions need to pass. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--conditions--any))
 
 <a id="nestedatt--spec--rules--validate--pod_security--conditions--all"></a>
 ### Nested Schema for `spec.rules.validate.pod_security.conditions.all`
@@ -1001,8 +1033,8 @@ Optional:
 
 - `key` (Map of String) Key is the context entry (using JMESPath) for conditional rule evaluation.
 - `message` (String) Message is an optional display message
-- `operator` (String) Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan
-- `value` (Map of String) Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.
+- `operator` (String) Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan
+- `value` (Map of String) Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.
 
 
 <a id="nestedatt--spec--rules--validate--pod_security--conditions--any"></a>
@@ -1012,8 +1044,8 @@ Optional:
 
 - `key` (Map of String) Key is the context entry (using JMESPath) for conditional rule evaluation.
 - `message` (String) Message is an optional display message
-- `operator` (String) Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan
-- `value` (Map of String) Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.
+- `operator` (String) Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan
+- `value` (Map of String) Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.
 
 
 
@@ -1023,23 +1055,24 @@ Optional:
 
 Optional:
 
-- `any_pattern` (Map of String) AnyPattern specifies list of validation patterns. At least one of the patterns must be satisfied for the validation rule to succeed.
+- `any_pattern` (Map of String) AnyPattern specifies list of validation patterns. At least one of the patternsmust be satisfied for the validation rule to succeed.
 - `context` (Attributes List) Context defines variables and data sources that can be used during rule execution. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--context))
 - `deny` (Attributes) Deny defines conditions used to pass or fail a validation rule. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--deny))
-- `element_scope` (Boolean) ElementScope specifies whether to use the current list element as the scope for validation. Defaults to 'true' if not specified. When set to 'false', 'request.object' is used as the validation scope within the foreach block to allow referencing other elements in the subtree.
+- `element_scope` (Boolean) ElementScope specifies whether to use the current list element as the scope for validation. Defaults to 'true' if not specified.When set to 'false', 'request.object' is used as the validation scope within the foreachblock to allow referencing other elements in the subtree.
 - `foreach` (Map of String) Foreach declares a nested foreach iterator
-- `list` (String) List specifies a JMESPath expression that results in one or more elements to which the validation logic is applied.
+- `list` (String) List specifies a JMESPath expression that results in one or more elementsto which the validation logic is applied.
 - `pattern` (Map of String) Pattern specifies an overlay-style pattern used to check resources.
-- `preconditions` (Attributes) AnyAllConditions are used to determine if a policy rule should be applied by evaluating a set of conditions. The declaration can contain nested 'any' or 'all' statements. See: https://kyverno.io/docs/writing-policies/preconditions/ (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--preconditions))
+- `preconditions` (Attributes) AnyAllConditions are used to determine if a policy rule should be applied by evaluating aset of conditions. The declaration can contain nested 'any' or 'all' statements.See: https://kyverno.io/docs/writing-policies/preconditions/ (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--preconditions))
 
 <a id="nestedatt--spec--rules--validate--pod_security--context"></a>
 ### Nested Schema for `spec.rules.validate.pod_security.context`
 
 Optional:
 
-- `api_call` (Attributes) APICall is an HTTP request to the Kubernetes API server, or other JSON web service. The data returned is stored in the context with the name for the context entry. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--context--api_call))
+- `api_call` (Attributes) APICall is an HTTP request to the Kubernetes API server, or other JSON web service.The data returned is stored in the context with the name for the context entry. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--context--api_call))
 - `config_map` (Attributes) ConfigMap is the ConfigMap reference. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--context--config_map))
-- `image_registry` (Attributes) ImageRegistry defines requests to an OCI/Docker V2 registry to fetch image details. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--context--image_registry))
+- `global_reference` (Attributes) GlobalContextEntryReference is a reference to a cached global context entry. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--context--global_reference))
+- `image_registry` (Attributes) ImageRegistry defines requests to an OCI/Docker V2 registry to fetch imagedetails. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--context--image_registry))
 - `name` (String) Name is the variable name.
 - `variable` (Attributes) Variable defines an arbitrary JMESPath context variable that can be defined inline. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--context--variable))
 
@@ -1048,11 +1081,11 @@ Optional:
 
 Optional:
 
-- `data` (Attributes List) Data specifies the POST data sent to the server. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--context--variable--data))
-- `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used to transform the JSON response returned from the server. For example a JMESPath of 'items | length(@)' applied to the API server response for the URLPath '/apis/apps/v1/deployments' will return the total count of deployments across all namespaces.
-- `method` (String) Method is the HTTP request type (GET or POST).
-- `service` (Attributes) Service is an API call to a JSON web service (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--context--variable--service))
-- `url_path` (String) URLPath is the URL path to be used in the HTTP GET or POST request to the Kubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments'). The format required is the same format used by the 'kubectl get --raw' command. See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-calls for details.
+- `data` (Attributes List) The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--context--variable--data))
+- `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.
+- `method` (String) Method is the HTTP request type (GET or POST). Defaults to GET.
+- `service` (Attributes) Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--context--variable--service))
+- `url_path` (String) URLPath is the URL path to be used in the HTTP GET or POST request to theKubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments').The format required is the same format used by the 'kubectl get --raw' command.See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-callsfor details.It's mutually exclusive with the Service field.
 
 <a id="nestedatt--spec--rules--validate--pod_security--context--variable--data"></a>
 ### Nested Schema for `spec.rules.validate.pod_security.context.variable.data`
@@ -1068,11 +1101,11 @@ Required:
 
 Required:
 
-- `url` (String) URL is the JSON web service URL. A typical form is 'https://{service}.{namespace}:{port}/{path}'.
+- `url` (String) URL is the JSON web service URL. A typical form is'https://{service}.{namespace}:{port}/{path}'.
 
 Optional:
 
-- `ca_bundle` (String) CABundle is a PEM encoded CA bundle which will be used to validate the server certificate.
+- `ca_bundle` (String) CABundle is a PEM encoded CA bundle which will be used to validatethe server certificate.
 
 
 
@@ -1088,17 +1121,26 @@ Optional:
 - `namespace` (String) Namespace is the ConfigMap namespace.
 
 
+<a id="nestedatt--spec--rules--validate--pod_security--context--global_reference"></a>
+### Nested Schema for `spec.rules.validate.pod_security.context.global_reference`
+
+Optional:
+
+- `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.
+- `name` (String) Name of the global context entry
+
+
 <a id="nestedatt--spec--rules--validate--pod_security--context--image_registry"></a>
 ### Nested Schema for `spec.rules.validate.pod_security.context.image_registry`
 
 Required:
 
-- `reference` (String) Reference is image reference to a container image in the registry. Example: ghcr.io/kyverno/kyverno:latest
+- `reference` (String) Reference is image reference to a container image in the registry.Example: ghcr.io/kyverno/kyverno:latest
 
 Optional:
 
 - `image_registry_credentials` (Attributes) ImageRegistryCredentials provides credentials that will be used for authentication with registry (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--context--variable--image_registry_credentials))
-- `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used to transform the ImageData struct returned as a result of processing the image reference.
+- `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the ImageData struct returned as a result of processingthe image reference.
 
 <a id="nestedatt--spec--rules--validate--pod_security--context--variable--image_registry_credentials"></a>
 ### Nested Schema for `spec.rules.validate.pod_security.context.variable.image_registry_credentials`
@@ -1106,8 +1148,8 @@ Optional:
 Optional:
 
 - `allow_insecure_registry` (Boolean) AllowInsecureRegistry allows insecure access to a registry.
-- `providers` (List of String) Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.
-- `secrets` (List of String) Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.
+- `providers` (List of String) Providers specifies a list of OCI Registry names, whose authentication providers are provided.It can be of one of these values: default,google,azure,amazon,github.
+- `secrets` (List of String) Secrets specifies a list of secrets that are provided for credentials.Secrets must live in the Kyverno namespace.
 
 
 
@@ -1116,8 +1158,8 @@ Optional:
 
 Optional:
 
-- `default` (Map of String) Default is an optional arbitrary JSON object that the variable may take if the JMESPath expression evaluates to nil
-- `jmes_path` (String) JMESPath is an optional JMESPath Expression that can be used to transform the variable.
+- `default` (Map of String) Default is an optional arbitrary JSON object that the variable may take if the JMESPathexpression evaluates to nil
+- `jmes_path` (String) JMESPath is an optional JMESPath Expression that can be used totransform the variable.
 - `value` (Map of String) Value is any arbitrary JSON object representable in YAML or JSON form.
 
 
@@ -1127,7 +1169,7 @@ Optional:
 
 Optional:
 
-- `conditions` (Map of String) Multiple conditions can be declared under an 'any' or 'all' statement. A direct list of conditions (without 'any' or 'all' statements) is also supported for backwards compatibility but will be deprecated in the next major release. See: https://kyverno.io/docs/writing-policies/validate/#deny-rules
+- `conditions` (Map of String) Multiple conditions can be declared under an 'any' or 'all' statement. A direct listof conditions (without 'any' or 'all' statements) is also supported for backwards compatibilitybut will be deprecated in the next major release.See: https://kyverno.io/docs/writing-policies/validate/#deny-rules
 
 
 <a id="nestedatt--spec--rules--validate--pod_security--preconditions"></a>
@@ -1135,8 +1177,8 @@ Optional:
 
 Optional:
 
-- `all` (Attributes List) AllConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, all of the conditions need to pass (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--preconditions--all))
-- `any` (Attributes List) AnyConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, at least one of the conditions need to pass (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--preconditions--any))
+- `all` (Attributes List) AllConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, all of the conditions need to pass (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--preconditions--all))
+- `any` (Attributes List) AnyConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, at least one of the conditions need to pass (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--preconditions--any))
 
 <a id="nestedatt--spec--rules--validate--pod_security--preconditions--all"></a>
 ### Nested Schema for `spec.rules.validate.pod_security.preconditions.all`
@@ -1145,8 +1187,8 @@ Optional:
 
 - `key` (Map of String) Key is the context entry (using JMESPath) for conditional rule evaluation.
 - `message` (String) Message is an optional display message
-- `operator` (String) Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan
-- `value` (Map of String) Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.
+- `operator` (String) Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan
+- `value` (Map of String) Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.
 
 
 <a id="nestedatt--spec--rules--validate--pod_security--preconditions--any"></a>
@@ -1156,8 +1198,8 @@ Optional:
 
 - `key` (Map of String) Key is the context entry (using JMESPath) for conditional rule evaluation.
 - `message` (String) Message is an optional display message
-- `operator` (String) Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan
-- `value` (Map of String) Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.
+- `operator` (String) Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan
+- `value` (Map of String) Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.
 
 
 
@@ -1171,27 +1213,27 @@ Optional:
 - `attestors` (Attributes List) Attestors specified the required attestors (i.e. authorities) (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors))
 - `dry_run` (Attributes) DryRun configuration (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--dry_run))
 - `ignore_fields` (Attributes List) Fields which will be ignored while comparing manifests. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--ignore_fields))
-- `repository` (String) Repository is an optional alternate OCI repository to use for resource bundle reference. The repository can be overridden per Attestor or Attestation.
+- `repository` (String) Repository is an optional alternate OCI repository to use for resource bundle reference.The repository can be overridden per Attestor or Attestation.
 
 <a id="nestedatt--spec--rules--validate--pod_security--attestors"></a>
 ### Nested Schema for `spec.rules.validate.pod_security.attestors`
 
 Optional:
 
-- `count` (Number) Count specifies the required number of entries that must match. If the count is null, all entries must match (a logical AND). If the count is 1, at least one entry must match (a logical OR). If the count contains a value N, then N must be less than or equal to the size of entries, and at least N entries must match.
-- `entries` (Attributes List) Entries contains the available attestors. An attestor can be a static key, attributes for keyless verification, or a nested attestor declaration. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries))
+- `count` (Number) Count specifies the required number of entries that must match. If the count is null, all entries must match(a logical AND). If the count is 1, at least one entry must match (a logical OR). If the count contains avalue N, then N must be less than or equal to the size of entries, and at least N entries must match.
+- `entries` (Attributes List) Entries contains the available attestors. An attestor can be a static key,attributes for keyless verification, or a nested attestor declaration. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries))
 
 <a id="nestedatt--spec--rules--validate--pod_security--attestors--entries"></a>
 ### Nested Schema for `spec.rules.validate.pod_security.attestors.entries`
 
 Optional:
 
-- `annotations` (Map of String) Annotations are used for image verification. Every specified key-value pair must exist and match in the verified payload. The payload may contain other key-value pairs.
+- `annotations` (Map of String) Annotations are used for image verification.Every specified key-value pair must exist and match in the verified payload.The payload may contain other key-value pairs.
 - `attestor` (Map of String) Attestor is a nested set of Attestor used to specify a more complex set of match authorities.
 - `certificates` (Attributes) Certificates specifies one or more certificates. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--certificates))
-- `keyless` (Attributes) Keyless is a set of attribute used to verify a Sigstore keyless attestor. See https://github.com/sigstore/cosign/blob/main/KEYLESS.md. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--keyless))
+- `keyless` (Attributes) Keyless is a set of attribute used to verify a Sigstore keyless attestor.See https://github.com/sigstore/cosign/blob/main/KEYLESS.md. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--keyless))
 - `keys` (Attributes) Keys specifies one or more public keys. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--keys))
-- `repository` (String) Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule. If specified Repository will override other OCI image repository locations for this Attestor.
+- `repository` (String) Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule.If specified Repository will override other OCI image repository locations for this Attestor.
 
 <a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--certificates"></a>
 ### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.certificates`
@@ -1200,29 +1242,27 @@ Optional:
 
 - `cert` (String) Cert is an optional PEM-encoded public certificate.
 - `cert_chain` (String) CertChain is an optional PEM encoded set of certificates used to verify.
-- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--ctlog))
-- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--rekor))
+- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--ctlog))
+- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--rekor))
 
 <a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--ctlog"></a>
 ### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.repository.ctlog`
 
 Optional:
 
-- `ignore_sct` (Boolean) IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.
+- `ignore_sct` (Boolean) IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificatetimestamp. Default is false. Set to true if this was opted out during signing.
 - `pubkey` (String) PubKey, if set, is used to validate SCTs against a custom source.
+- `tsa_cert_chain` (String) TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.
 
 
 <a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--rekor"></a>
 ### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.repository.rekor`
 
-Required:
-
-- `url` (String) URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.
-
 Optional:
 
 - `ignore_tlog` (Boolean) IgnoreTlog skips transparency log verification.
-- `pubkey` (String) RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.
+- `pubkey` (String) RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor.If set, this will be used to validate transparency log signatures from a custom Rekor.
+- `url` (String) URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.
 
 
 
@@ -1232,10 +1272,10 @@ Optional:
 Optional:
 
 - `additional_extensions` (Map of String) AdditionalExtensions are certificate-extensions used for keyless signing.
-- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--ctlog))
+- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--ctlog))
 - `issuer` (String) Issuer is the certificate issuer used for keyless signing.
-- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--rekor))
-- `roots` (String) Roots is an optional set of PEM encoded trusted root certificates. If not provided, the system roots are used.
+- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--rekor))
+- `roots` (String) Roots is an optional set of PEM encoded trusted root certificates.If not provided, the system roots are used.
 - `subject` (String) Subject is the verified identity used for keyless signing, for example the email address.
 
 <a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--ctlog"></a>
@@ -1243,21 +1283,19 @@ Optional:
 
 Optional:
 
-- `ignore_sct` (Boolean) IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.
+- `ignore_sct` (Boolean) IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificatetimestamp. Default is false. Set to true if this was opted out during signing.
 - `pubkey` (String) PubKey, if set, is used to validate SCTs against a custom source.
+- `tsa_cert_chain` (String) TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.
 
 
 <a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--rekor"></a>
 ### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.repository.rekor`
 
-Required:
-
-- `url` (String) URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.
-
 Optional:
 
 - `ignore_tlog` (Boolean) IgnoreTlog skips transparency log verification.
-- `pubkey` (String) RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.
+- `pubkey` (String) RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor.If set, this will be used to validate transparency log signatures from a custom Rekor.
+- `url` (String) URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.
 
 
 
@@ -1266,10 +1304,10 @@ Optional:
 
 Optional:
 
-- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--ctlog))
-- `kms` (String) KMS provides the URI to the public key stored in a Key Management System. See: https://github.com/sigstore/cosign/blob/main/KMS.md
-- `public_keys` (String) Keys is a set of X.509 public keys used to verify image signatures. The keys can be directly specified or can be a variable reference to a key specified in a ConfigMap (see https://kyverno.io/docs/writing-policies/variables/), or reference a standard Kubernetes Secret elsewhere in the cluster by specifying it in the format 'k8s://<namespace>/<secret_name>'. The named Secret must specify a key 'cosign.pub' containing the public key used for verification, (see https://github.com/sigstore/cosign/blob/main/KMS.md#kubernetes-secret). When multiple keys are specified each key is processed as a separate staticKey entry (.attestors[*].entries.keys) within the set of attestors and the count is applied across the keys.
-- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--rekor))
+- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--ctlog))
+- `kms` (String) KMS provides the URI to the public key stored in a Key Management System. See:https://github.com/sigstore/cosign/blob/main/KMS.md
+- `public_keys` (String) Keys is a set of X.509 public keys used to verify image signatures. The keys can be directlyspecified or can be a variable reference to a key specified in a ConfigMap (seehttps://kyverno.io/docs/writing-policies/variables/), or reference a standard Kubernetes Secretelsewhere in the cluster by specifying it in the format 'k8s://<namespace>/<secret_name>'.The named Secret must specify a key 'cosign.pub' containing the public key used forverification, (see https://github.com/sigstore/cosign/blob/main/KMS.md#kubernetes-secret).When multiple keys are specified each key is processed as a separate staticKey entry(.attestors[*].entries.keys) within the set of attestors and the count is applied across the keys.
+- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--rekor))
 - `secret` (Attributes) Reference to a Secret resource that contains a public key (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--secret))
 - `signature_algorithm` (String) Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.
 
@@ -1278,21 +1316,19 @@ Optional:
 
 Optional:
 
-- `ignore_sct` (Boolean) IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.
+- `ignore_sct` (Boolean) IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificatetimestamp. Default is false. Set to true if this was opted out during signing.
 - `pubkey` (String) PubKey, if set, is used to validate SCTs against a custom source.
+- `tsa_cert_chain` (String) TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.
 
 
 <a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--rekor"></a>
 ### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.repository.rekor`
 
-Required:
-
-- `url` (String) URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.
-
 Optional:
 
 - `ignore_tlog` (Boolean) IgnoreTlog skips transparency log verification.
-- `pubkey` (String) RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.
+- `pubkey` (String) RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor.If set, this will be used to validate transparency log signatures from a custom Rekor.
+- `url` (String) URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.
 
 
 <a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--secret"></a>
@@ -1344,20 +1380,20 @@ Optional:
 Optional:
 
 - `exclude` (Attributes List) Exclude specifies the Pod Security Standard controls to be excluded. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--exclude))
-- `level` (String) Level defines the Pod Security Standard level to be applied to workloads. Allowed values are privileged, baseline, and restricted.
-- `version` (String) Version defines the Pod Security Standard versions that Kubernetes supports. Allowed values are v1.19, v1.20, v1.21, v1.22, v1.23, v1.24, v1.25, v1.26, latest. Defaults to latest.
+- `level` (String) Level defines the Pod Security Standard level to be applied to workloads.Allowed values are privileged, baseline, and restricted.
+- `version` (String) Version defines the Pod Security Standard versions that Kubernetes supports.Allowed values are v1.19, v1.20, v1.21, v1.22, v1.23, v1.24, v1.25, v1.26, v1.27, v1.28, v1.29, latest. Defaults to latest.
 
 <a id="nestedatt--spec--rules--validate--pod_security--exclude"></a>
 ### Nested Schema for `spec.rules.validate.pod_security.exclude`
 
 Required:
 
-- `control_name` (String) ControlName specifies the name of the Pod Security Standard control. See: https://kubernetes.io/docs/concepts/security/pod-security-standards/
+- `control_name` (String) ControlName specifies the name of the Pod Security Standard control.See: https://kubernetes.io/docs/concepts/security/pod-security-standards/
 
 Optional:
 
-- `images` (List of String) Images selects matching containers and applies the container level PSS. Each image is the image name consisting of the registry address, repository, image, and tag. Empty list matches no containers, PSS checks are applied at the pod level only. Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.
-- `restricted_field` (String) RestrictedField selects the field for the given Pod Security Standard control. When not set, all restricted fields for the control are selected.
+- `images` (List of String) Images selects matching containers and applies the container level PSS.Each image is the image name consisting of the registry address, repository, image, and tag.Empty list matches no containers, PSS checks are applied at the pod level only.Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.
+- `restricted_field` (String) RestrictedField selects the field for the given Pod Security Standard control.When not set, all restricted fields for the control are selected.
 - `values` (List of String) Values defines the allowed values that can be excluded.
 
 
@@ -1368,15 +1404,15 @@ Optional:
 
 Optional:
 
-- `attestations` (Attributes List) Attestations are optional checks for signed in-toto Statements used to verify the image. See https://github.com/in-toto/attestation. Kyverno fetches signed attestations from the OCI registry and decodes them into a list of Statement declarations. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestations))
+- `attestations` (Attributes List) Attestations are optional checks for signed in-toto Statements used to verify the image.See https://github.com/in-toto/attestation. Kyverno fetches signed attestations from theOCI registry and decodes them into a list of Statement declarations. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestations))
 - `attestors` (Attributes List) Attestors specified the required attestors (i.e. authorities) (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestors))
-- `image_references` (List of String) ImageReferences is a list of matching image reference patterns. At least one pattern in the list must match the image for the rule to apply. Each image reference consists of a registry address (defaults to docker.io), repository, image, and tag (defaults to latest). Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.
+- `image_references` (List of String) ImageReferences is a list of matching image reference patterns. At least one pattern in thelist must match the image for the rule to apply. Each image reference consists of a registryaddress (defaults to docker.io), repository, image, and tag (defaults to latest).Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.
 - `image_registry_credentials` (Attributes) ImageRegistryCredentials provides credentials that will be used for authentication with registry (see [below for nested schema](#nestedatt--spec--rules--verify_images--image_registry_credentials))
-- `mutate_digest` (Boolean) MutateDigest enables replacement of image tags with digests. Defaults to true.
-- `repository` (String) Repository is an optional alternate OCI repository to use for image signatures and attestations that match this rule. If specified Repository will override the default OCI image repository configured for the installation. The repository can also be overridden per Attestor or Attestation.
+- `mutate_digest` (Boolean) MutateDigest enables replacement of image tags with digests.Defaults to true.
+- `repository` (String) Repository is an optional alternate OCI repository to use for image signatures and attestations that match this rule.If specified Repository will override the default OCI image repository configured for the installation.The repository can also be overridden per Attestor or Attestation.
 - `required` (Boolean) Required validates that images are verified i.e. have matched passed a signature or attestation check.
-- `skip_image_references` (List of String) SkipImageReferences is a list of matching image reference patterns that should be skipped. At least one pattern in the list must match the image for the rule to be skipped. Each image reference consists of a registry address (defaults to docker.io), repository, image, and tag (defaults to latest). Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.
-- `type` (String) Type specifies the method of signature validation. The allowed options are Cosign and Notary. By default Cosign is used if a type is not specified.
+- `skip_image_references` (List of String) SkipImageReferences is a list of matching image reference patterns that should be skipped.At least one pattern in the list must match the image for the rule to be skipped. Each image referenceconsists of a registry address (defaults to docker.io), repository, image, and tag (defaults to latest).Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.
+- `type` (String) Type specifies the method of signature validation. The allowed optionsare Cosign and Notary. By default Cosign is used if a type is not specified.
 - `use_cache` (Boolean) UseCache enables caching of image verify responses for this rule
 - `verify_digest` (Boolean) VerifyDigest validates that images have a digest.
 
@@ -1386,7 +1422,7 @@ Optional:
 Optional:
 
 - `attestors` (Attributes List) Attestors specify the required attestors (i.e. authorities). (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors))
-- `conditions` (Attributes List) Conditions are used to verify attributes within a Predicate. If no Conditions are specified the attestation check is satisfied as long there are predicates that match the predicate type. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--conditions))
+- `conditions` (Attributes List) Conditions are used to verify attributes within a Predicate. If no Conditions are specifiedthe attestation check is satisfied as long there are predicates that match the predicate type. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--conditions))
 - `predicate_type` (String) Deprecated in favour of 'Type', to be removed soon
 - `type` (String) Type defines the type of attestation contained within the Statement.
 
@@ -1395,20 +1431,20 @@ Optional:
 
 Optional:
 
-- `count` (Number) Count specifies the required number of entries that must match. If the count is null, all entries must match (a logical AND). If the count is 1, at least one entry must match (a logical OR). If the count contains a value N, then N must be less than or equal to the size of entries, and at least N entries must match.
-- `entries` (Attributes List) Entries contains the available attestors. An attestor can be a static key, attributes for keyless verification, or a nested attestor declaration. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries))
+- `count` (Number) Count specifies the required number of entries that must match. If the count is null, all entries must match(a logical AND). If the count is 1, at least one entry must match (a logical OR). If the count contains avalue N, then N must be less than or equal to the size of entries, and at least N entries must match.
+- `entries` (Attributes List) Entries contains the available attestors. An attestor can be a static key,attributes for keyless verification, or a nested attestor declaration. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries))
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries"></a>
 ### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries`
 
 Optional:
 
-- `annotations` (Map of String) Annotations are used for image verification. Every specified key-value pair must exist and match in the verified payload. The payload may contain other key-value pairs.
+- `annotations` (Map of String) Annotations are used for image verification.Every specified key-value pair must exist and match in the verified payload.The payload may contain other key-value pairs.
 - `attestor` (Map of String) Attestor is a nested set of Attestor used to specify a more complex set of match authorities.
 - `certificates` (Attributes) Certificates specifies one or more certificates. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--certificates))
-- `keyless` (Attributes) Keyless is a set of attribute used to verify a Sigstore keyless attestor. See https://github.com/sigstore/cosign/blob/main/KEYLESS.md. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--keyless))
+- `keyless` (Attributes) Keyless is a set of attribute used to verify a Sigstore keyless attestor.See https://github.com/sigstore/cosign/blob/main/KEYLESS.md. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--keyless))
 - `keys` (Attributes) Keys specifies one or more public keys. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--keys))
-- `repository` (String) Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule. If specified Repository will override other OCI image repository locations for this Attestor.
+- `repository` (String) Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule.If specified Repository will override other OCI image repository locations for this Attestor.
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--certificates"></a>
 ### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.certificates`
@@ -1417,29 +1453,27 @@ Optional:
 
 - `cert` (String) Cert is an optional PEM-encoded public certificate.
 - `cert_chain` (String) CertChain is an optional PEM encoded set of certificates used to verify.
-- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--ctlog))
-- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--rekor))
+- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--ctlog))
+- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--rekor))
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--ctlog"></a>
 ### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.repository.ctlog`
 
 Optional:
 
-- `ignore_sct` (Boolean) IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.
+- `ignore_sct` (Boolean) IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificatetimestamp. Default is false. Set to true if this was opted out during signing.
 - `pubkey` (String) PubKey, if set, is used to validate SCTs against a custom source.
+- `tsa_cert_chain` (String) TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.
 
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--rekor"></a>
 ### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.repository.rekor`
 
-Required:
-
-- `url` (String) URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.
-
 Optional:
 
 - `ignore_tlog` (Boolean) IgnoreTlog skips transparency log verification.
-- `pubkey` (String) RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.
+- `pubkey` (String) RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor.If set, this will be used to validate transparency log signatures from a custom Rekor.
+- `url` (String) URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.
 
 
 
@@ -1449,10 +1483,10 @@ Optional:
 Optional:
 
 - `additional_extensions` (Map of String) AdditionalExtensions are certificate-extensions used for keyless signing.
-- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--ctlog))
+- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--ctlog))
 - `issuer` (String) Issuer is the certificate issuer used for keyless signing.
-- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--rekor))
-- `roots` (String) Roots is an optional set of PEM encoded trusted root certificates. If not provided, the system roots are used.
+- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--rekor))
+- `roots` (String) Roots is an optional set of PEM encoded trusted root certificates.If not provided, the system roots are used.
 - `subject` (String) Subject is the verified identity used for keyless signing, for example the email address.
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--ctlog"></a>
@@ -1460,21 +1494,19 @@ Optional:
 
 Optional:
 
-- `ignore_sct` (Boolean) IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.
+- `ignore_sct` (Boolean) IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificatetimestamp. Default is false. Set to true if this was opted out during signing.
 - `pubkey` (String) PubKey, if set, is used to validate SCTs against a custom source.
+- `tsa_cert_chain` (String) TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.
 
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--rekor"></a>
 ### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.repository.rekor`
 
-Required:
-
-- `url` (String) URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.
-
 Optional:
 
 - `ignore_tlog` (Boolean) IgnoreTlog skips transparency log verification.
-- `pubkey` (String) RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.
+- `pubkey` (String) RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor.If set, this will be used to validate transparency log signatures from a custom Rekor.
+- `url` (String) URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.
 
 
 
@@ -1483,10 +1515,10 @@ Optional:
 
 Optional:
 
-- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--ctlog))
-- `kms` (String) KMS provides the URI to the public key stored in a Key Management System. See: https://github.com/sigstore/cosign/blob/main/KMS.md
-- `public_keys` (String) Keys is a set of X.509 public keys used to verify image signatures. The keys can be directly specified or can be a variable reference to a key specified in a ConfigMap (see https://kyverno.io/docs/writing-policies/variables/), or reference a standard Kubernetes Secret elsewhere in the cluster by specifying it in the format 'k8s://<namespace>/<secret_name>'. The named Secret must specify a key 'cosign.pub' containing the public key used for verification, (see https://github.com/sigstore/cosign/blob/main/KMS.md#kubernetes-secret). When multiple keys are specified each key is processed as a separate staticKey entry (.attestors[*].entries.keys) within the set of attestors and the count is applied across the keys.
-- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--rekor))
+- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--ctlog))
+- `kms` (String) KMS provides the URI to the public key stored in a Key Management System. See:https://github.com/sigstore/cosign/blob/main/KMS.md
+- `public_keys` (String) Keys is a set of X.509 public keys used to verify image signatures. The keys can be directlyspecified or can be a variable reference to a key specified in a ConfigMap (seehttps://kyverno.io/docs/writing-policies/variables/), or reference a standard Kubernetes Secretelsewhere in the cluster by specifying it in the format 'k8s://<namespace>/<secret_name>'.The named Secret must specify a key 'cosign.pub' containing the public key used forverification, (see https://github.com/sigstore/cosign/blob/main/KMS.md#kubernetes-secret).When multiple keys are specified each key is processed as a separate staticKey entry(.attestors[*].entries.keys) within the set of attestors and the count is applied across the keys.
+- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--rekor))
 - `secret` (Attributes) Reference to a Secret resource that contains a public key (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--secret))
 - `signature_algorithm` (String) Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.
 
@@ -1495,21 +1527,19 @@ Optional:
 
 Optional:
 
-- `ignore_sct` (Boolean) IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.
+- `ignore_sct` (Boolean) IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificatetimestamp. Default is false. Set to true if this was opted out during signing.
 - `pubkey` (String) PubKey, if set, is used to validate SCTs against a custom source.
+- `tsa_cert_chain` (String) TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.
 
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--rekor"></a>
 ### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.repository.rekor`
 
-Required:
-
-- `url` (String) URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.
-
 Optional:
 
 - `ignore_tlog` (Boolean) IgnoreTlog skips transparency log verification.
-- `pubkey` (String) RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.
+- `pubkey` (String) RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor.If set, this will be used to validate transparency log signatures from a custom Rekor.
+- `url` (String) URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.
 
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--secret"></a>
@@ -1529,8 +1559,8 @@ Required:
 
 Optional:
 
-- `all` (Attributes List) AllConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, all of the conditions need to pass (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--conditions--all))
-- `any` (Attributes List) AnyConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, at least one of the conditions need to pass (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--conditions--any))
+- `all` (Attributes List) AllConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, all of the conditions need to pass (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--conditions--all))
+- `any` (Attributes List) AnyConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, at least one of the conditions need to pass (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--conditions--any))
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--conditions--all"></a>
 ### Nested Schema for `spec.rules.verify_images.verify_digest.conditions.all`
@@ -1539,8 +1569,8 @@ Optional:
 
 - `key` (Map of String) Key is the context entry (using JMESPath) for conditional rule evaluation.
 - `message` (String) Message is an optional display message
-- `operator` (String) Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan
-- `value` (Map of String) Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.
+- `operator` (String) Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan
+- `value` (Map of String) Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.
 
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--conditions--any"></a>
@@ -1550,8 +1580,8 @@ Optional:
 
 - `key` (Map of String) Key is the context entry (using JMESPath) for conditional rule evaluation.
 - `message` (String) Message is an optional display message
-- `operator` (String) Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan
-- `value` (Map of String) Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.
+- `operator` (String) Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan
+- `value` (Map of String) Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.
 
 
 
@@ -1561,20 +1591,20 @@ Optional:
 
 Optional:
 
-- `count` (Number) Count specifies the required number of entries that must match. If the count is null, all entries must match (a logical AND). If the count is 1, at least one entry must match (a logical OR). If the count contains a value N, then N must be less than or equal to the size of entries, and at least N entries must match.
-- `entries` (Attributes List) Entries contains the available attestors. An attestor can be a static key, attributes for keyless verification, or a nested attestor declaration. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries))
+- `count` (Number) Count specifies the required number of entries that must match. If the count is null, all entries must match(a logical AND). If the count is 1, at least one entry must match (a logical OR). If the count contains avalue N, then N must be less than or equal to the size of entries, and at least N entries must match.
+- `entries` (Attributes List) Entries contains the available attestors. An attestor can be a static key,attributes for keyless verification, or a nested attestor declaration. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries))
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--entries"></a>
 ### Nested Schema for `spec.rules.verify_images.verify_digest.entries`
 
 Optional:
 
-- `annotations` (Map of String) Annotations are used for image verification. Every specified key-value pair must exist and match in the verified payload. The payload may contain other key-value pairs.
+- `annotations` (Map of String) Annotations are used for image verification.Every specified key-value pair must exist and match in the verified payload.The payload may contain other key-value pairs.
 - `attestor` (Map of String) Attestor is a nested set of Attestor used to specify a more complex set of match authorities.
 - `certificates` (Attributes) Certificates specifies one or more certificates. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--certificates))
-- `keyless` (Attributes) Keyless is a set of attribute used to verify a Sigstore keyless attestor. See https://github.com/sigstore/cosign/blob/main/KEYLESS.md. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--keyless))
+- `keyless` (Attributes) Keyless is a set of attribute used to verify a Sigstore keyless attestor.See https://github.com/sigstore/cosign/blob/main/KEYLESS.md. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--keyless))
 - `keys` (Attributes) Keys specifies one or more public keys. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--keys))
-- `repository` (String) Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule. If specified Repository will override other OCI image repository locations for this Attestor.
+- `repository` (String) Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule.If specified Repository will override other OCI image repository locations for this Attestor.
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--entries--certificates"></a>
 ### Nested Schema for `spec.rules.verify_images.verify_digest.entries.certificates`
@@ -1583,29 +1613,27 @@ Optional:
 
 - `cert` (String) Cert is an optional PEM-encoded public certificate.
 - `cert_chain` (String) CertChain is an optional PEM encoded set of certificates used to verify.
-- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--ctlog))
-- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--rekor))
+- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--ctlog))
+- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--rekor))
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--entries--repository--ctlog"></a>
 ### Nested Schema for `spec.rules.verify_images.verify_digest.entries.repository.ctlog`
 
 Optional:
 
-- `ignore_sct` (Boolean) IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.
+- `ignore_sct` (Boolean) IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificatetimestamp. Default is false. Set to true if this was opted out during signing.
 - `pubkey` (String) PubKey, if set, is used to validate SCTs against a custom source.
+- `tsa_cert_chain` (String) TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.
 
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--entries--repository--rekor"></a>
 ### Nested Schema for `spec.rules.verify_images.verify_digest.entries.repository.rekor`
 
-Required:
-
-- `url` (String) URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.
-
 Optional:
 
 - `ignore_tlog` (Boolean) IgnoreTlog skips transparency log verification.
-- `pubkey` (String) RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.
+- `pubkey` (String) RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor.If set, this will be used to validate transparency log signatures from a custom Rekor.
+- `url` (String) URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.
 
 
 
@@ -1615,10 +1643,10 @@ Optional:
 Optional:
 
 - `additional_extensions` (Map of String) AdditionalExtensions are certificate-extensions used for keyless signing.
-- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--ctlog))
+- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--ctlog))
 - `issuer` (String) Issuer is the certificate issuer used for keyless signing.
-- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--rekor))
-- `roots` (String) Roots is an optional set of PEM encoded trusted root certificates. If not provided, the system roots are used.
+- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--rekor))
+- `roots` (String) Roots is an optional set of PEM encoded trusted root certificates.If not provided, the system roots are used.
 - `subject` (String) Subject is the verified identity used for keyless signing, for example the email address.
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--entries--repository--ctlog"></a>
@@ -1626,21 +1654,19 @@ Optional:
 
 Optional:
 
-- `ignore_sct` (Boolean) IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.
+- `ignore_sct` (Boolean) IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificatetimestamp. Default is false. Set to true if this was opted out during signing.
 - `pubkey` (String) PubKey, if set, is used to validate SCTs against a custom source.
+- `tsa_cert_chain` (String) TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.
 
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--entries--repository--rekor"></a>
 ### Nested Schema for `spec.rules.verify_images.verify_digest.entries.repository.rekor`
 
-Required:
-
-- `url` (String) URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.
-
 Optional:
 
 - `ignore_tlog` (Boolean) IgnoreTlog skips transparency log verification.
-- `pubkey` (String) RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.
+- `pubkey` (String) RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor.If set, this will be used to validate transparency log signatures from a custom Rekor.
+- `url` (String) URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.
 
 
 
@@ -1649,10 +1675,10 @@ Optional:
 
 Optional:
 
-- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--ctlog))
-- `kms` (String) KMS provides the URI to the public key stored in a Key Management System. See: https://github.com/sigstore/cosign/blob/main/KMS.md
-- `public_keys` (String) Keys is a set of X.509 public keys used to verify image signatures. The keys can be directly specified or can be a variable reference to a key specified in a ConfigMap (see https://kyverno.io/docs/writing-policies/variables/), or reference a standard Kubernetes Secret elsewhere in the cluster by specifying it in the format 'k8s://<namespace>/<secret_name>'. The named Secret must specify a key 'cosign.pub' containing the public key used for verification, (see https://github.com/sigstore/cosign/blob/main/KMS.md#kubernetes-secret). When multiple keys are specified each key is processed as a separate staticKey entry (.attestors[*].entries.keys) within the set of attestors and the count is applied across the keys.
-- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--rekor))
+- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--ctlog))
+- `kms` (String) KMS provides the URI to the public key stored in a Key Management System. See:https://github.com/sigstore/cosign/blob/main/KMS.md
+- `public_keys` (String) Keys is a set of X.509 public keys used to verify image signatures. The keys can be directlyspecified or can be a variable reference to a key specified in a ConfigMap (seehttps://kyverno.io/docs/writing-policies/variables/), or reference a standard Kubernetes Secretelsewhere in the cluster by specifying it in the format 'k8s://<namespace>/<secret_name>'.The named Secret must specify a key 'cosign.pub' containing the public key used forverification, (see https://github.com/sigstore/cosign/blob/main/KMS.md#kubernetes-secret).When multiple keys are specified each key is processed as a separate staticKey entry(.attestors[*].entries.keys) within the set of attestors and the count is applied across the keys.
+- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--rekor))
 - `secret` (Attributes) Reference to a Secret resource that contains a public key (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--secret))
 - `signature_algorithm` (String) Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.
 
@@ -1661,21 +1687,19 @@ Optional:
 
 Optional:
 
-- `ignore_sct` (Boolean) IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.
+- `ignore_sct` (Boolean) IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificatetimestamp. Default is false. Set to true if this was opted out during signing.
 - `pubkey` (String) PubKey, if set, is used to validate SCTs against a custom source.
+- `tsa_cert_chain` (String) TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.
 
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--entries--repository--rekor"></a>
 ### Nested Schema for `spec.rules.verify_images.verify_digest.entries.repository.rekor`
 
-Required:
-
-- `url` (String) URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.
-
 Optional:
 
 - `ignore_tlog` (Boolean) IgnoreTlog skips transparency log verification.
-- `pubkey` (String) RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.
+- `pubkey` (String) RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor.If set, this will be used to validate transparency log signatures from a custom Rekor.
+- `url` (String) URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.
 
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--entries--repository--secret"></a>
@@ -1696,8 +1720,8 @@ Required:
 Optional:
 
 - `allow_insecure_registry` (Boolean) AllowInsecureRegistry allows insecure access to a registry.
-- `providers` (List of String) Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.
-- `secrets` (List of String) Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.
+- `providers` (List of String) Providers specifies a list of OCI Registry names, whose authentication providers are provided.It can be of one of these values: default,google,azure,amazon,github.
+- `secrets` (List of String) Secrets specifies a list of secrets that are provided for credentials.Secrets must live in the Kyverno namespace.
 
 
 
@@ -1708,7 +1732,7 @@ Optional:
 Optional:
 
 - `action` (String) ValidationFailureAction defines the policy validation failure action
-- `namespace_selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects. (see [below for nested schema](#nestedatt--spec--validation_failure_action_overrides--namespace_selector))
+- `namespace_selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels andmatchExpressions are ANDed. An empty label selector matches all objects. A nulllabel selector matches no objects. (see [below for nested schema](#nestedatt--spec--validation_failure_action_overrides--namespace_selector))
 - `namespaces` (List of String)
 
 <a id="nestedatt--spec--validation_failure_action_overrides--namespace_selector"></a>
@@ -1717,7 +1741,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--validation_failure_action_overrides--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--validation_failure_action_overrides--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.validation_failure_action_overrides.namespace_selector.match_expressions`
@@ -1725,8 +1749,26 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+
+<a id="nestedatt--spec--webhook_configuration"></a>
+### Nested Schema for `spec.webhook_configuration`
+
+Optional:
+
+- `match_conditions` (Attributes List) MatchCondition configures admission webhook matchConditions. (see [below for nested schema](#nestedatt--spec--webhook_configuration--match_conditions))
+
+<a id="nestedatt--spec--webhook_configuration--match_conditions"></a>
+### Nested Schema for `spec.webhook_configuration.match_conditions`
+
+Required:
+
+- `expression` (String) Expression represents the expression which will be evaluated by CEL. Must evaluate to bool.CEL expressions have access to the contents of the AdmissionRequest and Authorizer, organized into CEL variables:'object' - The object from the incoming request. The value is null for DELETE requests.'oldObject' - The existing object. The value is null for CREATE requests.'request' - Attributes of the admission request(/pkg/apis/admission/types.go#AdmissionRequest).'authorizer' - A CEL Authorizer. May be used to perform authorization checks for the principal (user or service account) of the request.  See https://pkg.go.dev/k8s.io/apiserver/pkg/cel/library#Authz'authorizer.requestResource' - A CEL ResourceCheck constructed from the 'authorizer' and configured with the  request resource.Documentation on CEL: https://kubernetes.io/docs/reference/using-api/cel/Required.
+- `name` (String) Name is an identifier for this match condition, used for strategic merging of MatchConditions,as well as providing an identifier for logging purposes. A good name should be descriptive ofthe associated expression.Name must be a qualified name consisting of alphanumeric characters, '-', '_' or '.', andmust start and end with an alphanumeric character (e.g. 'MyName',  or 'my.name',  or'123-abc', regex used for validation is '([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]') with anoptional DNS subdomain prefix and '/' (e.g. 'example.com/MyName')Required.

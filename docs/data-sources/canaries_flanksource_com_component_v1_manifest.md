@@ -87,13 +87,20 @@ Optional:
 
 Optional:
 
-- `class` (String)
-- `external_id` (String)
-- `id` (List of String)
+- `agent` (String) Agent can be the agent id or the name of the agent. Additionally, the special 'self' value can be used to select resources without an agent.
+- `cache` (String) Cache directives 'no-cache' (should not fetch from cache but can be cached) 'no-store' (should not cache) 'max-age=X' (cache for X duration)
+- `class` (String) Deprecated. Use 'fieldSelector (config_class=)'
+- `external_id` (String) Deprecated. Use 'fieldSelector (external_id=)'
+- `field_selector` (String)
+- `id` (String)
+- `label_selector` (String)
 - `name` (String)
 - `namespace` (String)
-- `tags` (Map of String)
-- `type` (String)
+- `statuses` (List of String)
+- `tag_selector` (String)
+- `tags` (Map of String) Deprecated. Use 'labelSelector'
+- `type` (String) Deprecated. Use 'types'
+- `types` (List of String)
 
 
 <a id="nestedatt--spec--id"></a>
@@ -149,6 +156,7 @@ Optional:
 - `name` (String)
 - `namespace` (String)
 - `statuses` (List of String)
+- `tag_selector` (String)
 - `types` (List of String)
 
 

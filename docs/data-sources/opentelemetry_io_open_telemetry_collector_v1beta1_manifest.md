@@ -2301,6 +2301,7 @@ Required:
 Optional:
 
 - `app_protocol` (String)
+- `host_port` (Number)
 - `name` (String)
 - `node_port` (Number)
 - `protocol` (String)

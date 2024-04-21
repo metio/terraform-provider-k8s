@@ -3,12 +3,12 @@
 page_title: "k8s_velero_io_server_status_request_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "velero.io"
 description: |-
-  ServerStatusRequest is a request to access current status information about the Velero server.
+  ServerStatusRequest is a request to access current status information aboutthe Velero server.
 ---
 
 # k8s_velero_io_server_status_request_v1_manifest (Data Source)
 
-ServerStatusRequest is a request to access current status information about the Velero server.
+ServerStatusRequest is a request to access current status information aboutthe Velero server.
 
 ## Example Usage
 

@@ -3,12 +3,12 @@
 page_title: "k8s_velero_io_download_request_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "velero.io"
 description: |-
-  DownloadRequest is a request to download an artifact from backup object storage, such as a backup log file.
+  DownloadRequest is a request to download an artifact from backup object storage, such as a backuplog file.
 ---
 
 # k8s_velero_io_download_request_v1_manifest (Data Source)
 
-DownloadRequest is a request to download an artifact from backup object storage, such as a backup log file.
+DownloadRequest is a request to download an artifact from backup object storage, such as a backuplog file.
 
 ## Example Usage
 

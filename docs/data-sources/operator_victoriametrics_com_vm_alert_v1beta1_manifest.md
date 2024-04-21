@@ -61,6 +61,7 @@ Optional:
 
 - `affinity` (Map of String) Affinity If specified, the pod's scheduling constraints.
 - `config_maps` (List of String) ConfigMaps is a list of ConfigMaps in the same namespace as the VMAlertobject, which shall be mounted into the VMAlert Pods.The ConfigMaps are mounted into /etc/vm/configs/<configmap-name>.
+- `config_reloader_extra_args` (Map of String) ConfigReloaderExtraArgs that will be passed to  VMAuths config-reloader containerfor example resyncInterval: '30s'
 - `containers` (List of Map of String) Containers property allows to inject additions sidecars or to patch existing containers.It can be useful for proxies, backup, etc.
 - `dns_config` (Attributes) Specifies the DNS parameters of a pod.Parameters specified here will be merged to the generated DNSconfiguration based on DNSPolicy. (see [below for nested schema](#nestedatt--spec--dns_config))
 - `dns_policy` (String) DNSPolicy sets DNS policy for the pod
@@ -84,7 +85,6 @@ Optional:
 - `notifiers` (Attributes List) Notifiers prometheus alertmanager endpoints. Required at least one of notifier or notifiers when there are alerting rules. e.g. http://127.0.0.1:9093If specified both notifier and notifiers, notifier will be added as last element to notifiers.only one of notifier options could be chosen: notifierConfigRef or notifiers +  notifier (see [below for nested schema](#nestedatt--spec--notifiers))
 - `pod_disruption_budget` (Attributes) PodDisruptionBudget created by operator (see [below for nested schema](#nestedatt--spec--pod_disruption_budget))
 - `pod_metadata` (Attributes) PodMetadata configures Labels and Annotations which are propagated to the VMAlert pods. (see [below for nested schema](#nestedatt--spec--pod_metadata))
-- `pod_security_policy_name` (String) PodSecurityPolicyName - defines name for podSecurityPolicyin case of empty value, prefixedName will be used.
 - `port` (String) Port for listen
 - `priority_class_name` (String) Priority class assigned to the Pods
 - `readiness_gates` (Attributes List) ReadinessGates defines pod readiness gates (see [below for nested schema](#nestedatt--spec--readiness_gates))
@@ -1032,6 +1032,7 @@ Required:
 Optional:
 
 - `metadata` (Attributes) EmbeddedObjectMetadata defines objectMeta for additional service. (see [below for nested schema](#nestedatt--spec--service_spec--metadata))
+- `use_as_default` (Boolean) UseAsDefault applies changes from given service definition to the main object ServiceChaning from headless service to clusterIP or loadbalancer may break cross-component communication
 
 <a id="nestedatt--spec--service_spec--metadata"></a>
 ### Nested Schema for `spec.service_spec.metadata`

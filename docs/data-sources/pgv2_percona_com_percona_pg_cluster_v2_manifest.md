@@ -66,6 +66,7 @@ Optional:
 - `image` (String) The image name to use for PostgreSQL containers.
 - `image_pull_policy` (String) ImagePullPolicy is used to determine when Kubernetes will attempt to pull (download) container images. More info: https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy
 - `image_pull_secrets` (Attributes List) The image pull secrets used to pull from a private registry Changing this value causes all running pods to restart. https://k8s.io/docs/tasks/configure-pod-container/pull-image-private-registry/ (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
+- `metadata` (Attributes) Metadata contains metadata for custom resources (see [below for nested schema](#nestedatt--spec--metadata))
 - `openshift` (Boolean) Whether or not the PostgreSQL cluster is being deployed to an OpenShift environment. If the field is unset, the operator will automatically detect the environment.
 - `patroni` (Attributes) (see [below for nested schema](#nestedatt--spec--patroni))
 - `pause` (Boolean) Whether or not the PostgreSQL cluster should be stopped. When this is true, workloads are scaled to zero and CronJobs are suspended. Other resources, such as Services and Volumes, remain in place.
@@ -5083,6 +5084,15 @@ Optional:
 Optional:
 
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+<a id="nestedatt--spec--metadata"></a>
+### Nested Schema for `spec.metadata`
+
+Optional:
+
+- `annotations` (Map of String)
+- `labels` (Map of String)
 
 
 <a id="nestedatt--spec--patroni"></a>

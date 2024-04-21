@@ -57,8 +57,11 @@ Optional:
 
 - `devfile_index` (Attributes) Sets the devfile index container spec to be deployed on the Devfile Registry (see [below for nested schema](#nestedatt--spec--devfile_index))
 - `devfile_index_image` (String) Sets the container image containing devfile stacks to be deployed on the Devfile Registry
+- `fullname_override` (String) Overrides the fully qualified app name of the devfile registry
 - `headless` (Boolean) Sets the registry server deployment to run under headless mode
+- `hostname_override` (String) Overrides the entire hostname and domain of the devfile registry ingress
 - `k8s` (Attributes) DevfileRegistrySpecK8sOnly defines the desired state of the kubernetes-only fields of the DevfileRegistry (see [below for nested schema](#nestedatt--spec--k8s))
+- `name_override` (String) Overrides the app name of the devfile registry
 - `oci_registry` (Attributes) Sets the OCI registry container spec to be deployed on the Devfile Registry (see [below for nested schema](#nestedatt--spec--oci_registry))
 - `oci_registry_image` (String) Overrides the container image used for the OCI registry. Recommended to leave blank and default to the image specified by the operator.
 - `registry_viewer` (Attributes) Sets the registry viewer container spec to be deployed on the Devfile Registry (see [below for nested schema](#nestedatt--spec--registry_viewer))

@@ -220,7 +220,6 @@ Optional:
 - `service_annotations` (Map of String) Custom annotations to be created on the Kiali Service resource.
 - `service_type` (String) The Kiali service type. Kubernetes determines what values are valid. Common values are 'NodePort', 'ClusterIP', and 'LoadBalancer'.
 - `tolerations` (List of Map of String) A list of tolerations which declare which node taints Kiali can tolerate. See the Kubernetes documentation on Taints and Tolerations for more details.
-- `verbose_mode` (String) DEPRECATED! Determines which priority levels of log messages Kiali will output. Use 'deployment.logger' settings instead.
 - `version_label` (String) Kiali resources will be assigned a 'version' label when they are deployed.This setting determines what value those 'version' labels will have.When empty, its default will be determined as follows,* If 'deployment.image_version' is 'latest', 'version_label' will be fixed to 'master'.* If 'deployment.image_version' is 'lastrelease', 'version_label' will be fixed to the last Kiali release version string.* If 'deployment.image_version' is anything else, 'version_label' will be that value, too.
 - `view_only_mode` (Boolean) When true, Kiali will be in 'view only' mode, allowing the user to view and retrieve management and monitoring data for the service mesh, but not allow the user to modify the service mesh.
 
@@ -534,6 +533,7 @@ Optional:
 - `provider` (String) The trace provider to get the traces from. Value must be one of: 'jaeger' or 'tempo'.
 - `query_scope` (Map of String) A set of tagKey/tagValue settings applied to every Jaeger query. Used to narrow unified traces to only those scoped to the Kiali instance.
 - `query_timeout` (Number) The amount of time in seconds Kiali will wait for a response from 'jaeger-query' service when fetching traces.
+- `tempo_config` (Attributes) Settings used to configure the access url to the Tempo Datasource in Grafana. (see [below for nested schema](#nestedatt--spec--external_services--tracing--tempo_config))
 - `url` (String) The external URL that will be used to generate links to Jaeger. It must be accessible to clients external to the cluster (e.g: a browser) in order to generate valid links. If the tracing service is deployed with a QUERY_BASE_PATH set, set this URL like https://<hostname>/<QUERY_BASE_PATH>. For example, https://tracing-service:8080/jaeger
 - `use_grpc` (Boolean) Set to true in order to enable GRPC connections between Kiali and Jaeger which will speed up the queries. In some setups you might not be able to use GRPC (e.g. if Jaeger is behind some reverse proxy that doesn't support it). If not specified, this will defalt to 'true'.
 - `whitelist_istio_system` (List of String) Kiali will get the traces of these services found in the Istio control plane namespace.
@@ -550,6 +550,15 @@ Optional:
 - `type` (String) The type of authentication to use when contacting the server. Use 'bearer' to send the token to the Tracing server. Use 'basic' to connect with username and password credentials. Use 'none' to not use any authentication (this is the default).
 - `use_kiali_token` (Boolean) When true and if 'auth.type' is 'bearer', Kiali Service Account token will be used for the API calls to the Tracing server (in this case, 'auth.token' config is ignored).
 - `username` (String) Username to be used when making requests to the Tracing server with 'basic' authentication.
+
+
+<a id="nestedatt--spec--external_services--tracing--tempo_config"></a>
+### Nested Schema for `spec.external_services.tracing.tempo_config`
+
+Optional:
+
+- `datasource_uid` (String) The unique identifier (uid) of the Tempo datasource in Grafana.
+- `org_id` (String) The Id of the organization that the dashboard is in. Default to 1 (the first and default organization).
 
 
 

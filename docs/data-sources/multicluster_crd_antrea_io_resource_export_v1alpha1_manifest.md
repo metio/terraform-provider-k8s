@@ -100,27 +100,27 @@ Optional:
 
 Required:
 
-- `priority` (Number) Priority specfies the order of the ClusterNetworkPolicy relative to other AntreaClusterNetworkPolicies.
+- `priority` (Number) Priority specfies the order of the ClusterNetworkPolicy relative toother AntreaClusterNetworkPolicies.
 
 Optional:
 
-- `applied_to` (Attributes List) Select workloads on which the rules will be applied to. Cannot be set in conjunction with AppliedTo in each rule. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--applied_to))
-- `egress` (Attributes List) Set of egress rules evaluated based on the order in which they are set. Currently Egress rule supports setting the 'To' field but not the 'From' field within a Rule. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress))
-- `ingress` (Attributes List) Set of ingress rules evaluated based on the order in which they are set. Currently Ingress rule supports setting the 'From' field but not the 'To' field within a Rule. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress))
-- `tier` (String) Tier specifies the tier to which this ClusterNetworkPolicy belongs to. The ClusterNetworkPolicy order will be determined based on the combination of the Tier's Priority and the ClusterNetworkPolicy's own Priority. If not specified, this policy will be created in the Application Tier right above the K8s NetworkPolicy which resides at the bottom.
+- `applied_to` (Attributes List) Select workloads on which the rules will be applied to. Cannot be set inconjunction with AppliedTo in each rule. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--applied_to))
+- `egress` (Attributes List) Set of egress rules evaluated based on the order in which they are set.Currently Egress rule supports setting the 'To' field but not the 'From'field within a Rule. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress))
+- `ingress` (Attributes List) Set of ingress rules evaluated based on the order in which they are set.Currently Ingress rule supports setting the 'From' field but not the 'To'field within a Rule. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress))
+- `tier` (String) Tier specifies the tier to which this ClusterNetworkPolicy belongs to.The ClusterNetworkPolicy order will be determined based on thecombination of the Tier's Priority and the ClusterNetworkPolicy's ownPriority. If not specified, this policy will be created in the ApplicationTier right above the K8s NetworkPolicy which resides at the bottom.
 
 <a id="nestedatt--spec--cluster_network_policy--applied_to"></a>
 ### Nested Schema for `spec.cluster_network_policy.applied_to`
 
 Optional:
 
-- `external_entity_selector` (Attributes) Select ExternalEntities from NetworkPolicy's Namespace as workloads in AppliedTo fields. If set with NamespaceSelector, ExternalEntities are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--applied_to--external_entity_selector))
-- `group` (String) Group is the name of the ClusterGroup which can be set as an AppliedTo in place of a stand-alone selector. A Group cannot be set with any other selector.
-- `namespace_selector` (Attributes) Select all Pods from Namespaces matched by this selector, as workloads in AppliedTo fields. If set with PodSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. Cannot be set with Namespaces. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--applied_to--namespace_selector))
-- `node_selector` (Attributes) Select Nodes in cluster as workloads in AppliedTo fields. Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--applied_to--node_selector))
-- `pod_selector` (Attributes) Select Pods from NetworkPolicy's Namespace as workloads in AppliedTo fields. If set with NamespaceSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--applied_to--pod_selector))
-- `service` (Attributes) Select a certain Service which matches the NamespacedName. A Service can only be set in either policy level AppliedTo field in a policy that only has ingress rules or rule level AppliedTo field in an ingress rule. Only a NodePort Service can be referred by this field. Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--applied_to--service))
-- `service_account` (Attributes) Select all Pods with the ServiceAccount matched by this field, as workloads in AppliedTo fields. Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--applied_to--service_account))
+- `external_entity_selector` (Attributes) Select ExternalEntities from NetworkPolicy's Namespace as workloadsin AppliedTo fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--applied_to--external_entity_selector))
+- `group` (String) Group is the name of the ClusterGroup which can be set as anAppliedTo in place of a stand-alone selector. A Group cannotbe set with any other selector.
+- `namespace_selector` (Attributes) Select all Pods from Namespaces matched by this selector, asworkloads in AppliedTo fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--applied_to--namespace_selector))
+- `node_selector` (Attributes) Select Nodes in cluster as workloads in AppliedTo fields.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--applied_to--node_selector))
+- `pod_selector` (Attributes) Select Pods from NetworkPolicy's Namespace as workloads inAppliedTo fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--applied_to--pod_selector))
+- `service` (Attributes) Select a certain Service which matches the NamespacedName.A Service can only be set in either policy level AppliedTo field in a policythat only has ingress rules or rule level AppliedTo field in an ingress rule.Only a NodePort Service can be referred by this field.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--applied_to--service))
+- `service_account` (Attributes) Select all Pods with the ServiceAccount matched by this field, asworkloads in AppliedTo fields.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--applied_to--service_account))
 
 <a id="nestedatt--spec--cluster_network_policy--applied_to--external_entity_selector"></a>
 ### Nested Schema for `spec.cluster_network_policy.applied_to.external_entity_selector`
@@ -128,7 +128,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--applied_to--service_account--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--cluster_network_policy--applied_to--service_account--match_expressions"></a>
 ### Nested Schema for `spec.cluster_network_policy.applied_to.service_account.match_expressions`
@@ -136,11 +136,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -150,7 +150,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--applied_to--service_account--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--cluster_network_policy--applied_to--service_account--match_expressions"></a>
 ### Nested Schema for `spec.cluster_network_policy.applied_to.service_account.match_expressions`
@@ -158,11 +158,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -172,7 +172,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--applied_to--service_account--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--cluster_network_policy--applied_to--service_account--match_expressions"></a>
 ### Nested Schema for `spec.cluster_network_policy.applied_to.service_account.match_expressions`
@@ -180,11 +180,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -194,7 +194,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--applied_to--service_account--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--cluster_network_policy--applied_to--service_account--match_expressions"></a>
 ### Nested Schema for `spec.cluster_network_policy.applied_to.service_account.match_expressions`
@@ -202,11 +202,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -238,29 +238,29 @@ Required:
 
 Optional:
 
-- `applied_to` (Attributes List) Select workloads on which this rule will be applied to. Cannot be set in conjunction with NetworkPolicySpec/ClusterNetworkPolicySpec.AppliedTo. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--applied_to))
-- `enable_logging` (Boolean) EnableLogging is used to indicate if agent should generate logs when rules are matched. Should be default to false.
-- `from` (Attributes List) Rule is matched if traffic originates from workloads selected by this field. If this field is empty, this rule matches all sources. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--from))
-- `l7_protocols` (Attributes List) Set of layer 7 protocols matched by the rule. If this field is set, action can only be Allow. When this field is used in a rule, any traffic matching the other layer 3/4 criteria of the rule (typically the 5-tuple) will be forwarded to an application-aware engine for protocol detection and rule enforcement, and the traffic will be allowed if the layer 7 criteria is also matched, otherwise it will be dropped. Therefore, any rules after a layer 7 rule will not be enforced for the traffic. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--l7_protocols))
+- `applied_to` (Attributes List) Select workloads on which this rule will be applied to. Cannot be set inconjunction with NetworkPolicySpec/ClusterNetworkPolicySpec.AppliedTo. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--applied_to))
+- `enable_logging` (Boolean) EnableLogging is used to indicate if agent should generate logswhen rules are matched. Should be default to false.
+- `from` (Attributes List) Rule is matched if traffic originates from workloads selected bythis field. If this field is empty, this rule matches all sources. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--from))
+- `l7_protocols` (Attributes List) Set of layer 7 protocols matched by the rule. If this field is set, action can only be Allow.When this field is used in a rule, any traffic matching the other layer 3/4 criteria of the rule (typically the5-tuple) will be forwarded to an application-aware engine for protocol detection and rule enforcement, and thetraffic will be allowed if the layer 7 criteria is also matched, otherwise it will be dropped. Therefore, anyrules after a layer 7 rule will not be enforced for the traffic. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--l7_protocols))
 - `log_label` (String) LogLabel is a user-defined arbitrary string which will be printed in the NetworkPolicy logs.
-- `name` (String) Name describes the intention of this rule. Name should be unique within the policy.
-- `ports` (Attributes List) Set of ports and protocols matched by the rule. If this field and Protocols are unset or empty, this rule matches all ports. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--ports))
-- `protocols` (Attributes List) Set of protocols matched by the rule. If this field and Ports are unset or empty, this rule matches all protocols supported. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--protocols))
-- `to` (Attributes List) Rule is matched if traffic is intended for workloads selected by this field. This field can't be used with ToServices. If this field and ToServices are both empty or missing this rule matches all destinations. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to))
-- `to_services` (Attributes List) Rule is matched if traffic is intended for a Service listed in this field. Currently, only ClusterIP types Services are supported in this field. When scope is set to ClusterSet, it matches traffic intended for a multi-cluster Service listed in this field. Service name and Namespace provided should match the original exported Service. This field can only be used when AntreaProxy is enabled. This field can't be used with To or Ports. If this field and To are both empty or missing, this rule matches all destinations. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services))
+- `name` (String) Name describes the intention of this rule.Name should be unique within the policy.
+- `ports` (Attributes List) Set of ports and protocols matched by the rule. If this field and Protocolsare unset or empty, this rule matches all ports. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--ports))
+- `protocols` (Attributes List) Set of protocols matched by the rule. If this field and Ports are unset orempty, this rule matches all protocols supported. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--protocols))
+- `to` (Attributes List) Rule is matched if traffic is intended for workloads selected bythis field. This field can't be used with ToServices. If this fieldand ToServices are both empty or missing this rule matches all destinations. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to))
+- `to_services` (Attributes List) Rule is matched if traffic is intended for a Service listed in this field.Currently, only ClusterIP types Services are supported in this field.When scope is set to ClusterSet, it matches traffic intended for a multi-clusterService listed in this field. Service name and Namespace provided should matchthe original exported Service.This field can only be used when AntreaProxy is enabled. This field can't be usedwith To or Ports. If this field and To are both empty or missing, this rule matchesall destinations. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services))
 
 <a id="nestedatt--spec--cluster_network_policy--egress--applied_to"></a>
 ### Nested Schema for `spec.cluster_network_policy.egress.applied_to`
 
 Optional:
 
-- `external_entity_selector` (Attributes) Select ExternalEntities from NetworkPolicy's Namespace as workloads in AppliedTo fields. If set with NamespaceSelector, ExternalEntities are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--external_entity_selector))
-- `group` (String) Group is the name of the ClusterGroup which can be set as an AppliedTo in place of a stand-alone selector. A Group cannot be set with any other selector.
-- `namespace_selector` (Attributes) Select all Pods from Namespaces matched by this selector, as workloads in AppliedTo fields. If set with PodSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. Cannot be set with Namespaces. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--namespace_selector))
-- `node_selector` (Attributes) Select Nodes in cluster as workloads in AppliedTo fields. Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--node_selector))
-- `pod_selector` (Attributes) Select Pods from NetworkPolicy's Namespace as workloads in AppliedTo fields. If set with NamespaceSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--pod_selector))
-- `service` (Attributes) Select a certain Service which matches the NamespacedName. A Service can only be set in either policy level AppliedTo field in a policy that only has ingress rules or rule level AppliedTo field in an ingress rule. Only a NodePort Service can be referred by this field. Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--service))
-- `service_account` (Attributes) Select all Pods with the ServiceAccount matched by this field, as workloads in AppliedTo fields. Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--service_account))
+- `external_entity_selector` (Attributes) Select ExternalEntities from NetworkPolicy's Namespace as workloadsin AppliedTo fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--external_entity_selector))
+- `group` (String) Group is the name of the ClusterGroup which can be set as anAppliedTo in place of a stand-alone selector. A Group cannotbe set with any other selector.
+- `namespace_selector` (Attributes) Select all Pods from Namespaces matched by this selector, asworkloads in AppliedTo fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--namespace_selector))
+- `node_selector` (Attributes) Select Nodes in cluster as workloads in AppliedTo fields.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--node_selector))
+- `pod_selector` (Attributes) Select Pods from NetworkPolicy's Namespace as workloads inAppliedTo fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--pod_selector))
+- `service` (Attributes) Select a certain Service which matches the NamespacedName.A Service can only be set in either policy level AppliedTo field in a policythat only has ingress rules or rule level AppliedTo field in an ingress rule.Only a NodePort Service can be referred by this field.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--service))
+- `service_account` (Attributes) Select all Pods with the ServiceAccount matched by this field, asworkloads in AppliedTo fields.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--service_account))
 
 <a id="nestedatt--spec--cluster_network_policy--egress--to_services--external_entity_selector"></a>
 ### Nested Schema for `spec.cluster_network_policy.egress.to_services.external_entity_selector`
@@ -268,7 +268,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--external_entity_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--cluster_network_policy--egress--to_services--external_entity_selector--match_expressions"></a>
 ### Nested Schema for `spec.cluster_network_policy.egress.to_services.external_entity_selector.match_expressions`
@@ -276,11 +276,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -290,7 +290,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--cluster_network_policy--egress--to_services--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.cluster_network_policy.egress.to_services.namespace_selector.match_expressions`
@@ -298,11 +298,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -312,7 +312,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--node_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--cluster_network_policy--egress--to_services--node_selector--match_expressions"></a>
 ### Nested Schema for `spec.cluster_network_policy.egress.to_services.node_selector.match_expressions`
@@ -320,11 +320,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -334,7 +334,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--pod_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--cluster_network_policy--egress--to_services--pod_selector--match_expressions"></a>
 ### Nested Schema for `spec.cluster_network_policy.egress.to_services.pod_selector.match_expressions`
@@ -342,11 +342,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -374,16 +374,16 @@ Optional:
 
 Optional:
 
-- `external_entity_selector` (Attributes) Select ExternalEntities from NetworkPolicy's Namespace as workloads in To/From fields. If set with NamespaceSelector, ExternalEntities are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--external_entity_selector))
-- `fqdn` (String) Restrict egress access to the Fully Qualified Domain Names prescribed by name or by wildcard match patterns. This field can only be set for NetworkPolicyPeer of egress rules. Supported formats are: Exact FQDNs such as 'google.com'. Wildcard expressions such as '*wayfair.com'.
-- `group` (String) Group is the name of the ClusterGroup which can be set within an Ingress or Egress rule in place of a stand-alone selector. A Group cannot be set with any other selector.
-- `ip_block` (Attributes) IPBlock describes the IPAddresses/IPBlocks that is matched in to/from. IPBlock cannot be set as part of the AppliedTo field. Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--ip_block))
-- `namespace_selector` (Attributes) Select all Pods from Namespaces matched by this selector, as workloads in To/From fields. If set with PodSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. Cannot be set with Namespaces. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--namespace_selector))
-- `namespaces` (Attributes) Select Pod/ExternalEntity from Namespaces matched by specific criteria. Current supported criteria is match: Self, which selects from the same Namespace of the appliedTo workloads. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. This field can only be set when NetworkPolicyPeer is created for ClusterNetworkPolicy ingress/egress rules. Cannot be set with NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--namespaces))
-- `node_selector` (Attributes) Select certain Nodes which match the label selector. A NodeSelector cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--node_selector))
-- `pod_selector` (Attributes) Select Pods from NetworkPolicy's Namespace as workloads in To/From fields. If set with NamespaceSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--pod_selector))
-- `scope` (String) Define scope of the Pod/NamespaceSelector(s) of this peer. Can only be used in ingress NetworkPolicyPeers. Defaults to 'Cluster'.
-- `service_account` (Attributes) Select all Pods with the ServiceAccount matched by this field, as workloads in To/From fields. Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--service_account))
+- `external_entity_selector` (Attributes) Select ExternalEntities from NetworkPolicy's Namespace as workloadsin To/From fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--external_entity_selector))
+- `fqdn` (String) Restrict egress access to the Fully Qualified Domain Names prescribedby name or by wildcard match patterns. This field can only be set forNetworkPolicyPeer of egress rules.Supported formats are: Exact FQDNs such as 'google.com'. Wildcard expressions such as '*wayfair.com'.
+- `group` (String) Group is the name of the ClusterGroup which can be set withinan Ingress or Egress rule in place of a stand-alone selector.A Group cannot be set with any other selector.
+- `ip_block` (Attributes) IPBlock describes the IPAddresses/IPBlocks that is matched in to/from.IPBlock cannot be set as part of the AppliedTo field.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--ip_block))
+- `namespace_selector` (Attributes) Select all Pods from Namespaces matched by this selector, asworkloads in To/From fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--namespace_selector))
+- `namespaces` (Attributes) Select Pod/ExternalEntity from Namespaces matched by specific criteria.Current supported criteria is match: Self, which selects from the sameNamespace of the appliedTo workloads.Cannot be set with any other selector except PodSelector orExternalEntitySelector. This field can only be set when NetworkPolicyPeeris created for ClusterNetworkPolicy ingress/egress rules.Cannot be set with NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--namespaces))
+- `node_selector` (Attributes) Select certain Nodes which match the label selector.A NodeSelector cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--node_selector))
+- `pod_selector` (Attributes) Select Pods from NetworkPolicy's Namespace as workloads inTo/From fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--pod_selector))
+- `scope` (String) Define scope of the Pod/NamespaceSelector(s) of this peer.Can only be used in ingress NetworkPolicyPeers.Defaults to 'Cluster'.
+- `service_account` (Attributes) Select all Pods with the ServiceAccount matched by this field, asworkloads in To/From fields.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--service_account))
 
 <a id="nestedatt--spec--cluster_network_policy--egress--to_services--external_entity_selector"></a>
 ### Nested Schema for `spec.cluster_network_policy.egress.to_services.external_entity_selector`
@@ -391,7 +391,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--external_entity_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--cluster_network_policy--egress--to_services--external_entity_selector--match_expressions"></a>
 ### Nested Schema for `spec.cluster_network_policy.egress.to_services.external_entity_selector.match_expressions`
@@ -399,11 +399,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -412,7 +412,7 @@ Optional:
 
 Required:
 
-- `cidr` (String) CIDR is a string representing the IP Block Valid examples are '192.168.1.1/24'.
+- `cidr` (String) CIDR is a string representing the IP BlockValid examples are '192.168.1.1/24'.
 
 
 <a id="nestedatt--spec--cluster_network_policy--egress--to_services--namespace_selector"></a>
@@ -421,7 +421,7 @@ Required:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--cluster_network_policy--egress--to_services--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.cluster_network_policy.egress.to_services.namespace_selector.match_expressions`
@@ -429,11 +429,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -442,7 +442,8 @@ Optional:
 
 Optional:
 
-- `match` (String) NamespaceMatchType describes Namespace matching strategy.
+- `match` (String) Selects from the same Namespace of the appliedTo workloads.
+- `same_labels` (List of String) Selects Namespaces that share the same values for the given set of label keyswith the appliedTo Namespace. Namespaces must have all the label keys.
 
 
 <a id="nestedatt--spec--cluster_network_policy--egress--to_services--node_selector"></a>
@@ -451,7 +452,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--node_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--cluster_network_policy--egress--to_services--node_selector--match_expressions"></a>
 ### Nested Schema for `spec.cluster_network_policy.egress.to_services.node_selector.match_expressions`
@@ -459,11 +460,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -473,7 +474,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--pod_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--cluster_network_policy--egress--to_services--pod_selector--match_expressions"></a>
 ### Nested Schema for `spec.cluster_network_policy.egress.to_services.pod_selector.match_expressions`
@@ -481,11 +482,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -504,16 +505,16 @@ Optional:
 
 Optional:
 
-- `http` (Attributes) HTTPProtocol matches HTTP requests with specific host, method, and path. All fields could be used alone or together. If all fields are not provided, it matches all HTTP requests. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--http))
-- `tls` (Attributes) TLSProtocol matches TLS handshake packets with specific SNI. If the field is not provided, this matches all TLS handshake packets. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--tls))
+- `http` (Attributes) HTTPProtocol matches HTTP requests with specific host, method, and path. All fields could be used alone or together.If all fields are not provided, it matches all HTTP requests. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--http))
+- `tls` (Attributes) TLSProtocol matches TLS handshake packets with specific SNI. If the field is not provided, thismatches all TLS handshake packets. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--tls))
 
 <a id="nestedatt--spec--cluster_network_policy--egress--to_services--http"></a>
 ### Nested Schema for `spec.cluster_network_policy.egress.to_services.http`
 
 Optional:
 
-- `host` (String) Host represents the hostname present in the URI or the HTTP Host header to match. It does not contain the port associated with the host.
-- `method` (String) Method represents the HTTP method to match. It could be GET, POST, PUT, HEAD, DELETE, TRACE, OPTIONS, CONNECT and PATCH.
+- `host` (String) Host represents the hostname present in the URI or the HTTP Host header to match.It does not contain the port associated with the host.
+- `method` (String) Method represents the HTTP method to match.It could be GET, POST, PUT, HEAD, DELETE, TRACE, OPTIONS, CONNECT and PATCH.
 - `path` (String) Path represents the URI path to match (Ex. '/index.html', '/admin').
 
 
@@ -531,11 +532,11 @@ Optional:
 
 Optional:
 
-- `end_port` (Number) EndPort defines the end of the port range, inclusive. It can only be specified when a numerical 'port' is specified.
-- `port` (String) The port on the given protocol. This can be either a numerical or named port on a Pod. If this field is not provided, this matches all port names and numbers.
-- `protocol` (String) The protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.
-- `source_end_port` (Number) SourceEndPort defines the end of the source port range, inclusive. It can only be specified when 'sourcePort' is specified.
-- `source_port` (Number) The source port on the given protocol. This can only be a numerical port. If this field is not provided, rule matches all source ports.
+- `end_port` (Number) EndPort defines the end of the port range, inclusive.It can only be specified when a numerical 'port' is specified.
+- `port` (String) The port on the given protocol. This can be either a numericalor named port on a Pod. If this field is not provided, thismatches all port names and numbers.
+- `protocol` (String) The protocol (TCP, UDP, or SCTP) which traffic must match.If not specified, this field defaults to TCP.
+- `source_end_port` (Number) SourceEndPort defines the end of the source port range, inclusive.It can only be specified when 'sourcePort' is specified.
+- `source_port` (Number) The source port on the given protocol. This can only be a numerical port.If this field is not provided, rule matches all source ports.
 
 
 <a id="nestedatt--spec--cluster_network_policy--egress--protocols"></a>
@@ -543,8 +544,8 @@ Optional:
 
 Optional:
 
-- `icmp` (Attributes) ICMPProtocol matches ICMP traffic with specific ICMPType and/or ICMPCode. All fields could be used alone or together. If all fields are not provided, this matches all ICMP traffic. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--icmp))
-- `igmp` (Attributes) IGMPProtocol matches IGMP traffic with IGMPType and GroupAddress. IGMPType must be filled with: IGMPQuery    int32 = 0x11 IGMPReportV1 int32 = 0x12 IGMPReportV2 int32 = 0x16 IGMPReportV3 int32 = 0x22 If groupAddress is empty, all groupAddresses will be matched. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--igmp))
+- `icmp` (Attributes) ICMPProtocol matches ICMP traffic with specific ICMPType and/or ICMPCode. Allfields could be used alone or together. If all fields are not provided, thismatches all ICMP traffic. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--icmp))
+- `igmp` (Attributes) IGMPProtocol matches IGMP traffic with IGMPType and GroupAddress. IGMPType mustbe filled with:IGMPQuery    int32 = 0x11IGMPReportV1 int32 = 0x12IGMPReportV2 int32 = 0x16IGMPReportV3 int32 = 0x22If groupAddress is empty, all groupAddresses will be matched. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--igmp))
 
 <a id="nestedatt--spec--cluster_network_policy--egress--to_services--icmp"></a>
 ### Nested Schema for `spec.cluster_network_policy.egress.to_services.icmp`
@@ -570,16 +571,16 @@ Optional:
 
 Optional:
 
-- `external_entity_selector` (Attributes) Select ExternalEntities from NetworkPolicy's Namespace as workloads in To/From fields. If set with NamespaceSelector, ExternalEntities are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--external_entity_selector))
-- `fqdn` (String) Restrict egress access to the Fully Qualified Domain Names prescribed by name or by wildcard match patterns. This field can only be set for NetworkPolicyPeer of egress rules. Supported formats are: Exact FQDNs such as 'google.com'. Wildcard expressions such as '*wayfair.com'.
-- `group` (String) Group is the name of the ClusterGroup which can be set within an Ingress or Egress rule in place of a stand-alone selector. A Group cannot be set with any other selector.
-- `ip_block` (Attributes) IPBlock describes the IPAddresses/IPBlocks that is matched in to/from. IPBlock cannot be set as part of the AppliedTo field. Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--ip_block))
-- `namespace_selector` (Attributes) Select all Pods from Namespaces matched by this selector, as workloads in To/From fields. If set with PodSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. Cannot be set with Namespaces. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--namespace_selector))
-- `namespaces` (Attributes) Select Pod/ExternalEntity from Namespaces matched by specific criteria. Current supported criteria is match: Self, which selects from the same Namespace of the appliedTo workloads. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. This field can only be set when NetworkPolicyPeer is created for ClusterNetworkPolicy ingress/egress rules. Cannot be set with NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--namespaces))
-- `node_selector` (Attributes) Select certain Nodes which match the label selector. A NodeSelector cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--node_selector))
-- `pod_selector` (Attributes) Select Pods from NetworkPolicy's Namespace as workloads in To/From fields. If set with NamespaceSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--pod_selector))
-- `scope` (String) Define scope of the Pod/NamespaceSelector(s) of this peer. Can only be used in ingress NetworkPolicyPeers. Defaults to 'Cluster'.
-- `service_account` (Attributes) Select all Pods with the ServiceAccount matched by this field, as workloads in To/From fields. Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--service_account))
+- `external_entity_selector` (Attributes) Select ExternalEntities from NetworkPolicy's Namespace as workloadsin To/From fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--external_entity_selector))
+- `fqdn` (String) Restrict egress access to the Fully Qualified Domain Names prescribedby name or by wildcard match patterns. This field can only be set forNetworkPolicyPeer of egress rules.Supported formats are: Exact FQDNs such as 'google.com'. Wildcard expressions such as '*wayfair.com'.
+- `group` (String) Group is the name of the ClusterGroup which can be set withinan Ingress or Egress rule in place of a stand-alone selector.A Group cannot be set with any other selector.
+- `ip_block` (Attributes) IPBlock describes the IPAddresses/IPBlocks that is matched in to/from.IPBlock cannot be set as part of the AppliedTo field.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--ip_block))
+- `namespace_selector` (Attributes) Select all Pods from Namespaces matched by this selector, asworkloads in To/From fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--namespace_selector))
+- `namespaces` (Attributes) Select Pod/ExternalEntity from Namespaces matched by specific criteria.Current supported criteria is match: Self, which selects from the sameNamespace of the appliedTo workloads.Cannot be set with any other selector except PodSelector orExternalEntitySelector. This field can only be set when NetworkPolicyPeeris created for ClusterNetworkPolicy ingress/egress rules.Cannot be set with NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--namespaces))
+- `node_selector` (Attributes) Select certain Nodes which match the label selector.A NodeSelector cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--node_selector))
+- `pod_selector` (Attributes) Select Pods from NetworkPolicy's Namespace as workloads inTo/From fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--pod_selector))
+- `scope` (String) Define scope of the Pod/NamespaceSelector(s) of this peer.Can only be used in ingress NetworkPolicyPeers.Defaults to 'Cluster'.
+- `service_account` (Attributes) Select all Pods with the ServiceAccount matched by this field, asworkloads in To/From fields.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--service_account))
 
 <a id="nestedatt--spec--cluster_network_policy--egress--to_services--external_entity_selector"></a>
 ### Nested Schema for `spec.cluster_network_policy.egress.to_services.external_entity_selector`
@@ -587,7 +588,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--external_entity_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--cluster_network_policy--egress--to_services--external_entity_selector--match_expressions"></a>
 ### Nested Schema for `spec.cluster_network_policy.egress.to_services.external_entity_selector.match_expressions`
@@ -595,11 +596,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -608,7 +609,7 @@ Optional:
 
 Required:
 
-- `cidr` (String) CIDR is a string representing the IP Block Valid examples are '192.168.1.1/24'.
+- `cidr` (String) CIDR is a string representing the IP BlockValid examples are '192.168.1.1/24'.
 
 
 <a id="nestedatt--spec--cluster_network_policy--egress--to_services--namespace_selector"></a>
@@ -617,7 +618,7 @@ Required:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--cluster_network_policy--egress--to_services--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.cluster_network_policy.egress.to_services.namespace_selector.match_expressions`
@@ -625,11 +626,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -638,7 +639,8 @@ Optional:
 
 Optional:
 
-- `match` (String) NamespaceMatchType describes Namespace matching strategy.
+- `match` (String) Selects from the same Namespace of the appliedTo workloads.
+- `same_labels` (List of String) Selects Namespaces that share the same values for the given set of label keyswith the appliedTo Namespace. Namespaces must have all the label keys.
 
 
 <a id="nestedatt--spec--cluster_network_policy--egress--to_services--node_selector"></a>
@@ -647,7 +649,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--node_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--cluster_network_policy--egress--to_services--node_selector--match_expressions"></a>
 ### Nested Schema for `spec.cluster_network_policy.egress.to_services.node_selector.match_expressions`
@@ -655,11 +657,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -669,7 +671,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--egress--to_services--pod_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--cluster_network_policy--egress--to_services--pod_selector--match_expressions"></a>
 ### Nested Schema for `spec.cluster_network_policy.egress.to_services.pod_selector.match_expressions`
@@ -677,11 +679,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -715,29 +717,29 @@ Required:
 
 Optional:
 
-- `applied_to` (Attributes List) Select workloads on which this rule will be applied to. Cannot be set in conjunction with NetworkPolicySpec/ClusterNetworkPolicySpec.AppliedTo. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--applied_to))
-- `enable_logging` (Boolean) EnableLogging is used to indicate if agent should generate logs when rules are matched. Should be default to false.
-- `from` (Attributes List) Rule is matched if traffic originates from workloads selected by this field. If this field is empty, this rule matches all sources. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--from))
-- `l7_protocols` (Attributes List) Set of layer 7 protocols matched by the rule. If this field is set, action can only be Allow. When this field is used in a rule, any traffic matching the other layer 3/4 criteria of the rule (typically the 5-tuple) will be forwarded to an application-aware engine for protocol detection and rule enforcement, and the traffic will be allowed if the layer 7 criteria is also matched, otherwise it will be dropped. Therefore, any rules after a layer 7 rule will not be enforced for the traffic. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--l7_protocols))
+- `applied_to` (Attributes List) Select workloads on which this rule will be applied to. Cannot be set inconjunction with NetworkPolicySpec/ClusterNetworkPolicySpec.AppliedTo. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--applied_to))
+- `enable_logging` (Boolean) EnableLogging is used to indicate if agent should generate logswhen rules are matched. Should be default to false.
+- `from` (Attributes List) Rule is matched if traffic originates from workloads selected bythis field. If this field is empty, this rule matches all sources. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--from))
+- `l7_protocols` (Attributes List) Set of layer 7 protocols matched by the rule. If this field is set, action can only be Allow.When this field is used in a rule, any traffic matching the other layer 3/4 criteria of the rule (typically the5-tuple) will be forwarded to an application-aware engine for protocol detection and rule enforcement, and thetraffic will be allowed if the layer 7 criteria is also matched, otherwise it will be dropped. Therefore, anyrules after a layer 7 rule will not be enforced for the traffic. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--l7_protocols))
 - `log_label` (String) LogLabel is a user-defined arbitrary string which will be printed in the NetworkPolicy logs.
-- `name` (String) Name describes the intention of this rule. Name should be unique within the policy.
-- `ports` (Attributes List) Set of ports and protocols matched by the rule. If this field and Protocols are unset or empty, this rule matches all ports. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--ports))
-- `protocols` (Attributes List) Set of protocols matched by the rule. If this field and Ports are unset or empty, this rule matches all protocols supported. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--protocols))
-- `to` (Attributes List) Rule is matched if traffic is intended for workloads selected by this field. This field can't be used with ToServices. If this field and ToServices are both empty or missing this rule matches all destinations. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to))
-- `to_services` (Attributes List) Rule is matched if traffic is intended for a Service listed in this field. Currently, only ClusterIP types Services are supported in this field. When scope is set to ClusterSet, it matches traffic intended for a multi-cluster Service listed in this field. Service name and Namespace provided should match the original exported Service. This field can only be used when AntreaProxy is enabled. This field can't be used with To or Ports. If this field and To are both empty or missing, this rule matches all destinations. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services))
+- `name` (String) Name describes the intention of this rule.Name should be unique within the policy.
+- `ports` (Attributes List) Set of ports and protocols matched by the rule. If this field and Protocolsare unset or empty, this rule matches all ports. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--ports))
+- `protocols` (Attributes List) Set of protocols matched by the rule. If this field and Ports are unset orempty, this rule matches all protocols supported. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--protocols))
+- `to` (Attributes List) Rule is matched if traffic is intended for workloads selected bythis field. This field can't be used with ToServices. If this fieldand ToServices are both empty or missing this rule matches all destinations. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to))
+- `to_services` (Attributes List) Rule is matched if traffic is intended for a Service listed in this field.Currently, only ClusterIP types Services are supported in this field.When scope is set to ClusterSet, it matches traffic intended for a multi-clusterService listed in this field. Service name and Namespace provided should matchthe original exported Service.This field can only be used when AntreaProxy is enabled. This field can't be usedwith To or Ports. If this field and To are both empty or missing, this rule matchesall destinations. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services))
 
 <a id="nestedatt--spec--cluster_network_policy--ingress--applied_to"></a>
 ### Nested Schema for `spec.cluster_network_policy.ingress.applied_to`
 
 Optional:
 
-- `external_entity_selector` (Attributes) Select ExternalEntities from NetworkPolicy's Namespace as workloads in AppliedTo fields. If set with NamespaceSelector, ExternalEntities are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--external_entity_selector))
-- `group` (String) Group is the name of the ClusterGroup which can be set as an AppliedTo in place of a stand-alone selector. A Group cannot be set with any other selector.
-- `namespace_selector` (Attributes) Select all Pods from Namespaces matched by this selector, as workloads in AppliedTo fields. If set with PodSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. Cannot be set with Namespaces. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--namespace_selector))
-- `node_selector` (Attributes) Select Nodes in cluster as workloads in AppliedTo fields. Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--node_selector))
-- `pod_selector` (Attributes) Select Pods from NetworkPolicy's Namespace as workloads in AppliedTo fields. If set with NamespaceSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--pod_selector))
-- `service` (Attributes) Select a certain Service which matches the NamespacedName. A Service can only be set in either policy level AppliedTo field in a policy that only has ingress rules or rule level AppliedTo field in an ingress rule. Only a NodePort Service can be referred by this field. Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--service))
-- `service_account` (Attributes) Select all Pods with the ServiceAccount matched by this field, as workloads in AppliedTo fields. Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--service_account))
+- `external_entity_selector` (Attributes) Select ExternalEntities from NetworkPolicy's Namespace as workloadsin AppliedTo fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--external_entity_selector))
+- `group` (String) Group is the name of the ClusterGroup which can be set as anAppliedTo in place of a stand-alone selector. A Group cannotbe set with any other selector.
+- `namespace_selector` (Attributes) Select all Pods from Namespaces matched by this selector, asworkloads in AppliedTo fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--namespace_selector))
+- `node_selector` (Attributes) Select Nodes in cluster as workloads in AppliedTo fields.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--node_selector))
+- `pod_selector` (Attributes) Select Pods from NetworkPolicy's Namespace as workloads inAppliedTo fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--pod_selector))
+- `service` (Attributes) Select a certain Service which matches the NamespacedName.A Service can only be set in either policy level AppliedTo field in a policythat only has ingress rules or rule level AppliedTo field in an ingress rule.Only a NodePort Service can be referred by this field.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--service))
+- `service_account` (Attributes) Select all Pods with the ServiceAccount matched by this field, asworkloads in AppliedTo fields.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--service_account))
 
 <a id="nestedatt--spec--cluster_network_policy--ingress--to_services--external_entity_selector"></a>
 ### Nested Schema for `spec.cluster_network_policy.ingress.to_services.external_entity_selector`
@@ -745,7 +747,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--external_entity_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--cluster_network_policy--ingress--to_services--external_entity_selector--match_expressions"></a>
 ### Nested Schema for `spec.cluster_network_policy.ingress.to_services.external_entity_selector.match_expressions`
@@ -753,11 +755,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -767,7 +769,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--cluster_network_policy--ingress--to_services--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.cluster_network_policy.ingress.to_services.namespace_selector.match_expressions`
@@ -775,11 +777,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -789,7 +791,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--node_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--cluster_network_policy--ingress--to_services--node_selector--match_expressions"></a>
 ### Nested Schema for `spec.cluster_network_policy.ingress.to_services.node_selector.match_expressions`
@@ -797,11 +799,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -811,7 +813,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--pod_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--cluster_network_policy--ingress--to_services--pod_selector--match_expressions"></a>
 ### Nested Schema for `spec.cluster_network_policy.ingress.to_services.pod_selector.match_expressions`
@@ -819,11 +821,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -851,16 +853,16 @@ Optional:
 
 Optional:
 
-- `external_entity_selector` (Attributes) Select ExternalEntities from NetworkPolicy's Namespace as workloads in To/From fields. If set with NamespaceSelector, ExternalEntities are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--external_entity_selector))
-- `fqdn` (String) Restrict egress access to the Fully Qualified Domain Names prescribed by name or by wildcard match patterns. This field can only be set for NetworkPolicyPeer of egress rules. Supported formats are: Exact FQDNs such as 'google.com'. Wildcard expressions such as '*wayfair.com'.
-- `group` (String) Group is the name of the ClusterGroup which can be set within an Ingress or Egress rule in place of a stand-alone selector. A Group cannot be set with any other selector.
-- `ip_block` (Attributes) IPBlock describes the IPAddresses/IPBlocks that is matched in to/from. IPBlock cannot be set as part of the AppliedTo field. Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--ip_block))
-- `namespace_selector` (Attributes) Select all Pods from Namespaces matched by this selector, as workloads in To/From fields. If set with PodSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. Cannot be set with Namespaces. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--namespace_selector))
-- `namespaces` (Attributes) Select Pod/ExternalEntity from Namespaces matched by specific criteria. Current supported criteria is match: Self, which selects from the same Namespace of the appliedTo workloads. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. This field can only be set when NetworkPolicyPeer is created for ClusterNetworkPolicy ingress/egress rules. Cannot be set with NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--namespaces))
-- `node_selector` (Attributes) Select certain Nodes which match the label selector. A NodeSelector cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--node_selector))
-- `pod_selector` (Attributes) Select Pods from NetworkPolicy's Namespace as workloads in To/From fields. If set with NamespaceSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--pod_selector))
-- `scope` (String) Define scope of the Pod/NamespaceSelector(s) of this peer. Can only be used in ingress NetworkPolicyPeers. Defaults to 'Cluster'.
-- `service_account` (Attributes) Select all Pods with the ServiceAccount matched by this field, as workloads in To/From fields. Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--service_account))
+- `external_entity_selector` (Attributes) Select ExternalEntities from NetworkPolicy's Namespace as workloadsin To/From fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--external_entity_selector))
+- `fqdn` (String) Restrict egress access to the Fully Qualified Domain Names prescribedby name or by wildcard match patterns. This field can only be set forNetworkPolicyPeer of egress rules.Supported formats are: Exact FQDNs such as 'google.com'. Wildcard expressions such as '*wayfair.com'.
+- `group` (String) Group is the name of the ClusterGroup which can be set withinan Ingress or Egress rule in place of a stand-alone selector.A Group cannot be set with any other selector.
+- `ip_block` (Attributes) IPBlock describes the IPAddresses/IPBlocks that is matched in to/from.IPBlock cannot be set as part of the AppliedTo field.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--ip_block))
+- `namespace_selector` (Attributes) Select all Pods from Namespaces matched by this selector, asworkloads in To/From fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--namespace_selector))
+- `namespaces` (Attributes) Select Pod/ExternalEntity from Namespaces matched by specific criteria.Current supported criteria is match: Self, which selects from the sameNamespace of the appliedTo workloads.Cannot be set with any other selector except PodSelector orExternalEntitySelector. This field can only be set when NetworkPolicyPeeris created for ClusterNetworkPolicy ingress/egress rules.Cannot be set with NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--namespaces))
+- `node_selector` (Attributes) Select certain Nodes which match the label selector.A NodeSelector cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--node_selector))
+- `pod_selector` (Attributes) Select Pods from NetworkPolicy's Namespace as workloads inTo/From fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--pod_selector))
+- `scope` (String) Define scope of the Pod/NamespaceSelector(s) of this peer.Can only be used in ingress NetworkPolicyPeers.Defaults to 'Cluster'.
+- `service_account` (Attributes) Select all Pods with the ServiceAccount matched by this field, asworkloads in To/From fields.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--service_account))
 
 <a id="nestedatt--spec--cluster_network_policy--ingress--to_services--external_entity_selector"></a>
 ### Nested Schema for `spec.cluster_network_policy.ingress.to_services.external_entity_selector`
@@ -868,7 +870,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--external_entity_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--cluster_network_policy--ingress--to_services--external_entity_selector--match_expressions"></a>
 ### Nested Schema for `spec.cluster_network_policy.ingress.to_services.external_entity_selector.match_expressions`
@@ -876,11 +878,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -889,7 +891,7 @@ Optional:
 
 Required:
 
-- `cidr` (String) CIDR is a string representing the IP Block Valid examples are '192.168.1.1/24'.
+- `cidr` (String) CIDR is a string representing the IP BlockValid examples are '192.168.1.1/24'.
 
 
 <a id="nestedatt--spec--cluster_network_policy--ingress--to_services--namespace_selector"></a>
@@ -898,7 +900,7 @@ Required:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--cluster_network_policy--ingress--to_services--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.cluster_network_policy.ingress.to_services.namespace_selector.match_expressions`
@@ -906,11 +908,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -919,7 +921,8 @@ Optional:
 
 Optional:
 
-- `match` (String) NamespaceMatchType describes Namespace matching strategy.
+- `match` (String) Selects from the same Namespace of the appliedTo workloads.
+- `same_labels` (List of String) Selects Namespaces that share the same values for the given set of label keyswith the appliedTo Namespace. Namespaces must have all the label keys.
 
 
 <a id="nestedatt--spec--cluster_network_policy--ingress--to_services--node_selector"></a>
@@ -928,7 +931,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--node_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--cluster_network_policy--ingress--to_services--node_selector--match_expressions"></a>
 ### Nested Schema for `spec.cluster_network_policy.ingress.to_services.node_selector.match_expressions`
@@ -936,11 +939,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -950,7 +953,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--pod_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--cluster_network_policy--ingress--to_services--pod_selector--match_expressions"></a>
 ### Nested Schema for `spec.cluster_network_policy.ingress.to_services.pod_selector.match_expressions`
@@ -958,11 +961,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -981,16 +984,16 @@ Optional:
 
 Optional:
 
-- `http` (Attributes) HTTPProtocol matches HTTP requests with specific host, method, and path. All fields could be used alone or together. If all fields are not provided, it matches all HTTP requests. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--http))
-- `tls` (Attributes) TLSProtocol matches TLS handshake packets with specific SNI. If the field is not provided, this matches all TLS handshake packets. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--tls))
+- `http` (Attributes) HTTPProtocol matches HTTP requests with specific host, method, and path. All fields could be used alone or together.If all fields are not provided, it matches all HTTP requests. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--http))
+- `tls` (Attributes) TLSProtocol matches TLS handshake packets with specific SNI. If the field is not provided, thismatches all TLS handshake packets. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--tls))
 
 <a id="nestedatt--spec--cluster_network_policy--ingress--to_services--http"></a>
 ### Nested Schema for `spec.cluster_network_policy.ingress.to_services.http`
 
 Optional:
 
-- `host` (String) Host represents the hostname present in the URI or the HTTP Host header to match. It does not contain the port associated with the host.
-- `method` (String) Method represents the HTTP method to match. It could be GET, POST, PUT, HEAD, DELETE, TRACE, OPTIONS, CONNECT and PATCH.
+- `host` (String) Host represents the hostname present in the URI or the HTTP Host header to match.It does not contain the port associated with the host.
+- `method` (String) Method represents the HTTP method to match.It could be GET, POST, PUT, HEAD, DELETE, TRACE, OPTIONS, CONNECT and PATCH.
 - `path` (String) Path represents the URI path to match (Ex. '/index.html', '/admin').
 
 
@@ -1008,11 +1011,11 @@ Optional:
 
 Optional:
 
-- `end_port` (Number) EndPort defines the end of the port range, inclusive. It can only be specified when a numerical 'port' is specified.
-- `port` (String) The port on the given protocol. This can be either a numerical or named port on a Pod. If this field is not provided, this matches all port names and numbers.
-- `protocol` (String) The protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.
-- `source_end_port` (Number) SourceEndPort defines the end of the source port range, inclusive. It can only be specified when 'sourcePort' is specified.
-- `source_port` (Number) The source port on the given protocol. This can only be a numerical port. If this field is not provided, rule matches all source ports.
+- `end_port` (Number) EndPort defines the end of the port range, inclusive.It can only be specified when a numerical 'port' is specified.
+- `port` (String) The port on the given protocol. This can be either a numericalor named port on a Pod. If this field is not provided, thismatches all port names and numbers.
+- `protocol` (String) The protocol (TCP, UDP, or SCTP) which traffic must match.If not specified, this field defaults to TCP.
+- `source_end_port` (Number) SourceEndPort defines the end of the source port range, inclusive.It can only be specified when 'sourcePort' is specified.
+- `source_port` (Number) The source port on the given protocol. This can only be a numerical port.If this field is not provided, rule matches all source ports.
 
 
 <a id="nestedatt--spec--cluster_network_policy--ingress--protocols"></a>
@@ -1020,8 +1023,8 @@ Optional:
 
 Optional:
 
-- `icmp` (Attributes) ICMPProtocol matches ICMP traffic with specific ICMPType and/or ICMPCode. All fields could be used alone or together. If all fields are not provided, this matches all ICMP traffic. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--icmp))
-- `igmp` (Attributes) IGMPProtocol matches IGMP traffic with IGMPType and GroupAddress. IGMPType must be filled with: IGMPQuery    int32 = 0x11 IGMPReportV1 int32 = 0x12 IGMPReportV2 int32 = 0x16 IGMPReportV3 int32 = 0x22 If groupAddress is empty, all groupAddresses will be matched. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--igmp))
+- `icmp` (Attributes) ICMPProtocol matches ICMP traffic with specific ICMPType and/or ICMPCode. Allfields could be used alone or together. If all fields are not provided, thismatches all ICMP traffic. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--icmp))
+- `igmp` (Attributes) IGMPProtocol matches IGMP traffic with IGMPType and GroupAddress. IGMPType mustbe filled with:IGMPQuery    int32 = 0x11IGMPReportV1 int32 = 0x12IGMPReportV2 int32 = 0x16IGMPReportV3 int32 = 0x22If groupAddress is empty, all groupAddresses will be matched. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--igmp))
 
 <a id="nestedatt--spec--cluster_network_policy--ingress--to_services--icmp"></a>
 ### Nested Schema for `spec.cluster_network_policy.ingress.to_services.icmp`
@@ -1047,16 +1050,16 @@ Optional:
 
 Optional:
 
-- `external_entity_selector` (Attributes) Select ExternalEntities from NetworkPolicy's Namespace as workloads in To/From fields. If set with NamespaceSelector, ExternalEntities are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--external_entity_selector))
-- `fqdn` (String) Restrict egress access to the Fully Qualified Domain Names prescribed by name or by wildcard match patterns. This field can only be set for NetworkPolicyPeer of egress rules. Supported formats are: Exact FQDNs such as 'google.com'. Wildcard expressions such as '*wayfair.com'.
-- `group` (String) Group is the name of the ClusterGroup which can be set within an Ingress or Egress rule in place of a stand-alone selector. A Group cannot be set with any other selector.
-- `ip_block` (Attributes) IPBlock describes the IPAddresses/IPBlocks that is matched in to/from. IPBlock cannot be set as part of the AppliedTo field. Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--ip_block))
-- `namespace_selector` (Attributes) Select all Pods from Namespaces matched by this selector, as workloads in To/From fields. If set with PodSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. Cannot be set with Namespaces. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--namespace_selector))
-- `namespaces` (Attributes) Select Pod/ExternalEntity from Namespaces matched by specific criteria. Current supported criteria is match: Self, which selects from the same Namespace of the appliedTo workloads. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. This field can only be set when NetworkPolicyPeer is created for ClusterNetworkPolicy ingress/egress rules. Cannot be set with NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--namespaces))
-- `node_selector` (Attributes) Select certain Nodes which match the label selector. A NodeSelector cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--node_selector))
-- `pod_selector` (Attributes) Select Pods from NetworkPolicy's Namespace as workloads in To/From fields. If set with NamespaceSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--pod_selector))
-- `scope` (String) Define scope of the Pod/NamespaceSelector(s) of this peer. Can only be used in ingress NetworkPolicyPeers. Defaults to 'Cluster'.
-- `service_account` (Attributes) Select all Pods with the ServiceAccount matched by this field, as workloads in To/From fields. Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--service_account))
+- `external_entity_selector` (Attributes) Select ExternalEntities from NetworkPolicy's Namespace as workloadsin To/From fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--external_entity_selector))
+- `fqdn` (String) Restrict egress access to the Fully Qualified Domain Names prescribedby name or by wildcard match patterns. This field can only be set forNetworkPolicyPeer of egress rules.Supported formats are: Exact FQDNs such as 'google.com'. Wildcard expressions such as '*wayfair.com'.
+- `group` (String) Group is the name of the ClusterGroup which can be set withinan Ingress or Egress rule in place of a stand-alone selector.A Group cannot be set with any other selector.
+- `ip_block` (Attributes) IPBlock describes the IPAddresses/IPBlocks that is matched in to/from.IPBlock cannot be set as part of the AppliedTo field.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--ip_block))
+- `namespace_selector` (Attributes) Select all Pods from Namespaces matched by this selector, asworkloads in To/From fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--namespace_selector))
+- `namespaces` (Attributes) Select Pod/ExternalEntity from Namespaces matched by specific criteria.Current supported criteria is match: Self, which selects from the sameNamespace of the appliedTo workloads.Cannot be set with any other selector except PodSelector orExternalEntitySelector. This field can only be set when NetworkPolicyPeeris created for ClusterNetworkPolicy ingress/egress rules.Cannot be set with NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--namespaces))
+- `node_selector` (Attributes) Select certain Nodes which match the label selector.A NodeSelector cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--node_selector))
+- `pod_selector` (Attributes) Select Pods from NetworkPolicy's Namespace as workloads inTo/From fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--pod_selector))
+- `scope` (String) Define scope of the Pod/NamespaceSelector(s) of this peer.Can only be used in ingress NetworkPolicyPeers.Defaults to 'Cluster'.
+- `service_account` (Attributes) Select all Pods with the ServiceAccount matched by this field, asworkloads in To/From fields.Cannot be set with any other selector. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--service_account))
 
 <a id="nestedatt--spec--cluster_network_policy--ingress--to_services--external_entity_selector"></a>
 ### Nested Schema for `spec.cluster_network_policy.ingress.to_services.external_entity_selector`
@@ -1064,7 +1067,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--external_entity_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--cluster_network_policy--ingress--to_services--external_entity_selector--match_expressions"></a>
 ### Nested Schema for `spec.cluster_network_policy.ingress.to_services.external_entity_selector.match_expressions`
@@ -1072,11 +1075,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1085,7 +1088,7 @@ Optional:
 
 Required:
 
-- `cidr` (String) CIDR is a string representing the IP Block Valid examples are '192.168.1.1/24'.
+- `cidr` (String) CIDR is a string representing the IP BlockValid examples are '192.168.1.1/24'.
 
 
 <a id="nestedatt--spec--cluster_network_policy--ingress--to_services--namespace_selector"></a>
@@ -1094,7 +1097,7 @@ Required:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--cluster_network_policy--ingress--to_services--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.cluster_network_policy.ingress.to_services.namespace_selector.match_expressions`
@@ -1102,11 +1105,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1115,7 +1118,8 @@ Optional:
 
 Optional:
 
-- `match` (String) NamespaceMatchType describes Namespace matching strategy.
+- `match` (String) Selects from the same Namespace of the appliedTo workloads.
+- `same_labels` (List of String) Selects Namespaces that share the same values for the given set of label keyswith the appliedTo Namespace. Namespaces must have all the label keys.
 
 
 <a id="nestedatt--spec--cluster_network_policy--ingress--to_services--node_selector"></a>
@@ -1124,7 +1128,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--node_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--cluster_network_policy--ingress--to_services--node_selector--match_expressions"></a>
 ### Nested Schema for `spec.cluster_network_policy.ingress.to_services.node_selector.match_expressions`
@@ -1132,11 +1136,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1146,7 +1150,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_network_policy--ingress--to_services--pod_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--cluster_network_policy--ingress--to_services--pod_selector--match_expressions"></a>
 ### Nested Schema for `spec.cluster_network_policy.ingress.to_services.pod_selector.match_expressions`
@@ -1154,11 +1158,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1196,8 +1200,8 @@ Optional:
 
 Optional:
 
-- `addresses` (Attributes List) IP addresses which offer the related ports that are marked as ready. These endpoints should be considered safe for load balancers and clients to utilize. (see [below for nested schema](#nestedatt--spec--endpoints--subsets--addresses))
-- `not_ready_addresses` (Attributes List) IP addresses which offer the related ports but are not currently marked as ready because they have not yet finished starting, have recently failed a readiness check, or have recently failed a liveness check. (see [below for nested schema](#nestedatt--spec--endpoints--subsets--not_ready_addresses))
+- `addresses` (Attributes List) IP addresses which offer the related ports that are marked as ready. These endpointsshould be considered safe for load balancers and clients to utilize. (see [below for nested schema](#nestedatt--spec--endpoints--subsets--addresses))
+- `not_ready_addresses` (Attributes List) IP addresses which offer the related ports but are not currently marked as readybecause they have not yet finished starting, have recently failed a readiness check,or have recently failed a liveness check. (see [below for nested schema](#nestedatt--spec--endpoints--subsets--not_ready_addresses))
 - `ports` (Attributes List) Port numbers available on the related IP addresses. (see [below for nested schema](#nestedatt--spec--endpoints--subsets--ports))
 
 <a id="nestedatt--spec--endpoints--subsets--addresses"></a>
@@ -1205,7 +1209,7 @@ Optional:
 
 Required:
 
-- `ip` (String) The IP of this endpoint. May not be loopback (127.0.0.0/8), link-local (169.254.0.0/16), or link-local multicast ((224.0.0.0/24). IPv6 is also accepted but not fully supported on all platforms. Also, certain kubernetes components, like kube-proxy, are not IPv6 ready. TODO: This should allow hostname or IP, See #4447.
+- `ip` (String) The IP of this endpoint.May not be loopback (127.0.0.0/8 or ::1), link-local (169.254.0.0/16 or fe80::/10),or link-local multicast (224.0.0.0/24 or ff02::/16).
 
 Optional:
 
@@ -1219,12 +1223,12 @@ Optional:
 Optional:
 
 - `api_version` (String) API version of the referent.
-- `field_path` (String) If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.
-- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+- `field_path` (String) If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+- `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
 
 
 
@@ -1233,7 +1237,7 @@ Optional:
 
 Required:
 
-- `ip` (String) The IP of this endpoint. May not be loopback (127.0.0.0/8), link-local (169.254.0.0/16), or link-local multicast ((224.0.0.0/24). IPv6 is also accepted but not fully supported on all platforms. Also, certain kubernetes components, like kube-proxy, are not IPv6 ready. TODO: This should allow hostname or IP, See #4447.
+- `ip` (String) The IP of this endpoint.May not be loopback (127.0.0.0/8 or ::1), link-local (169.254.0.0/16 or fe80::/10),or link-local multicast (224.0.0.0/24 or ff02::/16).
 
 Optional:
 
@@ -1247,12 +1251,12 @@ Optional:
 Optional:
 
 - `api_version` (String) API version of the referent.
-- `field_path` (String) If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.
-- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+- `field_path` (String) If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+- `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
 
 
 
@@ -1265,9 +1269,9 @@ Required:
 
 Optional:
 
-- `app_protocol` (String) The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names). Non-standard protocols should use prefixed names such as mycompany.com/my-custom-protocol.
-- `name` (String) The name of this port.  This must match the 'name' field in the corresponding ServicePort. Must be a DNS_LABEL. Optional only if one port is defined.
-- `protocol` (String) The IP protocol for this port. Must be UDP, TCP, or SCTP. Default is TCP.
+- `app_protocol` (String) The application protocol for this port.This is used as a hint for implementations to offer richer behavior for protocols that they understand.This field follows standard Kubernetes label syntax.Valid values are either:* Un-prefixed protocol names - reserved for IANA standard service names (as perRFC-6335 and https://www.iana.org/assignments/service-names).* Kubernetes-defined prefixed names:  * 'kubernetes.io/h2c' - HTTP/2 prior knowledge over cleartext as described in https://www.rfc-editor.org/rfc/rfc9113.html#name-starting-http-2-with-prior-  * 'kubernetes.io/ws'  - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455  * 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455* Other protocols should use implementation-defined prefixed names such asmycompany.com/my-custom-protocol.
+- `name` (String) The name of this port.  This must match the 'name' field in thecorresponding ServicePort.Must be a DNS_LABEL.Optional only if one port is defined.
+- `protocol` (String) The IP protocol for this port.Must be UDP, TCP, or SCTP.Default is TCP.
 
 
 
@@ -1285,7 +1289,7 @@ Optional:
 Optional:
 
 - `endpoints` (Attributes List) Endpoints is a list of external endpoints associated with this entity. (see [below for nested schema](#nestedatt--spec--external_entity--external_entity_spec--endpoints))
-- `external_node` (String) ExternalNode is the opaque identifier of the agent/controller responsible for additional processing or handling of this external entity.
+- `external_node` (String) ExternalNode is the opaque identifier of the agent/controller responsiblefor additional processing or handling of this external entity.
 - `ports` (Attributes List) Ports maintain the list of named ports. (see [below for nested schema](#nestedatt--spec--external_entity--external_entity_spec--ports))
 
 <a id="nestedatt--spec--external_entity--external_entity_spec--endpoints"></a>
@@ -1304,7 +1308,7 @@ Optional:
 
 - `name` (String) Name associated with the Port.
 - `port` (Number) The port on the given protocol.
-- `protocol` (String) The protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.
+- `protocol` (String) The protocol (TCP, UDP, or SCTP) which traffic must match.If not specified, this field defaults to TCP.
 
 
 
@@ -1337,25 +1341,25 @@ Optional:
 
 Optional:
 
-- `allocate_load_balancer_node_ports` (Boolean) allocateLoadBalancerNodePorts defines if NodePorts will be automatically allocated for services with type LoadBalancer.  Default is 'true'. It may be set to 'false' if the cluster load-balancer does not rely on NodePorts.  If the caller requests specific NodePorts (by specifying a value), those requests will be respected, regardless of this field. This field may only be set for services with type LoadBalancer and will be cleared if the type is changed to any other type.
-- `cluster_i_ps` (List of String) ClusterIPs is a list of IP addresses assigned to this service, and are usually assigned randomly.  If an address is specified manually, is in-range (as per system configuration), and is not in use, it will be allocated to the service; otherwise creation of the service will fail. This field may not be changed through updates unless the type field is also being changed to ExternalName (which requires this field to be empty) or the type field is being changed from ExternalName (in which case this field may optionally be specified, as describe above).  Valid values are 'None', empty string (''), or a valid IP address.  Setting this to 'None' makes a 'headless service' (no virtual IP), which is useful when direct endpoint connections are preferred and proxying is not required.  Only applies to types ClusterIP, NodePort, and LoadBalancer. If this field is specified when creating a Service of type ExternalName, creation will fail. This field will be wiped when updating a Service to type ExternalName.  If this field is not specified, it will be initialized from the clusterIP field.  If this field is specified, clients must ensure that clusterIPs[0] and clusterIP have the same value.  This field may hold a maximum of two entries (dual-stack IPs, in either order). These IPs must correspond to the values of the ipFamilies field. Both clusterIPs and ipFamilies are governed by the ipFamilyPolicy field. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
-- `cluster_ip` (String) clusterIP is the IP address of the service and is usually assigned randomly. If an address is specified manually, is in-range (as per system configuration), and is not in use, it will be allocated to the service; otherwise creation of the service will fail. This field may not be changed through updates unless the type field is also being changed to ExternalName (which requires this field to be blank) or the type field is being changed from ExternalName (in which case this field may optionally be specified, as describe above).  Valid values are 'None', empty string (''), or a valid IP address. Setting this to 'None' makes a 'headless service' (no virtual IP), which is useful when direct endpoint connections are preferred and proxying is not required.  Only applies to types ClusterIP, NodePort, and LoadBalancer. If this field is specified when creating a Service of type ExternalName, creation will fail. This field will be wiped when updating a Service to type ExternalName. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
-- `external_i_ps` (List of String) externalIPs is a list of IP addresses for which nodes in the cluster will also accept traffic for this service.  These IPs are not managed by Kubernetes.  The user is responsible for ensuring that traffic arrives at a node with this IP.  A common example is external load-balancers that are not part of the Kubernetes system.
-- `external_name` (String) externalName is the external reference that discovery mechanisms will return as an alias for this service (e.g. a DNS CNAME record). No proxying will be involved.  Must be a lowercase RFC-1123 hostname (https://tools.ietf.org/html/rfc1123) and requires 'type' to be 'ExternalName'.
-- `external_traffic_policy` (String) externalTrafficPolicy describes how nodes distribute service traffic they receive on one of the Service's 'externally-facing' addresses (NodePorts, ExternalIPs, and LoadBalancer IPs). If set to 'Local', the proxy will configure the service in a way that assumes that external load balancers will take care of balancing the service traffic between nodes, and so each node will deliver traffic only to the node-local endpoints of the service, without masquerading the client source IP. (Traffic mistakenly sent to a node with no endpoints will be dropped.) The default value, 'Cluster', uses the standard behavior of routing to all endpoints evenly (possibly modified by topology and other features). Note that traffic sent to an External IP or LoadBalancer IP from within the cluster will always get 'Cluster' semantics, but clients sending to a NodePort from within the cluster may need to take traffic policy into account when picking a node.
-- `health_check_node_port` (Number) healthCheckNodePort specifies the healthcheck nodePort for the service. This only applies when type is set to LoadBalancer and externalTrafficPolicy is set to Local. If a value is specified, is in-range, and is not in use, it will be used.  If not specified, a value will be automatically allocated.  External systems (e.g. load-balancers) can use this port to determine if a given node holds endpoints for this service or not.  If this field is specified when creating a Service which does not need it, creation will fail. This field will be wiped when updating a Service to no longer need it (e.g. changing type). This field cannot be updated once set.
-- `internal_traffic_policy` (String) InternalTrafficPolicy describes how nodes distribute service traffic they receive on the ClusterIP. If set to 'Local', the proxy will assume that pods only want to talk to endpoints of the service on the same node as the pod, dropping the traffic if there are no local endpoints. The default value, 'Cluster', uses the standard behavior of routing to all endpoints evenly (possibly modified by topology and other features).
-- `ip_families` (List of String) IPFamilies is a list of IP families (e.g. IPv4, IPv6) assigned to this service. This field is usually assigned automatically based on cluster configuration and the ipFamilyPolicy field. If this field is specified manually, the requested family is available in the cluster, and ipFamilyPolicy allows it, it will be used; otherwise creation of the service will fail. This field is conditionally mutable: it allows for adding or removing a secondary IP family, but it does not allow changing the primary IP family of the Service. Valid values are 'IPv4' and 'IPv6'.  This field only applies to Services of types ClusterIP, NodePort, and LoadBalancer, and does apply to 'headless' services. This field will be wiped when updating a Service to type ExternalName.  This field may hold a maximum of two entries (dual-stack families, in either order).  These families must correspond to the values of the clusterIPs field, if specified. Both clusterIPs and ipFamilies are governed by the ipFamilyPolicy field.
-- `ip_family_policy` (String) IPFamilyPolicy represents the dual-stack-ness requested or required by this Service. If there is no value provided, then this field will be set to SingleStack. Services can be 'SingleStack' (a single IP family), 'PreferDualStack' (two IP families on dual-stack configured clusters or a single IP family on single-stack clusters), or 'RequireDualStack' (two IP families on dual-stack configured clusters, otherwise fail). The ipFamilies and clusterIPs fields depend on the value of this field. This field will be wiped when updating a service to type ExternalName.
-- `load_balancer_class` (String) loadBalancerClass is the class of the load balancer implementation this Service belongs to. If specified, the value of this field must be a label-style identifier, with an optional prefix, e.g. 'internal-vip' or 'example.com/internal-vip'. Unprefixed names are reserved for end-users. This field can only be set when the Service type is 'LoadBalancer'. If not set, the default load balancer implementation is used, today this is typically done through the cloud provider integration, but should apply for any default implementation. If set, it is assumed that a load balancer implementation is watching for Services with a matching class. Any default load balancer implementation (e.g. cloud providers) should ignore Services that set this field. This field can only be set when creating or updating a Service to type 'LoadBalancer'. Once set, it can not be changed. This field will be wiped when a service is updated to a non 'LoadBalancer' type.
-- `load_balancer_ip` (String) Only applies to Service Type: LoadBalancer. This feature depends on whether the underlying cloud-provider supports specifying the loadBalancerIP when a load balancer is created. This field will be ignored if the cloud-provider does not support the feature. Deprecated: This field was under-specified and its meaning varies across implementations, and it cannot support dual-stack. As of Kubernetes v1.24, users are encouraged to use implementation-specific annotations when available. This field may be removed in a future API version.
-- `load_balancer_source_ranges` (List of String) If specified and supported by the platform, this will restrict traffic through the cloud-provider load-balancer will be restricted to the specified client IPs. This field will be ignored if the cloud-provider does not support the feature.' More info: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/
-- `ports` (Attributes List) The list of ports that are exposed by this service. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies (see [below for nested schema](#nestedatt--spec--service--service_spec--ports))
-- `publish_not_ready_addresses` (Boolean) publishNotReadyAddresses indicates that any agent which deals with endpoints for this Service should disregard any indications of ready/not-ready. The primary use case for setting this field is for a StatefulSet's Headless Service to propagate SRV DNS records for its Pods for the purpose of peer discovery. The Kubernetes controllers that generate Endpoints and EndpointSlice resources for Services interpret this to mean that all endpoints are considered 'ready' even if the Pods themselves are not. Agents which consume only Kubernetes generated endpoints through the Endpoints or EndpointSlice resources can safely assume this behavior.
-- `selector` (Map of String) Route service traffic to pods with label keys and values matching this selector. If empty or not present, the service is assumed to have an external process managing its endpoints, which Kubernetes will not modify. Only applies to types ClusterIP, NodePort, and LoadBalancer. Ignored if type is ExternalName. More info: https://kubernetes.io/docs/concepts/services-networking/service/
-- `session_affinity` (String) Supports 'ClientIP' and 'None'. Used to maintain session affinity. Enable client IP based session affinity. Must be ClientIP or None. Defaults to None. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
+- `allocate_load_balancer_node_ports` (Boolean) allocateLoadBalancerNodePorts defines if NodePorts will be automaticallyallocated for services with type LoadBalancer.  Default is 'true'. Itmay be set to 'false' if the cluster load-balancer does not rely onNodePorts.  If the caller requests specific NodePorts (by specifying avalue), those requests will be respected, regardless of this field.This field may only be set for services with type LoadBalancer and willbe cleared if the type is changed to any other type.
+- `cluster_i_ps` (List of String) ClusterIPs is a list of IP addresses assigned to this service, and areusually assigned randomly.  If an address is specified manually, isin-range (as per system configuration), and is not in use, it will beallocated to the service; otherwise creation of the service will fail.This field may not be changed through updates unless the type field isalso being changed to ExternalName (which requires this field to beempty) or the type field is being changed from ExternalName (in whichcase this field may optionally be specified, as describe above).  Validvalues are 'None', empty string (''), or a valid IP address.  Settingthis to 'None' makes a 'headless service' (no virtual IP), which isuseful when direct endpoint connections are preferred and proxying isnot required.  Only applies to types ClusterIP, NodePort, andLoadBalancer. If this field is specified when creating a Service of typeExternalName, creation will fail. This field will be wiped when updatinga Service to type ExternalName.  If this field is not specified, it willbe initialized from the clusterIP field.  If this field is specified,clients must ensure that clusterIPs[0] and clusterIP have the samevalue.This field may hold a maximum of two entries (dual-stack IPs, in either order).These IPs must correspond to the values of the ipFamilies field. BothclusterIPs and ipFamilies are governed by the ipFamilyPolicy field.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
+- `cluster_ip` (String) clusterIP is the IP address of the service and is usually assignedrandomly. If an address is specified manually, is in-range (as persystem configuration), and is not in use, it will be allocated to theservice; otherwise creation of the service will fail. This field may notbe changed through updates unless the type field is also being changedto ExternalName (which requires this field to be blank) or the typefield is being changed from ExternalName (in which case this field mayoptionally be specified, as describe above).  Valid values are 'None',empty string (''), or a valid IP address. Setting this to 'None' makes a'headless service' (no virtual IP), which is useful when direct endpointconnections are preferred and proxying is not required.  Only applies totypes ClusterIP, NodePort, and LoadBalancer. If this field is specifiedwhen creating a Service of type ExternalName, creation will fail. Thisfield will be wiped when updating a Service to type ExternalName.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
+- `external_i_ps` (List of String) externalIPs is a list of IP addresses for which nodes in the clusterwill also accept traffic for this service.  These IPs are not managed byKubernetes.  The user is responsible for ensuring that traffic arrivesat a node with this IP.  A common example is external load-balancersthat are not part of the Kubernetes system.
+- `external_name` (String) externalName is the external reference that discovery mechanisms willreturn as an alias for this service (e.g. a DNS CNAME record). Noproxying will be involved.  Must be a lowercase RFC-1123 hostname(https://tools.ietf.org/html/rfc1123) and requires 'type' to be 'ExternalName'.
+- `external_traffic_policy` (String) externalTrafficPolicy describes how nodes distribute service traffic theyreceive on one of the Service's 'externally-facing' addresses (NodePorts,ExternalIPs, and LoadBalancer IPs). If set to 'Local', the proxy will configurethe service in a way that assumes that external load balancers will take careof balancing the service traffic between nodes, and so each node will delivertraffic only to the node-local endpoints of the service, without masqueradingthe client source IP. (Traffic mistakenly sent to a node with no endpoints willbe dropped.) The default value, 'Cluster', uses the standard behavior ofrouting to all endpoints evenly (possibly modified by topology and otherfeatures). Note that traffic sent to an External IP or LoadBalancer IP fromwithin the cluster will always get 'Cluster' semantics, but clients sending toa NodePort from within the cluster may need to take traffic policy into accountwhen picking a node.
+- `health_check_node_port` (Number) healthCheckNodePort specifies the healthcheck nodePort for the service.This only applies when type is set to LoadBalancer andexternalTrafficPolicy is set to Local. If a value is specified, isin-range, and is not in use, it will be used.  If not specified, a valuewill be automatically allocated.  External systems (e.g. load-balancers)can use this port to determine if a given node holds endpoints for thisservice or not.  If this field is specified when creating a Servicewhich does not need it, creation will fail. This field will be wipedwhen updating a Service to no longer need it (e.g. changing type).This field cannot be updated once set.
+- `internal_traffic_policy` (String) InternalTrafficPolicy describes how nodes distribute service traffic theyreceive on the ClusterIP. If set to 'Local', the proxy will assume that podsonly want to talk to endpoints of the service on the same node as the pod,dropping the traffic if there are no local endpoints. The default value,'Cluster', uses the standard behavior of routing to all endpoints evenly(possibly modified by topology and other features).
+- `ip_families` (List of String) IPFamilies is a list of IP families (e.g. IPv4, IPv6) assigned to thisservice. This field is usually assigned automatically based on clusterconfiguration and the ipFamilyPolicy field. If this field is specifiedmanually, the requested family is available in the cluster,and ipFamilyPolicy allows it, it will be used; otherwise creation ofthe service will fail. This field is conditionally mutable: it allowsfor adding or removing a secondary IP family, but it does not allowchanging the primary IP family of the Service. Valid values are 'IPv4'and 'IPv6'.  This field only applies to Services of types ClusterIP,NodePort, and LoadBalancer, and does apply to 'headless' services.This field will be wiped when updating a Service to type ExternalName.This field may hold a maximum of two entries (dual-stack families, ineither order).  These families must correspond to the values of theclusterIPs field, if specified. Both clusterIPs and ipFamilies aregoverned by the ipFamilyPolicy field.
+- `ip_family_policy` (String) IPFamilyPolicy represents the dual-stack-ness requested or required bythis Service. If there is no value provided, then this field will be setto SingleStack. Services can be 'SingleStack' (a single IP family),'PreferDualStack' (two IP families on dual-stack configured clusters ora single IP family on single-stack clusters), or 'RequireDualStack'(two IP families on dual-stack configured clusters, otherwise fail). TheipFamilies and clusterIPs fields depend on the value of this field. Thisfield will be wiped when updating a service to type ExternalName.
+- `load_balancer_class` (String) loadBalancerClass is the class of the load balancer implementation this Service belongs to.If specified, the value of this field must be a label-style identifier, with an optional prefix,e.g. 'internal-vip' or 'example.com/internal-vip'. Unprefixed names are reserved for end-users.This field can only be set when the Service type is 'LoadBalancer'. If not set, the default loadbalancer implementation is used, today this is typically done through the cloud provider integration,but should apply for any default implementation. If set, it is assumed that a load balancerimplementation is watching for Services with a matching class. Any default load balancerimplementation (e.g. cloud providers) should ignore Services that set this field.This field can only be set when creating or updating a Service to type 'LoadBalancer'.Once set, it can not be changed. This field will be wiped when a service is updated to a non 'LoadBalancer' type.
+- `load_balancer_ip` (String) Only applies to Service Type: LoadBalancer.This feature depends on whether the underlying cloud-provider supports specifyingthe loadBalancerIP when a load balancer is created.This field will be ignored if the cloud-provider does not support the feature.Deprecated: This field was under-specified and its meaning varies across implementations.Using it is non-portable and it may not support dual-stack.Users are encouraged to use implementation-specific annotations when available.
+- `load_balancer_source_ranges` (List of String) If specified and supported by the platform, this will restrict traffic through the cloud-providerload-balancer will be restricted to the specified client IPs. This field will be ignored if thecloud-provider does not support the feature.'More info: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/
+- `ports` (Attributes List) The list of ports that are exposed by this service.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies (see [below for nested schema](#nestedatt--spec--service--service_spec--ports))
+- `publish_not_ready_addresses` (Boolean) publishNotReadyAddresses indicates that any agent which deals with endpoints for thisService should disregard any indications of ready/not-ready.The primary use case for setting this field is for a StatefulSet's Headless Service topropagate SRV DNS records for its Pods for the purpose of peer discovery.The Kubernetes controllers that generate Endpoints and EndpointSlice resources forServices interpret this to mean that all endpoints are considered 'ready' even if thePods themselves are not. Agents which consume only Kubernetes generated endpointsthrough the Endpoints or EndpointSlice resources can safely assume this behavior.
+- `selector` (Map of String) Route service traffic to pods with label keys and values matching thisselector. If empty or not present, the service is assumed to have anexternal process managing its endpoints, which Kubernetes will notmodify. Only applies to types ClusterIP, NodePort, and LoadBalancer.Ignored if type is ExternalName.More info: https://kubernetes.io/docs/concepts/services-networking/service/
+- `session_affinity` (String) Supports 'ClientIP' and 'None'. Used to maintain session affinity.Enable client IP based session affinity.Must be ClientIP or None.Defaults to None.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
 - `session_affinity_config` (Attributes) sessionAffinityConfig contains the configurations of session affinity. (see [below for nested schema](#nestedatt--spec--service--service_spec--session_affinity_config))
-- `type` (String) type determines how the Service is exposed. Defaults to ClusterIP. Valid options are ExternalName, ClusterIP, NodePort, and LoadBalancer. 'ClusterIP' allocates a cluster-internal IP address for load-balancing to endpoints. Endpoints are determined by the selector or if that is not specified, by manual construction of an Endpoints object or EndpointSlice objects. If clusterIP is 'None', no virtual IP is allocated and the endpoints are published as a set of endpoints rather than a virtual IP. 'NodePort' builds on ClusterIP and allocates a port on every node which routes to the same endpoints as the clusterIP. 'LoadBalancer' builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the clusterIP. 'ExternalName' aliases this service to the specified externalName. Several other fields do not apply to ExternalName services. More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
+- `type` (String) type determines how the Service is exposed. Defaults to ClusterIP. Validoptions are ExternalName, ClusterIP, NodePort, and LoadBalancer.'ClusterIP' allocates a cluster-internal IP address for load-balancingto endpoints. Endpoints are determined by the selector or if that is notspecified, by manual construction of an Endpoints object orEndpointSlice objects. If clusterIP is 'None', no virtual IP isallocated and the endpoints are published as a set of endpoints ratherthan a virtual IP.'NodePort' builds on ClusterIP and allocates a port on every node whichroutes to the same endpoints as the clusterIP.'LoadBalancer' builds on NodePort and creates an external load-balancer(if supported in the current cloud) which routes to the same endpointsas the clusterIP.'ExternalName' aliases this service to the specified externalName.Several other fields do not apply to ExternalName services.More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
 
 <a id="nestedatt--spec--service--service_spec--ports"></a>
 ### Nested Schema for `spec.service.service_spec.ports`
@@ -1366,11 +1370,11 @@ Required:
 
 Optional:
 
-- `app_protocol` (String) The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names). Non-standard protocols should use prefixed names such as mycompany.com/my-custom-protocol.
-- `name` (String) The name of this port within the service. This must be a DNS_LABEL. All ports within a ServiceSpec must have unique names. When considering the endpoints for a Service, this must match the 'name' field in the EndpointPort. Optional if only one ServicePort is defined on this service.
-- `node_port` (Number) The port on each node on which this service is exposed when type is NodePort or LoadBalancer.  Usually assigned by the system. If a value is specified, in-range, and not in use it will be used, otherwise the operation will fail.  If not specified, a port will be allocated if this Service requires one.  If this field is specified when creating a Service which does not need it, creation will fail. This field will be wiped when updating a Service to no longer need it (e.g. changing type from NodePort to ClusterIP). More info: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
-- `protocol` (String) The IP protocol for this port. Supports 'TCP', 'UDP', and 'SCTP'. Default is TCP.
-- `target_port` (String) Number or name of the port to access on the pods targeted by the service. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. If this is a string, it will be looked up as a named port in the target Pod's container ports. If this is not specified, the value of the 'port' field is used (an identity map). This field is ignored for services with clusterIP=None, and should be omitted or set equal to the 'port' field. More info: https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service
+- `app_protocol` (String) The application protocol for this port.This is used as a hint for implementations to offer richer behavior for protocols that they understand.This field follows standard Kubernetes label syntax.Valid values are either:* Un-prefixed protocol names - reserved for IANA standard service names (as perRFC-6335 and https://www.iana.org/assignments/service-names).* Kubernetes-defined prefixed names:  * 'kubernetes.io/h2c' - HTTP/2 prior knowledge over cleartext as described in https://www.rfc-editor.org/rfc/rfc9113.html#name-starting-http-2-with-prior-  * 'kubernetes.io/ws'  - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455  * 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455* Other protocols should use implementation-defined prefixed names such asmycompany.com/my-custom-protocol.
+- `name` (String) The name of this port within the service. This must be a DNS_LABEL.All ports within a ServiceSpec must have unique names. When consideringthe endpoints for a Service, this must match the 'name' field in theEndpointPort.Optional if only one ServicePort is defined on this service.
+- `node_port` (Number) The port on each node on which this service is exposed when type isNodePort or LoadBalancer.  Usually assigned by the system. If a value isspecified, in-range, and not in use it will be used, otherwise theoperation will fail.  If not specified, a port will be allocated if thisService requires one.  If this field is specified when creating aService which does not need it, creation will fail. This field will bewiped when updating a Service to no longer need it (e.g. changing typefrom NodePort to ClusterIP).More info: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+- `protocol` (String) The IP protocol for this port. Supports 'TCP', 'UDP', and 'SCTP'.Default is TCP.
+- `target_port` (String) Number or name of the port to access on the pods targeted by the service.Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.If this is a string, it will be looked up as a named port in thetarget Pod's container ports. If this is not specified, the valueof the 'port' field is used (an identity map).This field is ignored for services with clusterIP=None, and should beomitted or set equal to the 'port' field.More info: https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service
 
 
 <a id="nestedatt--spec--service--service_spec--session_affinity_config"></a>
@@ -1385,4 +1389,4 @@ Optional:
 
 Optional:
 
-- `timeout_seconds` (Number) timeoutSeconds specifies the seconds of ClientIP type session sticky time. The value must be >0 && <=86400(for 1 day) if ServiceAffinity == 'ClientIP'. Default value is 10800(for 3 hours).
+- `timeout_seconds` (Number) timeoutSeconds specifies the seconds of ClientIP type session sticky time.The value must be >0 && <=86400(for 1 day) if ServiceAffinity == 'ClientIP'.Default value is 10800(for 3 hours).

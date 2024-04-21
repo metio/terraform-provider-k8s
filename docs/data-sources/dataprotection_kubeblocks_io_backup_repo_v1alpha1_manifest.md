@@ -62,6 +62,7 @@ Optional:
 - `access_method` (String) Specifies the access method of the backup repository.
 - `config` (Map of String) Stores the non-secret configuration parameters for the 'StorageProvider'.
 - `credential` (Attributes) References to the secret that holds the credentials for the 'StorageProvider'. (see [below for nested schema](#nestedatt--spec--credential))
+- `path_prefix` (String) Specifies the prefix of the path for storing backup data.
 - `volume_capacity` (String) Specifies the capacity of the PVC created by this backup repository.
 
 <a id="nestedatt--spec--credential"></a>

@@ -80,6 +80,7 @@ Optional:
 - `sharding` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding))
 - `tls` (Attributes) (see [below for nested schema](#nestedatt--spec--tls))
 - `unmanaged` (Boolean)
+- `unsafe_flags` (Attributes) (see [below for nested schema](#nestedatt--spec--unsafe_flags))
 - `update_strategy` (String)
 - `upgrade_options` (Attributes) (see [below for nested schema](#nestedatt--spec--upgrade_options))
 
@@ -94,6 +95,7 @@ Required:
 Optional:
 
 - `annotations` (Map of String)
+- `configuration` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--configuration))
 - `container_security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--container_security_context))
 - `labels` (Map of String)
 - `pitr` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr))
@@ -103,6 +105,50 @@ Optional:
 - `service_account_name` (String)
 - `storages` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages))
 - `tasks` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--tasks))
+
+<a id="nestedatt--spec--backup--configuration"></a>
+### Nested Schema for `spec.backup.configuration`
+
+Optional:
+
+- `backup_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--configuration--backup_options))
+- `restore_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--configuration--restore_options))
+
+<a id="nestedatt--spec--backup--configuration--backup_options"></a>
+### Nested Schema for `spec.backup.configuration.backup_options`
+
+Required:
+
+- `oplog_span_min` (Number)
+
+Optional:
+
+- `priority` (Map of String)
+- `timeouts` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--configuration--restore_options--timeouts))
+
+<a id="nestedatt--spec--backup--configuration--restore_options--timeouts"></a>
+### Nested Schema for `spec.backup.configuration.restore_options.timeouts`
+
+Optional:
+
+- `starting_status` (Number)
+
+
+
+<a id="nestedatt--spec--backup--configuration--restore_options"></a>
+### Nested Schema for `spec.backup.configuration.restore_options`
+
+Optional:
+
+- `batch_size` (Number)
+- `download_chunk_mb` (Number)
+- `max_download_buffer_mb` (Number)
+- `mongod_location` (String)
+- `mongod_location_map` (Map of String)
+- `num_download_workers` (Number)
+- `num_insertion_workers` (Number)
+
+
 
 <a id="nestedatt--spec--backup--container_security_context"></a>
 ### Nested Schema for `spec.backup.container_security_context`
@@ -277,6 +323,7 @@ Required:
 Optional:
 
 - `container` (String)
+- `endpoint_url` (String)
 - `prefix` (String)
 
 
@@ -290,14 +337,27 @@ Required:
 Optional:
 
 - `credentials_secret` (String)
+- `debug_log_levels` (String)
 - `endpoint_url` (String)
+- `force_path_style` (Boolean)
 - `insecure_skip_tls_verify` (Boolean)
 - `max_upload_parts` (Number)
 - `prefix` (String)
 - `region` (String)
+- `retryer` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--s3--retryer))
 - `server_side_encryption` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--s3--server_side_encryption))
 - `storage_class` (String)
 - `upload_part_size` (Number)
+
+<a id="nestedatt--spec--backup--storages--s3--retryer"></a>
+### Nested Schema for `spec.backup.storages.s3.retryer`
+
+Optional:
+
+- `max_retry_delay` (String)
+- `min_retry_delay` (String)
+- `num_max_retries` (Number)
+
 
 <a id="nestedatt--spec--backup--storages--s3--server_side_encryption"></a>
 ### Nested Schema for `spec.backup.storages.s3.server_side_encryption`
@@ -2988,6 +3048,7 @@ Optional:
 
 - `expose_type` (String)
 - `load_balancer_source_ranges` (List of String)
+- `node_port` (Number)
 - `service_annotations` (Map of String)
 - `service_labels` (Map of String)
 
@@ -7451,6 +7512,8 @@ Optional:
 Optional:
 
 - `encryption_key` (String)
+- `ldap_secret` (String)
+- `sse` (String)
 - `ssl` (String)
 - `ssl_internal` (String)
 - `users` (String)
@@ -10020,6 +10083,7 @@ Optional:
 
 - `expose_type` (String)
 - `load_balancer_source_ranges` (List of String)
+- `node_port` (Number)
 - `service_annotations` (Map of String)
 - `service_labels` (Map of String)
 
@@ -14968,6 +15032,7 @@ Optional:
 
 - `expose_type` (String)
 - `load_balancer_source_ranges` (List of String)
+- `node_port` (Number)
 - `service_annotations` (Map of String)
 - `service_labels` (Map of String)
 - `service_per_pod` (Boolean)
@@ -16825,7 +16890,35 @@ Optional:
 
 Optional:
 
+- `allow_invalid_certificates` (Boolean)
 - `cert_validity_duration` (String)
+- `issuer_conf` (Attributes) (see [below for nested schema](#nestedatt--spec--tls--issuer_conf))
+- `mode` (String)
+
+<a id="nestedatt--spec--tls--issuer_conf"></a>
+### Nested Schema for `spec.tls.issuer_conf`
+
+Required:
+
+- `name` (String)
+
+Optional:
+
+- `group` (String)
+- `kind` (String)
+
+
+
+<a id="nestedatt--spec--unsafe_flags"></a>
+### Nested Schema for `spec.unsafe_flags`
+
+Optional:
+
+- `backup_if_unhealthy` (Boolean)
+- `mongos_size` (Boolean)
+- `replset_size` (Boolean)
+- `termination_grace_period` (Boolean)
+- `tls` (Boolean)
 
 
 <a id="nestedatt--spec--upgrade_options"></a>

@@ -3,12 +3,12 @@
 page_title: "k8s_operator_tigera_io_compliance_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "operator.tigera.io"
 description: |-
-  Compliance installs the components required for Tigera compliance reporting. At most one instance of this resource is supported. It must be named 'tigera-secure'.
+  Compliance installs the components required for Tigera compliance reporting. At most one instanceof this resource is supported. It must be named 'tigera-secure'.
 ---
 
 # k8s_operator_tigera_io_compliance_v1_manifest (Data Source)
 
-Compliance installs the components required for Tigera compliance reporting. At most one instance of this resource is supported. It must be named 'tigera-secure'.
+Compliance installs the components required for Tigera compliance reporting. At most one instanceof this resource is supported. It must be named 'tigera-secure'.
 
 ## Example Usage
 
@@ -86,35 +86,35 @@ Optional:
 
 Optional:
 
-- `containers` (Attributes List) Containers is a list of Compliance benchmark containers. If specified, this overrides the specified Compliance Benchmarker DaemonSet containers. If omitted, the Compliance Benchmarker DaemonSet will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--compliance_benchmarker_daemon_set--spec--template--spec--containers))
-- `init_containers` (Attributes List) InitContainers is a list of Compliance benchmark init containers. If specified, this overrides the specified Compliance Benchmarker DaemonSet init containers. If omitted, the Compliance Benchmarker DaemonSet will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--compliance_benchmarker_daemon_set--spec--template--spec--init_containers))
+- `containers` (Attributes List) Containers is a list of Compliance benchmark containers.If specified, this overrides the specified Compliance Benchmarker DaemonSet containers.If omitted, the Compliance Benchmarker DaemonSet will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--compliance_benchmarker_daemon_set--spec--template--spec--containers))
+- `init_containers` (Attributes List) InitContainers is a list of Compliance benchmark init containers.If specified, this overrides the specified Compliance Benchmarker DaemonSet init containers.If omitted, the Compliance Benchmarker DaemonSet will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--compliance_benchmarker_daemon_set--spec--template--spec--init_containers))
 
 <a id="nestedatt--spec--compliance_benchmarker_daemon_set--spec--template--spec--containers"></a>
 ### Nested Schema for `spec.compliance_benchmarker_daemon_set.spec.template.spec.containers`
 
 Required:
 
-- `name` (String) Name is an enum which identifies the Compliance Benchmarker DaemonSet container by name.
+- `name` (String) Name is an enum which identifies the Compliance Benchmarker DaemonSet container by name.Supported values are: compliance-benchmarker
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named Compliance Benchmarker DaemonSet container's resources. If omitted, the Compliance Benchmarker DaemonSet will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--compliance_benchmarker_daemon_set--spec--template--spec--init_containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named Compliance Benchmarker DaemonSet container's resources.If omitted, the Compliance Benchmarker DaemonSet will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--compliance_benchmarker_daemon_set--spec--template--spec--init_containers--resources))
 
 <a id="nestedatt--spec--compliance_benchmarker_daemon_set--spec--template--spec--init_containers--resources"></a>
 ### Nested Schema for `spec.compliance_benchmarker_daemon_set.spec.template.spec.init_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--compliance_benchmarker_daemon_set--spec--template--spec--init_containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--compliance_benchmarker_daemon_set--spec--template--spec--init_containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--compliance_benchmarker_daemon_set--spec--template--spec--init_containers--resources--claims"></a>
 ### Nested Schema for `spec.compliance_benchmarker_daemon_set.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -124,27 +124,27 @@ Required:
 
 Required:
 
-- `name` (String) Name is an enum which identifies the Compliance Benchmarker DaemonSet init container by name.
+- `name` (String) Name is an enum which identifies the Compliance Benchmarker DaemonSet init container by name.Supported values are: tigera-compliance-benchmarker-tls-key-cert-provisioner
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named Compliance Benchmarker DaemonSet init container's resources. If omitted, the Compliance Benchmarker DaemonSet will use its default value for this init container's resources. (see [below for nested schema](#nestedatt--spec--compliance_benchmarker_daemon_set--spec--template--spec--init_containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named Compliance Benchmarker DaemonSet init container's resources.If omitted, the Compliance Benchmarker DaemonSet will use its default value for this init container's resources. (see [below for nested schema](#nestedatt--spec--compliance_benchmarker_daemon_set--spec--template--spec--init_containers--resources))
 
 <a id="nestedatt--spec--compliance_benchmarker_daemon_set--spec--template--spec--init_containers--resources"></a>
 ### Nested Schema for `spec.compliance_benchmarker_daemon_set.spec.template.spec.init_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--compliance_benchmarker_daemon_set--spec--template--spec--init_containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--compliance_benchmarker_daemon_set--spec--template--spec--init_containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--compliance_benchmarker_daemon_set--spec--template--spec--init_containers--resources--claims"></a>
 ### Nested Schema for `spec.compliance_benchmarker_daemon_set.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -179,35 +179,35 @@ Optional:
 
 Optional:
 
-- `containers` (Attributes List) Containers is a list of compliance controller containers. If specified, this overrides the specified compliance controller Deployment containers. If omitted, the compliance controller Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--compliance_controller_deployment--spec--template--spec--containers))
-- `init_containers` (Attributes List) InitContainers is a list of compliance controller init containers. If specified, this overrides the specified compliance controller Deployment init containers. If omitted, the compliance controller Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--compliance_controller_deployment--spec--template--spec--init_containers))
+- `containers` (Attributes List) Containers is a list of compliance controller containers.If specified, this overrides the specified compliance controller Deployment containers.If omitted, the compliance controller Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--compliance_controller_deployment--spec--template--spec--containers))
+- `init_containers` (Attributes List) InitContainers is a list of compliance controller init containers.If specified, this overrides the specified compliance controller Deployment init containers.If omitted, the compliance controller Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--compliance_controller_deployment--spec--template--spec--init_containers))
 
 <a id="nestedatt--spec--compliance_controller_deployment--spec--template--spec--containers"></a>
 ### Nested Schema for `spec.compliance_controller_deployment.spec.template.spec.containers`
 
 Required:
 
-- `name` (String) Name is an enum which identifies the compliance controller Deployment container by name.
+- `name` (String) Name is an enum which identifies the compliance controller Deployment container by name.Supported values are: compliance-controller
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named compliance controller Deployment container's resources. If omitted, the compliance controller Deployment will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--compliance_controller_deployment--spec--template--spec--init_containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named compliance controller Deployment container's resources.If omitted, the compliance controller Deployment will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--compliance_controller_deployment--spec--template--spec--init_containers--resources))
 
 <a id="nestedatt--spec--compliance_controller_deployment--spec--template--spec--init_containers--resources"></a>
 ### Nested Schema for `spec.compliance_controller_deployment.spec.template.spec.init_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--compliance_controller_deployment--spec--template--spec--init_containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--compliance_controller_deployment--spec--template--spec--init_containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--compliance_controller_deployment--spec--template--spec--init_containers--resources--claims"></a>
 ### Nested Schema for `spec.compliance_controller_deployment.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -217,27 +217,27 @@ Required:
 
 Required:
 
-- `name` (String) Name is an enum which identifies the compliance controller Deployment init container by name.
+- `name` (String) Name is an enum which identifies the compliance controller Deployment init container by name.Supported values are: tigera-compliance-controller-tls-key-cert-provisioner
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named compliance controller Deployment init container's resources. If omitted, the compliance controller Deployment will use its default value for this init container's resources. (see [below for nested schema](#nestedatt--spec--compliance_controller_deployment--spec--template--spec--init_containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named compliance controller Deployment init container's resources.If omitted, the compliance controller Deployment will use its default value for this init container's resources. (see [below for nested schema](#nestedatt--spec--compliance_controller_deployment--spec--template--spec--init_containers--resources))
 
 <a id="nestedatt--spec--compliance_controller_deployment--spec--template--spec--init_containers--resources"></a>
 ### Nested Schema for `spec.compliance_controller_deployment.spec.template.spec.init_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--compliance_controller_deployment--spec--template--spec--init_containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--compliance_controller_deployment--spec--template--spec--init_containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--compliance_controller_deployment--spec--template--spec--init_containers--resources--claims"></a>
 ### Nested Schema for `spec.compliance_controller_deployment.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -265,35 +265,35 @@ Optional:
 
 Optional:
 
-- `containers` (Attributes List) Containers is a list of ComplianceServer containers. If specified, this overrides the specified ComplianceReporter PodSpec containers. If omitted, the ComplianceServer Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--compliance_reporter_pod_template--template--spec--containers))
-- `init_containers` (Attributes List) InitContainers is a list of ComplianceReporter PodSpec init containers. If specified, this overrides the specified ComplianceReporter PodSpec init containers. If omitted, the ComplianceServer Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--compliance_reporter_pod_template--template--spec--init_containers))
+- `containers` (Attributes List) Containers is a list of ComplianceServer containers.If specified, this overrides the specified ComplianceReporter PodSpec containers.If omitted, the ComplianceServer Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--compliance_reporter_pod_template--template--spec--containers))
+- `init_containers` (Attributes List) InitContainers is a list of ComplianceReporter PodSpec init containers.If specified, this overrides the specified ComplianceReporter PodSpec init containers.If omitted, the ComplianceServer Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--compliance_reporter_pod_template--template--spec--init_containers))
 
 <a id="nestedatt--spec--compliance_reporter_pod_template--template--spec--containers"></a>
 ### Nested Schema for `spec.compliance_reporter_pod_template.template.spec.containers`
 
 Required:
 
-- `name` (String) Name is an enum which identifies the ComplianceServer Deployment container by name.
+- `name` (String) Name is an enum which identifies the ComplianceServer Deployment container by name.Supported values are: reporter
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named ComplianceServer Deployment container's resources. If omitted, the ComplianceServer Deployment will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--compliance_reporter_pod_template--template--spec--containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named ComplianceServer Deployment container's resources.If omitted, the ComplianceServer Deployment will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--compliance_reporter_pod_template--template--spec--containers--resources))
 
 <a id="nestedatt--spec--compliance_reporter_pod_template--template--spec--containers--resources"></a>
 ### Nested Schema for `spec.compliance_reporter_pod_template.template.spec.containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--compliance_reporter_pod_template--template--spec--containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--compliance_reporter_pod_template--template--spec--containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--compliance_reporter_pod_template--template--spec--containers--resources--claims"></a>
 ### Nested Schema for `spec.compliance_reporter_pod_template.template.spec.containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -303,27 +303,27 @@ Required:
 
 Required:
 
-- `name` (String) Name is an enum which identifies the ComplianceReporter PodSpec init container by name.
+- `name` (String) Name is an enum which identifies the ComplianceReporter PodSpec init container by name.Supported values are: tigera-compliance-reporter-tls-key-cert-provisioner
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named ComplianceReporter PodSpec init container's resources. If omitted, the ComplianceServer Deployment will use its default value for this init container's resources. (see [below for nested schema](#nestedatt--spec--compliance_reporter_pod_template--template--spec--init_containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named ComplianceReporter PodSpec init container's resources.If omitted, the ComplianceServer Deployment will use its default value for this init container's resources. (see [below for nested schema](#nestedatt--spec--compliance_reporter_pod_template--template--spec--init_containers--resources))
 
 <a id="nestedatt--spec--compliance_reporter_pod_template--template--spec--init_containers--resources"></a>
 ### Nested Schema for `spec.compliance_reporter_pod_template.template.spec.init_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--compliance_reporter_pod_template--template--spec--init_containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--compliance_reporter_pod_template--template--spec--init_containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--compliance_reporter_pod_template--template--spec--init_containers--resources--claims"></a>
 ### Nested Schema for `spec.compliance_reporter_pod_template.template.spec.init_containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -357,35 +357,35 @@ Optional:
 
 Optional:
 
-- `containers` (Attributes List) Containers is a list of ComplianceServer containers. If specified, this overrides the specified ComplianceServer Deployment containers. If omitted, the ComplianceServer Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--compliance_server_deployment--spec--template--spec--containers))
-- `init_containers` (Attributes List) InitContainers is a list of ComplianceServer init containers. If specified, this overrides the specified ComplianceServer Deployment init containers. If omitted, the ComplianceServer Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--compliance_server_deployment--spec--template--spec--init_containers))
+- `containers` (Attributes List) Containers is a list of ComplianceServer containers.If specified, this overrides the specified ComplianceServer Deployment containers.If omitted, the ComplianceServer Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--compliance_server_deployment--spec--template--spec--containers))
+- `init_containers` (Attributes List) InitContainers is a list of ComplianceServer init containers.If specified, this overrides the specified ComplianceServer Deployment init containers.If omitted, the ComplianceServer Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--compliance_server_deployment--spec--template--spec--init_containers))
 
 <a id="nestedatt--spec--compliance_server_deployment--spec--template--spec--containers"></a>
 ### Nested Schema for `spec.compliance_server_deployment.spec.template.spec.containers`
 
 Required:
 
-- `name` (String) Name is an enum which identifies the ComplianceServer Deployment container by name.
+- `name` (String) Name is an enum which identifies the ComplianceServer Deployment container by name.Supported values are: compliance-server
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named ComplianceServer Deployment container's resources. If omitted, the ComplianceServer Deployment will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--compliance_server_deployment--spec--template--spec--init_containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named ComplianceServer Deployment container's resources.If omitted, the ComplianceServer Deployment will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--compliance_server_deployment--spec--template--spec--init_containers--resources))
 
 <a id="nestedatt--spec--compliance_server_deployment--spec--template--spec--init_containers--resources"></a>
 ### Nested Schema for `spec.compliance_server_deployment.spec.template.spec.init_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--compliance_server_deployment--spec--template--spec--init_containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--compliance_server_deployment--spec--template--spec--init_containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--compliance_server_deployment--spec--template--spec--init_containers--resources--claims"></a>
 ### Nested Schema for `spec.compliance_server_deployment.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -395,27 +395,27 @@ Required:
 
 Required:
 
-- `name` (String) Name is an enum which identifies the ComplianceServer Deployment init container by name.
+- `name` (String) Name is an enum which identifies the ComplianceServer Deployment init container by name.Supported values are: tigera-compliance-server-tls-key-cert-provisioner
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named ComplianceServer Deployment init container's resources. If omitted, the ComplianceServer Deployment will use its default value for this init container's resources. (see [below for nested schema](#nestedatt--spec--compliance_server_deployment--spec--template--spec--init_containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named ComplianceServer Deployment init container's resources.If omitted, the ComplianceServer Deployment will use its default value for this init container's resources. (see [below for nested schema](#nestedatt--spec--compliance_server_deployment--spec--template--spec--init_containers--resources))
 
 <a id="nestedatt--spec--compliance_server_deployment--spec--template--spec--init_containers--resources"></a>
 ### Nested Schema for `spec.compliance_server_deployment.spec.template.spec.init_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--compliance_server_deployment--spec--template--spec--init_containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--compliance_server_deployment--spec--template--spec--init_containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--compliance_server_deployment--spec--template--spec--init_containers--resources--claims"></a>
 ### Nested Schema for `spec.compliance_server_deployment.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -450,35 +450,35 @@ Optional:
 
 Optional:
 
-- `containers` (Attributes List) Containers is a list of compliance snapshotter containers. If specified, this overrides the specified compliance snapshotter Deployment containers. If omitted, the compliance snapshotter Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--compliance_snapshotter_deployment--spec--template--spec--containers))
-- `init_containers` (Attributes List) InitContainers is a list of compliance snapshotter init containers. If specified, this overrides the specified compliance snapshotter Deployment init containers. If omitted, the compliance snapshotter Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--compliance_snapshotter_deployment--spec--template--spec--init_containers))
+- `containers` (Attributes List) Containers is a list of compliance snapshotter containers.If specified, this overrides the specified compliance snapshotter Deployment containers.If omitted, the compliance snapshotter Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--compliance_snapshotter_deployment--spec--template--spec--containers))
+- `init_containers` (Attributes List) InitContainers is a list of compliance snapshotter init containers.If specified, this overrides the specified compliance snapshotter Deployment init containers.If omitted, the compliance snapshotter Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--compliance_snapshotter_deployment--spec--template--spec--init_containers))
 
 <a id="nestedatt--spec--compliance_snapshotter_deployment--spec--template--spec--containers"></a>
 ### Nested Schema for `spec.compliance_snapshotter_deployment.spec.template.spec.containers`
 
 Required:
 
-- `name` (String) Name is an enum which identifies the compliance snapshotter Deployment container by name.
+- `name` (String) Name is an enum which identifies the compliance snapshotter Deployment container by name.Supported values are: compliance-snapshotter
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named compliance snapshotter Deployment container's resources. If omitted, the compliance snapshotter Deployment will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--compliance_snapshotter_deployment--spec--template--spec--init_containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named compliance snapshotter Deployment container's resources.If omitted, the compliance snapshotter Deployment will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--compliance_snapshotter_deployment--spec--template--spec--init_containers--resources))
 
 <a id="nestedatt--spec--compliance_snapshotter_deployment--spec--template--spec--init_containers--resources"></a>
 ### Nested Schema for `spec.compliance_snapshotter_deployment.spec.template.spec.init_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--compliance_snapshotter_deployment--spec--template--spec--init_containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--compliance_snapshotter_deployment--spec--template--spec--init_containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--compliance_snapshotter_deployment--spec--template--spec--init_containers--resources--claims"></a>
 ### Nested Schema for `spec.compliance_snapshotter_deployment.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -488,24 +488,24 @@ Required:
 
 Required:
 
-- `name` (String) Name is an enum which identifies the compliance snapshotter Deployment init container by name.
+- `name` (String) Name is an enum which identifies the compliance snapshotter Deployment init container by name.Supported values are: tigera-compliance-snapshotter-tls-key-cert-provisioner
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named compliance snapshotter Deployment init container's resources. If omitted, the compliance snapshotter Deployment will use its default value for this init container's resources. (see [below for nested schema](#nestedatt--spec--compliance_snapshotter_deployment--spec--template--spec--init_containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named compliance snapshotter Deployment init container's resources.If omitted, the compliance snapshotter Deployment will use its default value for this init container's resources. (see [below for nested schema](#nestedatt--spec--compliance_snapshotter_deployment--spec--template--spec--init_containers--resources))
 
 <a id="nestedatt--spec--compliance_snapshotter_deployment--spec--template--spec--init_containers--resources"></a>
 ### Nested Schema for `spec.compliance_snapshotter_deployment.spec.template.spec.init_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--compliance_snapshotter_deployment--spec--template--spec--init_containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--compliance_snapshotter_deployment--spec--template--spec--init_containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--compliance_snapshotter_deployment--spec--template--spec--init_containers--resources--claims"></a>
 ### Nested Schema for `spec.compliance_snapshotter_deployment.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.

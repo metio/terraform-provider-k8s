@@ -30,7 +30,7 @@ data "k8s_metal3_io_bare_metal_host_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) BareMetalHostSpec defines the desired state of BareMetalHost (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) BareMetalHostSpec defines the desired state of BareMetalHost. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -134,7 +134,7 @@ Required:
 Optional:
 
 - `checksum` (String) Checksum is the checksum for the image.
-- `checksum_type` (String) ChecksumType is the checksum algorithm for the image. e.g md5, sha256, sha512
+- `checksum_type` (String) ChecksumType is the checksum algorithm for the image, e.g md5, sha256 or sha512. The special value 'auto' can be used to detect the algorithm from the checksum. If missing, MD5 is used. If in doubt, use 'auto'.
 - `format` (String) DiskFormat contains the format of the image (raw, qcow2, ...). Needs to be set to raw for raw images streaming. Note live-iso means an iso referenced by the url will be live-booted and not deployed to disk, and in this case the checksum options are not required and if specified will be ignored.
 
 

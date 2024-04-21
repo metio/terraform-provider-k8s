@@ -3,12 +3,12 @@
 page_title: "k8s_pkg_crossplane_io_configuration_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "pkg.crossplane.io"
 description: |-
-  Configuration is the CRD type for a request to add a configuration to Crossplane.
+  A Configuration installs an OCI compatible Crossplane package, extendingCrossplane with support for new kinds of CompositeResourceDefinitions andCompositions.Read the Crossplane documentation formore information about Configuration packages https://docs.crossplane.io/latest/concepts/packages.
 ---
 
 # k8s_pkg_crossplane_io_configuration_v1_manifest (Data Source)
 
-Configuration is the CRD type for a request to add a configuration to Crossplane.
+A Configuration installs an OCI compatible Crossplane package, extendingCrossplane with support for new kinds of CompositeResourceDefinitions andCompositions.Read the Crossplane documentation for[more information about Configuration packages](https://docs.crossplane.io/latest/concepts/packages).
 
 ## Example Usage
 
@@ -58,7 +58,7 @@ Required:
 
 Optional:
 
-- `common_labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels
+- `common_labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
 - `ignore_crossplane_constraints` (Boolean) IgnoreCrossplaneConstraints indicates to the package manager whether tohonor Crossplane version constrains specified by the package.Default is false.
 - `package_pull_policy` (String) PackagePullPolicy defines the pull policy for the package.Default is IfNotPresent.
 - `package_pull_secrets` (Attributes List) PackagePullSecrets are named secrets in the same namespace that can be usedto fetch packages from private registries. (see [below for nested schema](#nestedatt--spec--package_pull_secrets))

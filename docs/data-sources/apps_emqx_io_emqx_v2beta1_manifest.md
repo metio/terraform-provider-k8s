@@ -165,6 +165,7 @@ Optional:
 - `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--startup_probe))
 - `tole_rations` (Attributes List) (see [below for nested schema](#nestedatt--spec--core_template--spec--tole_rations))
 - `tolerations` (Attributes List) (see [below for nested schema](#nestedatt--spec--core_template--spec--tolerations))
+- `topology_spread_constraints` (Attributes List) (see [below for nested schema](#nestedatt--spec--core_template--spec--topology_spread_constraints))
 - `volume_claim_templates` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates))
 
 <a id="nestedatt--spec--core_template--spec--affinity"></a>
@@ -298,6 +299,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
 - `namespaces` (List of String)
 
@@ -357,6 +360,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
@@ -432,6 +437,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
 - `namespaces` (List of String)
 
@@ -491,6 +498,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
@@ -724,7 +733,9 @@ Optional:
 - `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--liveness_probe))
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--ports))
 - `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--resize_policy))
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--resources))
+- `restart_policy` (String)
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--security_context))
 - `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--startup_probe))
 - `stdin` (Boolean)
@@ -854,6 +865,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--core_template--spec--volume_claim_templates--lifecycle--pre_stop--exec"></a>
@@ -886,6 +898,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--core_template--spec--volume_claim_templates--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.core_template.spec.volume_claim_templates.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--core_template--spec--volume_claim_templates--lifecycle--pre_stop--tcp_socket"></a>
@@ -908,6 +928,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--core_template--spec--volume_claim_templates--lifecycle--pre_stop--exec"></a>
@@ -940,6 +961,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--core_template--spec--volume_claim_templates--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.core_template.spec.volume_claim_templates.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--core_template--spec--volume_claim_templates--lifecycle--pre_stop--tcp_socket"></a>
@@ -1117,13 +1146,31 @@ Optional:
 
 
 
+<a id="nestedatt--spec--core_template--spec--volume_claim_templates--resize_policy"></a>
+### Nested Schema for `spec.core_template.spec.volume_claim_templates.resize_policy`
+
+Required:
+
+- `resource_name` (String)
+- `restart_policy` (String)
+
+
 <a id="nestedatt--spec--core_template--spec--volume_claim_templates--resources"></a>
 ### Nested Schema for `spec.core_template.spec.volume_claim_templates.resources`
 
 Optional:
 
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
+
+<a id="nestedatt--spec--core_template--spec--volume_claim_templates--resources--claims"></a>
+### Nested Schema for `spec.core_template.spec.volume_claim_templates.resources.claims`
+
+Required:
+
+- `name` (String)
+
 
 
 <a id="nestedatt--spec--core_template--spec--volume_claim_templates--security_context"></a>
@@ -1563,6 +1610,7 @@ Optional:
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--ephemeral--volume_claim_template--metadata--resources))
 - `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--ephemeral--volume_claim_template--metadata--selector))
 - `storage_class_name` (String)
+- `volume_attributes_class_name` (String)
 - `volume_mode` (String)
 - `volume_name` (String)
 
@@ -1590,6 +1638,7 @@ Required:
 Optional:
 
 - `api_group` (String)
+- `namespace` (String)
 
 
 <a id="nestedatt--spec--core_template--spec--volume_claim_templates--ephemeral--volume_claim_template--metadata--resources"></a>
@@ -1826,10 +1875,48 @@ Optional:
 
 Optional:
 
+- `cluster_trust_bundle` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--projected--sources--cluster_trust_bundle))
 - `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--projected--sources--config_map))
 - `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--projected--sources--downward_api))
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--projected--sources--secret))
 - `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--projected--sources--service_account_token))
+
+<a id="nestedatt--spec--core_template--spec--volume_claim_templates--projected--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.core_template.spec.volume_claim_templates.projected.sources.cluster_trust_bundle`
+
+Required:
+
+- `path` (String)
+
+Optional:
+
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--projected--sources--service_account_token--label_selector))
+- `name` (String)
+- `optional` (Boolean)
+- `signer_name` (String)
+
+<a id="nestedatt--spec--core_template--spec--volume_claim_templates--projected--sources--service_account_token--label_selector"></a>
+### Nested Schema for `spec.core_template.spec.volume_claim_templates.projected.sources.service_account_token.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--projected--sources--service_account_token--signer_name--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--core_template--spec--volume_claim_templates--projected--sources--service_account_token--signer_name--match_expressions"></a>
+### Nested Schema for `spec.core_template.spec.volume_claim_templates.projected.sources.service_account_token.signer_name.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
 
 <a id="nestedatt--spec--core_template--spec--volume_claim_templates--projected--sources--config_map"></a>
 ### Nested Schema for `spec.core_template.spec.volume_claim_templates.projected.sources.config_map`
@@ -2087,7 +2174,9 @@ Optional:
 - `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--liveness_probe))
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--ports))
 - `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--resize_policy))
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--resources))
+- `restart_policy` (String)
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--security_context))
 - `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--startup_probe))
 - `stdin` (Boolean)
@@ -2217,6 +2306,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--core_template--spec--volume_claim_templates--lifecycle--pre_stop--exec"></a>
@@ -2249,6 +2339,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--core_template--spec--volume_claim_templates--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.core_template.spec.volume_claim_templates.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--core_template--spec--volume_claim_templates--lifecycle--pre_stop--tcp_socket"></a>
@@ -2271,6 +2369,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--core_template--spec--volume_claim_templates--lifecycle--pre_stop--exec"></a>
@@ -2303,6 +2402,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--core_template--spec--volume_claim_templates--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.core_template.spec.volume_claim_templates.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--core_template--spec--volume_claim_templates--lifecycle--pre_stop--tcp_socket"></a>
@@ -2480,13 +2587,31 @@ Optional:
 
 
 
+<a id="nestedatt--spec--core_template--spec--volume_claim_templates--resize_policy"></a>
+### Nested Schema for `spec.core_template.spec.volume_claim_templates.resize_policy`
+
+Required:
+
+- `resource_name` (String)
+- `restart_policy` (String)
+
+
 <a id="nestedatt--spec--core_template--spec--volume_claim_templates--resources"></a>
 ### Nested Schema for `spec.core_template.spec.volume_claim_templates.resources`
 
 Optional:
 
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
+
+<a id="nestedatt--spec--core_template--spec--volume_claim_templates--resources--claims"></a>
+### Nested Schema for `spec.core_template.spec.volume_claim_templates.resources.claims`
+
+Required:
+
+- `name` (String)
+
 
 
 <a id="nestedatt--spec--core_template--spec--volume_claim_templates--security_context"></a>
@@ -2664,6 +2789,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--post_start--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--post_start--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--post_start--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--post_start--tcp_socket))
 
 <a id="nestedatt--spec--core_template--spec--volume_claim_templates--post_start--exec"></a>
@@ -2698,6 +2824,14 @@ Required:
 
 
 
+<a id="nestedatt--spec--core_template--spec--volume_claim_templates--post_start--sleep"></a>
+### Nested Schema for `spec.core_template.spec.volume_claim_templates.post_start.sleep`
+
+Required:
+
+- `seconds` (Number)
+
+
 <a id="nestedatt--spec--core_template--spec--volume_claim_templates--post_start--tcp_socket"></a>
 ### Nested Schema for `spec.core_template.spec.volume_claim_templates.post_start.tcp_socket`
 
@@ -2718,6 +2852,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--core_template--spec--volume_claim_templates--pre_stop--exec"></a>
@@ -2750,6 +2885,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--core_template--spec--volume_claim_templates--pre_stop--sleep"></a>
+### Nested Schema for `spec.core_template.spec.volume_claim_templates.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--core_template--spec--volume_claim_templates--pre_stop--tcp_socket"></a>
@@ -2992,8 +3135,17 @@ Optional:
 
 Optional:
 
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
+
+<a id="nestedatt--spec--core_template--spec--volume_claim_templates--claims"></a>
+### Nested Schema for `spec.core_template.spec.volume_claim_templates.claims`
+
+Required:
+
+- `name` (String)
+
 
 
 <a id="nestedatt--spec--core_template--spec--startup_probe"></a>
@@ -3093,6 +3245,46 @@ Optional:
 - `value` (String)
 
 
+<a id="nestedatt--spec--core_template--spec--topology_spread_constraints"></a>
+### Nested Schema for `spec.core_template.spec.topology_spread_constraints`
+
+Required:
+
+- `max_skew` (Number)
+- `topology_key` (String)
+- `when_unsatisfiable` (String)
+
+Optional:
+
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--label_selector))
+- `match_label_keys` (List of String)
+- `min_domains` (Number)
+- `node_affinity_policy` (String)
+- `node_taints_policy` (String)
+
+<a id="nestedatt--spec--core_template--spec--volume_claim_templates--label_selector"></a>
+### Nested Schema for `spec.core_template.spec.volume_claim_templates.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--label_selector--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--core_template--spec--volume_claim_templates--label_selector--match_expressions"></a>
+### Nested Schema for `spec.core_template.spec.volume_claim_templates.label_selector.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
+
 <a id="nestedatt--spec--core_template--spec--volume_claim_templates"></a>
 ### Nested Schema for `spec.core_template.spec.volume_claim_templates`
 
@@ -3104,6 +3296,7 @@ Optional:
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--resources))
 - `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--core_template--spec--volume_claim_templates--selector))
 - `storage_class_name` (String)
+- `volume_attributes_class_name` (String)
 - `volume_mode` (String)
 - `volume_name` (String)
 
@@ -3131,6 +3324,7 @@ Required:
 Optional:
 
 - `api_group` (String)
+- `namespace` (String)
 
 
 <a id="nestedatt--spec--core_template--spec--volume_claim_templates--resources"></a>
@@ -3382,42 +3576,43 @@ Optional:
 - `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--startup_probe))
 - `tole_rations` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tole_rations))
 - `tolerations` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations))
+- `topology_spread_constraints` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints))
 
 <a id="nestedatt--spec--replicant_template--spec--affinity"></a>
 ### Nested Schema for `spec.replicant_template.spec.affinity`
 
 Optional:
 
-- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--node_affinity))
-- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--pod_affinity))
-- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--pod_anti_affinity))
+- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--node_affinity))
+- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_affinity))
+- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_anti_affinity))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--node_affinity"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.node_affinity`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--node_affinity"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.node_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--node_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--node_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.node_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.node_affinity.required_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
 
 Required:
 
@@ -3429,51 +3624,8 @@ Optional:
 - `values` (List of String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
-
-Required:
-
-- `key` (String)
-- `operator` (String)
-
-Optional:
-
-- `values` (List of String)
-
-
-
-
-<a id="nestedatt--spec--replicant_template--spec--tolerations--node_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.node_affinity.required_during_scheduling_ignored_during_execution`
-
-Required:
-
-- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
-
-<a id="nestedatt--spec--replicant_template--spec--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
-
-<a id="nestedatt--spec--replicant_template--spec--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
-
-Required:
-
-- `key` (String)
-- `operator` (String)
-
-Optional:
-
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--replicant_template--spec--tolerations--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
 
 Required:
 
@@ -3487,25 +3639,68 @@ Optional:
 
 
 
-
-<a id="nestedatt--spec--replicant_template--spec--tolerations--pod_affinity"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.pod_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--pod_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--replicant_template--spec--tolerations--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_affinity"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -3513,20 +3708,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -3539,16 +3736,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -3563,8 +3760,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -3572,20 +3769,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -3598,16 +3797,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -3622,24 +3821,24 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--pod_anti_affinity"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.pod_anti_affinity`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_anti_affinity"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.pod_anti_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -3647,20 +3846,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -3673,16 +3874,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
@@ -3697,8 +3898,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -3706,20 +3907,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -3732,16 +3935,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
 
 Required:
 
@@ -3763,19 +3966,19 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--windows_options))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--capabilities"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.capabilities`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--capabilities"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.capabilities`
 
 Optional:
 
@@ -3783,8 +3986,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--se_linux_options"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.se_linux_options`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--se_linux_options"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.se_linux_options`
 
 Optional:
 
@@ -3794,8 +3997,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--seccomp_profile"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.seccomp_profile`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--seccomp_profile"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.seccomp_profile`
 
 Required:
 
@@ -3806,8 +4009,8 @@ Optional:
 - `localhost_profile` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--windows_options"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.windows_options`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--windows_options"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.windows_options`
 
 Optional:
 
@@ -3828,20 +4031,20 @@ Required:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--value_from))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--value_from"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.value_from`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--value_from"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--value_from--config_map_key_ref))
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--value_from--field_ref))
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.value_from.config_map_key_ref`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.value_from.config_map_key_ref`
 
 Required:
 
@@ -3853,8 +4056,8 @@ Optional:
 - `optional` (Boolean)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--value_from--field_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.value_from.field_ref`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--value_from--field_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.value_from.field_ref`
 
 Required:
 
@@ -3865,8 +4068,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.value_from.resource_field_ref`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.value_from.resource_field_ref`
 
 Required:
 
@@ -3878,8 +4081,8 @@ Optional:
 - `divisor` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.value_from.secret_key_ref`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.value_from.secret_key_ref`
 
 Required:
 
@@ -3898,12 +4101,12 @@ Optional:
 
 Optional:
 
-- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--config_map_ref))
+- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--config_map_ref))
 - `prefix` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--secret_ref))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--config_map_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.config_map_ref`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--config_map_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.config_map_ref`
 
 Optional:
 
@@ -3911,8 +4114,8 @@ Optional:
 - `optional` (Boolean)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--secret_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.secret_ref`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--secret_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.secret_ref`
 
 Optional:
 
@@ -3932,28 +4135,30 @@ Optional:
 
 - `args` (List of String)
 - `command` (List of String)
-- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--env))
-- `env_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--env_from))
+- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--env))
+- `env_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--env_from))
 - `image` (String)
 - `image_pull_policy` (String)
-- `lifecycle` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--lifecycle))
-- `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--liveness_probe))
-- `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--ports))
-- `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--readiness_probe))
-- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--resources))
-- `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--security_context))
-- `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--startup_probe))
+- `lifecycle` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle))
+- `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--liveness_probe))
+- `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--ports))
+- `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--resize_policy))
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--resources))
+- `restart_policy` (String)
+- `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--security_context))
+- `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--startup_probe))
 - `stdin` (Boolean)
 - `stdin_once` (Boolean)
 - `termination_message_path` (String)
 - `termination_message_policy` (String)
 - `tty` (Boolean)
-- `volume_devices` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--volume_devices))
-- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--volume_mounts))
+- `volume_devices` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--volume_devices))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--volume_mounts))
 - `working_dir` (String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--env"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.env`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--env"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.env`
 
 Required:
 
@@ -3962,20 +4167,20 @@ Required:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--env--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--env--value_from))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--env--value_from"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.env.value_from`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--env--value_from"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--env--value_from--config_map_key_ref))
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--env--value_from--field_ref))
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--env--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--env--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.env.value_from.config_map_key_ref`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -3987,8 +4192,8 @@ Optional:
 - `optional` (Boolean)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--env--value_from--field_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.env.value_from.field_ref`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--env--value_from--field_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.env.value_from.field_ref`
 
 Required:
 
@@ -3999,8 +4204,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.env.value_from.resource_field_ref`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.env.value_from.resource_field_ref`
 
 Required:
 
@@ -4012,8 +4217,8 @@ Optional:
 - `divisor` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--env--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.env.value_from.secret_key_ref`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.env.value_from.secret_key_ref`
 
 Required:
 
@@ -4027,26 +4232,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--env_from"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.env_from`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--env_from"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.env_from`
 
 Optional:
 
-- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--env_from--config_map_ref))
+- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--env_from--config_map_ref))
 - `prefix` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--env_from--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--env_from--secret_ref))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--env_from--config_map_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.env_from.config_map_ref`
-
-Optional:
-
-- `name` (String)
-- `optional` (Boolean)
-
-
-<a id="nestedatt--spec--replicant_template--spec--tolerations--env_from--secret_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.env_from.secret_ref`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--env_from--config_map_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.env_from.config_map_ref`
 
 Optional:
 
@@ -4054,34 +4250,44 @@ Optional:
 - `optional` (Boolean)
 
 
-
-<a id="nestedatt--spec--replicant_template--spec--tolerations--lifecycle"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.lifecycle`
-
-Optional:
-
-- `post_start` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--lifecycle--post_start))
-- `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop))
-
-<a id="nestedatt--spec--replicant_template--spec--tolerations--lifecycle--post_start"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.lifecycle.post_start`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--env_from--secret_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.env_from.secret_ref`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--exec))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--http_get))
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--tcp_socket))
+- `name` (String)
+- `optional` (Boolean)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.lifecycle.pre_stop.exec`
+
+
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.lifecycle`
+
+Optional:
+
+- `post_start` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--post_start))
+- `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop))
+
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--post_start"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.lifecycle.post_start`
+
+Optional:
+
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--exec))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--sleep))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--tcp_socket))
+
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--exec"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.lifecycle.pre_stop.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.lifecycle.pre_stop.http_get`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--http_get"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -4090,12 +4296,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--tcp_socket--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--tcp_socket--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.lifecycle.pre_stop.tcp_socket.http_headers`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--tcp_socket--http_headers"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -4104,8 +4310,16 @@ Required:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.lifecycle.pre_stop.tcp_socket`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number)
+
+
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--tcp_socket"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
 
 Required:
 
@@ -4117,25 +4331,26 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.lifecycle.pre_stop`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.lifecycle.pre_stop`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--exec))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--http_get))
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--tcp_socket))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--exec))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--sleep))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--tcp_socket))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.lifecycle.pre_stop.exec`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--exec"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.lifecycle.pre_stop.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.lifecycle.pre_stop.http_get`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--http_get"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -4144,12 +4359,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--tcp_socket--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--tcp_socket--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.lifecycle.pre_stop.tcp_socket.http_headers`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--tcp_socket--http_headers"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -4158,8 +4373,16 @@ Required:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.lifecycle.pre_stop.tcp_socket`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number)
+
+
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--tcp_socket"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
 
 Required:
 
@@ -4172,32 +4395,32 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--liveness_probe"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.liveness_probe`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--liveness_probe"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.liveness_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--liveness_probe--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--liveness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--liveness_probe--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--liveness_probe--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--liveness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--liveness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--liveness_probe--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--liveness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--liveness_probe--exec"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.liveness_probe.exec`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--liveness_probe--exec"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.liveness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--liveness_probe--grpc"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.liveness_probe.grpc`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--liveness_probe--grpc"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.liveness_probe.grpc`
 
 Required:
 
@@ -4208,8 +4431,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--liveness_probe--http_get"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.liveness_probe.http_get`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--liveness_probe--http_get"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.liveness_probe.http_get`
 
 Required:
 
@@ -4218,12 +4441,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--liveness_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--liveness_probe--timeout_seconds--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.liveness_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--liveness_probe--timeout_seconds--http_headers"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.liveness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -4232,8 +4455,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.liveness_probe.tcp_socket`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--liveness_probe--tcp_socket"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.liveness_probe.tcp_socket`
 
 Required:
 
@@ -4245,8 +4468,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--ports"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.ports`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--ports"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.ports`
 
 Required:
 
@@ -4260,32 +4483,32 @@ Optional:
 - `protocol` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--readiness_probe"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.readiness_probe`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--readiness_probe"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.readiness_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--readiness_probe--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--readiness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--readiness_probe--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--readiness_probe--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--readiness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--readiness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--readiness_probe--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--readiness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--readiness_probe--exec"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.readiness_probe.exec`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--readiness_probe--exec"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.readiness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--readiness_probe--grpc"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.readiness_probe.grpc`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--readiness_probe--grpc"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.readiness_probe.grpc`
 
 Required:
 
@@ -4296,8 +4519,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--readiness_probe--http_get"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.readiness_probe.http_get`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--readiness_probe--http_get"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.readiness_probe.http_get`
 
 Required:
 
@@ -4306,12 +4529,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--readiness_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--readiness_probe--timeout_seconds--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.readiness_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--readiness_probe--timeout_seconds--http_headers"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.readiness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -4320,8 +4543,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.readiness_probe.tcp_socket`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--readiness_probe--tcp_socket"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.readiness_probe.tcp_socket`
 
 Required:
 
@@ -4333,34 +4556,52 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--resources"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.resources`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--resize_policy"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.resize_policy`
+
+Required:
+
+- `resource_name` (String)
+- `restart_policy` (String)
+
+
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--resources"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.resources`
 
 Optional:
 
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
 
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--resources--claims"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.resources.claims`
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--security_context"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.security_context`
+Required:
+
+- `name` (String)
+
+
+
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--security_context"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.security_context`
 
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--security_context--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--security_context--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--security_context--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--security_context--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--security_context--windows_options))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--security_context--capabilities"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.security_context.capabilities`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--security_context--capabilities"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.security_context.capabilities`
 
 Optional:
 
@@ -4368,8 +4609,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--security_context--se_linux_options"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.security_context.se_linux_options`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--security_context--se_linux_options"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.security_context.se_linux_options`
 
 Optional:
 
@@ -4379,8 +4620,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.security_context.seccomp_profile`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.security_context.seccomp_profile`
 
 Required:
 
@@ -4391,8 +4632,8 @@ Optional:
 - `localhost_profile` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--security_context--windows_options"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.security_context.windows_options`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--security_context--windows_options"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.security_context.windows_options`
 
 Optional:
 
@@ -4403,32 +4644,32 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--startup_probe"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.startup_probe`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--startup_probe"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.startup_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--startup_probe--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--startup_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--startup_probe--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--startup_probe--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--startup_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--startup_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--startup_probe--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--startup_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--startup_probe--exec"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.startup_probe.exec`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--startup_probe--exec"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.startup_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--startup_probe--grpc"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.startup_probe.grpc`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--startup_probe--grpc"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.startup_probe.grpc`
 
 Required:
 
@@ -4439,8 +4680,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--startup_probe--http_get"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.startup_probe.http_get`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--startup_probe--http_get"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.startup_probe.http_get`
 
 Required:
 
@@ -4449,12 +4690,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--startup_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--startup_probe--timeout_seconds--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--startup_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.startup_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--startup_probe--timeout_seconds--http_headers"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.startup_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -4463,8 +4704,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.startup_probe.tcp_socket`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--startup_probe--tcp_socket"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.startup_probe.tcp_socket`
 
 Required:
 
@@ -4476,8 +4717,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--volume_devices"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.volume_devices`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--volume_devices"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.volume_devices`
 
 Required:
 
@@ -4485,8 +4726,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--volume_mounts"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.volume_mounts`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--volume_mounts"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.volume_mounts`
 
 Required:
 
@@ -4527,38 +4768,38 @@ Required:
 
 Optional:
 
-- `aws_elastic_block_store` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--aws_elastic_block_store))
-- `azure_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--azure_disk))
-- `azure_file` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--azure_file))
-- `cephfs` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--cephfs))
-- `cinder` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--cinder))
-- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--config_map))
-- `csi` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--csi))
-- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--downward_api))
-- `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--empty_dir))
-- `ephemeral` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--ephemeral))
-- `fc` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--fc))
-- `flex_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--flex_volume))
-- `flocker` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--flocker))
-- `gce_persistent_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--gce_persistent_disk))
-- `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--git_repo))
-- `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--glusterfs))
-- `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--host_path))
-- `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--iscsi))
-- `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--nfs))
-- `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--persistent_volume_claim))
-- `photon_persistent_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--photon_persistent_disk))
-- `portworx_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--portworx_volume))
-- `projected` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--projected))
-- `quobyte` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--quobyte))
-- `rbd` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--rbd))
-- `scale_io` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--scale_io))
-- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--secret))
-- `storageos` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--storageos))
-- `vsphere_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--vsphere_volume))
+- `aws_elastic_block_store` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--aws_elastic_block_store))
+- `azure_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--azure_disk))
+- `azure_file` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--azure_file))
+- `cephfs` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--cephfs))
+- `cinder` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--cinder))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--config_map))
+- `csi` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--csi))
+- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--downward_api))
+- `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--empty_dir))
+- `ephemeral` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--ephemeral))
+- `fc` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--fc))
+- `flex_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--flex_volume))
+- `flocker` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--flocker))
+- `gce_persistent_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--gce_persistent_disk))
+- `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--git_repo))
+- `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--glusterfs))
+- `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--host_path))
+- `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--iscsi))
+- `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--nfs))
+- `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--persistent_volume_claim))
+- `photon_persistent_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--photon_persistent_disk))
+- `portworx_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--portworx_volume))
+- `projected` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--projected))
+- `quobyte` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--quobyte))
+- `rbd` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--rbd))
+- `scale_io` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--scale_io))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--secret))
+- `storageos` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--storageos))
+- `vsphere_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--vsphere_volume))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--aws_elastic_block_store"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.aws_elastic_block_store`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--aws_elastic_block_store"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.aws_elastic_block_store`
 
 Required:
 
@@ -4571,8 +4812,8 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--azure_disk"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.azure_disk`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--azure_disk"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.azure_disk`
 
 Required:
 
@@ -4587,8 +4828,8 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--azure_file"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.azure_file`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--azure_file"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.azure_file`
 
 Required:
 
@@ -4600,8 +4841,8 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--cephfs"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.cephfs`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--cephfs"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.cephfs`
 
 Required:
 
@@ -4612,11 +4853,11 @@ Optional:
 - `path` (String)
 - `read_only` (Boolean)
 - `secret_file` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--cephfs--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--cephfs--secret_ref))
 - `user` (String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--cephfs--secret_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.cephfs.secret_ref`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--cephfs--secret_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.cephfs.secret_ref`
 
 Optional:
 
@@ -4624,8 +4865,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--cinder"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.cinder`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--cinder"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.cinder`
 
 Required:
 
@@ -4635,10 +4876,10 @@ Optional:
 
 - `fs_type` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--cinder--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--cinder--secret_ref))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--cinder--secret_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.cinder.secret_ref`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--cinder--secret_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.cinder.secret_ref`
 
 Optional:
 
@@ -4646,18 +4887,18 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--config_map"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.config_map`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--config_map"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.config_map`
 
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--config_map--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--config_map--items))
 - `name` (String)
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--config_map--items"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.config_map.items`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--config_map--items"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.config_map.items`
 
 Required:
 
@@ -4670,8 +4911,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--csi"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.csi`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--csi"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.csi`
 
 Required:
 
@@ -4680,12 +4921,12 @@ Required:
 Optional:
 
 - `fs_type` (String)
-- `node_publish_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--csi--node_publish_secret_ref))
+- `node_publish_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--csi--node_publish_secret_ref))
 - `read_only` (Boolean)
 - `volume_attributes` (Map of String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--csi--node_publish_secret_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.csi.node_publish_secret_ref`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--csi--node_publish_secret_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -4693,16 +4934,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--downward_api"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.downward_api`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--downward_api"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.downward_api`
 
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--downward_api--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--downward_api--items))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--downward_api--items"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.downward_api.items`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--downward_api--items"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.downward_api.items`
 
 Required:
 
@@ -4710,12 +4951,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--downward_api--items--field_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--downward_api--items--field_ref))
 - `mode` (Number)
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--downward_api--items--resource_field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--downward_api--items--field_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.downward_api.items.field_ref`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.downward_api.items.field_ref`
 
 Required:
 
@@ -4726,8 +4967,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--downward_api--items--resource_field_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.downward_api.items.resource_field_ref`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.downward_api.items.resource_field_ref`
 
 Required:
 
@@ -4741,8 +4982,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--empty_dir"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.empty_dir`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--empty_dir"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.empty_dir`
 
 Optional:
 
@@ -4750,40 +4991,41 @@ Optional:
 - `size_limit` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--ephemeral"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.ephemeral`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--ephemeral"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.ephemeral`
 
 Optional:
 
-- `volume_claim_template` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--ephemeral--volume_claim_template))
+- `volume_claim_template` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--ephemeral--volume_claim_template))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--ephemeral--volume_claim_template"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.ephemeral.volume_claim_template`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--ephemeral--volume_claim_template"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.ephemeral.volume_claim_template`
 
 Required:
 
-- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--ephemeral--volume_claim_template--spec))
+- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--ephemeral--volume_claim_template--spec))
 
 Optional:
 
-- `metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--ephemeral--volume_claim_template--metadata))
+- `metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--ephemeral--volume_claim_template--metadata))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--ephemeral--volume_claim_template--spec"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.ephemeral.volume_claim_template.spec`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--ephemeral--volume_claim_template--spec"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.ephemeral.volume_claim_template.spec`
 
 Optional:
 
 - `access_modes` (List of String)
-- `data_source` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--ephemeral--volume_claim_template--metadata--data_source))
-- `data_source_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--ephemeral--volume_claim_template--metadata--data_source_ref))
-- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--ephemeral--volume_claim_template--metadata--resources))
-- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--ephemeral--volume_claim_template--metadata--selector))
+- `data_source` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--ephemeral--volume_claim_template--metadata--data_source))
+- `data_source_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--ephemeral--volume_claim_template--metadata--data_source_ref))
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--ephemeral--volume_claim_template--metadata--resources))
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--ephemeral--volume_claim_template--metadata--selector))
 - `storage_class_name` (String)
+- `volume_attributes_class_name` (String)
 - `volume_mode` (String)
 - `volume_name` (String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--ephemeral--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.ephemeral.volume_claim_template.metadata.data_source`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--ephemeral--volume_claim_template--metadata--data_source"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.ephemeral.volume_claim_template.metadata.data_source`
 
 Required:
 
@@ -4795,8 +5037,8 @@ Optional:
 - `api_group` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--ephemeral--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.ephemeral.volume_claim_template.metadata.data_source_ref`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--ephemeral--volume_claim_template--metadata--data_source_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.ephemeral.volume_claim_template.metadata.data_source_ref`
 
 Required:
 
@@ -4806,10 +5048,11 @@ Required:
 Optional:
 
 - `api_group` (String)
+- `namespace` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--ephemeral--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.ephemeral.volume_claim_template.metadata.resources`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--ephemeral--volume_claim_template--metadata--resources"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.ephemeral.volume_claim_template.metadata.resources`
 
 Optional:
 
@@ -4817,16 +5060,16 @@ Optional:
 - `requests` (Map of String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--ephemeral--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.ephemeral.volume_claim_template.metadata.selector`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--ephemeral--volume_claim_template--metadata--selector"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.ephemeral.volume_claim_template.metadata.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--ephemeral--volume_claim_template--metadata--volume_name--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--ephemeral--volume_claim_template--metadata--volume_name--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--ephemeral--volume_claim_template--metadata--volume_name--match_expressions"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.ephemeral.volume_claim_template.metadata.volume_name.match_expressions`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--ephemeral--volume_claim_template--metadata--volume_name--match_expressions"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.ephemeral.volume_claim_template.metadata.volume_name.match_expressions`
 
 Required:
 
@@ -4840,8 +5083,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--ephemeral--volume_claim_template--metadata"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.ephemeral.volume_claim_template.metadata`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--ephemeral--volume_claim_template--metadata"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.ephemeral.volume_claim_template.metadata`
 
 Optional:
 
@@ -4854,8 +5097,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--fc"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.fc`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--fc"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.fc`
 
 Optional:
 
@@ -4866,8 +5109,8 @@ Optional:
 - `wwids` (List of String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--flex_volume"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.flex_volume`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--flex_volume"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.flex_volume`
 
 Required:
 
@@ -4878,10 +5121,10 @@ Optional:
 - `fs_type` (String)
 - `options` (Map of String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--flex_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--flex_volume--secret_ref))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--flex_volume--secret_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.flex_volume.secret_ref`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--flex_volume--secret_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.flex_volume.secret_ref`
 
 Optional:
 
@@ -4889,8 +5132,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--flocker"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.flocker`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--flocker"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.flocker`
 
 Optional:
 
@@ -4898,8 +5141,8 @@ Optional:
 - `dataset_uuid` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--gce_persistent_disk"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.gce_persistent_disk`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--gce_persistent_disk"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.gce_persistent_disk`
 
 Required:
 
@@ -4912,8 +5155,8 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--git_repo"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.git_repo`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--git_repo"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.git_repo`
 
 Required:
 
@@ -4925,8 +5168,8 @@ Optional:
 - `revision` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--glusterfs"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.glusterfs`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--glusterfs"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.glusterfs`
 
 Required:
 
@@ -4938,8 +5181,8 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--host_path"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.host_path`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--host_path"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.host_path`
 
 Required:
 
@@ -4950,8 +5193,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--iscsi"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.iscsi`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--iscsi"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.iscsi`
 
 Required:
 
@@ -4968,10 +5211,10 @@ Optional:
 - `iscsi_interface` (String)
 - `portals` (List of String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--iscsi--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--iscsi--secret_ref))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--iscsi--secret_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.iscsi.secret_ref`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--iscsi--secret_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.iscsi.secret_ref`
 
 Optional:
 
@@ -4979,8 +5222,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--nfs"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.nfs`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--nfs"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.nfs`
 
 Required:
 
@@ -4992,8 +5235,8 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--persistent_volume_claim"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.persistent_volume_claim`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--persistent_volume_claim"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.persistent_volume_claim`
 
 Required:
 
@@ -5004,8 +5247,8 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--photon_persistent_disk"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.photon_persistent_disk`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--photon_persistent_disk"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.photon_persistent_disk`
 
 Required:
 
@@ -5016,8 +5259,8 @@ Optional:
 - `fs_type` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--portworx_volume"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.portworx_volume`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--portworx_volume"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.portworx_volume`
 
 Required:
 
@@ -5029,35 +5272,73 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--projected"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.projected`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--projected"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.projected`
 
 Optional:
 
 - `default_mode` (Number)
-- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--projected--sources))
+- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--projected--sources))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--projected--sources"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.projected.sources`
-
-Optional:
-
-- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--projected--sources--config_map))
-- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--projected--sources--downward_api))
-- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--projected--sources--secret))
-- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--projected--sources--service_account_token))
-
-<a id="nestedatt--spec--replicant_template--spec--tolerations--projected--sources--config_map"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.projected.sources.config_map`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--projected--sources"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.projected.sources`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--projected--sources--service_account_token--items))
+- `cluster_trust_bundle` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--projected--sources--cluster_trust_bundle))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--projected--sources--config_map))
+- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--projected--sources--downward_api))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--projected--sources--secret))
+- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--projected--sources--service_account_token))
+
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--projected--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.projected.sources.cluster_trust_bundle`
+
+Required:
+
+- `path` (String)
+
+Optional:
+
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--projected--sources--service_account_token--label_selector))
+- `name` (String)
+- `optional` (Boolean)
+- `signer_name` (String)
+
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--projected--sources--service_account_token--label_selector"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.projected.sources.service_account_token.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--projected--sources--service_account_token--signer_name--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--projected--sources--service_account_token--signer_name--match_expressions"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.projected.sources.service_account_token.signer_name.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
+
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--projected--sources--config_map"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.projected.sources.config_map`
+
+Optional:
+
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--projected--sources--service_account_token--items))
 - `name` (String)
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.projected.sources.service_account_token.items`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--projected--sources--service_account_token--items"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.projected.sources.service_account_token.items`
 
 Required:
 
@@ -5070,15 +5351,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--projected--sources--downward_api"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.projected.sources.downward_api`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--projected--sources--downward_api"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.projected.sources.downward_api`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--projected--sources--service_account_token--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--projected--sources--service_account_token--items))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.projected.sources.service_account_token.items`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--projected--sources--service_account_token--items"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.projected.sources.service_account_token.items`
 
 Required:
 
@@ -5086,12 +5367,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--projected--sources--service_account_token--items--field_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--projected--sources--service_account_token--items--field_ref))
 - `mode` (Number)
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--projected--sources--service_account_token--items--resource_field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--projected--sources--service_account_token--items--resource_field_ref))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--projected--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.projected.sources.service_account_token.items.field_ref`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--projected--sources--service_account_token--items--field_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.projected.sources.service_account_token.items.field_ref`
 
 Required:
 
@@ -5102,8 +5383,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--projected--sources--service_account_token--items--resource_field_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.projected.sources.service_account_token.items.resource_field_ref`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--projected--sources--service_account_token--items--resource_field_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.projected.sources.service_account_token.items.resource_field_ref`
 
 Required:
 
@@ -5117,17 +5398,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--projected--sources--secret"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.projected.sources.secret`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--projected--sources--secret"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.projected.sources.secret`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--projected--sources--service_account_token--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--projected--sources--service_account_token--items))
 - `name` (String)
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.projected.sources.service_account_token.items`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--projected--sources--service_account_token--items"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.projected.sources.service_account_token.items`
 
 Required:
 
@@ -5140,8 +5421,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--projected--sources--service_account_token"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.projected.sources.service_account_token`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--projected--sources--service_account_token"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.projected.sources.service_account_token`
 
 Required:
 
@@ -5155,8 +5436,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--quobyte"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.quobyte`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--quobyte"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.quobyte`
 
 Required:
 
@@ -5171,8 +5452,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--rbd"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.rbd`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--rbd"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.rbd`
 
 Required:
 
@@ -5185,11 +5466,11 @@ Optional:
 - `keyring` (String)
 - `pool` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--rbd--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--rbd--secret_ref))
 - `user` (String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--rbd--secret_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.rbd.secret_ref`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--rbd--secret_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.rbd.secret_ref`
 
 Optional:
 
@@ -5197,13 +5478,13 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--scale_io"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.scale_io`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--scale_io"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.scale_io`
 
 Required:
 
 - `gateway` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--scale_io--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--scale_io--secret_ref))
 - `system` (String)
 
 Optional:
@@ -5216,8 +5497,8 @@ Optional:
 - `storage_pool` (String)
 - `volume_name` (String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--scale_io--secret_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.scale_io.secret_ref`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--scale_io--secret_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.scale_io.secret_ref`
 
 Optional:
 
@@ -5225,18 +5506,18 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--secret"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.secret`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--secret"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.secret`
 
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--secret--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--secret--items))
 - `optional` (Boolean)
 - `secret_name` (String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--secret--items"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.secret.items`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--secret--items"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.secret.items`
 
 Required:
 
@@ -5249,19 +5530,19 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--storageos"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.storageos`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--storageos"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.storageos`
 
 Optional:
 
 - `fs_type` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--storageos--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--storageos--secret_ref))
 - `volume_name` (String)
 - `volume_namespace` (String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--storageos--secret_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.storageos.secret_ref`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--storageos--secret_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.storageos.secret_ref`
 
 Optional:
 
@@ -5269,8 +5550,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--vsphere_volume"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.vsphere_volume`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--vsphere_volume"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.vsphere_volume`
 
 Required:
 
@@ -5295,28 +5576,30 @@ Optional:
 
 - `args` (List of String)
 - `command` (List of String)
-- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--env))
-- `env_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--env_from))
+- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--env))
+- `env_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--env_from))
 - `image` (String)
 - `image_pull_policy` (String)
-- `lifecycle` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--lifecycle))
-- `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--liveness_probe))
-- `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--ports))
-- `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--readiness_probe))
-- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--resources))
-- `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--security_context))
-- `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--startup_probe))
+- `lifecycle` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle))
+- `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--liveness_probe))
+- `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--ports))
+- `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--resize_policy))
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--resources))
+- `restart_policy` (String)
+- `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--security_context))
+- `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--startup_probe))
 - `stdin` (Boolean)
 - `stdin_once` (Boolean)
 - `termination_message_path` (String)
 - `termination_message_policy` (String)
 - `tty` (Boolean)
-- `volume_devices` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--volume_devices))
-- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--volume_mounts))
+- `volume_devices` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--volume_devices))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--volume_mounts))
 - `working_dir` (String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--env"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.env`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--env"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.env`
 
 Required:
 
@@ -5325,20 +5608,20 @@ Required:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--env--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--env--value_from))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--env--value_from"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.env.value_from`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--env--value_from"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--env--value_from--config_map_key_ref))
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--env--value_from--field_ref))
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--env--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--env--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.env.value_from.config_map_key_ref`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -5350,8 +5633,8 @@ Optional:
 - `optional` (Boolean)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--env--value_from--field_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.env.value_from.field_ref`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--env--value_from--field_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.env.value_from.field_ref`
 
 Required:
 
@@ -5362,8 +5645,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.env.value_from.resource_field_ref`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.env.value_from.resource_field_ref`
 
 Required:
 
@@ -5375,8 +5658,8 @@ Optional:
 - `divisor` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--env--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.env.value_from.secret_key_ref`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.env.value_from.secret_key_ref`
 
 Required:
 
@@ -5390,26 +5673,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--env_from"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.env_from`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--env_from"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.env_from`
 
 Optional:
 
-- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--env_from--config_map_ref))
+- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--env_from--config_map_ref))
 - `prefix` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--env_from--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--env_from--secret_ref))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--env_from--config_map_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.env_from.config_map_ref`
-
-Optional:
-
-- `name` (String)
-- `optional` (Boolean)
-
-
-<a id="nestedatt--spec--replicant_template--spec--tolerations--env_from--secret_ref"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.env_from.secret_ref`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--env_from--config_map_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.env_from.config_map_ref`
 
 Optional:
 
@@ -5417,34 +5691,44 @@ Optional:
 - `optional` (Boolean)
 
 
-
-<a id="nestedatt--spec--replicant_template--spec--tolerations--lifecycle"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.lifecycle`
-
-Optional:
-
-- `post_start` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--lifecycle--post_start))
-- `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop))
-
-<a id="nestedatt--spec--replicant_template--spec--tolerations--lifecycle--post_start"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.lifecycle.post_start`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--env_from--secret_ref"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.env_from.secret_ref`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--exec))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--http_get))
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--tcp_socket))
+- `name` (String)
+- `optional` (Boolean)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.lifecycle.pre_stop.exec`
+
+
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.lifecycle`
+
+Optional:
+
+- `post_start` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--post_start))
+- `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop))
+
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--post_start"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.lifecycle.post_start`
+
+Optional:
+
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--exec))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--sleep))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--tcp_socket))
+
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--exec"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.lifecycle.pre_stop.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.lifecycle.pre_stop.http_get`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--http_get"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -5453,12 +5737,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--tcp_socket--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--tcp_socket--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.lifecycle.pre_stop.tcp_socket.http_headers`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--tcp_socket--http_headers"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -5467,8 +5751,16 @@ Required:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.lifecycle.pre_stop.tcp_socket`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number)
+
+
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--tcp_socket"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
 
 Required:
 
@@ -5480,25 +5772,26 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.lifecycle.pre_stop`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.lifecycle.pre_stop`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--exec))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--http_get))
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--tcp_socket))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--exec))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--sleep))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--tcp_socket))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.lifecycle.pre_stop.exec`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--exec"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.lifecycle.pre_stop.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.lifecycle.pre_stop.http_get`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--http_get"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -5507,12 +5800,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--tcp_socket--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--tcp_socket--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.lifecycle.pre_stop.tcp_socket.http_headers`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--tcp_socket--http_headers"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.lifecycle.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -5521,8 +5814,16 @@ Required:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--lifecycle--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.lifecycle.pre_stop.tcp_socket`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number)
+
+
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--lifecycle--pre_stop--tcp_socket"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.lifecycle.pre_stop.tcp_socket`
 
 Required:
 
@@ -5535,32 +5836,32 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--liveness_probe"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.liveness_probe`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--liveness_probe"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.liveness_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--liveness_probe--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--liveness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--liveness_probe--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--liveness_probe--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--liveness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--liveness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--liveness_probe--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--liveness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--liveness_probe--exec"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.liveness_probe.exec`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--liveness_probe--exec"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.liveness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--liveness_probe--grpc"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.liveness_probe.grpc`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--liveness_probe--grpc"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.liveness_probe.grpc`
 
 Required:
 
@@ -5571,8 +5872,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--liveness_probe--http_get"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.liveness_probe.http_get`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--liveness_probe--http_get"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.liveness_probe.http_get`
 
 Required:
 
@@ -5581,12 +5882,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--liveness_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--liveness_probe--timeout_seconds--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.liveness_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--liveness_probe--timeout_seconds--http_headers"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.liveness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -5595,8 +5896,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.liveness_probe.tcp_socket`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--liveness_probe--tcp_socket"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.liveness_probe.tcp_socket`
 
 Required:
 
@@ -5608,8 +5909,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--ports"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.ports`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--ports"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.ports`
 
 Required:
 
@@ -5623,32 +5924,32 @@ Optional:
 - `protocol` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--readiness_probe"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.readiness_probe`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--readiness_probe"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.readiness_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--readiness_probe--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--readiness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--readiness_probe--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--readiness_probe--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--readiness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--readiness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--readiness_probe--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--readiness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--readiness_probe--exec"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.readiness_probe.exec`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--readiness_probe--exec"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.readiness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--readiness_probe--grpc"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.readiness_probe.grpc`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--readiness_probe--grpc"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.readiness_probe.grpc`
 
 Required:
 
@@ -5659,8 +5960,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--readiness_probe--http_get"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.readiness_probe.http_get`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--readiness_probe--http_get"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.readiness_probe.http_get`
 
 Required:
 
@@ -5669,12 +5970,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--readiness_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--readiness_probe--timeout_seconds--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.readiness_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--readiness_probe--timeout_seconds--http_headers"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.readiness_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -5683,8 +5984,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.readiness_probe.tcp_socket`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--readiness_probe--tcp_socket"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.readiness_probe.tcp_socket`
 
 Required:
 
@@ -5696,34 +5997,52 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--resources"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.resources`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--resize_policy"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.resize_policy`
+
+Required:
+
+- `resource_name` (String)
+- `restart_policy` (String)
+
+
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--resources"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.resources`
 
 Optional:
 
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
 
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--resources--claims"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.resources.claims`
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--security_context"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.security_context`
+Required:
+
+- `name` (String)
+
+
+
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--security_context"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.security_context`
 
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--security_context--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--security_context--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--security_context--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--security_context--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--security_context--windows_options))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--security_context--capabilities"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.security_context.capabilities`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--security_context--capabilities"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.security_context.capabilities`
 
 Optional:
 
@@ -5731,8 +6050,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--security_context--se_linux_options"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.security_context.se_linux_options`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--security_context--se_linux_options"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.security_context.se_linux_options`
 
 Optional:
 
@@ -5742,8 +6061,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.security_context.seccomp_profile`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.security_context.seccomp_profile`
 
 Required:
 
@@ -5754,8 +6073,8 @@ Optional:
 - `localhost_profile` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--security_context--windows_options"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.security_context.windows_options`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--security_context--windows_options"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.security_context.windows_options`
 
 Optional:
 
@@ -5766,32 +6085,32 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--startup_probe"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.startup_probe`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--startup_probe"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.startup_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--startup_probe--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--startup_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--startup_probe--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--startup_probe--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--startup_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--startup_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--startup_probe--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--startup_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--startup_probe--exec"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.startup_probe.exec`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--startup_probe--exec"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.startup_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--startup_probe--grpc"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.startup_probe.grpc`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--startup_probe--grpc"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.startup_probe.grpc`
 
 Required:
 
@@ -5802,8 +6121,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--startup_probe--http_get"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.startup_probe.http_get`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--startup_probe--http_get"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.startup_probe.http_get`
 
 Required:
 
@@ -5812,12 +6131,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--startup_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--startup_probe--timeout_seconds--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--startup_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.startup_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--startup_probe--timeout_seconds--http_headers"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.startup_probe.timeout_seconds.http_headers`
 
 Required:
 
@@ -5826,8 +6145,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.startup_probe.tcp_socket`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--startup_probe--tcp_socket"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.startup_probe.tcp_socket`
 
 Required:
 
@@ -5839,8 +6158,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--volume_devices"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.volume_devices`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--volume_devices"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.volume_devices`
 
 Required:
 
@@ -5848,8 +6167,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--volume_mounts"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.volume_mounts`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--volume_mounts"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.volume_mounts`
 
 Required:
 
@@ -5870,28 +6189,29 @@ Optional:
 
 Optional:
 
-- `post_start` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--post_start))
-- `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--pre_stop))
+- `post_start` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--post_start))
+- `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--pre_stop))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--post_start"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.post_start`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--post_start"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.post_start`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--post_start--exec))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--post_start--http_get))
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--post_start--tcp_socket))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--post_start--exec))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--post_start--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--post_start--sleep))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--post_start--tcp_socket))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--post_start--exec"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.post_start.exec`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--post_start--exec"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.post_start.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--post_start--http_get"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.post_start.http_get`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--post_start--http_get"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.post_start.http_get`
 
 Required:
 
@@ -5900,12 +6220,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--post_start--tcp_socket--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--post_start--tcp_socket--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--post_start--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.post_start.tcp_socket.http_headers`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--post_start--tcp_socket--http_headers"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.post_start.tcp_socket.http_headers`
 
 Required:
 
@@ -5914,8 +6234,16 @@ Required:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--post_start--tcp_socket"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.post_start.tcp_socket`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--post_start--sleep"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.post_start.sleep`
+
+Required:
+
+- `seconds` (Number)
+
+
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--post_start--tcp_socket"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.post_start.tcp_socket`
 
 Required:
 
@@ -5927,25 +6255,26 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--pre_stop"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.pre_stop`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--pre_stop"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.pre_stop`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--pre_stop--exec))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--pre_stop--http_get))
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--pre_stop--tcp_socket))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--pre_stop--exec))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--pre_stop--sleep))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--pre_stop--tcp_socket))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--pre_stop--exec"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.pre_stop.exec`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--pre_stop--exec"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.pre_stop.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--pre_stop--http_get"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.pre_stop.http_get`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--pre_stop--http_get"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.pre_stop.http_get`
 
 Required:
 
@@ -5954,12 +6283,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--pre_stop--tcp_socket--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--pre_stop--tcp_socket--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.pre_stop.tcp_socket.http_headers`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--pre_stop--tcp_socket--http_headers"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.pre_stop.tcp_socket.http_headers`
 
 Required:
 
@@ -5968,8 +6297,16 @@ Required:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.pre_stop.tcp_socket`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--pre_stop--sleep"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number)
+
+
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--pre_stop--tcp_socket"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.pre_stop.tcp_socket`
 
 Required:
 
@@ -5987,27 +6324,27 @@ Optional:
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--exec"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.exec`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--exec"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--grpc"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.grpc`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--grpc"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.grpc`
 
 Required:
 
@@ -6018,8 +6355,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--http_get"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.http_get`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--http_get"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.http_get`
 
 Required:
 
@@ -6028,12 +6365,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--http_get--http_headers"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.http_get.http_headers`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--http_get--http_headers"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.http_get.http_headers`
 
 Required:
 
@@ -6042,8 +6379,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--tcp_socket"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.tcp_socket`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--tcp_socket"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.tcp_socket`
 
 Required:
 
@@ -6065,14 +6402,14 @@ Optional:
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--seccomp_profile))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--seccomp_profile))
 - `supplemental_groups` (List of String)
-- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--sysctls))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--windows_options))
+- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--sysctls))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--windows_options))
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--se_linux_options"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.se_linux_options`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--se_linux_options"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.se_linux_options`
 
 Optional:
 
@@ -6082,8 +6419,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--seccomp_profile"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.seccomp_profile`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--seccomp_profile"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.seccomp_profile`
 
 Required:
 
@@ -6094,8 +6431,8 @@ Optional:
 - `localhost_profile` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--sysctls"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.sysctls`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--sysctls"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.sysctls`
 
 Required:
 
@@ -6103,8 +6440,8 @@ Required:
 - `value` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--windows_options"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.windows_options`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--windows_options"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.windows_options`
 
 Optional:
 
@@ -6135,27 +6472,27 @@ Optional:
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--exec"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.exec`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--exec"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--grpc"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.grpc`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--grpc"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.grpc`
 
 Required:
 
@@ -6166,8 +6503,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--http_get"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.http_get`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--http_get"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.http_get`
 
 Required:
 
@@ -6176,12 +6513,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--http_get--http_headers"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.http_get.http_headers`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--http_get--http_headers"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.http_get.http_headers`
 
 Required:
 
@@ -6190,8 +6527,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--tcp_socket"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.tcp_socket`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--tcp_socket"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.tcp_socket`
 
 Required:
 
@@ -6208,8 +6545,17 @@ Optional:
 
 Optional:
 
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
+
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--claims"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.claims`
+
+Required:
+
+- `name` (String)
+
 
 
 <a id="nestedatt--spec--replicant_template--spec--startup_probe"></a>
@@ -6217,27 +6563,27 @@ Optional:
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--exec"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.exec`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--exec"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--grpc"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.grpc`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--grpc"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.grpc`
 
 Required:
 
@@ -6248,8 +6594,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--http_get"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.http_get`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--http_get"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.http_get`
 
 Required:
 
@@ -6258,12 +6604,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--tolerations--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--http_get--http_headers"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.http_get.http_headers`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--http_get--http_headers"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.http_get.http_headers`
 
 Required:
 
@@ -6272,8 +6618,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--replicant_template--spec--tolerations--tcp_socket"></a>
-### Nested Schema for `spec.replicant_template.spec.tolerations.tcp_socket`
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--tcp_socket"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.tcp_socket`
 
 Required:
 
@@ -6307,6 +6653,46 @@ Optional:
 - `operator` (String)
 - `toleration_seconds` (Number)
 - `value` (String)
+
+
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints`
+
+Required:
+
+- `max_skew` (Number)
+- `topology_key` (String)
+- `when_unsatisfiable` (String)
+
+Optional:
+
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--label_selector))
+- `match_label_keys` (List of String)
+- `min_domains` (Number)
+- `node_affinity_policy` (String)
+- `node_taints_policy` (String)
+
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--label_selector"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--replicant_template--spec--topology_spread_constraints--label_selector--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--replicant_template--spec--topology_spread_constraints--label_selector--match_expressions"></a>
+### Nested Schema for `spec.replicant_template.spec.topology_spread_constraints.label_selector.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
 
 
 

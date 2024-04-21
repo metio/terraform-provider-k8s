@@ -61,7 +61,8 @@ Required:
 Optional:
 
 - `analytics_uuid` (String) Analytics UUID. Leave empty to autogenerate a random one. Not PII information
-- `extra_parameters` (Attributes List) .Name is dot separated per the helm --set syntax, such as: global.something.field (see [below for nested schema](#nestedatt--spec--extra_parameters))
+- `experimental_capabilities` (String) Comma separated capabilities to enable certain experimental features
+- `extra_parameters` (Attributes List) .Name is dot separated per the helm --set syntax, such as:  global.something.field (see [below for nested schema](#nestedatt--spec--extra_parameters))
 - `extra_value_files` (List of String) URLs to additional Helm parameter files
 - `git_ops_spec` (Attributes) (see [below for nested schema](#nestedatt--spec--git_ops_spec))
 - `multi_source_config` (Attributes) (see [below for nested schema](#nestedatt--spec--multi_source_config))
@@ -80,7 +81,7 @@ Optional:
 - `origin_revision` (String) Branch, tag or commit in the upstream git repository. Does not support short-sha's. Default to HEAD
 - `poll_interval` (Number) Interval in seconds to poll for drifts between origin and target repositories. Default: 180 seconds
 - `target_revision` (String) Branch, tag, or commit to deploy.  Does not support short-sha's. Default: HEAD
-- `token_secret` (String) Optional. K8s secret name where the info for connecting to git can be found. The supported secrets are modeled after the private repositories in argo (https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#repositories) currently ssh and username+password are supported
+- `token_secret` (String) Optional. K8s secret name where the info for connecting to git can be found. The supported secrets are modeled after theprivate repositories in argo (https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#repositories)currently ssh and username+password are supported
 - `token_secret_namespace` (String) Optional. K8s secret namespace where the token for connecting to git can be found
 
 
@@ -106,8 +107,8 @@ Optional:
 
 Optional:
 
-- `cluster_group_chart_git_revision` (String) The git reference when deploying the clustergroup helm chart directly from a git repo Defaults to 'main'. (Only used when developing the clustergroup helm chart)
+- `cluster_group_chart_git_revision` (String) The git reference when deploying the clustergroup helm chart directly from a git repoDefaults to 'main'. (Only used when developing the clustergroup helm chart)
 - `cluster_group_chart_version` (String) Which chart version for the clustergroup helm chart. Defaults to '0.8.*'
-- `cluster_group_git_repo_url` (String) The url when deploying the clustergroup helm chart directly from a git repo Defaults to '' which means not used (Only used when developing the clustergroup helm chart)
+- `cluster_group_git_repo_url` (String) The url when deploying the clustergroup helm chart directly from a git repoDefaults to '' which means not used (Only used when developing the clustergroup helm chart)
 - `enabled` (Boolean) (EXPERIMENTAL) Enable multi-source support when deploying the clustergroup argo application
 - `helm_repo_url` (String) The helm chart url to fetch the helm charts from in order to deploy the pattern. Defaults to https://charts.validatedpatterns.io/

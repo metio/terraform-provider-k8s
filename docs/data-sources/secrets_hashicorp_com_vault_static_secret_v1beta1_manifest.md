@@ -57,17 +57,17 @@ Required:
 
 - `destination` (Attributes) Destination provides configuration necessary for syncing the Vault secret to Kubernetes. (see [below for nested schema](#nestedatt--spec--destination))
 - `mount` (String) Mount for the secret in Vault
-- `path` (String) Path of the secret in Vault, corresponds to the 'path' parameter for, kv-v1: https://developer.hashicorp.com/vault/api-docs/secret/kv/kv-v1#read-secret kv-v2: https://developer.hashicorp.com/vault/api-docs/secret/kv/kv-v2#read-secret-version
+- `path` (String) Path of the secret in Vault, corresponds to the 'path' parameter for,kv-v1: https://developer.hashicorp.com/vault/api-docs/secret/kv/kv-v1#read-secretkv-v2: https://developer.hashicorp.com/vault/api-docs/secret/kv/kv-v2#read-secret-version
 - `type` (String) Type of the Vault static secret
 
 Optional:
 
-- `hmac_secret_data` (Boolean) HMACSecretData determines whether the Operator computes the HMAC of the Secret's data. The MAC value will be stored in the resource's Status.SecretMac field, and will be used for drift detection and during incoming Vault secret comparison. Enabling this feature is recommended to ensure that Secret's data stays consistent with Vault.
+- `hmac_secret_data` (Boolean) HMACSecretData determines whether the Operator computes theHMAC of the Secret's data. The MAC value will be stored inthe resource's Status.SecretMac field, and will be used for drift detectionand during incoming Vault secret comparison.Enabling this feature is recommended to ensure that Secret's data stays consistent with Vault.
 - `namespace` (String) Namespace to get the secret from in Vault
 - `refresh_after` (String) RefreshAfter a period of time, in duration notation e.g. 30s, 1m, 24h
-- `rollout_restart_targets` (Attributes List) RolloutRestartTargets should be configured whenever the application(s) consuming the Vault secret does not support dynamically reloading a rotated secret. In that case one, or more RolloutRestartTarget(s) can be configured here. The Operator will trigger a 'rollout-restart' for each target whenever the Vault secret changes between reconciliation events. All configured targets wil be ignored if HMACSecretData is set to false. See RolloutRestartTarget for more details. (see [below for nested schema](#nestedatt--spec--rollout_restart_targets))
-- `vault_auth_ref` (String) VaultAuthRef to the VaultAuth resource, can be prefixed with a namespace, eg: 'namespaceA/vaultAuthRefB'. If no namespace prefix is provided it will default to namespace of the VaultAuth CR. If no value is specified for VaultAuthRef the Operator will default to the 'default' VaultAuth, configured in the operator's namespace.
-- `version` (Number) Version of the secret to fetch. Only valid for type kv-v2. Corresponds to version query parameter: https://developer.hashicorp.com/vault/api-docs/secret/kv/kv-v2#version
+- `rollout_restart_targets` (Attributes List) RolloutRestartTargets should be configured whenever the application(s) consuming the Vault secret doesnot support dynamically reloading a rotated secret.In that case one, or more RolloutRestartTarget(s) can be configured here. The Operator willtrigger a 'rollout-restart' for each target whenever the Vault secret changes between reconciliation events.All configured targets wil be ignored if HMACSecretData is set to false.See RolloutRestartTarget for more details. (see [below for nested schema](#nestedatt--spec--rollout_restart_targets))
+- `vault_auth_ref` (String) VaultAuthRef to the VaultAuth resource, can be prefixed with a namespace,eg: 'namespaceA/vaultAuthRefB'. If no namespace prefix is provided it will default tonamespace of the VaultAuth CR. If no value is specified for VaultAuthRef the Operator willdefault to the 'default' VaultAuth, configured in the operator's namespace.
+- `version` (Number) Version of the secret to fetch. Only valid for type kv-v2. Corresponds to version query parameter:https://developer.hashicorp.com/vault/api-docs/secret/kv/kv-v2#version
 
 <a id="nestedatt--spec--destination"></a>
 ### Nested Schema for `spec.destination`
@@ -79,29 +79,29 @@ Required:
 Optional:
 
 - `annotations` (Map of String) Annotations to apply to the Secret. Requires Create to be set to true.
-- `create` (Boolean) Create the destination Secret. If the Secret already exists this should be set to false.
+- `create` (Boolean) Create the destination Secret.If the Secret already exists this should be set to false.
 - `labels` (Map of String) Labels to apply to the Secret. Requires Create to be set to true.
-- `overwrite` (Boolean) Overwrite the destination Secret if it exists and Create is true. This is useful when migrating to VSO from a previous secret deployment strategy.
-- `transformation` (Attributes) Transformation provides configuration for transforming the secret data before it is stored in the Destination. (see [below for nested schema](#nestedatt--spec--destination--transformation))
-- `type` (String) Type of Kubernetes Secret. Requires Create to be set to true. Defaults to Opaque.
+- `overwrite` (Boolean) Overwrite the destination Secret if it exists and Create is true. This isuseful when migrating to VSO from a previous secret deployment strategy.
+- `transformation` (Attributes) Transformation provides configuration for transforming the secret data beforeit is stored in the Destination. (see [below for nested schema](#nestedatt--spec--destination--transformation))
+- `type` (String) Type of Kubernetes Secret. Requires Create to be set to true.Defaults to Opaque.
 
 <a id="nestedatt--spec--destination--transformation"></a>
 ### Nested Schema for `spec.destination.transformation`
 
 Optional:
 
-- `exclude_raw` (Boolean) ExcludeRaw data from the destination Secret. Exclusion policy can be set globally by including 'exclude-raw' in the '--global-transformation-options' command line flag. If set, the command line flag always takes precedence over this configuration.
-- `excludes` (List of String) Excludes contains regex patterns used to filter top-level source secret data fields for exclusion from the final K8s Secret data. These pattern filters are never applied to templated fields as defined in Templates. They are always applied before any inclusion patterns. To exclude all source secret data fields, you can configure the single pattern '.*'.
-- `includes` (List of String) Includes contains regex patterns used to filter top-level source secret data fields for inclusion in the final K8s Secret data. These pattern filters are never applied to templated fields as defined in Templates. They are always applied last.
-- `templates` (Attributes) Templates maps a template name to its Template. Templates are always included in the rendered K8s Secret, and take precedence over templates defined in a SecretTransformation. (see [below for nested schema](#nestedatt--spec--destination--transformation--templates))
-- `transformation_refs` (Attributes List) TransformationRefs contain references to template configuration from SecretTransformation. (see [below for nested schema](#nestedatt--spec--destination--transformation--transformation_refs))
+- `exclude_raw` (Boolean) ExcludeRaw data from the destination Secret. Exclusion policy can be setglobally by including 'exclude-raw' in the '--global-transformation-options'command line flag. If set, the command line flag always takes precedence overthis configuration.
+- `excludes` (List of String) Excludes contains regex patterns used to filter top-level source secret datafields for exclusion from the final K8s Secret data. These pattern filters arenever applied to templated fields as defined in Templates. They are alwaysapplied before any inclusion patterns. To exclude all source secret datafields, you can configure the single pattern '.*'.
+- `includes` (List of String) Includes contains regex patterns used to filter top-level source secret datafields for inclusion in the final K8s Secret data. These pattern filters arenever applied to templated fields as defined in Templates. They are alwaysapplied last.
+- `templates` (Attributes) Templates maps a template name to its Template. Templates are always includedin the rendered K8s Secret, and take precedence over templates defined in aSecretTransformation. (see [below for nested schema](#nestedatt--spec--destination--transformation--templates))
+- `transformation_refs` (Attributes List) TransformationRefs contain references to template configuration fromSecretTransformation. (see [below for nested schema](#nestedatt--spec--destination--transformation--transformation_refs))
 
 <a id="nestedatt--spec--destination--transformation--templates"></a>
 ### Nested Schema for `spec.destination.transformation.templates`
 
 Required:
 
-- `text` (String) Text contains the Go text template format. The template references attributes from the data structure of the source secret. Refer to https://pkg.go.dev/text/template for more information.
+- `text` (String) Text contains the Go text template format. The templatereferences attributes from the data structure of the source secret.Refer to https://pkg.go.dev/text/template for more information.
 
 Optional:
 
@@ -117,21 +117,21 @@ Required:
 
 Optional:
 
-- `ignore_excludes` (Boolean) IgnoreExcludes controls whether to use the SecretTransformation's Excludes data key filters.
-- `ignore_includes` (Boolean) IgnoreIncludes controls whether to use the SecretTransformation's Includes data key filters.
+- `ignore_excludes` (Boolean) IgnoreExcludes controls whether to use the SecretTransformation's Excludesdata key filters.
+- `ignore_includes` (Boolean) IgnoreIncludes controls whether to use the SecretTransformation's Includesdata key filters.
 - `namespace` (String) Namespace of the SecretTransformation resource.
-- `template_refs` (Attributes List) TemplateRefs map to a Template found in this TransformationRef. If empty, then all templates from the SecretTransformation will be rendered to the K8s Secret. (see [below for nested schema](#nestedatt--spec--destination--transformation--transformation_refs--template_refs))
+- `template_refs` (Attributes List) TemplateRefs map to a Template found in this TransformationRef. If empty, thenall templates from the SecretTransformation will be rendered to the K8s Secret. (see [below for nested schema](#nestedatt--spec--destination--transformation--transformation_refs--template_refs))
 
 <a id="nestedatt--spec--destination--transformation--transformation_refs--template_refs"></a>
 ### Nested Schema for `spec.destination.transformation.transformation_refs.template_refs`
 
 Required:
 
-- `name` (String) Name of the Template in SecretTransformationSpec.Templates. the rendered secret data.
+- `name` (String) Name of the Template in SecretTransformationSpec.Templates.the rendered secret data.
 
 Optional:
 
-- `key_override` (String) KeyOverride to the rendered template in the Destination secret. If Key is empty, then the Key from reference spec will be used. Set this to override the Key set from the reference spec.
+- `key_override` (String) KeyOverride to the rendered template in the Destination secret. If Key isempty, then the Key from reference spec will be used. Set this to override theKey set from the reference spec.
 
 
 

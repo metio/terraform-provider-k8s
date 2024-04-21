@@ -61,6 +61,7 @@ Optional:
 - `arbitrary_fs_access_through_s_ms` (Attributes) ArbitraryFSAccessThroughSMs configures whether configurationbased on a service scrape can access arbitrary files on the file systemof the VMAgent container e.g. bearer token files. (see [below for nested schema](#nestedatt--spec--arbitrary_fs_access_through_s_ms))
 - `claim_templates` (Attributes List) ClaimTemplates allows adding additional VolumeClaimTemplates for VMAgent in StatefulMode (see [below for nested schema](#nestedatt--spec--claim_templates))
 - `config_maps` (List of String) ConfigMaps is a list of ConfigMaps in the same namespace as the vmagentobject, which shall be mounted into the vmagent Pods.will be mounted at path  /etc/vm/configs
+- `config_reloader_extra_args` (Map of String) ConfigReloaderExtraArgs that will be passed to  VMAuths config-reloader containerfor example resyncInterval: '30s'
 - `containers` (List of Map of String) Containers property allows to inject additions sidecars or to patch existing containers.It can be useful for proxies, backup, etc.
 - `dns_config` (Attributes) Specifies the DNS parameters of a pod.Parameters specified here will be merged to the generated DNSconfiguration based on DNSPolicy. (see [below for nested schema](#nestedatt--spec--dns_config))
 - `dns_policy` (String) DNSPolicy set DNS policy for the pod
@@ -96,7 +97,6 @@ Optional:
 - `pod_scrape_namespace_selector` (Attributes) PodScrapeNamespaceSelector defines Namespaces to be selected for VMPodScrape discovery.Works in combination with Selector.NamespaceSelector nil - only objects at VMAgent namespace.Selector nil - only objects at NamespaceSelector namespaces.If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--pod_scrape_namespace_selector))
 - `pod_scrape_relabel_template` (Attributes List) PodScrapeRelabelTemplate defines relabel config, that will be added to each VMPodScrape.it's useful for adding specific labels to all targets (see [below for nested schema](#nestedatt--spec--pod_scrape_relabel_template))
 - `pod_scrape_selector` (Attributes) PodScrapeSelector defines PodScrapes to be selected for target discovery.Works in combination with NamespaceSelector.NamespaceSelector nil - only objects at VMAgent namespace.Selector nil - only objects at NamespaceSelector namespaces.If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--pod_scrape_selector))
-- `pod_security_policy_name` (String) PodSecurityPolicyName - defines name for podSecurityPolicyin case of empty value, prefixedName will be used.
 - `port` (String) Port listen address
 - `priority_class_name` (String) PriorityClassName assigned to the Pods
 - `probe_namespace_selector` (Attributes) ProbeNamespaceSelector defines Namespaces to be selected for VMProbe discovery.Works in combination with Selector.NamespaceSelector nil - only objects at VMAgent namespace.Selector nil - only objects at NamespaceSelector namespaces.If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--probe_namespace_selector))
@@ -113,6 +113,9 @@ Optional:
 - `rolling_update` (Attributes) RollingUpdate - overrides deployment update params. (see [below for nested schema](#nestedatt--spec--rolling_update))
 - `runtime_class_name` (String) RuntimeClassName - defines runtime class for kubernetes pod.https://kubernetes.io/docs/concepts/containers/runtime-class/
 - `scheduler_name` (String) SchedulerName - defines kubernetes scheduler name
+- `scrape_config_namespace_selector` (Attributes) ScrapeConfigNamespaceSelector defines Namespaces to be selected for VMScrapeConfig discovery.Works in combination with Selector.NamespaceSelector nil - only objects at VMAgent namespace.Selector nil - only objects at NamespaceSelector namespaces.If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--scrape_config_namespace_selector))
+- `scrape_config_relabel_template` (Attributes List) ScrapeConfigRelabelTemplate defines relabel config, that will be added to each VMScrapeConfig.it's useful for adding specific labels to all targets (see [below for nested schema](#nestedatt--spec--scrape_config_relabel_template))
+- `scrape_config_selector` (Attributes) ScrapeConfigSelector defines VMScrapeConfig to be selected for target discovery.Works in combination with NamespaceSelector. (see [below for nested schema](#nestedatt--spec--scrape_config_selector))
 - `scrape_interval` (String) ScrapeInterval defines how often scrape targets by default
 - `scrape_timeout` (String) ScrapeTimeout defines global timeout for targets scrape
 - `secrets` (List of String) Secrets is a list of Secrets in the same namespace as the vmagentobject, which shall be mounted into the vmagent Pods.will be mounted at path /etc/vm/secrets
@@ -514,7 +517,7 @@ Optional:
 - `labels` (Map of String) Labels is used together with Match for 'action: graphite'
 - `match` (String) Match is used together with Labels for 'action: graphite'
 - `modulus` (Number) Modulus to take of the hash of the source label values.
-- `regex` (String) Regular expression against which the extracted value is matched. Default is '(.*)'
+- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
 - `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
 - `separator` (String) Separator placed between concatenated source label values. default is ';'.
 - `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.
@@ -586,7 +589,7 @@ Optional:
 - `labels` (Map of String) Labels is used together with Match for 'action: graphite'
 - `match` (String) Match is used together with Labels for 'action: graphite'
 - `modulus` (Number) Modulus to take of the hash of the source label values.
-- `regex` (String) Regular expression against which the extracted value is matched. Default is '(.*)'
+- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
 - `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
 - `separator` (String) Separator placed between concatenated source label values. default is ';'.
 - `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.
@@ -667,7 +670,7 @@ Optional:
 - `labels` (Map of String) Labels is used together with Match for 'action: graphite'
 - `match` (String) Match is used together with Labels for 'action: graphite'
 - `modulus` (Number) Modulus to take of the hash of the source label values.
-- `regex` (String) Regular expression against which the extracted value is matched. Default is '(.*)'
+- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
 - `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
 - `separator` (String) Separator placed between concatenated source label values. default is ';'.
 - `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.
@@ -728,7 +731,7 @@ Optional:
 - `labels` (Map of String) Labels is used together with Match for 'action: graphite'
 - `match` (String) Match is used together with Labels for 'action: graphite'
 - `modulus` (Number) Modulus to take of the hash of the source label values.
-- `regex` (String) Regular expression against which the extracted value is matched. Default is '(.*)'
+- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
 - `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
 - `separator` (String) Separator placed between concatenated source label values. default is ';'.
 - `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.
@@ -856,7 +859,7 @@ Optional:
 - `labels` (Map of String) Labels is used together with Match for 'action: graphite'
 - `match` (String) Match is used together with Labels for 'action: graphite'
 - `modulus` (Number) Modulus to take of the hash of the source label values.
-- `regex` (String) Regular expression against which the extracted value is matched. Default is '(.*)'
+- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
 - `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
 - `separator` (String) Separator placed between concatenated source label values. default is ';'.
 - `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.
@@ -968,7 +971,7 @@ Optional:
 - `labels` (Map of String) Labels is used together with Match for 'action: graphite'
 - `match` (String) Match is used together with Labels for 'action: graphite'
 - `modulus` (Number) Modulus to take of the hash of the source label values.
-- `regex` (String) Regular expression against which the extracted value is matched. Default is '(.*)'
+- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
 - `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
 - `separator` (String) Separator placed between concatenated source label values. default is ';'.
 - `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.
@@ -985,7 +988,7 @@ Optional:
 - `labels` (Map of String) Labels is used together with Match for 'action: graphite'
 - `match` (String) Match is used together with Labels for 'action: graphite'
 - `modulus` (Number) Modulus to take of the hash of the source label values.
-- `regex` (String) Regular expression against which the extracted value is matched. Default is '(.*)'
+- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
 - `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
 - `separator` (String) Separator placed between concatenated source label values. default is ';'.
 - `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.
@@ -1148,6 +1151,67 @@ Optional:
 - `max_unavailable` (String) The maximum number of pods that can be unavailable during the update.Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%).Absolute number is calculated from percentage by rounding down.This can not be 0 if MaxSurge is 0.Defaults to 25%.Example: when this is set to 30%, the old ReplicaSet can be scaled down to 70% of desired podsimmediately when the rolling update starts. Once new pods are ready, old ReplicaSetcan be scaled down further, followed by scaling up the new ReplicaSet, ensuringthat the total number of pods available at all times during the update is atleast 70% of desired pods.
 
 
+<a id="nestedatt--spec--scrape_config_namespace_selector"></a>
+### Nested Schema for `spec.scrape_config_namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--scrape_config_namespace_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--scrape_config_namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.scrape_config_namespace_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+<a id="nestedatt--spec--scrape_config_relabel_template"></a>
+### Nested Schema for `spec.scrape_config_relabel_template`
+
+Optional:
+
+- `action` (String) Action to perform based on regex matching. Default is 'replace'
+- `if` (Map of String) If represents metricsQL match expression (or list of expressions): '{__name__=~'foo_.*'}'
+- `labels` (Map of String) Labels is used together with Match for 'action: graphite'
+- `match` (String) Match is used together with Labels for 'action: graphite'
+- `modulus` (Number) Modulus to take of the hash of the source label values.
+- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
+- `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
+- `separator` (String) Separator placed between concatenated source label values. default is ';'.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.
+- `target_label` (String) Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.
+
+
+<a id="nestedatt--spec--scrape_config_selector"></a>
+### Nested Schema for `spec.scrape_config_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--scrape_config_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--scrape_config_selector--match_expressions"></a>
+### Nested Schema for `spec.scrape_config_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
 <a id="nestedatt--spec--service_scrape_namespace_selector"></a>
 ### Nested Schema for `spec.service_scrape_namespace_selector`
 
@@ -1180,7 +1244,7 @@ Optional:
 - `labels` (Map of String) Labels is used together with Match for 'action: graphite'
 - `match` (String) Match is used together with Labels for 'action: graphite'
 - `modulus` (Number) Modulus to take of the hash of the source label values.
-- `regex` (String) Regular expression against which the extracted value is matched. Default is '(.*)'
+- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
 - `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
 - `separator` (String) Separator placed between concatenated source label values. default is ';'.
 - `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.
@@ -1219,6 +1283,7 @@ Required:
 Optional:
 
 - `metadata` (Attributes) EmbeddedObjectMetadata defines objectMeta for additional service. (see [below for nested schema](#nestedatt--spec--service_spec--metadata))
+- `use_as_default` (Boolean) UseAsDefault applies changes from given service definition to the main object ServiceChaning from headless service to clusterIP or loadbalancer may break cross-component communication
 
 <a id="nestedatt--spec--service_spec--metadata"></a>
 ### Nested Schema for `spec.service_spec.metadata`
@@ -1415,7 +1480,7 @@ Optional:
 - `labels` (Map of String) Labels is used together with Match for 'action: graphite'
 - `match` (String) Match is used together with Labels for 'action: graphite'
 - `modulus` (Number) Modulus to take of the hash of the source label values.
-- `regex` (String) Regular expression against which the extracted value is matched. Default is '(.*)'
+- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
 - `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
 - `separator` (String) Separator placed between concatenated source label values. default is ';'.
 - `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.

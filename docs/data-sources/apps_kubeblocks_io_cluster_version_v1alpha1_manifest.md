@@ -3,12 +3,12 @@
 page_title: "k8s_apps_kubeblocks_io_cluster_version_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "apps.kubeblocks.io"
 description: |-
-  ClusterVersion is the Schema for the ClusterVersions API
+  ClusterVersion is the Schema for the ClusterVersions API.  Deprecated: ClusterVersion has been replaced by ComponentVersion since v0.9. This struct is maintained for backward compatibility and its use is discouraged.
 ---
 
 # k8s_apps_kubeblocks_io_cluster_version_v1alpha1_manifest (Data Source)
 
-ClusterVersion is the Schema for the ClusterVersions API
+ClusterVersion is the Schema for the ClusterVersions API.  Deprecated: ClusterVersion has been replaced by ComponentVersion since v0.9. This struct is maintained for backward compatibility and its use is discouraged.
 
 ## Example Usage
 
@@ -30,7 +30,7 @@ data "k8s_apps_kubeblocks_io_cluster_version_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) ClusterVersionSpec defines the desired state of ClusterVersion (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) ClusterVersionSpec defines the desired state of ClusterVersion.  Deprecated since v0.9. This struct is maintained for backward compatibility and its use is discouraged. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -91,13 +91,14 @@ Required:
 
 Optional:
 
-- `as_env_from` (List of String) An optional field where the list of containers will be injected into EnvFrom.
-- `constraint_ref` (String) An optional field that defines the name of the referenced configuration constraints object.
-- `default_mode` (Number) Refers to the mode bits used to set permissions on created files by default.  Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.  Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `keys` (List of String) Defines a list of keys. If left empty, ConfigConstraint applies to all keys in the configmap.
-- `legacy_rendered_config_spec` (Attributes) An optional field that defines the secondary rendered config spec. (see [below for nested schema](#nestedatt--spec--component_versions--config_specs--legacy_rendered_config_spec))
+- `as_env_from` (List of String) Deprecated: AsEnvFrom has been deprecated since 0.9.0 and will be removed in 0.10.0 Specifies the containers to inject the ConfigMap parameters as environment variables.  This is useful when application images accept parameters through environment variables and generate the final configuration file in the startup script based on these variables.  This field allows users to specify a list of container names, and KubeBlocks will inject the environment variables converted from the ConfigMap into these designated containers. This provides a flexible way to pass the configuration items from the ConfigMap to the container without modifying the image.  Note: The field name 'asEnvFrom' may be changed to 'injectEnvTo' in future versions for better clarity.
+- `constraint_ref` (String) Specifies the name of the referenced configuration constraints object.
+- `default_mode` (Number) Deprecated: DefaultMode is deprecated since 0.9.0 and will be removed in 0.10.0 for scripts, auto set 0555 for configs, auto set 0444 Refers to the mode bits used to set permissions on created files by default.  Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.  Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `inject_env_to` (List of String) Specifies the containers to inject the ConfigMap parameters as environment variables.  This is useful when application images accept parameters through environment variables and generate the final configuration file in the startup script based on these variables.  This field allows users to specify a list of container names, and KubeBlocks will inject the environment variables converted from the ConfigMap into these designated containers. This provides a flexible way to pass the configuration items from the ConfigMap to the container without modifying the image.
+- `keys` (List of String) Specifies the configuration files within the ConfigMap that support dynamic updates.  A configuration template (provided in the form of a ConfigMap) may contain templates for multiple configuration files. Each configuration file corresponds to a key in the ConfigMap. Some of these configuration files may support dynamic modification and reloading without requiring a pod restart.  If empty or omitted, all configuration files in the ConfigMap are assumed to support dynamic updates, and ConfigConstraint applies to all keys.
+- `legacy_rendered_config_spec` (Attributes) Specifies the secondary rendered config spec for pod-specific customization.  The template is rendered inside the pod (by the 'config-manager' sidecar container) and merged with the main template's render result to generate the final configuration file.  This field is intended to handle scenarios where different pods within the same Component have varying configurations. It allows for pod-specific customization of the configuration.  Note: This field will be deprecated in future versions, and the functionality will be moved to 'cluster.spec.componentSpecs[*].instances[*]'. (see [below for nested schema](#nestedatt--spec--component_versions--config_specs--legacy_rendered_config_spec))
 - `namespace` (String) Specifies the namespace of the referenced configuration template ConfigMap object. An empty namespace is equivalent to the 'default' namespace.
-- `re_render_resource_types` (List of String) An optional field defines which resources change trigger re-render config.
+- `re_render_resource_types` (List of String) Specifies whether the configuration needs to be re-rendered after v-scale or h-scale operations to reflect changes.  In some scenarios, the configuration may need to be updated to reflect the changes in resource allocation or cluster topology. Examples:  - Redis: adjust maxmemory after v-scale operation. - MySQL: increase max connections after v-scale operation. - Zookeeper: update zoo.cfg with new node addresses after h-scale operation.
 
 <a id="nestedatt--spec--component_versions--config_specs--legacy_rendered_config_spec"></a>
 ### Nested Schema for `spec.component_versions.config_specs.legacy_rendered_config_spec`

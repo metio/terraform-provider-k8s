@@ -3688,6 +3688,7 @@ Optional:
 - `ingress_annotations` (Map of String)
 - `ingress_tls` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--spark_ui_options--ingress_tls))
 - `service_annotations` (Map of String)
+- `service_labels` (Map of String)
 - `service_port` (Number)
 - `service_type` (String)
 
