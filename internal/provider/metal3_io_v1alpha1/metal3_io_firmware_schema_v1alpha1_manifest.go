@@ -64,8 +64,8 @@ func (r *Metal3IoFirmwareSchemaV1Alpha1Manifest) Metadata(_ context.Context, req
 
 func (r *Metal3IoFirmwareSchemaV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "FirmwareSchema is the Schema for the firmwareschemas API",
-		MarkdownDescription: "FirmwareSchema is the Schema for the firmwareschemas API",
+		Description:         "FirmwareSchema is the Schema for the firmwareschemas API.",
+		MarkdownDescription: "FirmwareSchema is the Schema for the firmwareschemas API.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -132,8 +132,8 @@ func (r *Metal3IoFirmwareSchemaV1Alpha1Manifest) Schema(_ context.Context, _ dat
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "FirmwareSchemaSpec defines the desired state of FirmwareSchema",
-				MarkdownDescription: "FirmwareSchemaSpec defines the desired state of FirmwareSchema",
+				Description:         "FirmwareSchemaSpec defines the desired state of FirmwareSchema.",
+				MarkdownDescription: "FirmwareSchemaSpec defines the desired state of FirmwareSchema.",
 				Attributes: map[string]schema.Attribute{
 					"hardware_model": schema.StringAttribute{
 						Description:         "The hardware model associated with this schema",

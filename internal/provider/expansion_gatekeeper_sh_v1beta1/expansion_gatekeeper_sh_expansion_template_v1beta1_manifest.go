@@ -123,8 +123,8 @@ func (r *ExpansionGatekeeperShExpansionTemplateV1Beta1Manifest) Schema(_ context
 				MarkdownDescription: "ExpansionTemplateSpec defines the desired state of ExpansionTemplate.",
 				Attributes: map[string]schema.Attribute{
 					"apply_to": schema.ListNestedAttribute{
-						Description:         "ApplyTo lists the specific groups, versions and kinds of generator resources which will be expanded.",
-						MarkdownDescription: "ApplyTo lists the specific groups, versions and kinds of generator resources which will be expanded.",
+						Description:         "ApplyTo lists the specific groups, versions and kinds of generator resourceswhich will be expanded.",
+						MarkdownDescription: "ApplyTo lists the specific groups, versions and kinds of generator resourceswhich will be expanded.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"groups": schema.ListAttribute{
@@ -161,16 +161,16 @@ func (r *ExpansionGatekeeperShExpansionTemplateV1Beta1Manifest) Schema(_ context
 					},
 
 					"enforcement_action": schema.StringAttribute{
-						Description:         "EnforcementAction specifies the enforcement action to be used for resources matching the ExpansionTemplate. Specifying an empty value will use the enforcement action specified by the Constraint in violation.",
-						MarkdownDescription: "EnforcementAction specifies the enforcement action to be used for resources matching the ExpansionTemplate. Specifying an empty value will use the enforcement action specified by the Constraint in violation.",
+						Description:         "EnforcementAction specifies the enforcement action to be used for resourcesmatching the ExpansionTemplate. Specifying an empty value will use theenforcement action specified by the Constraint in violation.",
+						MarkdownDescription: "EnforcementAction specifies the enforcement action to be used for resourcesmatching the ExpansionTemplate. Specifying an empty value will use theenforcement action specified by the Constraint in violation.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"generated_gvk": schema.SingleNestedAttribute{
-						Description:         "GeneratedGVK specifies the GVK of the resources which the generator resource creates.",
-						MarkdownDescription: "GeneratedGVK specifies the GVK of the resources which the generator resource creates.",
+						Description:         "GeneratedGVK specifies the GVK of the resources which the generatorresource creates.",
+						MarkdownDescription: "GeneratedGVK specifies the GVK of the resources which the generatorresource creates.",
 						Attributes: map[string]schema.Attribute{
 							"group": schema.StringAttribute{
 								Description:         "",
@@ -202,8 +202,8 @@ func (r *ExpansionGatekeeperShExpansionTemplateV1Beta1Manifest) Schema(_ context
 					},
 
 					"template_source": schema.StringAttribute{
-						Description:         "TemplateSource specifies the source field on the generator resource to use as the base for expanded resource. For Pod-creating generators, this is usually spec.template",
-						MarkdownDescription: "TemplateSource specifies the source field on the generator resource to use as the base for expanded resource. For Pod-creating generators, this is usually spec.template",
+						Description:         "TemplateSource specifies the source field on the generator resource touse as the base for expanded resource. For Pod-creating generators, thisis usually spec.template",
+						MarkdownDescription: "TemplateSource specifies the source field on the generator resource touse as the base for expanded resource. For Pod-creating generators, thisis usually spec.template",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

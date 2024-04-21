@@ -294,6 +294,7 @@ type MonitoringCoreosComAlertmanagerConfigV1Beta1ManifestData struct {
 					} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 				} `tfsdk:"http_config" json:"httpConfig,omitempty"`
 				SendResolved *bool   `tfsdk:"send_resolved" json:"sendResolved,omitempty"`
+				Summary      *string `tfsdk:"summary" json:"summary,omitempty"`
 				Text         *string `tfsdk:"text" json:"text,omitempty"`
 				Title        *string `tfsdk:"title" json:"title,omitempty"`
 				WebhookUrl   *struct {
@@ -1384,8 +1385,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Metadata(_ contex
 
 func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "AlertmanagerConfig configures the Prometheus Alertmanager, specifying how alerts should be grouped, inhibited and notified to external systems.",
-		MarkdownDescription: "AlertmanagerConfig configures the Prometheus Alertmanager, specifying how alerts should be grouped, inhibited and notified to external systems.",
+		Description:         "AlertmanagerConfig configures the Prometheus Alertmanager,specifying how alerts should be grouped, inhibited and notified to external systems.",
+		MarkdownDescription: "AlertmanagerConfig configures the Prometheus Alertmanager,specifying how alerts should be grouped, inhibited and notified to external systems.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -1452,17 +1453,17 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "AlertmanagerConfigSpec is a specification of the desired behavior of the Alertmanager configuration. By definition, the Alertmanager configuration only applies to alerts for which the 'namespace' label is equal to the namespace of the AlertmanagerConfig resource.",
-				MarkdownDescription: "AlertmanagerConfigSpec is a specification of the desired behavior of the Alertmanager configuration. By definition, the Alertmanager configuration only applies to alerts for which the 'namespace' label is equal to the namespace of the AlertmanagerConfig resource.",
+				Description:         "AlertmanagerConfigSpec is a specification of the desired behavior of the Alertmanager configuration.By definition, the Alertmanager configuration only applies to alerts for whichthe 'namespace' label is equal to the namespace of the AlertmanagerConfig resource.",
+				MarkdownDescription: "AlertmanagerConfigSpec is a specification of the desired behavior of the Alertmanager configuration.By definition, the Alertmanager configuration only applies to alerts for whichthe 'namespace' label is equal to the namespace of the AlertmanagerConfig resource.",
 				Attributes: map[string]schema.Attribute{
 					"inhibit_rules": schema.ListNestedAttribute{
-						Description:         "List of inhibition rules. The rules will only apply to alerts matching the resource's namespace.",
-						MarkdownDescription: "List of inhibition rules. The rules will only apply to alerts matching the resource's namespace.",
+						Description:         "List of inhibition rules. The rules will only apply to alerts matchingthe resource's namespace.",
+						MarkdownDescription: "List of inhibition rules. The rules will only apply to alerts matchingthe resource's namespace.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"equal": schema.ListAttribute{
-									Description:         "Labels that must have an equal value in the source and target alert for the inhibition to take effect.",
-									MarkdownDescription: "Labels that must have an equal value in the source and target alert for the inhibition to take effect.",
+									Description:         "Labels that must have an equal value in the source and target alert forthe inhibition to take effect.",
+									MarkdownDescription: "Labels that must have an equal value in the source and target alert forthe inhibition to take effect.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -1470,13 +1471,13 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 								},
 
 								"source_match": schema.ListNestedAttribute{
-									Description:         "Matchers for which one or more alerts have to exist for the inhibition to take effect. The operator enforces that the alert matches the resource's namespace.",
-									MarkdownDescription: "Matchers for which one or more alerts have to exist for the inhibition to take effect. The operator enforces that the alert matches the resource's namespace.",
+									Description:         "Matchers for which one or more alerts have to exist for the inhibitionto take effect. The operator enforces that the alert matches theresource's namespace.",
+									MarkdownDescription: "Matchers for which one or more alerts have to exist for the inhibitionto take effect. The operator enforces that the alert matches theresource's namespace.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"match_type": schema.StringAttribute{
-												Description:         "Match operator, one of '=' (equal to), '!=' (not equal to), '=~' (regex match) or '!~' (not regex match). Negative operators ('!=' and '!~') require Alertmanager >= v0.22.0.",
-												MarkdownDescription: "Match operator, one of '=' (equal to), '!=' (not equal to), '=~' (regex match) or '!~' (not regex match). Negative operators ('!=' and '!~') require Alertmanager >= v0.22.0.",
+												Description:         "Match operator, one of '=' (equal to), '!=' (not equal to), '=~' (regexmatch) or '!~' (not regex match).Negative operators ('!=' and '!~') require Alertmanager >= v0.22.0.",
+												MarkdownDescription: "Match operator, one of '=' (equal to), '!=' (not equal to), '=~' (regexmatch) or '!~' (not regex match).Negative operators ('!=' and '!~') require Alertmanager >= v0.22.0.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1511,13 +1512,13 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 								},
 
 								"target_match": schema.ListNestedAttribute{
-									Description:         "Matchers that have to be fulfilled in the alerts to be muted. The operator enforces that the alert matches the resource's namespace.",
-									MarkdownDescription: "Matchers that have to be fulfilled in the alerts to be muted. The operator enforces that the alert matches the resource's namespace.",
+									Description:         "Matchers that have to be fulfilled in the alerts to be muted. Theoperator enforces that the alert matches the resource's namespace.",
+									MarkdownDescription: "Matchers that have to be fulfilled in the alerts to be muted. Theoperator enforces that the alert matches the resource's namespace.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"match_type": schema.StringAttribute{
-												Description:         "Match operator, one of '=' (equal to), '!=' (not equal to), '=~' (regex match) or '!~' (not regex match). Negative operators ('!=' and '!~') require Alertmanager >= v0.22.0.",
-												MarkdownDescription: "Match operator, one of '=' (equal to), '!=' (not equal to), '=~' (regex match) or '!~' (not regex match). Negative operators ('!=' and '!~') require Alertmanager >= v0.22.0.",
+												Description:         "Match operator, one of '=' (equal to), '!=' (not equal to), '=~' (regexmatch) or '!~' (not regex match).Negative operators ('!=' and '!~') require Alertmanager >= v0.22.0.",
+												MarkdownDescription: "Match operator, one of '=' (equal to), '!=' (not equal to), '=~' (regexmatch) or '!~' (not regex match).Negative operators ('!=' and '!~') require Alertmanager >= v0.22.0.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1568,8 +1569,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"api_url": schema.SingleNestedAttribute{
-												Description:         "The secret's key that contains the Discord webhook URL. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-												MarkdownDescription: "The secret's key that contains the Discord webhook URL. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+												Description:         "The secret's key that contains the Discord webhook URL.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
+												MarkdownDescription: "The secret's key that contains the Discord webhook URL.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
 														Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -1580,8 +1581,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1605,8 +1606,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 												MarkdownDescription: "HTTP client configuration.",
 												Attributes: map[string]schema.Attribute{
 													"authorization": schema.SingleNestedAttribute{
-														Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
-														MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														Description:         "Authorization header configuration for the client.This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														MarkdownDescription: "Authorization header configuration for the client.This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
 														Attributes: map[string]schema.Attribute{
 															"credentials": schema.SingleNestedAttribute{
 																Description:         "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
@@ -1621,8 +1622,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1642,8 +1643,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"type": schema.StringAttribute{
-																Description:         "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
-																MarkdownDescription: "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
+																Description:         "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
+																MarkdownDescription: "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1655,12 +1656,12 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 													},
 
 													"basic_auth": schema.SingleNestedAttribute{
-														Description:         "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
-														MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+														Description:         "BasicAuth for the client.This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+														MarkdownDescription: "BasicAuth for the client.This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
 														Attributes: map[string]schema.Attribute{
 															"password": schema.SingleNestedAttribute{
-																Description:         "'password' specifies a key of a Secret containing the password for authentication.",
-																MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
+																Description:         "'password' specifies a key of a Secret containing the password forauthentication.",
+																MarkdownDescription: "'password' specifies a key of a Secret containing the password forauthentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -1671,8 +1672,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1692,8 +1693,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "'username' specifies a key of a Secret containing the username for authentication.",
-																MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
+																Description:         "'username' specifies a key of a Secret containing the username forauthentication.",
+																MarkdownDescription: "'username' specifies a key of a Secret containing the username forauthentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -1704,8 +1705,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1730,8 +1731,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 													},
 
 													"bearer_token_secret": schema.SingleNestedAttribute{
-														Description:         "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-														MarkdownDescription: "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+														Description:         "The secret's key that contains the bearer token to be used by the clientfor authentication.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
+														MarkdownDescription: "The secret's key that contains the bearer token to be used by the clientfor authentication.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
 																Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -1773,8 +1774,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
 														Attributes: map[string]schema.Attribute{
 															"client_id": schema.SingleNestedAttribute{
-																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
-																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
+																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
 																Attributes: map[string]schema.Attribute{
 																	"config_map": schema.SingleNestedAttribute{
 																		Description:         "ConfigMap containing data to use for the targets.",
@@ -1789,8 +1790,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -1822,8 +1823,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -1848,8 +1849,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"client_secret": schema.SingleNestedAttribute{
-																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
-																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
+																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -1860,8 +1861,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1881,8 +1882,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"endpoint_params": schema.MapAttribute{
-																Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
-																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
+																Description:         "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
+																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1943,8 +1944,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -1976,8 +1977,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -2018,8 +2019,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -2051,8 +2052,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -2097,8 +2098,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -2179,8 +2180,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 											},
 
 											"auth_password": schema.SingleNestedAttribute{
-												Description:         "The secret's key that contains the password to use for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-												MarkdownDescription: "The secret's key that contains the password to use for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+												Description:         "The secret's key that contains the password to use for authentication.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
+												MarkdownDescription: "The secret's key that contains the password to use for authentication.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
 														Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -2210,8 +2211,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 											},
 
 											"auth_secret": schema.SingleNestedAttribute{
-												Description:         "The secret's key that contains the CRAM-MD5 secret. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-												MarkdownDescription: "The secret's key that contains the CRAM-MD5 secret. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+												Description:         "The secret's key that contains the CRAM-MD5 secret.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
+												MarkdownDescription: "The secret's key that contains the CRAM-MD5 secret.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
 														Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -2257,8 +2258,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 											},
 
 											"headers": schema.ListNestedAttribute{
-												Description:         "Further headers email header key/value pairs. Overrides any headers previously set by the notification implementation.",
-												MarkdownDescription: "Further headers email header key/value pairs. Overrides any headers previously set by the notification implementation.",
+												Description:         "Further headers email header key/value pairs. Overrides any headerspreviously set by the notification implementation.",
+												MarkdownDescription: "Further headers email header key/value pairs. Overrides any headerspreviously set by the notification implementation.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
@@ -2303,8 +2304,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 											},
 
 											"require_tls": schema.BoolAttribute{
-												Description:         "The SMTP TLS requirement. Note that Go does not support unencrypted connections to remote SMTP endpoints.",
-												MarkdownDescription: "The SMTP TLS requirement. Note that Go does not support unencrypted connections to remote SMTP endpoints.",
+												Description:         "The SMTP TLS requirement.Note that Go does not support unencrypted connections to remote SMTP endpoints.",
+												MarkdownDescription: "The SMTP TLS requirement.Note that Go does not support unencrypted connections to remote SMTP endpoints.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2355,8 +2356,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -2388,8 +2389,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -2430,8 +2431,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -2463,8 +2464,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -2509,8 +2510,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2557,8 +2558,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 								},
 
 								"msteams_configs": schema.ListNestedAttribute{
-									Description:         "List of MSTeams configurations. It requires Alertmanager >= 0.26.0.",
-									MarkdownDescription: "List of MSTeams configurations. It requires Alertmanager >= 0.26.0.",
+									Description:         "List of MSTeams configurations.It requires Alertmanager >= 0.26.0.",
+									MarkdownDescription: "List of MSTeams configurations.It requires Alertmanager >= 0.26.0.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"http_config": schema.SingleNestedAttribute{
@@ -2566,8 +2567,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 												MarkdownDescription: "HTTP client configuration.",
 												Attributes: map[string]schema.Attribute{
 													"authorization": schema.SingleNestedAttribute{
-														Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
-														MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														Description:         "Authorization header configuration for the client.This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														MarkdownDescription: "Authorization header configuration for the client.This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
 														Attributes: map[string]schema.Attribute{
 															"credentials": schema.SingleNestedAttribute{
 																Description:         "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
@@ -2582,8 +2583,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -2603,8 +2604,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"type": schema.StringAttribute{
-																Description:         "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
-																MarkdownDescription: "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
+																Description:         "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
+																MarkdownDescription: "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2616,12 +2617,12 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 													},
 
 													"basic_auth": schema.SingleNestedAttribute{
-														Description:         "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
-														MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+														Description:         "BasicAuth for the client.This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+														MarkdownDescription: "BasicAuth for the client.This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
 														Attributes: map[string]schema.Attribute{
 															"password": schema.SingleNestedAttribute{
-																Description:         "'password' specifies a key of a Secret containing the password for authentication.",
-																MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
+																Description:         "'password' specifies a key of a Secret containing the password forauthentication.",
+																MarkdownDescription: "'password' specifies a key of a Secret containing the password forauthentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -2632,8 +2633,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -2653,8 +2654,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "'username' specifies a key of a Secret containing the username for authentication.",
-																MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
+																Description:         "'username' specifies a key of a Secret containing the username forauthentication.",
+																MarkdownDescription: "'username' specifies a key of a Secret containing the username forauthentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -2665,8 +2666,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -2691,8 +2692,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 													},
 
 													"bearer_token_secret": schema.SingleNestedAttribute{
-														Description:         "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-														MarkdownDescription: "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+														Description:         "The secret's key that contains the bearer token to be used by the clientfor authentication.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
+														MarkdownDescription: "The secret's key that contains the bearer token to be used by the clientfor authentication.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
 																Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -2734,8 +2735,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
 														Attributes: map[string]schema.Attribute{
 															"client_id": schema.SingleNestedAttribute{
-																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
-																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
+																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
 																Attributes: map[string]schema.Attribute{
 																	"config_map": schema.SingleNestedAttribute{
 																		Description:         "ConfigMap containing data to use for the targets.",
@@ -2750,8 +2751,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -2783,8 +2784,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -2809,8 +2810,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"client_secret": schema.SingleNestedAttribute{
-																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
-																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
+																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -2821,8 +2822,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -2842,8 +2843,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"endpoint_params": schema.MapAttribute{
-																Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
-																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
+																Description:         "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
+																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -2904,8 +2905,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -2937,8 +2938,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -2979,8 +2980,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -3012,8 +3013,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -3058,8 +3059,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -3104,6 +3105,14 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 												Computed:            false,
 											},
 
+											"summary": schema.StringAttribute{
+												Description:         "Message summary template.It requires Alertmanager >= 0.27.0.",
+												MarkdownDescription: "Message summary template.It requires Alertmanager >= 0.27.0.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"text": schema.StringAttribute{
 												Description:         "Message body template.",
 												MarkdownDescription: "Message body template.",
@@ -3133,8 +3142,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3184,8 +3193,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 											},
 
 											"api_key": schema.SingleNestedAttribute{
-												Description:         "The secret's key that contains the OpsGenie API key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-												MarkdownDescription: "The secret's key that contains the OpsGenie API key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+												Description:         "The secret's key that contains the OpsGenie API key.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
+												MarkdownDescription: "The secret's key that contains the OpsGenie API key.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
 														Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -3273,8 +3282,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 												MarkdownDescription: "HTTP client configuration.",
 												Attributes: map[string]schema.Attribute{
 													"authorization": schema.SingleNestedAttribute{
-														Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
-														MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														Description:         "Authorization header configuration for the client.This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														MarkdownDescription: "Authorization header configuration for the client.This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
 														Attributes: map[string]schema.Attribute{
 															"credentials": schema.SingleNestedAttribute{
 																Description:         "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
@@ -3289,8 +3298,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -3310,8 +3319,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"type": schema.StringAttribute{
-																Description:         "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
-																MarkdownDescription: "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
+																Description:         "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
+																MarkdownDescription: "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -3323,12 +3332,12 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 													},
 
 													"basic_auth": schema.SingleNestedAttribute{
-														Description:         "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
-														MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+														Description:         "BasicAuth for the client.This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+														MarkdownDescription: "BasicAuth for the client.This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
 														Attributes: map[string]schema.Attribute{
 															"password": schema.SingleNestedAttribute{
-																Description:         "'password' specifies a key of a Secret containing the password for authentication.",
-																MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
+																Description:         "'password' specifies a key of a Secret containing the password forauthentication.",
+																MarkdownDescription: "'password' specifies a key of a Secret containing the password forauthentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -3339,8 +3348,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -3360,8 +3369,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "'username' specifies a key of a Secret containing the username for authentication.",
-																MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
+																Description:         "'username' specifies a key of a Secret containing the username forauthentication.",
+																MarkdownDescription: "'username' specifies a key of a Secret containing the username forauthentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -3372,8 +3381,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -3398,8 +3407,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 													},
 
 													"bearer_token_secret": schema.SingleNestedAttribute{
-														Description:         "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-														MarkdownDescription: "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+														Description:         "The secret's key that contains the bearer token to be used by the clientfor authentication.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
+														MarkdownDescription: "The secret's key that contains the bearer token to be used by the clientfor authentication.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
 																Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -3441,8 +3450,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
 														Attributes: map[string]schema.Attribute{
 															"client_id": schema.SingleNestedAttribute{
-																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
-																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
+																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
 																Attributes: map[string]schema.Attribute{
 																	"config_map": schema.SingleNestedAttribute{
 																		Description:         "ConfigMap containing data to use for the targets.",
@@ -3457,8 +3466,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -3490,8 +3499,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -3516,8 +3525,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"client_secret": schema.SingleNestedAttribute{
-																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
-																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
+																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -3528,8 +3537,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -3549,8 +3558,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"endpoint_params": schema.MapAttribute{
-																Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
-																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
+																Description:         "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
+																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -3611,8 +3620,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -3644,8 +3653,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -3686,8 +3695,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -3719,8 +3728,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -3765,8 +3774,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -3992,8 +4001,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 												MarkdownDescription: "HTTP client configuration.",
 												Attributes: map[string]schema.Attribute{
 													"authorization": schema.SingleNestedAttribute{
-														Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
-														MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														Description:         "Authorization header configuration for the client.This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														MarkdownDescription: "Authorization header configuration for the client.This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
 														Attributes: map[string]schema.Attribute{
 															"credentials": schema.SingleNestedAttribute{
 																Description:         "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
@@ -4008,8 +4017,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4029,8 +4038,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"type": schema.StringAttribute{
-																Description:         "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
-																MarkdownDescription: "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
+																Description:         "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
+																MarkdownDescription: "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4042,12 +4051,12 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 													},
 
 													"basic_auth": schema.SingleNestedAttribute{
-														Description:         "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
-														MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+														Description:         "BasicAuth for the client.This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+														MarkdownDescription: "BasicAuth for the client.This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
 														Attributes: map[string]schema.Attribute{
 															"password": schema.SingleNestedAttribute{
-																Description:         "'password' specifies a key of a Secret containing the password for authentication.",
-																MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
+																Description:         "'password' specifies a key of a Secret containing the password forauthentication.",
+																MarkdownDescription: "'password' specifies a key of a Secret containing the password forauthentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -4058,8 +4067,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4079,8 +4088,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "'username' specifies a key of a Secret containing the username for authentication.",
-																MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
+																Description:         "'username' specifies a key of a Secret containing the username forauthentication.",
+																MarkdownDescription: "'username' specifies a key of a Secret containing the username forauthentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -4091,8 +4100,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4117,8 +4126,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 													},
 
 													"bearer_token_secret": schema.SingleNestedAttribute{
-														Description:         "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-														MarkdownDescription: "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+														Description:         "The secret's key that contains the bearer token to be used by the clientfor authentication.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
+														MarkdownDescription: "The secret's key that contains the bearer token to be used by the clientfor authentication.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
 																Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -4160,8 +4169,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
 														Attributes: map[string]schema.Attribute{
 															"client_id": schema.SingleNestedAttribute{
-																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
-																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
+																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
 																Attributes: map[string]schema.Attribute{
 																	"config_map": schema.SingleNestedAttribute{
 																		Description:         "ConfigMap containing data to use for the targets.",
@@ -4176,8 +4185,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -4209,8 +4218,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -4235,8 +4244,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"client_secret": schema.SingleNestedAttribute{
-																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
-																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
+																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -4247,8 +4256,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4268,8 +4277,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"endpoint_params": schema.MapAttribute{
-																Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
-																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
+																Description:         "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
+																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -4330,8 +4339,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -4363,8 +4372,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -4405,8 +4414,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -4438,8 +4447,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -4484,8 +4493,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4585,8 +4594,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 											},
 
 											"routing_key": schema.SingleNestedAttribute{
-												Description:         "The secret's key that contains the PagerDuty integration key (when using Events API v2). Either this field or 'serviceKey' needs to be defined. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-												MarkdownDescription: "The secret's key that contains the PagerDuty integration key (when using Events API v2). Either this field or 'serviceKey' needs to be defined. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+												Description:         "The secret's key that contains the PagerDuty integration key (when usingEvents API v2). Either this field or 'serviceKey' needs to be defined.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
+												MarkdownDescription: "The secret's key that contains the PagerDuty integration key (when usingEvents API v2). Either this field or 'serviceKey' needs to be defined.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
 														Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -4624,8 +4633,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 											},
 
 											"service_key": schema.SingleNestedAttribute{
-												Description:         "The secret's key that contains the PagerDuty service key (when using integration type 'Prometheus'). Either this field or 'routingKey' needs to be defined. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-												MarkdownDescription: "The secret's key that contains the PagerDuty service key (when using integration type 'Prometheus'). Either this field or 'routingKey' needs to be defined. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+												Description:         "The secret's key that contains the PagerDuty service key (when usingintegration type 'Prometheus'). Either this field or 'routingKey' needs tobe defined.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
+												MarkdownDescription: "The secret's key that contains the PagerDuty service key (when usingintegration type 'Prometheus'). Either this field or 'routingKey' needs tobe defined.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
 														Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -4690,8 +4699,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 											},
 
 											"expire": schema.StringAttribute{
-												Description:         "How long your notification will continue to be retried for, unless the user acknowledges the notification.",
-												MarkdownDescription: "How long your notification will continue to be retried for, unless the user acknowledges the notification.",
+												Description:         "How long your notification will continue to be retried for, unless the useracknowledges the notification.",
+												MarkdownDescription: "How long your notification will continue to be retried for, unless the useracknowledges the notification.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4713,8 +4722,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 												MarkdownDescription: "HTTP client configuration.",
 												Attributes: map[string]schema.Attribute{
 													"authorization": schema.SingleNestedAttribute{
-														Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
-														MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														Description:         "Authorization header configuration for the client.This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														MarkdownDescription: "Authorization header configuration for the client.This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
 														Attributes: map[string]schema.Attribute{
 															"credentials": schema.SingleNestedAttribute{
 																Description:         "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
@@ -4729,8 +4738,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4750,8 +4759,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"type": schema.StringAttribute{
-																Description:         "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
-																MarkdownDescription: "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
+																Description:         "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
+																MarkdownDescription: "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4763,12 +4772,12 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 													},
 
 													"basic_auth": schema.SingleNestedAttribute{
-														Description:         "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
-														MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+														Description:         "BasicAuth for the client.This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+														MarkdownDescription: "BasicAuth for the client.This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
 														Attributes: map[string]schema.Attribute{
 															"password": schema.SingleNestedAttribute{
-																Description:         "'password' specifies a key of a Secret containing the password for authentication.",
-																MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
+																Description:         "'password' specifies a key of a Secret containing the password forauthentication.",
+																MarkdownDescription: "'password' specifies a key of a Secret containing the password forauthentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -4779,8 +4788,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4800,8 +4809,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "'username' specifies a key of a Secret containing the username for authentication.",
-																MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
+																Description:         "'username' specifies a key of a Secret containing the username forauthentication.",
+																MarkdownDescription: "'username' specifies a key of a Secret containing the username forauthentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -4812,8 +4821,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4838,8 +4847,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 													},
 
 													"bearer_token_secret": schema.SingleNestedAttribute{
-														Description:         "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-														MarkdownDescription: "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+														Description:         "The secret's key that contains the bearer token to be used by the clientfor authentication.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
+														MarkdownDescription: "The secret's key that contains the bearer token to be used by the clientfor authentication.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
 																Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -4881,8 +4890,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
 														Attributes: map[string]schema.Attribute{
 															"client_id": schema.SingleNestedAttribute{
-																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
-																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
+																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
 																Attributes: map[string]schema.Attribute{
 																	"config_map": schema.SingleNestedAttribute{
 																		Description:         "ConfigMap containing data to use for the targets.",
@@ -4897,8 +4906,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -4930,8 +4939,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -4956,8 +4965,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"client_secret": schema.SingleNestedAttribute{
-																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
-																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
+																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -4968,8 +4977,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4989,8 +4998,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"endpoint_params": schema.MapAttribute{
-																Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
-																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
+																Description:         "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
+																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -5051,8 +5060,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -5084,8 +5093,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -5126,8 +5135,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -5159,8 +5168,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -5205,8 +5214,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -5260,8 +5269,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 											},
 
 											"retry": schema.StringAttribute{
-												Description:         "How often the Pushover servers will send the same notification to the user. Must be at least 30 seconds.",
-												MarkdownDescription: "How often the Pushover servers will send the same notification to the user. Must be at least 30 seconds.",
+												Description:         "How often the Pushover servers will send the same notification to the user.Must be at least 30 seconds.",
+												MarkdownDescription: "How often the Pushover servers will send the same notification to the user.Must be at least 30 seconds.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5295,8 +5304,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 											},
 
 											"token": schema.SingleNestedAttribute{
-												Description:         "The secret's key that contains the registered application's API token, see https://pushover.net/apps. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. Either 'token' or 'tokenFile' is required.",
-												MarkdownDescription: "The secret's key that contains the registered application's API token, see https://pushover.net/apps. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. Either 'token' or 'tokenFile' is required.",
+												Description:         "The secret's key that contains the registered application's API token, see https://pushover.net/apps.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.Either 'token' or 'tokenFile' is required.",
+												MarkdownDescription: "The secret's key that contains the registered application's API token, see https://pushover.net/apps.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.Either 'token' or 'tokenFile' is required.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
 														Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -5326,8 +5335,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 											},
 
 											"token_file": schema.StringAttribute{
-												Description:         "The token file that contains the registered application's API token, see https://pushover.net/apps. Either 'token' or 'tokenFile' is required. It requires Alertmanager >= v0.26.0.",
-												MarkdownDescription: "The token file that contains the registered application's API token, see https://pushover.net/apps. Either 'token' or 'tokenFile' is required. It requires Alertmanager >= v0.26.0.",
+												Description:         "The token file that contains the registered application's API token, see https://pushover.net/apps.Either 'token' or 'tokenFile' is required.It requires Alertmanager >= v0.26.0.",
+												MarkdownDescription: "The token file that contains the registered application's API token, see https://pushover.net/apps.Either 'token' or 'tokenFile' is required.It requires Alertmanager >= v0.26.0.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5350,8 +5359,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 											},
 
 											"user_key": schema.SingleNestedAttribute{
-												Description:         "The secret's key that contains the recipient user's user key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. Either 'userKey' or 'userKeyFile' is required.",
-												MarkdownDescription: "The secret's key that contains the recipient user's user key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. Either 'userKey' or 'userKeyFile' is required.",
+												Description:         "The secret's key that contains the recipient user's user key.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.Either 'userKey' or 'userKeyFile' is required.",
+												MarkdownDescription: "The secret's key that contains the recipient user's user key.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.Either 'userKey' or 'userKeyFile' is required.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
 														Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -5381,8 +5390,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 											},
 
 											"user_key_file": schema.StringAttribute{
-												Description:         "The user key file that contains the recipient user's user key. Either 'userKey' or 'userKeyFile' is required. It requires Alertmanager >= v0.26.0.",
-												MarkdownDescription: "The user key file that contains the recipient user's user key. Either 'userKey' or 'userKeyFile' is required. It requires Alertmanager >= v0.26.0.",
+												Description:         "The user key file that contains the recipient user's user key.Either 'userKey' or 'userKeyFile' is required.It requires Alertmanager >= v0.26.0.",
+												MarkdownDescription: "The user key file that contains the recipient user's user key.Either 'userKey' or 'userKeyFile' is required.It requires Alertmanager >= v0.26.0.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5405,8 +5414,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"confirm": schema.SingleNestedAttribute{
-															Description:         "SlackConfirmationField protect users from destructive actions or particularly distinguished decisions by asking them to confirm their button click one more time. See https://api.slack.com/docs/interactive-message-field-guide#confirmation_fields for more information.",
-															MarkdownDescription: "SlackConfirmationField protect users from destructive actions or particularly distinguished decisions by asking them to confirm their button click one more time. See https://api.slack.com/docs/interactive-message-field-guide#confirmation_fields for more information.",
+															Description:         "SlackConfirmationField protect users from destructive actions orparticularly distinguished decisions by asking them to confirm their buttonclick one more time.See https://api.slack.com/docs/interactive-message-field-guide#confirmation_fieldsfor more information.",
+															MarkdownDescription: "SlackConfirmationField protect users from destructive actions orparticularly distinguished decisions by asking them to confirm their buttonclick one more time.See https://api.slack.com/docs/interactive-message-field-guide#confirmation_fieldsfor more information.",
 															Attributes: map[string]schema.Attribute{
 																"dismiss_text": schema.StringAttribute{
 																	Description:         "",
@@ -5509,8 +5518,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 											},
 
 											"api_url": schema.SingleNestedAttribute{
-												Description:         "The secret's key that contains the Slack webhook URL. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-												MarkdownDescription: "The secret's key that contains the Slack webhook URL. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+												Description:         "The secret's key that contains the Slack webhook URL.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
+												MarkdownDescription: "The secret's key that contains the Slack webhook URL.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
 														Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -5625,8 +5634,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 												MarkdownDescription: "HTTP client configuration.",
 												Attributes: map[string]schema.Attribute{
 													"authorization": schema.SingleNestedAttribute{
-														Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
-														MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														Description:         "Authorization header configuration for the client.This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														MarkdownDescription: "Authorization header configuration for the client.This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
 														Attributes: map[string]schema.Attribute{
 															"credentials": schema.SingleNestedAttribute{
 																Description:         "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
@@ -5641,8 +5650,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -5662,8 +5671,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"type": schema.StringAttribute{
-																Description:         "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
-																MarkdownDescription: "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
+																Description:         "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
+																MarkdownDescription: "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -5675,12 +5684,12 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 													},
 
 													"basic_auth": schema.SingleNestedAttribute{
-														Description:         "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
-														MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+														Description:         "BasicAuth for the client.This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+														MarkdownDescription: "BasicAuth for the client.This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
 														Attributes: map[string]schema.Attribute{
 															"password": schema.SingleNestedAttribute{
-																Description:         "'password' specifies a key of a Secret containing the password for authentication.",
-																MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
+																Description:         "'password' specifies a key of a Secret containing the password forauthentication.",
+																MarkdownDescription: "'password' specifies a key of a Secret containing the password forauthentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -5691,8 +5700,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -5712,8 +5721,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "'username' specifies a key of a Secret containing the username for authentication.",
-																MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
+																Description:         "'username' specifies a key of a Secret containing the username forauthentication.",
+																MarkdownDescription: "'username' specifies a key of a Secret containing the username forauthentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -5724,8 +5733,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -5750,8 +5759,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 													},
 
 													"bearer_token_secret": schema.SingleNestedAttribute{
-														Description:         "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-														MarkdownDescription: "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+														Description:         "The secret's key that contains the bearer token to be used by the clientfor authentication.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
+														MarkdownDescription: "The secret's key that contains the bearer token to be used by the clientfor authentication.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
 																Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -5793,8 +5802,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
 														Attributes: map[string]schema.Attribute{
 															"client_id": schema.SingleNestedAttribute{
-																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
-																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
+																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
 																Attributes: map[string]schema.Attribute{
 																	"config_map": schema.SingleNestedAttribute{
 																		Description:         "ConfigMap containing data to use for the targets.",
@@ -5809,8 +5818,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -5842,8 +5851,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -5868,8 +5877,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"client_secret": schema.SingleNestedAttribute{
-																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
-																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
+																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -5880,8 +5889,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -5901,8 +5910,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"endpoint_params": schema.MapAttribute{
-																Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
-																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
+																Description:         "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
+																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -5963,8 +5972,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -5996,8 +6005,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -6038,8 +6047,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -6071,8 +6080,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -6117,8 +6126,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -6272,8 +6281,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"api_url": schema.StringAttribute{
-												Description:         "The SNS API URL i.e. https://sns.us-east-2.amazonaws.com. If not specified, the SNS API URL from the SNS SDK will be used.",
-												MarkdownDescription: "The SNS API URL i.e. https://sns.us-east-2.amazonaws.com. If not specified, the SNS API URL from the SNS SDK will be used.",
+												Description:         "The SNS API URL i.e. https://sns.us-east-2.amazonaws.com.If not specified, the SNS API URL from the SNS SDK will be used.",
+												MarkdownDescription: "The SNS API URL i.e. https://sns.us-east-2.amazonaws.com.If not specified, the SNS API URL from the SNS SDK will be used.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -6293,8 +6302,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 												MarkdownDescription: "HTTP client configuration.",
 												Attributes: map[string]schema.Attribute{
 													"authorization": schema.SingleNestedAttribute{
-														Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
-														MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														Description:         "Authorization header configuration for the client.This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														MarkdownDescription: "Authorization header configuration for the client.This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
 														Attributes: map[string]schema.Attribute{
 															"credentials": schema.SingleNestedAttribute{
 																Description:         "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
@@ -6309,8 +6318,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -6330,8 +6339,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"type": schema.StringAttribute{
-																Description:         "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
-																MarkdownDescription: "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
+																Description:         "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
+																MarkdownDescription: "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -6343,12 +6352,12 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 													},
 
 													"basic_auth": schema.SingleNestedAttribute{
-														Description:         "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
-														MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+														Description:         "BasicAuth for the client.This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+														MarkdownDescription: "BasicAuth for the client.This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
 														Attributes: map[string]schema.Attribute{
 															"password": schema.SingleNestedAttribute{
-																Description:         "'password' specifies a key of a Secret containing the password for authentication.",
-																MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
+																Description:         "'password' specifies a key of a Secret containing the password forauthentication.",
+																MarkdownDescription: "'password' specifies a key of a Secret containing the password forauthentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -6359,8 +6368,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -6380,8 +6389,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "'username' specifies a key of a Secret containing the username for authentication.",
-																MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
+																Description:         "'username' specifies a key of a Secret containing the username forauthentication.",
+																MarkdownDescription: "'username' specifies a key of a Secret containing the username forauthentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -6392,8 +6401,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -6418,8 +6427,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 													},
 
 													"bearer_token_secret": schema.SingleNestedAttribute{
-														Description:         "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-														MarkdownDescription: "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+														Description:         "The secret's key that contains the bearer token to be used by the clientfor authentication.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
+														MarkdownDescription: "The secret's key that contains the bearer token to be used by the clientfor authentication.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
 																Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -6461,8 +6470,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
 														Attributes: map[string]schema.Attribute{
 															"client_id": schema.SingleNestedAttribute{
-																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
-																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
+																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
 																Attributes: map[string]schema.Attribute{
 																	"config_map": schema.SingleNestedAttribute{
 																		Description:         "ConfigMap containing data to use for the targets.",
@@ -6477,8 +6486,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -6510,8 +6519,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -6536,8 +6545,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"client_secret": schema.SingleNestedAttribute{
-																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
-																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
+																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -6548,8 +6557,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -6569,8 +6578,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"endpoint_params": schema.MapAttribute{
-																Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
-																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
+																Description:         "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
+																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -6631,8 +6640,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -6664,8 +6673,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -6706,8 +6715,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -6739,8 +6748,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -6785,8 +6794,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -6832,8 +6841,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 											},
 
 											"phone_number": schema.StringAttribute{
-												Description:         "Phone number if message is delivered via SMS in E.164 format. If you don't specify this value, you must specify a value for the TopicARN or TargetARN.",
-												MarkdownDescription: "Phone number if message is delivered via SMS in E.164 format. If you don't specify this value, you must specify a value for the TopicARN or TargetARN.",
+												Description:         "Phone number if message is delivered via SMS in E.164 format.If you don't specify this value, you must specify a value for the TopicARN or TargetARN.",
+												MarkdownDescription: "Phone number if message is delivered via SMS in E.164 format.If you don't specify this value, you must specify a value for the TopicARN or TargetARN.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -6852,8 +6861,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 												MarkdownDescription: "Configures AWS's Signature Verification 4 signing process to sign requests.",
 												Attributes: map[string]schema.Attribute{
 													"access_key": schema.SingleNestedAttribute{
-														Description:         "AccessKey is the AWS API key. If not specified, the environment variable 'AWS_ACCESS_KEY_ID' is used.",
-														MarkdownDescription: "AccessKey is the AWS API key. If not specified, the environment variable 'AWS_ACCESS_KEY_ID' is used.",
+														Description:         "AccessKey is the AWS API key. If not specified, the environment variable'AWS_ACCESS_KEY_ID' is used.",
+														MarkdownDescription: "AccessKey is the AWS API key. If not specified, the environment variable'AWS_ACCESS_KEY_ID' is used.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
 																Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -6864,8 +6873,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -6909,8 +6918,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 													},
 
 													"secret_key": schema.SingleNestedAttribute{
-														Description:         "SecretKey is the AWS API secret. If not specified, the environment variable 'AWS_SECRET_ACCESS_KEY' is used.",
-														MarkdownDescription: "SecretKey is the AWS API secret. If not specified, the environment variable 'AWS_SECRET_ACCESS_KEY' is used.",
+														Description:         "SecretKey is the AWS API secret. If not specified, the environmentvariable 'AWS_SECRET_ACCESS_KEY' is used.",
+														MarkdownDescription: "SecretKey is the AWS API secret. If not specified, the environmentvariable 'AWS_SECRET_ACCESS_KEY' is used.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
 																Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -6921,8 +6930,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -6955,16 +6964,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 											},
 
 											"target_arn": schema.StringAttribute{
-												Description:         "The  mobile platform endpoint ARN if message is delivered via mobile notifications. If you don't specify this value, you must specify a value for the topic_arn or PhoneNumber.",
-												MarkdownDescription: "The  mobile platform endpoint ARN if message is delivered via mobile notifications. If you don't specify this value, you must specify a value for the topic_arn or PhoneNumber.",
+												Description:         "The  mobile platform endpoint ARN if message is delivered via mobile notifications.If you don't specify this value, you must specify a value for the topic_arn or PhoneNumber.",
+												MarkdownDescription: "The  mobile platform endpoint ARN if message is delivered via mobile notifications.If you don't specify this value, you must specify a value for the topic_arn or PhoneNumber.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"topic_arn": schema.StringAttribute{
-												Description:         "SNS topic ARN, i.e. arn:aws:sns:us-east-2:698519295917:My-Topic If you don't specify this value, you must specify a value for the PhoneNumber or TargetARN.",
-												MarkdownDescription: "SNS topic ARN, i.e. arn:aws:sns:us-east-2:698519295917:My-Topic If you don't specify this value, you must specify a value for the PhoneNumber or TargetARN.",
+												Description:         "SNS topic ARN, i.e. arn:aws:sns:us-east-2:698519295917:My-TopicIf you don't specify this value, you must specify a value for the PhoneNumber or TargetARN.",
+												MarkdownDescription: "SNS topic ARN, i.e. arn:aws:sns:us-east-2:698519295917:My-TopicIf you don't specify this value, you must specify a value for the PhoneNumber or TargetARN.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -6982,16 +6991,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"api_url": schema.StringAttribute{
-												Description:         "The Telegram API URL i.e. https://api.telegram.org. If not specified, default API URL will be used.",
-												MarkdownDescription: "The Telegram API URL i.e. https://api.telegram.org. If not specified, default API URL will be used.",
+												Description:         "The Telegram API URL i.e. https://api.telegram.org.If not specified, default API URL will be used.",
+												MarkdownDescription: "The Telegram API URL i.e. https://api.telegram.org.If not specified, default API URL will be used.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"bot_token": schema.SingleNestedAttribute{
-												Description:         "Telegram bot token. It is mutually exclusive with 'botTokenFile'. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.  Either 'botToken' or 'botTokenFile' is required.",
-												MarkdownDescription: "Telegram bot token. It is mutually exclusive with 'botTokenFile'. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.  Either 'botToken' or 'botTokenFile' is required.",
+												Description:         "Telegram bot token. It is mutually exclusive with 'botTokenFile'.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.Either 'botToken' or 'botTokenFile' is required.",
+												MarkdownDescription: "Telegram bot token. It is mutually exclusive with 'botTokenFile'.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.Either 'botToken' or 'botTokenFile' is required.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
 														Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -7021,8 +7030,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 											},
 
 											"bot_token_file": schema.StringAttribute{
-												Description:         "File to read the Telegram bot token from. It is mutually exclusive with 'botToken'. Either 'botToken' or 'botTokenFile' is required.  It requires Alertmanager >= v0.26.0.",
-												MarkdownDescription: "File to read the Telegram bot token from. It is mutually exclusive with 'botToken'. Either 'botToken' or 'botTokenFile' is required.  It requires Alertmanager >= v0.26.0.",
+												Description:         "File to read the Telegram bot token from. It is mutually exclusive with 'botToken'.Either 'botToken' or 'botTokenFile' is required.It requires Alertmanager >= v0.26.0.",
+												MarkdownDescription: "File to read the Telegram bot token from. It is mutually exclusive with 'botToken'.Either 'botToken' or 'botTokenFile' is required.It requires Alertmanager >= v0.26.0.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -7049,8 +7058,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 												MarkdownDescription: "HTTP client configuration.",
 												Attributes: map[string]schema.Attribute{
 													"authorization": schema.SingleNestedAttribute{
-														Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
-														MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														Description:         "Authorization header configuration for the client.This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														MarkdownDescription: "Authorization header configuration for the client.This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
 														Attributes: map[string]schema.Attribute{
 															"credentials": schema.SingleNestedAttribute{
 																Description:         "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
@@ -7065,8 +7074,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -7086,8 +7095,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"type": schema.StringAttribute{
-																Description:         "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
-																MarkdownDescription: "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
+																Description:         "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
+																MarkdownDescription: "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -7099,12 +7108,12 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 													},
 
 													"basic_auth": schema.SingleNestedAttribute{
-														Description:         "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
-														MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+														Description:         "BasicAuth for the client.This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+														MarkdownDescription: "BasicAuth for the client.This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
 														Attributes: map[string]schema.Attribute{
 															"password": schema.SingleNestedAttribute{
-																Description:         "'password' specifies a key of a Secret containing the password for authentication.",
-																MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
+																Description:         "'password' specifies a key of a Secret containing the password forauthentication.",
+																MarkdownDescription: "'password' specifies a key of a Secret containing the password forauthentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -7115,8 +7124,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -7136,8 +7145,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "'username' specifies a key of a Secret containing the username for authentication.",
-																MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
+																Description:         "'username' specifies a key of a Secret containing the username forauthentication.",
+																MarkdownDescription: "'username' specifies a key of a Secret containing the username forauthentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -7148,8 +7157,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -7174,8 +7183,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 													},
 
 													"bearer_token_secret": schema.SingleNestedAttribute{
-														Description:         "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-														MarkdownDescription: "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+														Description:         "The secret's key that contains the bearer token to be used by the clientfor authentication.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
+														MarkdownDescription: "The secret's key that contains the bearer token to be used by the clientfor authentication.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
 																Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -7217,8 +7226,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
 														Attributes: map[string]schema.Attribute{
 															"client_id": schema.SingleNestedAttribute{
-																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
-																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
+																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
 																Attributes: map[string]schema.Attribute{
 																	"config_map": schema.SingleNestedAttribute{
 																		Description:         "ConfigMap containing data to use for the targets.",
@@ -7233,8 +7242,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -7266,8 +7275,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -7292,8 +7301,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"client_secret": schema.SingleNestedAttribute{
-																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
-																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
+																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -7304,8 +7313,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -7325,8 +7334,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"endpoint_params": schema.MapAttribute{
-																Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
-																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
+																Description:         "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
+																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -7387,8 +7396,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -7420,8 +7429,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -7462,8 +7471,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -7495,8 +7504,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -7541,8 +7550,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -7618,8 +7627,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"api_key": schema.SingleNestedAttribute{
-												Description:         "The secret's key that contains the API key to use when talking to the VictorOps API. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-												MarkdownDescription: "The secret's key that contains the API key to use when talking to the VictorOps API. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+												Description:         "The secret's key that contains the API key to use when talking to the VictorOps API.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
+												MarkdownDescription: "The secret's key that contains the API key to use when talking to the VictorOps API.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
 														Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -7699,8 +7708,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 												MarkdownDescription: "The HTTP client's configuration.",
 												Attributes: map[string]schema.Attribute{
 													"authorization": schema.SingleNestedAttribute{
-														Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
-														MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														Description:         "Authorization header configuration for the client.This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														MarkdownDescription: "Authorization header configuration for the client.This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
 														Attributes: map[string]schema.Attribute{
 															"credentials": schema.SingleNestedAttribute{
 																Description:         "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
@@ -7715,8 +7724,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -7736,8 +7745,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"type": schema.StringAttribute{
-																Description:         "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
-																MarkdownDescription: "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
+																Description:         "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
+																MarkdownDescription: "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -7749,12 +7758,12 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 													},
 
 													"basic_auth": schema.SingleNestedAttribute{
-														Description:         "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
-														MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+														Description:         "BasicAuth for the client.This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+														MarkdownDescription: "BasicAuth for the client.This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
 														Attributes: map[string]schema.Attribute{
 															"password": schema.SingleNestedAttribute{
-																Description:         "'password' specifies a key of a Secret containing the password for authentication.",
-																MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
+																Description:         "'password' specifies a key of a Secret containing the password forauthentication.",
+																MarkdownDescription: "'password' specifies a key of a Secret containing the password forauthentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -7765,8 +7774,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -7786,8 +7795,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "'username' specifies a key of a Secret containing the username for authentication.",
-																MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
+																Description:         "'username' specifies a key of a Secret containing the username forauthentication.",
+																MarkdownDescription: "'username' specifies a key of a Secret containing the username forauthentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -7798,8 +7807,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -7824,8 +7833,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 													},
 
 													"bearer_token_secret": schema.SingleNestedAttribute{
-														Description:         "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-														MarkdownDescription: "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+														Description:         "The secret's key that contains the bearer token to be used by the clientfor authentication.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
+														MarkdownDescription: "The secret's key that contains the bearer token to be used by the clientfor authentication.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
 																Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -7867,8 +7876,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
 														Attributes: map[string]schema.Attribute{
 															"client_id": schema.SingleNestedAttribute{
-																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
-																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
+																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
 																Attributes: map[string]schema.Attribute{
 																	"config_map": schema.SingleNestedAttribute{
 																		Description:         "ConfigMap containing data to use for the targets.",
@@ -7883,8 +7892,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -7916,8 +7925,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -7942,8 +7951,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"client_secret": schema.SingleNestedAttribute{
-																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
-																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
+																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -7954,8 +7963,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -7975,8 +7984,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"endpoint_params": schema.MapAttribute{
-																Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
-																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
+																Description:         "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
+																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -8037,8 +8046,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -8070,8 +8079,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -8112,8 +8121,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -8145,8 +8154,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -8191,8 +8200,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -8292,12 +8301,12 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 											},
 
 											"http_config": schema.SingleNestedAttribute{
-												Description:         "The HTTP client's configuration. You must use this configuration to supply the bot token as part of the HTTP 'Authorization' header.",
-												MarkdownDescription: "The HTTP client's configuration. You must use this configuration to supply the bot token as part of the HTTP 'Authorization' header.",
+												Description:         "The HTTP client's configuration.You must use this configuration to supply the bot token as part of the HTTP 'Authorization' header.",
+												MarkdownDescription: "The HTTP client's configuration.You must use this configuration to supply the bot token as part of the HTTP 'Authorization' header.",
 												Attributes: map[string]schema.Attribute{
 													"authorization": schema.SingleNestedAttribute{
-														Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
-														MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														Description:         "Authorization header configuration for the client.This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														MarkdownDescription: "Authorization header configuration for the client.This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
 														Attributes: map[string]schema.Attribute{
 															"credentials": schema.SingleNestedAttribute{
 																Description:         "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
@@ -8312,8 +8321,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -8333,8 +8342,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"type": schema.StringAttribute{
-																Description:         "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
-																MarkdownDescription: "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
+																Description:         "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
+																MarkdownDescription: "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -8346,12 +8355,12 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 													},
 
 													"basic_auth": schema.SingleNestedAttribute{
-														Description:         "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
-														MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+														Description:         "BasicAuth for the client.This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+														MarkdownDescription: "BasicAuth for the client.This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
 														Attributes: map[string]schema.Attribute{
 															"password": schema.SingleNestedAttribute{
-																Description:         "'password' specifies a key of a Secret containing the password for authentication.",
-																MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
+																Description:         "'password' specifies a key of a Secret containing the password forauthentication.",
+																MarkdownDescription: "'password' specifies a key of a Secret containing the password forauthentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -8362,8 +8371,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -8383,8 +8392,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "'username' specifies a key of a Secret containing the username for authentication.",
-																MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
+																Description:         "'username' specifies a key of a Secret containing the username forauthentication.",
+																MarkdownDescription: "'username' specifies a key of a Secret containing the username forauthentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -8395,8 +8404,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -8421,8 +8430,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 													},
 
 													"bearer_token_secret": schema.SingleNestedAttribute{
-														Description:         "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-														MarkdownDescription: "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+														Description:         "The secret's key that contains the bearer token to be used by the clientfor authentication.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
+														MarkdownDescription: "The secret's key that contains the bearer token to be used by the clientfor authentication.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
 																Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -8464,8 +8473,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
 														Attributes: map[string]schema.Attribute{
 															"client_id": schema.SingleNestedAttribute{
-																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
-																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
+																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
 																Attributes: map[string]schema.Attribute{
 																	"config_map": schema.SingleNestedAttribute{
 																		Description:         "ConfigMap containing data to use for the targets.",
@@ -8480,8 +8489,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -8513,8 +8522,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -8539,8 +8548,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"client_secret": schema.SingleNestedAttribute{
-																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
-																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
+																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -8551,8 +8560,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -8572,8 +8581,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"endpoint_params": schema.MapAttribute{
-																Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
-																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
+																Description:         "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
+																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -8634,8 +8643,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -8667,8 +8676,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -8709,8 +8718,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -8742,8 +8751,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -8788,8 +8797,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -8869,8 +8878,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 												MarkdownDescription: "HTTP client configuration.",
 												Attributes: map[string]schema.Attribute{
 													"authorization": schema.SingleNestedAttribute{
-														Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
-														MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														Description:         "Authorization header configuration for the client.This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														MarkdownDescription: "Authorization header configuration for the client.This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
 														Attributes: map[string]schema.Attribute{
 															"credentials": schema.SingleNestedAttribute{
 																Description:         "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
@@ -8885,8 +8894,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -8906,8 +8915,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"type": schema.StringAttribute{
-																Description:         "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
-																MarkdownDescription: "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
+																Description:         "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
+																MarkdownDescription: "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -8919,12 +8928,12 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 													},
 
 													"basic_auth": schema.SingleNestedAttribute{
-														Description:         "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
-														MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+														Description:         "BasicAuth for the client.This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+														MarkdownDescription: "BasicAuth for the client.This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
 														Attributes: map[string]schema.Attribute{
 															"password": schema.SingleNestedAttribute{
-																Description:         "'password' specifies a key of a Secret containing the password for authentication.",
-																MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
+																Description:         "'password' specifies a key of a Secret containing the password forauthentication.",
+																MarkdownDescription: "'password' specifies a key of a Secret containing the password forauthentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -8935,8 +8944,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -8956,8 +8965,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "'username' specifies a key of a Secret containing the username for authentication.",
-																MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
+																Description:         "'username' specifies a key of a Secret containing the username forauthentication.",
+																MarkdownDescription: "'username' specifies a key of a Secret containing the username forauthentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -8968,8 +8977,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -8994,8 +9003,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 													},
 
 													"bearer_token_secret": schema.SingleNestedAttribute{
-														Description:         "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-														MarkdownDescription: "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+														Description:         "The secret's key that contains the bearer token to be used by the clientfor authentication.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
+														MarkdownDescription: "The secret's key that contains the bearer token to be used by the clientfor authentication.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
 																Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -9037,8 +9046,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
 														Attributes: map[string]schema.Attribute{
 															"client_id": schema.SingleNestedAttribute{
-																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
-																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
+																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
 																Attributes: map[string]schema.Attribute{
 																	"config_map": schema.SingleNestedAttribute{
 																		Description:         "ConfigMap containing data to use for the targets.",
@@ -9053,8 +9062,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -9086,8 +9095,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -9112,8 +9121,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"client_secret": schema.SingleNestedAttribute{
-																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
-																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
+																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -9124,8 +9133,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -9145,8 +9154,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"endpoint_params": schema.MapAttribute{
-																Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
-																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
+																Description:         "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
+																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -9207,8 +9216,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -9240,8 +9249,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -9282,8 +9291,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -9315,8 +9324,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -9361,8 +9370,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -9419,16 +9428,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 											},
 
 											"url": schema.StringAttribute{
-												Description:         "The URL to send HTTP POST requests to. 'urlSecret' takes precedence over 'url'. One of 'urlSecret' and 'url' should be defined.",
-												MarkdownDescription: "The URL to send HTTP POST requests to. 'urlSecret' takes precedence over 'url'. One of 'urlSecret' and 'url' should be defined.",
+												Description:         "The URL to send HTTP POST requests to. 'urlSecret' takes precedence over'url'. One of 'urlSecret' and 'url' should be defined.",
+												MarkdownDescription: "The URL to send HTTP POST requests to. 'urlSecret' takes precedence over'url'. One of 'urlSecret' and 'url' should be defined.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"url_secret": schema.SingleNestedAttribute{
-												Description:         "The secret's key that contains the webhook URL to send HTTP requests to. 'urlSecret' takes precedence over 'url'. One of 'urlSecret' and 'url' should be defined. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-												MarkdownDescription: "The secret's key that contains the webhook URL to send HTTP requests to. 'urlSecret' takes precedence over 'url'. One of 'urlSecret' and 'url' should be defined. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+												Description:         "The secret's key that contains the webhook URL to send HTTP requests to.'urlSecret' takes precedence over 'url'. One of 'urlSecret' and 'url'should be defined.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
+												MarkdownDescription: "The secret's key that contains the webhook URL to send HTTP requests to.'urlSecret' takes precedence over 'url'. One of 'urlSecret' and 'url'should be defined.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
 														Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -9477,8 +9486,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 											},
 
 											"api_secret": schema.SingleNestedAttribute{
-												Description:         "The secret's key that contains the WeChat API key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-												MarkdownDescription: "The secret's key that contains the WeChat API key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+												Description:         "The secret's key that contains the WeChat API key.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
+												MarkdownDescription: "The secret's key that contains the WeChat API key.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
 														Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -9528,8 +9537,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 												MarkdownDescription: "HTTP client configuration.",
 												Attributes: map[string]schema.Attribute{
 													"authorization": schema.SingleNestedAttribute{
-														Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
-														MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														Description:         "Authorization header configuration for the client.This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														MarkdownDescription: "Authorization header configuration for the client.This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
 														Attributes: map[string]schema.Attribute{
 															"credentials": schema.SingleNestedAttribute{
 																Description:         "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
@@ -9544,8 +9553,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -9565,8 +9574,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"type": schema.StringAttribute{
-																Description:         "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
-																MarkdownDescription: "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
+																Description:         "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
+																MarkdownDescription: "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -9578,12 +9587,12 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 													},
 
 													"basic_auth": schema.SingleNestedAttribute{
-														Description:         "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
-														MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+														Description:         "BasicAuth for the client.This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+														MarkdownDescription: "BasicAuth for the client.This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
 														Attributes: map[string]schema.Attribute{
 															"password": schema.SingleNestedAttribute{
-																Description:         "'password' specifies a key of a Secret containing the password for authentication.",
-																MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
+																Description:         "'password' specifies a key of a Secret containing the password forauthentication.",
+																MarkdownDescription: "'password' specifies a key of a Secret containing the password forauthentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -9594,8 +9603,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -9615,8 +9624,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "'username' specifies a key of a Secret containing the username for authentication.",
-																MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
+																Description:         "'username' specifies a key of a Secret containing the username forauthentication.",
+																MarkdownDescription: "'username' specifies a key of a Secret containing the username forauthentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -9627,8 +9636,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -9653,8 +9662,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 													},
 
 													"bearer_token_secret": schema.SingleNestedAttribute{
-														Description:         "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-														MarkdownDescription: "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+														Description:         "The secret's key that contains the bearer token to be used by the clientfor authentication.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
+														MarkdownDescription: "The secret's key that contains the bearer token to be used by the clientfor authentication.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
 																Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -9696,8 +9705,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
 														Attributes: map[string]schema.Attribute{
 															"client_id": schema.SingleNestedAttribute{
-																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
-																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
+																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
 																Attributes: map[string]schema.Attribute{
 																	"config_map": schema.SingleNestedAttribute{
 																		Description:         "ConfigMap containing data to use for the targets.",
@@ -9712,8 +9721,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -9745,8 +9754,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -9771,8 +9780,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"client_secret": schema.SingleNestedAttribute{
-																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
-																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
+																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -9783,8 +9792,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -9804,8 +9813,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"endpoint_params": schema.MapAttribute{
-																Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
-																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
+																Description:         "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
+																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -9866,8 +9875,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -9899,8 +9908,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -9941,8 +9950,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -9974,8 +9983,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -10020,8 +10029,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -10119,8 +10128,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 					},
 
 					"route": schema.SingleNestedAttribute{
-						Description:         "The Alertmanager route definition for alerts matching the resource's namespace. If present, it will be added to the generated Alertmanager configuration as a first-level route.",
-						MarkdownDescription: "The Alertmanager route definition for alerts matching the resource's namespace. If present, it will be added to the generated Alertmanager configuration as a first-level route.",
+						Description:         "The Alertmanager route definition for alerts matching the resource'snamespace. If present, it will be added to the generated Alertmanagerconfiguration as a first-level route.",
+						MarkdownDescription: "The Alertmanager route definition for alerts matching the resource'snamespace. If present, it will be added to the generated Alertmanagerconfiguration as a first-level route.",
 						Attributes: map[string]schema.Attribute{
 							"active_time_intervals": schema.ListAttribute{
 								Description:         "ActiveTimeIntervals is a list of TimeInterval names when this route should be active.",
@@ -10132,16 +10141,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 							},
 
 							"continue": schema.BoolAttribute{
-								Description:         "Boolean indicating whether an alert should continue matching subsequent sibling nodes. It will always be overridden to true for the first-level route by the Prometheus operator.",
-								MarkdownDescription: "Boolean indicating whether an alert should continue matching subsequent sibling nodes. It will always be overridden to true for the first-level route by the Prometheus operator.",
+								Description:         "Boolean indicating whether an alert should continue matching subsequentsibling nodes. It will always be overridden to true for the first-levelroute by the Prometheus operator.",
+								MarkdownDescription: "Boolean indicating whether an alert should continue matching subsequentsibling nodes. It will always be overridden to true for the first-levelroute by the Prometheus operator.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"group_by": schema.ListAttribute{
-								Description:         "List of labels to group by. Labels must not be repeated (unique list). Special label '...' (aggregate by all possible labels), if provided, must be the only element in the list.",
-								MarkdownDescription: "List of labels to group by. Labels must not be repeated (unique list). Special label '...' (aggregate by all possible labels), if provided, must be the only element in the list.",
+								Description:         "List of labels to group by.Labels must not be repeated (unique list).Special label '...' (aggregate by all possible labels), if provided, must be the only element in the list.",
+								MarkdownDescription: "List of labels to group by.Labels must not be repeated (unique list).Special label '...' (aggregate by all possible labels), if provided, must be the only element in the list.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -10149,29 +10158,29 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 							},
 
 							"group_interval": schema.StringAttribute{
-								Description:         "How long to wait before sending an updated notification. Must match the regular expression'^(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?$' Example: '5m'",
-								MarkdownDescription: "How long to wait before sending an updated notification. Must match the regular expression'^(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?$' Example: '5m'",
+								Description:         "How long to wait before sending an updated notification.Must match the regular expression'^(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?$'Example: '5m'",
+								MarkdownDescription: "How long to wait before sending an updated notification.Must match the regular expression'^(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?$'Example: '5m'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"group_wait": schema.StringAttribute{
-								Description:         "How long to wait before sending the initial notification. Must match the regular expression'^(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?$' Example: '30s'",
-								MarkdownDescription: "How long to wait before sending the initial notification. Must match the regular expression'^(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?$' Example: '30s'",
+								Description:         "How long to wait before sending the initial notification.Must match the regular expression'^(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?$'Example: '30s'",
+								MarkdownDescription: "How long to wait before sending the initial notification.Must match the regular expression'^(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?$'Example: '30s'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"matchers": schema.ListNestedAttribute{
-								Description:         "List of matchers that the alert's labels should match. For the first level route, the operator removes any existing equality and regexp matcher on the 'namespace' label and adds a 'namespace: <object namespace>' matcher.",
-								MarkdownDescription: "List of matchers that the alert's labels should match. For the first level route, the operator removes any existing equality and regexp matcher on the 'namespace' label and adds a 'namespace: <object namespace>' matcher.",
+								Description:         "List of matchers that the alert's labels should match. For the firstlevel route, the operator removes any existing equality and regexpmatcher on the 'namespace' label and adds a 'namespace: <objectnamespace>' matcher.",
+								MarkdownDescription: "List of matchers that the alert's labels should match. For the firstlevel route, the operator removes any existing equality and regexpmatcher on the 'namespace' label and adds a 'namespace: <objectnamespace>' matcher.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"match_type": schema.StringAttribute{
-											Description:         "Match operator, one of '=' (equal to), '!=' (not equal to), '=~' (regex match) or '!~' (not regex match). Negative operators ('!=' and '!~') require Alertmanager >= v0.22.0.",
-											MarkdownDescription: "Match operator, one of '=' (equal to), '!=' (not equal to), '=~' (regex match) or '!~' (not regex match). Negative operators ('!=' and '!~') require Alertmanager >= v0.22.0.",
+											Description:         "Match operator, one of '=' (equal to), '!=' (not equal to), '=~' (regexmatch) or '!~' (not regex match).Negative operators ('!=' and '!~') require Alertmanager >= v0.22.0.",
+											MarkdownDescription: "Match operator, one of '=' (equal to), '!=' (not equal to), '=~' (regexmatch) or '!~' (not regex match).Negative operators ('!=' and '!~') require Alertmanager >= v0.22.0.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -10206,8 +10215,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 							},
 
 							"mute_time_intervals": schema.ListAttribute{
-								Description:         "Note: this comment applies to the field definition above but appears below otherwise it gets included in the generated manifest. CRD schema doesn't support self-referential types for now (see https://github.com/kubernetes/kubernetes/issues/62872). We have to use an alternative type to circumvent the limitation. The downside is that the Kube API can't validate the data beyond the fact that it is a valid JSON representation. MuteTimeIntervals is a list of TimeInterval names that will mute this route when matched.",
-								MarkdownDescription: "Note: this comment applies to the field definition above but appears below otherwise it gets included in the generated manifest. CRD schema doesn't support self-referential types for now (see https://github.com/kubernetes/kubernetes/issues/62872). We have to use an alternative type to circumvent the limitation. The downside is that the Kube API can't validate the data beyond the fact that it is a valid JSON representation. MuteTimeIntervals is a list of TimeInterval names that will mute this route when matched.",
+								Description:         "Note: this comment applies to the field definition above but appearsbelow otherwise it gets included in the generated manifest.CRD schema doesn't support self-referential types for now (seehttps://github.com/kubernetes/kubernetes/issues/62872). We have to usean alternative type to circumvent the limitation. The downside is thatthe Kube API can't validate the data beyond the fact that it is a validJSON representation.MuteTimeIntervals is a list of TimeInterval names that will mute this route when matched.",
+								MarkdownDescription: "Note: this comment applies to the field definition above but appearsbelow otherwise it gets included in the generated manifest.CRD schema doesn't support self-referential types for now (seehttps://github.com/kubernetes/kubernetes/issues/62872). We have to usean alternative type to circumvent the limitation. The downside is thatthe Kube API can't validate the data beyond the fact that it is a validJSON representation.MuteTimeIntervals is a list of TimeInterval names that will mute this route when matched.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -10215,16 +10224,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 							},
 
 							"receiver": schema.StringAttribute{
-								Description:         "Name of the receiver for this route. If not empty, it should be listed in the 'receivers' field.",
-								MarkdownDescription: "Name of the receiver for this route. If not empty, it should be listed in the 'receivers' field.",
+								Description:         "Name of the receiver for this route. If not empty, it should be listed inthe 'receivers' field.",
+								MarkdownDescription: "Name of the receiver for this route. If not empty, it should be listed inthe 'receivers' field.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"repeat_interval": schema.StringAttribute{
-								Description:         "How long to wait before repeating the last notification. Must match the regular expression'^(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?$' Example: '4h'",
-								MarkdownDescription: "How long to wait before repeating the last notification. Must match the regular expression'^(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?$' Example: '4h'",
+								Description:         "How long to wait before repeating the last notification.Must match the regular expression'^(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?$'Example: '4h'",
+								MarkdownDescription: "How long to wait before repeating the last notification.Must match the regular expression'^(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?$'Example: '4h'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

@@ -629,8 +629,8 @@ func (r *PkgCrossplaneIoControllerConfigV1Alpha1Manifest) Metadata(_ context.Con
 
 func (r *PkgCrossplaneIoControllerConfigV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "ControllerConfig is the CRD type for a packaged controller configuration.Deprecated: This API is replaced by DeploymentRuntimeConfig, and is scheduledto be removed in a future release. See the design doc for more details:https://github.com/crossplane/crossplane/blob/11bbe13ea3604928cc4e24e8d0d18f3f5f7e847c/design/one-pager-package-runtime-config.md",
-		MarkdownDescription: "ControllerConfig is the CRD type for a packaged controller configuration.Deprecated: This API is replaced by DeploymentRuntimeConfig, and is scheduledto be removed in a future release. See the design doc for more details:https://github.com/crossplane/crossplane/blob/11bbe13ea3604928cc4e24e8d0d18f3f5f7e847c/design/one-pager-package-runtime-config.md",
+		Description:         "A ControllerConfig applies settings to controllers like Provider pods.Deprecated: Use the[DeploymentRuntimeConfig](https://docs.crossplane.io/latest/concepts/providers#runtime-configuration)instead.Read the[Package Runtime Configuration](https://github.com/crossplane/crossplane/blob/11bbe13ea3604928cc4e24e8d0d18f3f5f7e847c/design/one-pager-package-runtime-config.md)design document for more details.",
+		MarkdownDescription: "A ControllerConfig applies settings to controllers like Provider pods.Deprecated: Use the[DeploymentRuntimeConfig](https://docs.crossplane.io/latest/concepts/providers#runtime-configuration)instead.Read the[Package Runtime Configuration](https://github.com/crossplane/crossplane/blob/11bbe13ea3604928cc4e24e8d0d18f3f5f7e847c/design/one-pager-package-runtime-config.md)design document for more details.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -1844,8 +1844,8 @@ func (r *PkgCrossplaneIoControllerConfigV1Alpha1Manifest) Schema(_ context.Conte
 						MarkdownDescription: "Metadata that will be added to the provider Pod.",
 						Attributes: map[string]schema.Attribute{
 							"annotations": schema.MapAttribute{
-								Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http://kubernetes.io/docs/user-guide/annotations",
-								MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http://kubernetes.io/docs/user-guide/annotations",
+								Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http:https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/",
+								MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http:https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -1853,8 +1853,8 @@ func (r *PkgCrossplaneIoControllerConfigV1Alpha1Manifest) Schema(_ context.Conte
 							},
 
 							"labels": schema.MapAttribute{
-								Description:         "Map of string keys and values that can be used to organize andcategorize (scope and select) objects. This will only affectlabels on the pod, not the pod selector. Labels will be mergedwith internal labels used by crossplane, and labels with acrossplane.io key might be overwritten.More info: http://kubernetes.io/docs/user-guide/labels",
-								MarkdownDescription: "Map of string keys and values that can be used to organize andcategorize (scope and select) objects. This will only affectlabels on the pod, not the pod selector. Labels will be mergedwith internal labels used by crossplane, and labels with acrossplane.io key might be overwritten.More info: http://kubernetes.io/docs/user-guide/labels",
+								Description:         "Map of string keys and values that can be used to organize andcategorize (scope and select) objects. This will only affectlabels on the pod, not the pod selector. Labels will be mergedwith internal labels used by crossplane, and labels with acrossplane.io key might be overwritten.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
+								MarkdownDescription: "Map of string keys and values that can be used to organize andcategorize (scope and select) objects. This will only affectlabels on the pod, not the pod selector. Labels will be mergedwith internal labels used by crossplane, and labels with acrossplane.io key might be overwritten.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -2189,8 +2189,8 @@ func (r *PkgCrossplaneIoControllerConfigV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"runtime_class_name": schema.StringAttribute{
-						Description:         "RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be usedto run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run.If unset or empty, the 'legacy' RuntimeClass will be used, which is an implicit class with anempty definition that uses the default runtime handler.More info: https://git.k8s.io/enhancements/keps/sig-node/runtime-class.mdThis is a beta feature as of Kubernetes v1.14.",
-						MarkdownDescription: "RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be usedto run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run.If unset or empty, the 'legacy' RuntimeClass will be used, which is an implicit class with anempty definition that uses the default runtime handler.More info: https://git.k8s.io/enhancements/keps/sig-node/runtime-class.mdThis is a beta feature as of Kubernetes v1.14.",
+						Description:         "RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be usedto run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run.If unset or empty, the 'legacy' RuntimeClass will be used, which is an implicit class with anempty definition that uses the default runtime handler.More info: https://github.com/kubernetes/enhancements/blob/master/keps/sig-node/585-runtime-class/README.mdThis is a beta feature as of Kubernetes v1.14.",
+						MarkdownDescription: "RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be usedto run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run.If unset or empty, the 'legacy' RuntimeClass will be used, which is an implicit class with anempty definition that uses the default runtime handler.More info: https://github.com/kubernetes/enhancements/blob/master/keps/sig-node/585-runtime-class/README.mdThis is a beta feature as of Kubernetes v1.14.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

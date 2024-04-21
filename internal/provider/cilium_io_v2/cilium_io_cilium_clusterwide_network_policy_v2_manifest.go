@@ -1006,8 +1006,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"cidr_group_ref": schema.StringAttribute{
-												Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
-												MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
+												Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
+												MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1949,8 +1949,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"cidr_group_ref": schema.StringAttribute{
-												Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
-												MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
+												Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
+												MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2509,8 +2509,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"cidr_group_ref": schema.StringAttribute{
-												Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
-												MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
+												Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
+												MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3309,8 +3309,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"cidr_group_ref": schema.StringAttribute{
-												Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
-												MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
+												Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
+												MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3869,8 +3869,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"cidr_group_ref": schema.StringAttribute{
-													Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
-													MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
+													Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
+													MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -4812,8 +4812,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"cidr_group_ref": schema.StringAttribute{
-													Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
-													MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
+													Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
+													MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -5372,8 +5372,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"cidr_group_ref": schema.StringAttribute{
-													Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
-													MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
+													Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
+													MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -6172,8 +6172,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"cidr_group_ref": schema.StringAttribute{
-													Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
-													MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
+													Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
+													MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,

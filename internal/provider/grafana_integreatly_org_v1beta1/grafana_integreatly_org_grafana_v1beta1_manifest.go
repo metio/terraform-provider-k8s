@@ -1549,6 +1549,7 @@ type GrafanaIntegreatlyOrgGrafanaV1Beta1ManifestData struct {
 				Uid             *string `tfsdk:"uid" json:"uid,omitempty"`
 			} `tfsdk:"secrets" json:"secrets,omitempty"`
 		} `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+		Version *string `tfsdk:"version" json:"version,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -11670,6 +11671,14 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"version": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 				},
 				Required: false,

@@ -19,6 +19,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/admissionregistration_k8s_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/agent_k8s_elastic_co_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/anywhere_eks_amazonaws_com_v1alpha1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/apacheweb_arsenal_dev_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/api_clever_cloud_com_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/api_clever_cloud_com_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/api_kubemod_io_v1beta1"
@@ -49,6 +50,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/apps_gitlab_com_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/apps_gitlab_com_v1beta2"
 	"github.com/metio/terraform-provider-k8s/internal/provider/apps_kubeblocks_io_v1alpha1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/apps_kubeblocks_io_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/apps_kubedl_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/apps_kubeedge_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/apps_m88i_io_v1alpha1"
@@ -61,8 +63,8 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/asdb_aerospike_com_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/atlasmap_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/auth_ops42_org_v1alpha1"
-	"github.com/metio/terraform-provider-k8s/internal/provider/authorization_openshift_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/authzed_com_v1alpha1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/automation_kubensync_com_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/autoscaling_k8s_elastic_co_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/autoscaling_k8s_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/autoscaling_k8s_io_v1beta2"
@@ -82,7 +84,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/bitnami_com_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/bmc_tinkerbell_org_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/boskos_k8s_io_v1"
-	"github.com/metio/terraform-provider-k8s/internal/provider/bpfd_dev_v1alpha1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/bpfman_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/bus_volcano_sh_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/cache_kubedl_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/caching_ibm_com_v1alpha1"
@@ -94,9 +96,12 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/capsule_clastix_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/capsule_clastix_io_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/capsule_clastix_io_v1beta2"
+	"github.com/metio/terraform-provider-k8s/internal/provider/cassandra_datastax_com_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/ceph_rook_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/cert_manager_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/certificates_k8s_io_v1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/chainsaw_kyverno_io_v1alpha1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/chainsaw_kyverno_io_v1alpha2"
 	"github.com/metio/terraform-provider-k8s/internal/provider/chaos_mesh_org_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/chaosblade_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/charts_amd_com_v1alpha1"
@@ -109,7 +114,6 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/cilium_io_v2"
 	"github.com/metio/terraform-provider-k8s/internal/provider/cilium_io_v2alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/claudie_io_v1beta1"
-	"github.com/metio/terraform-provider-k8s/internal/provider/cloud_network_openshift_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/cloudformation_linki_space_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/cloudfront_services_k8s_aws_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/cloudtrail_services_k8s_aws_v1alpha1"
@@ -123,14 +127,13 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/cluster_x_k8s_io_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/clusters_clusternet_io_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/clustertemplate_openshift_io_v1alpha1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/confidentialcontainers_org_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/config_gatekeeper_sh_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/config_grafana_com_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/config_karmada_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/config_koordinator_sh_v1alpha1"
-	"github.com/metio/terraform-provider-k8s/internal/provider/config_openshift_io_v1"
-	"github.com/metio/terraform-provider-k8s/internal/provider/console_openshift_io_v1"
-	"github.com/metio/terraform-provider-k8s/internal/provider/console_openshift_io_v1alpha1"
-	"github.com/metio/terraform-provider-k8s/internal/provider/controlplane_operator_openshift_io_v1alpha1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/config_storageos_com_v1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/control_k8ssandra_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/core_kubeadmiral_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/core_linuxsuren_github_com_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/core_openfeature_dev_v1alpha1"
@@ -149,6 +152,8 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/dataprotection_kubeblocks_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/designer_kaoto_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/devices_kubeedge_io_v1alpha2"
+	"github.com/metio/terraform-provider-k8s/internal/provider/devices_kubeedge_io_v1beta1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/devops_kubesphere_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/dex_gpu_ninja_com_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/digitalis_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/digitalis_io_v1beta1"
@@ -172,7 +177,6 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/enterprisesearch_k8s_elastic_co_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/events_k8s_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/everest_percona_com_v1alpha1"
-	"github.com/metio/terraform-provider-k8s/internal/provider/example_openshift_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/execution_furiko_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/executor_testkube_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/expansion_gatekeeper_sh_v1alpha1"
@@ -185,10 +189,10 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/externaldata_gatekeeper_sh_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/externaldns_k8s_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/externaldns_nginx_org_v1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/fence_agents_remediation_medik8s_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/flagger_app_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/flink_apache_org_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/flow_volcano_sh_v1alpha1"
-	"github.com/metio/terraform-provider-k8s/internal/provider/flowcontrol_apiserver_k8s_io_v1beta2"
 	"github.com/metio/terraform-provider-k8s/internal/provider/flowcontrol_apiserver_k8s_io_v1beta3"
 	"github.com/metio/terraform-provider-k8s/internal/provider/flows_netobserv_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/flows_netobserv_io_v1beta1"
@@ -196,6 +200,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/fluentbit_fluent_io_v1alpha2"
 	"github.com/metio/terraform-provider-k8s/internal/provider/fluentd_fluent_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/flux_framework_org_v1alpha1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/flux_framework_org_v1alpha2"
 	"github.com/metio/terraform-provider-k8s/internal/provider/forklift_konveyor_io_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/fossul_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/gateway_networking_k8s_io_v1"
@@ -212,7 +217,6 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/graphql_gloo_solo_io_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/groupsnapshot_storage_k8s_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/hazelcast_com_v1alpha1"
-	"github.com/metio/terraform-provider-k8s/internal/provider/helm_openshift_io_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/helm_sigstore_dev_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/helm_toolkit_fluxcd_io_v2beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/helm_toolkit_fluxcd_io_v2beta2"
@@ -225,7 +229,6 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/ibmcloud_ibm_com_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/image_toolkit_fluxcd_io_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/image_toolkit_fluxcd_io_v1beta2"
-	"github.com/metio/terraform-provider-k8s/internal/provider/imageregistry_operator_openshift_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/imaging_ingestion_alvearie_org_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/inference_kubedl_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/infinispan_org_v1"
@@ -237,9 +240,8 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/infrastructure_cluster_x_k8s_io_v1alpha4"
 	"github.com/metio/terraform-provider-k8s/internal/provider/infrastructure_cluster_x_k8s_io_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/infrastructure_cluster_x_k8s_io_v1beta2"
-	"github.com/metio/terraform-provider-k8s/internal/provider/ingress_operator_openshift_io_v1"
-	"github.com/metio/terraform-provider-k8s/internal/provider/insights_openshift_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/installation_mattermost_com_v1beta1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/instana_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/integration_rock8s_com_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/iot_eclipse_org_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/ipam_cluster_x_k8s_io_v1alpha1"
@@ -253,11 +255,14 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/k6_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/k8gb_absa_oss_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/k8s_keycloak_org_v2alpha1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/k8s_mariadb_com_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/k8s_nginx_org_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/k8s_nginx_org_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/k8s_otterize_com_v1alpha2"
 	"github.com/metio/terraform-provider-k8s/internal/provider/k8s_otterize_com_v1alpha3"
 	"github.com/metio/terraform-provider-k8s/internal/provider/k8up_io_v1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/kafka_banzaicloud_io_v1alpha1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/kafka_banzaicloud_io_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/kafka_services_k8s_aws_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/kafka_strimzi_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/kafka_strimzi_io_v1beta1"
@@ -273,7 +278,10 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/kibana_k8s_elastic_co_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/kibana_k8s_elastic_co_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/kinesis_services_k8s_aws_v1alpha1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/kmm_sigs_x_k8s_io_v1beta1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/kmm_sigs_x_k8s_io_v1beta2"
 	"github.com/metio/terraform-provider-k8s/internal/provider/kms_services_k8s_aws_v1alpha1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/kuadrant_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/kuadrant_io_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/kuadrant_io_v1beta2"
 	"github.com/metio/terraform-provider-k8s/internal/provider/kube_green_com_v1alpha1"
@@ -293,6 +301,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/kyverno_io_v2beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/lambda_services_k8s_aws_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/lb_lbconfig_carlosedp_com_v1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/leaksignal_com_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/lerentis_uploadfilter24_eu_v1beta4"
 	"github.com/metio/terraform-provider-k8s/internal/provider/lerentis_uploadfilter24_eu_v1beta5"
 	"github.com/metio/terraform-provider-k8s/internal/provider/limitador_kuadrant_io_v1alpha1"
@@ -305,12 +314,10 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/longhorn_io_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/longhorn_io_v1beta2"
 	"github.com/metio/terraform-provider-k8s/internal/provider/m4e_krestomat_io_v1alpha1"
-	"github.com/metio/terraform-provider-k8s/internal/provider/machine_openshift_io_v1"
-	"github.com/metio/terraform-provider-k8s/internal/provider/machine_openshift_io_v1beta1"
-	"github.com/metio/terraform-provider-k8s/internal/provider/machineconfiguration_openshift_io_v1"
-	"github.com/metio/terraform-provider-k8s/internal/provider/machineconfiguration_openshift_io_v1alpha1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/machine_deletion_remediation_medik8s_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/maps_k8s_elastic_co_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/mariadb_mmontes_io_v1alpha1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/marin3r_3scale_net_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/mattermost_com_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/memorydb_services_k8s_aws_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/metacontroller_k8s_io_v1alpha1"
@@ -322,7 +329,6 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/monitoring_coreos_com_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/monitoring_coreos_com_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/monitoring_coreos_com_v1beta1"
-	"github.com/metio/terraform-provider-k8s/internal/provider/monitoring_openshift_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/monocle_monocle_change_metrics_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/mq_services_k8s_aws_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/multicluster_crd_antrea_io_v1alpha1"
@@ -333,10 +339,9 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/mutations_gatekeeper_sh_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/nativestor_alauda_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/netchecks_io_v1"
-	"github.com/metio/terraform-provider-k8s/internal/provider/network_openshift_io_v1"
-	"github.com/metio/terraform-provider-k8s/internal/provider/network_operator_openshift_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/networkfirewall_services_k8s_aws_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/networking_gke_io_v1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/networking_istio_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/networking_istio_io_v1alpha3"
 	"github.com/metio/terraform-provider-k8s/internal/provider/networking_istio_io_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/networking_k8s_aws_v1alpha1"
@@ -363,8 +368,8 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/operator_cluster_x_k8s_io_v1alpha2"
 	"github.com/metio/terraform-provider-k8s/internal/provider/operator_cryostat_io_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/operator_knative_dev_v1beta1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/operator_marin3r_3scale_net_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/operator_open_cluster_management_io_v1"
-	"github.com/metio/terraform-provider-k8s/internal/provider/operator_openshift_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/operator_shipwright_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/operator_tigera_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/operator_tigera_io_v1beta1"
@@ -378,9 +383,10 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/pkg_crossplane_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/pkg_crossplane_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/pkg_crossplane_io_v1beta1"
-	"github.com/metio/terraform-provider-k8s/internal/provider/platform_openshift_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/policy_clusterpedia_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/policy_karmada_io_v1alpha1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/policy_kubeedge_io_v1alpha1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/policy_networking_k8s_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/policy_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/postgres_operator_crunchydata_com_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/postgresql_cnpg_io_v1"
@@ -389,11 +395,11 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/prometheusservice_services_k8s_aws_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/ps_percona_com_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/psmdb_percona_com_v1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/ptp_openshift_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/pubsubplus_solace_com_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/pxc_percona_com_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/quay_redhat_com_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/quota_codeflare_dev_v1alpha1"
-	"github.com/metio/terraform-provider-k8s/internal/provider/quota_openshift_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/ray_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/ray_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/rbac_authorization_k8s_io_v1"
@@ -405,7 +411,9 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/registry_apicur_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/registry_devfile_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/reliablesyncs_kubeedge_io_v1alpha1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/remediation_medik8s_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/repo_manager_pulpproject_org_v1beta2"
+	"github.com/metio/terraform-provider-k8s/internal/provider/reports_kyverno_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/resources_teleport_dev_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/resources_teleport_dev_v2"
 	"github.com/metio/terraform-provider-k8s/internal/provider/resources_teleport_dev_v3"
@@ -415,12 +423,11 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/rocketmq_apache_org_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/route53_services_k8s_aws_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/route53resolver_services_k8s_aws_v1alpha1"
-	"github.com/metio/terraform-provider-k8s/internal/provider/route_openshift_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/rules_kubeedge_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/runtime_cluster_x_k8s_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/s3_services_k8s_aws_v1alpha1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/s3_snappcloud_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/sagemaker_services_k8s_aws_v1alpha1"
-	"github.com/metio/terraform-provider-k8s/internal/provider/samples_operator_openshift_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/scheduling_k8s_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/scheduling_koordinator_sh_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/scheduling_sigs_k8s_io_v1alpha1"
@@ -436,20 +443,19 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/secrets_store_csi_x_k8s_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/secretsmanager_services_k8s_aws_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/secscan_quay_redhat_com_v1alpha1"
-	"github.com/metio/terraform-provider-k8s/internal/provider/security_internal_openshift_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/security_istio_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/security_istio_io_v1beta1"
-	"github.com/metio/terraform-provider-k8s/internal/provider/security_openshift_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/security_profiles_operator_x_k8s_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/security_profiles_operator_x_k8s_io_v1alpha2"
 	"github.com/metio/terraform-provider-k8s/internal/provider/security_profiles_operator_x_k8s_io_v1beta1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/self_node_remediation_medik8s_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/sematext_com_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/servicebinding_io_v1alpha3"
 	"github.com/metio/terraform-provider-k8s/internal/provider/servicebinding_io_v1beta1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/servicemesh_cisco_com_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/services_k8s_aws_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/serving_kubedl_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/sfn_services_k8s_aws_v1alpha1"
-	"github.com/metio/terraform-provider-k8s/internal/provider/sharedresource_openshift_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/site_superedge_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/slo_koordinator_sh_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/sloth_slok_dev_v1"
@@ -469,10 +475,12 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/sqs_services_k8s_aws_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/storage_k8s_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/storage_kubeblocks_io_v1alpha1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/storageos_com_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/sts_min_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/stunner_l7mp_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/stunner_l7mp_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/submariner_io_v1alpha1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/telemetry_istio_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/telemetry_istio_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/templates_gatekeeper_sh_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/templates_gatekeeper_sh_v1alpha1"
@@ -482,6 +490,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/tests_testkube_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/tests_testkube_io_v2"
 	"github.com/metio/terraform-provider-k8s/internal/provider/tests_testkube_io_v3"
+	"github.com/metio/terraform-provider-k8s/internal/provider/tf_tungsten_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/theketch_io_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/tinkerbell_org_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/tinkerbell_org_v1alpha2"
@@ -615,6 +624,8 @@ func allDataSources() []func() datasource.DataSource {
 		anywhere_eks_amazonaws_com_v1alpha1.NewAnywhereEksAmazonawsComVsphereDatacenterConfigV1Alpha1Manifest,
 		// anywhere_eks_amazonaws_com_v1alpha1.NewAnywhereEksAmazonawsComVsphereMachineConfigV1Alpha1DataSource,
 		anywhere_eks_amazonaws_com_v1alpha1.NewAnywhereEksAmazonawsComVsphereMachineConfigV1Alpha1Manifest,
+		// apacheweb_arsenal_dev_v1alpha1.NewApachewebArsenalDevApachewebV1Alpha1DataSource,
+		apacheweb_arsenal_dev_v1alpha1.NewApachewebArsenalDevApachewebV1Alpha1Manifest,
 		// api_clever_cloud_com_v1.NewApiCleverCloudComConfigProviderV1DataSource,
 		api_clever_cloud_com_v1.NewApiCleverCloudComConfigProviderV1Manifest,
 		// api_clever_cloud_com_v1.NewApiCleverCloudComElasticSearchV1DataSource,
@@ -801,16 +812,26 @@ func allDataSources() []func() datasource.DataSource {
 		apps_kubeblocks_io_v1alpha1.NewAppsKubeblocksIoClusterVersionV1Alpha1Manifest,
 		// apps_kubeblocks_io_v1alpha1.NewAppsKubeblocksIoComponentClassDefinitionV1Alpha1DataSource,
 		apps_kubeblocks_io_v1alpha1.NewAppsKubeblocksIoComponentClassDefinitionV1Alpha1Manifest,
+		// apps_kubeblocks_io_v1alpha1.NewAppsKubeblocksIoComponentDefinitionV1Alpha1DataSource,
+		apps_kubeblocks_io_v1alpha1.NewAppsKubeblocksIoComponentDefinitionV1Alpha1Manifest,
 		// apps_kubeblocks_io_v1alpha1.NewAppsKubeblocksIoComponentResourceConstraintV1Alpha1DataSource,
 		apps_kubeblocks_io_v1alpha1.NewAppsKubeblocksIoComponentResourceConstraintV1Alpha1Manifest,
+		// apps_kubeblocks_io_v1alpha1.NewAppsKubeblocksIoComponentV1Alpha1DataSource,
+		apps_kubeblocks_io_v1alpha1.NewAppsKubeblocksIoComponentV1Alpha1Manifest,
+		// apps_kubeblocks_io_v1alpha1.NewAppsKubeblocksIoComponentVersionV1Alpha1DataSource,
+		apps_kubeblocks_io_v1alpha1.NewAppsKubeblocksIoComponentVersionV1Alpha1Manifest,
 		// apps_kubeblocks_io_v1alpha1.NewAppsKubeblocksIoConfigConstraintV1Alpha1DataSource,
 		apps_kubeblocks_io_v1alpha1.NewAppsKubeblocksIoConfigConstraintV1Alpha1Manifest,
 		// apps_kubeblocks_io_v1alpha1.NewAppsKubeblocksIoConfigurationV1Alpha1DataSource,
 		apps_kubeblocks_io_v1alpha1.NewAppsKubeblocksIoConfigurationV1Alpha1Manifest,
+		// apps_kubeblocks_io_v1alpha1.NewAppsKubeblocksIoOpsDefinitionV1Alpha1DataSource,
+		apps_kubeblocks_io_v1alpha1.NewAppsKubeblocksIoOpsDefinitionV1Alpha1Manifest,
 		// apps_kubeblocks_io_v1alpha1.NewAppsKubeblocksIoOpsRequestV1Alpha1DataSource,
 		apps_kubeblocks_io_v1alpha1.NewAppsKubeblocksIoOpsRequestV1Alpha1Manifest,
 		// apps_kubeblocks_io_v1alpha1.NewAppsKubeblocksIoServiceDescriptorV1Alpha1DataSource,
 		apps_kubeblocks_io_v1alpha1.NewAppsKubeblocksIoServiceDescriptorV1Alpha1Manifest,
+		// apps_kubeblocks_io_v1beta1.NewAppsKubeblocksIoConfigConstraintV1Beta1DataSource,
+		apps_kubeblocks_io_v1beta1.NewAppsKubeblocksIoConfigConstraintV1Beta1Manifest,
 		// apps_kubedl_io_v1alpha1.NewAppsKubedlIoCronV1Alpha1DataSource,
 		apps_kubedl_io_v1alpha1.NewAppsKubedlIoCronV1Alpha1Manifest,
 		// apps_kubeedge_io_v1alpha1.NewAppsKubeedgeIoEdgeApplicationV1Alpha1DataSource,
@@ -851,10 +872,10 @@ func allDataSources() []func() datasource.DataSource {
 		atlasmap_io_v1alpha1.NewAtlasmapIoAtlasMapV1Alpha1Manifest,
 		// auth_ops42_org_v1alpha1.NewAuthOps42OrgAwsAuthSyncConfigV1Alpha1DataSource,
 		auth_ops42_org_v1alpha1.NewAuthOps42OrgAwsAuthSyncConfigV1Alpha1Manifest,
-		// authorization_openshift_io_v1.NewAuthorizationOpenshiftIoRoleBindingRestrictionV1DataSource,
-		authorization_openshift_io_v1.NewAuthorizationOpenshiftIoRoleBindingRestrictionV1Manifest,
 		// authzed_com_v1alpha1.NewAuthzedComSpiceDbclusterV1Alpha1DataSource,
 		authzed_com_v1alpha1.NewAuthzedComSpiceDbclusterV1Alpha1Manifest,
+		// automation_kubensync_com_v1alpha1.NewAutomationKubensyncComManagedResourceV1Alpha1DataSource,
+		automation_kubensync_com_v1alpha1.NewAutomationKubensyncComManagedResourceV1Alpha1Manifest,
 		// autoscaling_k8s_elastic_co_v1alpha1.NewAutoscalingK8SElasticCoElasticsearchAutoscalerV1Alpha1DataSource,
 		autoscaling_k8s_elastic_co_v1alpha1.NewAutoscalingK8SElasticCoElasticsearchAutoscalerV1Alpha1Manifest,
 		// autoscaling_k8s_io_v1.NewAutoscalingK8SIoVerticalPodAutoscalerCheckpointV1DataSource,
@@ -1007,18 +1028,22 @@ func allDataSources() []func() datasource.DataSource {
 		boskos_k8s_io_v1.NewBoskosK8SIoDrlcobjectV1Manifest,
 		// boskos_k8s_io_v1.NewBoskosK8SIoResourceObjectV1DataSource,
 		boskos_k8s_io_v1.NewBoskosK8SIoResourceObjectV1Manifest,
-		// bpfd_dev_v1alpha1.NewBpfdDevBpfProgramV1Alpha1DataSource,
-		bpfd_dev_v1alpha1.NewBpfdDevBpfProgramV1Alpha1Manifest,
-		// bpfd_dev_v1alpha1.NewBpfdDevKprobeProgramV1Alpha1DataSource,
-		bpfd_dev_v1alpha1.NewBpfdDevKprobeProgramV1Alpha1Manifest,
-		// bpfd_dev_v1alpha1.NewBpfdDevTcProgramV1Alpha1DataSource,
-		bpfd_dev_v1alpha1.NewBpfdDevTcProgramV1Alpha1Manifest,
-		// bpfd_dev_v1alpha1.NewBpfdDevTracepointProgramV1Alpha1DataSource,
-		bpfd_dev_v1alpha1.NewBpfdDevTracepointProgramV1Alpha1Manifest,
-		// bpfd_dev_v1alpha1.NewBpfdDevUprobeProgramV1Alpha1DataSource,
-		bpfd_dev_v1alpha1.NewBpfdDevUprobeProgramV1Alpha1Manifest,
-		// bpfd_dev_v1alpha1.NewBpfdDevXdpProgramV1Alpha1DataSource,
-		bpfd_dev_v1alpha1.NewBpfdDevXdpProgramV1Alpha1Manifest,
+		// bpfman_io_v1alpha1.NewBpfmanIoBpfProgramV1Alpha1DataSource,
+		bpfman_io_v1alpha1.NewBpfmanIoBpfProgramV1Alpha1Manifest,
+		// bpfman_io_v1alpha1.NewBpfmanIoFentryProgramV1Alpha1DataSource,
+		bpfman_io_v1alpha1.NewBpfmanIoFentryProgramV1Alpha1Manifest,
+		// bpfman_io_v1alpha1.NewBpfmanIoFexitProgramV1Alpha1DataSource,
+		bpfman_io_v1alpha1.NewBpfmanIoFexitProgramV1Alpha1Manifest,
+		// bpfman_io_v1alpha1.NewBpfmanIoKprobeProgramV1Alpha1DataSource,
+		bpfman_io_v1alpha1.NewBpfmanIoKprobeProgramV1Alpha1Manifest,
+		// bpfman_io_v1alpha1.NewBpfmanIoTcProgramV1Alpha1DataSource,
+		bpfman_io_v1alpha1.NewBpfmanIoTcProgramV1Alpha1Manifest,
+		// bpfman_io_v1alpha1.NewBpfmanIoTracepointProgramV1Alpha1DataSource,
+		bpfman_io_v1alpha1.NewBpfmanIoTracepointProgramV1Alpha1Manifest,
+		// bpfman_io_v1alpha1.NewBpfmanIoUprobeProgramV1Alpha1DataSource,
+		bpfman_io_v1alpha1.NewBpfmanIoUprobeProgramV1Alpha1Manifest,
+		// bpfman_io_v1alpha1.NewBpfmanIoXdpProgramV1Alpha1DataSource,
+		bpfman_io_v1alpha1.NewBpfmanIoXdpProgramV1Alpha1Manifest,
 		// bus_volcano_sh_v1alpha1.NewBusVolcanoShCommandV1Alpha1DataSource,
 		bus_volcano_sh_v1alpha1.NewBusVolcanoShCommandV1Alpha1Manifest,
 		// cache_kubedl_io_v1alpha1.NewCacheKubedlIoCacheBackendV1Alpha1DataSource,
@@ -1033,10 +1058,14 @@ func allDataSources() []func() datasource.DataSource {
 		camel_apache_org_v1.NewCamelApacheOrgIntegrationKitV1Manifest,
 		// camel_apache_org_v1.NewCamelApacheOrgIntegrationPlatformV1DataSource,
 		camel_apache_org_v1.NewCamelApacheOrgIntegrationPlatformV1Manifest,
+		// camel_apache_org_v1.NewCamelApacheOrgIntegrationProfileV1DataSource,
+		camel_apache_org_v1.NewCamelApacheOrgIntegrationProfileV1Manifest,
 		// camel_apache_org_v1.NewCamelApacheOrgIntegrationV1DataSource,
 		camel_apache_org_v1.NewCamelApacheOrgIntegrationV1Manifest,
 		// camel_apache_org_v1.NewCamelApacheOrgKameletV1DataSource,
 		camel_apache_org_v1.NewCamelApacheOrgKameletV1Manifest,
+		// camel_apache_org_v1.NewCamelApacheOrgPipeV1DataSource,
+		camel_apache_org_v1.NewCamelApacheOrgPipeV1Manifest,
 		// camel_apache_org_v1alpha1.NewCamelApacheOrgKameletBindingV1Alpha1DataSource,
 		camel_apache_org_v1alpha1.NewCamelApacheOrgKameletBindingV1Alpha1Manifest,
 		// camel_apache_org_v1alpha1.NewCamelApacheOrgKameletV1Alpha1DataSource,
@@ -1077,6 +1106,8 @@ func allDataSources() []func() datasource.DataSource {
 		capsule_clastix_io_v1beta2.NewCapsuleClastixIoCapsuleConfigurationV1Beta2Manifest,
 		// capsule_clastix_io_v1beta2.NewCapsuleClastixIoTenantV1Beta2DataSource,
 		capsule_clastix_io_v1beta2.NewCapsuleClastixIoTenantV1Beta2Manifest,
+		// cassandra_datastax_com_v1beta1.NewCassandraDatastaxComCassandraDatacenterV1Beta1DataSource,
+		cassandra_datastax_com_v1beta1.NewCassandraDatastaxComCassandraDatacenterV1Beta1Manifest,
 		// ceph_rook_io_v1.NewCephRookIoCephBlockPoolRadosNamespaceV1DataSource,
 		ceph_rook_io_v1.NewCephRookIoCephBlockPoolRadosNamespaceV1Manifest,
 		// ceph_rook_io_v1.NewCephRookIoCephBlockPoolV1DataSource,
@@ -1121,6 +1152,12 @@ func allDataSources() []func() datasource.DataSource {
 		cert_manager_io_v1.NewCertManagerIoIssuerV1Manifest,
 		// certificates_k8s_io_v1.NewCertificatesK8SIoCertificateSigningRequestV1DataSource,
 		certificates_k8s_io_v1.NewCertificatesK8SIoCertificateSigningRequestV1Manifest,
+		// chainsaw_kyverno_io_v1alpha1.NewChainsawKyvernoIoConfigurationV1Alpha1DataSource,
+		chainsaw_kyverno_io_v1alpha1.NewChainsawKyvernoIoConfigurationV1Alpha1Manifest,
+		// chainsaw_kyverno_io_v1alpha1.NewChainsawKyvernoIoTestV1Alpha1DataSource,
+		chainsaw_kyverno_io_v1alpha1.NewChainsawKyvernoIoTestV1Alpha1Manifest,
+		// chainsaw_kyverno_io_v1alpha2.NewChainsawKyvernoIoConfigurationV1Alpha2DataSource,
+		chainsaw_kyverno_io_v1alpha2.NewChainsawKyvernoIoConfigurationV1Alpha2Manifest,
 		// chaos_mesh_org_v1alpha1.NewChaosMeshOrgAwschaosV1Alpha1DataSource,
 		chaos_mesh_org_v1alpha1.NewChaosMeshOrgAwschaosV1Alpha1Manifest,
 		// chaos_mesh_org_v1alpha1.NewChaosMeshOrgAzureChaosV1Alpha1DataSource,
@@ -1219,8 +1256,6 @@ func allDataSources() []func() datasource.DataSource {
 		cilium_io_v2alpha1.NewCiliumIoCiliumPodIppoolV2Alpha1Manifest,
 		// claudie_io_v1beta1.NewClaudieIoInputManifestV1Beta1DataSource,
 		claudie_io_v1beta1.NewClaudieIoInputManifestV1Beta1Manifest,
-		// cloud_network_openshift_io_v1.NewCloudNetworkOpenshiftIoCloudPrivateIpconfigV1DataSource,
-		cloud_network_openshift_io_v1.NewCloudNetworkOpenshiftIoCloudPrivateIpconfigV1Manifest,
 		// cloudformation_linki_space_v1alpha1.NewCloudformationLinkiSpaceStackV1Alpha1DataSource,
 		cloudformation_linki_space_v1alpha1.NewCloudformationLinkiSpaceStackV1Alpha1Manifest,
 		// cloudfront_services_k8s_aws_v1alpha1.NewCloudfrontServicesK8SAwsCachePolicyV1Alpha1DataSource,
@@ -1307,6 +1342,8 @@ func allDataSources() []func() datasource.DataSource {
 		clustertemplate_openshift_io_v1alpha1.NewClustertemplateOpenshiftIoClusterTemplateV1Alpha1Manifest,
 		// clustertemplate_openshift_io_v1alpha1.NewClustertemplateOpenshiftIoConfigV1Alpha1DataSource,
 		clustertemplate_openshift_io_v1alpha1.NewClustertemplateOpenshiftIoConfigV1Alpha1Manifest,
+		// confidentialcontainers_org_v1beta1.NewConfidentialcontainersOrgCcRuntimeV1Beta1DataSource,
+		confidentialcontainers_org_v1beta1.NewConfidentialcontainersOrgCcRuntimeV1Beta1Manifest,
 		// config_gatekeeper_sh_v1alpha1.NewConfigGatekeeperShConfigV1Alpha1DataSource,
 		config_gatekeeper_sh_v1alpha1.NewConfigGatekeeperShConfigV1Alpha1Manifest,
 		// config_grafana_com_v1.NewConfigGrafanaComProjectConfigV1DataSource,
@@ -1317,68 +1354,10 @@ func allDataSources() []func() datasource.DataSource {
 		config_karmada_io_v1alpha1.NewConfigKarmadaIoResourceInterpreterWebhookConfigurationV1Alpha1Manifest,
 		// config_koordinator_sh_v1alpha1.NewConfigKoordinatorShClusterColocationProfileV1Alpha1DataSource,
 		config_koordinator_sh_v1alpha1.NewConfigKoordinatorShClusterColocationProfileV1Alpha1Manifest,
-		// config_openshift_io_v1.NewConfigOpenshiftIoApiserverV1DataSource,
-		config_openshift_io_v1.NewConfigOpenshiftIoApiserverV1Manifest,
-		// config_openshift_io_v1.NewConfigOpenshiftIoAuthenticationV1DataSource,
-		config_openshift_io_v1.NewConfigOpenshiftIoAuthenticationV1Manifest,
-		// config_openshift_io_v1.NewConfigOpenshiftIoBuildV1DataSource,
-		config_openshift_io_v1.NewConfigOpenshiftIoBuildV1Manifest,
-		// config_openshift_io_v1.NewConfigOpenshiftIoClusterOperatorV1DataSource,
-		config_openshift_io_v1.NewConfigOpenshiftIoClusterOperatorV1Manifest,
-		// config_openshift_io_v1.NewConfigOpenshiftIoClusterVersionV1DataSource,
-		config_openshift_io_v1.NewConfigOpenshiftIoClusterVersionV1Manifest,
-		// config_openshift_io_v1.NewConfigOpenshiftIoConsoleV1DataSource,
-		config_openshift_io_v1.NewConfigOpenshiftIoConsoleV1Manifest,
-		// config_openshift_io_v1.NewConfigOpenshiftIoDnsV1DataSource,
-		config_openshift_io_v1.NewConfigOpenshiftIoDnsV1Manifest,
-		// config_openshift_io_v1.NewConfigOpenshiftIoFeatureGateV1DataSource,
-		config_openshift_io_v1.NewConfigOpenshiftIoFeatureGateV1Manifest,
-		// config_openshift_io_v1.NewConfigOpenshiftIoImageContentPolicyV1DataSource,
-		config_openshift_io_v1.NewConfigOpenshiftIoImageContentPolicyV1Manifest,
-		// config_openshift_io_v1.NewConfigOpenshiftIoImageDigestMirrorSetV1DataSource,
-		config_openshift_io_v1.NewConfigOpenshiftIoImageDigestMirrorSetV1Manifest,
-		// config_openshift_io_v1.NewConfigOpenshiftIoImageTagMirrorSetV1DataSource,
-		config_openshift_io_v1.NewConfigOpenshiftIoImageTagMirrorSetV1Manifest,
-		// config_openshift_io_v1.NewConfigOpenshiftIoImageV1DataSource,
-		config_openshift_io_v1.NewConfigOpenshiftIoImageV1Manifest,
-		// config_openshift_io_v1.NewConfigOpenshiftIoInfrastructureV1DataSource,
-		config_openshift_io_v1.NewConfigOpenshiftIoInfrastructureV1Manifest,
-		// config_openshift_io_v1.NewConfigOpenshiftIoIngressV1DataSource,
-		config_openshift_io_v1.NewConfigOpenshiftIoIngressV1Manifest,
-		// config_openshift_io_v1.NewConfigOpenshiftIoNetworkV1DataSource,
-		config_openshift_io_v1.NewConfigOpenshiftIoNetworkV1Manifest,
-		// config_openshift_io_v1.NewConfigOpenshiftIoNodeV1DataSource,
-		config_openshift_io_v1.NewConfigOpenshiftIoNodeV1Manifest,
-		// config_openshift_io_v1.NewConfigOpenshiftIoOauthV1DataSource,
-		config_openshift_io_v1.NewConfigOpenshiftIoOauthV1Manifest,
-		// config_openshift_io_v1.NewConfigOpenshiftIoOperatorHubV1DataSource,
-		config_openshift_io_v1.NewConfigOpenshiftIoOperatorHubV1Manifest,
-		// config_openshift_io_v1.NewConfigOpenshiftIoProjectV1DataSource,
-		config_openshift_io_v1.NewConfigOpenshiftIoProjectV1Manifest,
-		// config_openshift_io_v1.NewConfigOpenshiftIoProxyV1DataSource,
-		config_openshift_io_v1.NewConfigOpenshiftIoProxyV1Manifest,
-		// config_openshift_io_v1.NewConfigOpenshiftIoSchedulerV1DataSource,
-		config_openshift_io_v1.NewConfigOpenshiftIoSchedulerV1Manifest,
-		// console_openshift_io_v1.NewConsoleOpenshiftIoConsoleClidownloadV1DataSource,
-		console_openshift_io_v1.NewConsoleOpenshiftIoConsoleClidownloadV1Manifest,
-		// console_openshift_io_v1.NewConsoleOpenshiftIoConsoleExternalLogLinkV1DataSource,
-		console_openshift_io_v1.NewConsoleOpenshiftIoConsoleExternalLogLinkV1Manifest,
-		// console_openshift_io_v1.NewConsoleOpenshiftIoConsoleLinkV1DataSource,
-		console_openshift_io_v1.NewConsoleOpenshiftIoConsoleLinkV1Manifest,
-		// console_openshift_io_v1.NewConsoleOpenshiftIoConsoleNotificationV1DataSource,
-		console_openshift_io_v1.NewConsoleOpenshiftIoConsoleNotificationV1Manifest,
-		// console_openshift_io_v1.NewConsoleOpenshiftIoConsolePluginV1DataSource,
-		console_openshift_io_v1.NewConsoleOpenshiftIoConsolePluginV1Manifest,
-		// console_openshift_io_v1.NewConsoleOpenshiftIoConsoleQuickStartV1DataSource,
-		console_openshift_io_v1.NewConsoleOpenshiftIoConsoleQuickStartV1Manifest,
-		// console_openshift_io_v1.NewConsoleOpenshiftIoConsoleSampleV1DataSource,
-		console_openshift_io_v1.NewConsoleOpenshiftIoConsoleSampleV1Manifest,
-		// console_openshift_io_v1.NewConsoleOpenshiftIoConsoleYamlsampleV1DataSource,
-		console_openshift_io_v1.NewConsoleOpenshiftIoConsoleYamlsampleV1Manifest,
-		// console_openshift_io_v1alpha1.NewConsoleOpenshiftIoConsolePluginV1Alpha1DataSource,
-		console_openshift_io_v1alpha1.NewConsoleOpenshiftIoConsolePluginV1Alpha1Manifest,
-		// controlplane_operator_openshift_io_v1alpha1.NewControlplaneOperatorOpenshiftIoPodNetworkConnectivityCheckV1Alpha1DataSource,
-		controlplane_operator_openshift_io_v1alpha1.NewControlplaneOperatorOpenshiftIoPodNetworkConnectivityCheckV1Alpha1Manifest,
+		// config_storageos_com_v1.NewConfigStorageosComOperatorConfigV1DataSource,
+		config_storageos_com_v1.NewConfigStorageosComOperatorConfigV1Manifest,
+		// control_k8ssandra_io_v1alpha1.NewControlK8SsandraIoCassandraTaskV1Alpha1DataSource,
+		control_k8ssandra_io_v1alpha1.NewControlK8SsandraIoCassandraTaskV1Alpha1Manifest,
 		// core_kubeadmiral_io_v1alpha1.NewCoreKubeadmiralIoClusterCollectedStatusV1Alpha1DataSource,
 		core_kubeadmiral_io_v1alpha1.NewCoreKubeadmiralIoClusterCollectedStatusV1Alpha1Manifest,
 		// core_kubeadmiral_io_v1alpha1.NewCoreKubeadmiralIoClusterFederatedObjectV1Alpha1DataSource,
@@ -1555,6 +1534,14 @@ func allDataSources() []func() datasource.DataSource {
 		devices_kubeedge_io_v1alpha2.NewDevicesKubeedgeIoDeviceModelV1Alpha2Manifest,
 		// devices_kubeedge_io_v1alpha2.NewDevicesKubeedgeIoDeviceV1Alpha2DataSource,
 		devices_kubeedge_io_v1alpha2.NewDevicesKubeedgeIoDeviceV1Alpha2Manifest,
+		// devices_kubeedge_io_v1beta1.NewDevicesKubeedgeIoDeviceModelV1Beta1DataSource,
+		devices_kubeedge_io_v1beta1.NewDevicesKubeedgeIoDeviceModelV1Beta1Manifest,
+		// devices_kubeedge_io_v1beta1.NewDevicesKubeedgeIoDeviceV1Beta1DataSource,
+		devices_kubeedge_io_v1beta1.NewDevicesKubeedgeIoDeviceV1Beta1Manifest,
+		// devops_kubesphere_io_v1alpha1.NewDevopsKubesphereIoReleaserControllerV1Alpha1DataSource,
+		devops_kubesphere_io_v1alpha1.NewDevopsKubesphereIoReleaserControllerV1Alpha1Manifest,
+		// devops_kubesphere_io_v1alpha1.NewDevopsKubesphereIoReleaserV1Alpha1DataSource,
+		devops_kubesphere_io_v1alpha1.NewDevopsKubesphereIoReleaserV1Alpha1Manifest,
 		// dex_gpu_ninja_com_v1alpha1.NewDexGpuNinjaComDexIdentityProviderV1Alpha1DataSource,
 		dex_gpu_ninja_com_v1alpha1.NewDexGpuNinjaComDexIdentityProviderV1Alpha1Manifest,
 		// dex_gpu_ninja_com_v1alpha1.NewDexGpuNinjaComDexOauth2ClientV1Alpha1DataSource,
@@ -1671,8 +1658,6 @@ func allDataSources() []func() datasource.DataSource {
 		everest_percona_com_v1alpha1.NewEverestPerconaComDatabaseEngineV1Alpha1Manifest,
 		// everest_percona_com_v1alpha1.NewEverestPerconaComMonitoringConfigV1Alpha1DataSource,
 		everest_percona_com_v1alpha1.NewEverestPerconaComMonitoringConfigV1Alpha1Manifest,
-		// example_openshift_io_v1.NewExampleOpenshiftIoStableConfigTypeV1DataSource,
-		example_openshift_io_v1.NewExampleOpenshiftIoStableConfigTypeV1Manifest,
 		// execution_furiko_io_v1alpha1.NewExecutionFurikoIoJobConfigV1Alpha1DataSource,
 		execution_furiko_io_v1alpha1.NewExecutionFurikoIoJobConfigV1Alpha1Manifest,
 		// execution_furiko_io_v1alpha1.NewExecutionFurikoIoJobV1Alpha1DataSource,
@@ -1711,6 +1696,10 @@ func allDataSources() []func() datasource.DataSource {
 		externaldns_k8s_io_v1alpha1.NewExternaldnsK8SIoDnsendpointV1Alpha1Manifest,
 		// externaldns_nginx_org_v1.NewExternaldnsNginxOrgDnsendpointV1DataSource,
 		externaldns_nginx_org_v1.NewExternaldnsNginxOrgDnsendpointV1Manifest,
+		// fence_agents_remediation_medik8s_io_v1alpha1.NewFenceAgentsRemediationMedik8SIoFenceAgentsRemediationTemplateV1Alpha1DataSource,
+		fence_agents_remediation_medik8s_io_v1alpha1.NewFenceAgentsRemediationMedik8SIoFenceAgentsRemediationTemplateV1Alpha1Manifest,
+		// fence_agents_remediation_medik8s_io_v1alpha1.NewFenceAgentsRemediationMedik8SIoFenceAgentsRemediationV1Alpha1DataSource,
+		fence_agents_remediation_medik8s_io_v1alpha1.NewFenceAgentsRemediationMedik8SIoFenceAgentsRemediationV1Alpha1Manifest,
 		// flagger_app_v1beta1.NewFlaggerAppAlertProviderV1Beta1DataSource,
 		flagger_app_v1beta1.NewFlaggerAppAlertProviderV1Beta1Manifest,
 		// flagger_app_v1beta1.NewFlaggerAppCanaryV1Beta1DataSource,
@@ -1725,10 +1714,6 @@ func allDataSources() []func() datasource.DataSource {
 		flow_volcano_sh_v1alpha1.NewFlowVolcanoShJobFlowV1Alpha1Manifest,
 		// flow_volcano_sh_v1alpha1.NewFlowVolcanoShJobTemplateV1Alpha1DataSource,
 		flow_volcano_sh_v1alpha1.NewFlowVolcanoShJobTemplateV1Alpha1Manifest,
-		// flowcontrol_apiserver_k8s_io_v1beta2.NewFlowcontrolApiserverK8SIoFlowSchemaV1Beta2DataSource,
-		flowcontrol_apiserver_k8s_io_v1beta2.NewFlowcontrolApiserverK8SIoFlowSchemaV1Beta2Manifest,
-		// flowcontrol_apiserver_k8s_io_v1beta2.NewFlowcontrolApiserverK8SIoPriorityLevelConfigurationV1Beta2DataSource,
-		flowcontrol_apiserver_k8s_io_v1beta2.NewFlowcontrolApiserverK8SIoPriorityLevelConfigurationV1Beta2Manifest,
 		// flowcontrol_apiserver_k8s_io_v1beta3.NewFlowcontrolApiserverK8SIoFlowSchemaV1Beta3DataSource,
 		flowcontrol_apiserver_k8s_io_v1beta3.NewFlowcontrolApiserverK8SIoFlowSchemaV1Beta3Manifest,
 		// flowcontrol_apiserver_k8s_io_v1beta3.NewFlowcontrolApiserverK8SIoPriorityLevelConfigurationV1Beta3DataSource,
@@ -1781,6 +1766,8 @@ func allDataSources() []func() datasource.DataSource {
 		fluentd_fluent_io_v1alpha1.NewFluentdFluentIoOutputV1Alpha1Manifest,
 		// flux_framework_org_v1alpha1.NewFluxFrameworkOrgMiniClusterV1Alpha1DataSource,
 		flux_framework_org_v1alpha1.NewFluxFrameworkOrgMiniClusterV1Alpha1Manifest,
+		// flux_framework_org_v1alpha2.NewFluxFrameworkOrgMiniClusterV1Alpha2DataSource,
+		flux_framework_org_v1alpha2.NewFluxFrameworkOrgMiniClusterV1Alpha2Manifest,
 		// forklift_konveyor_io_v1beta1.NewForkliftKonveyorIoForkliftControllerV1Beta1DataSource,
 		forklift_konveyor_io_v1beta1.NewForkliftKonveyorIoForkliftControllerV1Beta1Manifest,
 		// forklift_konveyor_io_v1beta1.NewForkliftKonveyorIoHookV1Beta1DataSource,
@@ -1815,6 +1802,8 @@ func allDataSources() []func() datasource.DataSource {
 		gateway_networking_k8s_io_v1.NewGatewayNetworkingK8SIoGatewayClassV1Manifest,
 		// gateway_networking_k8s_io_v1.NewGatewayNetworkingK8SIoGatewayV1DataSource,
 		gateway_networking_k8s_io_v1.NewGatewayNetworkingK8SIoGatewayV1Manifest,
+		// gateway_networking_k8s_io_v1.NewGatewayNetworkingK8SIoGrpcrouteV1DataSource,
+		gateway_networking_k8s_io_v1.NewGatewayNetworkingK8SIoGrpcrouteV1Manifest,
 		// gateway_networking_k8s_io_v1.NewGatewayNetworkingK8SIoHttprouteV1DataSource,
 		gateway_networking_k8s_io_v1.NewGatewayNetworkingK8SIoHttprouteV1Manifest,
 		// gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoGrpcrouteV1Alpha2DataSource,
@@ -1835,8 +1824,14 @@ func allDataSources() []func() datasource.DataSource {
 		gateway_networking_k8s_io_v1beta1.NewGatewayNetworkingK8SIoHttprouteV1Beta1Manifest,
 		// gateway_networking_k8s_io_v1beta1.NewGatewayNetworkingK8SIoReferenceGrantV1Beta1DataSource,
 		gateway_networking_k8s_io_v1beta1.NewGatewayNetworkingK8SIoReferenceGrantV1Beta1Manifest,
+		// gateway_nginx_org_v1alpha1.NewGatewayNginxOrgClientSettingsPolicyV1Alpha1DataSource,
+		gateway_nginx_org_v1alpha1.NewGatewayNginxOrgClientSettingsPolicyV1Alpha1Manifest,
 		// gateway_nginx_org_v1alpha1.NewGatewayNginxOrgNginxGatewayV1Alpha1DataSource,
 		gateway_nginx_org_v1alpha1.NewGatewayNginxOrgNginxGatewayV1Alpha1Manifest,
+		// gateway_nginx_org_v1alpha1.NewGatewayNginxOrgNginxProxyV1Alpha1DataSource,
+		gateway_nginx_org_v1alpha1.NewGatewayNginxOrgNginxProxyV1Alpha1Manifest,
+		// gateway_nginx_org_v1alpha1.NewGatewayNginxOrgObservabilityPolicyV1Alpha1DataSource,
+		gateway_nginx_org_v1alpha1.NewGatewayNginxOrgObservabilityPolicyV1Alpha1Manifest,
 		// gateway_solo_io_v1.NewGatewaySoloIoGatewayV1DataSource,
 		gateway_solo_io_v1.NewGatewaySoloIoGatewayV1Manifest,
 		// gateway_solo_io_v1.NewGatewaySoloIoMatchableHttpGatewayV1DataSource,
@@ -1965,10 +1960,6 @@ func allDataSources() []func() datasource.DataSource {
 		hazelcast_com_v1alpha1.NewHazelcastComMapV1Alpha1Manifest,
 		// hazelcast_com_v1alpha1.NewHazelcastComWanReplicationV1Alpha1DataSource,
 		hazelcast_com_v1alpha1.NewHazelcastComWanReplicationV1Alpha1Manifest,
-		// helm_openshift_io_v1beta1.NewHelmOpenshiftIoHelmChartRepositoryV1Beta1DataSource,
-		helm_openshift_io_v1beta1.NewHelmOpenshiftIoHelmChartRepositoryV1Beta1Manifest,
-		// helm_openshift_io_v1beta1.NewHelmOpenshiftIoProjectHelmChartRepositoryV1Beta1DataSource,
-		helm_openshift_io_v1beta1.NewHelmOpenshiftIoProjectHelmChartRepositoryV1Beta1Manifest,
 		// helm_sigstore_dev_v1alpha1.NewHelmSigstoreDevRekorV1Alpha1DataSource,
 		helm_sigstore_dev_v1alpha1.NewHelmSigstoreDevRekorV1Alpha1Manifest,
 		// helm_toolkit_fluxcd_io_v2beta1.NewHelmToolkitFluxcdIoHelmReleaseV2Beta1DataSource,
@@ -2053,10 +2044,6 @@ func allDataSources() []func() datasource.DataSource {
 		image_toolkit_fluxcd_io_v1beta2.NewImageToolkitFluxcdIoImagePolicyV1Beta2Manifest,
 		// image_toolkit_fluxcd_io_v1beta2.NewImageToolkitFluxcdIoImageRepositoryV1Beta2DataSource,
 		image_toolkit_fluxcd_io_v1beta2.NewImageToolkitFluxcdIoImageRepositoryV1Beta2Manifest,
-		// imageregistry_operator_openshift_io_v1.NewImageregistryOperatorOpenshiftIoConfigV1DataSource,
-		imageregistry_operator_openshift_io_v1.NewImageregistryOperatorOpenshiftIoConfigV1Manifest,
-		// imageregistry_operator_openshift_io_v1.NewImageregistryOperatorOpenshiftIoImagePrunerV1DataSource,
-		imageregistry_operator_openshift_io_v1.NewImageregistryOperatorOpenshiftIoImagePrunerV1Manifest,
 		// imaging_ingestion_alvearie_org_v1alpha1.NewImagingIngestionAlvearieOrgDicomEventBridgeV1Alpha1DataSource,
 		imaging_ingestion_alvearie_org_v1alpha1.NewImagingIngestionAlvearieOrgDicomEventBridgeV1Alpha1Manifest,
 		// imaging_ingestion_alvearie_org_v1alpha1.NewImagingIngestionAlvearieOrgDicomEventDrivenIngestionV1Alpha1DataSource,
@@ -2179,12 +2166,12 @@ func allDataSources() []func() datasource.DataSource {
 		infrastructure_cluster_x_k8s_io_v1beta2.NewInfrastructureClusterXK8SIoIbmvpcmachineTemplateV1Beta2Manifest,
 		// infrastructure_cluster_x_k8s_io_v1beta2.NewInfrastructureClusterXK8SIoIbmvpcmachineV1Beta2DataSource,
 		infrastructure_cluster_x_k8s_io_v1beta2.NewInfrastructureClusterXK8SIoIbmvpcmachineV1Beta2Manifest,
-		// ingress_operator_openshift_io_v1.NewIngressOperatorOpenshiftIoDnsrecordV1DataSource,
-		ingress_operator_openshift_io_v1.NewIngressOperatorOpenshiftIoDnsrecordV1Manifest,
-		// insights_openshift_io_v1alpha1.NewInsightsOpenshiftIoDataGatherV1Alpha1DataSource,
-		insights_openshift_io_v1alpha1.NewInsightsOpenshiftIoDataGatherV1Alpha1Manifest,
 		// installation_mattermost_com_v1beta1.NewInstallationMattermostComMattermostV1Beta1DataSource,
 		installation_mattermost_com_v1beta1.NewInstallationMattermostComMattermostV1Beta1Manifest,
+		// instana_io_v1.NewInstanaIoInstanaAgentV1DataSource,
+		instana_io_v1.NewInstanaIoInstanaAgentV1Manifest,
+		// integration_rock8s_com_v1beta1.NewIntegrationRock8SComDeferredResourceV1Beta1DataSource,
+		integration_rock8s_com_v1beta1.NewIntegrationRock8SComDeferredResourceV1Beta1Manifest,
 		// integration_rock8s_com_v1beta1.NewIntegrationRock8SComPlugV1Beta1DataSource,
 		integration_rock8s_com_v1beta1.NewIntegrationRock8SComPlugV1Beta1Manifest,
 		// integration_rock8s_com_v1beta1.NewIntegrationRock8SComSocketV1Beta1DataSource,
@@ -2225,6 +2212,24 @@ func allDataSources() []func() datasource.DataSource {
 		k8s_keycloak_org_v2alpha1.NewK8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest,
 		// k8s_keycloak_org_v2alpha1.NewK8SKeycloakOrgKeycloakV2Alpha1DataSource,
 		k8s_keycloak_org_v2alpha1.NewK8SKeycloakOrgKeycloakV2Alpha1Manifest,
+		// k8s_mariadb_com_v1alpha1.NewK8SMariadbComBackupV1Alpha1DataSource,
+		k8s_mariadb_com_v1alpha1.NewK8SMariadbComBackupV1Alpha1Manifest,
+		// k8s_mariadb_com_v1alpha1.NewK8SMariadbComConnectionV1Alpha1DataSource,
+		k8s_mariadb_com_v1alpha1.NewK8SMariadbComConnectionV1Alpha1Manifest,
+		// k8s_mariadb_com_v1alpha1.NewK8SMariadbComDatabaseV1Alpha1DataSource,
+		k8s_mariadb_com_v1alpha1.NewK8SMariadbComDatabaseV1Alpha1Manifest,
+		// k8s_mariadb_com_v1alpha1.NewK8SMariadbComGrantV1Alpha1DataSource,
+		k8s_mariadb_com_v1alpha1.NewK8SMariadbComGrantV1Alpha1Manifest,
+		// k8s_mariadb_com_v1alpha1.NewK8SMariadbComMariaDbV1Alpha1DataSource,
+		k8s_mariadb_com_v1alpha1.NewK8SMariadbComMariaDbV1Alpha1Manifest,
+		// k8s_mariadb_com_v1alpha1.NewK8SMariadbComMaxScaleV1Alpha1DataSource,
+		k8s_mariadb_com_v1alpha1.NewK8SMariadbComMaxScaleV1Alpha1Manifest,
+		// k8s_mariadb_com_v1alpha1.NewK8SMariadbComRestoreV1Alpha1DataSource,
+		k8s_mariadb_com_v1alpha1.NewK8SMariadbComRestoreV1Alpha1Manifest,
+		// k8s_mariadb_com_v1alpha1.NewK8SMariadbComSqlJobV1Alpha1DataSource,
+		k8s_mariadb_com_v1alpha1.NewK8SMariadbComSqlJobV1Alpha1Manifest,
+		// k8s_mariadb_com_v1alpha1.NewK8SMariadbComUserV1Alpha1DataSource,
+		k8s_mariadb_com_v1alpha1.NewK8SMariadbComUserV1Alpha1Manifest,
 		// k8s_nginx_org_v1.NewK8SNginxOrgGlobalConfigurationV1DataSource,
 		k8s_nginx_org_v1.NewK8SNginxOrgGlobalConfigurationV1Manifest,
 		// k8s_nginx_org_v1.NewK8SNginxOrgPolicyV1DataSource,
@@ -2269,6 +2274,14 @@ func allDataSources() []func() datasource.DataSource {
 		k8up_io_v1.NewK8UpIoScheduleV1Manifest,
 		// k8up_io_v1.NewK8UpIoSnapshotV1DataSource,
 		k8up_io_v1.NewK8UpIoSnapshotV1Manifest,
+		// kafka_banzaicloud_io_v1alpha1.NewKafkaBanzaicloudIoCruiseControlOperationV1Alpha1DataSource,
+		kafka_banzaicloud_io_v1alpha1.NewKafkaBanzaicloudIoCruiseControlOperationV1Alpha1Manifest,
+		// kafka_banzaicloud_io_v1alpha1.NewKafkaBanzaicloudIoKafkaTopicV1Alpha1DataSource,
+		kafka_banzaicloud_io_v1alpha1.NewKafkaBanzaicloudIoKafkaTopicV1Alpha1Manifest,
+		// kafka_banzaicloud_io_v1alpha1.NewKafkaBanzaicloudIoKafkaUserV1Alpha1DataSource,
+		kafka_banzaicloud_io_v1alpha1.NewKafkaBanzaicloudIoKafkaUserV1Alpha1Manifest,
+		// kafka_banzaicloud_io_v1beta1.NewKafkaBanzaicloudIoKafkaClusterV1Beta1DataSource,
+		kafka_banzaicloud_io_v1beta1.NewKafkaBanzaicloudIoKafkaClusterV1Beta1Manifest,
 		// kafka_services_k8s_aws_v1alpha1.NewKafkaServicesK8SAwsClusterV1Alpha1DataSource,
 		kafka_services_k8s_aws_v1alpha1.NewKafkaServicesK8SAwsClusterV1Alpha1Manifest,
 		// kafka_strimzi_io_v1alpha1.NewKafkaStrimziIoKafkaTopicV1Alpha1DataSource,
@@ -2339,12 +2352,24 @@ func allDataSources() []func() datasource.DataSource {
 		kibana_k8s_elastic_co_v1beta1.NewKibanaK8SElasticCoKibanaV1Beta1Manifest,
 		// kinesis_services_k8s_aws_v1alpha1.NewKinesisServicesK8SAwsStreamV1Alpha1DataSource,
 		kinesis_services_k8s_aws_v1alpha1.NewKinesisServicesK8SAwsStreamV1Alpha1Manifest,
+		// kmm_sigs_x_k8s_io_v1beta1.NewKmmSigsXK8SIoModuleV1Beta1DataSource,
+		kmm_sigs_x_k8s_io_v1beta1.NewKmmSigsXK8SIoModuleV1Beta1Manifest,
+		// kmm_sigs_x_k8s_io_v1beta1.NewKmmSigsXK8SIoNodeModulesConfigV1Beta1DataSource,
+		kmm_sigs_x_k8s_io_v1beta1.NewKmmSigsXK8SIoNodeModulesConfigV1Beta1Manifest,
+		// kmm_sigs_x_k8s_io_v1beta1.NewKmmSigsXK8SIoPreflightValidationV1Beta1DataSource,
+		kmm_sigs_x_k8s_io_v1beta1.NewKmmSigsXK8SIoPreflightValidationV1Beta1Manifest,
+		// kmm_sigs_x_k8s_io_v1beta2.NewKmmSigsXK8SIoPreflightValidationV1Beta2DataSource,
+		kmm_sigs_x_k8s_io_v1beta2.NewKmmSigsXK8SIoPreflightValidationV1Beta2Manifest,
 		// kms_services_k8s_aws_v1alpha1.NewKmsServicesK8SAwsAliasV1Alpha1DataSource,
 		kms_services_k8s_aws_v1alpha1.NewKmsServicesK8SAwsAliasV1Alpha1Manifest,
 		// kms_services_k8s_aws_v1alpha1.NewKmsServicesK8SAwsGrantV1Alpha1DataSource,
 		kms_services_k8s_aws_v1alpha1.NewKmsServicesK8SAwsGrantV1Alpha1Manifest,
 		// kms_services_k8s_aws_v1alpha1.NewKmsServicesK8SAwsKeyV1Alpha1DataSource,
 		kms_services_k8s_aws_v1alpha1.NewKmsServicesK8SAwsKeyV1Alpha1Manifest,
+		// kuadrant_io_v1alpha1.NewKuadrantIoDnsrecordV1Alpha1DataSource,
+		kuadrant_io_v1alpha1.NewKuadrantIoDnsrecordV1Alpha1Manifest,
+		// kuadrant_io_v1alpha1.NewKuadrantIoManagedZoneV1Alpha1DataSource,
+		kuadrant_io_v1alpha1.NewKuadrantIoManagedZoneV1Alpha1Manifest,
 		// kuadrant_io_v1beta1.NewKuadrantIoKuadrantV1Beta1DataSource,
 		kuadrant_io_v1beta1.NewKuadrantIoKuadrantV1Beta1Manifest,
 		// kuadrant_io_v1beta2.NewKuadrantIoAuthPolicyV1Beta2DataSource,
@@ -2501,6 +2526,8 @@ func allDataSources() []func() datasource.DataSource {
 		kyverno_io_v2alpha1.NewKyvernoIoCleanupPolicyV2Alpha1Manifest,
 		// kyverno_io_v2alpha1.NewKyvernoIoClusterCleanupPolicyV2Alpha1DataSource,
 		kyverno_io_v2alpha1.NewKyvernoIoClusterCleanupPolicyV2Alpha1Manifest,
+		// kyverno_io_v2alpha1.NewKyvernoIoGlobalContextEntryV2Alpha1DataSource,
+		kyverno_io_v2alpha1.NewKyvernoIoGlobalContextEntryV2Alpha1Manifest,
 		// kyverno_io_v2alpha1.NewKyvernoIoPolicyExceptionV2Alpha1DataSource,
 		kyverno_io_v2alpha1.NewKyvernoIoPolicyExceptionV2Alpha1Manifest,
 		// kyverno_io_v2beta1.NewKyvernoIoCleanupPolicyV2Beta1DataSource,
@@ -2529,6 +2556,10 @@ func allDataSources() []func() datasource.DataSource {
 		lambda_services_k8s_aws_v1alpha1.NewLambdaServicesK8SAwsVersionV1Alpha1Manifest,
 		// lb_lbconfig_carlosedp_com_v1.NewLbLbconfigCarlosedpComExternalLoadBalancerV1DataSource,
 		lb_lbconfig_carlosedp_com_v1.NewLbLbconfigCarlosedpComExternalLoadBalancerV1Manifest,
+		// leaksignal_com_v1.NewLeaksignalComClusterLeaksignalIstioV1DataSource,
+		leaksignal_com_v1.NewLeaksignalComClusterLeaksignalIstioV1Manifest,
+		// leaksignal_com_v1.NewLeaksignalComLeaksignalIstioV1DataSource,
+		leaksignal_com_v1.NewLeaksignalComLeaksignalIstioV1Manifest,
 		// lerentis_uploadfilter24_eu_v1beta4.NewLerentisUploadfilter24EuBitwardenSecretV1Beta4DataSource,
 		lerentis_uploadfilter24_eu_v1beta4.NewLerentisUploadfilter24EuBitwardenSecretV1Beta4Manifest,
 		// lerentis_uploadfilter24_eu_v1beta4.NewLerentisUploadfilter24EuBitwardenTemplateV1Beta4DataSource,
@@ -2683,26 +2714,10 @@ func allDataSources() []func() datasource.DataSource {
 		m4e_krestomat_io_v1alpha1.NewM4EKrestomatIoPhpfpmV1Alpha1Manifest,
 		// m4e_krestomat_io_v1alpha1.NewM4EKrestomatIoRoutineV1Alpha1DataSource,
 		m4e_krestomat_io_v1alpha1.NewM4EKrestomatIoRoutineV1Alpha1Manifest,
-		// machine_openshift_io_v1.NewMachineOpenshiftIoControlPlaneMachineSetV1DataSource,
-		machine_openshift_io_v1.NewMachineOpenshiftIoControlPlaneMachineSetV1Manifest,
-		// machine_openshift_io_v1beta1.NewMachineOpenshiftIoMachineHealthCheckV1Beta1DataSource,
-		machine_openshift_io_v1beta1.NewMachineOpenshiftIoMachineHealthCheckV1Beta1Manifest,
-		// machine_openshift_io_v1beta1.NewMachineOpenshiftIoMachineSetV1Beta1DataSource,
-		machine_openshift_io_v1beta1.NewMachineOpenshiftIoMachineSetV1Beta1Manifest,
-		// machine_openshift_io_v1beta1.NewMachineOpenshiftIoMachineV1Beta1DataSource,
-		machine_openshift_io_v1beta1.NewMachineOpenshiftIoMachineV1Beta1Manifest,
-		// machineconfiguration_openshift_io_v1.NewMachineconfigurationOpenshiftIoContainerRuntimeConfigV1DataSource,
-		machineconfiguration_openshift_io_v1.NewMachineconfigurationOpenshiftIoContainerRuntimeConfigV1Manifest,
-		// machineconfiguration_openshift_io_v1.NewMachineconfigurationOpenshiftIoControllerConfigV1DataSource,
-		machineconfiguration_openshift_io_v1.NewMachineconfigurationOpenshiftIoControllerConfigV1Manifest,
-		// machineconfiguration_openshift_io_v1.NewMachineconfigurationOpenshiftIoKubeletConfigV1DataSource,
-		machineconfiguration_openshift_io_v1.NewMachineconfigurationOpenshiftIoKubeletConfigV1Manifest,
-		// machineconfiguration_openshift_io_v1.NewMachineconfigurationOpenshiftIoMachineConfigPoolV1DataSource,
-		machineconfiguration_openshift_io_v1.NewMachineconfigurationOpenshiftIoMachineConfigPoolV1Manifest,
-		// machineconfiguration_openshift_io_v1.NewMachineconfigurationOpenshiftIoMachineConfigV1DataSource,
-		machineconfiguration_openshift_io_v1.NewMachineconfigurationOpenshiftIoMachineConfigV1Manifest,
-		// machineconfiguration_openshift_io_v1alpha1.NewMachineconfigurationOpenshiftIoMachineConfigNodeV1Alpha1DataSource,
-		machineconfiguration_openshift_io_v1alpha1.NewMachineconfigurationOpenshiftIoMachineConfigNodeV1Alpha1Manifest,
+		// machine_deletion_remediation_medik8s_io_v1alpha1.NewMachineDeletionRemediationMedik8SIoMachineDeletionRemediationTemplateV1Alpha1DataSource,
+		machine_deletion_remediation_medik8s_io_v1alpha1.NewMachineDeletionRemediationMedik8SIoMachineDeletionRemediationTemplateV1Alpha1Manifest,
+		// machine_deletion_remediation_medik8s_io_v1alpha1.NewMachineDeletionRemediationMedik8SIoMachineDeletionRemediationV1Alpha1DataSource,
+		machine_deletion_remediation_medik8s_io_v1alpha1.NewMachineDeletionRemediationMedik8SIoMachineDeletionRemediationV1Alpha1Manifest,
 		// maps_k8s_elastic_co_v1alpha1.NewMapsK8SElasticCoElasticMapsServerV1Alpha1DataSource,
 		maps_k8s_elastic_co_v1alpha1.NewMapsK8SElasticCoElasticMapsServerV1Alpha1Manifest,
 		// mariadb_mmontes_io_v1alpha1.NewMariadbMmontesIoBackupV1Alpha1DataSource,
@@ -2721,6 +2736,10 @@ func allDataSources() []func() datasource.DataSource {
 		mariadb_mmontes_io_v1alpha1.NewMariadbMmontesIoSqlJobV1Alpha1Manifest,
 		// mariadb_mmontes_io_v1alpha1.NewMariadbMmontesIoUserV1Alpha1DataSource,
 		mariadb_mmontes_io_v1alpha1.NewMariadbMmontesIoUserV1Alpha1Manifest,
+		// marin3r_3scale_net_v1alpha1.NewMarin3R3ScaleNetEnvoyConfigRevisionV1Alpha1DataSource,
+		marin3r_3scale_net_v1alpha1.NewMarin3R3ScaleNetEnvoyConfigRevisionV1Alpha1Manifest,
+		// marin3r_3scale_net_v1alpha1.NewMarin3R3ScaleNetEnvoyConfigV1Alpha1DataSource,
+		marin3r_3scale_net_v1alpha1.NewMarin3R3ScaleNetEnvoyConfigV1Alpha1Manifest,
 		// mattermost_com_v1alpha1.NewMattermostComClusterInstallationV1Alpha1DataSource,
 		mattermost_com_v1alpha1.NewMattermostComClusterInstallationV1Alpha1Manifest,
 		// mattermost_com_v1alpha1.NewMattermostComMattermostRestoreDbV1Alpha1DataSource,
@@ -2747,10 +2766,14 @@ func allDataSources() []func() datasource.DataSource {
 		metal3_io_v1alpha1.NewMetal3IoBareMetalHostV1Alpha1Manifest,
 		// metal3_io_v1alpha1.NewMetal3IoBmceventSubscriptionV1Alpha1DataSource,
 		metal3_io_v1alpha1.NewMetal3IoBmceventSubscriptionV1Alpha1Manifest,
+		// metal3_io_v1alpha1.NewMetal3IoDataImageV1Alpha1DataSource,
+		metal3_io_v1alpha1.NewMetal3IoDataImageV1Alpha1Manifest,
 		// metal3_io_v1alpha1.NewMetal3IoFirmwareSchemaV1Alpha1DataSource,
 		metal3_io_v1alpha1.NewMetal3IoFirmwareSchemaV1Alpha1Manifest,
 		// metal3_io_v1alpha1.NewMetal3IoHardwareDataV1Alpha1DataSource,
 		metal3_io_v1alpha1.NewMetal3IoHardwareDataV1Alpha1Manifest,
+		// metal3_io_v1alpha1.NewMetal3IoHostFirmwareComponentsV1Alpha1DataSource,
+		metal3_io_v1alpha1.NewMetal3IoHostFirmwareComponentsV1Alpha1Manifest,
 		// metal3_io_v1alpha1.NewMetal3IoHostFirmwareSettingsV1Alpha1DataSource,
 		metal3_io_v1alpha1.NewMetal3IoHostFirmwareSettingsV1Alpha1Manifest,
 		// metal3_io_v1alpha1.NewMetal3IoPreprovisioningImageV1Alpha1DataSource,
@@ -2787,10 +2810,6 @@ func allDataSources() []func() datasource.DataSource {
 		monitoring_coreos_com_v1alpha1.NewMonitoringCoreosComScrapeConfigV1Alpha1Manifest,
 		// monitoring_coreos_com_v1beta1.NewMonitoringCoreosComAlertmanagerConfigV1Beta1DataSource,
 		monitoring_coreos_com_v1beta1.NewMonitoringCoreosComAlertmanagerConfigV1Beta1Manifest,
-		// monitoring_openshift_io_v1.NewMonitoringOpenshiftIoAlertRelabelConfigV1DataSource,
-		monitoring_openshift_io_v1.NewMonitoringOpenshiftIoAlertRelabelConfigV1Manifest,
-		// monitoring_openshift_io_v1.NewMonitoringOpenshiftIoAlertingRuleV1DataSource,
-		monitoring_openshift_io_v1.NewMonitoringOpenshiftIoAlertingRuleV1Manifest,
 		// monocle_monocle_change_metrics_io_v1alpha1.NewMonocleMonocleChangeMetricsIoMonocleV1Alpha1DataSource,
 		monocle_monocle_change_metrics_io_v1alpha1.NewMonocleMonocleChangeMetricsIoMonocleV1Alpha1Manifest,
 		// mq_services_k8s_aws_v1alpha1.NewMqServicesK8SAwsBrokerV1Alpha1DataSource,
@@ -2845,16 +2864,6 @@ func allDataSources() []func() datasource.DataSource {
 		nativestor_alauda_io_v1.NewNativestorAlaudaIoRawDeviceV1Manifest,
 		// netchecks_io_v1.NewNetchecksIoNetworkAssertionV1DataSource,
 		netchecks_io_v1.NewNetchecksIoNetworkAssertionV1Manifest,
-		// network_openshift_io_v1.NewNetworkOpenshiftIoClusterNetworkV1DataSource,
-		network_openshift_io_v1.NewNetworkOpenshiftIoClusterNetworkV1Manifest,
-		// network_openshift_io_v1.NewNetworkOpenshiftIoEgressNetworkPolicyV1DataSource,
-		network_openshift_io_v1.NewNetworkOpenshiftIoEgressNetworkPolicyV1Manifest,
-		// network_openshift_io_v1.NewNetworkOpenshiftIoHostSubnetV1DataSource,
-		network_openshift_io_v1.NewNetworkOpenshiftIoHostSubnetV1Manifest,
-		// network_openshift_io_v1.NewNetworkOpenshiftIoNetNamespaceV1DataSource,
-		network_openshift_io_v1.NewNetworkOpenshiftIoNetNamespaceV1Manifest,
-		// network_operator_openshift_io_v1.NewNetworkOperatorOpenshiftIoEgressRouterV1DataSource,
-		network_operator_openshift_io_v1.NewNetworkOperatorOpenshiftIoEgressRouterV1Manifest,
 		// networkfirewall_services_k8s_aws_v1alpha1.NewNetworkfirewallServicesK8SAwsFirewallPolicyV1Alpha1DataSource,
 		networkfirewall_services_k8s_aws_v1alpha1.NewNetworkfirewallServicesK8SAwsFirewallPolicyV1Alpha1Manifest,
 		// networkfirewall_services_k8s_aws_v1alpha1.NewNetworkfirewallServicesK8SAwsFirewallV1Alpha1DataSource,
@@ -2863,6 +2872,20 @@ func allDataSources() []func() datasource.DataSource {
 		networkfirewall_services_k8s_aws_v1alpha1.NewNetworkfirewallServicesK8SAwsRuleGroupV1Alpha1Manifest,
 		// networking_gke_io_v1.NewNetworkingGkeIoManagedCertificateV1DataSource,
 		networking_gke_io_v1.NewNetworkingGkeIoManagedCertificateV1Manifest,
+		// networking_istio_io_v1.NewNetworkingIstioIoDestinationRuleV1DataSource,
+		networking_istio_io_v1.NewNetworkingIstioIoDestinationRuleV1Manifest,
+		// networking_istio_io_v1.NewNetworkingIstioIoGatewayV1DataSource,
+		networking_istio_io_v1.NewNetworkingIstioIoGatewayV1Manifest,
+		// networking_istio_io_v1.NewNetworkingIstioIoServiceEntryV1DataSource,
+		networking_istio_io_v1.NewNetworkingIstioIoServiceEntryV1Manifest,
+		// networking_istio_io_v1.NewNetworkingIstioIoSidecarV1DataSource,
+		networking_istio_io_v1.NewNetworkingIstioIoSidecarV1Manifest,
+		// networking_istio_io_v1.NewNetworkingIstioIoVirtualServiceV1DataSource,
+		networking_istio_io_v1.NewNetworkingIstioIoVirtualServiceV1Manifest,
+		// networking_istio_io_v1.NewNetworkingIstioIoWorkloadEntryV1DataSource,
+		networking_istio_io_v1.NewNetworkingIstioIoWorkloadEntryV1Manifest,
+		// networking_istio_io_v1.NewNetworkingIstioIoWorkloadGroupV1DataSource,
+		networking_istio_io_v1.NewNetworkingIstioIoWorkloadGroupV1Manifest,
 		// networking_istio_io_v1alpha3.NewNetworkingIstioIoDestinationRuleV1Alpha3DataSource,
 		networking_istio_io_v1alpha3.NewNetworkingIstioIoDestinationRuleV1Alpha3Manifest,
 		// networking_istio_io_v1alpha3.NewNetworkingIstioIoEnvoyFilterV1Alpha3DataSource,
@@ -2993,48 +3016,16 @@ func allDataSources() []func() datasource.DataSource {
 		operator_knative_dev_v1beta1.NewOperatorKnativeDevKnativeEventingV1Beta1Manifest,
 		// operator_knative_dev_v1beta1.NewOperatorKnativeDevKnativeServingV1Beta1DataSource,
 		operator_knative_dev_v1beta1.NewOperatorKnativeDevKnativeServingV1Beta1Manifest,
+		// operator_marin3r_3scale_net_v1alpha1.NewOperatorMarin3R3ScaleNetDiscoveryServiceCertificateV1Alpha1DataSource,
+		operator_marin3r_3scale_net_v1alpha1.NewOperatorMarin3R3ScaleNetDiscoveryServiceCertificateV1Alpha1Manifest,
+		// operator_marin3r_3scale_net_v1alpha1.NewOperatorMarin3R3ScaleNetDiscoveryServiceV1Alpha1DataSource,
+		operator_marin3r_3scale_net_v1alpha1.NewOperatorMarin3R3ScaleNetDiscoveryServiceV1Alpha1Manifest,
+		// operator_marin3r_3scale_net_v1alpha1.NewOperatorMarin3R3ScaleNetEnvoyDeploymentV1Alpha1DataSource,
+		operator_marin3r_3scale_net_v1alpha1.NewOperatorMarin3R3ScaleNetEnvoyDeploymentV1Alpha1Manifest,
 		// operator_open_cluster_management_io_v1.NewOperatorOpenClusterManagementIoClusterManagerV1DataSource,
 		operator_open_cluster_management_io_v1.NewOperatorOpenClusterManagementIoClusterManagerV1Manifest,
-		// operator_openshift_io_v1.NewOperatorOpenshiftIoAuthenticationV1DataSource,
-		operator_openshift_io_v1.NewOperatorOpenshiftIoAuthenticationV1Manifest,
-		// operator_openshift_io_v1.NewOperatorOpenshiftIoCloudCredentialV1DataSource,
-		operator_openshift_io_v1.NewOperatorOpenshiftIoCloudCredentialV1Manifest,
-		// operator_openshift_io_v1.NewOperatorOpenshiftIoClusterCsidriverV1DataSource,
-		operator_openshift_io_v1.NewOperatorOpenshiftIoClusterCsidriverV1Manifest,
-		// operator_openshift_io_v1.NewOperatorOpenshiftIoConfigV1DataSource,
-		operator_openshift_io_v1.NewOperatorOpenshiftIoConfigV1Manifest,
-		// operator_openshift_io_v1.NewOperatorOpenshiftIoConsoleV1DataSource,
-		operator_openshift_io_v1.NewOperatorOpenshiftIoConsoleV1Manifest,
-		// operator_openshift_io_v1.NewOperatorOpenshiftIoCsisnapshotControllerV1DataSource,
-		operator_openshift_io_v1.NewOperatorOpenshiftIoCsisnapshotControllerV1Manifest,
-		// operator_openshift_io_v1.NewOperatorOpenshiftIoDnsV1DataSource,
-		operator_openshift_io_v1.NewOperatorOpenshiftIoDnsV1Manifest,
-		// operator_openshift_io_v1.NewOperatorOpenshiftIoEtcdV1DataSource,
-		operator_openshift_io_v1.NewOperatorOpenshiftIoEtcdV1Manifest,
-		// operator_openshift_io_v1.NewOperatorOpenshiftIoIngressControllerV1DataSource,
-		operator_openshift_io_v1.NewOperatorOpenshiftIoIngressControllerV1Manifest,
-		// operator_openshift_io_v1.NewOperatorOpenshiftIoInsightsOperatorV1DataSource,
-		operator_openshift_io_v1.NewOperatorOpenshiftIoInsightsOperatorV1Manifest,
-		// operator_openshift_io_v1.NewOperatorOpenshiftIoKubeApiserverV1DataSource,
-		operator_openshift_io_v1.NewOperatorOpenshiftIoKubeApiserverV1Manifest,
-		// operator_openshift_io_v1.NewOperatorOpenshiftIoKubeControllerManagerV1DataSource,
-		operator_openshift_io_v1.NewOperatorOpenshiftIoKubeControllerManagerV1Manifest,
-		// operator_openshift_io_v1.NewOperatorOpenshiftIoKubeSchedulerV1DataSource,
-		operator_openshift_io_v1.NewOperatorOpenshiftIoKubeSchedulerV1Manifest,
-		// operator_openshift_io_v1.NewOperatorOpenshiftIoKubeStorageVersionMigratorV1DataSource,
-		operator_openshift_io_v1.NewOperatorOpenshiftIoKubeStorageVersionMigratorV1Manifest,
-		// operator_openshift_io_v1.NewOperatorOpenshiftIoMachineConfigurationV1DataSource,
-		operator_openshift_io_v1.NewOperatorOpenshiftIoMachineConfigurationV1Manifest,
-		// operator_openshift_io_v1.NewOperatorOpenshiftIoNetworkV1DataSource,
-		operator_openshift_io_v1.NewOperatorOpenshiftIoNetworkV1Manifest,
-		// operator_openshift_io_v1.NewOperatorOpenshiftIoOpenShiftApiserverV1DataSource,
-		operator_openshift_io_v1.NewOperatorOpenshiftIoOpenShiftApiserverV1Manifest,
-		// operator_openshift_io_v1.NewOperatorOpenshiftIoOpenShiftControllerManagerV1DataSource,
-		operator_openshift_io_v1.NewOperatorOpenshiftIoOpenShiftControllerManagerV1Manifest,
-		// operator_openshift_io_v1.NewOperatorOpenshiftIoServiceCaV1DataSource,
-		operator_openshift_io_v1.NewOperatorOpenshiftIoServiceCaV1Manifest,
-		// operator_openshift_io_v1.NewOperatorOpenshiftIoStorageV1DataSource,
-		operator_openshift_io_v1.NewOperatorOpenshiftIoStorageV1Manifest,
+		// operator_open_cluster_management_io_v1.NewOperatorOpenClusterManagementIoKlusterletV1DataSource,
+		operator_open_cluster_management_io_v1.NewOperatorOpenClusterManagementIoKlusterletV1Manifest,
 		// operator_shipwright_io_v1alpha1.NewOperatorShipwrightIoShipwrightBuildV1Alpha1DataSource,
 		operator_shipwright_io_v1alpha1.NewOperatorShipwrightIoShipwrightBuildV1Alpha1Manifest,
 		// operator_tigera_io_v1.NewOperatorTigeraIoAmazonCloudIntegrationV1DataSource,
@@ -3067,12 +3058,18 @@ func allDataSources() []func() datasource.DataSource {
 		operator_tigera_io_v1.NewOperatorTigeraIoManagerV1Manifest,
 		// operator_tigera_io_v1.NewOperatorTigeraIoMonitorV1DataSource,
 		operator_tigera_io_v1.NewOperatorTigeraIoMonitorV1Manifest,
+		// operator_tigera_io_v1.NewOperatorTigeraIoPacketCaptureV1DataSource,
+		operator_tigera_io_v1.NewOperatorTigeraIoPacketCaptureV1Manifest,
 		// operator_tigera_io_v1.NewOperatorTigeraIoPolicyRecommendationV1DataSource,
 		operator_tigera_io_v1.NewOperatorTigeraIoPolicyRecommendationV1Manifest,
 		// operator_tigera_io_v1.NewOperatorTigeraIoTenantV1DataSource,
 		operator_tigera_io_v1.NewOperatorTigeraIoTenantV1Manifest,
 		// operator_tigera_io_v1.NewOperatorTigeraIoTigeraStatusV1DataSource,
 		operator_tigera_io_v1.NewOperatorTigeraIoTigeraStatusV1Manifest,
+		// operator_tigera_io_v1.NewOperatorTigeraIoTlspassThroughRouteV1DataSource,
+		operator_tigera_io_v1.NewOperatorTigeraIoTlspassThroughRouteV1Manifest,
+		// operator_tigera_io_v1.NewOperatorTigeraIoTlsterminatedRouteV1DataSource,
+		operator_tigera_io_v1.NewOperatorTigeraIoTlsterminatedRouteV1Manifest,
 		// operator_tigera_io_v1beta1.NewOperatorTigeraIoAmazonCloudIntegrationV1Beta1DataSource,
 		operator_tigera_io_v1beta1.NewOperatorTigeraIoAmazonCloudIntegrationV1Beta1Manifest,
 		// operator_victoriametrics_com_v1beta1.NewOperatorVictoriametricsComVmagentV1Beta1DataSource,
@@ -3149,8 +3146,6 @@ func allDataSources() []func() datasource.DataSource {
 		pkg_crossplane_io_v1alpha1.NewPkgCrossplaneIoControllerConfigV1Alpha1Manifest,
 		// pkg_crossplane_io_v1beta1.NewPkgCrossplaneIoLockV1Beta1DataSource,
 		pkg_crossplane_io_v1beta1.NewPkgCrossplaneIoLockV1Beta1Manifest,
-		// platform_openshift_io_v1alpha1.NewPlatformOpenshiftIoPlatformOperatorV1Alpha1DataSource,
-		platform_openshift_io_v1alpha1.NewPlatformOpenshiftIoPlatformOperatorV1Alpha1Manifest,
 		// policy_clusterpedia_io_v1alpha1.NewPolicyClusterpediaIoClusterImportPolicyV1Alpha1DataSource,
 		policy_clusterpedia_io_v1alpha1.NewPolicyClusterpediaIoClusterImportPolicyV1Alpha1Manifest,
 		// policy_clusterpedia_io_v1alpha1.NewPolicyClusterpediaIoPediaClusterLifecycleV1Alpha1DataSource,
@@ -3165,6 +3160,12 @@ func allDataSources() []func() datasource.DataSource {
 		policy_karmada_io_v1alpha1.NewPolicyKarmadaIoOverridePolicyV1Alpha1Manifest,
 		// policy_karmada_io_v1alpha1.NewPolicyKarmadaIoPropagationPolicyV1Alpha1DataSource,
 		policy_karmada_io_v1alpha1.NewPolicyKarmadaIoPropagationPolicyV1Alpha1Manifest,
+		// policy_kubeedge_io_v1alpha1.NewPolicyKubeedgeIoServiceAccountAccessV1Alpha1DataSource,
+		policy_kubeedge_io_v1alpha1.NewPolicyKubeedgeIoServiceAccountAccessV1Alpha1Manifest,
+		// policy_networking_k8s_io_v1alpha1.NewPolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1DataSource,
+		policy_networking_k8s_io_v1alpha1.NewPolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest,
+		// policy_networking_k8s_io_v1alpha1.NewPolicyNetworkingK8SIoBaselineAdminNetworkPolicyV1Alpha1DataSource,
+		policy_networking_k8s_io_v1alpha1.NewPolicyNetworkingK8SIoBaselineAdminNetworkPolicyV1Alpha1Manifest,
 		// policy_v1.NewPolicyPodDisruptionBudgetV1DataSource,
 		policy_v1.NewPolicyPodDisruptionBudgetV1Manifest,
 		// postgres_operator_crunchydata_com_v1beta1.NewPostgresOperatorCrunchydataComPgadminV1Beta1DataSource,
@@ -3211,6 +3212,12 @@ func allDataSources() []func() datasource.DataSource {
 		psmdb_percona_com_v1.NewPsmdbPerconaComPerconaServerMongoDbbackupV1Manifest,
 		// psmdb_percona_com_v1.NewPsmdbPerconaComPerconaServerMongoDbrestoreV1DataSource,
 		psmdb_percona_com_v1.NewPsmdbPerconaComPerconaServerMongoDbrestoreV1Manifest,
+		// ptp_openshift_io_v1.NewPtpOpenshiftIoNodePtpDeviceV1DataSource,
+		ptp_openshift_io_v1.NewPtpOpenshiftIoNodePtpDeviceV1Manifest,
+		// ptp_openshift_io_v1.NewPtpOpenshiftIoPtpConfigV1DataSource,
+		ptp_openshift_io_v1.NewPtpOpenshiftIoPtpConfigV1Manifest,
+		// ptp_openshift_io_v1.NewPtpOpenshiftIoPtpOperatorConfigV1DataSource,
+		ptp_openshift_io_v1.NewPtpOpenshiftIoPtpOperatorConfigV1Manifest,
 		// pubsubplus_solace_com_v1beta1.NewPubsubplusSolaceComPubSubPlusEventBrokerV1Beta1DataSource,
 		pubsubplus_solace_com_v1beta1.NewPubsubplusSolaceComPubSubPlusEventBrokerV1Beta1Manifest,
 		// pxc_percona_com_v1.NewPxcPerconaComPerconaXtraDbclusterBackupV1DataSource,
@@ -3223,8 +3230,6 @@ func allDataSources() []func() datasource.DataSource {
 		quay_redhat_com_v1.NewQuayRedhatComQuayRegistryV1Manifest,
 		// quota_codeflare_dev_v1alpha1.NewQuotaCodeflareDevQuotaSubtreeV1Alpha1DataSource,
 		quota_codeflare_dev_v1alpha1.NewQuotaCodeflareDevQuotaSubtreeV1Alpha1Manifest,
-		// quota_openshift_io_v1.NewQuotaOpenshiftIoClusterResourceQuotaV1DataSource,
-		quota_openshift_io_v1.NewQuotaOpenshiftIoClusterResourceQuotaV1Manifest,
 		// ray_io_v1.NewRayIoRayClusterV1DataSource,
 		ray_io_v1.NewRayIoRayClusterV1Manifest,
 		// ray_io_v1.NewRayIoRayJobV1DataSource,
@@ -3291,12 +3296,18 @@ func allDataSources() []func() datasource.DataSource {
 		reliablesyncs_kubeedge_io_v1alpha1.NewReliablesyncsKubeedgeIoClusterObjectSyncV1Alpha1Manifest,
 		// reliablesyncs_kubeedge_io_v1alpha1.NewReliablesyncsKubeedgeIoObjectSyncV1Alpha1DataSource,
 		reliablesyncs_kubeedge_io_v1alpha1.NewReliablesyncsKubeedgeIoObjectSyncV1Alpha1Manifest,
+		// remediation_medik8s_io_v1alpha1.NewRemediationMedik8SIoNodeHealthCheckV1Alpha1DataSource,
+		remediation_medik8s_io_v1alpha1.NewRemediationMedik8SIoNodeHealthCheckV1Alpha1Manifest,
 		// repo_manager_pulpproject_org_v1beta2.NewRepoManagerPulpprojectOrgPulpBackupV1Beta2DataSource,
 		repo_manager_pulpproject_org_v1beta2.NewRepoManagerPulpprojectOrgPulpBackupV1Beta2Manifest,
 		// repo_manager_pulpproject_org_v1beta2.NewRepoManagerPulpprojectOrgPulpRestoreV1Beta2DataSource,
 		repo_manager_pulpproject_org_v1beta2.NewRepoManagerPulpprojectOrgPulpRestoreV1Beta2Manifest,
 		// repo_manager_pulpproject_org_v1beta2.NewRepoManagerPulpprojectOrgPulpV1Beta2DataSource,
 		repo_manager_pulpproject_org_v1beta2.NewRepoManagerPulpprojectOrgPulpV1Beta2Manifest,
+		// reports_kyverno_io_v1.NewReportsKyvernoIoClusterEphemeralReportV1DataSource,
+		reports_kyverno_io_v1.NewReportsKyvernoIoClusterEphemeralReportV1Manifest,
+		// reports_kyverno_io_v1.NewReportsKyvernoIoEphemeralReportV1DataSource,
+		reports_kyverno_io_v1.NewReportsKyvernoIoEphemeralReportV1Manifest,
 		// resources_teleport_dev_v1.NewResourcesTeleportDevTeleportLoginRuleV1DataSource,
 		resources_teleport_dev_v1.NewResourcesTeleportDevTeleportLoginRuleV1Manifest,
 		// resources_teleport_dev_v1.NewResourcesTeleportDevTeleportOktaImportRuleV1DataSource,
@@ -3333,8 +3344,6 @@ func allDataSources() []func() datasource.DataSource {
 		route53resolver_services_k8s_aws_v1alpha1.NewRoute53ResolverServicesK8SAwsResolverEndpointV1Alpha1Manifest,
 		// route53resolver_services_k8s_aws_v1alpha1.NewRoute53ResolverServicesK8SAwsResolverRuleV1Alpha1DataSource,
 		route53resolver_services_k8s_aws_v1alpha1.NewRoute53ResolverServicesK8SAwsResolverRuleV1Alpha1Manifest,
-		// route_openshift_io_v1.NewRouteOpenshiftIoRouteV1DataSource,
-		route_openshift_io_v1.NewRouteOpenshiftIoRouteV1Manifest,
 		// rules_kubeedge_io_v1.NewRulesKubeedgeIoRuleEndpointV1DataSource,
 		rules_kubeedge_io_v1.NewRulesKubeedgeIoRuleEndpointV1Manifest,
 		// rules_kubeedge_io_v1.NewRulesKubeedgeIoRuleV1DataSource,
@@ -3343,6 +3352,12 @@ func allDataSources() []func() datasource.DataSource {
 		runtime_cluster_x_k8s_io_v1alpha1.NewRuntimeClusterXK8SIoExtensionConfigV1Alpha1Manifest,
 		// s3_services_k8s_aws_v1alpha1.NewS3ServicesK8SAwsBucketV1Alpha1DataSource,
 		s3_services_k8s_aws_v1alpha1.NewS3ServicesK8SAwsBucketV1Alpha1Manifest,
+		// s3_snappcloud_io_v1alpha1.NewS3SnappcloudIoS3BucketV1Alpha1DataSource,
+		s3_snappcloud_io_v1alpha1.NewS3SnappcloudIoS3BucketV1Alpha1Manifest,
+		// s3_snappcloud_io_v1alpha1.NewS3SnappcloudIoS3UserClaimV1Alpha1DataSource,
+		s3_snappcloud_io_v1alpha1.NewS3SnappcloudIoS3UserClaimV1Alpha1Manifest,
+		// s3_snappcloud_io_v1alpha1.NewS3SnappcloudIoS3UserV1Alpha1DataSource,
+		s3_snappcloud_io_v1alpha1.NewS3SnappcloudIoS3UserV1Alpha1Manifest,
 		// sagemaker_services_k8s_aws_v1alpha1.NewSagemakerServicesK8SAwsAppV1Alpha1DataSource,
 		sagemaker_services_k8s_aws_v1alpha1.NewSagemakerServicesK8SAwsAppV1Alpha1Manifest,
 		// sagemaker_services_k8s_aws_v1alpha1.NewSagemakerServicesK8SAwsDataQualityJobDefinitionV1Alpha1DataSource,
@@ -3383,8 +3398,6 @@ func allDataSources() []func() datasource.DataSource {
 		sagemaker_services_k8s_aws_v1alpha1.NewSagemakerServicesK8SAwsTransformJobV1Alpha1Manifest,
 		// sagemaker_services_k8s_aws_v1alpha1.NewSagemakerServicesK8SAwsUserProfileV1Alpha1DataSource,
 		sagemaker_services_k8s_aws_v1alpha1.NewSagemakerServicesK8SAwsUserProfileV1Alpha1Manifest,
-		// samples_operator_openshift_io_v1.NewSamplesOperatorOpenshiftIoConfigV1DataSource,
-		samples_operator_openshift_io_v1.NewSamplesOperatorOpenshiftIoConfigV1Manifest,
 		// scheduling_k8s_io_v1.NewSchedulingK8SIoPriorityClassV1DataSource,
 		scheduling_k8s_io_v1.NewSchedulingK8SIoPriorityClassV1Manifest,
 		// scheduling_koordinator_sh_v1alpha1.NewSchedulingKoordinatorShDeviceV1Alpha1DataSource,
@@ -3445,8 +3458,6 @@ func allDataSources() []func() datasource.DataSource {
 		secretsmanager_services_k8s_aws_v1alpha1.NewSecretsmanagerServicesK8SAwsSecretV1Alpha1Manifest,
 		// secscan_quay_redhat_com_v1alpha1.NewSecscanQuayRedhatComImageManifestVulnV1Alpha1DataSource,
 		secscan_quay_redhat_com_v1alpha1.NewSecscanQuayRedhatComImageManifestVulnV1Alpha1Manifest,
-		// security_internal_openshift_io_v1.NewSecurityInternalOpenshiftIoRangeAllocationV1DataSource,
-		security_internal_openshift_io_v1.NewSecurityInternalOpenshiftIoRangeAllocationV1Manifest,
 		// security_istio_io_v1.NewSecurityIstioIoAuthorizationPolicyV1DataSource,
 		security_istio_io_v1.NewSecurityIstioIoAuthorizationPolicyV1Manifest,
 		// security_istio_io_v1.NewSecurityIstioIoPeerAuthenticationV1DataSource,
@@ -3459,8 +3470,6 @@ func allDataSources() []func() datasource.DataSource {
 		security_istio_io_v1beta1.NewSecurityIstioIoPeerAuthenticationV1Beta1Manifest,
 		// security_istio_io_v1beta1.NewSecurityIstioIoRequestAuthenticationV1Beta1DataSource,
 		security_istio_io_v1beta1.NewSecurityIstioIoRequestAuthenticationV1Beta1Manifest,
-		// security_openshift_io_v1.NewSecurityOpenshiftIoSecurityContextConstraintsV1DataSource,
-		security_openshift_io_v1.NewSecurityOpenshiftIoSecurityContextConstraintsV1Manifest,
 		// security_profiles_operator_x_k8s_io_v1alpha1.NewSecurityProfilesOperatorXK8SIoAppArmorProfileV1Alpha1DataSource,
 		security_profiles_operator_x_k8s_io_v1alpha1.NewSecurityProfilesOperatorXK8SIoAppArmorProfileV1Alpha1Manifest,
 		// security_profiles_operator_x_k8s_io_v1alpha1.NewSecurityProfilesOperatorXK8SIoProfileBindingV1Alpha1DataSource,
@@ -3477,6 +3486,12 @@ func allDataSources() []func() datasource.DataSource {
 		security_profiles_operator_x_k8s_io_v1alpha2.NewSecurityProfilesOperatorXK8SIoSelinuxProfileV1Alpha2Manifest,
 		// security_profiles_operator_x_k8s_io_v1beta1.NewSecurityProfilesOperatorXK8SIoSeccompProfileV1Beta1DataSource,
 		security_profiles_operator_x_k8s_io_v1beta1.NewSecurityProfilesOperatorXK8SIoSeccompProfileV1Beta1Manifest,
+		// self_node_remediation_medik8s_io_v1alpha1.NewSelfNodeRemediationMedik8SIoSelfNodeRemediationConfigV1Alpha1DataSource,
+		self_node_remediation_medik8s_io_v1alpha1.NewSelfNodeRemediationMedik8SIoSelfNodeRemediationConfigV1Alpha1Manifest,
+		// self_node_remediation_medik8s_io_v1alpha1.NewSelfNodeRemediationMedik8SIoSelfNodeRemediationTemplateV1Alpha1DataSource,
+		self_node_remediation_medik8s_io_v1alpha1.NewSelfNodeRemediationMedik8SIoSelfNodeRemediationTemplateV1Alpha1Manifest,
+		// self_node_remediation_medik8s_io_v1alpha1.NewSelfNodeRemediationMedik8SIoSelfNodeRemediationV1Alpha1DataSource,
+		self_node_remediation_medik8s_io_v1alpha1.NewSelfNodeRemediationMedik8SIoSelfNodeRemediationV1Alpha1Manifest,
 		// sematext_com_v1.NewSematextComSematextAgentV1DataSource,
 		sematext_com_v1.NewSematextComSematextAgentV1Manifest,
 		// servicebinding_io_v1alpha3.NewServicebindingIoClusterWorkloadResourceMappingV1Alpha3DataSource,
@@ -3487,6 +3502,14 @@ func allDataSources() []func() datasource.DataSource {
 		servicebinding_io_v1beta1.NewServicebindingIoClusterWorkloadResourceMappingV1Beta1Manifest,
 		// servicebinding_io_v1beta1.NewServicebindingIoServiceBindingV1Beta1DataSource,
 		servicebinding_io_v1beta1.NewServicebindingIoServiceBindingV1Beta1Manifest,
+		// servicemesh_cisco_com_v1alpha1.NewServicemeshCiscoComIstioControlPlaneV1Alpha1DataSource,
+		servicemesh_cisco_com_v1alpha1.NewServicemeshCiscoComIstioControlPlaneV1Alpha1Manifest,
+		// servicemesh_cisco_com_v1alpha1.NewServicemeshCiscoComIstioMeshGatewayV1Alpha1DataSource,
+		servicemesh_cisco_com_v1alpha1.NewServicemeshCiscoComIstioMeshGatewayV1Alpha1Manifest,
+		// servicemesh_cisco_com_v1alpha1.NewServicemeshCiscoComIstioMeshV1Alpha1DataSource,
+		servicemesh_cisco_com_v1alpha1.NewServicemeshCiscoComIstioMeshV1Alpha1Manifest,
+		// servicemesh_cisco_com_v1alpha1.NewServicemeshCiscoComPeerIstioControlPlaneV1Alpha1DataSource,
+		servicemesh_cisco_com_v1alpha1.NewServicemeshCiscoComPeerIstioControlPlaneV1Alpha1Manifest,
 		// services_k8s_aws_v1alpha1.NewServicesK8SAwsAdoptedResourceV1Alpha1DataSource,
 		services_k8s_aws_v1alpha1.NewServicesK8SAwsAdoptedResourceV1Alpha1Manifest,
 		// services_k8s_aws_v1alpha1.NewServicesK8SAwsFieldExportV1Alpha1DataSource,
@@ -3497,10 +3520,6 @@ func allDataSources() []func() datasource.DataSource {
 		sfn_services_k8s_aws_v1alpha1.NewSfnServicesK8SAwsActivityV1Alpha1Manifest,
 		// sfn_services_k8s_aws_v1alpha1.NewSfnServicesK8SAwsStateMachineV1Alpha1DataSource,
 		sfn_services_k8s_aws_v1alpha1.NewSfnServicesK8SAwsStateMachineV1Alpha1Manifest,
-		// sharedresource_openshift_io_v1alpha1.NewSharedresourceOpenshiftIoSharedConfigMapV1Alpha1DataSource,
-		sharedresource_openshift_io_v1alpha1.NewSharedresourceOpenshiftIoSharedConfigMapV1Alpha1Manifest,
-		// sharedresource_openshift_io_v1alpha1.NewSharedresourceOpenshiftIoSharedSecretV1Alpha1DataSource,
-		sharedresource_openshift_io_v1alpha1.NewSharedresourceOpenshiftIoSharedSecretV1Alpha1Manifest,
 		// site_superedge_io_v1alpha1.NewSiteSuperedgeIoNodeGroupV1Alpha1DataSource,
 		site_superedge_io_v1alpha1.NewSiteSuperedgeIoNodeGroupV1Alpha1Manifest,
 		// site_superedge_io_v1alpha1.NewSiteSuperedgeIoNodeUnitV1Alpha1DataSource,
@@ -3587,6 +3606,8 @@ func allDataSources() []func() datasource.DataSource {
 		storage_k8s_io_v1.NewStorageK8SIoVolumeAttachmentV1Manifest,
 		// storage_kubeblocks_io_v1alpha1.NewStorageKubeblocksIoStorageProviderV1Alpha1DataSource,
 		storage_kubeblocks_io_v1alpha1.NewStorageKubeblocksIoStorageProviderV1Alpha1Manifest,
+		// storageos_com_v1.NewStorageosComStorageOsclusterV1DataSource,
+		storageos_com_v1.NewStorageosComStorageOsclusterV1Manifest,
 		// sts_min_io_v1alpha1.NewStsMinIoPolicyBindingV1Alpha1DataSource,
 		sts_min_io_v1alpha1.NewStsMinIoPolicyBindingV1Alpha1Manifest,
 		// stunner_l7mp_io_v1.NewStunnerL7MpIoDataplaneV1DataSource,
@@ -3609,6 +3630,8 @@ func allDataSources() []func() datasource.DataSource {
 		submariner_io_v1alpha1.NewSubmarinerIoServiceDiscoveryV1Alpha1Manifest,
 		// submariner_io_v1alpha1.NewSubmarinerIoSubmarinerV1Alpha1DataSource,
 		submariner_io_v1alpha1.NewSubmarinerIoSubmarinerV1Alpha1Manifest,
+		// telemetry_istio_io_v1.NewTelemetryIstioIoTelemetryV1DataSource,
+		telemetry_istio_io_v1.NewTelemetryIstioIoTelemetryV1Manifest,
 		// telemetry_istio_io_v1alpha1.NewTelemetryIstioIoTelemetryV1Alpha1DataSource,
 		telemetry_istio_io_v1alpha1.NewTelemetryIstioIoTelemetryV1Alpha1Manifest,
 		// templates_gatekeeper_sh_v1.NewTemplatesGatekeeperShConstraintTemplateV1DataSource,
@@ -3653,6 +3676,34 @@ func allDataSources() []func() datasource.DataSource {
 		tests_testkube_io_v3.NewTestsTestkubeIoTestSuiteV3Manifest,
 		// tests_testkube_io_v3.NewTestsTestkubeIoTestV3DataSource,
 		tests_testkube_io_v3.NewTestsTestkubeIoTestV3Manifest,
+		// tf_tungsten_io_v1alpha1.NewTfTungstenIoAnalyticsAlarmV1Alpha1DataSource,
+		tf_tungsten_io_v1alpha1.NewTfTungstenIoAnalyticsAlarmV1Alpha1Manifest,
+		// tf_tungsten_io_v1alpha1.NewTfTungstenIoAnalyticsSnmpV1Alpha1DataSource,
+		tf_tungsten_io_v1alpha1.NewTfTungstenIoAnalyticsSnmpV1Alpha1Manifest,
+		// tf_tungsten_io_v1alpha1.NewTfTungstenIoAnalyticsV1Alpha1DataSource,
+		tf_tungsten_io_v1alpha1.NewTfTungstenIoAnalyticsV1Alpha1Manifest,
+		// tf_tungsten_io_v1alpha1.NewTfTungstenIoCassandraV1Alpha1DataSource,
+		tf_tungsten_io_v1alpha1.NewTfTungstenIoCassandraV1Alpha1Manifest,
+		// tf_tungsten_io_v1alpha1.NewTfTungstenIoConfigV1Alpha1DataSource,
+		tf_tungsten_io_v1alpha1.NewTfTungstenIoConfigV1Alpha1Manifest,
+		// tf_tungsten_io_v1alpha1.NewTfTungstenIoControlV1Alpha1DataSource,
+		tf_tungsten_io_v1alpha1.NewTfTungstenIoControlV1Alpha1Manifest,
+		// tf_tungsten_io_v1alpha1.NewTfTungstenIoKubemanagerV1Alpha1DataSource,
+		tf_tungsten_io_v1alpha1.NewTfTungstenIoKubemanagerV1Alpha1Manifest,
+		// tf_tungsten_io_v1alpha1.NewTfTungstenIoManagerV1Alpha1DataSource,
+		tf_tungsten_io_v1alpha1.NewTfTungstenIoManagerV1Alpha1Manifest,
+		// tf_tungsten_io_v1alpha1.NewTfTungstenIoQueryEngineV1Alpha1DataSource,
+		tf_tungsten_io_v1alpha1.NewTfTungstenIoQueryEngineV1Alpha1Manifest,
+		// tf_tungsten_io_v1alpha1.NewTfTungstenIoRabbitmqV1Alpha1DataSource,
+		tf_tungsten_io_v1alpha1.NewTfTungstenIoRabbitmqV1Alpha1Manifest,
+		// tf_tungsten_io_v1alpha1.NewTfTungstenIoRedisV1Alpha1DataSource,
+		tf_tungsten_io_v1alpha1.NewTfTungstenIoRedisV1Alpha1Manifest,
+		// tf_tungsten_io_v1alpha1.NewTfTungstenIoVrouterV1Alpha1DataSource,
+		tf_tungsten_io_v1alpha1.NewTfTungstenIoVrouterV1Alpha1Manifest,
+		// tf_tungsten_io_v1alpha1.NewTfTungstenIoWebuiV1Alpha1DataSource,
+		tf_tungsten_io_v1alpha1.NewTfTungstenIoWebuiV1Alpha1Manifest,
+		// tf_tungsten_io_v1alpha1.NewTfTungstenIoZookeeperV1Alpha1DataSource,
+		tf_tungsten_io_v1alpha1.NewTfTungstenIoZookeeperV1Alpha1Manifest,
 		// theketch_io_v1beta1.NewTheketchIoAppV1Beta1DataSource,
 		theketch_io_v1beta1.NewTheketchIoAppV1Beta1Manifest,
 		// theketch_io_v1beta1.NewTheketchIoJobV1Beta1DataSource,
@@ -3787,6 +3838,8 @@ func allDataSources() []func() datasource.DataSource {
 		workload_codeflare_dev_v1beta1.NewWorkloadCodeflareDevAppWrapperV1Beta1Manifest,
 		// workload_codeflare_dev_v1beta1.NewWorkloadCodeflareDevSchedulingSpecV1Beta1DataSource,
 		workload_codeflare_dev_v1beta1.NewWorkloadCodeflareDevSchedulingSpecV1Beta1Manifest,
+		// workloads_kubeblocks_io_v1alpha1.NewWorkloadsKubeblocksIoInstanceSetV1Alpha1DataSource,
+		workloads_kubeblocks_io_v1alpha1.NewWorkloadsKubeblocksIoInstanceSetV1Alpha1Manifest,
 		// workloads_kubeblocks_io_v1alpha1.NewWorkloadsKubeblocksIoReplicatedStateMachineV1Alpha1DataSource,
 		workloads_kubeblocks_io_v1alpha1.NewWorkloadsKubeblocksIoReplicatedStateMachineV1Alpha1Manifest,
 		// zonecontrol_k8s_aws_v1.NewZonecontrolK8SAwsZoneAwareUpdateV1DataSource,

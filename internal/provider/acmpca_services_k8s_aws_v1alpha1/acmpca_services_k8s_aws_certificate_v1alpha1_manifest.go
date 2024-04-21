@@ -137,12 +137,12 @@ type AcmpcaServicesK8SAwsCertificateV1Alpha1ManifestData struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"certificate_authority_ref" json:"certificateAuthorityRef,omitempty"`
-		Csr    *string `tfsdk:"csr" json:"csr,omitempty"`
-		CsrRef *struct {
+		CertificateSigningRequest    *string `tfsdk:"certificate_signing_request" json:"certificateSigningRequest,omitempty"`
+		CertificateSigningRequestRef *struct {
 			From *struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
-		} `tfsdk:"csr_ref" json:"csrRef,omitempty"`
+		} `tfsdk:"certificate_signing_request_ref" json:"certificateSigningRequestRef,omitempty"`
 		SigningAlgorithm *string `tfsdk:"signing_algorithm" json:"signingAlgorithm,omitempty"`
 		TemplateARN      *string `tfsdk:"template_arn" json:"templateARN,omitempty"`
 		Validity         *struct {
@@ -880,18 +880,15 @@ func (r *AcmpcaServicesK8SAwsCertificateV1Alpha1Manifest) Schema(_ context.Conte
 						Computed: false,
 					},
 
-					"csr": schema.StringAttribute{
-						Description:         "The certificate signing request (CSR) for the certificate you want to issue.As an example, you can use the following OpenSSL command to create the CSRand a 2048 bit RSA private key.openssl req -new -newkey rsa:2048 -days 365 -keyout private/test_cert_priv_key.pem-out csr/test_cert_.csrIf you have a configuration file, you can then use the following OpenSSLcommand. The usr_cert block in the configuration file contains your X509version 3 extensions.openssl req -new -config openssl_rsa.cnf -extensions usr_cert -newkey rsa:2048-days 365 -keyout private/test_cert_priv_key.pem -out csr/test_cert_.csrNote: A CSR must provide either a subject name or a subject alternative nameor the request will be rejected.",
-						MarkdownDescription: "The certificate signing request (CSR) for the certificate you want to issue.As an example, you can use the following OpenSSL command to create the CSRand a 2048 bit RSA private key.openssl req -new -newkey rsa:2048 -days 365 -keyout private/test_cert_priv_key.pem-out csr/test_cert_.csrIf you have a configuration file, you can then use the following OpenSSLcommand. The usr_cert block in the configuration file contains your X509version 3 extensions.openssl req -new -config openssl_rsa.cnf -extensions usr_cert -newkey rsa:2048-days 365 -keyout private/test_cert_priv_key.pem -out csr/test_cert_.csrNote: A CSR must provide either a subject name or a subject alternative nameor the request will be rejected.",
+					"certificate_signing_request": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
-						Validators: []validator.String{
-							validators.Base64Validator(),
-						},
 					},
 
-					"csr_ref": schema.SingleNestedAttribute{
+					"certificate_signing_request_ref": schema.SingleNestedAttribute{
 						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
 						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
 						Attributes: map[string]schema.Attribute{

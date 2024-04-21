@@ -82,7 +82,7 @@ type OperatorVictoriametricsComVmnodeScrapeV1Beta1ManifestData struct {
 			Labels       *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			Match        *string            `tfsdk:"match" json:"match,omitempty"`
 			Modulus      *int64             `tfsdk:"modulus" json:"modulus,omitempty"`
-			Regex        *string            `tfsdk:"regex" json:"regex,omitempty"`
+			Regex        *map[string]string `tfsdk:"regex" json:"regex,omitempty"`
 			Replacement  *string            `tfsdk:"replacement" json:"replacement,omitempty"`
 			Separator    *string            `tfsdk:"separator" json:"separator,omitempty"`
 			SourceLabels *[]string          `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
@@ -121,7 +121,7 @@ type OperatorVictoriametricsComVmnodeScrapeV1Beta1ManifestData struct {
 			Labels       *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			Match        *string            `tfsdk:"match" json:"match,omitempty"`
 			Modulus      *int64             `tfsdk:"modulus" json:"modulus,omitempty"`
-			Regex        *string            `tfsdk:"regex" json:"regex,omitempty"`
+			Regex        *map[string]string `tfsdk:"regex" json:"regex,omitempty"`
 			Replacement  *string            `tfsdk:"replacement" json:"replacement,omitempty"`
 			Separator    *string            `tfsdk:"separator" json:"separator,omitempty"`
 			SourceLabels *[]string          `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
@@ -139,6 +139,7 @@ type OperatorVictoriametricsComVmnodeScrapeV1Beta1ManifestData struct {
 			} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 		} `tfsdk:"selector" json:"selector,omitempty"`
+		SeriesLimit  *int64    `tfsdk:"series_limit" json:"seriesLimit,omitempty"`
 		TargetLabels *[]string `tfsdk:"target_labels" json:"targetLabels,omitempty"`
 		TlsConfig    *struct {
 			Ca *struct {
@@ -593,9 +594,10 @@ func (r *OperatorVictoriametricsComVmnodeScrapeV1Beta1Manifest) Schema(_ context
 									Computed:            false,
 								},
 
-								"regex": schema.StringAttribute{
-									Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'",
-									MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'",
+								"regex": schema.MapAttribute{
+									Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
+									MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
+									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -874,9 +876,10 @@ func (r *OperatorVictoriametricsComVmnodeScrapeV1Beta1Manifest) Schema(_ context
 									Computed:            false,
 								},
 
-								"regex": schema.StringAttribute{
-									Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'",
-									MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'",
+								"regex": schema.MapAttribute{
+									Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
+									MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
+									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1008,6 +1011,14 @@ func (r *OperatorVictoriametricsComVmnodeScrapeV1Beta1Manifest) Schema(_ context
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"series_limit": schema.Int64Attribute{
+						Description:         "SeriesLimit defines per-scrape limit on number of unique time seriesa single target can expose during all the scrapes on the time window of 24h.",
+						MarkdownDescription: "SeriesLimit defines per-scrape limit on number of unique time seriesa single target can expose during all the scrapes on the time window of 24h.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"target_labels": schema.ListAttribute{
@@ -1264,8 +1275,8 @@ func (r *OperatorVictoriametricsComVmnodeScrapeV1Beta1Manifest) Schema(_ context
 							},
 
 							"disable_keep_alive": schema.BoolAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "disable_keepalive allows disabling HTTP keep-alive when scraping targets.By default, HTTP keep-alive is enabled, so TCP connections to scrape targetscould be re-used.See https://docs.victoriametrics.com/vmagent.html#scrape_config-enhancements",
+								MarkdownDescription: "disable_keepalive allows disabling HTTP keep-alive when scraping targets.By default, HTTP keep-alive is enabled, so TCP connections to scrape targetscould be re-used.See https://docs.victoriametrics.com/vmagent.html#scrape_config-enhancements",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1281,8 +1292,8 @@ func (r *OperatorVictoriametricsComVmnodeScrapeV1Beta1Manifest) Schema(_ context
 							},
 
 							"metric_relabel_debug": schema.BoolAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "deprecated since [v1.85](https://github.com/VictoriaMetrics/VictoriaMetrics/releases/tag/v1.85.0), will be removed in next release",
+								MarkdownDescription: "deprecated since [v1.85](https://github.com/VictoriaMetrics/VictoriaMetrics/releases/tag/v1.85.0), will be removed in next release",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1662,8 +1673,8 @@ func (r *OperatorVictoriametricsComVmnodeScrapeV1Beta1Manifest) Schema(_ context
 							},
 
 							"relabel_debug": schema.BoolAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "deprecated since [v1.85](https://github.com/VictoriaMetrics/VictoriaMetrics/releases/tag/v1.85.0), will be removed in next release",
+								MarkdownDescription: "deprecated since [v1.85](https://github.com/VictoriaMetrics/VictoriaMetrics/releases/tag/v1.85.0), will be removed in next release",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

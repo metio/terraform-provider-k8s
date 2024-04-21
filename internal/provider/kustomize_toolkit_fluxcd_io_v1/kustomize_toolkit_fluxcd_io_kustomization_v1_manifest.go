@@ -79,7 +79,9 @@ type KustomizeToolkitFluxcdIoKustomizationV1ManifestData struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
 		} `tfsdk:"kube_config" json:"kubeConfig,omitempty"`
-		Patches *[]struct {
+		NamePrefix *string `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
+		NameSuffix *string `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
+		Patches    *[]struct {
 			Patch  *string `tfsdk:"patch" json:"patch,omitempty"`
 			Target *struct {
 				AnnotationSelector *string `tfsdk:"annotation_selector" json:"annotationSelector,omitempty"`
@@ -430,6 +432,30 @@ func (r *KustomizeToolkitFluxcdIoKustomizationV1Manifest) Schema(_ context.Conte
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"name_prefix": schema.StringAttribute{
+						Description:         "NamePrefix will prefix the names of all managed resources.",
+						MarkdownDescription: "NamePrefix will prefix the names of all managed resources.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtLeast(1),
+							stringvalidator.LengthAtMost(200),
+						},
+					},
+
+					"name_suffix": schema.StringAttribute{
+						Description:         "NameSuffix will suffix the names of all managed resources.",
+						MarkdownDescription: "NameSuffix will suffix the names of all managed resources.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtLeast(1),
+							stringvalidator.LengthAtMost(200),
+						},
 					},
 
 					"patches": schema.ListNestedAttribute{

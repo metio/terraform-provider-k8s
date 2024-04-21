@@ -241,6 +241,7 @@ type CamelApacheOrgKameletBindingV1Alpha1ManifestData struct {
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 						} `tfsdk:"resources" json:"resources,omitempty"`
+						RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 						SecurityContext *struct {
 							AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 							Capabilities             *struct {
@@ -477,6 +478,7 @@ type CamelApacheOrgKameletBindingV1Alpha1ManifestData struct {
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 						} `tfsdk:"resources" json:"resources,omitempty"`
+						RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 						SecurityContext *struct {
 							AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 							Capabilities             *struct {
@@ -713,6 +715,7 @@ type CamelApacheOrgKameletBindingV1Alpha1ManifestData struct {
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 						} `tfsdk:"resources" json:"resources,omitempty"`
+						RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 						SecurityContext *struct {
 							AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 							Capabilities             *struct {
@@ -1156,6 +1159,7 @@ type CamelApacheOrgKameletBindingV1Alpha1ManifestData struct {
 					MavenProfiles         *[]string          `tfsdk:"maven_profiles" json:"mavenProfiles,omitempty"`
 					NodeSelector          *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 					OrderStrategy         *string            `tfsdk:"order_strategy" json:"orderStrategy,omitempty"`
+					Platforms             *[]string          `tfsdk:"platforms" json:"platforms,omitempty"`
 					Properties            *[]string          `tfsdk:"properties" json:"properties,omitempty"`
 					RequestCPU            *string            `tfsdk:"request_cpu" json:"requestCPU,omitempty"`
 					RequestMemory         *string            `tfsdk:"request_memory" json:"requestMemory,omitempty"`
@@ -1217,8 +1221,8 @@ type CamelApacheOrgKameletBindingV1Alpha1ManifestData struct {
 					Configuration               *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
 					Enabled                     *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
 					ProgressDeadlineSeconds     *int64             `tfsdk:"progress_deadline_seconds" json:"progressDeadlineSeconds,omitempty"`
-					RollingUpdateMaxSurge       *int64             `tfsdk:"rolling_update_max_surge" json:"rollingUpdateMaxSurge,omitempty"`
-					RollingUpdateMaxUnavailable *int64             `tfsdk:"rolling_update_max_unavailable" json:"rollingUpdateMaxUnavailable,omitempty"`
+					RollingUpdateMaxSurge       *string            `tfsdk:"rolling_update_max_surge" json:"rollingUpdateMaxSurge,omitempty"`
+					RollingUpdateMaxUnavailable *string            `tfsdk:"rolling_update_max_unavailable" json:"rollingUpdateMaxUnavailable,omitempty"`
 					Strategy                    *string            `tfsdk:"strategy" json:"strategy,omitempty"`
 				} `tfsdk:"deployment" json:"deployment,omitempty"`
 				Environment *struct {
@@ -1354,12 +1358,13 @@ type CamelApacheOrgKameletBindingV1Alpha1ManifestData struct {
 					Configuration *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
 				} `tfsdk:"master" json:"master,omitempty"`
 				Mount *struct {
-					Configs       *[]string          `tfsdk:"configs" json:"configs,omitempty"`
-					Configuration *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
-					Enabled       *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
-					HotReload     *bool              `tfsdk:"hot_reload" json:"hotReload,omitempty"`
-					Resources     *[]string          `tfsdk:"resources" json:"resources,omitempty"`
-					Volumes       *[]string          `tfsdk:"volumes" json:"volumes,omitempty"`
+					Configs                          *[]string          `tfsdk:"configs" json:"configs,omitempty"`
+					Configuration                    *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
+					Enabled                          *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+					HotReload                        *bool              `tfsdk:"hot_reload" json:"hotReload,omitempty"`
+					Resources                        *[]string          `tfsdk:"resources" json:"resources,omitempty"`
+					ScanKameletsImplicitLabelSecrets *bool              `tfsdk:"scan_kamelets_implicit_label_secrets" json:"scanKameletsImplicitLabelSecrets,omitempty"`
+					Volumes                          *[]string          `tfsdk:"volumes" json:"volumes,omitempty"`
 				} `tfsdk:"mount" json:"mount,omitempty"`
 				Openapi *struct {
 					Configmaps    *[]string          `tfsdk:"configmaps" json:"configmaps,omitempty"`
@@ -3049,6 +3054,14 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 															Computed: false,
 														},
 
+														"restart_policy": schema.StringAttribute{
+															Description:         "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+															MarkdownDescription: "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"security_context": schema.SingleNestedAttribute{
 															Description:         "SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
 															MarkdownDescription: "SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
@@ -3182,8 +3195,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 																	MarkdownDescription: "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows.",
 																	Attributes: map[string]schema.Attribute{
 																		"localhost_profile": schema.StringAttribute{
-																			Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
-																			MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+																			Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																			MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -3223,8 +3236,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 																		},
 
 																		"host_process": schema.BoolAttribute{
-																			Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
-																			MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																			Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																			MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -4624,6 +4637,14 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 															Computed: false,
 														},
 
+														"restart_policy": schema.StringAttribute{
+															Description:         "Restart policy for the container to manage the restart behavior of each container within a pod. This may only be set for init containers. You cannot set this field on ephemeral containers.",
+															MarkdownDescription: "Restart policy for the container to manage the restart behavior of each container within a pod. This may only be set for init containers. You cannot set this field on ephemeral containers.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"security_context": schema.SingleNestedAttribute{
 															Description:         "Optional: SecurityContext defines the security options the ephemeral container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext.",
 															MarkdownDescription: "Optional: SecurityContext defines the security options the ephemeral container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext.",
@@ -4757,8 +4778,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 																	MarkdownDescription: "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows.",
 																	Attributes: map[string]schema.Attribute{
 																		"localhost_profile": schema.StringAttribute{
-																			Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
-																			MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+																			Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																			MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -4798,8 +4819,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 																		},
 
 																		"host_process": schema.BoolAttribute{
-																			Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
-																			MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																			Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																			MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -6199,6 +6220,14 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 															Computed: false,
 														},
 
+														"restart_policy": schema.StringAttribute{
+															Description:         "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+															MarkdownDescription: "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"security_context": schema.SingleNestedAttribute{
 															Description:         "SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
 															MarkdownDescription: "SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
@@ -6332,8 +6361,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 																	MarkdownDescription: "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows.",
 																	Attributes: map[string]schema.Attribute{
 																		"localhost_profile": schema.StringAttribute{
-																			Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
-																			MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+																			Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																			MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -6373,8 +6402,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 																		},
 
 																		"host_process": schema.BoolAttribute{
-																			Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
-																			MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																			Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																			MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -6838,8 +6867,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 														MarkdownDescription: "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
 														Attributes: map[string]schema.Attribute{
 															"localhost_profile": schema.StringAttribute{
-																Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
-																MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+																Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -6915,8 +6944,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 															},
 
 															"host_process": schema.BoolAttribute{
-																Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
-																MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -9205,6 +9234,15 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 												},
 											},
 
+											"platforms": schema.ListAttribute{
+												Description:         "The list of manifest platforms to use to build a container image (default 'linux/amd64').",
+												MarkdownDescription: "The list of manifest platforms to use to build a container image (default 'linux/amd64').",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"properties": schema.ListAttribute{
 												Description:         "A list of properties to be provided to the build task",
 												MarkdownDescription: "A list of properties to be provided to the build task",
@@ -9251,8 +9289,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 											},
 
 											"tasks_filter": schema.StringAttribute{
-												Description:         "A list of tasks sorted by the order of execution in a csv format, ie, '<taskName1>,<taskName2>,...'. Mind that you must include also the operator tasks ('builder', 'quarkus-native', 'package', 'jib', 'spectrum', 's2i') if you need to execute them. Useful only with 'pod' strategy.",
-												MarkdownDescription: "A list of tasks sorted by the order of execution in a csv format, ie, '<taskName1>,<taskName2>,...'. Mind that you must include also the operator tasks ('builder', 'quarkus-native', 'package', 'jib', 'spectrum', 's2i') if you need to execute them. Useful only with 'pod' strategy.",
+												Description:         "A list of tasks sorted by the order of execution in a csv format, ie, '<taskName1>,<taskName2>,...'. Mind that you must include also the operator tasks ('builder', 'quarkus-native', 'package', 'jib', 's2i') if you need to execute them. Useful only with 'pod' strategy.",
+												MarkdownDescription: "A list of tasks sorted by the order of execution in a csv format, ie, '<taskName1>,<taskName2>,...'. Mind that you must include also the operator tasks ('builder', 'quarkus-native', 'package', 'jib', 's2i') if you need to execute them. Useful only with 'pod' strategy.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -9338,8 +9376,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 											},
 
 											"runtime_version": schema.StringAttribute{
-												Description:         "The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform.",
-												MarkdownDescription: "The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform.",
+												Description:         "The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform. You can use a fixed version (for example '3.2.3') or a semantic version (for example '3.x') which will try to resolve to the best matching Catalog existing on the cluster.",
+												MarkdownDescription: "The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform. You can use a fixed version (for example '3.2.3') or a semantic version (for example '3.x') which will try to resolve to the best matching Catalog existing on the cluster.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -9676,7 +9714,7 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 												Computed:            false,
 											},
 
-											"rolling_update_max_surge": schema.Int64Attribute{
+											"rolling_update_max_surge": schema.StringAttribute{
 												Description:         "The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to '25%'.",
 												MarkdownDescription: "The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to '25%'.",
 												Required:            false,
@@ -9684,7 +9722,7 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 												Computed:            false,
 											},
 
-											"rolling_update_max_unavailable": schema.Int64Attribute{
+											"rolling_update_max_unavailable": schema.StringAttribute{
 												Description:         "The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to '25%'.",
 												MarkdownDescription: "The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to '25%'.",
 												Required:            false,
@@ -10738,8 +10776,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 											},
 
 											"hot_reload": schema.BoolAttribute{
-												Description:         "Enable 'hot reload' when a secret/configmap mounted is edited (default 'false'). The configmap/secret must be marked with 'camel.apache.org/integration' label to be taken in account.",
-												MarkdownDescription: "Enable 'hot reload' when a secret/configmap mounted is edited (default 'false'). The configmap/secret must be marked with 'camel.apache.org/integration' label to be taken in account.",
+												Description:         "Enable 'hot reload' when a secret/configmap mounted is edited (default 'false'). The configmap/secret must be marked with 'camel.apache.org/integration' label to be taken in account. The resource will be watched for any kind change, also for changes in metadata.",
+												MarkdownDescription: "Enable 'hot reload' when a secret/configmap mounted is edited (default 'false'). The configmap/secret must be marked with 'camel.apache.org/integration' label to be taken in account. The resource will be watched for any kind change, also for changes in metadata.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -10749,6 +10787,14 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 												Description:         "A list of resources (text or binary content) pointing to configmap/secret. The resources are expected to be any resource type (text or binary content). The destination path can be either a default location or any path specified by the user. Syntax: [configmap|secret]:name[/key][@path], where name represents the resource name, key optionally represents the resource key to be filtered and path represents the destination path",
 												MarkdownDescription: "A list of resources (text or binary content) pointing to configmap/secret. The resources are expected to be any resource type (text or binary content). The destination path can be either a default location or any path specified by the user. Syntax: [configmap|secret]:name[/key][@path], where name represents the resource name, key optionally represents the resource key to be filtered and path represents the destination path",
 												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"scan_kamelets_implicit_label_secrets": schema.BoolAttribute{
+												Description:         "Deprecated: include your properties in an explicit property file backed by a secret. Let the operator to scan for secret labeled with 'camel.apache.org/kamelet' and 'camel.apache.org/kamelet.configuration'. These secrets are mounted to the application and treated as plain properties file with their key/value list (ie .spec.data['camel.my-property'] = my-value) (default 'true').",
+												MarkdownDescription: "Deprecated: include your properties in an explicit property file backed by a secret. Let the operator to scan for secret labeled with 'camel.apache.org/kamelet' and 'camel.apache.org/kamelet.configuration'. These secrets are mounted to the application and treated as plain properties file with their key/value list (ie .spec.data['camel.my-property'] = my-value) (default 'true').",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -10894,8 +10940,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 										MarkdownDescription: "The configuration of Platform trait",
 										Attributes: map[string]schema.Attribute{
 											"auto": schema.BoolAttribute{
-												Description:         "To automatically detect from the environment if a default platform can be created (it will be created on OpenShift only).",
-												MarkdownDescription: "To automatically detect from the environment if a default platform can be created (it will be created on OpenShift only).",
+												Description:         "To automatically detect from the environment if a default platform can be created (it will be created on OpenShift or when a registry address is set). Deprecated: Platform is auto generated by the operator install procedure - maintained for backward compatibility",
+												MarkdownDescription: "To automatically detect from the environment if a default platform can be created (it will be created on OpenShift or when a registry address is set). Deprecated: Platform is auto generated by the operator install procedure - maintained for backward compatibility",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -10911,8 +10957,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 											},
 
 											"create_default": schema.BoolAttribute{
-												Description:         "To create a default (empty) platform when the platform is missing.",
-												MarkdownDescription: "To create a default (empty) platform when the platform is missing.",
+												Description:         "To create a default (empty) platform when the platform is missing. Deprecated: Platform is auto generated by the operator install procedure - maintained for backward compatibility",
+												MarkdownDescription: "To create a default (empty) platform when the platform is missing. Deprecated: Platform is auto generated by the operator install procedure - maintained for backward compatibility",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -10927,8 +10973,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 											},
 
 											"global": schema.BoolAttribute{
-												Description:         "Indicates if the platform should be created globally in the case of global operator (default true).",
-												MarkdownDescription: "Indicates if the platform should be created globally in the case of global operator (default true).",
+												Description:         "Indicates if the platform should be created globally in the case of global operator (default true). Deprecated: Platform is auto generated by the operator install procedure - maintained for backward compatibility",
+												MarkdownDescription: "Indicates if the platform should be created globally in the case of global operator (default true). Deprecated: Platform is auto generated by the operator install procedure - maintained for backward compatibility",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -11119,8 +11165,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 									},
 
 									"registry": schema.SingleNestedAttribute{
-										Description:         "The configuration of Registry trait",
-										MarkdownDescription: "The configuration of Registry trait",
+										Description:         "The configuration of Registry trait Deprecated: use jvm trait or read documentation.",
+										MarkdownDescription: "The configuration of Registry trait Deprecated: use jvm trait or read documentation.",
 										Attributes: map[string]schema.Attribute{
 											"configuration": schema.MapAttribute{
 												Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",

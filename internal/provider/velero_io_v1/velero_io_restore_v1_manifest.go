@@ -112,7 +112,8 @@ type VeleroIoRestoreV1ManifestData struct {
 		} `tfsdk:"restore_status" json:"restoreStatus,omitempty"`
 		ScheduleName   *string `tfsdk:"schedule_name" json:"scheduleName,omitempty"`
 		UploaderConfig *struct {
-			WriteSparseFiles *bool `tfsdk:"write_sparse_files" json:"writeSparseFiles,omitempty"`
+			ParallelFilesDownload *int64 `tfsdk:"parallel_files_download" json:"parallelFilesDownload,omitempty"`
+			WriteSparseFiles      *bool  `tfsdk:"write_sparse_files" json:"writeSparseFiles,omitempty"`
 		} `tfsdk:"uploader_config" json:"uploaderConfig,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -123,8 +124,8 @@ func (r *VeleroIoRestoreV1Manifest) Metadata(_ context.Context, request datasour
 
 func (r *VeleroIoRestoreV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "Restore is a Velero resource that represents the application of resources from a Velero backup to a target Kubernetes cluster.",
-		MarkdownDescription: "Restore is a Velero resource that represents the application of resources from a Velero backup to a target Kubernetes cluster.",
+		Description:         "Restore is a Velero resource that represents the application ofresources from a Velero backup to a target Kubernetes cluster.",
+		MarkdownDescription: "Restore is a Velero resource that represents the application ofresources from a Velero backup to a target Kubernetes cluster.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -195,16 +196,16 @@ func (r *VeleroIoRestoreV1Manifest) Schema(_ context.Context, _ datasource.Schem
 				MarkdownDescription: "RestoreSpec defines the specification for a Velero restore.",
 				Attributes: map[string]schema.Attribute{
 					"backup_name": schema.StringAttribute{
-						Description:         "BackupName is the unique name of the Velero backup to restore from.",
-						MarkdownDescription: "BackupName is the unique name of the Velero backup to restore from.",
-						Required:            true,
-						Optional:            false,
+						Description:         "BackupName is the unique name of the Velero backup to restorefrom.",
+						MarkdownDescription: "BackupName is the unique name of the Velero backup to restorefrom.",
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 					},
 
 					"excluded_namespaces": schema.ListAttribute{
-						Description:         "ExcludedNamespaces contains a list of namespaces that are not included in the restore.",
-						MarkdownDescription: "ExcludedNamespaces contains a list of namespaces that are not included in the restore.",
+						Description:         "ExcludedNamespaces contains a list of namespaces that are notincluded in the restore.",
+						MarkdownDescription: "ExcludedNamespaces contains a list of namespaces that are notincluded in the restore.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -212,8 +213,8 @@ func (r *VeleroIoRestoreV1Manifest) Schema(_ context.Context, _ datasource.Schem
 					},
 
 					"excluded_resources": schema.ListAttribute{
-						Description:         "ExcludedResources is a slice of resource names that are not included in the restore.",
-						MarkdownDescription: "ExcludedResources is a slice of resource names that are not included in the restore.",
+						Description:         "ExcludedResources is a slice of resource names that are notincluded in the restore.",
+						MarkdownDescription: "ExcludedResources is a slice of resource names that are notincluded in the restore.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -256,8 +257,8 @@ func (r *VeleroIoRestoreV1Manifest) Schema(_ context.Context, _ datasource.Schem
 										},
 
 										"included_namespaces": schema.ListAttribute{
-											Description:         "IncludedNamespaces specifies the namespaces to which this hook spec applies. If empty, it applies to all namespaces.",
-											MarkdownDescription: "IncludedNamespaces specifies the namespaces to which this hook spec applies. If empty, it applies to all namespaces.",
+											Description:         "IncludedNamespaces specifies the namespaces to which this hook spec applies. If empty, it appliesto all namespaces.",
+											MarkdownDescription: "IncludedNamespaces specifies the namespaces to which this hook spec applies. If empty, it appliesto all namespaces.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -265,8 +266,8 @@ func (r *VeleroIoRestoreV1Manifest) Schema(_ context.Context, _ datasource.Schem
 										},
 
 										"included_resources": schema.ListAttribute{
-											Description:         "IncludedResources specifies the resources to which this hook spec applies. If empty, it applies to all resources.",
-											MarkdownDescription: "IncludedResources specifies the resources to which this hook spec applies. If empty, it applies to all resources.",
+											Description:         "IncludedResources specifies the resources to which this hook spec applies. If empty, it appliesto all resources.",
+											MarkdownDescription: "IncludedResources specifies the resources to which this hook spec applies. If empty, it appliesto all resources.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -291,16 +292,16 @@ func (r *VeleroIoRestoreV1Manifest) Schema(_ context.Context, _ datasource.Schem
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -314,8 +315,8 @@ func (r *VeleroIoRestoreV1Manifest) Schema(_ context.Context, _ datasource.Schem
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -354,16 +355,16 @@ func (r *VeleroIoRestoreV1Manifest) Schema(_ context.Context, _ datasource.Schem
 															},
 
 															"container": schema.StringAttribute{
-																Description:         "Container is the container in the pod where the command should be executed. If not specified, the pod's first container is used.",
-																MarkdownDescription: "Container is the container in the pod where the command should be executed. If not specified, the pod's first container is used.",
+																Description:         "Container is the container in the pod where the command should be executed. If not specified,the pod's first container is used.",
+																MarkdownDescription: "Container is the container in the pod where the command should be executed. If not specified,the pod's first container is used.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"exec_timeout": schema.StringAttribute{
-																Description:         "ExecTimeout defines the maximum amount of time Velero should wait for the hook to complete before considering the execution a failure.",
-																MarkdownDescription: "ExecTimeout defines the maximum amount of time Velero should wait for the hook to complete before considering the execution a failure.",
+																Description:         "ExecTimeout defines the maximum amount of time Velero should wait for the hook to complete beforeconsidering the execution a failure.",
+																MarkdownDescription: "ExecTimeout defines the maximum amount of time Velero should wait for the hook to complete beforeconsidering the execution a failure.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -389,8 +390,8 @@ func (r *VeleroIoRestoreV1Manifest) Schema(_ context.Context, _ datasource.Schem
 															},
 
 															"wait_timeout": schema.StringAttribute{
-																Description:         "WaitTimeout defines the maximum amount of time Velero should wait for the container to be Ready before attempting to run the command.",
-																MarkdownDescription: "WaitTimeout defines the maximum amount of time Velero should wait for the container to be Ready before attempting to run the command.",
+																Description:         "WaitTimeout defines the maximum amount of time Velero should wait for the container to be Readybefore attempting to run the command.",
+																MarkdownDescription: "WaitTimeout defines the maximum amount of time Velero should wait for the container to be Readybefore attempting to run the command.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -445,16 +446,16 @@ func (r *VeleroIoRestoreV1Manifest) Schema(_ context.Context, _ datasource.Schem
 					},
 
 					"include_cluster_resources": schema.BoolAttribute{
-						Description:         "IncludeClusterResources specifies whether cluster-scoped resources should be included for consideration in the restore. If null, defaults to true.",
-						MarkdownDescription: "IncludeClusterResources specifies whether cluster-scoped resources should be included for consideration in the restore. If null, defaults to true.",
+						Description:         "IncludeClusterResources specifies whether cluster-scoped resourcesshould be included for consideration in the restore. If null, defaultsto true.",
+						MarkdownDescription: "IncludeClusterResources specifies whether cluster-scoped resourcesshould be included for consideration in the restore. If null, defaultsto true.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"included_namespaces": schema.ListAttribute{
-						Description:         "IncludedNamespaces is a slice of namespace names to include objects from. If empty, all namespaces are included.",
-						MarkdownDescription: "IncludedNamespaces is a slice of namespace names to include objects from. If empty, all namespaces are included.",
+						Description:         "IncludedNamespaces is a slice of namespace names to include objectsfrom. If empty, all namespaces are included.",
+						MarkdownDescription: "IncludedNamespaces is a slice of namespace names to include objectsfrom. If empty, all namespaces are included.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -462,8 +463,8 @@ func (r *VeleroIoRestoreV1Manifest) Schema(_ context.Context, _ datasource.Schem
 					},
 
 					"included_resources": schema.ListAttribute{
-						Description:         "IncludedResources is a slice of resource names to include in the restore. If empty, all resources in the backup are included.",
-						MarkdownDescription: "IncludedResources is a slice of resource names to include in the restore. If empty, all resources in the backup are included.",
+						Description:         "IncludedResources is a slice of resource names to includein the restore. If empty, all resources in the backup are included.",
+						MarkdownDescription: "IncludedResources is a slice of resource names to includein the restore. If empty, all resources in the backup are included.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -471,16 +472,16 @@ func (r *VeleroIoRestoreV1Manifest) Schema(_ context.Context, _ datasource.Schem
 					},
 
 					"item_operation_timeout": schema.StringAttribute{
-						Description:         "ItemOperationTimeout specifies the time used to wait for RestoreItemAction operations The default value is 4 hour.",
-						MarkdownDescription: "ItemOperationTimeout specifies the time used to wait for RestoreItemAction operations The default value is 4 hour.",
+						Description:         "ItemOperationTimeout specifies the time used to wait for RestoreItemAction operationsThe default value is 4 hour.",
+						MarkdownDescription: "ItemOperationTimeout specifies the time used to wait for RestoreItemAction operationsThe default value is 4 hour.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"label_selector": schema.SingleNestedAttribute{
-						Description:         "LabelSelector is a metav1.LabelSelector to filter with when restoring individual objects from the backup. If empty or nil, all objects are included. Optional.",
-						MarkdownDescription: "LabelSelector is a metav1.LabelSelector to filter with when restoring individual objects from the backup. If empty or nil, all objects are included. Optional.",
+						Description:         "LabelSelector is a metav1.LabelSelector to filter withwhen restoring individual objects from the backup. If emptyor nil, all objects are included. Optional.",
+						MarkdownDescription: "LabelSelector is a metav1.LabelSelector to filter withwhen restoring individual objects from the backup. If emptyor nil, all objects are included. Optional.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -496,16 +497,16 @@ func (r *VeleroIoRestoreV1Manifest) Schema(_ context.Context, _ datasource.Schem
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -519,8 +520,8 @@ func (r *VeleroIoRestoreV1Manifest) Schema(_ context.Context, _ datasource.Schem
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -533,8 +534,8 @@ func (r *VeleroIoRestoreV1Manifest) Schema(_ context.Context, _ datasource.Schem
 					},
 
 					"namespace_mapping": schema.MapAttribute{
-						Description:         "NamespaceMapping is a map of source namespace names to target namespace names to restore into. Any source namespaces not included in the map will be restored into namespaces of the same name.",
-						MarkdownDescription: "NamespaceMapping is a map of source namespace names to target namespace names to restore into. Any source namespaces not included in the map will be restored into namespaces of the same name.",
+						Description:         "NamespaceMapping is a map of source namespace namesto target namespace names to restore into. Any sourcenamespaces not included in the map will be restored intonamespaces of the same name.",
+						MarkdownDescription: "NamespaceMapping is a map of source namespace namesto target namespace names to restore into. Any sourcenamespaces not included in the map will be restored intonamespaces of the same name.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -542,8 +543,8 @@ func (r *VeleroIoRestoreV1Manifest) Schema(_ context.Context, _ datasource.Schem
 					},
 
 					"or_label_selectors": schema.ListNestedAttribute{
-						Description:         "OrLabelSelectors is list of metav1.LabelSelector to filter with when restoring individual objects from the backup. If multiple provided they will be joined by the OR operator. LabelSelector as well as OrLabelSelectors cannot co-exist in restore request, only one of them can be used",
-						MarkdownDescription: "OrLabelSelectors is list of metav1.LabelSelector to filter with when restoring individual objects from the backup. If multiple provided they will be joined by the OR operator. LabelSelector as well as OrLabelSelectors cannot co-exist in restore request, only one of them can be used",
+						Description:         "OrLabelSelectors is list of metav1.LabelSelector to filter withwhen restoring individual objects from the backup. If multiple providedthey will be joined by the OR operator. LabelSelector as well asOrLabelSelectors cannot co-exist in restore request, only one of themcan be used",
+						MarkdownDescription: "OrLabelSelectors is list of metav1.LabelSelector to filter withwhen restoring individual objects from the backup. If multiple providedthey will be joined by the OR operator. LabelSelector as well asOrLabelSelectors cannot co-exist in restore request, only one of themcan be used",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"match_expressions": schema.ListNestedAttribute{
@@ -560,16 +561,16 @@ func (r *VeleroIoRestoreV1Manifest) Schema(_ context.Context, _ datasource.Schem
 											},
 
 											"operator": schema.StringAttribute{
-												Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-												MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+												Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+												MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"values": schema.ListAttribute{
-												Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+												Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -583,8 +584,8 @@ func (r *VeleroIoRestoreV1Manifest) Schema(_ context.Context, _ datasource.Schem
 								},
 
 								"match_labels": schema.MapAttribute{
-									Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-									MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+									Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+									MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -610,8 +611,8 @@ func (r *VeleroIoRestoreV1Manifest) Schema(_ context.Context, _ datasource.Schem
 						MarkdownDescription: "ResourceModifier specifies the reference to JSON resource patches that should be applied to resources before restoration.",
 						Attributes: map[string]schema.Attribute{
 							"api_group": schema.StringAttribute{
-								Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
-								MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
+								Description:         "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
+								MarkdownDescription: "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -639,16 +640,16 @@ func (r *VeleroIoRestoreV1Manifest) Schema(_ context.Context, _ datasource.Schem
 					},
 
 					"restore_p_vs": schema.BoolAttribute{
-						Description:         "RestorePVs specifies whether to restore all included PVs from snapshot",
-						MarkdownDescription: "RestorePVs specifies whether to restore all included PVs from snapshot",
+						Description:         "RestorePVs specifies whether to restore all includedPVs from snapshot",
+						MarkdownDescription: "RestorePVs specifies whether to restore all includedPVs from snapshot",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"restore_status": schema.SingleNestedAttribute{
-						Description:         "RestoreStatus specifies which resources we should restore the status field. If nil, no objects are included. Optional.",
-						MarkdownDescription: "RestoreStatus specifies which resources we should restore the status field. If nil, no objects are included. Optional.",
+						Description:         "RestoreStatus specifies which resources we should restore the statusfield. If nil, no objects are included. Optional.",
+						MarkdownDescription: "RestoreStatus specifies which resources we should restore the statusfield. If nil, no objects are included. Optional.",
 						Attributes: map[string]schema.Attribute{
 							"excluded_resources": schema.ListAttribute{
 								Description:         "ExcludedResources specifies the resources to which will not restore the status.",
@@ -660,8 +661,8 @@ func (r *VeleroIoRestoreV1Manifest) Schema(_ context.Context, _ datasource.Schem
 							},
 
 							"included_resources": schema.ListAttribute{
-								Description:         "IncludedResources specifies the resources to which will restore the status. If empty, it applies to all resources.",
-								MarkdownDescription: "IncludedResources specifies the resources to which will restore the status. If empty, it applies to all resources.",
+								Description:         "IncludedResources specifies the resources to which will restore the status.If empty, it applies to all resources.",
+								MarkdownDescription: "IncludedResources specifies the resources to which will restore the status.If empty, it applies to all resources.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -674,8 +675,8 @@ func (r *VeleroIoRestoreV1Manifest) Schema(_ context.Context, _ datasource.Schem
 					},
 
 					"schedule_name": schema.StringAttribute{
-						Description:         "ScheduleName is the unique name of the Velero schedule to restore from. If specified, and BackupName is empty, Velero will restore from the most recent successful backup created from this schedule.",
-						MarkdownDescription: "ScheduleName is the unique name of the Velero schedule to restore from. If specified, and BackupName is empty, Velero will restore from the most recent successful backup created from this schedule.",
+						Description:         "ScheduleName is the unique name of the Velero schedule to restorefrom. If specified, and BackupName is empty, Velero will restorefrom the most recent successful backup created from this schedule.",
+						MarkdownDescription: "ScheduleName is the unique name of the Velero schedule to restorefrom. If specified, and BackupName is empty, Velero will restorefrom the most recent successful backup created from this schedule.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -685,6 +686,14 @@ func (r *VeleroIoRestoreV1Manifest) Schema(_ context.Context, _ datasource.Schem
 						Description:         "UploaderConfig specifies the configuration for the restore.",
 						MarkdownDescription: "UploaderConfig specifies the configuration for the restore.",
 						Attributes: map[string]schema.Attribute{
+							"parallel_files_download": schema.Int64Attribute{
+								Description:         "ParallelFilesDownload is the concurrency number setting for restore.",
+								MarkdownDescription: "ParallelFilesDownload is the concurrency number setting for restore.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"write_sparse_files": schema.BoolAttribute{
 								Description:         "WriteSparseFiles is a flag to indicate whether write files sparsely or not.",
 								MarkdownDescription: "WriteSparseFiles is a flag to indicate whether write files sparsely or not.",

@@ -16,6 +16,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
+	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
@@ -48,6 +49,7 @@ type DataprotectionKubeblocksIoBackupRepoV1Alpha1ManifestData struct {
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 		} `tfsdk:"credential" json:"credential,omitempty"`
+		PathPrefix         *string `tfsdk:"path_prefix" json:"pathPrefix,omitempty"`
 		PvReclaimPolicy    *string `tfsdk:"pv_reclaim_policy" json:"pvReclaimPolicy,omitempty"`
 		StorageProviderRef *string `tfsdk:"storage_provider_ref" json:"storageProviderRef,omitempty"`
 		VolumeCapacity     *string `tfsdk:"volume_capacity" json:"volumeCapacity,omitempty"`
@@ -162,6 +164,17 @@ func (r *DataprotectionKubeblocksIoBackupRepoV1Alpha1Manifest) Schema(_ context.
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"path_prefix": schema.StringAttribute{
+						Description:         "Specifies the prefix of the path for storing backup data.",
+						MarkdownDescription: "Specifies the prefix of the path for storing backup data.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.RegexMatches(regexp.MustCompile(`^([a-zA-Z0-9-_]+/?)*$`), ""),
+						},
 					},
 
 					"pv_reclaim_policy": schema.StringAttribute{

@@ -451,6 +451,7 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 				Name          *string   `tfsdk:"name" json:"name,omitempty"`
 				Namespace     *string   `tfsdk:"namespace" json:"namespace,omitempty"`
 				Statuses      *[]string `tfsdk:"statuses" json:"statuses,omitempty"`
+				TagSelector   *string   `tfsdk:"tag_selector" json:"tagSelector,omitempty"`
 				Types         *[]string `tfsdk:"types" json:"types,omitempty"`
 			} `tfsdk:"selector" json:"selector,omitempty"`
 			Test *struct {
@@ -2063,6 +2064,7 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 				JsonPath   *string `tfsdk:"json_path" json:"jsonPath,omitempty"`
 				Template   *string `tfsdk:"template" json:"template,omitempty"`
 			} `tfsdk:"display" json:"display,omitempty"`
+			Healthy    *bool     `tfsdk:"healthy" json:"healthy,omitempty"`
 			Icon       *string   `tfsdk:"icon" json:"icon,omitempty"`
 			Ignore     *[]string `tfsdk:"ignore" json:"ignore,omitempty"`
 			Kind       *string   `tfsdk:"kind" json:"kind,omitempty"`
@@ -2123,6 +2125,77 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			} `tfsdk:"transform" json:"transform,omitempty"`
 			TransformDeleteStrategy *string `tfsdk:"transform_delete_strategy" json:"transformDeleteStrategy,omitempty"`
 		} `tfsdk:"kubernetes" json:"kubernetes,omitempty"`
+		KubernetesResource *[]struct {
+			CheckRetries *struct {
+				Delay    *string `tfsdk:"delay" json:"delay,omitempty"`
+				Interval *string `tfsdk:"interval" json:"interval,omitempty"`
+				Timeout  *string `tfsdk:"timeout" json:"timeout,omitempty"`
+			} `tfsdk:"check_retries" json:"checkRetries,omitempty"`
+			Checks         *map[string]string `tfsdk:"checks" json:"checks,omitempty"`
+			ClearResources *bool              `tfsdk:"clear_resources" json:"clearResources,omitempty"`
+			Description    *string            `tfsdk:"description" json:"description,omitempty"`
+			Display        *struct {
+				Expr       *string `tfsdk:"expr" json:"expr,omitempty"`
+				Javascript *string `tfsdk:"javascript" json:"javascript,omitempty"`
+				JsonPath   *string `tfsdk:"json_path" json:"jsonPath,omitempty"`
+				Template   *string `tfsdk:"template" json:"template,omitempty"`
+			} `tfsdk:"display" json:"display,omitempty"`
+			Icon       *string `tfsdk:"icon" json:"icon,omitempty"`
+			Kubeconfig *struct {
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Value     *string `tfsdk:"value" json:"value,omitempty"`
+				ValueFrom *struct {
+					ConfigMapKeyRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+					HelmRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"helm_ref" json:"helmRef,omitempty"`
+					SecretKeyRef *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+			} `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+			Labels  *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Metrics *[]struct {
+				Labels *[]struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueExpr *string `tfsdk:"value_expr" json:"valueExpr,omitempty"`
+				} `tfsdk:"labels" json:"labels,omitempty"`
+				Name  *string `tfsdk:"name" json:"name,omitempty"`
+				Type  *string `tfsdk:"type" json:"type,omitempty"`
+				Value *string `tfsdk:"value" json:"value,omitempty"`
+			} `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name            *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace       *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			Resources       *map[string]string `tfsdk:"resources" json:"resources,omitempty"`
+			StaticResources *map[string]string `tfsdk:"static_resources" json:"staticResources,omitempty"`
+			Test            *struct {
+				Expr       *string `tfsdk:"expr" json:"expr,omitempty"`
+				Javascript *string `tfsdk:"javascript" json:"javascript,omitempty"`
+				JsonPath   *string `tfsdk:"json_path" json:"jsonPath,omitempty"`
+				Template   *string `tfsdk:"template" json:"template,omitempty"`
+			} `tfsdk:"test" json:"test,omitempty"`
+			Transform *struct {
+				Expr       *string `tfsdk:"expr" json:"expr,omitempty"`
+				Javascript *string `tfsdk:"javascript" json:"javascript,omitempty"`
+				JsonPath   *string `tfsdk:"json_path" json:"jsonPath,omitempty"`
+				Template   *string `tfsdk:"template" json:"template,omitempty"`
+			} `tfsdk:"transform" json:"transform,omitempty"`
+			TransformDeleteStrategy *string `tfsdk:"transform_delete_strategy" json:"transformDeleteStrategy,omitempty"`
+			WaitFor                 *struct {
+				Delete   *bool   `tfsdk:"delete" json:"delete,omitempty"`
+				Disable  *bool   `tfsdk:"disable" json:"disable,omitempty"`
+				Expr     *string `tfsdk:"expr" json:"expr,omitempty"`
+				Interval *string `tfsdk:"interval" json:"interval,omitempty"`
+				Timeout  *string `tfsdk:"timeout" json:"timeout,omitempty"`
+			} `tfsdk:"wait_for" json:"waitFor,omitempty"`
+		} `tfsdk:"kubernetes_resource" json:"kubernetesResource,omitempty"`
 		Ldap *[]struct {
 			BindDN      *string            `tfsdk:"bind_dn" json:"bindDN,omitempty"`
 			Connection  *string            `tfsdk:"connection" json:"connection,omitempty"`
@@ -5821,6 +5894,14 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 												Description:         "",
 												MarkdownDescription: "",
 												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"tag_selector": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -16489,6 +16570,14 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 									Computed: false,
 								},
 
+								"healthy": schema.BoolAttribute{
+									Description:         "Fail the check if any resources are unhealthy",
+									MarkdownDescription: "Fail the check if any resources are unhealthy",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"icon": schema.StringAttribute{
 									Description:         "Icon for overwriting default icon on the dashboard",
 									MarkdownDescription: "Icon for overwriting default icon on the dashboard",
@@ -16760,8 +16849,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"ready": schema.BoolAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "Fail the check if any resources are not ready",
+									MarkdownDescription: "Fail the check if any resources are not ready",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -16888,6 +16977,493 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"kubernetes_resource": schema.ListNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"check_retries": schema.SingleNestedAttribute{
+									Description:         "Set initial delays and retry intervals for checks.",
+									MarkdownDescription: "Set initial delays and retry intervals for checks.",
+									Attributes: map[string]schema.Attribute{
+										"delay": schema.StringAttribute{
+											Description:         "Delay is the initial delay",
+											MarkdownDescription: "Delay is the initial delay",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"interval": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"timeout": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"checks": schema.MapAttribute{
+									Description:         "Checks to run against the kubernetes resources.",
+									MarkdownDescription: "Checks to run against the kubernetes resources.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"clear_resources": schema.BoolAttribute{
+									Description:         "Ensure that the resources are deleted before creating them.",
+									MarkdownDescription: "Ensure that the resources are deleted before creating them.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"description": schema.StringAttribute{
+									Description:         "Description for the check",
+									MarkdownDescription: "Description for the check",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"display": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"expr": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"javascript": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"json_path": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"template": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"icon": schema.StringAttribute{
+									Description:         "Icon for overwriting default icon on the dashboard",
+									MarkdownDescription: "Icon for overwriting default icon on the dashboard",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"kubeconfig": schema.SingleNestedAttribute{
+									Description:         "Kubeconfig is the kubeconfig or the path to the kubeconfig file.",
+									MarkdownDescription: "Kubeconfig is the kubeconfig or the path to the kubeconfig file.",
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value_from": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"config_map_key_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"helm_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+															MarkdownDescription: "Key is a JSONPath expression used to fetch the key from the merged JSON.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret_key_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"service_account": schema.StringAttribute{
+													Description:         "ServiceAccount specifies the service account whose token should be fetched",
+													MarkdownDescription: "ServiceAccount specifies the service account whose token should be fetched",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"labels": schema.MapAttribute{
+									Description:         "Labels for the check",
+									MarkdownDescription: "Labels for the check",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"metrics": schema.ListNestedAttribute{
+									Description:         "Metrics to expose from check results",
+									MarkdownDescription: "Metrics to expose from check results",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"labels": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"value_expr": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"value": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"name": schema.StringAttribute{
+									Description:         "Name of the check",
+									MarkdownDescription: "Name of the check",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"namespace": schema.StringAttribute{
+									Description:         "Namespace to insert the check into, if different to the namespace the canary is defined, e.g.",
+									MarkdownDescription: "Namespace to insert the check into, if different to the namespace the canary is defined, e.g.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"resources": schema.MapAttribute{
+									Description:         "Resources are kubernetes resources that are created & clearedafter every check run.",
+									MarkdownDescription: "Resources are kubernetes resources that are created & clearedafter every check run.",
+									ElementType:         types.StringType,
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"static_resources": schema.MapAttribute{
+									Description:         "StaticResources are kubernetes resources that are created & onlycleared when the canary is deleted",
+									MarkdownDescription: "StaticResources are kubernetes resources that are created & onlycleared when the canary is deleted",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"test": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"expr": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"javascript": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"json_path": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"template": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"transform": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"expr": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"javascript": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"json_path": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"template": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"transform_delete_strategy": schema.StringAttribute{
+									Description:         "Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is",
+									MarkdownDescription: "Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"wait_for": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"delete": schema.BoolAttribute{
+											Description:         "Whether to wait for deletion or not",
+											MarkdownDescription: "Whether to wait for deletion or not",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"disable": schema.BoolAttribute{
+											Description:         "Disable waiting for resources to get to their desired state.",
+											MarkdownDescription: "Disable waiting for resources to get to their desired state.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"expr": schema.StringAttribute{
+											Description:         "Expr is a cel expression that determines whether all the resourcesare in their desired state before running checks on them.	Default: 'dyn(resources).all(r, k8s.isHealthy(r))'",
+											MarkdownDescription: "Expr is a cel expression that determines whether all the resourcesare in their desired state before running checks on them.	Default: 'dyn(resources).all(r, k8s.isHealthy(r))'",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"interval": schema.StringAttribute{
+											Description:         "Interval to check if all static & non-static resources are ready.	Default: 5s",
+											MarkdownDescription: "Interval to check if all static & non-static resources are ready.	Default: 5s",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"timeout": schema.StringAttribute{
+											Description:         "Timeout to wait for all static & non-static resources to be ready.	Default: 10m",
+											MarkdownDescription: "Timeout to wait for all static & non-static resources to be ready.	Default: 10m",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
 								},
 							},
 						},

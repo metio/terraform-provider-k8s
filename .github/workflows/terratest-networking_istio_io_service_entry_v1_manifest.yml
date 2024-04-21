@@ -1,0 +1,40 @@
+# SPDX-FileCopyrightText: The terraform-provider-k8s Authors
+# SPDX-License-Identifier: 0BSD
+
+name: NetworkingIstioIoServiceEntryV1Manifest
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - examples/data-sources/k8s_networking_istio_io_service_entry_v1_manifest/**
+      - internal/provider/networking_istio_io_v1/networking_istio_io_service_entry_v1_manifest.go
+      - internal/provider/networking_istio_io_v1/networking_istio_io_service_entry_v1_manifest_test.go
+      - terratest/networking_istio_io_v1/networking_istio_io_service_entry_v1_manifest_test.go
+jobs:
+  terraform:
+    name: Test with Terraform
+    runs-on: ubuntu-latest
+    steps:
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@v4
+      - id: setup_go
+        name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+      - id: setup_terraform
+        name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: false
+      - id: install
+        name: Install Provider
+        run: make install
+      - id: tests
+        name: Run Unit Tests
+        run: go test -v -timeout=120s -count=1 ./internal/provider/networking_istio_io_v1/networking_istio_io_service_entry_v1_manifest_test.go
+      - id: terratest
+        name: Run Terratest Tests
+        run: go test -v -timeout=120s -count=1 -run TestNetworkingIstioIoServiceEntryV1Manifest ./terratest/networking_istio_io_v1

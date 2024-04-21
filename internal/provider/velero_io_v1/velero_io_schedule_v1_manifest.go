@@ -138,8 +138,8 @@ func (r *VeleroIoScheduleV1Manifest) Metadata(_ context.Context, request datasou
 
 func (r *VeleroIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "Schedule is a Velero resource that represents a pre-scheduled or periodic Backup that should be run.",
-		MarkdownDescription: "Schedule is a Velero resource that represents a pre-scheduled or periodic Backup that should be run.",
+		Description:         "Schedule is a Velero resource that represents a pre-scheduled orperiodic Backup that should be run.",
+		MarkdownDescription: "Schedule is a Velero resource that represents a pre-scheduled orperiodic Backup that should be run.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -218,60 +218,60 @@ func (r *VeleroIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Sche
 					},
 
 					"schedule": schema.StringAttribute{
-						Description:         "Schedule is a Cron expression defining when to run the Backup.",
-						MarkdownDescription: "Schedule is a Cron expression defining when to run the Backup.",
+						Description:         "Schedule is a Cron expression defining when to runthe Backup.",
+						MarkdownDescription: "Schedule is a Cron expression defining when to runthe Backup.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"skip_immediately": schema.BoolAttribute{
-						Description:         "SkipImmediately specifies whether to skip backup if schedule is due immediately from 'schedule.status.lastBackup' timestamp when schedule is unpaused or if schedule is new. If true, backup will be skipped immediately when schedule is unpaused if it is due based on .Status.LastBackupTimestamp or schedule is new, and will run at next schedule time. If false, backup will not be skipped immediately when schedule is unpaused, but will run at next schedule time. If empty, will follow server configuration (default: false).",
-						MarkdownDescription: "SkipImmediately specifies whether to skip backup if schedule is due immediately from 'schedule.status.lastBackup' timestamp when schedule is unpaused or if schedule is new. If true, backup will be skipped immediately when schedule is unpaused if it is due based on .Status.LastBackupTimestamp or schedule is new, and will run at next schedule time. If false, backup will not be skipped immediately when schedule is unpaused, but will run at next schedule time. If empty, will follow server configuration (default: false).",
+						Description:         "SkipImmediately specifies whether to skip backup if schedule is due immediately from 'schedule.status.lastBackup' timestamp when schedule is unpaused or if schedule is new.If true, backup will be skipped immediately when schedule is unpaused if it is due based on .Status.LastBackupTimestamp or schedule is new, and will run at next schedule time.If false, backup will not be skipped immediately when schedule is unpaused, but will run at next schedule time.If empty, will follow server configuration (default: false).",
+						MarkdownDescription: "SkipImmediately specifies whether to skip backup if schedule is due immediately from 'schedule.status.lastBackup' timestamp when schedule is unpaused or if schedule is new.If true, backup will be skipped immediately when schedule is unpaused if it is due based on .Status.LastBackupTimestamp or schedule is new, and will run at next schedule time.If false, backup will not be skipped immediately when schedule is unpaused, but will run at next schedule time.If empty, will follow server configuration (default: false).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"template": schema.SingleNestedAttribute{
-						Description:         "Template is the definition of the Backup to be run on the provided schedule",
-						MarkdownDescription: "Template is the definition of the Backup to be run on the provided schedule",
+						Description:         "Template is the definition of the Backup to be runon the provided schedule",
+						MarkdownDescription: "Template is the definition of the Backup to be runon the provided schedule",
 						Attributes: map[string]schema.Attribute{
 							"csi_snapshot_timeout": schema.StringAttribute{
-								Description:         "CSISnapshotTimeout specifies the time used to wait for CSI VolumeSnapshot status turns to ReadyToUse during creation, before returning error as timeout. The default value is 10 minute.",
-								MarkdownDescription: "CSISnapshotTimeout specifies the time used to wait for CSI VolumeSnapshot status turns to ReadyToUse during creation, before returning error as timeout. The default value is 10 minute.",
+								Description:         "CSISnapshotTimeout specifies the time used to wait for CSI VolumeSnapshot status turns toReadyToUse during creation, before returning error as timeout.The default value is 10 minute.",
+								MarkdownDescription: "CSISnapshotTimeout specifies the time used to wait for CSI VolumeSnapshot status turns toReadyToUse during creation, before returning error as timeout.The default value is 10 minute.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"datamover": schema.StringAttribute{
-								Description:         "DataMover specifies the data mover to be used by the backup. If DataMover is '' or 'velero', the built-in data mover will be used.",
-								MarkdownDescription: "DataMover specifies the data mover to be used by the backup. If DataMover is '' or 'velero', the built-in data mover will be used.",
+								Description:         "DataMover specifies the data mover to be used by the backup.If DataMover is '' or 'velero', the built-in data mover will be used.",
+								MarkdownDescription: "DataMover specifies the data mover to be used by the backup.If DataMover is '' or 'velero', the built-in data mover will be used.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"default_volumes_to_fs_backup": schema.BoolAttribute{
-								Description:         "DefaultVolumesToFsBackup specifies whether pod volume file system backup should be used for all volumes by default.",
-								MarkdownDescription: "DefaultVolumesToFsBackup specifies whether pod volume file system backup should be used for all volumes by default.",
+								Description:         "DefaultVolumesToFsBackup specifies whether pod volume file system backup should be usedfor all volumes by default.",
+								MarkdownDescription: "DefaultVolumesToFsBackup specifies whether pod volume file system backup should be usedfor all volumes by default.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"default_volumes_to_restic": schema.BoolAttribute{
-								Description:         "DefaultVolumesToRestic specifies whether restic should be used to take a backup of all pod volumes by default.  Deprecated: this field is no longer used and will be removed entirely in future. Use DefaultVolumesToFsBackup instead.",
-								MarkdownDescription: "DefaultVolumesToRestic specifies whether restic should be used to take a backup of all pod volumes by default.  Deprecated: this field is no longer used and will be removed entirely in future. Use DefaultVolumesToFsBackup instead.",
+								Description:         "DefaultVolumesToRestic specifies whether restic should be used to take abackup of all pod volumes by default.Deprecated: this field is no longer used and will be removed entirely in future. Use DefaultVolumesToFsBackup instead.",
+								MarkdownDescription: "DefaultVolumesToRestic specifies whether restic should be used to take abackup of all pod volumes by default.Deprecated: this field is no longer used and will be removed entirely in future. Use DefaultVolumesToFsBackup instead.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"excluded_cluster_scoped_resources": schema.ListAttribute{
-								Description:         "ExcludedClusterScopedResources is a slice of cluster-scoped resource type names to exclude from the backup. If set to '*', all cluster-scoped resource types are excluded. The default value is empty.",
-								MarkdownDescription: "ExcludedClusterScopedResources is a slice of cluster-scoped resource type names to exclude from the backup. If set to '*', all cluster-scoped resource types are excluded. The default value is empty.",
+								Description:         "ExcludedClusterScopedResources is a slice of cluster-scopedresource type names to exclude from the backup.If set to '*', all cluster-scoped resource types are excluded.The default value is empty.",
+								MarkdownDescription: "ExcludedClusterScopedResources is a slice of cluster-scopedresource type names to exclude from the backup.If set to '*', all cluster-scoped resource types are excluded.The default value is empty.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -279,8 +279,8 @@ func (r *VeleroIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Sche
 							},
 
 							"excluded_namespace_scoped_resources": schema.ListAttribute{
-								Description:         "ExcludedNamespaceScopedResources is a slice of namespace-scoped resource type names to exclude from the backup. If set to '*', all namespace-scoped resource types are excluded. The default value is empty.",
-								MarkdownDescription: "ExcludedNamespaceScopedResources is a slice of namespace-scoped resource type names to exclude from the backup. If set to '*', all namespace-scoped resource types are excluded. The default value is empty.",
+								Description:         "ExcludedNamespaceScopedResources is a slice of namespace-scopedresource type names to exclude from the backup.If set to '*', all namespace-scoped resource types are excluded.The default value is empty.",
+								MarkdownDescription: "ExcludedNamespaceScopedResources is a slice of namespace-scopedresource type names to exclude from the backup.If set to '*', all namespace-scoped resource types are excluded.The default value is empty.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -288,8 +288,8 @@ func (r *VeleroIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Sche
 							},
 
 							"excluded_namespaces": schema.ListAttribute{
-								Description:         "ExcludedNamespaces contains a list of namespaces that are not included in the backup.",
-								MarkdownDescription: "ExcludedNamespaces contains a list of namespaces that are not included in the backup.",
+								Description:         "ExcludedNamespaces contains a list of namespaces that are notincluded in the backup.",
+								MarkdownDescription: "ExcludedNamespaces contains a list of namespaces that are notincluded in the backup.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -297,8 +297,8 @@ func (r *VeleroIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Sche
 							},
 
 							"excluded_resources": schema.ListAttribute{
-								Description:         "ExcludedResources is a slice of resource names that are not included in the backup.",
-								MarkdownDescription: "ExcludedResources is a slice of resource names that are not included in the backup.",
+								Description:         "ExcludedResources is a slice of resource names that are notincluded in the backup.",
+								MarkdownDescription: "ExcludedResources is a slice of resource names that are notincluded in the backup.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -333,8 +333,8 @@ func (r *VeleroIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Sche
 												},
 
 												"included_namespaces": schema.ListAttribute{
-													Description:         "IncludedNamespaces specifies the namespaces to which this hook spec applies. If empty, it applies to all namespaces.",
-													MarkdownDescription: "IncludedNamespaces specifies the namespaces to which this hook spec applies. If empty, it applies to all namespaces.",
+													Description:         "IncludedNamespaces specifies the namespaces to which this hook spec applies. If empty, it appliesto all namespaces.",
+													MarkdownDescription: "IncludedNamespaces specifies the namespaces to which this hook spec applies. If empty, it appliesto all namespaces.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -342,8 +342,8 @@ func (r *VeleroIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Sche
 												},
 
 												"included_resources": schema.ListAttribute{
-													Description:         "IncludedResources specifies the resources to which this hook spec applies. If empty, it applies to all resources.",
-													MarkdownDescription: "IncludedResources specifies the resources to which this hook spec applies. If empty, it applies to all resources.",
+													Description:         "IncludedResources specifies the resources to which this hook spec applies. If empty, it appliesto all resources.",
+													MarkdownDescription: "IncludedResources specifies the resources to which this hook spec applies. If empty, it appliesto all resources.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -368,16 +368,16 @@ func (r *VeleroIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Sche
 																	},
 
 																	"operator": schema.StringAttribute{
-																		Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																		MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"values": schema.ListAttribute{
-																		Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																		Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -391,8 +391,8 @@ func (r *VeleroIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Sche
 														},
 
 														"match_labels": schema.MapAttribute{
-															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -413,8 +413,8 @@ func (r *VeleroIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Sche
 												},
 
 												"post": schema.ListNestedAttribute{
-													Description:         "PostHooks is a list of BackupResourceHooks to execute after storing the item in the backup. These are executed after all 'additional items' from item actions are processed.",
-													MarkdownDescription: "PostHooks is a list of BackupResourceHooks to execute after storing the item in the backup. These are executed after all 'additional items' from item actions are processed.",
+													Description:         "PostHooks is a list of BackupResourceHooks to execute after storing the item in the backup.These are executed after all 'additional items' from item actions are processed.",
+													MarkdownDescription: "PostHooks is a list of BackupResourceHooks to execute after storing the item in the backup.These are executed after all 'additional items' from item actions are processed.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"exec": schema.SingleNestedAttribute{
@@ -431,8 +431,8 @@ func (r *VeleroIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Sche
 																	},
 
 																	"container": schema.StringAttribute{
-																		Description:         "Container is the container in the pod where the command should be executed. If not specified, the pod's first container is used.",
-																		MarkdownDescription: "Container is the container in the pod where the command should be executed. If not specified, the pod's first container is used.",
+																		Description:         "Container is the container in the pod where the command should be executed. If not specified,the pod's first container is used.",
+																		MarkdownDescription: "Container is the container in the pod where the command should be executed. If not specified,the pod's first container is used.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -450,8 +450,8 @@ func (r *VeleroIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Sche
 																	},
 
 																	"timeout": schema.StringAttribute{
-																		Description:         "Timeout defines the maximum amount of time Velero should wait for the hook to complete before considering the execution a failure.",
-																		MarkdownDescription: "Timeout defines the maximum amount of time Velero should wait for the hook to complete before considering the execution a failure.",
+																		Description:         "Timeout defines the maximum amount of time Velero should wait for the hook to complete beforeconsidering the execution a failure.",
+																		MarkdownDescription: "Timeout defines the maximum amount of time Velero should wait for the hook to complete beforeconsidering the execution a failure.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -469,8 +469,8 @@ func (r *VeleroIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Sche
 												},
 
 												"pre": schema.ListNestedAttribute{
-													Description:         "PreHooks is a list of BackupResourceHooks to execute prior to storing the item in the backup. These are executed before any 'additional items' from item actions are processed.",
-													MarkdownDescription: "PreHooks is a list of BackupResourceHooks to execute prior to storing the item in the backup. These are executed before any 'additional items' from item actions are processed.",
+													Description:         "PreHooks is a list of BackupResourceHooks to execute prior to storing the item in the backup.These are executed before any 'additional items' from item actions are processed.",
+													MarkdownDescription: "PreHooks is a list of BackupResourceHooks to execute prior to storing the item in the backup.These are executed before any 'additional items' from item actions are processed.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"exec": schema.SingleNestedAttribute{
@@ -487,8 +487,8 @@ func (r *VeleroIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Sche
 																	},
 
 																	"container": schema.StringAttribute{
-																		Description:         "Container is the container in the pod where the command should be executed. If not specified, the pod's first container is used.",
-																		MarkdownDescription: "Container is the container in the pod where the command should be executed. If not specified, the pod's first container is used.",
+																		Description:         "Container is the container in the pod where the command should be executed. If not specified,the pod's first container is used.",
+																		MarkdownDescription: "Container is the container in the pod where the command should be executed. If not specified,the pod's first container is used.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -506,8 +506,8 @@ func (r *VeleroIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Sche
 																	},
 
 																	"timeout": schema.StringAttribute{
-																		Description:         "Timeout defines the maximum amount of time Velero should wait for the hook to complete before considering the execution a failure.",
-																		MarkdownDescription: "Timeout defines the maximum amount of time Velero should wait for the hook to complete before considering the execution a failure.",
+																		Description:         "Timeout defines the maximum amount of time Velero should wait for the hook to complete beforeconsidering the execution a failure.",
+																		MarkdownDescription: "Timeout defines the maximum amount of time Velero should wait for the hook to complete beforeconsidering the execution a failure.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -536,16 +536,16 @@ func (r *VeleroIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Sche
 							},
 
 							"include_cluster_resources": schema.BoolAttribute{
-								Description:         "IncludeClusterResources specifies whether cluster-scoped resources should be included for consideration in the backup.",
-								MarkdownDescription: "IncludeClusterResources specifies whether cluster-scoped resources should be included for consideration in the backup.",
+								Description:         "IncludeClusterResources specifies whether cluster-scoped resourcesshould be included for consideration in the backup.",
+								MarkdownDescription: "IncludeClusterResources specifies whether cluster-scoped resourcesshould be included for consideration in the backup.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"included_cluster_scoped_resources": schema.ListAttribute{
-								Description:         "IncludedClusterScopedResources is a slice of cluster-scoped resource type names to include in the backup. If set to '*', all cluster-scoped resource types are included. The default value is empty, which means only related cluster-scoped resources are included.",
-								MarkdownDescription: "IncludedClusterScopedResources is a slice of cluster-scoped resource type names to include in the backup. If set to '*', all cluster-scoped resource types are included. The default value is empty, which means only related cluster-scoped resources are included.",
+								Description:         "IncludedClusterScopedResources is a slice of cluster-scopedresource type names to include in the backup.If set to '*', all cluster-scoped resource types are included.The default value is empty, which means only relatedcluster-scoped resources are included.",
+								MarkdownDescription: "IncludedClusterScopedResources is a slice of cluster-scopedresource type names to include in the backup.If set to '*', all cluster-scoped resource types are included.The default value is empty, which means only relatedcluster-scoped resources are included.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -553,8 +553,8 @@ func (r *VeleroIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Sche
 							},
 
 							"included_namespace_scoped_resources": schema.ListAttribute{
-								Description:         "IncludedNamespaceScopedResources is a slice of namespace-scoped resource type names to include in the backup. The default value is '*'.",
-								MarkdownDescription: "IncludedNamespaceScopedResources is a slice of namespace-scoped resource type names to include in the backup. The default value is '*'.",
+								Description:         "IncludedNamespaceScopedResources is a slice of namespace-scopedresource type names to include in the backup.The default value is '*'.",
+								MarkdownDescription: "IncludedNamespaceScopedResources is a slice of namespace-scopedresource type names to include in the backup.The default value is '*'.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -562,8 +562,8 @@ func (r *VeleroIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Sche
 							},
 
 							"included_namespaces": schema.ListAttribute{
-								Description:         "IncludedNamespaces is a slice of namespace names to include objects from. If empty, all namespaces are included.",
-								MarkdownDescription: "IncludedNamespaces is a slice of namespace names to include objects from. If empty, all namespaces are included.",
+								Description:         "IncludedNamespaces is a slice of namespace names to include objectsfrom. If empty, all namespaces are included.",
+								MarkdownDescription: "IncludedNamespaces is a slice of namespace names to include objectsfrom. If empty, all namespaces are included.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -571,8 +571,8 @@ func (r *VeleroIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Sche
 							},
 
 							"included_resources": schema.ListAttribute{
-								Description:         "IncludedResources is a slice of resource names to include in the backup. If empty, all resources are included.",
-								MarkdownDescription: "IncludedResources is a slice of resource names to include in the backup. If empty, all resources are included.",
+								Description:         "IncludedResources is a slice of resource names to includein the backup. If empty, all resources are included.",
+								MarkdownDescription: "IncludedResources is a slice of resource names to includein the backup. If empty, all resources are included.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -580,16 +580,16 @@ func (r *VeleroIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Sche
 							},
 
 							"item_operation_timeout": schema.StringAttribute{
-								Description:         "ItemOperationTimeout specifies the time used to wait for asynchronous BackupItemAction operations The default value is 4 hour.",
-								MarkdownDescription: "ItemOperationTimeout specifies the time used to wait for asynchronous BackupItemAction operations The default value is 4 hour.",
+								Description:         "ItemOperationTimeout specifies the time used to wait for asynchronous BackupItemAction operationsThe default value is 4 hour.",
+								MarkdownDescription: "ItemOperationTimeout specifies the time used to wait for asynchronous BackupItemAction operationsThe default value is 4 hour.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"label_selector": schema.SingleNestedAttribute{
-								Description:         "LabelSelector is a metav1.LabelSelector to filter with when adding individual objects to the backup. If empty or nil, all objects are included. Optional.",
-								MarkdownDescription: "LabelSelector is a metav1.LabelSelector to filter with when adding individual objects to the backup. If empty or nil, all objects are included. Optional.",
+								Description:         "LabelSelector is a metav1.LabelSelector to filter withwhen adding individual objects to the backup. If emptyor nil, all objects are included. Optional.",
+								MarkdownDescription: "LabelSelector is a metav1.LabelSelector to filter withwhen adding individual objects to the backup. If emptyor nil, all objects are included. Optional.",
 								Attributes: map[string]schema.Attribute{
 									"match_expressions": schema.ListNestedAttribute{
 										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -605,16 +605,16 @@ func (r *VeleroIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Sche
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-													MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+													Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+													MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"values": schema.ListAttribute{
-													Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+													Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -628,8 +628,8 @@ func (r *VeleroIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Sche
 									},
 
 									"match_labels": schema.MapAttribute{
-										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -660,8 +660,8 @@ func (r *VeleroIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Sche
 							},
 
 							"or_label_selectors": schema.ListNestedAttribute{
-								Description:         "OrLabelSelectors is list of metav1.LabelSelector to filter with when adding individual objects to the backup. If multiple provided they will be joined by the OR operator. LabelSelector as well as OrLabelSelectors cannot co-exist in backup request, only one of them can be used.",
-								MarkdownDescription: "OrLabelSelectors is list of metav1.LabelSelector to filter with when adding individual objects to the backup. If multiple provided they will be joined by the OR operator. LabelSelector as well as OrLabelSelectors cannot co-exist in backup request, only one of them can be used.",
+								Description:         "OrLabelSelectors is list of metav1.LabelSelector to filter withwhen adding individual objects to the backup. If multiple providedthey will be joined by the OR operator. LabelSelector as well asOrLabelSelectors cannot co-exist in backup request, only one of themcan be used.",
+								MarkdownDescription: "OrLabelSelectors is list of metav1.LabelSelector to filter withwhen adding individual objects to the backup. If multiple providedthey will be joined by the OR operator. LabelSelector as well asOrLabelSelectors cannot co-exist in backup request, only one of themcan be used.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"match_expressions": schema.ListNestedAttribute{
@@ -678,16 +678,16 @@ func (r *VeleroIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Sche
 													},
 
 													"operator": schema.StringAttribute{
-														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+														Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+														MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"values": schema.ListAttribute{
-														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+														Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -701,8 +701,8 @@ func (r *VeleroIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Sche
 										},
 
 										"match_labels": schema.MapAttribute{
-											Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-											MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -716,8 +716,8 @@ func (r *VeleroIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Sche
 							},
 
 							"ordered_resources": schema.MapAttribute{
-								Description:         "OrderedResources specifies the backup order of resources of specific Kind. The map key is the resource name and value is a list of object names separated by commas. Each resource name has format 'namespace/objectname'.  For cluster resources, simply use 'objectname'.",
-								MarkdownDescription: "OrderedResources specifies the backup order of resources of specific Kind. The map key is the resource name and value is a list of object names separated by commas. Each resource name has format 'namespace/objectname'.  For cluster resources, simply use 'objectname'.",
+								Description:         "OrderedResources specifies the backup order of resources of specific Kind.The map key is the resource name and value is a list of object names separated by commas.Each resource name has format 'namespace/objectname'.  For cluster resources, simply use 'objectname'.",
+								MarkdownDescription: "OrderedResources specifies the backup order of resources of specific Kind.The map key is the resource name and value is a list of object names separated by commas.Each resource name has format 'namespace/objectname'.  For cluster resources, simply use 'objectname'.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -729,8 +729,8 @@ func (r *VeleroIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Sche
 								MarkdownDescription: "ResourcePolicy specifies the referenced resource policies that backup should follow",
 								Attributes: map[string]schema.Attribute{
 									"api_group": schema.StringAttribute{
-										Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
-										MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
+										Description:         "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
+										MarkdownDescription: "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -766,8 +766,8 @@ func (r *VeleroIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Sche
 							},
 
 							"snapshot_volumes": schema.BoolAttribute{
-								Description:         "SnapshotVolumes specifies whether to take snapshots of any PV's referenced in the set of objects included in the Backup.",
-								MarkdownDescription: "SnapshotVolumes specifies whether to take snapshots of any PV's referenced in the set of objects included in the Backup.",
+								Description:         "SnapshotVolumes specifies whether to take snapshotsof any PV's referenced in the set of objects includedin the Backup.",
+								MarkdownDescription: "SnapshotVolumes specifies whether to take snapshotsof any PV's referenced in the set of objects includedin the Backup.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -782,8 +782,8 @@ func (r *VeleroIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Sche
 							},
 
 							"ttl": schema.StringAttribute{
-								Description:         "TTL is a time.Duration-parseable string describing how long the Backup should be retained for.",
-								MarkdownDescription: "TTL is a time.Duration-parseable string describing how long the Backup should be retained for.",
+								Description:         "TTL is a time.Duration-parseable string describing how longthe Backup should be retained for.",
+								MarkdownDescription: "TTL is a time.Duration-parseable string describing how longthe Backup should be retained for.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -821,8 +821,8 @@ func (r *VeleroIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Sche
 					},
 
 					"use_owner_references_in_backup": schema.BoolAttribute{
-						Description:         "UseOwnerReferencesBackup specifies whether to use OwnerReferences on backups created by this Schedule.",
-						MarkdownDescription: "UseOwnerReferencesBackup specifies whether to use OwnerReferences on backups created by this Schedule.",
+						Description:         "UseOwnerReferencesBackup specifies whether to useOwnerReferences on backups created by this Schedule.",
+						MarkdownDescription: "UseOwnerReferencesBackup specifies whether to useOwnerReferences on backups created by this Schedule.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

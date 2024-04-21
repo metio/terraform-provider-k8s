@@ -1110,6 +1110,12 @@ type GatewaySoloIoRouteOptionV1ManifestData struct {
 				} `tfsdk:"rule_sets" json:"ruleSets,omitempty"`
 			} `tfsdk:"waf" json:"waf,omitempty"`
 		} `tfsdk:"options" json:"options,omitempty"`
+		TargetRef *struct {
+			Group     *string `tfsdk:"group" json:"group,omitempty"`
+			Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
+			Name      *string `tfsdk:"name" json:"name,omitempty"`
+			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+		} `tfsdk:"target_ref" json:"targetRef,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -8104,6 +8110,47 @@ func (r *GatewaySoloIoRouteOptionV1Manifest) Schema(_ context.Context, _ datasou
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"target_ref": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"group": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"kind": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"name": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"namespace": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,

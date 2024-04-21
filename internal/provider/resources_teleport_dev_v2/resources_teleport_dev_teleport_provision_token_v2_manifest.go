@@ -128,6 +128,14 @@ type ResourcesTeleportDevTeleportProvisionTokenV2ManifestData struct {
 		} `tfsdk:"spacelift" json:"spacelift,omitempty"`
 		Suggested_agent_matcher_labels *map[string]string `tfsdk:"suggested_agent_matcher_labels" json:"suggested_agent_matcher_labels,omitempty"`
 		Suggested_labels               *map[string]string `tfsdk:"suggested_labels" json:"suggested_labels,omitempty"`
+		Tpm                            *struct {
+			Allow *[]struct {
+				Description           *string `tfsdk:"description" json:"description,omitempty"`
+				Ek_certificate_serial *string `tfsdk:"ek_certificate_serial" json:"ek_certificate_serial,omitempty"`
+				Ek_public_hash        *string `tfsdk:"ek_public_hash" json:"ek_public_hash,omitempty"`
+			} `tfsdk:"allow" json:"allow,omitempty"`
+			Ekcert_allowed_cas *[]string `tfsdk:"ekcert_allowed_cas" json:"ekcert_allowed_cas,omitempty"`
+		} `tfsdk:"tpm" json:"tpm,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -798,6 +806,59 @@ func (r *ResourcesTeleportDevTeleportProvisionTokenV2Manifest) Schema(_ context.
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"tpm": schema.SingleNestedAttribute{
+						Description:         "TPM allows the configuration of options specific to the 'tpm' join method.",
+						MarkdownDescription: "TPM allows the configuration of options specific to the 'tpm' join method.",
+						Attributes: map[string]schema.Attribute{
+							"allow": schema.ListNestedAttribute{
+								Description:         "Allow is a list of Rules, the presented delegated identity must match one allow rule to permit joining.",
+								MarkdownDescription: "Allow is a list of Rules, the presented delegated identity must match one allow rule to permit joining.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"description": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"ek_certificate_serial": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"ek_public_hash": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"ekcert_allowed_cas": schema.ListAttribute{
+								Description:         "EKCertAllowedCAs is a list of CA certificates that will be used to validate TPM EKCerts. When specified, joining TPMs must present an EKCert signed by one of the specified CAs. TPMs that do not present an EKCert will be not permitted to join. When unspecified, TPMs will be allowed to join with either an EKCert or an EKPubHash.",
+								MarkdownDescription: "EKCertAllowedCAs is a list of CA certificates that will be used to validate TPM EKCerts. When specified, joining TPMs must present an EKCert signed by one of the specified CAs. TPMs that do not present an EKCert will be not permitted to join. When unspecified, TPMs will be allowed to join with either an EKCert or an EKPubHash.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 				},
 				Required: false,

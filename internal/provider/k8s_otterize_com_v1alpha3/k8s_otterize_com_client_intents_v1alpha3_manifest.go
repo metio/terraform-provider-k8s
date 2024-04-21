@@ -48,7 +48,13 @@ type K8SOtterizeComClientIntentsV1Alpha3ManifestData struct {
 				Methods *[]string `tfsdk:"methods" json:"methods,omitempty"`
 				Path    *string   `tfsdk:"path" json:"path,omitempty"`
 			} `tfsdk:"http_resources" json:"HTTPResources,omitempty"`
-			AwsActions        *[]string `tfsdk:"aws_actions" json:"awsActions,omitempty"`
+			AwsActions          *[]string `tfsdk:"aws_actions" json:"awsActions,omitempty"`
+			AzureKeyVaultPolicy *struct {
+				CertificatePermissions *[]string `tfsdk:"certificate_permissions" json:"certificatePermissions,omitempty"`
+				KeyPermissions         *[]string `tfsdk:"key_permissions" json:"keyPermissions,omitempty"`
+				SecretPermissions      *[]string `tfsdk:"secret_permissions" json:"secretPermissions,omitempty"`
+				StoragePermissions     *[]string `tfsdk:"storage_permissions" json:"storagePermissions,omitempty"`
+			} `tfsdk:"azure_key_vault_policy" json:"azureKeyVaultPolicy,omitempty"`
 			AzureRoles        *[]string `tfsdk:"azure_roles" json:"azureRoles,omitempty"`
 			DatabaseResources *[]struct {
 				DatabaseName *string   `tfsdk:"database_name" json:"databaseName,omitempty"`
@@ -191,6 +197,51 @@ func (r *K8SOtterizeComClientIntentsV1Alpha3Manifest) Schema(_ context.Context, 
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+								},
+
+								"azure_key_vault_policy": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"certificate_permissions": schema.ListAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"key_permissions": schema.ListAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"secret_permissions": schema.ListAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"storage_permissions": schema.ListAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
 								},
 
 								"azure_roles": schema.ListAttribute{

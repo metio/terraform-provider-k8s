@@ -1030,8 +1030,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"feature_flags": schema.ListAttribute{
-						Description:         "FeatureFlags defines toggle to enable new contour features.Available toggles are:useEndpointSlices - configures contour to fetch endpoint datafrom k8s endpoint slices. defaults to false and reading endpointdata from the k8s endpoints.",
-						MarkdownDescription: "FeatureFlags defines toggle to enable new contour features.Available toggles are:useEndpointSlices - configures contour to fetch endpoint datafrom k8s endpoint slices. defaults to false and reading endpointdata from the k8s endpoints.",
+						Description:         "FeatureFlags defines toggle to enable new contour features.Available toggles are:useEndpointSlices - Configures contour to fetch endpoint datafrom k8s endpoint slices. defaults to true,If false then reads endpoint data from the k8s endpoints.",
+						MarkdownDescription: "FeatureFlags defines toggle to enable new contour features.Available toggles are:useEndpointSlices - Configures contour to fetch endpoint datafrom k8s endpoint slices. defaults to true,If false then reads endpoint data from the k8s endpoints.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

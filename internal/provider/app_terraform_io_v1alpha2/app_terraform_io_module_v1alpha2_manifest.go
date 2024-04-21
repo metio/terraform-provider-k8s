@@ -79,8 +79,8 @@ func (r *AppTerraformIoModuleV1Alpha2Manifest) Metadata(_ context.Context, reque
 
 func (r *AppTerraformIoModuleV1Alpha2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "Module is the Schema for the modules API Module implements the API-driven Run Workflow More information: - https://developer.hashicorp.com/terraform/cloud-docs/run/api",
-		MarkdownDescription: "Module is the Schema for the modules API Module implements the API-driven Run Workflow More information: - https://developer.hashicorp.com/terraform/cloud-docs/run/api",
+		Description:         "Module is the Schema for the modules APIModule implements the API-driven Run WorkflowMore information:  - https://developer.hashicorp.com/terraform/cloud-docs/run/api",
+		MarkdownDescription: "Module is the Schema for the modules APIModule implements the API-driven Run WorkflowMore information:  - https://developer.hashicorp.com/terraform/cloud-docs/run/api",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -151,8 +151,8 @@ func (r *AppTerraformIoModuleV1Alpha2Manifest) Schema(_ context.Context, _ datas
 				MarkdownDescription: "ModuleSpec defines the desired state of Module.",
 				Attributes: map[string]schema.Attribute{
 					"destroy_on_deletion": schema.BoolAttribute{
-						Description:         "Specify whether or not to execute a Destroy run when the object is deleted from the Kubernetes. Default: 'false'.",
-						MarkdownDescription: "Specify whether or not to execute a Destroy run when the object is deleted from the Kubernetes. Default: 'false'.",
+						Description:         "Specify whether or not to execute a Destroy run when the object is deleted from the Kubernetes.Default: 'false'.",
+						MarkdownDescription: "Specify whether or not to execute a Destroy run when the object is deleted from the Kubernetes.Default: 'false'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -163,8 +163,8 @@ func (r *AppTerraformIoModuleV1Alpha2Manifest) Schema(_ context.Context, _ datas
 						MarkdownDescription: "Module source and version to execute.",
 						Attributes: map[string]schema.Attribute{
 							"source": schema.StringAttribute{
-								Description:         "Non local Terraform module source. More information: - https://developer.hashicorp.com/terraform/language/modules/sources",
-								MarkdownDescription: "Non local Terraform module source. More information: - https://developer.hashicorp.com/terraform/language/modules/sources",
+								Description:         "Non local Terraform module source.More information:  - https://developer.hashicorp.com/terraform/language/modules/sources",
+								MarkdownDescription: "Non local Terraform module source.More information:  - https://developer.hashicorp.com/terraform/language/modules/sources",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -190,8 +190,8 @@ func (r *AppTerraformIoModuleV1Alpha2Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "Name of the module that will be uploaded and executed. Default: 'this'.",
-						MarkdownDescription: "Name of the module that will be uploaded and executed. Default: 'this'.",
+						Description:         "Name of the module that will be uploaded and executed.Default: 'this'.",
+						MarkdownDescription: "Name of the module that will be uploaded and executed.Default: 'this'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -201,8 +201,8 @@ func (r *AppTerraformIoModuleV1Alpha2Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"organization": schema.StringAttribute{
-						Description:         "Organization name where the Workspace will be created. More information: - https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/organizations",
-						MarkdownDescription: "Organization name where the Workspace will be created. More information: - https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/organizations",
+						Description:         "Organization name where the Workspace will be created.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/organizations",
+						MarkdownDescription: "Organization name where the Workspace will be created.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/organizations",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -228,8 +228,8 @@ func (r *AppTerraformIoModuleV1Alpha2Manifest) Schema(_ context.Context, _ datas
 								},
 
 								"sensitive": schema.BoolAttribute{
-									Description:         "Specify whether or not the output is sensitive. Default: 'false'.",
-									MarkdownDescription: "Specify whether or not the output is sensitive. Default: 'false'.",
+									Description:         "Specify whether or not the output is sensitive.Default: 'false'.",
+									MarkdownDescription: "Specify whether or not the output is sensitive.Default: 'false'.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -242,8 +242,8 @@ func (r *AppTerraformIoModuleV1Alpha2Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"restarted_at": schema.StringAttribute{
-						Description:         "Allows executing a new Run without changing any Workspace or Module attributes. Example: kubectl patch <KIND> <NAME> --type=merge --patch '{'spec': {'restartedAt': '''date -u -Iseconds'''}}'",
-						MarkdownDescription: "Allows executing a new Run without changing any Workspace or Module attributes. Example: kubectl patch <KIND> <NAME> --type=merge --patch '{'spec': {'restartedAt': '''date -u -Iseconds'''}}'",
+						Description:         "Allows executing a new Run without changing any Workspace or Module attributes.Example: kubectl patch <KIND> <NAME> --type=merge --patch '{'spec': {'restartedAt': '''date -u -Iseconds'''}}'",
+						MarkdownDescription: "Allows executing a new Run without changing any Workspace or Module attributes.Example: kubectl patch <KIND> <NAME> --type=merge --patch '{'spec': {'restartedAt': '''date -u -Iseconds'''}}'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -269,8 +269,8 @@ func (r *AppTerraformIoModuleV1Alpha2Manifest) Schema(_ context.Context, _ datas
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -321,8 +321,8 @@ func (r *AppTerraformIoModuleV1Alpha2Manifest) Schema(_ context.Context, _ datas
 						MarkdownDescription: "Workspace to execute the module.",
 						Attributes: map[string]schema.Attribute{
 							"id": schema.StringAttribute{
-								Description:         "Module Workspace ID. Must match pattern: '^ws-[a-zA-Z0-9]+$'",
-								MarkdownDescription: "Module Workspace ID. Must match pattern: '^ws-[a-zA-Z0-9]+$'",
+								Description:         "Module Workspace ID.Must match pattern: '^ws-[a-zA-Z0-9]+$'",
+								MarkdownDescription: "Module Workspace ID.Must match pattern: '^ws-[a-zA-Z0-9]+$'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

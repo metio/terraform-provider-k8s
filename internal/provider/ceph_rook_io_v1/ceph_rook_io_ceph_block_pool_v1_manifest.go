@@ -170,8 +170,8 @@ func (r *CephRookIoCephBlockPoolV1Manifest) Schema(_ context.Context, _ datasour
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "NamedBlockPoolSpec allows a block pool to be created with a non-default name. This is more specific than the NamedPoolSpec so we get schema validation on the allowed pool names that can be specified.",
-				MarkdownDescription: "NamedBlockPoolSpec allows a block pool to be created with a non-default name. This is more specific than the NamedPoolSpec so we get schema validation on the allowed pool names that can be specified.",
+				Description:         "NamedBlockPoolSpec allows a block pool to be created with a non-default name.This is more specific than the NamedPoolSpec so we get schema validation on theallowed pool names that can be specified.",
+				MarkdownDescription: "NamedBlockPoolSpec allows a block pool to be created with a non-default name.This is more specific than the NamedPoolSpec so we get schema validation on theallowed pool names that can be specified.",
 				Attributes: map[string]schema.Attribute{
 					"application": schema.StringAttribute{
 						Description:         "The application name to set on the pool. Only expected to be set for rgw pools.",
@@ -182,8 +182,8 @@ func (r *CephRookIoCephBlockPoolV1Manifest) Schema(_ context.Context, _ datasour
 					},
 
 					"compression_mode": schema.StringAttribute{
-						Description:         "DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force' The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force) Do NOT set a default value for kubebuilder as this will override the Parameters",
-						MarkdownDescription: "DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force' The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force) Do NOT set a default value for kubebuilder as this will override the Parameters",
+						Description:         "DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force'The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force)Do NOT set a default value for kubebuilder as this will override the Parameters",
+						MarkdownDescription: "DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force'The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force)Do NOT set a default value for kubebuilder as this will override the Parameters",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -229,8 +229,8 @@ func (r *CephRookIoCephBlockPoolV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"coding_chunks": schema.Int64Attribute{
-								Description:         "Number of coding chunks per object in an erasure coded storage pool (required for erasure-coded pool type). This is the number of OSDs that can be lost simultaneously before data cannot be recovered.",
-								MarkdownDescription: "Number of coding chunks per object in an erasure coded storage pool (required for erasure-coded pool type). This is the number of OSDs that can be lost simultaneously before data cannot be recovered.",
+								Description:         "Number of coding chunks per object in an erasure coded storage pool (required for erasure-coded pool type).This is the number of OSDs that can be lost simultaneously before data cannot be recovered.",
+								MarkdownDescription: "Number of coding chunks per object in an erasure coded storage pool (required for erasure-coded pool type).This is the number of OSDs that can be lost simultaneously before data cannot be recovered.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -240,8 +240,8 @@ func (r *CephRookIoCephBlockPoolV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"data_chunks": schema.Int64Attribute{
-								Description:         "Number of data chunks per object in an erasure coded storage pool (required for erasure-coded pool type). The number of chunks required to recover an object when any single OSD is lost is the same as dataChunks so be aware that the larger the number of data chunks, the higher the cost of recovery.",
-								MarkdownDescription: "Number of data chunks per object in an erasure coded storage pool (required for erasure-coded pool type). The number of chunks required to recover an object when any single OSD is lost is the same as dataChunks so be aware that the larger the number of data chunks, the higher the cost of recovery.",
+								Description:         "Number of data chunks per object in an erasure coded storage pool (required for erasure-coded pool type).The number of chunks required to recover an object when any single OSD is lost is the sameas dataChunks so be aware that the larger the number of data chunks, the higher the cost of recovery.",
+								MarkdownDescription: "Number of data chunks per object in an erasure coded storage pool (required for erasure-coded pool type).The number of chunks required to recover an object when any single OSD is lost is the sameas dataChunks so be aware that the larger the number of data chunks, the higher the cost of recovery.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -366,8 +366,8 @@ func (r *CephRookIoCephBlockPoolV1Manifest) Schema(_ context.Context, _ datasour
 						MarkdownDescription: "The quota settings",
 						Attributes: map[string]schema.Attribute{
 							"max_bytes": schema.Int64Attribute{
-								Description:         "MaxBytes represents the quota in bytes Deprecated in favor of MaxSize",
-								MarkdownDescription: "MaxBytes represents the quota in bytes Deprecated in favor of MaxSize",
+								Description:         "MaxBytes represents the quota in bytesDeprecated in favor of MaxSize",
+								MarkdownDescription: "MaxBytes represents the quota in bytesDeprecated in favor of MaxSize",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

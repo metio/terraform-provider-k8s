@@ -163,8 +163,8 @@ func (r *MutationsGatekeeperShAssignV1Beta1Manifest) Schema(_ context.Context, _
 				MarkdownDescription: "AssignSpec defines the desired state of Assign.",
 				Attributes: map[string]schema.Attribute{
 					"apply_to": schema.ListNestedAttribute{
-						Description:         "ApplyTo lists the specific groups, versions and kinds a mutation will be applied to. This is necessary because every mutation implies part of an object schema and object schemas are associated with specific GVKs.",
-						MarkdownDescription: "ApplyTo lists the specific groups, versions and kinds a mutation will be applied to. This is necessary because every mutation implies part of an object schema and object schemas are associated with specific GVKs.",
+						Description:         "ApplyTo lists the specific groups, versions and kinds a mutation will be applied to.This is necessary because every mutation implies part of an object schema and objectschemas are associated with specific GVKs.",
+						MarkdownDescription: "ApplyTo lists the specific groups, versions and kinds a mutation will be applied to.This is necessary because every mutation implies part of an object schema and objectschemas are associated with specific GVKs.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"groups": schema.ListAttribute{
@@ -209,12 +209,12 @@ func (r *MutationsGatekeeperShAssignV1Beta1Manifest) Schema(_ context.Context, _
 					},
 
 					"match": schema.SingleNestedAttribute{
-						Description:         "Match allows the user to limit which resources get mutated. Individual match criteria are AND-ed together. An undefined match criteria matches everything.",
-						MarkdownDescription: "Match allows the user to limit which resources get mutated. Individual match criteria are AND-ed together. An undefined match criteria matches everything.",
+						Description:         "Match allows the user to limit which resources get mutated.Individual match criteria are AND-ed together. An undefinedmatch criteria matches everything.",
+						MarkdownDescription: "Match allows the user to limit which resources get mutated.Individual match criteria are AND-ed together. An undefinedmatch criteria matches everything.",
 						Attributes: map[string]schema.Attribute{
 							"excluded_namespaces": schema.ListAttribute{
-								Description:         "ExcludedNamespaces is a list of namespace names. If defined, a constraint only applies to resources not in a listed namespace. ExcludedNamespaces also supports a prefix or suffix based glob.  For example, 'excludedNamespaces: [kube-*]' matches both 'kube-system' and 'kube-public', and 'excludedNamespaces: [*-system]' matches both 'kube-system' and 'gatekeeper-system'.",
-								MarkdownDescription: "ExcludedNamespaces is a list of namespace names. If defined, a constraint only applies to resources not in a listed namespace. ExcludedNamespaces also supports a prefix or suffix based glob.  For example, 'excludedNamespaces: [kube-*]' matches both 'kube-system' and 'kube-public', and 'excludedNamespaces: [*-system]' matches both 'kube-system' and 'gatekeeper-system'.",
+								Description:         "ExcludedNamespaces is a list of namespace names. If defined, aconstraint only applies to resources not in a listed namespace.ExcludedNamespaces also supports a prefix or suffix based glob.  For example,'excludedNamespaces: [kube-*]' matches both 'kube-system' and'kube-public', and 'excludedNamespaces: [*-system]' matches both 'kube-system' and'gatekeeper-system'.",
+								MarkdownDescription: "ExcludedNamespaces is a list of namespace names. If defined, aconstraint only applies to resources not in a listed namespace.ExcludedNamespaces also supports a prefix or suffix based glob.  For example,'excludedNamespaces: [kube-*]' matches both 'kube-system' and'kube-public', and 'excludedNamespaces: [*-system]' matches both 'kube-system' and'gatekeeper-system'.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -227,8 +227,8 @@ func (r *MutationsGatekeeperShAssignV1Beta1Manifest) Schema(_ context.Context, _
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"api_groups": schema.ListAttribute{
-											Description:         "APIGroups is the API groups the resources belong to. '*' is all groups. If '*' is present, the length of the slice must be one. Required.",
-											MarkdownDescription: "APIGroups is the API groups the resources belong to. '*' is all groups. If '*' is present, the length of the slice must be one. Required.",
+											Description:         "APIGroups is the API groups the resources belong to. '*' is all groups.If '*' is present, the length of the slice must be one.Required.",
+											MarkdownDescription: "APIGroups is the API groups the resources belong to. '*' is all groups.If '*' is present, the length of the slice must be one.Required.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -251,8 +251,8 @@ func (r *MutationsGatekeeperShAssignV1Beta1Manifest) Schema(_ context.Context, _
 							},
 
 							"label_selector": schema.SingleNestedAttribute{
-								Description:         "LabelSelector is the combination of two optional fields: 'matchLabels' and 'matchExpressions'.  These two fields provide different methods of selecting or excluding k8s objects based on the label keys and values included in object metadata.  All selection expressions from both sections are ANDed to determine if an object meets the cumulative requirements of the selector.",
-								MarkdownDescription: "LabelSelector is the combination of two optional fields: 'matchLabels' and 'matchExpressions'.  These two fields provide different methods of selecting or excluding k8s objects based on the label keys and values included in object metadata.  All selection expressions from both sections are ANDed to determine if an object meets the cumulative requirements of the selector.",
+								Description:         "LabelSelector is the combination of two optional fields: 'matchLabels'and 'matchExpressions'.  These two fields provide different methods ofselecting or excluding k8s objects based on the label keys and valuesincluded in object metadata.  All selection expressions from bothsections are ANDed to determine if an object meets the cumulativerequirements of the selector.",
+								MarkdownDescription: "LabelSelector is the combination of two optional fields: 'matchLabels'and 'matchExpressions'.  These two fields provide different methods ofselecting or excluding k8s objects based on the label keys and valuesincluded in object metadata.  All selection expressions from bothsections are ANDed to determine if an object meets the cumulativerequirements of the selector.",
 								Attributes: map[string]schema.Attribute{
 									"match_expressions": schema.ListNestedAttribute{
 										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -268,16 +268,16 @@ func (r *MutationsGatekeeperShAssignV1Beta1Manifest) Schema(_ context.Context, _
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-													MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+													Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+													MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"values": schema.ListAttribute{
-													Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+													Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -291,8 +291,8 @@ func (r *MutationsGatekeeperShAssignV1Beta1Manifest) Schema(_ context.Context, _
 									},
 
 									"match_labels": schema.MapAttribute{
-										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -305,19 +305,19 @@ func (r *MutationsGatekeeperShAssignV1Beta1Manifest) Schema(_ context.Context, _
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name is the name of an object.  If defined, it will match against objects with the specified name.  Name also supports a prefix or suffix glob.  For example, 'name: pod-*' would match both 'pod-a' and 'pod-b', and 'name: *-pod' would match both 'a-pod' and 'b-pod'.",
-								MarkdownDescription: "Name is the name of an object.  If defined, it will match against objects with the specified name.  Name also supports a prefix or suffix glob.  For example, 'name: pod-*' would match both 'pod-a' and 'pod-b', and 'name: *-pod' would match both 'a-pod' and 'b-pod'.",
+								Description:         "Name is the name of an object.  If defined, it will match against objects with the specifiedname.  Name also supports a prefix or suffix glob.  For example, 'name: pod-*' would matchboth 'pod-a' and 'pod-b', and 'name: *-pod' would match both 'a-pod' and 'b-pod'.",
+								MarkdownDescription: "Name is the name of an object.  If defined, it will match against objects with the specifiedname.  Name also supports a prefix or suffix glob.  For example, 'name: pod-*' would matchboth 'pod-a' and 'pod-b', and 'name: *-pod' would match both 'a-pod' and 'b-pod'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.RegexMatches(regexp.MustCompile(`^(\*|\*-)?[a-z0-9]([-:a-z0-9]*[a-z0-9])?(\*|-\*)?$`), ""),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^\*?[-:a-z0-9]*\*?$`), ""),
 								},
 							},
 
 							"namespace_selector": schema.SingleNestedAttribute{
-								Description:         "NamespaceSelector is a label selector against an object's containing namespace or the object itself, if the object is a namespace.",
-								MarkdownDescription: "NamespaceSelector is a label selector against an object's containing namespace or the object itself, if the object is a namespace.",
+								Description:         "NamespaceSelector is a label selector against an object's containingnamespace or the object itself, if the object is a namespace.",
+								MarkdownDescription: "NamespaceSelector is a label selector against an object's containingnamespace or the object itself, if the object is a namespace.",
 								Attributes: map[string]schema.Attribute{
 									"match_expressions": schema.ListNestedAttribute{
 										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -333,16 +333,16 @@ func (r *MutationsGatekeeperShAssignV1Beta1Manifest) Schema(_ context.Context, _
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-													MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+													Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+													MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"values": schema.ListAttribute{
-													Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+													Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -356,8 +356,8 @@ func (r *MutationsGatekeeperShAssignV1Beta1Manifest) Schema(_ context.Context, _
 									},
 
 									"match_labels": schema.MapAttribute{
-										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -370,8 +370,8 @@ func (r *MutationsGatekeeperShAssignV1Beta1Manifest) Schema(_ context.Context, _
 							},
 
 							"namespaces": schema.ListAttribute{
-								Description:         "Namespaces is a list of namespace names. If defined, a constraint only applies to resources in a listed namespace.  Namespaces also supports a prefix or suffix based glob.  For example, 'namespaces: [kube-*]' matches both 'kube-system' and 'kube-public', and 'namespaces: [*-system]' matches both 'kube-system' and 'gatekeeper-system'.",
-								MarkdownDescription: "Namespaces is a list of namespace names. If defined, a constraint only applies to resources in a listed namespace.  Namespaces also supports a prefix or suffix based glob.  For example, 'namespaces: [kube-*]' matches both 'kube-system' and 'kube-public', and 'namespaces: [*-system]' matches both 'kube-system' and 'gatekeeper-system'.",
+								Description:         "Namespaces is a list of namespace names. If defined, a constraint onlyapplies to resources in a listed namespace.  Namespaces also supports aprefix or suffix based glob.  For example, 'namespaces: [kube-*]' matches both'kube-system' and 'kube-public', and 'namespaces: [*-system]' matches both'kube-system' and 'gatekeeper-system'.",
+								MarkdownDescription: "Namespaces is a list of namespace names. If defined, a constraint onlyapplies to resources in a listed namespace.  Namespaces also supports aprefix or suffix based glob.  For example, 'namespaces: [kube-*]' matches both'kube-system' and 'kube-public', and 'namespaces: [*-system]' matches both'kube-system' and 'gatekeeper-system'.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -379,16 +379,16 @@ func (r *MutationsGatekeeperShAssignV1Beta1Manifest) Schema(_ context.Context, _
 							},
 
 							"scope": schema.StringAttribute{
-								Description:         "Scope determines if cluster-scoped and/or namespaced-scoped resources are matched.  Accepts '*', 'Cluster', or 'Namespaced'. (defaults to '*')",
-								MarkdownDescription: "Scope determines if cluster-scoped and/or namespaced-scoped resources are matched.  Accepts '*', 'Cluster', or 'Namespaced'. (defaults to '*')",
+								Description:         "Scope determines if cluster-scoped and/or namespaced-scoped resourcesare matched.  Accepts '*', 'Cluster', or 'Namespaced'. (defaults to '*')",
+								MarkdownDescription: "Scope determines if cluster-scoped and/or namespaced-scoped resourcesare matched.  Accepts '*', 'Cluster', or 'Namespaced'. (defaults to '*')",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"source": schema.StringAttribute{
-								Description:         "Source determines whether generated or original resources are matched. Accepts 'Generated'|'Original'|'All' (defaults to 'All'). A value of 'Generated' will only match generated resources, while 'Original' will only match regular resources.",
-								MarkdownDescription: "Source determines whether generated or original resources are matched. Accepts 'Generated'|'Original'|'All' (defaults to 'All'). A value of 'Generated' will only match generated resources, while 'Original' will only match regular resources.",
+								Description:         "Source determines whether generated or original resources are matched.Accepts 'Generated'|'Original'|'All' (defaults to 'All'). A value of'Generated' will only match generated resources, while 'Original' will onlymatch regular resources.",
+								MarkdownDescription: "Source determines whether generated or original resources are matched.Accepts 'Generated'|'Original'|'All' (defaults to 'All'). A value of'Generated' will only match generated resources, while 'Original' will onlymatch regular resources.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -415,8 +415,8 @@ func (r *MutationsGatekeeperShAssignV1Beta1Manifest) Schema(_ context.Context, _
 										MarkdownDescription: "ExternalData describes the external data provider to be used for mutation.",
 										Attributes: map[string]schema.Attribute{
 											"data_source": schema.StringAttribute{
-												Description:         "DataSource specifies where to extract the data that will be sent to the external data provider as parameters.",
-												MarkdownDescription: "DataSource specifies where to extract the data that will be sent to the external data provider as parameters.",
+												Description:         "DataSource specifies where to extract the data that will be sentto the external data provider as parameters.",
+												MarkdownDescription: "DataSource specifies where to extract the data that will be sentto the external data provider as parameters.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -426,16 +426,16 @@ func (r *MutationsGatekeeperShAssignV1Beta1Manifest) Schema(_ context.Context, _
 											},
 
 											"default": schema.StringAttribute{
-												Description:         "Default specifies the default value to use when the external data provider returns an error and the failure policy is set to 'UseDefault'.",
-												MarkdownDescription: "Default specifies the default value to use when the external data provider returns an error and the failure policy is set to 'UseDefault'.",
+												Description:         "Default specifies the default value to use when the external dataprovider returns an error and the failure policy is set to 'UseDefault'.",
+												MarkdownDescription: "Default specifies the default value to use when the external dataprovider returns an error and the failure policy is set to 'UseDefault'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"failure_policy": schema.StringAttribute{
-												Description:         "FailurePolicy specifies the policy to apply when the external data provider returns an error.",
-												MarkdownDescription: "FailurePolicy specifies the policy to apply when the external data provider returns an error.",
+												Description:         "FailurePolicy specifies the policy to apply when the external dataprovider returns an error.",
+												MarkdownDescription: "FailurePolicy specifies the policy to apply when the external dataprovider returns an error.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,

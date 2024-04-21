@@ -142,6 +142,8 @@ type AppsStatefulSetV1ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -164,6 +166,8 @@ type AppsStatefulSetV1ManifestData struct {
 								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+							MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+							MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 							NamespaceSelector *struct {
 								MatchExpressions *[]struct {
 									Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -187,6 +191,8 @@ type AppsStatefulSetV1ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -209,6 +215,8 @@ type AppsStatefulSetV1ManifestData struct {
 								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+							MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+							MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 							NamespaceSelector *struct {
 								MatchExpressions *[]struct {
 									Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -279,6 +287,9 @@ type AppsStatefulSetV1ManifestData struct {
 								Port   *string `tfsdk:"port" json:"port,omitempty"`
 								Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 							} `tfsdk:"http_get" json:"httpGet,omitempty"`
+							Sleep *struct {
+								Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+							} `tfsdk:"sleep" json:"sleep,omitempty"`
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" json:"host,omitempty"`
 								Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -298,6 +309,9 @@ type AppsStatefulSetV1ManifestData struct {
 								Port   *string `tfsdk:"port" json:"port,omitempty"`
 								Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 							} `tfsdk:"http_get" json:"httpGet,omitempty"`
+							Sleep *struct {
+								Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+							} `tfsdk:"sleep" json:"sleep,omitempty"`
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" json:"host,omitempty"`
 								Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -384,7 +398,11 @@ type AppsStatefulSetV1ManifestData struct {
 					RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 					SecurityContext *struct {
 						AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-						Capabilities             *struct {
+						AppArmorProfile          *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+						Capabilities *struct {
 							Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 							Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 						} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -450,12 +468,13 @@ type AppsStatefulSetV1ManifestData struct {
 						Name       *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 					VolumeMounts *[]struct {
-						MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-						MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-						Name             *string `tfsdk:"name" json:"name,omitempty"`
-						ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-						SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-						SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+						MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+						MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+						Name              *string `tfsdk:"name" json:"name,omitempty"`
+						ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+						SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+						SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 					} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 					WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 				} `tfsdk:"containers" json:"containers,omitempty"`
@@ -525,6 +544,9 @@ type AppsStatefulSetV1ManifestData struct {
 								Port   *string `tfsdk:"port" json:"port,omitempty"`
 								Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 							} `tfsdk:"http_get" json:"httpGet,omitempty"`
+							Sleep *struct {
+								Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+							} `tfsdk:"sleep" json:"sleep,omitempty"`
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" json:"host,omitempty"`
 								Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -544,6 +566,9 @@ type AppsStatefulSetV1ManifestData struct {
 								Port   *string `tfsdk:"port" json:"port,omitempty"`
 								Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 							} `tfsdk:"http_get" json:"httpGet,omitempty"`
+							Sleep *struct {
+								Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+							} `tfsdk:"sleep" json:"sleep,omitempty"`
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" json:"host,omitempty"`
 								Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -630,7 +655,11 @@ type AppsStatefulSetV1ManifestData struct {
 					RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 					SecurityContext *struct {
 						AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-						Capabilities             *struct {
+						AppArmorProfile          *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+						Capabilities *struct {
 							Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 							Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 						} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -697,12 +726,13 @@ type AppsStatefulSetV1ManifestData struct {
 						Name       *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 					VolumeMounts *[]struct {
-						MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-						MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-						Name             *string `tfsdk:"name" json:"name,omitempty"`
-						ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-						SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-						SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+						MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+						MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+						Name              *string `tfsdk:"name" json:"name,omitempty"`
+						ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+						SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+						SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 					} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 					WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 				} `tfsdk:"ephemeral_containers" json:"ephemeralContainers,omitempty"`
@@ -774,6 +804,9 @@ type AppsStatefulSetV1ManifestData struct {
 								Port   *string `tfsdk:"port" json:"port,omitempty"`
 								Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 							} `tfsdk:"http_get" json:"httpGet,omitempty"`
+							Sleep *struct {
+								Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+							} `tfsdk:"sleep" json:"sleep,omitempty"`
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" json:"host,omitempty"`
 								Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -793,6 +826,9 @@ type AppsStatefulSetV1ManifestData struct {
 								Port   *string `tfsdk:"port" json:"port,omitempty"`
 								Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 							} `tfsdk:"http_get" json:"httpGet,omitempty"`
+							Sleep *struct {
+								Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+							} `tfsdk:"sleep" json:"sleep,omitempty"`
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" json:"host,omitempty"`
 								Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -879,7 +915,11 @@ type AppsStatefulSetV1ManifestData struct {
 					RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 					SecurityContext *struct {
 						AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-						Capabilities             *struct {
+						AppArmorProfile          *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+						Capabilities *struct {
 							Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 							Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 						} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -945,12 +985,13 @@ type AppsStatefulSetV1ManifestData struct {
 						Name       *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 					VolumeMounts *[]struct {
-						MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-						MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-						Name             *string `tfsdk:"name" json:"name,omitempty"`
-						ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-						SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-						SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+						MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+						MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+						Name              *string `tfsdk:"name" json:"name,omitempty"`
+						ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+						SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+						SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 					} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 					WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 				} `tfsdk:"init_containers" json:"initContainers,omitempty"`
@@ -980,6 +1021,10 @@ type AppsStatefulSetV1ManifestData struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"scheduling_gates" json:"schedulingGates,omitempty"`
 				SecurityContext *struct {
+					AppArmorProfile *struct {
+						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+						Type             *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
 					FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 					FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
@@ -1173,9 +1218,10 @@ type AppsStatefulSetV1ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"selector" json:"selector,omitempty"`
-								StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
-								VolumeMode       *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
-								VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+								StorageClassName          *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+								VolumeAttributesClassName *string `tfsdk:"volume_attributes_class_name" json:"volumeAttributesClassName,omitempty"`
+								VolumeMode                *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
+								VolumeName                *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 							} `tfsdk:"spec" json:"spec,omitempty"`
 						} `tfsdk:"volume_claim_template" json:"volumeClaimTemplate,omitempty"`
 					} `tfsdk:"ephemeral" json:"ephemeral,omitempty"`
@@ -1256,6 +1302,20 @@ type AppsStatefulSetV1ManifestData struct {
 					Projected *struct {
 						DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
 						Sources     *[]struct {
+							ClusterTrustBundle *struct {
+								LabelSelector *struct {
+									MatchExpressions *[]struct {
+										Key      *string   `tfsdk:"key" json:"key,omitempty"`
+										Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+										Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								Name       *string `tfsdk:"name" json:"name,omitempty"`
+								Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								Path       *string `tfsdk:"path" json:"path,omitempty"`
+								SignerName *string `tfsdk:"signer_name" json:"signerName,omitempty"`
+							} `tfsdk:"cluster_trust_bundle" json:"clusterTrustBundle,omitempty"`
 							ConfigMap *struct {
 								Items *[]struct {
 									Key  *string `tfsdk:"key" json:"key,omitempty"`
@@ -1366,6 +1426,40 @@ type AppsStatefulSetV1ManifestData struct {
 			Type *string `tfsdk:"type" json:"type,omitempty"`
 		} `tfsdk:"update_strategy" json:"updateStrategy,omitempty"`
 		VolumeClaimTemplates *[]struct {
+			ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+			Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
+			Metadata   *struct {
+				Annotations                *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+				CreationTimestamp          *string            `tfsdk:"creation_timestamp" json:"creationTimestamp,omitempty"`
+				DeletionGracePeriodSeconds *int64             `tfsdk:"deletion_grace_period_seconds" json:"deletionGracePeriodSeconds,omitempty"`
+				DeletionTimestamp          *string            `tfsdk:"deletion_timestamp" json:"deletionTimestamp,omitempty"`
+				Finalizers                 *[]string          `tfsdk:"finalizers" json:"finalizers,omitempty"`
+				GenerateName               *string            `tfsdk:"generate_name" json:"generateName,omitempty"`
+				Generation                 *int64             `tfsdk:"generation" json:"generation,omitempty"`
+				Labels                     *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+				ManagedFields              *[]struct {
+					ApiVersion  *string            `tfsdk:"api_version" json:"apiVersion,omitempty"`
+					FieldsType  *string            `tfsdk:"fields_type" json:"fieldsType,omitempty"`
+					FieldsV1    *map[string]string `tfsdk:"fields_v1" json:"fieldsV1,omitempty"`
+					Manager     *string            `tfsdk:"manager" json:"manager,omitempty"`
+					Operation   *string            `tfsdk:"operation" json:"operation,omitempty"`
+					Subresource *string            `tfsdk:"subresource" json:"subresource,omitempty"`
+					Time        *string            `tfsdk:"time" json:"time,omitempty"`
+				} `tfsdk:"managed_fields" json:"managedFields,omitempty"`
+				Name            *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace       *string `tfsdk:"namespace" json:"namespace,omitempty"`
+				OwnerReferences *[]struct {
+					ApiVersion         *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+					BlockOwnerDeletion *bool   `tfsdk:"block_owner_deletion" json:"blockOwnerDeletion,omitempty"`
+					Controller         *bool   `tfsdk:"controller" json:"controller,omitempty"`
+					Kind               *string `tfsdk:"kind" json:"kind,omitempty"`
+					Name               *string `tfsdk:"name" json:"name,omitempty"`
+					Uid                *string `tfsdk:"uid" json:"uid,omitempty"`
+				} `tfsdk:"owner_references" json:"ownerReferences,omitempty"`
+				ResourceVersion *string `tfsdk:"resource_version" json:"resourceVersion,omitempty"`
+				SelfLink        *string `tfsdk:"self_link" json:"selfLink,omitempty"`
+				Uid             *string `tfsdk:"uid" json:"uid,omitempty"`
+			} `tfsdk:"metadata" json:"metadata,omitempty"`
 			Spec *struct {
 				AccessModes *[]string `tfsdk:"access_modes" json:"accessModes,omitempty"`
 				DataSource  *struct {
@@ -1391,10 +1485,31 @@ type AppsStatefulSetV1ManifestData struct {
 					} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 					MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 				} `tfsdk:"selector" json:"selector,omitempty"`
-				StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
-				VolumeMode       *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
-				VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+				StorageClassName          *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+				VolumeAttributesClassName *string `tfsdk:"volume_attributes_class_name" json:"volumeAttributesClassName,omitempty"`
+				VolumeMode                *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
+				VolumeName                *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 			} `tfsdk:"spec" json:"spec,omitempty"`
+			Status *struct {
+				AccessModes               *[]string          `tfsdk:"access_modes" json:"accessModes,omitempty"`
+				AllocatedResourceStatuses *map[string]string `tfsdk:"allocated_resource_statuses" json:"allocatedResourceStatuses,omitempty"`
+				AllocatedResources        *map[string]string `tfsdk:"allocated_resources" json:"allocatedResources,omitempty"`
+				Capacity                  *map[string]string `tfsdk:"capacity" json:"capacity,omitempty"`
+				Conditions                *[]struct {
+					LastProbeTime      *string `tfsdk:"last_probe_time" json:"lastProbeTime,omitempty"`
+					LastTransitionTime *string `tfsdk:"last_transition_time" json:"lastTransitionTime,omitempty"`
+					Message            *string `tfsdk:"message" json:"message,omitempty"`
+					Reason             *string `tfsdk:"reason" json:"reason,omitempty"`
+					Status             *string `tfsdk:"status" json:"status,omitempty"`
+					Type               *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"conditions" json:"conditions,omitempty"`
+				CurrentVolumeAttributesClassName *string `tfsdk:"current_volume_attributes_class_name" json:"currentVolumeAttributesClassName,omitempty"`
+				ModifyVolumeStatus               *struct {
+					Status                          *string `tfsdk:"status" json:"status,omitempty"`
+					TargetVolumeAttributesClassName *string `tfsdk:"target_volume_attributes_class_name" json:"targetVolumeAttributesClassName,omitempty"`
+				} `tfsdk:"modify_volume_status" json:"modifyVolumeStatus,omitempty"`
+				Phase *string `tfsdk:"phase" json:"phase,omitempty"`
+			} `tfsdk:"status" json:"status,omitempty"`
 		} `tfsdk:"volume_claim_templates" json:"volumeClaimTemplates,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -2173,6 +2288,24 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																			Computed: false,
 																		},
 
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"namespace_selector": schema.SingleNestedAttribute{
 																			Description:         "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
 																			MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
@@ -2320,6 +2453,24 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																	Required: false,
 																	Optional: true,
 																	Computed: false,
+																},
+
+																"match_label_keys": schema.ListAttribute{
+																	Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																	MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"mismatch_label_keys": schema.ListAttribute{
+																	Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																	MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
 																},
 
 																"namespace_selector": schema.SingleNestedAttribute{
@@ -2471,6 +2622,24 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																			Computed: false,
 																		},
 
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"namespace_selector": schema.SingleNestedAttribute{
 																			Description:         "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
 																			MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
@@ -2618,6 +2787,24 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																	Required: false,
 																	Optional: true,
 																	Computed: false,
+																},
+
+																"match_label_keys": schema.ListAttribute{
+																	Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																	MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"mismatch_label_keys": schema.ListAttribute{
+																	Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																	MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
 																},
 
 																"namespace_selector": schema.SingleNestedAttribute{
@@ -3080,6 +3267,23 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																	Computed: false,
 																},
 
+																"sleep": schema.SingleNestedAttribute{
+																	Description:         "SleepAction describes a 'sleep' action.",
+																	MarkdownDescription: "SleepAction describes a 'sleep' action.",
+																	Attributes: map[string]schema.Attribute{
+																		"seconds": schema.Int64Attribute{
+																			Description:         "Seconds is the number of seconds to sleep.",
+																			MarkdownDescription: "Seconds is the number of seconds to sleep.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
 																"tcp_socket": schema.SingleNestedAttribute{
 																	Description:         "TCPSocketAction describes an action based on opening a socket",
 																	MarkdownDescription: "TCPSocketAction describes an action based on opening a socket",
@@ -3192,6 +3396,23 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																			MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
 																			Required:            false,
 																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"sleep": schema.SingleNestedAttribute{
+																	Description:         "SleepAction describes a 'sleep' action.",
+																	MarkdownDescription: "SleepAction describes a 'sleep' action.",
+																	Attributes: map[string]schema.Attribute{
+																		"seconds": schema.Int64Attribute{
+																			Description:         "Seconds is the number of seconds to sleep.",
+																			MarkdownDescription: "Seconds is the number of seconds to sleep.",
+																			Required:            true,
+																			Optional:            false,
 																			Computed:            false,
 																		},
 																	},
@@ -3782,6 +4003,31 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 															Computed:            false,
 														},
 
+														"app_armor_profile": schema.SingleNestedAttribute{
+															Description:         "AppArmorProfile defines a pod or container's AppArmor settings.",
+															MarkdownDescription: "AppArmorProfile defines a pod or container's AppArmor settings.",
+															Attributes: map[string]schema.Attribute{
+																"localhost_profile": schema.StringAttribute{
+																	Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																	MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"type": schema.StringAttribute{
+																	Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.",
+																	MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
 														"capabilities": schema.SingleNestedAttribute{
 															Description:         "Adds and removes POSIX capabilities from running containers.",
 															MarkdownDescription: "Adds and removes POSIX capabilities from running containers.",
@@ -4243,8 +4489,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 															},
 
 															"mount_propagation": schema.StringAttribute{
-																Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-																MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+																Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
+																MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4261,6 +4507,14 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 															"read_only": schema.BoolAttribute{
 																Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
 																MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"recursive_read_only": schema.StringAttribute{
+																Description:         "RecursiveReadOnly specifies whether read-only mounts should be handled recursively.If ReadOnly is false, this field has no meaning and must be unspecified.If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only.  If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime.  If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason.If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None).If this field is not specified, it is treated as an equivalent of Disabled.",
+																MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handled recursively.If ReadOnly is false, this field has no meaning and must be unspecified.If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only.  If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime.  If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason.If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None).If this field is not specified, it is treated as an equivalent of Disabled.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4740,6 +4994,23 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																	Computed: false,
 																},
 
+																"sleep": schema.SingleNestedAttribute{
+																	Description:         "SleepAction describes a 'sleep' action.",
+																	MarkdownDescription: "SleepAction describes a 'sleep' action.",
+																	Attributes: map[string]schema.Attribute{
+																		"seconds": schema.Int64Attribute{
+																			Description:         "Seconds is the number of seconds to sleep.",
+																			MarkdownDescription: "Seconds is the number of seconds to sleep.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
 																"tcp_socket": schema.SingleNestedAttribute{
 																	Description:         "TCPSocketAction describes an action based on opening a socket",
 																	MarkdownDescription: "TCPSocketAction describes an action based on opening a socket",
@@ -4852,6 +5123,23 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																			MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
 																			Required:            false,
 																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"sleep": schema.SingleNestedAttribute{
+																	Description:         "SleepAction describes a 'sleep' action.",
+																	MarkdownDescription: "SleepAction describes a 'sleep' action.",
+																	Attributes: map[string]schema.Attribute{
+																		"seconds": schema.Int64Attribute{
+																			Description:         "Seconds is the number of seconds to sleep.",
+																			MarkdownDescription: "Seconds is the number of seconds to sleep.",
+																			Required:            true,
+																			Optional:            false,
 																			Computed:            false,
 																		},
 																	},
@@ -5442,6 +5730,31 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 															Computed:            false,
 														},
 
+														"app_armor_profile": schema.SingleNestedAttribute{
+															Description:         "AppArmorProfile defines a pod or container's AppArmor settings.",
+															MarkdownDescription: "AppArmorProfile defines a pod or container's AppArmor settings.",
+															Attributes: map[string]schema.Attribute{
+																"localhost_profile": schema.StringAttribute{
+																	Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																	MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"type": schema.StringAttribute{
+																	Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.",
+																	MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
 														"capabilities": schema.SingleNestedAttribute{
 															Description:         "Adds and removes POSIX capabilities from running containers.",
 															MarkdownDescription: "Adds and removes POSIX capabilities from running containers.",
@@ -5911,8 +6224,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 															},
 
 															"mount_propagation": schema.StringAttribute{
-																Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-																MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+																Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
+																MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -5929,6 +6242,14 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 															"read_only": schema.BoolAttribute{
 																Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
 																MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"recursive_read_only": schema.StringAttribute{
+																Description:         "RecursiveReadOnly specifies whether read-only mounts should be handled recursively.If ReadOnly is false, this field has no meaning and must be unspecified.If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only.  If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime.  If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason.If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None).If this field is not specified, it is treated as an equivalent of Disabled.",
+																MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handled recursively.If ReadOnly is false, this field has no meaning and must be unspecified.If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only.  If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime.  If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason.If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None).If this field is not specified, it is treated as an equivalent of Disabled.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -5971,8 +6292,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 									},
 
 									"host_aliases": schema.ListNestedAttribute{
-										Description:         "HostAliases is an optional list of hosts and IPs that will be injected into the pod's hosts file if specified. This is only valid for non-hostNetwork pods.",
-										MarkdownDescription: "HostAliases is an optional list of hosts and IPs that will be injected into the pod's hosts file if specified. This is only valid for non-hostNetwork pods.",
+										Description:         "HostAliases is an optional list of hosts and IPs that will be injected into the pod's hosts file if specified.",
+										MarkdownDescription: "HostAliases is an optional list of hosts and IPs that will be injected into the pod's hosts file if specified.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"hostnames": schema.ListAttribute{
@@ -6422,6 +6743,23 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																	Computed: false,
 																},
 
+																"sleep": schema.SingleNestedAttribute{
+																	Description:         "SleepAction describes a 'sleep' action.",
+																	MarkdownDescription: "SleepAction describes a 'sleep' action.",
+																	Attributes: map[string]schema.Attribute{
+																		"seconds": schema.Int64Attribute{
+																			Description:         "Seconds is the number of seconds to sleep.",
+																			MarkdownDescription: "Seconds is the number of seconds to sleep.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
 																"tcp_socket": schema.SingleNestedAttribute{
 																	Description:         "TCPSocketAction describes an action based on opening a socket",
 																	MarkdownDescription: "TCPSocketAction describes an action based on opening a socket",
@@ -6534,6 +6872,23 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																			MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
 																			Required:            false,
 																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"sleep": schema.SingleNestedAttribute{
+																	Description:         "SleepAction describes a 'sleep' action.",
+																	MarkdownDescription: "SleepAction describes a 'sleep' action.",
+																	Attributes: map[string]schema.Attribute{
+																		"seconds": schema.Int64Attribute{
+																			Description:         "Seconds is the number of seconds to sleep.",
+																			MarkdownDescription: "Seconds is the number of seconds to sleep.",
+																			Required:            true,
+																			Optional:            false,
 																			Computed:            false,
 																		},
 																	},
@@ -7124,6 +7479,31 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 															Computed:            false,
 														},
 
+														"app_armor_profile": schema.SingleNestedAttribute{
+															Description:         "AppArmorProfile defines a pod or container's AppArmor settings.",
+															MarkdownDescription: "AppArmorProfile defines a pod or container's AppArmor settings.",
+															Attributes: map[string]schema.Attribute{
+																"localhost_profile": schema.StringAttribute{
+																	Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																	MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"type": schema.StringAttribute{
+																	Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.",
+																	MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
 														"capabilities": schema.SingleNestedAttribute{
 															Description:         "Adds and removes POSIX capabilities from running containers.",
 															MarkdownDescription: "Adds and removes POSIX capabilities from running containers.",
@@ -7585,8 +7965,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 															},
 
 															"mount_propagation": schema.StringAttribute{
-																Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-																MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+																Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
+																MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -7603,6 +7983,14 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 															"read_only": schema.BoolAttribute{
 																Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
 																MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"recursive_read_only": schema.StringAttribute{
+																Description:         "RecursiveReadOnly specifies whether read-only mounts should be handled recursively.If ReadOnly is false, this field has no meaning and must be unspecified.If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only.  If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime.  If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason.If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None).If this field is not specified, it is treated as an equivalent of Disabled.",
+																MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handled recursively.If ReadOnly is false, this field has no meaning and must be unspecified.If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only.  If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime.  If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason.If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None).If this field is not specified, it is treated as an equivalent of Disabled.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -7645,8 +8033,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 									},
 
 									"node_name": schema.StringAttribute{
-										Description:         "NodeName is a request to schedule this pod onto a specific node. If it is non-empty, the scheduler simply schedules this pod onto that node, assuming that it fits resource requirements.",
-										MarkdownDescription: "NodeName is a request to schedule this pod onto a specific node. If it is non-empty, the scheduler simply schedules this pod onto that node, assuming that it fits resource requirements.",
+										Description:         "NodeName indicates in which node this pod is scheduled. If empty, this pod is a candidate for scheduling by the scheduler defined in schedulerName. Once this field is set, the kubelet for this node becomes responsible for the lifecycle of this pod. This field should not be used to express a desire for the pod to be scheduled on a specific node. https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodename",
+										MarkdownDescription: "NodeName indicates in which node this pod is scheduled. If empty, this pod is a candidate for scheduling by the scheduler defined in schedulerName. Once this field is set, the kubelet for this node becomes responsible for the lifecycle of this pod. This field should not be used to express a desire for the pod to be scheduled on a specific node. https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodename",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -7805,8 +8193,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 									},
 
 									"scheduling_gates": schema.ListNestedAttribute{
-										Description:         "SchedulingGates is an opaque list of values that if specified will block scheduling the pod. If schedulingGates is not empty, the pod will stay in the SchedulingGated state and the scheduler will not attempt to schedule the pod.SchedulingGates can only be set at pod creation time, and be removed only afterwards.This is a beta feature enabled by the PodSchedulingReadiness feature gate.",
-										MarkdownDescription: "SchedulingGates is an opaque list of values that if specified will block scheduling the pod. If schedulingGates is not empty, the pod will stay in the SchedulingGated state and the scheduler will not attempt to schedule the pod.SchedulingGates can only be set at pod creation time, and be removed only afterwards.This is a beta feature enabled by the PodSchedulingReadiness feature gate.",
+										Description:         "SchedulingGates is an opaque list of values that if specified will block scheduling the pod. If schedulingGates is not empty, the pod will stay in the SchedulingGated state and the scheduler will not attempt to schedule the pod.SchedulingGates can only be set at pod creation time, and be removed only afterwards.",
+										MarkdownDescription: "SchedulingGates is an opaque list of values that if specified will block scheduling the pod. If schedulingGates is not empty, the pod will stay in the SchedulingGated state and the scheduler will not attempt to schedule the pod.SchedulingGates can only be set at pod creation time, and be removed only afterwards.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
@@ -7827,6 +8215,31 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 										Description:         "PodSecurityContext holds pod-level security attributes and common container settings. Some fields are also present in container.securityContext.  Field values of container.securityContext take precedence over field values of PodSecurityContext.",
 										MarkdownDescription: "PodSecurityContext holds pod-level security attributes and common container settings. Some fields are also present in container.securityContext.  Field values of container.securityContext take precedence over field values of PodSecurityContext.",
 										Attributes: map[string]schema.Attribute{
+											"app_armor_profile": schema.SingleNestedAttribute{
+												Description:         "AppArmorProfile defines a pod or container's AppArmor settings.",
+												MarkdownDescription: "AppArmorProfile defines a pod or container's AppArmor settings.",
+												Attributes: map[string]schema.Attribute{
+													"localhost_profile": schema.StringAttribute{
+														Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+														MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.",
+														MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"fs_group": schema.Int64Attribute{
 												Description:         "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw----If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
 												MarkdownDescription: "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw----If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
@@ -8016,8 +8429,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 									},
 
 									"service_account": schema.StringAttribute{
-										Description:         "DeprecatedServiceAccount is a depreciated alias for ServiceAccountName. Deprecated: Use serviceAccountName instead.",
-										MarkdownDescription: "DeprecatedServiceAccount is a depreciated alias for ServiceAccountName. Deprecated: Use serviceAccountName instead.",
+										Description:         "DeprecatedServiceAccount is a deprecated alias for ServiceAccountName. Deprecated: Use serviceAccountName instead.",
+										MarkdownDescription: "DeprecatedServiceAccount is a deprecated alias for ServiceAccountName. Deprecated: Use serviceAccountName instead.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -8194,8 +8607,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 												},
 
 												"min_domains": schema.Int64Attribute{
-													Description:         "MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).",
-													MarkdownDescription: "MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).",
+													Description:         "MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.",
+													MarkdownDescription: "MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -9182,6 +9595,14 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																			Computed:            false,
 																		},
 
+																		"volume_attributes_class_name": schema.StringAttribute{
+																			Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+																			MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"volume_mode": schema.StringAttribute{
 																			Description:         "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
 																			MarkdownDescription: "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
@@ -9728,6 +10149,101 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 															MarkdownDescription: "sources is the list of volume projections",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
+																	"cluster_trust_bundle": schema.SingleNestedAttribute{
+																		Description:         "ClusterTrustBundleProjection describes how to select a set of ClusterTrustBundle objects and project their contents into the pod filesystem.",
+																		MarkdownDescription: "ClusterTrustBundleProjection describes how to select a set of ClusterTrustBundle objects and project their contents into the pod filesystem.",
+																		Attributes: map[string]schema.Attribute{
+																			"label_selector": schema.SingleNestedAttribute{
+																				Description:         "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
+																				MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
+																				Attributes: map[string]schema.Attribute{
+																					"match_expressions": schema.ListNestedAttribute{
+																						Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																						MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																						NestedObject: schema.NestedAttributeObject{
+																							Attributes: map[string]schema.Attribute{
+																								"key": schema.StringAttribute{
+																									Description:         "key is the label key that the selector applies to.",
+																									MarkdownDescription: "key is the label key that the selector applies to.",
+																									Required:            true,
+																									Optional:            false,
+																									Computed:            false,
+																								},
+
+																								"operator": schema.StringAttribute{
+																									Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																									MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																									Required:            true,
+																									Optional:            false,
+																									Computed:            false,
+																								},
+
+																								"values": schema.ListAttribute{
+																									Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																									MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"match_labels": schema.MapAttribute{
+																						Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																						MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																						ElementType:         types.StringType,
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Select a single ClusterTrustBundle by object name.  Mutually-exclusive with signerName and labelSelector.",
+																				MarkdownDescription: "Select a single ClusterTrustBundle by object name.  Mutually-exclusive with signerName and labelSelector.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "If true, don't block pod startup if the referenced ClusterTrustBundle(s) aren't available.  If using name, then the named ClusterTrustBundle is allowed not to exist.  If using signerName, then the combination of signerName and labelSelector is allowed to match zero ClusterTrustBundles.",
+																				MarkdownDescription: "If true, don't block pod startup if the referenced ClusterTrustBundle(s) aren't available.  If using name, then the named ClusterTrustBundle is allowed not to exist.  If using signerName, then the combination of signerName and labelSelector is allowed to match zero ClusterTrustBundles.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"path": schema.StringAttribute{
+																				Description:         "Relative path from the volume root to write the bundle.",
+																				MarkdownDescription: "Relative path from the volume root to write the bundle.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"signer_name": schema.StringAttribute{
+																				Description:         "Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name.  The contents of all selected ClusterTrustBundles will be unified and deduplicated.",
+																				MarkdownDescription: "Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name.  The contents of all selected ClusterTrustBundles will be unified and deduplicated.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
 																	"config_map": schema.SingleNestedAttribute{
 																		Description:         "Adapts a ConfigMap into a projected volume.The contents of the target ConfigMap's Data field will be presented in a projected volume as files using the keys in the Data field as the file names, unless the items element is populated with specific mappings of keys to paths. Note that this is identical to a configmap volume source without the default mode.",
 																		MarkdownDescription: "Adapts a ConfigMap into a projected volume.The contents of the target ConfigMap's Data field will be presented in a projected volume as files using the keys in the Data field as the file names, unless the items element is populated with specific mappings of keys to paths. Note that this is identical to a configmap volume source without the default mode.",
@@ -10457,6 +10973,274 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 						MarkdownDescription: "volumeClaimTemplates is a list of claims that pods are allowed to reference. The StatefulSet controller is responsible for mapping network identities to claims in a way that maintains the identity of a pod. Every claim in this list must have at least one matching (by name) volumeMount in one container in the template. A claim in this list takes precedence over any volumes in the template, with the same name.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"api_version": schema.StringAttribute{
+									Description:         "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+									MarkdownDescription: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"kind": schema.StringAttribute{
+									Description:         "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+									MarkdownDescription: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"metadata": schema.SingleNestedAttribute{
+									Description:         "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
+									MarkdownDescription: "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
+									Attributes: map[string]schema.Attribute{
+										"annotations": schema.MapAttribute{
+											Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations",
+											MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"creation_timestamp": schema.StringAttribute{
+											Description:         "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+											MarkdownDescription: "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												validators.DateTime64Validator(),
+											},
+										},
+
+										"deletion_grace_period_seconds": schema.Int64Attribute{
+											Description:         "Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.",
+											MarkdownDescription: "Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"deletion_timestamp": schema.StringAttribute{
+											Description:         "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+											MarkdownDescription: "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												validators.DateTime64Validator(),
+											},
+										},
+
+										"finalizers": schema.ListAttribute{
+											Description:         "Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.",
+											MarkdownDescription: "Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"generate_name": schema.StringAttribute{
+											Description:         "GenerateName is an optional prefix, used by the server, to generate a unique name ONLY IF the Name field has not been provided. If this field is used, the name returned to the client will be different than the name passed. This value will also be combined with a unique suffix. The provided value has the same validation rules as the Name field, and may be truncated by the length of the suffix required to make the value unique on the server.If this field is specified and the generated name exists, the server will return a 409.Applied only if Name is not specified. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#idempotency",
+											MarkdownDescription: "GenerateName is an optional prefix, used by the server, to generate a unique name ONLY IF the Name field has not been provided. If this field is used, the name returned to the client will be different than the name passed. This value will also be combined with a unique suffix. The provided value has the same validation rules as the Name field, and may be truncated by the length of the suffix required to make the value unique on the server.If this field is specified and the generated name exists, the server will return a 409.Applied only if Name is not specified. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#idempotency",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"generation": schema.Int64Attribute{
+											Description:         "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.",
+											MarkdownDescription: "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"labels": schema.MapAttribute{
+											Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels",
+											MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"managed_fields": schema.ListNestedAttribute{
+											Description:         "ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like 'ci-cd'. The set of fields is always in the version that the workflow used when modifying the object.",
+											MarkdownDescription: "ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like 'ci-cd'. The set of fields is always in the version that the workflow used when modifying the object.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"api_version": schema.StringAttribute{
+														Description:         "APIVersion defines the version of this resource that this field set applies to. The format is 'group/version' just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.",
+														MarkdownDescription: "APIVersion defines the version of this resource that this field set applies to. The format is 'group/version' just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"fields_type": schema.StringAttribute{
+														Description:         "FieldsType is the discriminator for the different fields format and version. There is currently only one possible value: 'FieldsV1'",
+														MarkdownDescription: "FieldsType is the discriminator for the different fields format and version. There is currently only one possible value: 'FieldsV1'",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"fields_v1": schema.MapAttribute{
+														Description:         "FieldsV1 stores a set of fields in a data structure like a Trie, in JSON format.Each key is either a '.' representing the field itself, and will always map to an empty set, or a string representing a sub-field or item. The string will follow one of these four formats: 'f:<name>', where <name> is the name of a field in a struct, or key in a map 'v:<value>', where <value> is the exact json formatted value of a list item 'i:<index>', where <index> is position of a item in a list 'k:<keys>', where <keys> is a map of  a list item's key fields to their unique values If a key maps to an empty Fields value, the field that key represents is part of the set.The exact format is defined in sigs.k8s.io/structured-merge-diff",
+														MarkdownDescription: "FieldsV1 stores a set of fields in a data structure like a Trie, in JSON format.Each key is either a '.' representing the field itself, and will always map to an empty set, or a string representing a sub-field or item. The string will follow one of these four formats: 'f:<name>', where <name> is the name of a field in a struct, or key in a map 'v:<value>', where <value> is the exact json formatted value of a list item 'i:<index>', where <index> is position of a item in a list 'k:<keys>', where <keys> is a map of  a list item's key fields to their unique values If a key maps to an empty Fields value, the field that key represents is part of the set.The exact format is defined in sigs.k8s.io/structured-merge-diff",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"manager": schema.StringAttribute{
+														Description:         "Manager is an identifier of the workflow managing these fields.",
+														MarkdownDescription: "Manager is an identifier of the workflow managing these fields.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"operation": schema.StringAttribute{
+														Description:         "Operation is the type of operation which lead to this ManagedFieldsEntry being created. The only valid values for this field are 'Apply' and 'Update'.",
+														MarkdownDescription: "Operation is the type of operation which lead to this ManagedFieldsEntry being created. The only valid values for this field are 'Apply' and 'Update'.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"subresource": schema.StringAttribute{
+														Description:         "Subresource is the name of the subresource used to update that object, or empty string if the object was updated through the main resource. The value of this field is used to distinguish between managers, even if they share the same name. For example, a status update will be distinct from a regular update using the same manager name. Note that the APIVersion field is not related to the Subresource field and it always corresponds to the version of the main resource.",
+														MarkdownDescription: "Subresource is the name of the subresource used to update that object, or empty string if the object was updated through the main resource. The value of this field is used to distinguish between managers, even if they share the same name. For example, a status update will be distinct from a regular update using the same manager name. Note that the APIVersion field is not related to the Subresource field and it always corresponds to the version of the main resource.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"time": schema.StringAttribute{
+														Description:         "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+														MarkdownDescription: "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															validators.DateTime64Validator(),
+														},
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names",
+											MarkdownDescription: "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"namespace": schema.StringAttribute{
+											Description:         "Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the 'default' namespace, but 'default' is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty.Must be a DNS_LABEL. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces",
+											MarkdownDescription: "Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the 'default' namespace, but 'default' is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty.Must be a DNS_LABEL. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"owner_references": schema.ListNestedAttribute{
+											Description:         "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.",
+											MarkdownDescription: "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"api_version": schema.StringAttribute{
+														Description:         "API version of the referent.",
+														MarkdownDescription: "API version of the referent.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"block_owner_deletion": schema.BoolAttribute{
+														Description:         "If true, AND if the owner has the 'foregroundDeletion' finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. See https://kubernetes.io/docs/concepts/architecture/garbage-collection/#foreground-deletion for how the garbage collector interacts with this field and enforces the foreground deletion. Defaults to false. To set this field, a user needs 'delete' permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.",
+														MarkdownDescription: "If true, AND if the owner has the 'foregroundDeletion' finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. See https://kubernetes.io/docs/concepts/architecture/garbage-collection/#foreground-deletion for how the garbage collector interacts with this field and enforces the foreground deletion. Defaults to false. To set this field, a user needs 'delete' permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"controller": schema.BoolAttribute{
+														Description:         "If true, this reference points to the managing controller.",
+														MarkdownDescription: "If true, this reference points to the managing controller.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"kind": schema.StringAttribute{
+														Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+														MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"uid": schema.StringAttribute{
+														Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids",
+														MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"resource_version": schema.StringAttribute{
+											Description:         "An opaque value that represents the internal version of this object that can be used by clients to determine when objects have changed. May be used for optimistic concurrency, change detection, and the watch operation on a resource or set of resources. Clients must treat these values as opaque and passed unmodified back to the server. They may only be valid for a particular resource or set of resources.Populated by the system. Read-only. Value must be treated as opaque by clients and . More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+											MarkdownDescription: "An opaque value that represents the internal version of this object that can be used by clients to determine when objects have changed. May be used for optimistic concurrency, change detection, and the watch operation on a resource or set of resources. Clients must treat these values as opaque and passed unmodified back to the server. They may only be valid for a particular resource or set of resources.Populated by the system. Read-only. Value must be treated as opaque by clients and . More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"self_link": schema.StringAttribute{
+											Description:         "Deprecated: selfLink is a legacy read-only field that is no longer populated by the system.",
+											MarkdownDescription: "Deprecated: selfLink is a legacy read-only field that is no longer populated by the system.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"uid": schema.StringAttribute{
+											Description:         "UID is the unique in time and space value for this object. It is typically generated by the server on successful creation of a resource and is not allowed to change on PUT operations.Populated by the system. Read-only. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids",
+											MarkdownDescription: "UID is the unique in time and space value for this object. It is typically generated by the server on successful creation of a resource and is not allowed to change on PUT operations.Populated by the system. Read-only. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"spec": schema.SingleNestedAttribute{
 									Description:         "PersistentVolumeClaimSpec describes the common attributes of storage devices and allows a Source for provider-specific attributes",
 									MarkdownDescription: "PersistentVolumeClaimSpec describes the common attributes of storage devices and allows a Source for provider-specific attributes",
@@ -10633,6 +11417,14 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 											Computed:            false,
 										},
 
+										"volume_attributes_class_name": schema.StringAttribute{
+											Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+											MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"volume_mode": schema.StringAttribute{
 											Description:         "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
 											MarkdownDescription: "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
@@ -10644,6 +11436,157 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 										"volume_name": schema.StringAttribute{
 											Description:         "volumeName is the binding reference to the PersistentVolume backing this claim.",
 											MarkdownDescription: "volumeName is the binding reference to the PersistentVolume backing this claim.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"status": schema.SingleNestedAttribute{
+									Description:         "PersistentVolumeClaimStatus is the current status of a persistent volume claim.",
+									MarkdownDescription: "PersistentVolumeClaimStatus is the current status of a persistent volume claim.",
+									Attributes: map[string]schema.Attribute{
+										"access_modes": schema.ListAttribute{
+											Description:         "accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+											MarkdownDescription: "accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"allocated_resource_statuses": schema.MapAttribute{
+											Description:         "allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either:	* Un-prefixed keys:		- storage - the capacity of the volume.	* Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource'Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.ClaimResourceStatus can be in any of following states:	- ControllerResizeInProgress:		State set when resize controller starts resizing the volume in control-plane.	- ControllerResizeFailed:		State set when resize has failed in resize controller with a terminal error.	- NodeResizePending:		State set when resize controller has finished resizing the volume but further resizing of		volume is needed on the node.	- NodeResizeInProgress:		State set when kubelet starts resizing the volume.	- NodeResizeFailed:		State set when resizing has failed in kubelet with a terminal error. Transient errors don't set		NodeResizeFailed.For example: if expanding a PVC for more capacity - this field can be one of the following states:	- pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress'     - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed'     - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending'     - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress'     - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed'When this field is not set, it means that no resize operation is in progress for the given PVC.A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
+											MarkdownDescription: "allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either:	* Un-prefixed keys:		- storage - the capacity of the volume.	* Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource'Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.ClaimResourceStatus can be in any of following states:	- ControllerResizeInProgress:		State set when resize controller starts resizing the volume in control-plane.	- ControllerResizeFailed:		State set when resize has failed in resize controller with a terminal error.	- NodeResizePending:		State set when resize controller has finished resizing the volume but further resizing of		volume is needed on the node.	- NodeResizeInProgress:		State set when kubelet starts resizing the volume.	- NodeResizeFailed:		State set when resizing has failed in kubelet with a terminal error. Transient errors don't set		NodeResizeFailed.For example: if expanding a PVC for more capacity - this field can be one of the following states:	- pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress'     - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed'     - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending'     - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress'     - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed'When this field is not set, it means that no resize operation is in progress for the given PVC.A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"allocated_resources": schema.MapAttribute{
+											Description:         "allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either:	* Un-prefixed keys:		- storage - the capacity of the volume.	* Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource'Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity.A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
+											MarkdownDescription: "allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either:	* Un-prefixed keys:		- storage - the capacity of the volume.	* Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource'Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity.A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"capacity": schema.MapAttribute{
+											Description:         "capacity represents the actual resources of the underlying volume.",
+											MarkdownDescription: "capacity represents the actual resources of the underlying volume.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"conditions": schema.ListNestedAttribute{
+											Description:         "conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'Resizing'.",
+											MarkdownDescription: "conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'Resizing'.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"last_probe_time": schema.StringAttribute{
+														Description:         "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+														MarkdownDescription: "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															validators.DateTime64Validator(),
+														},
+													},
+
+													"last_transition_time": schema.StringAttribute{
+														Description:         "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+														MarkdownDescription: "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															validators.DateTime64Validator(),
+														},
+													},
+
+													"message": schema.StringAttribute{
+														Description:         "message is the human-readable message indicating details about last transition.",
+														MarkdownDescription: "message is the human-readable message indicating details about last transition.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"reason": schema.StringAttribute{
+														Description:         "reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'Resizing' that means the underlying persistent volume is being resized.",
+														MarkdownDescription: "reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'Resizing' that means the underlying persistent volume is being resized.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"status": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"current_volume_attributes_class_name": schema.StringAttribute{
+											Description:         "currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim This is an alpha field and requires enabling VolumeAttributesClass feature.",
+											MarkdownDescription: "currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim This is an alpha field and requires enabling VolumeAttributesClass feature.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"modify_volume_status": schema.SingleNestedAttribute{
+											Description:         "ModifyVolumeStatus represents the status object of ControllerModifyVolume operation",
+											MarkdownDescription: "ModifyVolumeStatus represents the status object of ControllerModifyVolume operation",
+											Attributes: map[string]schema.Attribute{
+												"status": schema.StringAttribute{
+													Description:         "status is the status of the ControllerModifyVolume operation. It can be in any of following states: - Pending   Pending indicates that the PersistentVolumeClaim cannot be modified due to unmet requirements, such as   the specified VolumeAttributesClass not existing. - InProgress   InProgress indicates that the volume is being modified. - Infeasible  Infeasible indicates that the request has been rejected as invalid by the CSI driver. To	  resolve the error, a valid VolumeAttributesClass needs to be specified.Note: New statuses can be added in the future. Consumers should check for unknown statuses and fail appropriately.",
+													MarkdownDescription: "status is the status of the ControllerModifyVolume operation. It can be in any of following states: - Pending   Pending indicates that the PersistentVolumeClaim cannot be modified due to unmet requirements, such as   the specified VolumeAttributesClass not existing. - InProgress   InProgress indicates that the volume is being modified. - Infeasible  Infeasible indicates that the request has been rejected as invalid by the CSI driver. To	  resolve the error, a valid VolumeAttributesClass needs to be specified.Note: New statuses can be added in the future. Consumers should check for unknown statuses and fail appropriately.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"target_volume_attributes_class_name": schema.StringAttribute{
+													Description:         "targetVolumeAttributesClassName is the name of the VolumeAttributesClass the PVC currently being reconciled",
+													MarkdownDescription: "targetVolumeAttributesClassName is the name of the VolumeAttributesClass the PVC currently being reconciled",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"phase": schema.StringAttribute{
+											Description:         "phase represents the current phase of PersistentVolumeClaim.",
+											MarkdownDescription: "phase represents the current phase of PersistentVolumeClaim.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

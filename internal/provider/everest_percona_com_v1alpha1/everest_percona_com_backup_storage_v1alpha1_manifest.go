@@ -48,8 +48,10 @@ type EverestPerconaComBackupStorageV1Alpha1ManifestData struct {
 		CredentialsSecretName *string   `tfsdk:"credentials_secret_name" json:"credentialsSecretName,omitempty"`
 		Description           *string   `tfsdk:"description" json:"description,omitempty"`
 		EndpointURL           *string   `tfsdk:"endpoint_url" json:"endpointURL,omitempty"`
+		ForcePathStyle        *bool     `tfsdk:"force_path_style" json:"forcePathStyle,omitempty"`
 		Region                *string   `tfsdk:"region" json:"region,omitempty"`
 		Type                  *string   `tfsdk:"type" json:"type,omitempty"`
+		VerifyTLS             *bool     `tfsdk:"verify_tls" json:"verifyTLS,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -171,6 +173,14 @@ func (r *EverestPerconaComBackupStorageV1Alpha1Manifest) Schema(_ context.Contex
 						Computed:            false,
 					},
 
+					"force_path_style": schema.BoolAttribute{
+						Description:         "ForcePathStyle is set to use path-style URLs.If unspecified, the default value is false.",
+						MarkdownDescription: "ForcePathStyle is set to use path-style URLs.If unspecified, the default value is false.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"region": schema.StringAttribute{
 						Description:         "Region is a region where the bucket is located.",
 						MarkdownDescription: "Region is a region where the bucket is located.",
@@ -188,6 +198,14 @@ func (r *EverestPerconaComBackupStorageV1Alpha1Manifest) Schema(_ context.Contex
 						Validators: []validator.String{
 							stringvalidator.OneOf("s3", "azure"),
 						},
+					},
+
+					"verify_tls": schema.BoolAttribute{
+						Description:         "VerifyTLS is set to ensure TLS/SSL verification.If unspecified, the default value is true.",
+						MarkdownDescription: "VerifyTLS is set to ensure TLS/SSL verification.If unspecified, the default value is true.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 				},
 				Required: false,

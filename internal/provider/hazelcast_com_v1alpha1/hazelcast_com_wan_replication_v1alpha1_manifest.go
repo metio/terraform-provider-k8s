@@ -60,7 +60,8 @@ type HazelcastComWanReplicationV1Alpha1ManifestData struct {
 			Kind *string `tfsdk:"kind" json:"kind,omitempty"`
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"resources" json:"resources,omitempty"`
-		TargetClusterName *string `tfsdk:"target_cluster_name" json:"targetClusterName,omitempty"`
+		SyncConsistencyCheckStrategy *string `tfsdk:"sync_consistency_check_strategy" json:"syncConsistencyCheckStrategy,omitempty"`
+		TargetClusterName            *string `tfsdk:"target_cluster_name" json:"targetClusterName,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -264,6 +265,14 @@ func (r *HazelcastComWanReplicationV1Alpha1Manifest) Schema(_ context.Context, _
 						Required: true,
 						Optional: false,
 						Computed: false,
+					},
+
+					"sync_consistency_check_strategy": schema.StringAttribute{
+						Description:         "SyncConsistencyCheckStrategy is the strategy for checking the consistency of data between replicas.",
+						MarkdownDescription: "SyncConsistencyCheckStrategy is the strategy for checking the consistency of data between replicas.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"target_cluster_name": schema.StringAttribute{

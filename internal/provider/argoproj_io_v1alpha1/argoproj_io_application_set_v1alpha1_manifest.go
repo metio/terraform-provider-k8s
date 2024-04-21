@@ -11367,8 +11367,8 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 											Description:         "",
 											MarkdownDescription: "",
 											ElementType:         types.StringType,
-											Required:            true,
-											Optional:            false,
+											Required:            false,
+											Optional:            true,
 											Computed:            false,
 										},
 
@@ -18050,8 +18050,8 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																Description:         "",
 																MarkdownDescription: "",
 																ElementType:         types.StringType,
-																Required:            true,
-																Optional:            false,
+																Required:            false,
+																Optional:            true,
 																Computed:            false,
 															},
 
@@ -32348,8 +32348,8 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																Description:         "",
 																MarkdownDescription: "",
 																ElementType:         types.StringType,
-																Required:            true,
-																Optional:            false,
+																Required:            false,
+																Optional:            true,
 																Computed:            false,
 															},
 

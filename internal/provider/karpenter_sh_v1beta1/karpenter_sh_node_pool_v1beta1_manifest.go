@@ -188,7 +188,7 @@ func (r *KarpenterShNodePoolV1Beta1Manifest) Schema(_ context.Context, _ datasou
 											Optional:            true,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(m|h)+(0s)?)$`), ""),
+												stringvalidator.RegexMatches(regexp.MustCompile(`^((([0-9]+(h|m))|([0-9]+h[0-9]+m))(0s)?)$`), ""),
 											},
 										},
 

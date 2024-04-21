@@ -168,9 +168,10 @@ type OperatorVictoriametricsComVmagentV1Beta1ManifestData struct {
 				ResizeStatus *string `tfsdk:"resize_status" json:"resizeStatus,omitempty"`
 			} `tfsdk:"status" json:"status,omitempty"`
 		} `tfsdk:"claim_templates" json:"claimTemplates,omitempty"`
-		ConfigMaps *[]string            `tfsdk:"config_maps" json:"configMaps,omitempty"`
-		Containers *[]map[string]string `tfsdk:"containers" json:"containers,omitempty"`
-		DnsConfig  *struct {
+		ConfigMaps              *[]string            `tfsdk:"config_maps" json:"configMaps,omitempty"`
+		ConfigReloaderExtraArgs *map[string]string   `tfsdk:"config_reloader_extra_args" json:"configReloaderExtraArgs,omitempty"`
+		Containers              *[]map[string]string `tfsdk:"containers" json:"containers,omitempty"`
+		DnsConfig               *struct {
 			Nameservers *[]string `tfsdk:"nameservers" json:"nameservers,omitempty"`
 			Options     *[]struct {
 				Name  *string `tfsdk:"name" json:"name,omitempty"`
@@ -205,7 +206,7 @@ type OperatorVictoriametricsComVmagentV1Beta1ManifestData struct {
 			Labels       *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			Match        *string            `tfsdk:"match" json:"match,omitempty"`
 			Modulus      *int64             `tfsdk:"modulus" json:"modulus,omitempty"`
-			Regex        *string            `tfsdk:"regex" json:"regex,omitempty"`
+			Regex        *map[string]string `tfsdk:"regex" json:"regex,omitempty"`
 			Replacement  *string            `tfsdk:"replacement" json:"replacement,omitempty"`
 			Separator    *string            `tfsdk:"separator" json:"separator,omitempty"`
 			SourceLabels *[]string          `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
@@ -246,7 +247,7 @@ type OperatorVictoriametricsComVmagentV1Beta1ManifestData struct {
 			Labels       *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			Match        *string            `tfsdk:"match" json:"match,omitempty"`
 			Modulus      *int64             `tfsdk:"modulus" json:"modulus,omitempty"`
-			Regex        *string            `tfsdk:"regex" json:"regex,omitempty"`
+			Regex        *map[string]string `tfsdk:"regex" json:"regex,omitempty"`
 			Replacement  *string            `tfsdk:"replacement" json:"replacement,omitempty"`
 			Separator    *string            `tfsdk:"separator" json:"separator,omitempty"`
 			SourceLabels *[]string          `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
@@ -287,7 +288,7 @@ type OperatorVictoriametricsComVmagentV1Beta1ManifestData struct {
 			Labels       *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			Match        *string            `tfsdk:"match" json:"match,omitempty"`
 			Modulus      *int64             `tfsdk:"modulus" json:"modulus,omitempty"`
-			Regex        *string            `tfsdk:"regex" json:"regex,omitempty"`
+			Regex        *map[string]string `tfsdk:"regex" json:"regex,omitempty"`
 			Replacement  *string            `tfsdk:"replacement" json:"replacement,omitempty"`
 			Separator    *string            `tfsdk:"separator" json:"separator,omitempty"`
 			SourceLabels *[]string          `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
@@ -301,7 +302,6 @@ type OperatorVictoriametricsComVmagentV1Beta1ManifestData struct {
 			} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 		} `tfsdk:"pod_scrape_selector" json:"podScrapeSelector,omitempty"`
-		PodSecurityPolicyName  *string `tfsdk:"pod_security_policy_name" json:"podSecurityPolicyName,omitempty"`
 		Port                   *string `tfsdk:"port" json:"port,omitempty"`
 		PriorityClassName      *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
 		ProbeNamespaceSelector *struct {
@@ -318,7 +318,7 @@ type OperatorVictoriametricsComVmagentV1Beta1ManifestData struct {
 			Labels       *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			Match        *string            `tfsdk:"match" json:"match,omitempty"`
 			Modulus      *int64             `tfsdk:"modulus" json:"modulus,omitempty"`
-			Regex        *string            `tfsdk:"regex" json:"regex,omitempty"`
+			Regex        *map[string]string `tfsdk:"regex" json:"regex,omitempty"`
 			Replacement  *string            `tfsdk:"replacement" json:"replacement,omitempty"`
 			Separator    *string            `tfsdk:"separator" json:"separator,omitempty"`
 			SourceLabels *[]string          `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
@@ -367,7 +367,7 @@ type OperatorVictoriametricsComVmagentV1Beta1ManifestData struct {
 				Labels       *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 				Match        *string            `tfsdk:"match" json:"match,omitempty"`
 				Modulus      *int64             `tfsdk:"modulus" json:"modulus,omitempty"`
-				Regex        *string            `tfsdk:"regex" json:"regex,omitempty"`
+				Regex        *map[string]string `tfsdk:"regex" json:"regex,omitempty"`
 				Replacement  *string            `tfsdk:"replacement" json:"replacement,omitempty"`
 				Separator    *string            `tfsdk:"separator" json:"separator,omitempty"`
 				SourceLabels *[]string          `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
@@ -410,7 +410,7 @@ type OperatorVictoriametricsComVmagentV1Beta1ManifestData struct {
 						Labels       *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 						Match        *string            `tfsdk:"match" json:"match,omitempty"`
 						Modulus      *int64             `tfsdk:"modulus" json:"modulus,omitempty"`
-						Regex        *string            `tfsdk:"regex" json:"regex,omitempty"`
+						Regex        *map[string]string `tfsdk:"regex" json:"regex,omitempty"`
 						Replacement  *string            `tfsdk:"replacement" json:"replacement,omitempty"`
 						Separator    *string            `tfsdk:"separator" json:"separator,omitempty"`
 						SourceLabels *[]string          `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
@@ -424,7 +424,7 @@ type OperatorVictoriametricsComVmagentV1Beta1ManifestData struct {
 						Labels       *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 						Match        *string            `tfsdk:"match" json:"match,omitempty"`
 						Modulus      *int64             `tfsdk:"modulus" json:"modulus,omitempty"`
-						Regex        *string            `tfsdk:"regex" json:"regex,omitempty"`
+						Regex        *map[string]string `tfsdk:"regex" json:"regex,omitempty"`
 						Replacement  *string            `tfsdk:"replacement" json:"replacement,omitempty"`
 						Separator    *string            `tfsdk:"separator" json:"separator,omitempty"`
 						SourceLabels *[]string          `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
@@ -501,8 +501,38 @@ type OperatorVictoriametricsComVmagentV1Beta1ManifestData struct {
 			MaxSurge       *string `tfsdk:"max_surge" json:"maxSurge,omitempty"`
 			MaxUnavailable *string `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
 		} `tfsdk:"rolling_update" json:"rollingUpdate,omitempty"`
-		RuntimeClassName               *string            `tfsdk:"runtime_class_name" json:"runtimeClassName,omitempty"`
-		SchedulerName                  *string            `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
+		RuntimeClassName              *string `tfsdk:"runtime_class_name" json:"runtimeClassName,omitempty"`
+		SchedulerName                 *string `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
+		ScrapeConfigNamespaceSelector *struct {
+			MatchExpressions *[]struct {
+				Key      *string   `tfsdk:"key" json:"key,omitempty"`
+				Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+				Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+			} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+		} `tfsdk:"scrape_config_namespace_selector" json:"scrapeConfigNamespaceSelector,omitempty"`
+		ScrapeConfigRelabelTemplate *[]struct {
+			Action        *string            `tfsdk:"action" json:"action,omitempty"`
+			If            *map[string]string `tfsdk:"if" json:"if,omitempty"`
+			Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Match         *string            `tfsdk:"match" json:"match,omitempty"`
+			Modulus       *int64             `tfsdk:"modulus" json:"modulus,omitempty"`
+			Regex         *map[string]string `tfsdk:"regex" json:"regex,omitempty"`
+			Replacement   *string            `tfsdk:"replacement" json:"replacement,omitempty"`
+			Separator     *string            `tfsdk:"separator" json:"separator,omitempty"`
+			SourceLabels  *[]string          `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
+			Source_labels *[]string          `tfsdk:"source_labels" json:"source_labels,omitempty"`
+			TargetLabel   *string            `tfsdk:"target_label" json:"targetLabel,omitempty"`
+			Target_label  *string            `tfsdk:"target_label" json:"target_label,omitempty"`
+		} `tfsdk:"scrape_config_relabel_template" json:"scrapeConfigRelabelTemplate,omitempty"`
+		ScrapeConfigSelector *struct {
+			MatchExpressions *[]struct {
+				Key      *string   `tfsdk:"key" json:"key,omitempty"`
+				Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+				Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+			} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+		} `tfsdk:"scrape_config_selector" json:"scrapeConfigSelector,omitempty"`
 		ScrapeInterval                 *string            `tfsdk:"scrape_interval" json:"scrapeInterval,omitempty"`
 		ScrapeTimeout                  *string            `tfsdk:"scrape_timeout" json:"scrapeTimeout,omitempty"`
 		Secrets                        *[]string          `tfsdk:"secrets" json:"secrets,omitempty"`
@@ -523,7 +553,7 @@ type OperatorVictoriametricsComVmagentV1Beta1ManifestData struct {
 			Labels       *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			Match        *string            `tfsdk:"match" json:"match,omitempty"`
 			Modulus      *int64             `tfsdk:"modulus" json:"modulus,omitempty"`
-			Regex        *string            `tfsdk:"regex" json:"regex,omitempty"`
+			Regex        *map[string]string `tfsdk:"regex" json:"regex,omitempty"`
 			Replacement  *string            `tfsdk:"replacement" json:"replacement,omitempty"`
 			Separator    *string            `tfsdk:"separator" json:"separator,omitempty"`
 			SourceLabels *[]string          `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
@@ -544,7 +574,8 @@ type OperatorVictoriametricsComVmagentV1Beta1ManifestData struct {
 				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 				Name        *string            `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"metadata" json:"metadata,omitempty"`
-			Spec *map[string]string `tfsdk:"spec" json:"spec,omitempty"`
+			Spec         *map[string]string `tfsdk:"spec" json:"spec,omitempty"`
+			UseAsDefault *bool              `tfsdk:"use_as_default" json:"useAsDefault,omitempty"`
 		} `tfsdk:"service_spec" json:"serviceSpec,omitempty"`
 		ShardCount                    *int64             `tfsdk:"shard_count" json:"shardCount,omitempty"`
 		StartupProbe                  *map[string]string `tfsdk:"startup_probe" json:"startupProbe,omitempty"`
@@ -627,7 +658,7 @@ type OperatorVictoriametricsComVmagentV1Beta1ManifestData struct {
 			Labels       *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			Match        *string            `tfsdk:"match" json:"match,omitempty"`
 			Modulus      *int64             `tfsdk:"modulus" json:"modulus,omitempty"`
-			Regex        *string            `tfsdk:"regex" json:"regex,omitempty"`
+			Regex        *map[string]string `tfsdk:"regex" json:"regex,omitempty"`
 			Replacement  *string            `tfsdk:"replacement" json:"replacement,omitempty"`
 			Separator    *string            `tfsdk:"separator" json:"separator,omitempty"`
 			SourceLabels *[]string          `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
@@ -1585,6 +1616,15 @@ func (r *OperatorVictoriametricsComVmagentV1Beta1Manifest) Schema(_ context.Cont
 						Computed:            false,
 					},
 
+					"config_reloader_extra_args": schema.MapAttribute{
+						Description:         "ConfigReloaderExtraArgs that will be passed to  VMAuths config-reloader containerfor example resyncInterval: '30s'",
+						MarkdownDescription: "ConfigReloaderExtraArgs that will be passed to  VMAuths config-reloader containerfor example resyncInterval: '30s'",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"containers": schema.ListAttribute{
 						Description:         "Containers property allows to inject additions sidecars or to patch existing containers.It can be useful for proxies, backup, etc.",
 						MarkdownDescription: "Containers property allows to inject additions sidecars or to patch existing containers.It can be useful for proxies, backup, etc.",
@@ -1851,9 +1891,10 @@ func (r *OperatorVictoriametricsComVmagentV1Beta1Manifest) Schema(_ context.Cont
 									Computed:            false,
 								},
 
-								"regex": schema.StringAttribute{
-									Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'",
-									MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'",
+								"regex": schema.MapAttribute{
+									Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
+									MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
+									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -2153,9 +2194,10 @@ func (r *OperatorVictoriametricsComVmagentV1Beta1Manifest) Schema(_ context.Cont
 									Computed:            false,
 								},
 
-								"regex": schema.StringAttribute{
-									Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'",
-									MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'",
+								"regex": schema.MapAttribute{
+									Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
+									MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
+									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -2449,9 +2491,10 @@ func (r *OperatorVictoriametricsComVmagentV1Beta1Manifest) Schema(_ context.Cont
 									Computed:            false,
 								},
 
-								"regex": schema.StringAttribute{
-									Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'",
-									MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'",
+								"regex": schema.MapAttribute{
+									Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
+									MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
+									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -2548,14 +2591,6 @@ func (r *OperatorVictoriametricsComVmagentV1Beta1Manifest) Schema(_ context.Cont
 						Required: false,
 						Optional: true,
 						Computed: false,
-					},
-
-					"pod_security_policy_name": schema.StringAttribute{
-						Description:         "PodSecurityPolicyName - defines name for podSecurityPolicyin case of empty value, prefixedName will be used.",
-						MarkdownDescription: "PodSecurityPolicyName - defines name for podSecurityPolicyin case of empty value, prefixedName will be used.",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
 					},
 
 					"port": schema.StringAttribute{
@@ -2675,9 +2710,10 @@ func (r *OperatorVictoriametricsComVmagentV1Beta1Manifest) Schema(_ context.Cont
 									Computed:            false,
 								},
 
-								"regex": schema.StringAttribute{
-									Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'",
-									MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'",
+								"regex": schema.MapAttribute{
+									Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
+									MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
+									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -3014,9 +3050,10 @@ func (r *OperatorVictoriametricsComVmagentV1Beta1Manifest) Schema(_ context.Cont
 												Computed:            false,
 											},
 
-											"regex": schema.StringAttribute{
-												Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'",
-												MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'",
+											"regex": schema.MapAttribute{
+												Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
+												MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
+												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3323,9 +3360,10 @@ func (r *OperatorVictoriametricsComVmagentV1Beta1Manifest) Schema(_ context.Cont
 																	Computed:            false,
 																},
 
-																"regex": schema.StringAttribute{
-																	Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'",
-																	MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'",
+																"regex": schema.MapAttribute{
+																	Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
+																	MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
+																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -3434,9 +3472,10 @@ func (r *OperatorVictoriametricsComVmagentV1Beta1Manifest) Schema(_ context.Cont
 																	Computed:            false,
 																},
 
-																"regex": schema.StringAttribute{
-																	Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'",
-																	MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'",
+																"regex": schema.MapAttribute{
+																	Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
+																	MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
+																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -3977,6 +4016,226 @@ func (r *OperatorVictoriametricsComVmagentV1Beta1Manifest) Schema(_ context.Cont
 						Computed:            false,
 					},
 
+					"scrape_config_namespace_selector": schema.SingleNestedAttribute{
+						Description:         "ScrapeConfigNamespaceSelector defines Namespaces to be selected for VMScrapeConfig discovery.Works in combination with Selector.NamespaceSelector nil - only objects at VMAgent namespace.Selector nil - only objects at NamespaceSelector namespaces.If both nil - behaviour controlled by selectAllByDefault",
+						MarkdownDescription: "ScrapeConfigNamespaceSelector defines Namespaces to be selected for VMScrapeConfig discovery.Works in combination with Selector.NamespaceSelector nil - only objects at VMAgent namespace.Selector nil - only objects at NamespaceSelector namespaces.If both nil - behaviour controlled by selectAllByDefault",
+						Attributes: map[string]schema.Attribute{
+							"match_expressions": schema.ListNestedAttribute{
+								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+								MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"key": schema.StringAttribute{
+											Description:         "key is the label key that the selector applies to.",
+											MarkdownDescription: "key is the label key that the selector applies to.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"operator": schema.StringAttribute{
+											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"values": schema.ListAttribute{
+											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"match_labels": schema.MapAttribute{
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"scrape_config_relabel_template": schema.ListNestedAttribute{
+						Description:         "ScrapeConfigRelabelTemplate defines relabel config, that will be added to each VMScrapeConfig.it's useful for adding specific labels to all targets",
+						MarkdownDescription: "ScrapeConfigRelabelTemplate defines relabel config, that will be added to each VMScrapeConfig.it's useful for adding specific labels to all targets",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"action": schema.StringAttribute{
+									Description:         "Action to perform based on regex matching. Default is 'replace'",
+									MarkdownDescription: "Action to perform based on regex matching. Default is 'replace'",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"if": schema.MapAttribute{
+									Description:         "If represents metricsQL match expression (or list of expressions): '{__name__=~'foo_.*'}'",
+									MarkdownDescription: "If represents metricsQL match expression (or list of expressions): '{__name__=~'foo_.*'}'",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"labels": schema.MapAttribute{
+									Description:         "Labels is used together with Match for 'action: graphite'",
+									MarkdownDescription: "Labels is used together with Match for 'action: graphite'",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"match": schema.StringAttribute{
+									Description:         "Match is used together with Labels for 'action: graphite'",
+									MarkdownDescription: "Match is used together with Labels for 'action: graphite'",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"modulus": schema.Int64Attribute{
+									Description:         "Modulus to take of the hash of the source label values.",
+									MarkdownDescription: "Modulus to take of the hash of the source label values.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"regex": schema.MapAttribute{
+									Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
+									MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"replacement": schema.StringAttribute{
+									Description:         "Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'",
+									MarkdownDescription: "Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"separator": schema.StringAttribute{
+									Description:         "Separator placed between concatenated source label values. default is ';'.",
+									MarkdownDescription: "Separator placed between concatenated source label values. default is ';'.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"source_labels": schema.ListAttribute{
+									Description:         "The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.",
+									MarkdownDescription: "The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"source_labels": schema.ListAttribute{
+									Description:         "UnderScoreSourceLabels - additional form of source labels source_labelsfor compatibility with original relabel config.if set  both sourceLabels and source_labels, sourceLabels has priority.for details https://github.com/VictoriaMetrics/operator/issues/131",
+									MarkdownDescription: "UnderScoreSourceLabels - additional form of source labels source_labelsfor compatibility with original relabel config.if set  both sourceLabels and source_labels, sourceLabels has priority.for details https://github.com/VictoriaMetrics/operator/issues/131",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"target_label": schema.StringAttribute{
+									Description:         "Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.",
+									MarkdownDescription: "Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"target_label": schema.StringAttribute{
+									Description:         "UnderScoreTargetLabel - additional form of target label - target_labelfor compatibility with original relabel config.if set  both targetLabel and target_label, targetLabel has priority.for details https://github.com/VictoriaMetrics/operator/issues/131",
+									MarkdownDescription: "UnderScoreTargetLabel - additional form of target label - target_labelfor compatibility with original relabel config.if set  both targetLabel and target_label, targetLabel has priority.for details https://github.com/VictoriaMetrics/operator/issues/131",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"scrape_config_selector": schema.SingleNestedAttribute{
+						Description:         "ScrapeConfigSelector defines VMScrapeConfig to be selected for target discovery.Works in combination with NamespaceSelector.",
+						MarkdownDescription: "ScrapeConfigSelector defines VMScrapeConfig to be selected for target discovery.Works in combination with NamespaceSelector.",
+						Attributes: map[string]schema.Attribute{
+							"match_expressions": schema.ListNestedAttribute{
+								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+								MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"key": schema.StringAttribute{
+											Description:         "key is the label key that the selector applies to.",
+											MarkdownDescription: "key is the label key that the selector applies to.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"operator": schema.StringAttribute{
+											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"values": schema.ListAttribute{
+											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"match_labels": schema.MapAttribute{
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"scrape_interval": schema.StringAttribute{
 						Description:         "ScrapeInterval defines how often scrape targets by default",
 						MarkdownDescription: "ScrapeInterval defines how often scrape targets by default",
@@ -4134,9 +4393,10 @@ func (r *OperatorVictoriametricsComVmagentV1Beta1Manifest) Schema(_ context.Cont
 									Computed:            false,
 								},
 
-								"regex": schema.StringAttribute{
-									Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'",
-									MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'",
+								"regex": schema.MapAttribute{
+									Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
+									MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
+									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -4289,6 +4549,14 @@ func (r *OperatorVictoriametricsComVmagentV1Beta1Manifest) Schema(_ context.Cont
 								ElementType:         types.StringType,
 								Required:            true,
 								Optional:            false,
+								Computed:            false,
+							},
+
+							"use_as_default": schema.BoolAttribute{
+								Description:         "UseAsDefault applies changes from given service definition to the main object ServiceChaning from headless service to clusterIP or loadbalancer may break cross-component communication",
+								MarkdownDescription: "UseAsDefault applies changes from given service definition to the main object ServiceChaning from headless service to clusterIP or loadbalancer may break cross-component communication",
+								Required:            false,
+								Optional:            true,
 								Computed:            false,
 							},
 						},
@@ -4866,9 +5134,10 @@ func (r *OperatorVictoriametricsComVmagentV1Beta1Manifest) Schema(_ context.Cont
 									Computed:            false,
 								},
 
-								"regex": schema.StringAttribute{
-									Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'",
-									MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'",
+								"regex": schema.MapAttribute{
+									Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
+									MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
+									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

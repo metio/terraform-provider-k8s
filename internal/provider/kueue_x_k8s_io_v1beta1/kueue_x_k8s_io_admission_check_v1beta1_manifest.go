@@ -16,6 +16,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
+	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
@@ -135,6 +136,10 @@ func (r *KueueXK8SIoAdmissionCheckV1Beta1Manifest) Schema(_ context.Context, _ d
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.LengthAtMost(253),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+								},
 							},
 
 							"kind": schema.StringAttribute{
@@ -143,6 +148,10 @@ func (r *KueueXK8SIoAdmissionCheckV1Beta1Manifest) Schema(_ context.Context, _ d
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.LengthAtMost(63),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(?i)[a-z]([-a-z0-9]*[a-z0-9])?$`), ""),
+								},
 							},
 
 							"name": schema.StringAttribute{
@@ -151,6 +160,10 @@ func (r *KueueXK8SIoAdmissionCheckV1Beta1Manifest) Schema(_ context.Context, _ d
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.LengthAtMost(63),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+								},
 							},
 						},
 						Required: false,

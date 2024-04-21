@@ -207,6 +207,7 @@ type PostgresOperatorCrunchydataComPgadminV1Beta1ManifestData struct {
 					Path              *string `tfsdk:"path" json:"path,omitempty"`
 				} `tfsdk:"service_account_token" json:"serviceAccountToken,omitempty"`
 			} `tfsdk:"files" json:"files,omitempty"`
+			Gunicorn         *map[string]string `tfsdk:"gunicorn" json:"gunicorn,omitempty"`
 			LdapBindPassword *struct {
 				Key      *string `tfsdk:"key" json:"key,omitempty"`
 				Name     *string `tfsdk:"name" json:"name,omitempty"`
@@ -274,6 +275,10 @@ type PostgresOperatorCrunchydataComPgadminV1Beta1ManifestData struct {
 			TolerationSeconds *int64  `tfsdk:"toleration_seconds" json:"tolerationSeconds,omitempty"`
 			Value             *string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"tolerations" json:"tolerations,omitempty"`
+		Users *[]struct {
+			Role     *string `tfsdk:"role" json:"role,omitempty"`
+			Username *string `tfsdk:"username" json:"username,omitempty"`
+		} `tfsdk:"users" json:"users,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -283,8 +288,8 @@ func (r *PostgresOperatorCrunchydataComPgadminV1Beta1Manifest) Metadata(_ contex
 
 func (r *PostgresOperatorCrunchydataComPgadminV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "PGAdmin is the Schema for the pgadmins API",
-		MarkdownDescription: "PGAdmin is the Schema for the pgadmins API",
+		Description:         "PGAdmin is the Schema for the PGAdmin API",
+		MarkdownDescription: "PGAdmin is the Schema for the PGAdmin API",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -1422,6 +1427,15 @@ func (r *PostgresOperatorCrunchydataComPgadminV1Beta1Manifest) Schema(_ context.
 								Computed: false,
 							},
 
+							"gunicorn": schema.MapAttribute{
+								Description:         "Settings for the gunicorn server. More info: https://docs.gunicorn.org/en/latest/settings.html",
+								MarkdownDescription: "Settings for the gunicorn server. More info: https://docs.gunicorn.org/en/latest/settings.html",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"ldap_bind_password": schema.SingleNestedAttribute{
 								Description:         "A Secret containing the value for the LDAP_BIND_PASSWORD setting. More info: https://www.pgadmin.org/docs/pgadmin4/latest/ldap.html",
 								MarkdownDescription: "A Secret containing the value for the LDAP_BIND_PASSWORD setting. More info: https://www.pgadmin.org/docs/pgadmin4/latest/ldap.html",
@@ -1873,6 +1887,36 @@ func (r *PostgresOperatorCrunchydataComPgadminV1Beta1Manifest) Schema(_ context.
 									MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
 									Required:            false,
 									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"users": schema.ListNestedAttribute{
+						Description:         "pgAdmin users that are managed via the PGAdmin spec. Users can still be added via the pgAdmin GUI, but those users will not show up here.",
+						MarkdownDescription: "pgAdmin users that are managed via the PGAdmin spec. Users can still be added via the pgAdmin GUI, but those users will not show up here.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"role": schema.StringAttribute{
+									Description:         "Role determines whether the user has admin privileges or not. Defaults to User. Valid options are Administrator and User.",
+									MarkdownDescription: "Role determines whether the user has admin privileges or not. Defaults to User. Valid options are Administrator and User.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.OneOf("Administrator", "User"),
+									},
+								},
+
+								"username": schema.StringAttribute{
+									Description:         "The username for User in pgAdmin. Must be unique in the pgAdmin's users list.",
+									MarkdownDescription: "The username for User in pgAdmin. Must be unique in the pgAdmin's users list.",
+									Required:            true,
+									Optional:            false,
 									Computed:            false,
 								},
 							},

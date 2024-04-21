@@ -82,6 +82,18 @@ type OperatorVictoriametricsComVmuserV1Beta1ManifestData struct {
 				Url  *string   `tfsdk:"url" json:"url,omitempty"`
 				Urls *[]string `tfsdk:"urls" json:"urls,omitempty"`
 			} `tfsdk:"static" json:"static,omitempty"`
+			TargetRefBasicAuth *struct {
+				Password *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"password" json:"password,omitempty"`
+				Username *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"username" json:"username,omitempty"`
+			} `tfsdk:"target_ref_basic_auth" json:"targetRefBasicAuth,omitempty"`
 			Target_path_suffix *string `tfsdk:"target_path_suffix" json:"target_path_suffix,omitempty"`
 		} `tfsdk:"target_refs" json:"targetRefs,omitempty"`
 		Tls_insecure_skip_verify *bool `tfsdk:"tls_insecure_skip_verify" json:"tls_insecure_skip_verify,omitempty"`
@@ -464,6 +476,81 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"target_ref_basic_auth": schema.SingleNestedAttribute{
+									Description:         "TargetRefBasicAuth allow an target endpoint to authenticate over basic authentication",
+									MarkdownDescription: "TargetRefBasicAuth allow an target endpoint to authenticate over basic authentication",
+									Attributes: map[string]schema.Attribute{
+										"password": schema.SingleNestedAttribute{
+											Description:         "The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD",
+											MarkdownDescription: "The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from.  Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: true,
+											Optional: false,
+											Computed: false,
+										},
+
+										"username": schema.SingleNestedAttribute{
+											Description:         "The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD",
+											MarkdownDescription: "The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from.  Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: true,
+											Optional: false,
+											Computed: false,
 										},
 									},
 									Required: false,

@@ -43,9 +43,10 @@ type GitopsHybridCloudPatternsIoPatternV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		AnalyticsUUID    *string `tfsdk:"analytics_uuid" json:"analyticsUUID,omitempty"`
-		ClusterGroupName *string `tfsdk:"cluster_group_name" json:"clusterGroupName,omitempty"`
-		ExtraParameters  *[]struct {
+		AnalyticsUUID            *string `tfsdk:"analytics_uuid" json:"analyticsUUID,omitempty"`
+		ClusterGroupName         *string `tfsdk:"cluster_group_name" json:"clusterGroupName,omitempty"`
+		ExperimentalCapabilities *string `tfsdk:"experimental_capabilities" json:"experimentalCapabilities,omitempty"`
+		ExtraParameters          *[]struct {
 			Name  *string `tfsdk:"name" json:"name,omitempty"`
 			Value *string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"extra_parameters" json:"extraParameters,omitempty"`
@@ -166,9 +167,17 @@ func (r *GitopsHybridCloudPatternsIoPatternV1Alpha1Manifest) Schema(_ context.Co
 						Computed:            false,
 					},
 
+					"experimental_capabilities": schema.StringAttribute{
+						Description:         "Comma separated capabilities to enable certain experimental features",
+						MarkdownDescription: "Comma separated capabilities to enable certain experimental features",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"extra_parameters": schema.ListNestedAttribute{
-						Description:         ".Name is dot separated per the helm --set syntax, such as: global.something.field",
-						MarkdownDescription: ".Name is dot separated per the helm --set syntax, such as: global.something.field",
+						Description:         ".Name is dot separated per the helm --set syntax, such as:  global.something.field",
+						MarkdownDescription: ".Name is dot separated per the helm --set syntax, such as:  global.something.field",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
@@ -272,8 +281,8 @@ func (r *GitopsHybridCloudPatternsIoPatternV1Alpha1Manifest) Schema(_ context.Co
 							},
 
 							"token_secret": schema.StringAttribute{
-								Description:         "Optional. K8s secret name where the info for connecting to git can be found. The supported secrets are modeled after the private repositories in argo (https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#repositories) currently ssh and username+password are supported",
-								MarkdownDescription: "Optional. K8s secret name where the info for connecting to git can be found. The supported secrets are modeled after the private repositories in argo (https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#repositories) currently ssh and username+password are supported",
+								Description:         "Optional. K8s secret name where the info for connecting to git can be found. The supported secrets are modeled after theprivate repositories in argo (https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#repositories)currently ssh and username+password are supported",
+								MarkdownDescription: "Optional. K8s secret name where the info for connecting to git can be found. The supported secrets are modeled after theprivate repositories in argo (https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#repositories)currently ssh and username+password are supported",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -297,8 +306,8 @@ func (r *GitopsHybridCloudPatternsIoPatternV1Alpha1Manifest) Schema(_ context.Co
 						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"cluster_group_chart_git_revision": schema.StringAttribute{
-								Description:         "The git reference when deploying the clustergroup helm chart directly from a git repo Defaults to 'main'. (Only used when developing the clustergroup helm chart)",
-								MarkdownDescription: "The git reference when deploying the clustergroup helm chart directly from a git repo Defaults to 'main'. (Only used when developing the clustergroup helm chart)",
+								Description:         "The git reference when deploying the clustergroup helm chart directly from a git repoDefaults to 'main'. (Only used when developing the clustergroup helm chart)",
+								MarkdownDescription: "The git reference when deploying the clustergroup helm chart directly from a git repoDefaults to 'main'. (Only used when developing the clustergroup helm chart)",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -313,8 +322,8 @@ func (r *GitopsHybridCloudPatternsIoPatternV1Alpha1Manifest) Schema(_ context.Co
 							},
 
 							"cluster_group_git_repo_url": schema.StringAttribute{
-								Description:         "The url when deploying the clustergroup helm chart directly from a git repo Defaults to '' which means not used (Only used when developing the clustergroup helm chart)",
-								MarkdownDescription: "The url when deploying the clustergroup helm chart directly from a git repo Defaults to '' which means not used (Only used when developing the clustergroup helm chart)",
+								Description:         "The url when deploying the clustergroup helm chart directly from a git repoDefaults to '' which means not used (Only used when developing the clustergroup helm chart)",
+								MarkdownDescription: "The url when deploying the clustergroup helm chart directly from a git repoDefaults to '' which means not used (Only used when developing the clustergroup helm chart)",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

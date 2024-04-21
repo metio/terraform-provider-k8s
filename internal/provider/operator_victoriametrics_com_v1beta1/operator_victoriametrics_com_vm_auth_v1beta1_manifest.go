@@ -43,11 +43,12 @@ type OperatorVictoriametricsComVmauthV1Beta1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Affinity     *map[string]string   `tfsdk:"affinity" json:"affinity,omitempty"`
-		ConfigMaps   *[]string            `tfsdk:"config_maps" json:"configMaps,omitempty"`
-		ConfigSecret *string              `tfsdk:"config_secret" json:"configSecret,omitempty"`
-		Containers   *[]map[string]string `tfsdk:"containers" json:"containers,omitempty"`
-		DnsConfig    *struct {
+		Affinity                *map[string]string   `tfsdk:"affinity" json:"affinity,omitempty"`
+		ConfigMaps              *[]string            `tfsdk:"config_maps" json:"configMaps,omitempty"`
+		ConfigReloaderExtraArgs *map[string]string   `tfsdk:"config_reloader_extra_args" json:"configReloaderExtraArgs,omitempty"`
+		ConfigSecret            *string              `tfsdk:"config_secret" json:"configSecret,omitempty"`
+		Containers              *[]map[string]string `tfsdk:"containers" json:"containers,omitempty"`
+		DnsConfig               *struct {
 			Nameservers *[]string `tfsdk:"nameservers" json:"nameservers,omitempty"`
 			Options     *[]struct {
 				Name  *string `tfsdk:"name" json:"name,omitempty"`
@@ -131,10 +132,9 @@ type OperatorVictoriametricsComVmauthV1Beta1ManifestData struct {
 			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			Name        *string            `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"pod_metadata" json:"podMetadata,omitempty"`
-		PodSecurityPolicyName *string `tfsdk:"pod_security_policy_name" json:"podSecurityPolicyName,omitempty"`
-		Port                  *string `tfsdk:"port" json:"port,omitempty"`
-		PriorityClassName     *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
-		ReadinessGates        *[]struct {
+		Port              *string `tfsdk:"port" json:"port,omitempty"`
+		PriorityClassName *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
+		ReadinessGates    *[]struct {
 			ConditionType *string `tfsdk:"condition_type" json:"conditionType,omitempty"`
 		} `tfsdk:"readiness_gates" json:"readinessGates,omitempty"`
 		ReadinessProbe *map[string]string `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
@@ -160,7 +160,8 @@ type OperatorVictoriametricsComVmauthV1Beta1ManifestData struct {
 				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 				Name        *string            `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"metadata" json:"metadata,omitempty"`
-			Spec *map[string]string `tfsdk:"spec" json:"spec,omitempty"`
+			Spec         *map[string]string `tfsdk:"spec" json:"spec,omitempty"`
+			UseAsDefault *bool              `tfsdk:"use_as_default" json:"useAsDefault,omitempty"`
 		} `tfsdk:"service_spec" json:"serviceSpec,omitempty"`
 		StartupProbe                  *map[string]string `tfsdk:"startup_probe" json:"startupProbe,omitempty"`
 		TerminationGracePeriodSeconds *int64             `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
@@ -304,6 +305,15 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 					"config_maps": schema.ListAttribute{
 						Description:         "ConfigMaps is a list of ConfigMaps in the same namespace as the VMAuthobject, which shall be mounted into the VMAuth Pods.",
 						MarkdownDescription: "ConfigMaps is a list of ConfigMaps in the same namespace as the VMAuthobject, which shall be mounted into the VMAuth Pods.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"config_reloader_extra_args": schema.MapAttribute{
+						Description:         "ConfigReloaderExtraArgs that will be passed to  VMAuths config-reloader containerfor example resyncInterval: '30s'",
+						MarkdownDescription: "ConfigReloaderExtraArgs that will be passed to  VMAuths config-reloader containerfor example resyncInterval: '30s'",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -906,14 +916,6 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 						Computed: false,
 					},
 
-					"pod_security_policy_name": schema.StringAttribute{
-						Description:         "PodSecurityPolicyName - defines name for podSecurityPolicyin case of empty value, prefixedName will be used.",
-						MarkdownDescription: "PodSecurityPolicyName - defines name for podSecurityPolicyin case of empty value, prefixedName will be used.",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-					},
-
 					"port": schema.StringAttribute{
 						Description:         "Port listen port",
 						MarkdownDescription: "Port listen port",
@@ -1124,6 +1126,14 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 								ElementType:         types.StringType,
 								Required:            true,
 								Optional:            false,
+								Computed:            false,
+							},
+
+							"use_as_default": schema.BoolAttribute{
+								Description:         "UseAsDefault applies changes from given service definition to the main object ServiceChaning from headless service to clusterIP or loadbalancer may break cross-component communication",
+								MarkdownDescription: "UseAsDefault applies changes from given service definition to the main object ServiceChaning from headless service to clusterIP or loadbalancer may break cross-component communication",
+								Required:            false,
+								Optional:            true,
 								Computed:            false,
 							},
 						},

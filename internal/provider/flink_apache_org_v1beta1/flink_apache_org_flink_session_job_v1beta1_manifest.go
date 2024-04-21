@@ -251,7 +251,7 @@ func (r *FlinkApacheOrgFlinkSessionJobV1Beta1Manifest) Schema(_ context.Context,
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("savepoint", "last-state", "stateless"),
+									stringvalidator.OneOf("last-state", "savepoint", "stateless"),
 								},
 							},
 						},

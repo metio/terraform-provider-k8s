@@ -74,6 +74,7 @@ type Elbv2K8SAwsTargetGroupBindingV1Beta1ManifestData struct {
 		} `tfsdk:"service_ref" json:"serviceRef,omitempty"`
 		TargetGroupARN *string `tfsdk:"target_group_arn" json:"targetGroupARN,omitempty"`
 		TargetType     *string `tfsdk:"target_type" json:"targetType,omitempty"`
+		VpcID          *string `tfsdk:"vpc_id" json:"vpcID,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -359,6 +360,14 @@ func (r *Elbv2K8SAwsTargetGroupBindingV1Beta1Manifest) Schema(_ context.Context,
 						Validators: []validator.String{
 							stringvalidator.OneOf("instance", "ip"),
 						},
+					},
+
+					"vpc_id": schema.StringAttribute{
+						Description:         "VpcID is the VPC of the TargetGroup. If unspecified, it will be automatically inferred.",
+						MarkdownDescription: "VpcID is the VPC of the TargetGroup. If unspecified, it will be automatically inferred.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 				},
 				Required: false,

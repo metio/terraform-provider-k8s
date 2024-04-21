@@ -53,8 +53,8 @@ func (r *Metal3IoHostFirmwareSettingsV1Alpha1Manifest) Metadata(_ context.Contex
 
 func (r *Metal3IoHostFirmwareSettingsV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "HostFirmwareSettings is the Schema for the hostfirmwaresettings API",
-		MarkdownDescription: "HostFirmwareSettings is the Schema for the hostfirmwaresettings API",
+		Description:         "HostFirmwareSettings is the Schema for the hostfirmwaresettings API.",
+		MarkdownDescription: "HostFirmwareSettings is the Schema for the hostfirmwaresettings API.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -121,8 +121,8 @@ func (r *Metal3IoHostFirmwareSettingsV1Alpha1Manifest) Schema(_ context.Context,
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "HostFirmwareSettingsSpec defines the desired state of HostFirmwareSettings",
-				MarkdownDescription: "HostFirmwareSettingsSpec defines the desired state of HostFirmwareSettings",
+				Description:         "HostFirmwareSettingsSpec defines the desired state of HostFirmwareSettings.",
+				MarkdownDescription: "HostFirmwareSettingsSpec defines the desired state of HostFirmwareSettings.",
 				Attributes: map[string]schema.Attribute{
 					"settings": schema.MapAttribute{
 						Description:         "Settings are the desired firmware settings stored as name/value pairs.",

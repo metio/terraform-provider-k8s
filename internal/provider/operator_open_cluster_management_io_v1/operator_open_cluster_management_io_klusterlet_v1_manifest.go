@@ -31,7 +31,6 @@ func NewOperatorOpenClusterManagementIoKlusterletV1Manifest() datasource.DataSou
 type OperatorOpenClusterManagementIoKlusterletV1Manifest struct{}
 
 type OperatorOpenClusterManagementIoKlusterletV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -56,6 +55,7 @@ type OperatorOpenClusterManagementIoKlusterletV1ManifestData struct {
 			Hostname *string `tfsdk:"hostname" json:"hostname,omitempty"`
 			Ip       *string `tfsdk:"ip" json:"ip,omitempty"`
 		} `tfsdk:"hub_api_server_host_alias" json:"hubApiServerHostAlias,omitempty"`
+		ImagePullSpec *string `tfsdk:"image_pull_spec" json:"imagePullSpec,omitempty"`
 		Namespace     *string `tfsdk:"namespace" json:"namespace,omitempty"`
 		NodePlacement *struct {
 			NodeSelector *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
@@ -67,19 +67,35 @@ type OperatorOpenClusterManagementIoKlusterletV1ManifestData struct {
 				Value             *string `tfsdk:"value" json:"value,omitempty"`
 			} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 		} `tfsdk:"node_placement" json:"nodePlacement,omitempty"`
+		PriorityClassName         *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
 		RegistrationConfiguration *struct {
-			ClientCertExpirationSeconds *int64 `tfsdk:"client_cert_expiration_seconds" json:"clientCertExpirationSeconds,omitempty"`
+			ClientCertExpirationSeconds *int64             `tfsdk:"client_cert_expiration_seconds" json:"clientCertExpirationSeconds,omitempty"`
+			ClusterAnnotations          *map[string]string `tfsdk:"cluster_annotations" json:"clusterAnnotations,omitempty"`
 			FeatureGates                *[]struct {
 				Feature *string `tfsdk:"feature" json:"feature,omitempty"`
 				Mode    *string `tfsdk:"mode" json:"mode,omitempty"`
 			} `tfsdk:"feature_gates" json:"featureGates,omitempty"`
+			KubeAPIBurst *int64 `tfsdk:"kube_api_burst" json:"kubeAPIBurst,omitempty"`
+			KubeAPIQPS   *int64 `tfsdk:"kube_apiqps" json:"kubeAPIQPS,omitempty"`
 		} `tfsdk:"registration_configuration" json:"registrationConfiguration,omitempty"`
 		RegistrationImagePullSpec *string `tfsdk:"registration_image_pull_spec" json:"registrationImagePullSpec,omitempty"`
-		WorkConfiguration         *struct {
+		ResourceRequirement       *struct {
+			ResourceRequirements *struct {
+				Claims *[]struct {
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"claims" json:"claims,omitempty"`
+				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+			} `tfsdk:"resource_requirements" json:"resourceRequirements,omitempty"`
+			Type *string `tfsdk:"type" json:"type,omitempty"`
+		} `tfsdk:"resource_requirement" json:"resourceRequirement,omitempty"`
+		WorkConfiguration *struct {
 			FeatureGates *[]struct {
 				Feature *string `tfsdk:"feature" json:"feature,omitempty"`
 				Mode    *string `tfsdk:"mode" json:"mode,omitempty"`
 			} `tfsdk:"feature_gates" json:"featureGates,omitempty"`
+			KubeAPIBurst *int64 `tfsdk:"kube_api_burst" json:"kubeAPIBurst,omitempty"`
+			KubeAPIQPS   *int64 `tfsdk:"kube_apiqps" json:"kubeAPIQPS,omitempty"`
 		} `tfsdk:"work_configuration" json:"workConfiguration,omitempty"`
 		WorkImagePullSpec *string `tfsdk:"work_image_pull_spec" json:"workImagePullSpec,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -94,14 +110,6 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 		Description:         "Klusterlet represents controllers to install the resources for a managed cluster. When configured, the Klusterlet requires a secret named bootstrap-hub-kubeconfig in the agent namespace to allow API requests to the hub for the registration protocol. In Hosted mode, the Klusterlet requires an additional secret named external-managed-kubeconfig in the agent namespace to allow API requests to the managed cluster for resources installation.",
 		MarkdownDescription: "Klusterlet represents controllers to install the resources for a managed cluster. When configured, the Klusterlet requires a secret named bootstrap-hub-kubeconfig in the agent namespace to allow API requests to the hub for the registration protocol. In Hosted mode, the Klusterlet requires an additional secret named external-managed-kubeconfig in the agent namespace to allow API requests to the managed cluster for resources installation.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -175,8 +183,8 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 						MarkdownDescription: "DeployOption contains the options of deploying a klusterlet",
 						Attributes: map[string]schema.Attribute{
 							"mode": schema.StringAttribute{
-								Description:         "Mode can be Default or Hosted. It is Default mode if not specified In Default mode, all klusterlet related resources are deployed on the managed cluster. In Hosted mode, only crd and configurations are installed on the spoke/managed cluster. Controllers run in another cluster (defined as management-cluster) and connect to the mangaged cluster with the kubeconfig in secret of 'external-managed-kubeconfig'(a kubeconfig of managed-cluster with cluster-admin permission). Note: Do not modify the Mode field once it's applied.",
-								MarkdownDescription: "Mode can be Default or Hosted. It is Default mode if not specified In Default mode, all klusterlet related resources are deployed on the managed cluster. In Hosted mode, only crd and configurations are installed on the spoke/managed cluster. Controllers run in another cluster (defined as management-cluster) and connect to the mangaged cluster with the kubeconfig in secret of 'external-managed-kubeconfig'(a kubeconfig of managed-cluster with cluster-admin permission). Note: Do not modify the Mode field once it's applied.",
+								Description:         "Mode can be Default, Hosted, Singleton or SingletonHosted. It is Default mode if not specified In Default mode, all klusterlet related resources are deployed on the managed cluster. In Hosted mode, only crd and configurations are installed on the spoke/managed cluster. Controllers run in another cluster (defined as management-cluster) and connect to the mangaged cluster with the kubeconfig in secret of 'external-managed-kubeconfig'(a kubeconfig of managed-cluster with cluster-admin permission). In Singleton mode, registration/work agent is started as a single deployment. In SingletonHosted mode, agent is started as a single deployment in hosted mode. Note: Do not modify the Mode field once it's applied.",
+								MarkdownDescription: "Mode can be Default, Hosted, Singleton or SingletonHosted. It is Default mode if not specified In Default mode, all klusterlet related resources are deployed on the managed cluster. In Hosted mode, only crd and configurations are installed on the spoke/managed cluster. Controllers run in another cluster (defined as management-cluster) and connect to the mangaged cluster with the kubeconfig in secret of 'external-managed-kubeconfig'(a kubeconfig of managed-cluster with cluster-admin permission). In Singleton mode, registration/work agent is started as a single deployment. In SingletonHosted mode, agent is started as a single deployment in hosted mode. Note: Do not modify the Mode field once it's applied.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -188,8 +196,8 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 					},
 
 					"external_server_urls": schema.ListNestedAttribute{
-						Description:         "ExternalServerURLs represents the a list of apiserver urls and ca bundles that is accessible externally If it is set empty, managed cluster has no externally accessible url that hub cluster can visit.",
-						MarkdownDescription: "ExternalServerURLs represents the a list of apiserver urls and ca bundles that is accessible externally If it is set empty, managed cluster has no externally accessible url that hub cluster can visit.",
+						Description:         "ExternalServerURLs represents a list of apiserver urls and ca bundles that is accessible externally If it is set empty, managed cluster has no externally accessible url that hub cluster can visit.",
+						MarkdownDescription: "ExternalServerURLs represents a list of apiserver urls and ca bundles that is accessible externally If it is set empty, managed cluster has no externally accessible url that hub cluster can visit.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"ca_bundle": schema.StringAttribute{
@@ -248,6 +256,14 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 						Computed: false,
 					},
 
+					"image_pull_spec": schema.StringAttribute{
+						Description:         "ImagePullSpec represents the desired image configuration of agent, it takes effect only when singleton mode is set. quay.io/open-cluster-management.io/registration-operator:latest will be used if unspecified",
+						MarkdownDescription: "ImagePullSpec represents the desired image configuration of agent, it takes effect only when singleton mode is set. quay.io/open-cluster-management.io/registration-operator:latest will be used if unspecified",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"namespace": schema.StringAttribute{
 						Description:         "Namespace is the namespace to deploy the agent on the managed cluster. The namespace must have a prefix of 'open-cluster-management-', and if it is not set, the namespace of 'open-cluster-management-agent' is used to deploy agent. In addition, the add-ons are deployed to the namespace of '{Namespace}-addon'. In the Hosted mode, this namespace still exists on the managed cluster to contain necessary resources, like service accounts, roles and rolebindings, while the agent is deployed to the namespace with the same name as klusterlet on the management cluster.",
 						MarkdownDescription: "Namespace is the namespace to deploy the agent on the managed cluster. The namespace must have a prefix of 'open-cluster-management-', and if it is not set, the namespace of 'open-cluster-management-agent' is used to deploy agent. In addition, the add-ons are deployed to the namespace of '{Namespace}-addon'. In the Hosted mode, this namespace still exists on the managed cluster to contain necessary resources, like service accounts, roles and rolebindings, while the agent is deployed to the namespace with the same name as klusterlet on the management cluster.",
@@ -274,8 +290,8 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 							},
 
 							"tolerations": schema.ListNestedAttribute{
-								Description:         "Tolerations is attached by pods to tolerate any taint that matches the triple <key,value,effect> using the matching operator <operator>. The default is an empty list.",
-								MarkdownDescription: "Tolerations is attached by pods to tolerate any taint that matches the triple <key,value,effect> using the matching operator <operator>. The default is an empty list.",
+								Description:         "Tolerations are attached by pods to tolerate any taint that matches the triple <key,value,effect> using the matching operator <operator>. The default is an empty list.",
+								MarkdownDescription: "Tolerations are attached by pods to tolerate any taint that matches the triple <key,value,effect> using the matching operator <operator>. The default is an empty list.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"effect": schema.StringAttribute{
@@ -329,6 +345,14 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 						Computed: false,
 					},
 
+					"priority_class_name": schema.StringAttribute{
+						Description:         "PriorityClassName is the name of the PriorityClass that will be used by the deployed klusterlet agent. It will be ignored when the PriorityClass/v1 API is not available on the managed cluster.",
+						MarkdownDescription: "PriorityClassName is the name of the PriorityClass that will be used by the deployed klusterlet agent. It will be ignored when the PriorityClass/v1 API is not available on the managed cluster.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"registration_configuration": schema.SingleNestedAttribute{
 						Description:         "RegistrationConfiguration contains the configuration of registration",
 						MarkdownDescription: "RegistrationConfiguration contains the configuration of registration",
@@ -336,6 +360,15 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 							"client_cert_expiration_seconds": schema.Int64Attribute{
 								Description:         "clientCertExpirationSeconds represents the seconds of a client certificate to expire. If it is not set or 0, the default duration seconds will be set by the hub cluster. If the value is larger than the max signing duration seconds set on the hub cluster, the max signing duration seconds will be set.",
 								MarkdownDescription: "clientCertExpirationSeconds represents the seconds of a client certificate to expire. If it is not set or 0, the default duration seconds will be set by the hub cluster. If the value is larger than the max signing duration seconds set on the hub cluster, the max signing duration seconds will be set.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"cluster_annotations": schema.MapAttribute{
+								Description:         "ClusterAnnotations is annotations with the reserve prefix 'agent.open-cluster-management.io' set on ManagedCluster when creating only, other actors can update it afterwards.",
+								MarkdownDescription: "ClusterAnnotations is annotations with the reserve prefix 'agent.open-cluster-management.io' set on ManagedCluster when creating only, other actors can update it afterwards.",
+								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -370,6 +403,22 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 								Optional: true,
 								Computed: false,
 							},
+
+							"kube_api_burst": schema.Int64Attribute{
+								Description:         "KubeAPIBurst indicates the maximum burst of the throttle while talking with apiserver of hub cluster from the spoke cluster. If it is set empty, use the default value: 100",
+								MarkdownDescription: "KubeAPIBurst indicates the maximum burst of the throttle while talking with apiserver of hub cluster from the spoke cluster. If it is set empty, use the default value: 100",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"kube_apiqps": schema.Int64Attribute{
+								Description:         "KubeAPIQPS indicates the maximum QPS while talking with apiserver of hub cluster from the spoke cluster. If it is set empty, use the default value: 50",
+								MarkdownDescription: "KubeAPIQPS indicates the maximum QPS while talking with apiserver of hub cluster from the spoke cluster. If it is set empty, use the default value: 50",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 						},
 						Required: false,
 						Optional: true,
@@ -382,6 +431,72 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"resource_requirement": schema.SingleNestedAttribute{
+						Description:         "ResourceRequirement specify QoS classes of deployments managed by klusterlet. It applies to all the containers in the deployments.",
+						MarkdownDescription: "ResourceRequirement specify QoS classes of deployments managed by klusterlet. It applies to all the containers in the deployments.",
+						Attributes: map[string]schema.Attribute{
+							"resource_requirements": schema.SingleNestedAttribute{
+								Description:         "ResourceRequirements defines resource requests and limits when Type is ResourceQosClassResourceRequirement",
+								MarkdownDescription: "ResourceRequirements defines resource requests and limits when Type is ResourceQosClassResourceRequirement",
+								Attributes: map[string]schema.Attribute{
+									"claims": schema.ListNestedAttribute{
+										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"limits": schema.MapAttribute{
+										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"requests": schema.MapAttribute{
+										Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"type": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("Default", "BestEffort", "ResourceRequirement"),
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"work_configuration": schema.SingleNestedAttribute{
@@ -417,6 +532,22 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 								Optional: true,
 								Computed: false,
 							},
+
+							"kube_api_burst": schema.Int64Attribute{
+								Description:         "KubeAPIBurst indicates the maximum burst of the throttle while talking with apiserver of hub cluster from the spoke cluster. If it is set empty, use the default value: 100",
+								MarkdownDescription: "KubeAPIBurst indicates the maximum burst of the throttle while talking with apiserver of hub cluster from the spoke cluster. If it is set empty, use the default value: 100",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"kube_apiqps": schema.Int64Attribute{
+								Description:         "KubeAPIQPS indicates the maximum QPS while talking with apiserver of hub cluster from the spoke cluster. If it is set empty, use the default value: 50",
+								MarkdownDescription: "KubeAPIQPS indicates the maximum QPS while talking with apiserver of hub cluster from the spoke cluster. If it is set empty, use the default value: 50",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 						},
 						Required: false,
 						Optional: true,
@@ -448,7 +579,6 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Read(ctx context.C
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("operator.open-cluster-management.io/v1")
 	model.Kind = pointer.String("Klusterlet")
 

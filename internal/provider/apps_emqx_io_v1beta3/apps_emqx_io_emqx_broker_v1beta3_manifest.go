@@ -86,6 +86,8 @@ type AppsEmqxIoEmqxBrokerV1Beta3ManifestData struct {
 							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+						MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+						MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 						NamespaceSelector *struct {
 							MatchExpressions *[]struct {
 								Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -108,6 +110,8 @@ type AppsEmqxIoEmqxBrokerV1Beta3ManifestData struct {
 						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 					} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+					MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+					MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 					NamespaceSelector *struct {
 						MatchExpressions *[]struct {
 							Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -131,6 +135,8 @@ type AppsEmqxIoEmqxBrokerV1Beta3ManifestData struct {
 							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+						MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+						MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 						NamespaceSelector *struct {
 							MatchExpressions *[]struct {
 								Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -153,6 +159,8 @@ type AppsEmqxIoEmqxBrokerV1Beta3ManifestData struct {
 						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 					} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+					MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+					MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 					NamespaceSelector *struct {
 						MatchExpressions *[]struct {
 							Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -272,9 +280,10 @@ type AppsEmqxIoEmqxBrokerV1Beta3ManifestData struct {
 								Name     *string `tfsdk:"name" json:"name,omitempty"`
 							} `tfsdk:"data_source" json:"dataSource,omitempty"`
 							DataSourceRef *struct {
-								ApiGroup *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
-								Kind     *string `tfsdk:"kind" json:"kind,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								ApiGroup  *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
+								Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
+								Name      *string `tfsdk:"name" json:"name,omitempty"`
+								Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 							} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 							Resources *struct {
 								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
@@ -288,9 +297,10 @@ type AppsEmqxIoEmqxBrokerV1Beta3ManifestData struct {
 								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 							} `tfsdk:"selector" json:"selector,omitempty"`
-							StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
-							VolumeMode       *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
-							VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+							StorageClassName          *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+							VolumeAttributesClassName *string `tfsdk:"volume_attributes_class_name" json:"volumeAttributesClassName,omitempty"`
+							VolumeMode                *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
+							VolumeName                *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 						} `tfsdk:"spec" json:"spec,omitempty"`
 					} `tfsdk:"volume_claim_template" json:"volumeClaimTemplate,omitempty"`
 				} `tfsdk:"ephemeral" json:"ephemeral,omitempty"`
@@ -371,6 +381,20 @@ type AppsEmqxIoEmqxBrokerV1Beta3ManifestData struct {
 				Projected *struct {
 					DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
 					Sources     *[]struct {
+						ClusterTrustBundle *struct {
+							LabelSelector *struct {
+								MatchExpressions *[]struct {
+									Key      *string   `tfsdk:"key" json:"key,omitempty"`
+									Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+									Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+							} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+							Name       *string `tfsdk:"name" json:"name,omitempty"`
+							Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							Path       *string `tfsdk:"path" json:"path,omitempty"`
+							SignerName *string `tfsdk:"signer_name" json:"signerName,omitempty"`
+						} `tfsdk:"cluster_trust_bundle" json:"clusterTrustBundle,omitempty"`
 						ConfigMap *struct {
 							Items *[]struct {
 								Key  *string `tfsdk:"key" json:"key,omitempty"`
@@ -538,6 +562,9 @@ type AppsEmqxIoEmqxBrokerV1Beta3ManifestData struct {
 			} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
 			Registry  *string `tfsdk:"registry" json:"registry,omitempty"`
 			Resources *struct {
+				Claims *[]struct {
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resources" json:"resources,omitempty"`
@@ -722,6 +749,9 @@ type AppsEmqxIoEmqxBrokerV1Beta3ManifestData struct {
 						Port   *string `tfsdk:"port" json:"port,omitempty"`
 						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 					} `tfsdk:"http_get" json:"httpGet,omitempty"`
+					Sleep *struct {
+						Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+					} `tfsdk:"sleep" json:"sleep,omitempty"`
 					TcpSocket *struct {
 						Host *string `tfsdk:"host" json:"host,omitempty"`
 						Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -741,6 +771,9 @@ type AppsEmqxIoEmqxBrokerV1Beta3ManifestData struct {
 						Port   *string `tfsdk:"port" json:"port,omitempty"`
 						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 					} `tfsdk:"http_get" json:"httpGet,omitempty"`
+					Sleep *struct {
+						Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+					} `tfsdk:"sleep" json:"sleep,omitempty"`
 					TcpSocket *struct {
 						Host *string `tfsdk:"host" json:"host,omitempty"`
 						Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -813,10 +846,18 @@ type AppsEmqxIoEmqxBrokerV1Beta3ManifestData struct {
 				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
 				TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
+			ResizePolicy *[]struct {
+				ResourceName  *string `tfsdk:"resource_name" json:"resourceName,omitempty"`
+				RestartPolicy *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
+			} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 			Resources *struct {
+				Claims *[]struct {
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resources" json:"resources,omitempty"`
+			RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 			SecurityContext *struct {
 				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 				Capabilities             *struct {
@@ -953,6 +994,9 @@ type AppsEmqxIoEmqxBrokerV1Beta3ManifestData struct {
 						Port   *string `tfsdk:"port" json:"port,omitempty"`
 						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 					} `tfsdk:"http_get" json:"httpGet,omitempty"`
+					Sleep *struct {
+						Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+					} `tfsdk:"sleep" json:"sleep,omitempty"`
 					TcpSocket *struct {
 						Host *string `tfsdk:"host" json:"host,omitempty"`
 						Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -972,6 +1016,9 @@ type AppsEmqxIoEmqxBrokerV1Beta3ManifestData struct {
 						Port   *string `tfsdk:"port" json:"port,omitempty"`
 						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 					} `tfsdk:"http_get" json:"httpGet,omitempty"`
+					Sleep *struct {
+						Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+					} `tfsdk:"sleep" json:"sleep,omitempty"`
 					TcpSocket *struct {
 						Host *string `tfsdk:"host" json:"host,omitempty"`
 						Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -1044,10 +1091,18 @@ type AppsEmqxIoEmqxBrokerV1Beta3ManifestData struct {
 				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
 				TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
+			ResizePolicy *[]struct {
+				ResourceName  *string `tfsdk:"resource_name" json:"resourceName,omitempty"`
+				RestartPolicy *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
+			} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 			Resources *struct {
+				Claims *[]struct {
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resources" json:"resources,omitempty"`
+			RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 			SecurityContext *struct {
 				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 				Capabilities             *struct {
@@ -1135,9 +1190,10 @@ type AppsEmqxIoEmqxBrokerV1Beta3ManifestData struct {
 				Name     *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"data_source" json:"dataSource,omitempty"`
 			DataSourceRef *struct {
-				ApiGroup *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
-				Kind     *string `tfsdk:"kind" json:"kind,omitempty"`
-				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				ApiGroup  *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
+				Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 			Resources *struct {
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
@@ -1151,9 +1207,10 @@ type AppsEmqxIoEmqxBrokerV1Beta3ManifestData struct {
 				} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 			} `tfsdk:"selector" json:"selector,omitempty"`
-			StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
-			VolumeMode       *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
-			VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+			StorageClassName          *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+			VolumeAttributesClassName *string `tfsdk:"volume_attributes_class_name" json:"volumeAttributesClassName,omitempty"`
+			VolumeMode                *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
+			VolumeName                *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 		} `tfsdk:"persistent" json:"persistent,omitempty"`
 		Replicas    *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
 		ToleRations *[]struct {
@@ -1515,6 +1572,24 @@ func (r *AppsEmqxIoEmqxBrokerV1Beta3Manifest) Schema(_ context.Context, _ dataso
 															Computed: false,
 														},
 
+														"match_label_keys": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"mismatch_label_keys": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"namespace_selector": schema.SingleNestedAttribute{
 															Description:         "",
 															MarkdownDescription: "",
@@ -1662,6 +1737,24 @@ func (r *AppsEmqxIoEmqxBrokerV1Beta3Manifest) Schema(_ context.Context, _ dataso
 													Required: false,
 													Optional: true,
 													Computed: false,
+												},
+
+												"match_label_keys": schema.ListAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"mismatch_label_keys": schema.ListAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
 												},
 
 												"namespace_selector": schema.SingleNestedAttribute{
@@ -1813,6 +1906,24 @@ func (r *AppsEmqxIoEmqxBrokerV1Beta3Manifest) Schema(_ context.Context, _ dataso
 															Computed: false,
 														},
 
+														"match_label_keys": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"mismatch_label_keys": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"namespace_selector": schema.SingleNestedAttribute{
 															Description:         "",
 															MarkdownDescription: "",
@@ -1960,6 +2071,24 @@ func (r *AppsEmqxIoEmqxBrokerV1Beta3Manifest) Schema(_ context.Context, _ dataso
 													Required: false,
 													Optional: true,
 													Computed: false,
+												},
+
+												"match_label_keys": schema.ListAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"mismatch_label_keys": schema.ListAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
 												},
 
 												"namespace_selector": schema.SingleNestedAttribute{
@@ -2779,6 +2908,14 @@ func (r *AppsEmqxIoEmqxBrokerV1Beta3Manifest) Schema(_ context.Context, _ dataso
 																			Optional:            false,
 																			Computed:            false,
 																		},
+
+																		"namespace": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
 																	},
 																	Required: false,
 																	Optional: true,
@@ -2867,6 +3004,14 @@ func (r *AppsEmqxIoEmqxBrokerV1Beta3Manifest) Schema(_ context.Context, _ dataso
 																},
 
 																"storage_class_name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"volume_attributes_class_name": schema.StringAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Required:            false,
@@ -3420,6 +3565,101 @@ func (r *AppsEmqxIoEmqxBrokerV1Beta3Manifest) Schema(_ context.Context, _ dataso
 													MarkdownDescription: "",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
+															"cluster_trust_bundle": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes: map[string]schema.Attribute{
+																	"label_selector": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"match_expressions": schema.ListNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				NestedObject: schema.NestedAttributeObject{
+																					Attributes: map[string]schema.Attribute{
+																						"key": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            true,
+																							Optional:            false,
+																							Computed:            false,
+																						},
+
+																						"operator": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            true,
+																							Optional:            false,
+																							Computed:            false,
+																						},
+
+																						"values": schema.ListAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"match_labels": schema.MapAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"path": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"signer_name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
 															"config_map": schema.SingleNestedAttribute{
 																Description:         "",
 																MarkdownDescription: "",
@@ -4538,6 +4778,25 @@ func (r *AppsEmqxIoEmqxBrokerV1Beta3Manifest) Schema(_ context.Context, _ dataso
 								Description:         "",
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
+									"claims": schema.ListNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"limits": schema.MapAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -5777,6 +6036,23 @@ func (r *AppsEmqxIoEmqxBrokerV1Beta3Manifest) Schema(_ context.Context, _ dataso
 													Computed: false,
 												},
 
+												"sleep": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"seconds": schema.Int64Attribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"tcp_socket": schema.SingleNestedAttribute{
 													Description:         "",
 													MarkdownDescription: "",
@@ -5889,6 +6165,23 @@ func (r *AppsEmqxIoEmqxBrokerV1Beta3Manifest) Schema(_ context.Context, _ dataso
 															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"sleep": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"seconds": schema.Int64Attribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
 															Computed:            false,
 														},
 													},
@@ -6377,10 +6670,56 @@ func (r *AppsEmqxIoEmqxBrokerV1Beta3Manifest) Schema(_ context.Context, _ dataso
 									Computed: false,
 								},
 
+								"resize_policy": schema.ListNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"resource_name": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"restart_policy": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"resources": schema.SingleNestedAttribute{
 									Description:         "",
 									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
+										"claims": schema.ListNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"limits": schema.MapAttribute{
 											Description:         "",
 											MarkdownDescription: "",
@@ -6402,6 +6741,14 @@ func (r *AppsEmqxIoEmqxBrokerV1Beta3Manifest) Schema(_ context.Context, _ dataso
 									Required: false,
 									Optional: true,
 									Computed: false,
+								},
+
+								"restart_policy": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
 								},
 
 								"security_context": schema.SingleNestedAttribute{
@@ -7317,6 +7664,23 @@ func (r *AppsEmqxIoEmqxBrokerV1Beta3Manifest) Schema(_ context.Context, _ dataso
 													Computed: false,
 												},
 
+												"sleep": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"seconds": schema.Int64Attribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"tcp_socket": schema.SingleNestedAttribute{
 													Description:         "",
 													MarkdownDescription: "",
@@ -7429,6 +7793,23 @@ func (r *AppsEmqxIoEmqxBrokerV1Beta3Manifest) Schema(_ context.Context, _ dataso
 															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"sleep": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"seconds": schema.Int64Attribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
 															Computed:            false,
 														},
 													},
@@ -7917,10 +8298,56 @@ func (r *AppsEmqxIoEmqxBrokerV1Beta3Manifest) Schema(_ context.Context, _ dataso
 									Computed: false,
 								},
 
+								"resize_policy": schema.ListNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"resource_name": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"restart_policy": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"resources": schema.SingleNestedAttribute{
 									Description:         "",
 									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
+										"claims": schema.ListNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"limits": schema.MapAttribute{
 											Description:         "",
 											MarkdownDescription: "",
@@ -7942,6 +8369,14 @@ func (r *AppsEmqxIoEmqxBrokerV1Beta3Manifest) Schema(_ context.Context, _ dataso
 									Required: false,
 									Optional: true,
 									Computed: false,
+								},
+
+								"restart_policy": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
 								},
 
 								"security_context": schema.SingleNestedAttribute{
@@ -8566,6 +9001,14 @@ func (r *AppsEmqxIoEmqxBrokerV1Beta3Manifest) Schema(_ context.Context, _ dataso
 										Optional:            false,
 										Computed:            false,
 									},
+
+									"namespace": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -8654,6 +9097,14 @@ func (r *AppsEmqxIoEmqxBrokerV1Beta3Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"storage_class_name": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"volume_attributes_class_name": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,

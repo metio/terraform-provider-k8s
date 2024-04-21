@@ -136,6 +136,19 @@ type K8UpIoArchiveV1ManifestData struct {
 				Container *string `tfsdk:"container" json:"container,omitempty"`
 				Path      *string `tfsdk:"path" json:"path,omitempty"`
 			} `tfsdk:"swift" json:"swift,omitempty"`
+			TlsOptions *struct {
+				CaCert     *string `tfsdk:"ca_cert" json:"caCert,omitempty"`
+				ClientCert *string `tfsdk:"client_cert" json:"clientCert,omitempty"`
+				ClientKey  *string `tfsdk:"client_key" json:"clientKey,omitempty"`
+			} `tfsdk:"tls_options" json:"tlsOptions,omitempty"`
+			VolumeMounts *[]struct {
+				MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+				MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+				Name             *string `tfsdk:"name" json:"name,omitempty"`
+				ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+				SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+				SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+			} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 		} `tfsdk:"backend" json:"backend,omitempty"`
 		FailedJobsHistoryLimit *int64 `tfsdk:"failed_jobs_history_limit" json:"failedJobsHistoryLimit,omitempty"`
 		KeepJobs               *int64 `tfsdk:"keep_jobs" json:"keepJobs,omitempty"`
@@ -194,10 +207,50 @@ type K8UpIoArchiveV1ManifestData struct {
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"secret_access_key_secret_ref" json:"secretAccessKeySecretRef,omitempty"`
 			} `tfsdk:"s3" json:"s3,omitempty"`
+			TlsOptions *struct {
+				CaCert     *string `tfsdk:"ca_cert" json:"caCert,omitempty"`
+				ClientCert *string `tfsdk:"client_cert" json:"clientCert,omitempty"`
+				ClientKey  *string `tfsdk:"client_key" json:"clientKey,omitempty"`
+			} `tfsdk:"tls_options" json:"tlsOptions,omitempty"`
+			VolumeMounts *[]struct {
+				MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+				MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+				Name             *string `tfsdk:"name" json:"name,omitempty"`
+				ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+				SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+				SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+			} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 		} `tfsdk:"restore_method" json:"restoreMethod,omitempty"`
 		Snapshot                   *string   `tfsdk:"snapshot" json:"snapshot,omitempty"`
 		SuccessfulJobsHistoryLimit *int64    `tfsdk:"successful_jobs_history_limit" json:"successfulJobsHistoryLimit,omitempty"`
 		Tags                       *[]string `tfsdk:"tags" json:"tags,omitempty"`
+		Volumes                    *[]struct {
+			ConfigMap *struct {
+				DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+				Items       *[]struct {
+					Key  *string `tfsdk:"key" json:"key,omitempty"`
+					Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
+					Path *string `tfsdk:"path" json:"path,omitempty"`
+				} `tfsdk:"items" json:"items,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"config_map" json:"configMap,omitempty"`
+			Name                  *string `tfsdk:"name" json:"name,omitempty"`
+			PersistentVolumeClaim *struct {
+				ClaimName *string `tfsdk:"claim_name" json:"claimName,omitempty"`
+				ReadOnly  *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+			} `tfsdk:"persistent_volume_claim" json:"persistentVolumeClaim,omitempty"`
+			Secret *struct {
+				DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+				Items       *[]struct {
+					Key  *string `tfsdk:"key" json:"key,omitempty"`
+					Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
+					Path *string `tfsdk:"path" json:"path,omitempty"`
+				} `tfsdk:"items" json:"items,omitempty"`
+				Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				SecretName *string `tfsdk:"secret_name" json:"secretName,omitempty"`
+			} `tfsdk:"secret" json:"secret,omitempty"`
+		} `tfsdk:"volumes" json:"volumes,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -872,6 +925,98 @@ func (r *K8UpIoArchiveV1Manifest) Schema(_ context.Context, _ datasource.SchemaR
 								Optional: true,
 								Computed: false,
 							},
+
+							"tls_options": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"ca_cert": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"client_cert": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"client_key": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"volume_mounts": schema.ListNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"mount_path": schema.StringAttribute{
+											Description:         "Path within the container at which the volume should be mounted.  Mustnot contain ':'.",
+											MarkdownDescription: "Path within the container at which the volume should be mounted.  Mustnot contain ':'.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"mount_propagation": schema.StringAttribute{
+											Description:         "mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.",
+											MarkdownDescription: "mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "This must match the Name of a Volume.",
+											MarkdownDescription: "This must match the Name of a Volume.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"read_only": schema.BoolAttribute{
+											Description:         "Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.",
+											MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"sub_path": schema.StringAttribute{
+											Description:         "Path within the volume from which the container's volume should be mounted.Defaults to '' (volume's root).",
+											MarkdownDescription: "Path within the volume from which the container's volume should be mounted.Defaults to '' (volume's root).",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"sub_path_expr": schema.StringAttribute{
+											Description:         "Expanded path within the volume from which the container's volume should be mounted.Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment.Defaults to '' (volume's root).SubPathExpr and SubPath are mutually exclusive.",
+											MarkdownDescription: "Expanded path within the volume from which the container's volume should be mounted.Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment.Defaults to '' (volume's root).SubPathExpr and SubPath are mutually exclusive.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 						},
 						Required: false,
 						Optional: true,
@@ -1259,6 +1404,98 @@ func (r *K8UpIoArchiveV1Manifest) Schema(_ context.Context, _ datasource.SchemaR
 								Optional: true,
 								Computed: false,
 							},
+
+							"tls_options": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"ca_cert": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"client_cert": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"client_key": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"volume_mounts": schema.ListNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"mount_path": schema.StringAttribute{
+											Description:         "Path within the container at which the volume should be mounted.  Mustnot contain ':'.",
+											MarkdownDescription: "Path within the container at which the volume should be mounted.  Mustnot contain ':'.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"mount_propagation": schema.StringAttribute{
+											Description:         "mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.",
+											MarkdownDescription: "mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "This must match the Name of a Volume.",
+											MarkdownDescription: "This must match the Name of a Volume.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"read_only": schema.BoolAttribute{
+											Description:         "Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.",
+											MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"sub_path": schema.StringAttribute{
+											Description:         "Path within the volume from which the container's volume should be mounted.Defaults to '' (volume's root).",
+											MarkdownDescription: "Path within the volume from which the container's volume should be mounted.Defaults to '' (volume's root).",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"sub_path_expr": schema.StringAttribute{
+											Description:         "Expanded path within the volume from which the container's volume should be mounted.Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment.Defaults to '' (volume's root).SubPathExpr and SubPath are mutually exclusive.",
+											MarkdownDescription: "Expanded path within the volume from which the container's volume should be mounted.Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment.Defaults to '' (volume's root).SubPathExpr and SubPath are mutually exclusive.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 						},
 						Required: false,
 						Optional: true,
@@ -1288,6 +1525,186 @@ func (r *K8UpIoArchiveV1Manifest) Schema(_ context.Context, _ datasource.SchemaR
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"volumes": schema.ListNestedAttribute{
+						Description:         "Volumes List of volumes that can be mounted by containers belonging to the pod.",
+						MarkdownDescription: "Volumes List of volumes that can be mounted by containers belonging to the pod.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"config_map": schema.SingleNestedAttribute{
+									Description:         "configMap represents a configMap that should populate this volume",
+									MarkdownDescription: "configMap represents a configMap that should populate this volume",
+									Attributes: map[string]schema.Attribute{
+										"default_mode": schema.Int64Attribute{
+											Description:         "defaultMode is optional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
+											MarkdownDescription: "defaultMode is optional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"items": schema.ListNestedAttribute{
+											Description:         "items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'.",
+											MarkdownDescription: "items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"key": schema.StringAttribute{
+														Description:         "key is the key to project.",
+														MarkdownDescription: "key is the key to project.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"mode": schema.Int64Attribute{
+														Description:         "mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
+														MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"path": schema.StringAttribute{
+														Description:         "path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.",
+														MarkdownDescription: "path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"optional": schema.BoolAttribute{
+											Description:         "optional specify whether the ConfigMap or its keys must be defined",
+											MarkdownDescription: "optional specify whether the ConfigMap or its keys must be defined",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"name": schema.StringAttribute{
+									Description:         "name of the volume.Must be a DNS_LABEL and unique within the pod.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+									MarkdownDescription: "name of the volume.Must be a DNS_LABEL and unique within the pod.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"persistent_volume_claim": schema.SingleNestedAttribute{
+									Description:         "persistentVolumeClaimVolumeSource represents a reference to aPersistentVolumeClaim in the same namespace.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+									MarkdownDescription: "persistentVolumeClaimVolumeSource represents a reference to aPersistentVolumeClaim in the same namespace.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+									Attributes: map[string]schema.Attribute{
+										"claim_name": schema.StringAttribute{
+											Description:         "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+											MarkdownDescription: "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"read_only": schema.BoolAttribute{
+											Description:         "readOnly Will force the ReadOnly setting in VolumeMounts.Default false.",
+											MarkdownDescription: "readOnly Will force the ReadOnly setting in VolumeMounts.Default false.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"secret": schema.SingleNestedAttribute{
+									Description:         "secret represents a secret that should populate this volume.More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
+									MarkdownDescription: "secret represents a secret that should populate this volume.More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
+									Attributes: map[string]schema.Attribute{
+										"default_mode": schema.Int64Attribute{
+											Description:         "defaultMode is Optional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal valuesfor mode bits. Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
+											MarkdownDescription: "defaultMode is Optional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal valuesfor mode bits. Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"items": schema.ListNestedAttribute{
+											Description:         "items If unspecified, each key-value pair in the Data field of the referencedSecret will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the Secret,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'.",
+											MarkdownDescription: "items If unspecified, each key-value pair in the Data field of the referencedSecret will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the Secret,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"key": schema.StringAttribute{
+														Description:         "key is the key to project.",
+														MarkdownDescription: "key is the key to project.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"mode": schema.Int64Attribute{
+														Description:         "mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
+														MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"path": schema.StringAttribute{
+														Description:         "path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.",
+														MarkdownDescription: "path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"optional": schema.BoolAttribute{
+											Description:         "optional field specify whether the Secret or its keys must be defined",
+											MarkdownDescription: "optional field specify whether the Secret or its keys must be defined",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"secret_name": schema.StringAttribute{
+											Description:         "secretName is the name of the secret in the pod's namespace to use.More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
+											MarkdownDescription: "secretName is the name of the secret in the pod's namespace to use.More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 				},
 				Required: false,

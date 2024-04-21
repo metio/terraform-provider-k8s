@@ -133,9 +133,7 @@ type ResourcesTeleportDevTeleportRoleV6ManifestData struct {
 				Verbs     *[]string `tfsdk:"verbs" json:"verbs,omitempty"`
 				Where     *string   `tfsdk:"where" json:"where,omitempty"`
 			} `tfsdk:"rules" json:"rules,omitempty"`
-			Saml_idp_service_provider_labels            *map[string]string `tfsdk:"saml_idp_service_provider_labels" json:"saml_idp_service_provider_labels,omitempty"`
-			Saml_idp_service_provider_labels_expression *string            `tfsdk:"saml_idp_service_provider_labels_expression" json:"saml_idp_service_provider_labels_expression,omitempty"`
-			Spiffe                                      *[]struct {
+			Spiffe *[]struct {
 				Dns_sans *[]string `tfsdk:"dns_sans" json:"dns_sans,omitempty"`
 				Ip_sans  *[]string `tfsdk:"ip_sans" json:"ip_sans,omitempty"`
 				Path     *string   `tfsdk:"path" json:"path,omitempty"`
@@ -234,9 +232,7 @@ type ResourcesTeleportDevTeleportRoleV6ManifestData struct {
 				Verbs     *[]string `tfsdk:"verbs" json:"verbs,omitempty"`
 				Where     *string   `tfsdk:"where" json:"where,omitempty"`
 			} `tfsdk:"rules" json:"rules,omitempty"`
-			Saml_idp_service_provider_labels            *map[string]string `tfsdk:"saml_idp_service_provider_labels" json:"saml_idp_service_provider_labels,omitempty"`
-			Saml_idp_service_provider_labels_expression *string            `tfsdk:"saml_idp_service_provider_labels_expression" json:"saml_idp_service_provider_labels_expression,omitempty"`
-			Spiffe                                      *[]struct {
+			Spiffe *[]struct {
 				Dns_sans *[]string `tfsdk:"dns_sans" json:"dns_sans,omitempty"`
 				Ip_sans  *[]string `tfsdk:"ip_sans" json:"ip_sans,omitempty"`
 				Path     *string   `tfsdk:"path" json:"path,omitempty"`
@@ -1063,23 +1059,6 @@ func (r *ResourcesTeleportDevTeleportRoleV6Manifest) Schema(_ context.Context, _
 								Computed: false,
 							},
 
-							"saml_idp_service_provider_labels": schema.MapAttribute{
-								Description:         "SAMLIdPServiceProviderLabels is a labels map used in RBAC system to allow/deny access to saml_idp_service_provider resource.",
-								MarkdownDescription: "SAMLIdPServiceProviderLabels is a labels map used in RBAC system to allow/deny access to saml_idp_service_provider resource.",
-								ElementType:         types.StringType,
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"saml_idp_service_provider_labels_expression": schema.StringAttribute{
-								Description:         "SAMLIdPServiceProviderLabelsExpression is a predicate expression used to allow/deny access to saml_idp_service_provider resource.",
-								MarkdownDescription: "SAMLIdPServiceProviderLabelsExpression is a predicate expression used to allow/deny access to saml_idp_service_provider resource.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
 							"spiffe": schema.ListNestedAttribute{
 								Description:         "SPIFFE is used to allow or deny access to a role holder to generating a SPIFFE SVID.",
 								MarkdownDescription: "SPIFFE is used to allow or deny access to a role holder to generating a SPIFFE SVID.",
@@ -1843,23 +1822,6 @@ func (r *ResourcesTeleportDevTeleportRoleV6Manifest) Schema(_ context.Context, _
 								Computed: false,
 							},
 
-							"saml_idp_service_provider_labels": schema.MapAttribute{
-								Description:         "SAMLIdPServiceProviderLabels is a labels map used in RBAC system to allow/deny access to saml_idp_service_provider resource.",
-								MarkdownDescription: "SAMLIdPServiceProviderLabels is a labels map used in RBAC system to allow/deny access to saml_idp_service_provider resource.",
-								ElementType:         types.StringType,
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"saml_idp_service_provider_labels_expression": schema.StringAttribute{
-								Description:         "SAMLIdPServiceProviderLabelsExpression is a predicate expression used to allow/deny access to saml_idp_service_provider resource.",
-								MarkdownDescription: "SAMLIdPServiceProviderLabelsExpression is a predicate expression used to allow/deny access to saml_idp_service_provider resource.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
 							"spiffe": schema.ListNestedAttribute{
 								Description:         "SPIFFE is used to allow or deny access to a role holder to generating a SPIFFE SVID.",
 								MarkdownDescription: "SPIFFE is used to allow or deny access to a role holder to generating a SPIFFE SVID.",
@@ -1938,8 +1900,8 @@ func (r *ResourcesTeleportDevTeleportRoleV6Manifest) Schema(_ context.Context, _
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"mode": schema.StringAttribute{
-											Description:         "Mode is the type of extension to be used -- currently critical-option is not supported",
-											MarkdownDescription: "Mode is the type of extension to be used -- currently critical-option is not supported",
+											Description:         "Mode is the type of extension to be used -- currently critical-option is not supported. 0 is 'extension'.",
+											MarkdownDescription: "Mode is the type of extension to be used -- currently critical-option is not supported. 0 is 'extension'.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1954,8 +1916,8 @@ func (r *ResourcesTeleportDevTeleportRoleV6Manifest) Schema(_ context.Context, _
 										},
 
 										"type": schema.StringAttribute{
-											Description:         "Type represents the certificate type being extended, only ssh is supported at this time.",
-											MarkdownDescription: "Type represents the certificate type being extended, only ssh is supported at this time.",
+											Description:         "Type represents the certificate type being extended, only ssh is supported at this time. 0 is 'ssh'.",
+											MarkdownDescription: "Type represents the certificate type being extended, only ssh is supported at this time. 0 is 'ssh'.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2000,8 +1962,8 @@ func (r *ResourcesTeleportDevTeleportRoleV6Manifest) Schema(_ context.Context, _
 							},
 
 							"create_db_user_mode": schema.StringAttribute{
-								Description:         "CreateDatabaseUserMode allows users to be automatically created on a database when not set to off.",
-								MarkdownDescription: "CreateDatabaseUserMode allows users to be automatically created on a database when not set to off.",
+								Description:         "CreateDatabaseUserMode allows users to be automatically created on a database when not set to off. 0 is 'unspecified', 1 is 'off', 2 is 'keep', 3 is 'best_effort_drop'.",
+								MarkdownDescription: "CreateDatabaseUserMode allows users to be automatically created on a database when not set to off. 0 is 'unspecified', 1 is 'off', 2 is 'keep', 3 is 'best_effort_drop'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2024,8 +1986,8 @@ func (r *ResourcesTeleportDevTeleportRoleV6Manifest) Schema(_ context.Context, _
 							},
 
 							"create_host_user_mode": schema.StringAttribute{
-								Description:         "CreateHostUserMode allows users to be automatically created on a host when not set to off",
-								MarkdownDescription: "CreateHostUserMode allows users to be automatically created on a host when not set to off",
+								Description:         "CreateHostUserMode allows users to be automatically created on a host when not set to off. 0 is 'unspecified'; 1 is 'off'; 2 is 'drop' (removed for v15 and above), 3 is 'keep'; 4 is 'insecure-drop'.",
+								MarkdownDescription: "CreateHostUserMode allows users to be automatically created on a host when not set to off. 0 is 'unspecified'; 1 is 'off'; 2 is 'drop' (removed for v15 and above), 3 is 'keep'; 4 is 'insecure-drop'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2220,8 +2182,8 @@ func (r *ResourcesTeleportDevTeleportRoleV6Manifest) Schema(_ context.Context, _
 							},
 
 							"require_session_mfa": schema.StringAttribute{
-								Description:         "RequireMFAType is the type of MFA requirement enforced for this user.",
-								MarkdownDescription: "RequireMFAType is the type of MFA requirement enforced for this user.",
+								Description:         "RequireMFAType is the type of MFA requirement enforced for this user. 0 is 'OFF', 1 is 'SESSION', 2 is 'SESSION_AND_HARDWARE_KEY', 3 is 'HARDWARE_KEY_TOUCH', 4 is 'HARDWARE_KEY_PIN', 5 is 'HARDWARE_KEY_TOUCH_AND_PIN'.",
+								MarkdownDescription: "RequireMFAType is the type of MFA requirement enforced for this user. 0 is 'OFF', 1 is 'SESSION', 2 is 'SESSION_AND_HARDWARE_KEY', 3 is 'HARDWARE_KEY_TOUCH', 4 is 'HARDWARE_KEY_PIN', 5 is 'HARDWARE_KEY_TOUCH_AND_PIN'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

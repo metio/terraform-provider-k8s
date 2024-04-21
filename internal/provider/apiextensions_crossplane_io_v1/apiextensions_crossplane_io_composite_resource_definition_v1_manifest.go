@@ -115,8 +115,8 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Metadat
 
 func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "A CompositeResourceDefinition defines a new kind of composite infrastructureresource. The new resource is composed of other composite or managedinfrastructure resources.",
-		MarkdownDescription: "A CompositeResourceDefinition defines a new kind of composite infrastructureresource. The new resource is composed of other composite or managedinfrastructure resources.",
+		Description:         "A CompositeResourceDefinition defines the schema for a new custom KubernetesAPI.Read the Crossplane documentation for[more information about CustomResourceDefinitions](https://docs.crossplane.io/latest/concepts/composite-resource-definitions).",
+		MarkdownDescription: "A CompositeResourceDefinition defines the schema for a new custom KubernetesAPI.Read the Crossplane documentation for[more information about CustomResourceDefinitions](https://docs.crossplane.io/latest/concepts/composite-resource-definitions).",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",

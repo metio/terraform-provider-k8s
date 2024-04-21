@@ -133,8 +133,8 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Metadata(_ context.Context, req
 
 func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "LogCollector installs the components required for Tigera flow and DNS log collection. At most one instance of this resource is supported. It must be named 'tigera-secure'. When created, this installs fluentd on all nodes configured to collect Tigera log data and export it to Tigera's Elasticsearch cluster as well as any additionally configured destinations.",
-		MarkdownDescription: "LogCollector installs the components required for Tigera flow and DNS log collection. At most one instance of this resource is supported. It must be named 'tigera-secure'. When created, this installs fluentd on all nodes configured to collect Tigera log data and export it to Tigera's Elasticsearch cluster as well as any additionally configured destinations.",
+		Description:         "LogCollector installs the components required for Tigera flow and DNS log collection. At most one instanceof this resource is supported. It must be named 'tigera-secure'. When created, this installs fluentd on all nodesconfigured to collect Tigera log data and export it to Tigera's Elasticsearch cluster as well as any additionally configured destinations.",
+		MarkdownDescription: "LogCollector installs the components required for Tigera flow and DNS log collection. At most one instanceof this resource is supported. It must be named 'tigera-secure'. When created, this installs fluentd on all nodesconfigured to collect Tigera log data and export it to Tigera's Elasticsearch cluster as well as any additionally configured destinations.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -197,12 +197,12 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 						MarkdownDescription: "Configuration for importing audit logs from managed kubernetes cluster log sources.",
 						Attributes: map[string]schema.Attribute{
 							"eks_cloudwatch_log": schema.SingleNestedAttribute{
-								Description:         "If specified with EKS Provider in Installation, enables fetching EKS audit logs.",
-								MarkdownDescription: "If specified with EKS Provider in Installation, enables fetching EKS audit logs.",
+								Description:         "If specified with EKS Provider in Installation, enables fetching EKSaudit logs.",
+								MarkdownDescription: "If specified with EKS Provider in Installation, enables fetching EKSaudit logs.",
 								Attributes: map[string]schema.Attribute{
 									"fetch_interval": schema.Int64Attribute{
-										Description:         "Cloudwatch audit logs fetching interval in seconds. Default: 60",
-										MarkdownDescription: "Cloudwatch audit logs fetching interval in seconds. Default: 60",
+										Description:         "Cloudwatch audit logs fetching interval in seconds.Default: 60",
+										MarkdownDescription: "Cloudwatch audit logs fetching interval in seconds.Default: 60",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -225,8 +225,8 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"stream_prefix": schema.StringAttribute{
-										Description:         "Prefix of Cloudwatch log stream containing EKS audit logs in the log-group. Default: kube-apiserver-audit-",
-										MarkdownDescription: "Prefix of Cloudwatch log stream containing EKS audit logs in the log-group. Default: kube-apiserver-audit-",
+										Description:         "Prefix of Cloudwatch log stream containing EKS audit logs in the log-group.Default: kube-apiserver-audit-",
+										MarkdownDescription: "Prefix of Cloudwatch log stream containing EKS audit logs in the log-group.Default: kube-apiserver-audit-",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -301,8 +301,8 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 								MarkdownDescription: "If specified, enables exporting of flow, audit, and DNS logs to syslog.",
 								Attributes: map[string]schema.Attribute{
 									"encryption": schema.StringAttribute{
-										Description:         "Encryption configures traffic encryption to the Syslog server. Default: None",
-										MarkdownDescription: "Encryption configures traffic encryption to the Syslog server. Default: None",
+										Description:         "Encryption configures traffic encryption to the Syslog server.Default: None",
+										MarkdownDescription: "Encryption configures traffic encryption to the Syslog server.Default: None",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -320,8 +320,8 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"log_types": schema.ListAttribute{
-										Description:         "If no values are provided, the list will be updated to include log types Audit, DNS and Flows. Default: Audit, DNS, Flows",
-										MarkdownDescription: "If no values are provided, the list will be updated to include log types Audit, DNS and Flows. Default: Audit, DNS, Flows",
+										Description:         "If no values are provided, the list will be updated to include log types Audit, DNS and Flows.Default: Audit, DNS, Flows",
+										MarkdownDescription: "If no values are provided, the list will be updated to include log types Audit, DNS and Flows.Default: Audit, DNS, Flows",
 										ElementType:         types.StringType,
 										Required:            true,
 										Optional:            false,
@@ -329,8 +329,8 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"packet_size": schema.Int64Attribute{
-										Description:         "PacketSize defines the maximum size of packets to send to syslog. In general this is only needed if you notice long logs being truncated. Default: 1024",
-										MarkdownDescription: "PacketSize defines the maximum size of packets to send to syslog. In general this is only needed if you notice long logs being truncated. Default: 1024",
+										Description:         "PacketSize defines the maximum size of packets to send to syslog.In general this is only needed if you notice long logs being truncated.Default: 1024",
+										MarkdownDescription: "PacketSize defines the maximum size of packets to send to syslog.In general this is only needed if you notice long logs being truncated.Default: 1024",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -347,8 +347,8 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"collect_process_path": schema.StringAttribute{
-						Description:         "Configuration for enabling/disabling process path collection in flowlogs. If Enabled, this feature sets hostPID to true in order to read process cmdline. Default: Enabled",
-						MarkdownDescription: "Configuration for enabling/disabling process path collection in flowlogs. If Enabled, this feature sets hostPID to true in order to read process cmdline. Default: Enabled",
+						Description:         "Configuration for enabling/disabling process path collection in flowlogs.If Enabled, this feature sets hostPID to true in order to read process cmdline.Default: Enabled",
+						MarkdownDescription: "Configuration for enabling/disabling process path collection in flowlogs.If Enabled, this feature sets hostPID to true in order to read process cmdline.Default: Enabled",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -374,13 +374,13 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 												MarkdownDescription: "Spec is the EKSLogForwarder Deployment's PodSpec.",
 												Attributes: map[string]schema.Attribute{
 													"containers": schema.ListNestedAttribute{
-														Description:         "Containers is a list of EKSLogForwarder containers. If specified, this overrides the specified EKSLogForwarder Deployment containers. If omitted, the EKSLogForwarder Deployment will use its default values for its containers.",
-														MarkdownDescription: "Containers is a list of EKSLogForwarder containers. If specified, this overrides the specified EKSLogForwarder Deployment containers. If omitted, the EKSLogForwarder Deployment will use its default values for its containers.",
+														Description:         "Containers is a list of EKSLogForwarder containers.If specified, this overrides the specified EKSLogForwarder Deployment containers.If omitted, the EKSLogForwarder Deployment will use its default values for its containers.",
+														MarkdownDescription: "Containers is a list of EKSLogForwarder containers.If specified, this overrides the specified EKSLogForwarder Deployment containers.If omitted, the EKSLogForwarder Deployment will use its default values for its containers.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "Name is an enum which identifies the EKSLogForwarder Deployment container by name.",
-																	MarkdownDescription: "Name is an enum which identifies the EKSLogForwarder Deployment container by name.",
+																	Description:         "Name is an enum which identifies the EKSLogForwarder Deployment container by name.Supported values are: eks-log-forwarder",
+																	MarkdownDescription: "Name is an enum which identifies the EKSLogForwarder Deployment container by name.Supported values are: eks-log-forwarder",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -390,17 +390,17 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 																},
 
 																"resources": schema.SingleNestedAttribute{
-																	Description:         "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named EKSLogForwarder Deployment container's resources. If omitted, the EKSLogForwarder Deployment will use its default value for this container's resources.",
-																	MarkdownDescription: "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named EKSLogForwarder Deployment container's resources. If omitted, the EKSLogForwarder Deployment will use its default value for this container's resources.",
+																	Description:         "Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named EKSLogForwarder Deployment container's resources.If omitted, the EKSLogForwarder Deployment will use its default value for this container's resources.",
+																	MarkdownDescription: "Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named EKSLogForwarder Deployment container's resources.If omitted, the EKSLogForwarder Deployment will use its default value for this container's resources.",
 																	Attributes: map[string]schema.Attribute{
 																		"claims": schema.ListNestedAttribute{
-																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
-																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
@@ -413,8 +413,8 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 																		},
 
 																		"limits": schema.MapAttribute{
-																			Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -422,8 +422,8 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 																		},
 
 																		"requests": schema.MapAttribute{
-																			Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																			MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -442,13 +442,13 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 													},
 
 													"init_containers": schema.ListNestedAttribute{
-														Description:         "InitContainers is a list of EKSLogForwarder init containers. If specified, this overrides the specified EKSLogForwarder Deployment init containers. If omitted, the EKSLogForwarder Deployment will use its default values for its init containers.",
-														MarkdownDescription: "InitContainers is a list of EKSLogForwarder init containers. If specified, this overrides the specified EKSLogForwarder Deployment init containers. If omitted, the EKSLogForwarder Deployment will use its default values for its init containers.",
+														Description:         "InitContainers is a list of EKSLogForwarder init containers.If specified, this overrides the specified EKSLogForwarder Deployment init containers.If omitted, the EKSLogForwarder Deployment will use its default values for its init containers.",
+														MarkdownDescription: "InitContainers is a list of EKSLogForwarder init containers.If specified, this overrides the specified EKSLogForwarder Deployment init containers.If omitted, the EKSLogForwarder Deployment will use its default values for its init containers.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "Name is an enum which identifies the EKSLogForwarder Deployment init container by name.",
-																	MarkdownDescription: "Name is an enum which identifies the EKSLogForwarder Deployment init container by name.",
+																	Description:         "Name is an enum which identifies the EKSLogForwarder Deployment init container by name.Supported values are: eks-log-forwarder-startup",
+																	MarkdownDescription: "Name is an enum which identifies the EKSLogForwarder Deployment init container by name.Supported values are: eks-log-forwarder-startup",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -458,17 +458,17 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 																},
 
 																"resources": schema.SingleNestedAttribute{
-																	Description:         "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named EKSLogForwarder Deployment init container's resources. If omitted, the EKSLogForwarder Deployment will use its default value for this init container's resources.",
-																	MarkdownDescription: "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named EKSLogForwarder Deployment init container's resources. If omitted, the EKSLogForwarder Deployment will use its default value for this init container's resources.",
+																	Description:         "Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named EKSLogForwarder Deployment init container's resources.If omitted, the EKSLogForwarder Deployment will use its default value for this init container's resources.",
+																	MarkdownDescription: "Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named EKSLogForwarder Deployment init container's resources.If omitted, the EKSLogForwarder Deployment will use its default value for this init container's resources.",
 																	Attributes: map[string]schema.Attribute{
 																		"claims": schema.ListNestedAttribute{
-																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
-																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
@@ -481,8 +481,8 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 																		},
 
 																		"limits": schema.MapAttribute{
-																			Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -490,8 +490,8 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 																		},
 
 																		"requests": schema.MapAttribute{
-																			Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																			MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -546,13 +546,13 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 												MarkdownDescription: "Spec is the Fluentd DaemonSet's PodSpec.",
 												Attributes: map[string]schema.Attribute{
 													"containers": schema.ListNestedAttribute{
-														Description:         "Containers is a list of Fluentd DaemonSet containers. If specified, this overrides the specified Fluentd DaemonSet containers. If omitted, the Fluentd DaemonSet will use its default values for its containers.",
-														MarkdownDescription: "Containers is a list of Fluentd DaemonSet containers. If specified, this overrides the specified Fluentd DaemonSet containers. If omitted, the Fluentd DaemonSet will use its default values for its containers.",
+														Description:         "Containers is a list of Fluentd DaemonSet containers.If specified, this overrides the specified Fluentd DaemonSet containers.If omitted, the Fluentd DaemonSet will use its default values for its containers.",
+														MarkdownDescription: "Containers is a list of Fluentd DaemonSet containers.If specified, this overrides the specified Fluentd DaemonSet containers.If omitted, the Fluentd DaemonSet will use its default values for its containers.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "Name is an enum which identifies the Fluentd DaemonSet container by name.",
-																	MarkdownDescription: "Name is an enum which identifies the Fluentd DaemonSet container by name.",
+																	Description:         "Name is an enum which identifies the Fluentd DaemonSet container by name.Supported values are: fluentd",
+																	MarkdownDescription: "Name is an enum which identifies the Fluentd DaemonSet container by name.Supported values are: fluentd",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -562,17 +562,17 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 																},
 
 																"resources": schema.SingleNestedAttribute{
-																	Description:         "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named Fluentd DaemonSet container's resources. If omitted, the Fluentd DaemonSet will use its default value for this container's resources.",
-																	MarkdownDescription: "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named Fluentd DaemonSet container's resources. If omitted, the Fluentd DaemonSet will use its default value for this container's resources.",
+																	Description:         "Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named Fluentd DaemonSet container's resources.If omitted, the Fluentd DaemonSet will use its default value for this container's resources.",
+																	MarkdownDescription: "Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named Fluentd DaemonSet container's resources.If omitted, the Fluentd DaemonSet will use its default value for this container's resources.",
 																	Attributes: map[string]schema.Attribute{
 																		"claims": schema.ListNestedAttribute{
-																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
-																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
@@ -585,8 +585,8 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 																		},
 
 																		"limits": schema.MapAttribute{
-																			Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -594,8 +594,8 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 																		},
 
 																		"requests": schema.MapAttribute{
-																			Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																			MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -614,13 +614,13 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 													},
 
 													"init_containers": schema.ListNestedAttribute{
-														Description:         "InitContainers is a list of Fluentd DaemonSet init containers. If specified, this overrides the specified Fluentd DaemonSet init containers. If omitted, the Fluentd DaemonSet will use its default values for its init containers.",
-														MarkdownDescription: "InitContainers is a list of Fluentd DaemonSet init containers. If specified, this overrides the specified Fluentd DaemonSet init containers. If omitted, the Fluentd DaemonSet will use its default values for its init containers.",
+														Description:         "InitContainers is a list of Fluentd DaemonSet init containers.If specified, this overrides the specified Fluentd DaemonSet init containers.If omitted, the Fluentd DaemonSet will use its default values for its init containers.",
+														MarkdownDescription: "InitContainers is a list of Fluentd DaemonSet init containers.If specified, this overrides the specified Fluentd DaemonSet init containers.If omitted, the Fluentd DaemonSet will use its default values for its init containers.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "Name is an enum which identifies the Fluentd DaemonSet init container by name.",
-																	MarkdownDescription: "Name is an enum which identifies the Fluentd DaemonSet init container by name.",
+																	Description:         "Name is an enum which identifies the Fluentd DaemonSet init container by name.Supported values are: tigera-fluentd-prometheus-tls-key-cert-provisioner",
+																	MarkdownDescription: "Name is an enum which identifies the Fluentd DaemonSet init container by name.Supported values are: tigera-fluentd-prometheus-tls-key-cert-provisioner",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -630,17 +630,17 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 																},
 
 																"resources": schema.SingleNestedAttribute{
-																	Description:         "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named Fluentd DaemonSet init container's resources. If omitted, the Fluentd DaemonSet will use its default value for this init container's resources.",
-																	MarkdownDescription: "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named Fluentd DaemonSet init container's resources. If omitted, the Fluentd DaemonSet will use its default value for this init container's resources.",
+																	Description:         "Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named Fluentd DaemonSet init container's resources.If omitted, the Fluentd DaemonSet will use its default value for this init container's resources.",
+																	MarkdownDescription: "Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named Fluentd DaemonSet init container's resources.If omitted, the Fluentd DaemonSet will use its default value for this init container's resources.",
 																	Attributes: map[string]schema.Attribute{
 																		"claims": schema.ListNestedAttribute{
-																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
-																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
@@ -653,8 +653,8 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 																		},
 
 																		"limits": schema.MapAttribute{
-																			Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -662,8 +662,8 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 																		},
 
 																		"requests": schema.MapAttribute{
-																			Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																			MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -702,8 +702,8 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"multi_tenant_management_cluster_namespace": schema.StringAttribute{
-						Description:         "If running as a multi-tenant management cluster, the namespace in which the management cluster's tenant services are running.",
-						MarkdownDescription: "If running as a multi-tenant management cluster, the namespace in which the management cluster's tenant services are running.",
+						Description:         "If running as a multi-tenant management cluster, the namespace in whichthe management cluster's tenant services are running.",
+						MarkdownDescription: "If running as a multi-tenant management cluster, the namespace in whichthe management cluster's tenant services are running.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

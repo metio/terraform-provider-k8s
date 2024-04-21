@@ -50,6 +50,7 @@ type AppsKubeblocksIoClusterVersionV1Alpha1ManifestData struct {
 				AsEnvFrom                *[]string `tfsdk:"as_env_from" json:"asEnvFrom,omitempty"`
 				ConstraintRef            *string   `tfsdk:"constraint_ref" json:"constraintRef,omitempty"`
 				DefaultMode              *int64    `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+				InjectEnvTo              *[]string `tfsdk:"inject_env_to" json:"injectEnvTo,omitempty"`
 				Keys                     *[]string `tfsdk:"keys" json:"keys,omitempty"`
 				LegacyRenderedConfigSpec *struct {
 					Namespace   *string `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -88,8 +89,8 @@ func (r *AppsKubeblocksIoClusterVersionV1Alpha1Manifest) Metadata(_ context.Cont
 
 func (r *AppsKubeblocksIoClusterVersionV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "ClusterVersion is the Schema for the ClusterVersions API",
-		MarkdownDescription: "ClusterVersion is the Schema for the ClusterVersions API",
+		Description:         "ClusterVersion is the Schema for the ClusterVersions API.  Deprecated: ClusterVersion has been replaced by ComponentVersion since v0.9. This struct is maintained for backward compatibility and its use is discouraged.",
+		MarkdownDescription: "ClusterVersion is the Schema for the ClusterVersions API.  Deprecated: ClusterVersion has been replaced by ComponentVersion since v0.9. This struct is maintained for backward compatibility and its use is discouraged.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -144,8 +145,8 @@ func (r *AppsKubeblocksIoClusterVersionV1Alpha1Manifest) Schema(_ context.Contex
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "ClusterVersionSpec defines the desired state of ClusterVersion",
-				MarkdownDescription: "ClusterVersionSpec defines the desired state of ClusterVersion",
+				Description:         "ClusterVersionSpec defines the desired state of ClusterVersion.  Deprecated since v0.9. This struct is maintained for backward compatibility and its use is discouraged.",
+				MarkdownDescription: "ClusterVersionSpec defines the desired state of ClusterVersion.  Deprecated since v0.9. This struct is maintained for backward compatibility and its use is discouraged.",
 				Attributes: map[string]schema.Attribute{
 					"cluster_definition_ref": schema.StringAttribute{
 						Description:         "Specifies a reference to the ClusterDefinition.",
@@ -181,8 +182,8 @@ func (r *AppsKubeblocksIoClusterVersionV1Alpha1Manifest) Schema(_ context.Contex
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"as_env_from": schema.ListAttribute{
-												Description:         "An optional field where the list of containers will be injected into EnvFrom.",
-												MarkdownDescription: "An optional field where the list of containers will be injected into EnvFrom.",
+												Description:         "Deprecated: AsEnvFrom has been deprecated since 0.9.0 and will be removed in 0.10.0 Specifies the containers to inject the ConfigMap parameters as environment variables.  This is useful when application images accept parameters through environment variables and generate the final configuration file in the startup script based on these variables.  This field allows users to specify a list of container names, and KubeBlocks will inject the environment variables converted from the ConfigMap into these designated containers. This provides a flexible way to pass the configuration items from the ConfigMap to the container without modifying the image.  Note: The field name 'asEnvFrom' may be changed to 'injectEnvTo' in future versions for better clarity.",
+												MarkdownDescription: "Deprecated: AsEnvFrom has been deprecated since 0.9.0 and will be removed in 0.10.0 Specifies the containers to inject the ConfigMap parameters as environment variables.  This is useful when application images accept parameters through environment variables and generate the final configuration file in the startup script based on these variables.  This field allows users to specify a list of container names, and KubeBlocks will inject the environment variables converted from the ConfigMap into these designated containers. This provides a flexible way to pass the configuration items from the ConfigMap to the container without modifying the image.  Note: The field name 'asEnvFrom' may be changed to 'injectEnvTo' in future versions for better clarity.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -190,8 +191,8 @@ func (r *AppsKubeblocksIoClusterVersionV1Alpha1Manifest) Schema(_ context.Contex
 											},
 
 											"constraint_ref": schema.StringAttribute{
-												Description:         "An optional field that defines the name of the referenced configuration constraints object.",
-												MarkdownDescription: "An optional field that defines the name of the referenced configuration constraints object.",
+												Description:         "Specifies the name of the referenced configuration constraints object.",
+												MarkdownDescription: "Specifies the name of the referenced configuration constraints object.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -202,16 +203,25 @@ func (r *AppsKubeblocksIoClusterVersionV1Alpha1Manifest) Schema(_ context.Contex
 											},
 
 											"default_mode": schema.Int64Attribute{
-												Description:         "Refers to the mode bits used to set permissions on created files by default.  Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.  Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-												MarkdownDescription: "Refers to the mode bits used to set permissions on created files by default.  Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.  Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+												Description:         "Deprecated: DefaultMode is deprecated since 0.9.0 and will be removed in 0.10.0 for scripts, auto set 0555 for configs, auto set 0444 Refers to the mode bits used to set permissions on created files by default.  Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.  Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+												MarkdownDescription: "Deprecated: DefaultMode is deprecated since 0.9.0 and will be removed in 0.10.0 for scripts, auto set 0555 for configs, auto set 0444 Refers to the mode bits used to set permissions on created files by default.  Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.  Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"inject_env_to": schema.ListAttribute{
+												Description:         "Specifies the containers to inject the ConfigMap parameters as environment variables.  This is useful when application images accept parameters through environment variables and generate the final configuration file in the startup script based on these variables.  This field allows users to specify a list of container names, and KubeBlocks will inject the environment variables converted from the ConfigMap into these designated containers. This provides a flexible way to pass the configuration items from the ConfigMap to the container without modifying the image.",
+												MarkdownDescription: "Specifies the containers to inject the ConfigMap parameters as environment variables.  This is useful when application images accept parameters through environment variables and generate the final configuration file in the startup script based on these variables.  This field allows users to specify a list of container names, and KubeBlocks will inject the environment variables converted from the ConfigMap into these designated containers. This provides a flexible way to pass the configuration items from the ConfigMap to the container without modifying the image.",
+												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"keys": schema.ListAttribute{
-												Description:         "Defines a list of keys. If left empty, ConfigConstraint applies to all keys in the configmap.",
-												MarkdownDescription: "Defines a list of keys. If left empty, ConfigConstraint applies to all keys in the configmap.",
+												Description:         "Specifies the configuration files within the ConfigMap that support dynamic updates.  A configuration template (provided in the form of a ConfigMap) may contain templates for multiple configuration files. Each configuration file corresponds to a key in the ConfigMap. Some of these configuration files may support dynamic modification and reloading without requiring a pod restart.  If empty or omitted, all configuration files in the ConfigMap are assumed to support dynamic updates, and ConfigConstraint applies to all keys.",
+												MarkdownDescription: "Specifies the configuration files within the ConfigMap that support dynamic updates.  A configuration template (provided in the form of a ConfigMap) may contain templates for multiple configuration files. Each configuration file corresponds to a key in the ConfigMap. Some of these configuration files may support dynamic modification and reloading without requiring a pod restart.  If empty or omitted, all configuration files in the ConfigMap are assumed to support dynamic updates, and ConfigConstraint applies to all keys.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -219,8 +229,8 @@ func (r *AppsKubeblocksIoClusterVersionV1Alpha1Manifest) Schema(_ context.Contex
 											},
 
 											"legacy_rendered_config_spec": schema.SingleNestedAttribute{
-												Description:         "An optional field that defines the secondary rendered config spec.",
-												MarkdownDescription: "An optional field that defines the secondary rendered config spec.",
+												Description:         "Specifies the secondary rendered config spec for pod-specific customization.  The template is rendered inside the pod (by the 'config-manager' sidecar container) and merged with the main template's render result to generate the final configuration file.  This field is intended to handle scenarios where different pods within the same Component have varying configurations. It allows for pod-specific customization of the configuration.  Note: This field will be deprecated in future versions, and the functionality will be moved to 'cluster.spec.componentSpecs[*].instances[*]'.",
+												MarkdownDescription: "Specifies the secondary rendered config spec for pod-specific customization.  The template is rendered inside the pod (by the 'config-manager' sidecar container) and merged with the main template's render result to generate the final configuration file.  This field is intended to handle scenarios where different pods within the same Component have varying configurations. It allows for pod-specific customization of the configuration.  Note: This field will be deprecated in future versions, and the functionality will be moved to 'cluster.spec.componentSpecs[*].instances[*]'.",
 												Attributes: map[string]schema.Attribute{
 													"namespace": schema.StringAttribute{
 														Description:         "Specifies the namespace of the referenced configuration template ConfigMap object. An empty namespace is equivalent to the 'default' namespace.",
@@ -287,8 +297,8 @@ func (r *AppsKubeblocksIoClusterVersionV1Alpha1Manifest) Schema(_ context.Contex
 											},
 
 											"re_render_resource_types": schema.ListAttribute{
-												Description:         "An optional field defines which resources change trigger re-render config.",
-												MarkdownDescription: "An optional field defines which resources change trigger re-render config.",
+												Description:         "Specifies whether the configuration needs to be re-rendered after v-scale or h-scale operations to reflect changes.  In some scenarios, the configuration may need to be updated to reflect the changes in resource allocation or cluster topology. Examples:  - Redis: adjust maxmemory after v-scale operation. - MySQL: increase max connections after v-scale operation. - Zookeeper: update zoo.cfg with new node addresses after h-scale operation.",
+												MarkdownDescription: "Specifies whether the configuration needs to be re-rendered after v-scale or h-scale operations to reflect changes.  In some scenarios, the configuration may need to be updated to reflect the changes in resource allocation or cluster topology. Examples:  - Redis: adjust maxmemory after v-scale operation. - MySQL: increase max connections after v-scale operation. - Zookeeper: update zoo.cfg with new node addresses after h-scale operation.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,

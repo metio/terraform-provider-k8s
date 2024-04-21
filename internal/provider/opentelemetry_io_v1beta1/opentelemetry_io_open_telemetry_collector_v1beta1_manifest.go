@@ -888,6 +888,7 @@ type OpentelemetryIoOpenTelemetryCollectorV1Beta1ManifestData struct {
 		} `tfsdk:"pod_security_context" json:"podSecurityContext,omitempty"`
 		Ports *[]struct {
 			AppProtocol *string `tfsdk:"app_protocol" json:"appProtocol,omitempty"`
+			HostPort    *int64  `tfsdk:"host_port" json:"hostPort,omitempty"`
 			Name        *string `tfsdk:"name" json:"name,omitempty"`
 			NodePort    *int64  `tfsdk:"node_port" json:"nodePort,omitempty"`
 			Port        *int64  `tfsdk:"port" json:"port,omitempty"`
@@ -7318,6 +7319,14 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Beta1Manifest) Schema(_ context.
 									Computed:            false,
 								},
 
+								"host_port": schema.Int64Attribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"name": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
@@ -8530,7 +8539,7 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Beta1Manifest) Schema(_ context.
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("least-weighted", "consistent-hashing"),
+									stringvalidator.OneOf("least-weighted", "consistent-hashing", "per-node"),
 								},
 							},
 

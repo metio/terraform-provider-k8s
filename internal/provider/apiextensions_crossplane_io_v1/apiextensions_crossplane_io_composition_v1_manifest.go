@@ -293,8 +293,8 @@ func (r *ApiextensionsCrossplaneIoCompositionV1Manifest) Metadata(_ context.Cont
 
 func (r *ApiextensionsCrossplaneIoCompositionV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "A Composition specifies how a composite resource should be composed.",
-		MarkdownDescription: "A Composition specifies how a composite resource should be composed.",
+		Description:         "A Composition defines a collection of managed resources or functions thatCrossplane uses to create and manage new composite resources.Read the Crossplane documentation for[more information about Compositions](https://docs.crossplane.io/latest/concepts/compositions).",
+		MarkdownDescription: "A Composition defines a collection of managed resources or functions thatCrossplane uses to create and manage new composite resources.Read the Crossplane documentation for[more information about Compositions](https://docs.crossplane.io/latest/concepts/compositions).",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -822,13 +822,13 @@ func (r *ApiextensionsCrossplaneIoCompositionV1Manifest) Schema(_ context.Contex
 														MarkdownDescription: "String is used to transform the input into a string or a different kindof string. Note that the input does not necessarily need to be a string.",
 														Attributes: map[string]schema.Attribute{
 															"convert": schema.StringAttribute{
-																Description:         "Optional conversion method to be specified.'ToUpper' and 'ToLower' change the letter case of the input string.'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string.'ToJson' converts any input value into its raw JSON representation.'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the inputconverted to JSON.",
-																MarkdownDescription: "Optional conversion method to be specified.'ToUpper' and 'ToLower' change the letter case of the input string.'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string.'ToJson' converts any input value into its raw JSON representation.'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the inputconverted to JSON.",
+																Description:         "Optional conversion method to be specified.'ToUpper' and 'ToLower' change the letter case of the input string.'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string.'ToJson' converts any input value into its raw JSON representation.'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the inputconverted to JSON.'ToAdler32' generate a addler32 hash based on the input string.",
+																MarkdownDescription: "Optional conversion method to be specified.'ToUpper' and 'ToLower' change the letter case of the input string.'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string.'ToJson' converts any input value into its raw JSON representation.'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the inputconverted to JSON.'ToAdler32' generate a addler32 hash based on the input string.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 																Validators: []validator.String{
-																	stringvalidator.OneOf("ToUpper", "ToLower", "ToBase64", "FromBase64", "ToJson", "ToSha1", "ToSha256", "ToSha512"),
+																	stringvalidator.OneOf("ToUpper", "ToLower", "ToBase64", "FromBase64", "ToJson", "ToSha1", "ToSha256", "ToSha512", "ToAdler32"),
 																},
 															},
 
@@ -1300,13 +1300,13 @@ func (r *ApiextensionsCrossplaneIoCompositionV1Manifest) Schema(_ context.Contex
 															MarkdownDescription: "String is used to transform the input into a string or a different kindof string. Note that the input does not necessarily need to be a string.",
 															Attributes: map[string]schema.Attribute{
 																"convert": schema.StringAttribute{
-																	Description:         "Optional conversion method to be specified.'ToUpper' and 'ToLower' change the letter case of the input string.'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string.'ToJson' converts any input value into its raw JSON representation.'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the inputconverted to JSON.",
-																	MarkdownDescription: "Optional conversion method to be specified.'ToUpper' and 'ToLower' change the letter case of the input string.'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string.'ToJson' converts any input value into its raw JSON representation.'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the inputconverted to JSON.",
+																	Description:         "Optional conversion method to be specified.'ToUpper' and 'ToLower' change the letter case of the input string.'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string.'ToJson' converts any input value into its raw JSON representation.'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the inputconverted to JSON.'ToAdler32' generate a addler32 hash based on the input string.",
+																	MarkdownDescription: "Optional conversion method to be specified.'ToUpper' and 'ToLower' change the letter case of the input string.'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string.'ToJson' converts any input value into its raw JSON representation.'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the inputconverted to JSON.'ToAdler32' generate a addler32 hash based on the input string.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																	Validators: []validator.String{
-																		stringvalidator.OneOf("ToUpper", "ToLower", "ToBase64", "FromBase64", "ToJson", "ToSha1", "ToSha256", "ToSha512"),
+																		stringvalidator.OneOf("ToUpper", "ToLower", "ToBase64", "FromBase64", "ToJson", "ToSha1", "ToSha256", "ToSha512", "ToAdler32"),
 																	},
 																},
 
@@ -1862,13 +1862,13 @@ func (r *ApiextensionsCrossplaneIoCompositionV1Manifest) Schema(_ context.Contex
 															MarkdownDescription: "String is used to transform the input into a string or a different kindof string. Note that the input does not necessarily need to be a string.",
 															Attributes: map[string]schema.Attribute{
 																"convert": schema.StringAttribute{
-																	Description:         "Optional conversion method to be specified.'ToUpper' and 'ToLower' change the letter case of the input string.'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string.'ToJson' converts any input value into its raw JSON representation.'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the inputconverted to JSON.",
-																	MarkdownDescription: "Optional conversion method to be specified.'ToUpper' and 'ToLower' change the letter case of the input string.'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string.'ToJson' converts any input value into its raw JSON representation.'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the inputconverted to JSON.",
+																	Description:         "Optional conversion method to be specified.'ToUpper' and 'ToLower' change the letter case of the input string.'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string.'ToJson' converts any input value into its raw JSON representation.'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the inputconverted to JSON.'ToAdler32' generate a addler32 hash based on the input string.",
+																	MarkdownDescription: "Optional conversion method to be specified.'ToUpper' and 'ToLower' change the letter case of the input string.'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string.'ToJson' converts any input value into its raw JSON representation.'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the inputconverted to JSON.'ToAdler32' generate a addler32 hash based on the input string.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																	Validators: []validator.String{
-																		stringvalidator.OneOf("ToUpper", "ToLower", "ToBase64", "FromBase64", "ToJson", "ToSha1", "ToSha256", "ToSha512"),
+																		stringvalidator.OneOf("ToUpper", "ToLower", "ToBase64", "FromBase64", "ToJson", "ToSha1", "ToSha256", "ToSha512", "ToAdler32"),
 																	},
 																},
 

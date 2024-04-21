@@ -151,6 +151,8 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+									MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 									NamespaceSelector *struct {
 										MatchExpressions *[]struct {
 											Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -173,6 +175,8 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -196,6 +200,8 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+									MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 									NamespaceSelector *struct {
 										MatchExpressions *[]struct {
 											Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -218,6 +224,8 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -288,6 +296,9 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 									Port   *string `tfsdk:"port" json:"port,omitempty"`
 									Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 								} `tfsdk:"http_get" json:"httpGet,omitempty"`
+								Sleep *struct {
+									Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+								} `tfsdk:"sleep" json:"sleep,omitempty"`
 								TcpSocket *struct {
 									Host *string `tfsdk:"host" json:"host,omitempty"`
 									Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -307,6 +318,9 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 									Port   *string `tfsdk:"port" json:"port,omitempty"`
 									Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 								} `tfsdk:"http_get" json:"httpGet,omitempty"`
+								Sleep *struct {
+									Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+								} `tfsdk:"sleep" json:"sleep,omitempty"`
 								TcpSocket *struct {
 									Host *string `tfsdk:"host" json:"host,omitempty"`
 									Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -390,6 +404,7 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 						} `tfsdk:"resources" json:"resources,omitempty"`
+						RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 						SecurityContext *struct {
 							AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 							Capabilities             *struct {
@@ -533,6 +548,9 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 									Port   *string `tfsdk:"port" json:"port,omitempty"`
 									Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 								} `tfsdk:"http_get" json:"httpGet,omitempty"`
+								Sleep *struct {
+									Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+								} `tfsdk:"sleep" json:"sleep,omitempty"`
 								TcpSocket *struct {
 									Host *string `tfsdk:"host" json:"host,omitempty"`
 									Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -552,6 +570,9 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 									Port   *string `tfsdk:"port" json:"port,omitempty"`
 									Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 								} `tfsdk:"http_get" json:"httpGet,omitempty"`
+								Sleep *struct {
+									Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+								} `tfsdk:"sleep" json:"sleep,omitempty"`
 								TcpSocket *struct {
 									Host *string `tfsdk:"host" json:"host,omitempty"`
 									Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -635,6 +656,7 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 						} `tfsdk:"resources" json:"resources,omitempty"`
+						RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 						SecurityContext *struct {
 							AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 							Capabilities             *struct {
@@ -781,6 +803,9 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 									Port   *string `tfsdk:"port" json:"port,omitempty"`
 									Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 								} `tfsdk:"http_get" json:"httpGet,omitempty"`
+								Sleep *struct {
+									Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+								} `tfsdk:"sleep" json:"sleep,omitempty"`
 								TcpSocket *struct {
 									Host *string `tfsdk:"host" json:"host,omitempty"`
 									Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -800,6 +825,9 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 									Port   *string `tfsdk:"port" json:"port,omitempty"`
 									Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 								} `tfsdk:"http_get" json:"httpGet,omitempty"`
+								Sleep *struct {
+									Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+								} `tfsdk:"sleep" json:"sleep,omitempty"`
 								TcpSocket *struct {
 									Host *string `tfsdk:"host" json:"host,omitempty"`
 									Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -883,6 +911,7 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 						} `tfsdk:"resources" json:"resources,omitempty"`
+						RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 						SecurityContext *struct {
 							AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 							Capabilities             *struct {
@@ -1168,9 +1197,6 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 										Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 									} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 									Resources *struct {
-										Claims *[]struct {
-											Name *string `tfsdk:"name" json:"name,omitempty"`
-										} `tfsdk:"claims" json:"claims,omitempty"`
 										Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 										Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 									} `tfsdk:"resources" json:"resources,omitempty"`
@@ -1182,9 +1208,10 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 									} `tfsdk:"selector" json:"selector,omitempty"`
-									StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
-									VolumeMode       *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
-									VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+									StorageClassName          *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+									VolumeAttributesClassName *string `tfsdk:"volume_attributes_class_name" json:"volumeAttributesClassName,omitempty"`
+									VolumeMode                *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
+									VolumeName                *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 								} `tfsdk:"spec" json:"spec,omitempty"`
 							} `tfsdk:"volume_claim_template" json:"volumeClaimTemplate,omitempty"`
 						} `tfsdk:"ephemeral" json:"ephemeral,omitempty"`
@@ -1265,6 +1292,20 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 						Projected *struct {
 							DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
 							Sources     *[]struct {
+								ClusterTrustBundle *struct {
+									LabelSelector *struct {
+										MatchExpressions *[]struct {
+											Key      *string   `tfsdk:"key" json:"key,omitempty"`
+											Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+											Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									Name       *string `tfsdk:"name" json:"name,omitempty"`
+									Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+									Path       *string `tfsdk:"path" json:"path,omitempty"`
+									SignerName *string `tfsdk:"signer_name" json:"signerName,omitempty"`
+								} `tfsdk:"cluster_trust_bundle" json:"clusterTrustBundle,omitempty"`
 								ConfigMap *struct {
 									Items *[]struct {
 										Key  *string `tfsdk:"key" json:"key,omitempty"`
@@ -1481,7 +1522,10 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 							} `tfsdk:"waiting" json:"waiting,omitempty"`
 						} `tfsdk:"state" json:"state,omitempty"`
 					} `tfsdk:"ephemeral_container_statuses" json:"ephemeralContainerStatuses,omitempty"`
-					HostIP                *string `tfsdk:"host_ip" json:"hostIP,omitempty"`
+					HostIP  *string `tfsdk:"host_ip" json:"hostIP,omitempty"`
+					HostIPs *[]struct {
+						Ip *string `tfsdk:"ip" json:"ip,omitempty"`
+					} `tfsdk:"host_i_ps" json:"hostIPs,omitempty"`
 					InitContainerStatuses *[]struct {
 						AllocatedResources *map[string]string `tfsdk:"allocated_resources" json:"allocatedResources,omitempty"`
 						ContainerID        *string            `tfsdk:"container_id" json:"containerID,omitempty"`
@@ -1542,9 +1586,13 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 					PodIPs            *[]struct {
 						Ip *string `tfsdk:"ip" json:"ip,omitempty"`
 					} `tfsdk:"pod_i_ps" json:"podIPs,omitempty"`
-					QosClass  *string `tfsdk:"qos_class" json:"qosClass,omitempty"`
-					Reason    *string `tfsdk:"reason" json:"reason,omitempty"`
-					Resize    *string `tfsdk:"resize" json:"resize,omitempty"`
+					QosClass              *string `tfsdk:"qos_class" json:"qosClass,omitempty"`
+					Reason                *string `tfsdk:"reason" json:"reason,omitempty"`
+					Resize                *string `tfsdk:"resize" json:"resize,omitempty"`
+					ResourceClaimStatuses *[]struct {
+						Name              *string `tfsdk:"name" json:"name,omitempty"`
+						ResourceClaimName *string `tfsdk:"resource_claim_name" json:"resourceClaimName,omitempty"`
+					} `tfsdk:"resource_claim_statuses" json:"resourceClaimStatuses,omitempty"`
 					StartTime *string `tfsdk:"start_time" json:"startTime,omitempty"`
 				} `tfsdk:"status" json:"status,omitempty"`
 			} `tfsdk:"pod_template" json:"podTemplate,omitempty"`
@@ -1637,6 +1685,8 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -1659,6 +1709,8 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+							MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+							MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 							NamespaceSelector *struct {
 								MatchExpressions *[]struct {
 									Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -1682,6 +1734,8 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -1704,6 +1758,8 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+							MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+							MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 							NamespaceSelector *struct {
 								MatchExpressions *[]struct {
 									Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -1774,6 +1830,9 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 								Port   *string `tfsdk:"port" json:"port,omitempty"`
 								Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 							} `tfsdk:"http_get" json:"httpGet,omitempty"`
+							Sleep *struct {
+								Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+							} `tfsdk:"sleep" json:"sleep,omitempty"`
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" json:"host,omitempty"`
 								Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -1793,6 +1852,9 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 								Port   *string `tfsdk:"port" json:"port,omitempty"`
 								Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 							} `tfsdk:"http_get" json:"httpGet,omitempty"`
+							Sleep *struct {
+								Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+							} `tfsdk:"sleep" json:"sleep,omitempty"`
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" json:"host,omitempty"`
 								Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -1876,6 +1938,7 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 						Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 						Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 					} `tfsdk:"resources" json:"resources,omitempty"`
+					RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 					SecurityContext *struct {
 						AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 						Capabilities             *struct {
@@ -2019,6 +2082,9 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 								Port   *string `tfsdk:"port" json:"port,omitempty"`
 								Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 							} `tfsdk:"http_get" json:"httpGet,omitempty"`
+							Sleep *struct {
+								Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+							} `tfsdk:"sleep" json:"sleep,omitempty"`
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" json:"host,omitempty"`
 								Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -2038,6 +2104,9 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 								Port   *string `tfsdk:"port" json:"port,omitempty"`
 								Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 							} `tfsdk:"http_get" json:"httpGet,omitempty"`
+							Sleep *struct {
+								Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+							} `tfsdk:"sleep" json:"sleep,omitempty"`
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" json:"host,omitempty"`
 								Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -2121,6 +2190,7 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 						Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 						Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 					} `tfsdk:"resources" json:"resources,omitempty"`
+					RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 					SecurityContext *struct {
 						AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 						Capabilities             *struct {
@@ -2267,6 +2337,9 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 								Port   *string `tfsdk:"port" json:"port,omitempty"`
 								Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 							} `tfsdk:"http_get" json:"httpGet,omitempty"`
+							Sleep *struct {
+								Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+							} `tfsdk:"sleep" json:"sleep,omitempty"`
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" json:"host,omitempty"`
 								Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -2286,6 +2359,9 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 								Port   *string `tfsdk:"port" json:"port,omitempty"`
 								Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 							} `tfsdk:"http_get" json:"httpGet,omitempty"`
+							Sleep *struct {
+								Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+							} `tfsdk:"sleep" json:"sleep,omitempty"`
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" json:"host,omitempty"`
 								Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -2369,6 +2445,7 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 						Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 						Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 					} `tfsdk:"resources" json:"resources,omitempty"`
+					RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 					SecurityContext *struct {
 						AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 						Capabilities             *struct {
@@ -2654,9 +2731,6 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 									Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 								} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 								Resources *struct {
-									Claims *[]struct {
-										Name *string `tfsdk:"name" json:"name,omitempty"`
-									} `tfsdk:"claims" json:"claims,omitempty"`
 									Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 									Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 								} `tfsdk:"resources" json:"resources,omitempty"`
@@ -2668,9 +2742,10 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"selector" json:"selector,omitempty"`
-								StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
-								VolumeMode       *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
-								VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+								StorageClassName          *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+								VolumeAttributesClassName *string `tfsdk:"volume_attributes_class_name" json:"volumeAttributesClassName,omitempty"`
+								VolumeMode                *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
+								VolumeName                *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 							} `tfsdk:"spec" json:"spec,omitempty"`
 						} `tfsdk:"volume_claim_template" json:"volumeClaimTemplate,omitempty"`
 					} `tfsdk:"ephemeral" json:"ephemeral,omitempty"`
@@ -2751,6 +2826,20 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 					Projected *struct {
 						DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
 						Sources     *[]struct {
+							ClusterTrustBundle *struct {
+								LabelSelector *struct {
+									MatchExpressions *[]struct {
+										Key      *string   `tfsdk:"key" json:"key,omitempty"`
+										Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+										Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								Name       *string `tfsdk:"name" json:"name,omitempty"`
+								Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								Path       *string `tfsdk:"path" json:"path,omitempty"`
+								SignerName *string `tfsdk:"signer_name" json:"signerName,omitempty"`
+							} `tfsdk:"cluster_trust_bundle" json:"clusterTrustBundle,omitempty"`
 							ConfigMap *struct {
 								Items *[]struct {
 									Key  *string `tfsdk:"key" json:"key,omitempty"`
@@ -2967,7 +3056,10 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 						} `tfsdk:"waiting" json:"waiting,omitempty"`
 					} `tfsdk:"state" json:"state,omitempty"`
 				} `tfsdk:"ephemeral_container_statuses" json:"ephemeralContainerStatuses,omitempty"`
-				HostIP                *string `tfsdk:"host_ip" json:"hostIP,omitempty"`
+				HostIP  *string `tfsdk:"host_ip" json:"hostIP,omitempty"`
+				HostIPs *[]struct {
+					Ip *string `tfsdk:"ip" json:"ip,omitempty"`
+				} `tfsdk:"host_i_ps" json:"hostIPs,omitempty"`
 				InitContainerStatuses *[]struct {
 					AllocatedResources *map[string]string `tfsdk:"allocated_resources" json:"allocatedResources,omitempty"`
 					ContainerID        *string            `tfsdk:"container_id" json:"containerID,omitempty"`
@@ -3028,9 +3120,13 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 				PodIPs            *[]struct {
 					Ip *string `tfsdk:"ip" json:"ip,omitempty"`
 				} `tfsdk:"pod_i_ps" json:"podIPs,omitempty"`
-				QosClass  *string `tfsdk:"qos_class" json:"qosClass,omitempty"`
-				Reason    *string `tfsdk:"reason" json:"reason,omitempty"`
-				Resize    *string `tfsdk:"resize" json:"resize,omitempty"`
+				QosClass              *string `tfsdk:"qos_class" json:"qosClass,omitempty"`
+				Reason                *string `tfsdk:"reason" json:"reason,omitempty"`
+				Resize                *string `tfsdk:"resize" json:"resize,omitempty"`
+				ResourceClaimStatuses *[]struct {
+					Name              *string `tfsdk:"name" json:"name,omitempty"`
+					ResourceClaimName *string `tfsdk:"resource_claim_name" json:"resourceClaimName,omitempty"`
+				} `tfsdk:"resource_claim_statuses" json:"resourceClaimStatuses,omitempty"`
 				StartTime *string `tfsdk:"start_time" json:"startTime,omitempty"`
 			} `tfsdk:"status" json:"status,omitempty"`
 		} `tfsdk:"pod_template" json:"podTemplate,omitempty"`
@@ -3117,6 +3213,8 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+									MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 									NamespaceSelector *struct {
 										MatchExpressions *[]struct {
 											Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -3139,6 +3237,8 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -3162,6 +3262,8 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+									MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 									NamespaceSelector *struct {
 										MatchExpressions *[]struct {
 											Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -3184,6 +3286,8 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -3254,6 +3358,9 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 									Port   *string `tfsdk:"port" json:"port,omitempty"`
 									Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 								} `tfsdk:"http_get" json:"httpGet,omitempty"`
+								Sleep *struct {
+									Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+								} `tfsdk:"sleep" json:"sleep,omitempty"`
 								TcpSocket *struct {
 									Host *string `tfsdk:"host" json:"host,omitempty"`
 									Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -3273,6 +3380,9 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 									Port   *string `tfsdk:"port" json:"port,omitempty"`
 									Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 								} `tfsdk:"http_get" json:"httpGet,omitempty"`
+								Sleep *struct {
+									Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+								} `tfsdk:"sleep" json:"sleep,omitempty"`
 								TcpSocket *struct {
 									Host *string `tfsdk:"host" json:"host,omitempty"`
 									Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -3356,6 +3466,7 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 						} `tfsdk:"resources" json:"resources,omitempty"`
+						RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 						SecurityContext *struct {
 							AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 							Capabilities             *struct {
@@ -3499,6 +3610,9 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 									Port   *string `tfsdk:"port" json:"port,omitempty"`
 									Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 								} `tfsdk:"http_get" json:"httpGet,omitempty"`
+								Sleep *struct {
+									Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+								} `tfsdk:"sleep" json:"sleep,omitempty"`
 								TcpSocket *struct {
 									Host *string `tfsdk:"host" json:"host,omitempty"`
 									Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -3518,6 +3632,9 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 									Port   *string `tfsdk:"port" json:"port,omitempty"`
 									Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 								} `tfsdk:"http_get" json:"httpGet,omitempty"`
+								Sleep *struct {
+									Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+								} `tfsdk:"sleep" json:"sleep,omitempty"`
 								TcpSocket *struct {
 									Host *string `tfsdk:"host" json:"host,omitempty"`
 									Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -3601,6 +3718,7 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 						} `tfsdk:"resources" json:"resources,omitempty"`
+						RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 						SecurityContext *struct {
 							AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 							Capabilities             *struct {
@@ -3747,6 +3865,9 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 									Port   *string `tfsdk:"port" json:"port,omitempty"`
 									Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 								} `tfsdk:"http_get" json:"httpGet,omitempty"`
+								Sleep *struct {
+									Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+								} `tfsdk:"sleep" json:"sleep,omitempty"`
 								TcpSocket *struct {
 									Host *string `tfsdk:"host" json:"host,omitempty"`
 									Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -3766,6 +3887,9 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 									Port   *string `tfsdk:"port" json:"port,omitempty"`
 									Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 								} `tfsdk:"http_get" json:"httpGet,omitempty"`
+								Sleep *struct {
+									Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+								} `tfsdk:"sleep" json:"sleep,omitempty"`
 								TcpSocket *struct {
 									Host *string `tfsdk:"host" json:"host,omitempty"`
 									Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -3849,6 +3973,7 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 						} `tfsdk:"resources" json:"resources,omitempty"`
+						RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 						SecurityContext *struct {
 							AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 							Capabilities             *struct {
@@ -4134,9 +4259,6 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 										Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 									} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 									Resources *struct {
-										Claims *[]struct {
-											Name *string `tfsdk:"name" json:"name,omitempty"`
-										} `tfsdk:"claims" json:"claims,omitempty"`
 										Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 										Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 									} `tfsdk:"resources" json:"resources,omitempty"`
@@ -4148,9 +4270,10 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 									} `tfsdk:"selector" json:"selector,omitempty"`
-									StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
-									VolumeMode       *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
-									VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+									StorageClassName          *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+									VolumeAttributesClassName *string `tfsdk:"volume_attributes_class_name" json:"volumeAttributesClassName,omitempty"`
+									VolumeMode                *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
+									VolumeName                *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 								} `tfsdk:"spec" json:"spec,omitempty"`
 							} `tfsdk:"volume_claim_template" json:"volumeClaimTemplate,omitempty"`
 						} `tfsdk:"ephemeral" json:"ephemeral,omitempty"`
@@ -4231,6 +4354,20 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 						Projected *struct {
 							DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
 							Sources     *[]struct {
+								ClusterTrustBundle *struct {
+									LabelSelector *struct {
+										MatchExpressions *[]struct {
+											Key      *string   `tfsdk:"key" json:"key,omitempty"`
+											Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+											Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									Name       *string `tfsdk:"name" json:"name,omitempty"`
+									Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+									Path       *string `tfsdk:"path" json:"path,omitempty"`
+									SignerName *string `tfsdk:"signer_name" json:"signerName,omitempty"`
+								} `tfsdk:"cluster_trust_bundle" json:"clusterTrustBundle,omitempty"`
 								ConfigMap *struct {
 									Items *[]struct {
 										Key  *string `tfsdk:"key" json:"key,omitempty"`
@@ -4447,7 +4584,10 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 							} `tfsdk:"waiting" json:"waiting,omitempty"`
 						} `tfsdk:"state" json:"state,omitempty"`
 					} `tfsdk:"ephemeral_container_statuses" json:"ephemeralContainerStatuses,omitempty"`
-					HostIP                *string `tfsdk:"host_ip" json:"hostIP,omitempty"`
+					HostIP  *string `tfsdk:"host_ip" json:"hostIP,omitempty"`
+					HostIPs *[]struct {
+						Ip *string `tfsdk:"ip" json:"ip,omitempty"`
+					} `tfsdk:"host_i_ps" json:"hostIPs,omitempty"`
 					InitContainerStatuses *[]struct {
 						AllocatedResources *map[string]string `tfsdk:"allocated_resources" json:"allocatedResources,omitempty"`
 						ContainerID        *string            `tfsdk:"container_id" json:"containerID,omitempty"`
@@ -4508,9 +4648,13 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 					PodIPs            *[]struct {
 						Ip *string `tfsdk:"ip" json:"ip,omitempty"`
 					} `tfsdk:"pod_i_ps" json:"podIPs,omitempty"`
-					QosClass  *string `tfsdk:"qos_class" json:"qosClass,omitempty"`
-					Reason    *string `tfsdk:"reason" json:"reason,omitempty"`
-					Resize    *string `tfsdk:"resize" json:"resize,omitempty"`
+					QosClass              *string `tfsdk:"qos_class" json:"qosClass,omitempty"`
+					Reason                *string `tfsdk:"reason" json:"reason,omitempty"`
+					Resize                *string `tfsdk:"resize" json:"resize,omitempty"`
+					ResourceClaimStatuses *[]struct {
+						Name              *string `tfsdk:"name" json:"name,omitempty"`
+						ResourceClaimName *string `tfsdk:"resource_claim_name" json:"resourceClaimName,omitempty"`
+					} `tfsdk:"resource_claim_statuses" json:"resourceClaimStatuses,omitempty"`
 					StartTime *string `tfsdk:"start_time" json:"startTime,omitempty"`
 				} `tfsdk:"status" json:"status,omitempty"`
 			} `tfsdk:"pod_template" json:"podTemplate,omitempty"`
@@ -4803,7 +4947,7 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("savepoint", "last-state", "stateless"),
+									stringvalidator.OneOf("last-state", "savepoint", "stateless"),
 								},
 							},
 						},
@@ -5363,6 +5507,24 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																					Computed: false,
 																				},
 
+																				"match_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"mismatch_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
 																				"namespace_selector": schema.SingleNestedAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
@@ -5510,6 +5672,24 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																			Required: false,
 																			Optional: true,
 																			Computed: false,
+																		},
+
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
 																		},
 
 																		"namespace_selector": schema.SingleNestedAttribute{
@@ -5661,6 +5841,24 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																					Computed: false,
 																				},
 
+																				"match_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"mismatch_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
 																				"namespace_selector": schema.SingleNestedAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
@@ -5808,6 +6006,24 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																			Required: false,
 																			Optional: true,
 																			Computed: false,
+																		},
+
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
 																		},
 
 																		"namespace_selector": schema.SingleNestedAttribute{
@@ -6267,6 +6483,23 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																			Computed: false,
 																		},
 
+																		"sleep": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"seconds": schema.Int64Attribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
 																		"tcp_socket": schema.SingleNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -6375,6 +6608,23 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																				},
 
 																				"scheme": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"sleep": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"seconds": schema.Int64Attribute{
 																					Description:         "",
 																					MarkdownDescription: "",
 																					Required:            false,
@@ -6938,6 +7188,14 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 															Required: false,
 															Optional: true,
 															Computed: false,
+														},
+
+														"restart_policy": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
 														},
 
 														"security_context": schema.SingleNestedAttribute{
@@ -7904,6 +8162,23 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																			Computed: false,
 																		},
 
+																		"sleep": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"seconds": schema.Int64Attribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
 																		"tcp_socket": schema.SingleNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -8012,6 +8287,23 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																				},
 
 																				"scheme": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"sleep": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"seconds": schema.Int64Attribute{
 																					Description:         "",
 																					MarkdownDescription: "",
 																					Required:            false,
@@ -8575,6 +8867,14 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 															Required: false,
 															Optional: true,
 															Computed: false,
+														},
+
+														"restart_policy": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
 														},
 
 														"security_context": schema.SingleNestedAttribute{
@@ -9566,6 +9866,23 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																			Computed: false,
 																		},
 
+																		"sleep": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"seconds": schema.Int64Attribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
 																		"tcp_socket": schema.SingleNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -9674,6 +9991,23 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																				},
 
 																				"scheme": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"sleep": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"seconds": schema.Int64Attribute{
 																					Description:         "",
 																					MarkdownDescription: "",
 																					Required:            false,
@@ -10237,6 +10571,14 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 															Required: false,
 															Optional: true,
 															Computed: false,
+														},
+
+														"restart_policy": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
 														},
 
 														"security_context": schema.SingleNestedAttribute{
@@ -12206,25 +12548,6 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																					Description:         "",
 																					MarkdownDescription: "",
 																					Attributes: map[string]schema.Attribute{
-																						"claims": schema.ListNestedAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
-																							NestedObject: schema.NestedAttributeObject{
-																								Attributes: map[string]schema.Attribute{
-																									"name": schema.StringAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
-																										Required:            false,
-																										Optional:            true,
-																										Computed:            false,
-																									},
-																								},
-																							},
-																							Required: false,
-																							Optional: true,
-																							Computed: false,
-																						},
-
 																						"limits": schema.MapAttribute{
 																							Description:         "",
 																							MarkdownDescription: "",
@@ -12303,6 +12626,14 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																				},
 
 																				"storage_class_name": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"volume_attributes_class_name": schema.StringAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
 																					Required:            false,
@@ -12856,6 +13187,101 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																	MarkdownDescription: "",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
+																			"cluster_trust_bundle": schema.SingleNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Attributes: map[string]schema.Attribute{
+																					"label_selector": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"match_expressions": schema.ListNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								NestedObject: schema.NestedAttributeObject{
+																									Attributes: map[string]schema.Attribute{
+																										"key": schema.StringAttribute{
+																											Description:         "",
+																											MarkdownDescription: "",
+																											Required:            false,
+																											Optional:            true,
+																											Computed:            false,
+																										},
+
+																										"operator": schema.StringAttribute{
+																											Description:         "",
+																											MarkdownDescription: "",
+																											Required:            false,
+																											Optional:            true,
+																											Computed:            false,
+																										},
+
+																										"values": schema.ListAttribute{
+																											Description:         "",
+																											MarkdownDescription: "",
+																											ElementType:         types.StringType,
+																											Required:            false,
+																											Optional:            true,
+																											Computed:            false,
+																										},
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+
+																							"match_labels": schema.MapAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"name": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"optional": schema.BoolAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"path": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"signer_name": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
 																			"config_map": schema.SingleNestedAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
@@ -14309,6 +14735,25 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 												Computed:            false,
 											},
 
+											"host_i_ps": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"ip": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"init_container_statuses": schema.ListNestedAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -14736,6 +15181,33 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+
+											"resource_claim_statuses": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"resource_claim_name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 
 											"start_time": schema.StringAttribute{
@@ -15369,6 +15841,24 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																			Computed: false,
 																		},
 
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"namespace_selector": schema.SingleNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -15516,6 +16006,24 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																	Required: false,
 																	Optional: true,
 																	Computed: false,
+																},
+
+																"match_label_keys": schema.ListAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"mismatch_label_keys": schema.ListAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
 																},
 
 																"namespace_selector": schema.SingleNestedAttribute{
@@ -15667,6 +16175,24 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																			Computed: false,
 																		},
 
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"namespace_selector": schema.SingleNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -15814,6 +16340,24 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																	Required: false,
 																	Optional: true,
 																	Computed: false,
+																},
+
+																"match_label_keys": schema.ListAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"mismatch_label_keys": schema.ListAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
 																},
 
 																"namespace_selector": schema.SingleNestedAttribute{
@@ -16273,6 +16817,23 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																	Computed: false,
 																},
 
+																"sleep": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"seconds": schema.Int64Attribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
 																"tcp_socket": schema.SingleNestedAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -16381,6 +16942,23 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																		},
 
 																		"scheme": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"sleep": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"seconds": schema.Int64Attribute{
 																			Description:         "",
 																			MarkdownDescription: "",
 																			Required:            false,
@@ -16944,6 +17522,14 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 													Required: false,
 													Optional: true,
 													Computed: false,
+												},
+
+												"restart_policy": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
 												},
 
 												"security_context": schema.SingleNestedAttribute{
@@ -17910,6 +18496,23 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																	Computed: false,
 																},
 
+																"sleep": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"seconds": schema.Int64Attribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
 																"tcp_socket": schema.SingleNestedAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -18018,6 +18621,23 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																		},
 
 																		"scheme": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"sleep": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"seconds": schema.Int64Attribute{
 																			Description:         "",
 																			MarkdownDescription: "",
 																			Required:            false,
@@ -18581,6 +19201,14 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 													Required: false,
 													Optional: true,
 													Computed: false,
+												},
+
+												"restart_policy": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
 												},
 
 												"security_context": schema.SingleNestedAttribute{
@@ -19572,6 +20200,23 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																	Computed: false,
 																},
 
+																"sleep": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"seconds": schema.Int64Attribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
 																"tcp_socket": schema.SingleNestedAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -19680,6 +20325,23 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																		},
 
 																		"scheme": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"sleep": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"seconds": schema.Int64Attribute{
 																			Description:         "",
 																			MarkdownDescription: "",
 																			Required:            false,
@@ -20243,6 +20905,14 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 													Required: false,
 													Optional: true,
 													Computed: false,
+												},
+
+												"restart_policy": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
 												},
 
 												"security_context": schema.SingleNestedAttribute{
@@ -22212,25 +22882,6 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																			Description:         "",
 																			MarkdownDescription: "",
 																			Attributes: map[string]schema.Attribute{
-																				"claims": schema.ListNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
-																					NestedObject: schema.NestedAttributeObject{
-																						Attributes: map[string]schema.Attribute{
-																							"name": schema.StringAttribute{
-																								Description:         "",
-																								MarkdownDescription: "",
-																								Required:            false,
-																								Optional:            true,
-																								Computed:            false,
-																							},
-																						},
-																					},
-																					Required: false,
-																					Optional: true,
-																					Computed: false,
-																				},
-
 																				"limits": schema.MapAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
@@ -22309,6 +22960,14 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																		},
 
 																		"storage_class_name": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"volume_attributes_class_name": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
 																			Required:            false,
@@ -22862,6 +23521,101 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 															MarkdownDescription: "",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
+																	"cluster_trust_bundle": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"label_selector": schema.SingleNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Attributes: map[string]schema.Attribute{
+																					"match_expressions": schema.ListNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						NestedObject: schema.NestedAttributeObject{
+																							Attributes: map[string]schema.Attribute{
+																								"key": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"operator": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"values": schema.ListAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"match_labels": schema.MapAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						ElementType:         types.StringType,
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"path": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"signer_name": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
 																	"config_map": schema.SingleNestedAttribute{
 																		Description:         "",
 																		MarkdownDescription: "",
@@ -24315,6 +25069,25 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 										Computed:            false,
 									},
 
+									"host_i_ps": schema.ListNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"ip": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"init_container_statuses": schema.ListNestedAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -24742,6 +25515,33 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"resource_claim_statuses": schema.ListNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"resource_claim_name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"start_time": schema.StringAttribute{
@@ -25329,6 +26129,24 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																					Computed: false,
 																				},
 
+																				"match_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"mismatch_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
 																				"namespace_selector": schema.SingleNestedAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
@@ -25476,6 +26294,24 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																			Required: false,
 																			Optional: true,
 																			Computed: false,
+																		},
+
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
 																		},
 
 																		"namespace_selector": schema.SingleNestedAttribute{
@@ -25627,6 +26463,24 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																					Computed: false,
 																				},
 
+																				"match_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"mismatch_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
 																				"namespace_selector": schema.SingleNestedAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
@@ -25774,6 +26628,24 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																			Required: false,
 																			Optional: true,
 																			Computed: false,
+																		},
+
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
 																		},
 
 																		"namespace_selector": schema.SingleNestedAttribute{
@@ -26233,6 +27105,23 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																			Computed: false,
 																		},
 
+																		"sleep": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"seconds": schema.Int64Attribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
 																		"tcp_socket": schema.SingleNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -26341,6 +27230,23 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																				},
 
 																				"scheme": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"sleep": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"seconds": schema.Int64Attribute{
 																					Description:         "",
 																					MarkdownDescription: "",
 																					Required:            false,
@@ -26904,6 +27810,14 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 															Required: false,
 															Optional: true,
 															Computed: false,
+														},
+
+														"restart_policy": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
 														},
 
 														"security_context": schema.SingleNestedAttribute{
@@ -27870,6 +28784,23 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																			Computed: false,
 																		},
 
+																		"sleep": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"seconds": schema.Int64Attribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
 																		"tcp_socket": schema.SingleNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -27978,6 +28909,23 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																				},
 
 																				"scheme": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"sleep": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"seconds": schema.Int64Attribute{
 																					Description:         "",
 																					MarkdownDescription: "",
 																					Required:            false,
@@ -28541,6 +29489,14 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 															Required: false,
 															Optional: true,
 															Computed: false,
+														},
+
+														"restart_policy": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
 														},
 
 														"security_context": schema.SingleNestedAttribute{
@@ -29532,6 +30488,23 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																			Computed: false,
 																		},
 
+																		"sleep": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"seconds": schema.Int64Attribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
 																		"tcp_socket": schema.SingleNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -29640,6 +30613,23 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																				},
 
 																				"scheme": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"sleep": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"seconds": schema.Int64Attribute{
 																					Description:         "",
 																					MarkdownDescription: "",
 																					Required:            false,
@@ -30203,6 +31193,14 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 															Required: false,
 															Optional: true,
 															Computed: false,
+														},
+
+														"restart_policy": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
 														},
 
 														"security_context": schema.SingleNestedAttribute{
@@ -32172,25 +33170,6 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																					Description:         "",
 																					MarkdownDescription: "",
 																					Attributes: map[string]schema.Attribute{
-																						"claims": schema.ListNestedAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
-																							NestedObject: schema.NestedAttributeObject{
-																								Attributes: map[string]schema.Attribute{
-																									"name": schema.StringAttribute{
-																										Description:         "",
-																										MarkdownDescription: "",
-																										Required:            false,
-																										Optional:            true,
-																										Computed:            false,
-																									},
-																								},
-																							},
-																							Required: false,
-																							Optional: true,
-																							Computed: false,
-																						},
-
 																						"limits": schema.MapAttribute{
 																							Description:         "",
 																							MarkdownDescription: "",
@@ -32269,6 +33248,14 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																				},
 
 																				"storage_class_name": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"volume_attributes_class_name": schema.StringAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
 																					Required:            false,
@@ -32822,6 +33809,101 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																	MarkdownDescription: "",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
+																			"cluster_trust_bundle": schema.SingleNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Attributes: map[string]schema.Attribute{
+																					"label_selector": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"match_expressions": schema.ListNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								NestedObject: schema.NestedAttributeObject{
+																									Attributes: map[string]schema.Attribute{
+																										"key": schema.StringAttribute{
+																											Description:         "",
+																											MarkdownDescription: "",
+																											Required:            false,
+																											Optional:            true,
+																											Computed:            false,
+																										},
+
+																										"operator": schema.StringAttribute{
+																											Description:         "",
+																											MarkdownDescription: "",
+																											Required:            false,
+																											Optional:            true,
+																											Computed:            false,
+																										},
+
+																										"values": schema.ListAttribute{
+																											Description:         "",
+																											MarkdownDescription: "",
+																											ElementType:         types.StringType,
+																											Required:            false,
+																											Optional:            true,
+																											Computed:            false,
+																										},
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+
+																							"match_labels": schema.MapAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"name": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"optional": schema.BoolAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"path": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"signer_name": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
 																			"config_map": schema.SingleNestedAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
@@ -34275,6 +35357,25 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 												Computed:            false,
 											},
 
+											"host_i_ps": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"ip": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"init_container_statuses": schema.ListNestedAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -34702,6 +35803,33 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+
+											"resource_claim_statuses": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"resource_claim_name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 
 											"start_time": schema.StringAttribute{

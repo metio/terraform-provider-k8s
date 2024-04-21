@@ -265,8 +265,9 @@ type StorageK8SIoVolumeAttachmentV1ManifestData struct {
 					VolumeName      *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 					VolumeNamespace *string `tfsdk:"volume_namespace" json:"volumeNamespace,omitempty"`
 				} `tfsdk:"storageos" json:"storageos,omitempty"`
-				VolumeMode    *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
-				VsphereVolume *struct {
+				VolumeAttributesClassName *string `tfsdk:"volume_attributes_class_name" json:"volumeAttributesClassName,omitempty"`
+				VolumeMode                *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
+				VsphereVolume             *struct {
 					FsType            *string `tfsdk:"fs_type" json:"fsType,omitempty"`
 					StoragePolicyID   *string `tfsdk:"storage_policy_id" json:"storagePolicyID,omitempty"`
 					StoragePolicyName *string `tfsdk:"storage_policy_name" json:"storagePolicyName,omitempty"`
@@ -1862,6 +1863,14 @@ func (r *StorageK8SIoVolumeAttachmentV1Manifest) Schema(_ context.Context, _ dat
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"volume_attributes_class_name": schema.StringAttribute{
+										Description:         "Name of VolumeAttributesClass to which this persistent volume belongs. Empty value is not allowed. When this field is not set, it indicates that this volume does not belong to any VolumeAttributesClass. This field is mutable and can be changed by the CSI driver after a volume has been updated successfully to a new class. For an unbound PersistentVolume, the volumeAttributesClassName will be matched with unbound PersistentVolumeClaims during the binding process. This is an alpha field and requires enabling VolumeAttributesClass feature.",
+										MarkdownDescription: "Name of VolumeAttributesClass to which this persistent volume belongs. Empty value is not allowed. When this field is not set, it indicates that this volume does not belong to any VolumeAttributesClass. This field is mutable and can be changed by the CSI driver after a volume has been updated successfully to a new class. For an unbound PersistentVolume, the volumeAttributesClassName will be matched with unbound PersistentVolumeClaims during the binding process. This is an alpha field and requires enabling VolumeAttributesClass feature.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 
 									"volume_mode": schema.StringAttribute{

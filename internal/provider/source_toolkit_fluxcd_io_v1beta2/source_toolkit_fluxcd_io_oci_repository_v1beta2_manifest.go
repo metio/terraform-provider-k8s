@@ -56,9 +56,10 @@ type SourceToolkitFluxcdIoOcirepositoryV1Beta2ManifestData struct {
 		} `tfsdk:"layer_selector" json:"layerSelector,omitempty"`
 		Provider *string `tfsdk:"provider" json:"provider,omitempty"`
 		Ref      *struct {
-			Digest *string `tfsdk:"digest" json:"digest,omitempty"`
-			Semver *string `tfsdk:"semver" json:"semver,omitempty"`
-			Tag    *string `tfsdk:"tag" json:"tag,omitempty"`
+			Digest       *string `tfsdk:"digest" json:"digest,omitempty"`
+			Semver       *string `tfsdk:"semver" json:"semver,omitempty"`
+			SemverFilter *string `tfsdk:"semver_filter" json:"semverFilter,omitempty"`
+			Tag          *string `tfsdk:"tag" json:"tag,omitempty"`
 		} `tfsdk:"ref" json:"ref,omitempty"`
 		SecretRef *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
@@ -260,6 +261,14 @@ func (r *SourceToolkitFluxcdIoOcirepositoryV1Beta2Manifest) Schema(_ context.Con
 								Computed:            false,
 							},
 
+							"semver_filter": schema.StringAttribute{
+								Description:         "SemverFilter is a regex pattern to filter the tags within the SemVer range.",
+								MarkdownDescription: "SemverFilter is a regex pattern to filter the tags within the SemVer range.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"tag": schema.StringAttribute{
 								Description:         "Tag is the image tag to pull, defaults to latest.",
 								MarkdownDescription: "Tag is the image tag to pull, defaults to latest.",
@@ -366,7 +375,7 @@ func (r *SourceToolkitFluxcdIoOcirepositoryV1Beta2Manifest) Schema(_ context.Con
 								Optional:            false,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("cosign"),
+									stringvalidator.OneOf("cosign", "notation"),
 								},
 							},
 

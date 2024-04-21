@@ -16,6 +16,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
+	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
@@ -130,6 +131,10 @@ func (r *KueueXK8SIoLocalQueueV1Beta1Manifest) Schema(_ context.Context, _ datas
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtMost(253),
+							stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+						},
 					},
 				},
 				Required: false,

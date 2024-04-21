@@ -61,8 +61,8 @@ func (r *PkgCrossplaneIoConfigurationRevisionV1Manifest) Metadata(_ context.Cont
 
 func (r *PkgCrossplaneIoConfigurationRevisionV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "A ConfigurationRevision that has been added to Crossplane.",
-		MarkdownDescription: "A ConfigurationRevision that has been added to Crossplane.",
+		Description:         "A ConfigurationRevision represents a revision of a Configuration. Crossplanecreates new revisions when there are changes to a Configuration.Crossplane creates and manages ConfigurationRevision. Don't directly editConfigurationRevisions.",
+		MarkdownDescription: "A ConfigurationRevision represents a revision of a Configuration. Crossplanecreates new revisions when there are changes to a Configuration.Crossplane creates and manages ConfigurationRevision. Don't directly editConfigurationRevisions.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -121,8 +121,8 @@ func (r *PkgCrossplaneIoConfigurationRevisionV1Manifest) Schema(_ context.Contex
 				MarkdownDescription: "PackageRevisionSpec specifies the desired state of a PackageRevision.",
 				Attributes: map[string]schema.Attribute{
 					"common_labels": schema.MapAttribute{
-						Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels",
-						MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels",
+						Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
+						MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

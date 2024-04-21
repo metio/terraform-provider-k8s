@@ -78,8 +78,8 @@ func (r *FlowVolcanoShJobFlowV1Alpha1Manifest) Metadata(_ context.Context, reque
 
 func (r *FlowVolcanoShJobFlowV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "JobFlow is the Schema for the jobflows API",
-		MarkdownDescription: "JobFlow is the Schema for the jobflows API",
+		Description:         "",
+		MarkdownDescription: "",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -146,12 +146,12 @@ func (r *FlowVolcanoShJobFlowV1Alpha1Manifest) Schema(_ context.Context, _ datas
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "JobFlowSpec defines the desired state of JobFlow",
-				MarkdownDescription: "JobFlowSpec defines the desired state of JobFlow",
+				Description:         "",
+				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"flows": schema.ListNestedAttribute{
-						Description:         "Foo is an example field of JobFlow. Edit jobflow_types.go to remove/update",
-						MarkdownDescription: "Foo is an example field of JobFlow. Edit jobflow_types.go to remove/update",
+						Description:         "",
+						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"depends_on": schema.SingleNestedAttribute{
@@ -168,20 +168,20 @@ func (r *FlowVolcanoShJobFlowV1Alpha1Manifest) Schema(_ context.Context, _ datas
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"http_header": schema.SingleNestedAttribute{
-																Description:         "HTTPHeader describes a custom header to be used in HTTP probes",
-																MarkdownDescription: "HTTPHeader describes a custom header to be used in HTTP probes",
+																Description:         "",
+																MarkdownDescription: "",
 																Attributes: map[string]schema.Attribute{
 																	"name": schema.StringAttribute{
-																		Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-																		MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"value": schema.StringAttribute{
-																		Description:         "The header field value",
-																		MarkdownDescription: "The header field value",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,

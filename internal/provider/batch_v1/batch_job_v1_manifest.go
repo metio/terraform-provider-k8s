@@ -48,6 +48,7 @@ type BatchJobV1ManifestData struct {
 		BackoffLimitPerIndex  *int64  `tfsdk:"backoff_limit_per_index" json:"backoffLimitPerIndex,omitempty"`
 		CompletionMode        *string `tfsdk:"completion_mode" json:"completionMode,omitempty"`
 		Completions           *int64  `tfsdk:"completions" json:"completions,omitempty"`
+		ManagedBy             *string `tfsdk:"managed_by" json:"managedBy,omitempty"`
 		ManualSelector        *bool   `tfsdk:"manual_selector" json:"manualSelector,omitempty"`
 		MaxFailedIndexes      *int64  `tfsdk:"max_failed_indexes" json:"maxFailedIndexes,omitempty"`
 		Parallelism           *int64  `tfsdk:"parallelism" json:"parallelism,omitempty"`
@@ -74,6 +75,12 @@ type BatchJobV1ManifestData struct {
 			} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 		} `tfsdk:"selector" json:"selector,omitempty"`
+		SuccessPolicy *struct {
+			Rules *[]struct {
+				SucceededCount   *int64  `tfsdk:"succeeded_count" json:"succeededCount,omitempty"`
+				SucceededIndexes *string `tfsdk:"succeeded_indexes" json:"succeededIndexes,omitempty"`
+			} `tfsdk:"rules" json:"rules,omitempty"`
+		} `tfsdk:"success_policy" json:"successPolicy,omitempty"`
 		Suspend  *bool `tfsdk:"suspend" json:"suspend,omitempty"`
 		Template *struct {
 			Metadata *struct {
@@ -153,6 +160,8 @@ type BatchJobV1ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -175,6 +184,8 @@ type BatchJobV1ManifestData struct {
 								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+							MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+							MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 							NamespaceSelector *struct {
 								MatchExpressions *[]struct {
 									Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -198,6 +209,8 @@ type BatchJobV1ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -220,6 +233,8 @@ type BatchJobV1ManifestData struct {
 								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+							MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+							MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 							NamespaceSelector *struct {
 								MatchExpressions *[]struct {
 									Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -290,6 +305,9 @@ type BatchJobV1ManifestData struct {
 								Port   *string `tfsdk:"port" json:"port,omitempty"`
 								Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 							} `tfsdk:"http_get" json:"httpGet,omitempty"`
+							Sleep *struct {
+								Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+							} `tfsdk:"sleep" json:"sleep,omitempty"`
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" json:"host,omitempty"`
 								Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -309,6 +327,9 @@ type BatchJobV1ManifestData struct {
 								Port   *string `tfsdk:"port" json:"port,omitempty"`
 								Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 							} `tfsdk:"http_get" json:"httpGet,omitempty"`
+							Sleep *struct {
+								Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+							} `tfsdk:"sleep" json:"sleep,omitempty"`
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" json:"host,omitempty"`
 								Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -395,7 +416,11 @@ type BatchJobV1ManifestData struct {
 					RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 					SecurityContext *struct {
 						AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-						Capabilities             *struct {
+						AppArmorProfile          *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+						Capabilities *struct {
 							Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 							Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 						} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -461,12 +486,13 @@ type BatchJobV1ManifestData struct {
 						Name       *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 					VolumeMounts *[]struct {
-						MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-						MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-						Name             *string `tfsdk:"name" json:"name,omitempty"`
-						ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-						SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-						SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+						MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+						MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+						Name              *string `tfsdk:"name" json:"name,omitempty"`
+						ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+						SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+						SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 					} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 					WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 				} `tfsdk:"containers" json:"containers,omitempty"`
@@ -536,6 +562,9 @@ type BatchJobV1ManifestData struct {
 								Port   *string `tfsdk:"port" json:"port,omitempty"`
 								Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 							} `tfsdk:"http_get" json:"httpGet,omitempty"`
+							Sleep *struct {
+								Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+							} `tfsdk:"sleep" json:"sleep,omitempty"`
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" json:"host,omitempty"`
 								Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -555,6 +584,9 @@ type BatchJobV1ManifestData struct {
 								Port   *string `tfsdk:"port" json:"port,omitempty"`
 								Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 							} `tfsdk:"http_get" json:"httpGet,omitempty"`
+							Sleep *struct {
+								Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+							} `tfsdk:"sleep" json:"sleep,omitempty"`
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" json:"host,omitempty"`
 								Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -641,7 +673,11 @@ type BatchJobV1ManifestData struct {
 					RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 					SecurityContext *struct {
 						AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-						Capabilities             *struct {
+						AppArmorProfile          *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+						Capabilities *struct {
 							Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 							Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 						} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -708,12 +744,13 @@ type BatchJobV1ManifestData struct {
 						Name       *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 					VolumeMounts *[]struct {
-						MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-						MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-						Name             *string `tfsdk:"name" json:"name,omitempty"`
-						ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-						SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-						SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+						MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+						MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+						Name              *string `tfsdk:"name" json:"name,omitempty"`
+						ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+						SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+						SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 					} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 					WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 				} `tfsdk:"ephemeral_containers" json:"ephemeralContainers,omitempty"`
@@ -785,6 +822,9 @@ type BatchJobV1ManifestData struct {
 								Port   *string `tfsdk:"port" json:"port,omitempty"`
 								Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 							} `tfsdk:"http_get" json:"httpGet,omitempty"`
+							Sleep *struct {
+								Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+							} `tfsdk:"sleep" json:"sleep,omitempty"`
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" json:"host,omitempty"`
 								Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -804,6 +844,9 @@ type BatchJobV1ManifestData struct {
 								Port   *string `tfsdk:"port" json:"port,omitempty"`
 								Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 							} `tfsdk:"http_get" json:"httpGet,omitempty"`
+							Sleep *struct {
+								Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+							} `tfsdk:"sleep" json:"sleep,omitempty"`
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" json:"host,omitempty"`
 								Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -890,7 +933,11 @@ type BatchJobV1ManifestData struct {
 					RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 					SecurityContext *struct {
 						AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-						Capabilities             *struct {
+						AppArmorProfile          *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+						Capabilities *struct {
 							Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 							Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 						} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -956,12 +1003,13 @@ type BatchJobV1ManifestData struct {
 						Name       *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 					VolumeMounts *[]struct {
-						MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-						MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-						Name             *string `tfsdk:"name" json:"name,omitempty"`
-						ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-						SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-						SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+						MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+						MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+						Name              *string `tfsdk:"name" json:"name,omitempty"`
+						ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+						SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+						SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 					} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 					WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 				} `tfsdk:"init_containers" json:"initContainers,omitempty"`
@@ -991,6 +1039,10 @@ type BatchJobV1ManifestData struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"scheduling_gates" json:"schedulingGates,omitempty"`
 				SecurityContext *struct {
+					AppArmorProfile *struct {
+						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+						Type             *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
 					FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 					FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
@@ -1184,9 +1236,10 @@ type BatchJobV1ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"selector" json:"selector,omitempty"`
-								StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
-								VolumeMode       *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
-								VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+								StorageClassName          *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+								VolumeAttributesClassName *string `tfsdk:"volume_attributes_class_name" json:"volumeAttributesClassName,omitempty"`
+								VolumeMode                *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
+								VolumeName                *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 							} `tfsdk:"spec" json:"spec,omitempty"`
 						} `tfsdk:"volume_claim_template" json:"volumeClaimTemplate,omitempty"`
 					} `tfsdk:"ephemeral" json:"ephemeral,omitempty"`
@@ -1267,6 +1320,20 @@ type BatchJobV1ManifestData struct {
 					Projected *struct {
 						DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
 						Sources     *[]struct {
+							ClusterTrustBundle *struct {
+								LabelSelector *struct {
+									MatchExpressions *[]struct {
+										Key      *string   `tfsdk:"key" json:"key,omitempty"`
+										Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+										Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								Name       *string `tfsdk:"name" json:"name,omitempty"`
+								Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								Path       *string `tfsdk:"path" json:"path,omitempty"`
+								SignerName *string `tfsdk:"signer_name" json:"signerName,omitempty"`
+							} `tfsdk:"cluster_trust_bundle" json:"clusterTrustBundle,omitempty"`
 							ConfigMap *struct {
 								Items *[]struct {
 									Key  *string `tfsdk:"key" json:"key,omitempty"`
@@ -1467,8 +1534,8 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 					},
 
 					"backoff_limit_per_index": schema.Int64Attribute{
-						Description:         "Specifies the limit for the number of retries within an index before marking this index as failed. When enabled the number of failures per index is kept in the pod's batch.kubernetes.io/job-index-failure-count annotation. It can only be set when Job's completionMode=Indexed, and the Pod's restart policy is Never. The field is immutable. This field is alpha-level. It can be used when the 'JobBackoffLimitPerIndex' feature gate is enabled (disabled by default).",
-						MarkdownDescription: "Specifies the limit for the number of retries within an index before marking this index as failed. When enabled the number of failures per index is kept in the pod's batch.kubernetes.io/job-index-failure-count annotation. It can only be set when Job's completionMode=Indexed, and the Pod's restart policy is Never. The field is immutable. This field is alpha-level. It can be used when the 'JobBackoffLimitPerIndex' feature gate is enabled (disabled by default).",
+						Description:         "Specifies the limit for the number of retries within an index before marking this index as failed. When enabled the number of failures per index is kept in the pod's batch.kubernetes.io/job-index-failure-count annotation. It can only be set when Job's completionMode=Indexed, and the Pod's restart policy is Never. The field is immutable. This field is beta-level. It can be used when the 'JobBackoffLimitPerIndex' feature gate is enabled (enabled by default).",
+						MarkdownDescription: "Specifies the limit for the number of retries within an index before marking this index as failed. When enabled the number of failures per index is kept in the pod's batch.kubernetes.io/job-index-failure-count annotation. It can only be set when Job's completionMode=Indexed, and the Pod's restart policy is Never. The field is immutable. This field is beta-level. It can be used when the 'JobBackoffLimitPerIndex' feature gate is enabled (enabled by default).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1490,6 +1557,14 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 						Computed:            false,
 					},
 
+					"managed_by": schema.StringAttribute{
+						Description:         "ManagedBy field indicates the controller that manages a Job. The k8s Job controller reconciles jobs which don't have this field at all or the field value is the reserved string 'kubernetes.io/job-controller', but skips reconciling Jobs with a custom value for this field. The value must be a valid domain-prefixed path (e.g. acme.io/foo) - all characters before the first '/' must be a valid subdomain as defined by RFC 1123. All characters trailing the first '/' must be valid HTTP Path characters as defined by RFC 3986. The value cannot exceed 64 characters.This field is alpha-level. The job controller accepts setting the field when the feature gate JobManagedBy is enabled (disabled by default).",
+						MarkdownDescription: "ManagedBy field indicates the controller that manages a Job. The k8s Job controller reconciles jobs which don't have this field at all or the field value is the reserved string 'kubernetes.io/job-controller', but skips reconciling Jobs with a custom value for this field. The value must be a valid domain-prefixed path (e.g. acme.io/foo) - all characters before the first '/' must be a valid subdomain as defined by RFC 1123. All characters trailing the first '/' must be valid HTTP Path characters as defined by RFC 3986. The value cannot exceed 64 characters.This field is alpha-level. The job controller accepts setting the field when the feature gate JobManagedBy is enabled (disabled by default).",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"manual_selector": schema.BoolAttribute{
 						Description:         "manualSelector controls generation of pod labels and pod selectors. Leave 'manualSelector' unset unless you are certain what you are doing. When false or unset, the system pick labels unique to this job and appends those labels to the pod template.  When true, the user is responsible for picking unique labels and specifying the selector.  Failure to pick a unique label may cause this and other jobs to not function correctly.  However, You may see 'manualSelector=true' in jobs that were created with the old 'extensions/v1beta1' API. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/#specifying-your-own-pod-selector",
 						MarkdownDescription: "manualSelector controls generation of pod labels and pod selectors. Leave 'manualSelector' unset unless you are certain what you are doing. When false or unset, the system pick labels unique to this job and appends those labels to the pod template.  When true, the user is responsible for picking unique labels and specifying the selector.  Failure to pick a unique label may cause this and other jobs to not function correctly.  However, You may see 'manualSelector=true' in jobs that were created with the old 'extensions/v1beta1' API. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/#specifying-your-own-pod-selector",
@@ -1499,8 +1574,8 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 					},
 
 					"max_failed_indexes": schema.Int64Attribute{
-						Description:         "Specifies the maximal number of failed indexes before marking the Job as failed, when backoffLimitPerIndex is set. Once the number of failed indexes exceeds this number the entire Job is marked as Failed and its execution is terminated. When left as null the job continues execution of all of its indexes and is marked with the 'Complete' Job condition. It can only be specified when backoffLimitPerIndex is set. It can be null or up to completions. It is required and must be less than or equal to 10^4 when is completions greater than 10^5. This field is alpha-level. It can be used when the 'JobBackoffLimitPerIndex' feature gate is enabled (disabled by default).",
-						MarkdownDescription: "Specifies the maximal number of failed indexes before marking the Job as failed, when backoffLimitPerIndex is set. Once the number of failed indexes exceeds this number the entire Job is marked as Failed and its execution is terminated. When left as null the job continues execution of all of its indexes and is marked with the 'Complete' Job condition. It can only be specified when backoffLimitPerIndex is set. It can be null or up to completions. It is required and must be less than or equal to 10^4 when is completions greater than 10^5. This field is alpha-level. It can be used when the 'JobBackoffLimitPerIndex' feature gate is enabled (disabled by default).",
+						Description:         "Specifies the maximal number of failed indexes before marking the Job as failed, when backoffLimitPerIndex is set. Once the number of failed indexes exceeds this number the entire Job is marked as Failed and its execution is terminated. When left as null the job continues execution of all of its indexes and is marked with the 'Complete' Job condition. It can only be specified when backoffLimitPerIndex is set. It can be null or up to completions. It is required and must be less than or equal to 10^4 when is completions greater than 10^5. This field is beta-level. It can be used when the 'JobBackoffLimitPerIndex' feature gate is enabled (enabled by default).",
+						MarkdownDescription: "Specifies the maximal number of failed indexes before marking the Job as failed, when backoffLimitPerIndex is set. Once the number of failed indexes exceeds this number the entire Job is marked as Failed and its execution is terminated. When left as null the job continues execution of all of its indexes and is marked with the 'Complete' Job condition. It can only be specified when backoffLimitPerIndex is set. It can be null or up to completions. It is required and must be less than or equal to 10^4 when is completions greater than 10^5. This field is beta-level. It can be used when the 'JobBackoffLimitPerIndex' feature gate is enabled (enabled by default).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1524,8 +1599,8 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"action": schema.StringAttribute{
-											Description:         "Specifies the action taken on a pod failure when the requirements are satisfied. Possible values are:- FailJob: indicates that the pod's job is marked as Failed and all  running pods are terminated.- FailIndex: indicates that the pod's index is marked as Failed and will  not be restarted.  This value is alpha-level. It can be used when the  'JobBackoffLimitPerIndex' feature gate is enabled (disabled by default).- Ignore: indicates that the counter towards the .backoffLimit is not  incremented and a replacement pod is created.- Count: indicates that the pod is handled in the default way - the  counter towards the .backoffLimit is incremented.Additional values are considered to be added in the future. Clients should react to an unknown action by skipping the rule.",
-											MarkdownDescription: "Specifies the action taken on a pod failure when the requirements are satisfied. Possible values are:- FailJob: indicates that the pod's job is marked as Failed and all  running pods are terminated.- FailIndex: indicates that the pod's index is marked as Failed and will  not be restarted.  This value is alpha-level. It can be used when the  'JobBackoffLimitPerIndex' feature gate is enabled (disabled by default).- Ignore: indicates that the counter towards the .backoffLimit is not  incremented and a replacement pod is created.- Count: indicates that the pod is handled in the default way - the  counter towards the .backoffLimit is incremented.Additional values are considered to be added in the future. Clients should react to an unknown action by skipping the rule.",
+											Description:         "Specifies the action taken on a pod failure when the requirements are satisfied. Possible values are:- FailJob: indicates that the pod's job is marked as Failed and all  running pods are terminated.- FailIndex: indicates that the pod's index is marked as Failed and will  not be restarted.  This value is beta-level. It can be used when the  'JobBackoffLimitPerIndex' feature gate is enabled (enabled by default).- Ignore: indicates that the counter towards the .backoffLimit is not  incremented and a replacement pod is created.- Count: indicates that the pod is handled in the default way - the  counter towards the .backoffLimit is incremented.Additional values are considered to be added in the future. Clients should react to an unknown action by skipping the rule.",
+											MarkdownDescription: "Specifies the action taken on a pod failure when the requirements are satisfied. Possible values are:- FailJob: indicates that the pod's job is marked as Failed and all  running pods are terminated.- FailIndex: indicates that the pod's index is marked as Failed and will  not be restarted.  This value is beta-level. It can be used when the  'JobBackoffLimitPerIndex' feature gate is enabled (enabled by default).- Ignore: indicates that the counter towards the .backoffLimit is not  incremented and a replacement pod is created.- Count: indicates that the pod is handled in the default way - the  counter towards the .backoffLimit is incremented.Additional values are considered to be added in the future. Clients should react to an unknown action by skipping the rule.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -1604,8 +1679,8 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 					},
 
 					"pod_replacement_policy": schema.StringAttribute{
-						Description:         "podReplacementPolicy specifies when to create replacement Pods. Possible values are: - TerminatingOrFailed means that we recreate pods  when they are terminating (has a metadata.deletionTimestamp) or failed.- Failed means to wait until a previously created Pod is fully terminated (has phase  Failed or Succeeded) before creating a replacement Pod.When using podFailurePolicy, Failed is the the only allowed value. TerminatingOrFailed and Failed are allowed values when podFailurePolicy is not in use. This is an alpha field. Enable JobPodReplacementPolicy to be able to use this field.",
-						MarkdownDescription: "podReplacementPolicy specifies when to create replacement Pods. Possible values are: - TerminatingOrFailed means that we recreate pods  when they are terminating (has a metadata.deletionTimestamp) or failed.- Failed means to wait until a previously created Pod is fully terminated (has phase  Failed or Succeeded) before creating a replacement Pod.When using podFailurePolicy, Failed is the the only allowed value. TerminatingOrFailed and Failed are allowed values when podFailurePolicy is not in use. This is an alpha field. Enable JobPodReplacementPolicy to be able to use this field.",
+						Description:         "podReplacementPolicy specifies when to create replacement Pods. Possible values are: - TerminatingOrFailed means that we recreate pods  when they are terminating (has a metadata.deletionTimestamp) or failed.- Failed means to wait until a previously created Pod is fully terminated (has phase  Failed or Succeeded) before creating a replacement Pod.When using podFailurePolicy, Failed is the the only allowed value. TerminatingOrFailed and Failed are allowed values when podFailurePolicy is not in use. This is an beta field. To use this, enable the JobPodReplacementPolicy feature toggle. This is on by default.",
+						MarkdownDescription: "podReplacementPolicy specifies when to create replacement Pods. Possible values are: - TerminatingOrFailed means that we recreate pods  when they are terminating (has a metadata.deletionTimestamp) or failed.- Failed means to wait until a previously created Pod is fully terminated (has phase  Failed or Succeeded) before creating a replacement Pod.When using podFailurePolicy, Failed is the the only allowed value. TerminatingOrFailed and Failed are allowed values when podFailurePolicy is not in use. This is an beta field. To use this, enable the JobPodReplacementPolicy feature toggle. This is on by default.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1658,6 +1733,42 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"success_policy": schema.SingleNestedAttribute{
+						Description:         "SuccessPolicy describes when a Job can be declared as succeeded based on the success of some indexes.",
+						MarkdownDescription: "SuccessPolicy describes when a Job can be declared as succeeded based on the success of some indexes.",
+						Attributes: map[string]schema.Attribute{
+							"rules": schema.ListNestedAttribute{
+								Description:         "rules represents the list of alternative rules for the declaring the Jobs as successful before '.status.succeeded >= .spec.completions'. Once any of the rules are met, the 'SucceededCriteriaMet' condition is added, and the lingering pods are removed. The terminal state for such a Job has the 'Complete' condition. Additionally, these rules are evaluated in order; Once the Job meets one of the rules, other rules are ignored. At most 20 elements are allowed.",
+								MarkdownDescription: "rules represents the list of alternative rules for the declaring the Jobs as successful before '.status.succeeded >= .spec.completions'. Once any of the rules are met, the 'SucceededCriteriaMet' condition is added, and the lingering pods are removed. The terminal state for such a Job has the 'Complete' condition. Additionally, these rules are evaluated in order; Once the Job meets one of the rules, other rules are ignored. At most 20 elements are allowed.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"succeeded_count": schema.Int64Attribute{
+											Description:         "succeededCount specifies the minimal required size of the actual set of the succeeded indexes for the Job. When succeededCount is used along with succeededIndexes, the check is constrained only to the set of indexes specified by succeededIndexes. For example, given that succeededIndexes is '1-4', succeededCount is '3', and completed indexes are '1', '3', and '5', the Job isn't declared as succeeded because only '1' and '3' indexes are considered in that rules. When this field is null, this doesn't default to any value and is never evaluated at any time. When specified it needs to be a positive integer.",
+											MarkdownDescription: "succeededCount specifies the minimal required size of the actual set of the succeeded indexes for the Job. When succeededCount is used along with succeededIndexes, the check is constrained only to the set of indexes specified by succeededIndexes. For example, given that succeededIndexes is '1-4', succeededCount is '3', and completed indexes are '1', '3', and '5', the Job isn't declared as succeeded because only '1' and '3' indexes are considered in that rules. When this field is null, this doesn't default to any value and is never evaluated at any time. When specified it needs to be a positive integer.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"succeeded_indexes": schema.StringAttribute{
+											Description:         "succeededIndexes specifies the set of indexes which need to be contained in the actual set of the succeeded indexes for the Job. The list of indexes must be within 0 to '.spec.completions-1' and must not contain duplicates. At least one element is required. The indexes are represented as intervals separated by commas. The intervals can be a decimal integer or a pair of decimal integers separated by a hyphen. The number are listed in represented by the first and last element of the series, separated by a hyphen. For example, if the completed indexes are 1, 3, 4, 5 and 7, they are represented as '1,3-5,7'. When this field is null, this field doesn't default to any value and is never evaluated at any time.",
+											MarkdownDescription: "succeededIndexes specifies the set of indexes which need to be contained in the actual set of the succeeded indexes for the Job. The list of indexes must be within 0 to '.spec.completions-1' and must not contain duplicates. At least one element is required. The indexes are represented as intervals separated by commas. The intervals can be a decimal integer or a pair of decimal integers separated by a hyphen. The number are listed in represented by the first and last element of the series, separated by a hyphen. For example, if the completed indexes are 1, 3, 4, 5 and 7, they are represented as '1,3-5,7'. When this field is null, this field doesn't default to any value and is never evaluated at any time.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: true,
+								Optional: false,
+								Computed: false,
 							},
 						},
 						Required: false,
@@ -2213,6 +2324,24 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 																			Computed: false,
 																		},
 
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"namespace_selector": schema.SingleNestedAttribute{
 																			Description:         "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
 																			MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
@@ -2360,6 +2489,24 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 																	Required: false,
 																	Optional: true,
 																	Computed: false,
+																},
+
+																"match_label_keys": schema.ListAttribute{
+																	Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																	MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"mismatch_label_keys": schema.ListAttribute{
+																	Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																	MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
 																},
 
 																"namespace_selector": schema.SingleNestedAttribute{
@@ -2511,6 +2658,24 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 																			Computed: false,
 																		},
 
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"namespace_selector": schema.SingleNestedAttribute{
 																			Description:         "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
 																			MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
@@ -2658,6 +2823,24 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 																	Required: false,
 																	Optional: true,
 																	Computed: false,
+																},
+
+																"match_label_keys": schema.ListAttribute{
+																	Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																	MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"mismatch_label_keys": schema.ListAttribute{
+																	Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																	MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
 																},
 
 																"namespace_selector": schema.SingleNestedAttribute{
@@ -3117,6 +3300,23 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 																	Computed: false,
 																},
 
+																"sleep": schema.SingleNestedAttribute{
+																	Description:         "SleepAction describes a 'sleep' action.",
+																	MarkdownDescription: "SleepAction describes a 'sleep' action.",
+																	Attributes: map[string]schema.Attribute{
+																		"seconds": schema.Int64Attribute{
+																			Description:         "Seconds is the number of seconds to sleep.",
+																			MarkdownDescription: "Seconds is the number of seconds to sleep.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
 																"tcp_socket": schema.SingleNestedAttribute{
 																	Description:         "TCPSocketAction describes an action based on opening a socket",
 																	MarkdownDescription: "TCPSocketAction describes an action based on opening a socket",
@@ -3229,6 +3429,23 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 																			MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
 																			Required:            false,
 																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"sleep": schema.SingleNestedAttribute{
+																	Description:         "SleepAction describes a 'sleep' action.",
+																	MarkdownDescription: "SleepAction describes a 'sleep' action.",
+																	Attributes: map[string]schema.Attribute{
+																		"seconds": schema.Int64Attribute{
+																			Description:         "Seconds is the number of seconds to sleep.",
+																			MarkdownDescription: "Seconds is the number of seconds to sleep.",
+																			Required:            true,
+																			Optional:            false,
 																			Computed:            false,
 																		},
 																	},
@@ -3810,6 +4027,31 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 															Computed:            false,
 														},
 
+														"app_armor_profile": schema.SingleNestedAttribute{
+															Description:         "AppArmorProfile defines a pod or container's AppArmor settings.",
+															MarkdownDescription: "AppArmorProfile defines a pod or container's AppArmor settings.",
+															Attributes: map[string]schema.Attribute{
+																"localhost_profile": schema.StringAttribute{
+																	Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																	MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"type": schema.StringAttribute{
+																	Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.",
+																	MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
 														"capabilities": schema.SingleNestedAttribute{
 															Description:         "Adds and removes POSIX capabilities from running containers.",
 															MarkdownDescription: "Adds and removes POSIX capabilities from running containers.",
@@ -4271,8 +4513,8 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 															},
 
 															"mount_propagation": schema.StringAttribute{
-																Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-																MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+																Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
+																MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4289,6 +4531,14 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 															"read_only": schema.BoolAttribute{
 																Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
 																MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"recursive_read_only": schema.StringAttribute{
+																Description:         "RecursiveReadOnly specifies whether read-only mounts should be handled recursively.If ReadOnly is false, this field has no meaning and must be unspecified.If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only.  If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime.  If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason.If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None).If this field is not specified, it is treated as an equivalent of Disabled.",
+																MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handled recursively.If ReadOnly is false, this field has no meaning and must be unspecified.If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only.  If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime.  If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason.If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None).If this field is not specified, it is treated as an equivalent of Disabled.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4762,6 +5012,23 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 																	Computed: false,
 																},
 
+																"sleep": schema.SingleNestedAttribute{
+																	Description:         "SleepAction describes a 'sleep' action.",
+																	MarkdownDescription: "SleepAction describes a 'sleep' action.",
+																	Attributes: map[string]schema.Attribute{
+																		"seconds": schema.Int64Attribute{
+																			Description:         "Seconds is the number of seconds to sleep.",
+																			MarkdownDescription: "Seconds is the number of seconds to sleep.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
 																"tcp_socket": schema.SingleNestedAttribute{
 																	Description:         "TCPSocketAction describes an action based on opening a socket",
 																	MarkdownDescription: "TCPSocketAction describes an action based on opening a socket",
@@ -4874,6 +5141,23 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 																			MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
 																			Required:            false,
 																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"sleep": schema.SingleNestedAttribute{
+																	Description:         "SleepAction describes a 'sleep' action.",
+																	MarkdownDescription: "SleepAction describes a 'sleep' action.",
+																	Attributes: map[string]schema.Attribute{
+																		"seconds": schema.Int64Attribute{
+																			Description:         "Seconds is the number of seconds to sleep.",
+																			MarkdownDescription: "Seconds is the number of seconds to sleep.",
+																			Required:            true,
+																			Optional:            false,
 																			Computed:            false,
 																		},
 																	},
@@ -5455,6 +5739,31 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 															Computed:            false,
 														},
 
+														"app_armor_profile": schema.SingleNestedAttribute{
+															Description:         "AppArmorProfile defines a pod or container's AppArmor settings.",
+															MarkdownDescription: "AppArmorProfile defines a pod or container's AppArmor settings.",
+															Attributes: map[string]schema.Attribute{
+																"localhost_profile": schema.StringAttribute{
+																	Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																	MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"type": schema.StringAttribute{
+																	Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.",
+																	MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
 														"capabilities": schema.SingleNestedAttribute{
 															Description:         "Adds and removes POSIX capabilities from running containers.",
 															MarkdownDescription: "Adds and removes POSIX capabilities from running containers.",
@@ -5924,8 +6233,8 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 															},
 
 															"mount_propagation": schema.StringAttribute{
-																Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-																MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+																Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
+																MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -5942,6 +6251,14 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 															"read_only": schema.BoolAttribute{
 																Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
 																MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"recursive_read_only": schema.StringAttribute{
+																Description:         "RecursiveReadOnly specifies whether read-only mounts should be handled recursively.If ReadOnly is false, this field has no meaning and must be unspecified.If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only.  If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime.  If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason.If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None).If this field is not specified, it is treated as an equivalent of Disabled.",
+																MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handled recursively.If ReadOnly is false, this field has no meaning and must be unspecified.If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only.  If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime.  If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason.If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None).If this field is not specified, it is treated as an equivalent of Disabled.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -5984,8 +6301,8 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 									},
 
 									"host_aliases": schema.ListNestedAttribute{
-										Description:         "HostAliases is an optional list of hosts and IPs that will be injected into the pod's hosts file if specified. This is only valid for non-hostNetwork pods.",
-										MarkdownDescription: "HostAliases is an optional list of hosts and IPs that will be injected into the pod's hosts file if specified. This is only valid for non-hostNetwork pods.",
+										Description:         "HostAliases is an optional list of hosts and IPs that will be injected into the pod's hosts file if specified.",
+										MarkdownDescription: "HostAliases is an optional list of hosts and IPs that will be injected into the pod's hosts file if specified.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"hostnames": schema.ListAttribute{
@@ -6432,6 +6749,23 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 																	Computed: false,
 																},
 
+																"sleep": schema.SingleNestedAttribute{
+																	Description:         "SleepAction describes a 'sleep' action.",
+																	MarkdownDescription: "SleepAction describes a 'sleep' action.",
+																	Attributes: map[string]schema.Attribute{
+																		"seconds": schema.Int64Attribute{
+																			Description:         "Seconds is the number of seconds to sleep.",
+																			MarkdownDescription: "Seconds is the number of seconds to sleep.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
 																"tcp_socket": schema.SingleNestedAttribute{
 																	Description:         "TCPSocketAction describes an action based on opening a socket",
 																	MarkdownDescription: "TCPSocketAction describes an action based on opening a socket",
@@ -6544,6 +6878,23 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 																			MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
 																			Required:            false,
 																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"sleep": schema.SingleNestedAttribute{
+																	Description:         "SleepAction describes a 'sleep' action.",
+																	MarkdownDescription: "SleepAction describes a 'sleep' action.",
+																	Attributes: map[string]schema.Attribute{
+																		"seconds": schema.Int64Attribute{
+																			Description:         "Seconds is the number of seconds to sleep.",
+																			MarkdownDescription: "Seconds is the number of seconds to sleep.",
+																			Required:            true,
+																			Optional:            false,
 																			Computed:            false,
 																		},
 																	},
@@ -7125,6 +7476,31 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 															Computed:            false,
 														},
 
+														"app_armor_profile": schema.SingleNestedAttribute{
+															Description:         "AppArmorProfile defines a pod or container's AppArmor settings.",
+															MarkdownDescription: "AppArmorProfile defines a pod or container's AppArmor settings.",
+															Attributes: map[string]schema.Attribute{
+																"localhost_profile": schema.StringAttribute{
+																	Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																	MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"type": schema.StringAttribute{
+																	Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.",
+																	MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
 														"capabilities": schema.SingleNestedAttribute{
 															Description:         "Adds and removes POSIX capabilities from running containers.",
 															MarkdownDescription: "Adds and removes POSIX capabilities from running containers.",
@@ -7586,8 +7962,8 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 															},
 
 															"mount_propagation": schema.StringAttribute{
-																Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-																MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+																Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
+																MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -7604,6 +7980,14 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 															"read_only": schema.BoolAttribute{
 																Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
 																MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"recursive_read_only": schema.StringAttribute{
+																Description:         "RecursiveReadOnly specifies whether read-only mounts should be handled recursively.If ReadOnly is false, this field has no meaning and must be unspecified.If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only.  If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime.  If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason.If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None).If this field is not specified, it is treated as an equivalent of Disabled.",
+																MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handled recursively.If ReadOnly is false, this field has no meaning and must be unspecified.If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only.  If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime.  If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason.If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None).If this field is not specified, it is treated as an equivalent of Disabled.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -7646,8 +8030,8 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 									},
 
 									"node_name": schema.StringAttribute{
-										Description:         "NodeName is a request to schedule this pod onto a specific node. If it is non-empty, the scheduler simply schedules this pod onto that node, assuming that it fits resource requirements.",
-										MarkdownDescription: "NodeName is a request to schedule this pod onto a specific node. If it is non-empty, the scheduler simply schedules this pod onto that node, assuming that it fits resource requirements.",
+										Description:         "NodeName indicates in which node this pod is scheduled. If empty, this pod is a candidate for scheduling by the scheduler defined in schedulerName. Once this field is set, the kubelet for this node becomes responsible for the lifecycle of this pod. This field should not be used to express a desire for the pod to be scheduled on a specific node. https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodename",
+										MarkdownDescription: "NodeName indicates in which node this pod is scheduled. If empty, this pod is a candidate for scheduling by the scheduler defined in schedulerName. Once this field is set, the kubelet for this node becomes responsible for the lifecycle of this pod. This field should not be used to express a desire for the pod to be scheduled on a specific node. https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodename",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -7800,8 +8184,8 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 									},
 
 									"scheduling_gates": schema.ListNestedAttribute{
-										Description:         "SchedulingGates is an opaque list of values that if specified will block scheduling the pod. If schedulingGates is not empty, the pod will stay in the SchedulingGated state and the scheduler will not attempt to schedule the pod.SchedulingGates can only be set at pod creation time, and be removed only afterwards.This is a beta feature enabled by the PodSchedulingReadiness feature gate.",
-										MarkdownDescription: "SchedulingGates is an opaque list of values that if specified will block scheduling the pod. If schedulingGates is not empty, the pod will stay in the SchedulingGated state and the scheduler will not attempt to schedule the pod.SchedulingGates can only be set at pod creation time, and be removed only afterwards.This is a beta feature enabled by the PodSchedulingReadiness feature gate.",
+										Description:         "SchedulingGates is an opaque list of values that if specified will block scheduling the pod. If schedulingGates is not empty, the pod will stay in the SchedulingGated state and the scheduler will not attempt to schedule the pod.SchedulingGates can only be set at pod creation time, and be removed only afterwards.",
+										MarkdownDescription: "SchedulingGates is an opaque list of values that if specified will block scheduling the pod. If schedulingGates is not empty, the pod will stay in the SchedulingGated state and the scheduler will not attempt to schedule the pod.SchedulingGates can only be set at pod creation time, and be removed only afterwards.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
@@ -7822,6 +8206,31 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 										Description:         "PodSecurityContext holds pod-level security attributes and common container settings. Some fields are also present in container.securityContext.  Field values of container.securityContext take precedence over field values of PodSecurityContext.",
 										MarkdownDescription: "PodSecurityContext holds pod-level security attributes and common container settings. Some fields are also present in container.securityContext.  Field values of container.securityContext take precedence over field values of PodSecurityContext.",
 										Attributes: map[string]schema.Attribute{
+											"app_armor_profile": schema.SingleNestedAttribute{
+												Description:         "AppArmorProfile defines a pod or container's AppArmor settings.",
+												MarkdownDescription: "AppArmorProfile defines a pod or container's AppArmor settings.",
+												Attributes: map[string]schema.Attribute{
+													"localhost_profile": schema.StringAttribute{
+														Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+														MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.",
+														MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are:  Localhost - a profile pre-loaded on the node.  RuntimeDefault - the container runtime's default profile.  Unconfined - no AppArmor enforcement.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"fs_group": schema.Int64Attribute{
 												Description:         "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw----If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
 												MarkdownDescription: "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw----If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
@@ -8011,8 +8420,8 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 									},
 
 									"service_account": schema.StringAttribute{
-										Description:         "DeprecatedServiceAccount is a depreciated alias for ServiceAccountName. Deprecated: Use serviceAccountName instead.",
-										MarkdownDescription: "DeprecatedServiceAccount is a depreciated alias for ServiceAccountName. Deprecated: Use serviceAccountName instead.",
+										Description:         "DeprecatedServiceAccount is a deprecated alias for ServiceAccountName. Deprecated: Use serviceAccountName instead.",
+										MarkdownDescription: "DeprecatedServiceAccount is a deprecated alias for ServiceAccountName. Deprecated: Use serviceAccountName instead.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -8186,8 +8595,8 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 												},
 
 												"min_domains": schema.Int64Attribute{
-													Description:         "MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).",
-													MarkdownDescription: "MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).",
+													Description:         "MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.",
+													MarkdownDescription: "MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -9174,6 +9583,14 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 																			Computed:            false,
 																		},
 
+																		"volume_attributes_class_name": schema.StringAttribute{
+																			Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+																			MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"volume_mode": schema.StringAttribute{
 																			Description:         "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
 																			MarkdownDescription: "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
@@ -9720,6 +10137,101 @@ func (r *BatchJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReques
 															MarkdownDescription: "sources is the list of volume projections",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
+																	"cluster_trust_bundle": schema.SingleNestedAttribute{
+																		Description:         "ClusterTrustBundleProjection describes how to select a set of ClusterTrustBundle objects and project their contents into the pod filesystem.",
+																		MarkdownDescription: "ClusterTrustBundleProjection describes how to select a set of ClusterTrustBundle objects and project their contents into the pod filesystem.",
+																		Attributes: map[string]schema.Attribute{
+																			"label_selector": schema.SingleNestedAttribute{
+																				Description:         "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
+																				MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
+																				Attributes: map[string]schema.Attribute{
+																					"match_expressions": schema.ListNestedAttribute{
+																						Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																						MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																						NestedObject: schema.NestedAttributeObject{
+																							Attributes: map[string]schema.Attribute{
+																								"key": schema.StringAttribute{
+																									Description:         "key is the label key that the selector applies to.",
+																									MarkdownDescription: "key is the label key that the selector applies to.",
+																									Required:            true,
+																									Optional:            false,
+																									Computed:            false,
+																								},
+
+																								"operator": schema.StringAttribute{
+																									Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																									MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																									Required:            true,
+																									Optional:            false,
+																									Computed:            false,
+																								},
+
+																								"values": schema.ListAttribute{
+																									Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																									MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"match_labels": schema.MapAttribute{
+																						Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																						MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																						ElementType:         types.StringType,
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Select a single ClusterTrustBundle by object name.  Mutually-exclusive with signerName and labelSelector.",
+																				MarkdownDescription: "Select a single ClusterTrustBundle by object name.  Mutually-exclusive with signerName and labelSelector.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "If true, don't block pod startup if the referenced ClusterTrustBundle(s) aren't available.  If using name, then the named ClusterTrustBundle is allowed not to exist.  If using signerName, then the combination of signerName and labelSelector is allowed to match zero ClusterTrustBundles.",
+																				MarkdownDescription: "If true, don't block pod startup if the referenced ClusterTrustBundle(s) aren't available.  If using name, then the named ClusterTrustBundle is allowed not to exist.  If using signerName, then the combination of signerName and labelSelector is allowed to match zero ClusterTrustBundles.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"path": schema.StringAttribute{
+																				Description:         "Relative path from the volume root to write the bundle.",
+																				MarkdownDescription: "Relative path from the volume root to write the bundle.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"signer_name": schema.StringAttribute{
+																				Description:         "Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name.  The contents of all selected ClusterTrustBundles will be unified and deduplicated.",
+																				MarkdownDescription: "Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name.  The contents of all selected ClusterTrustBundles will be unified and deduplicated.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
 																	"config_map": schema.SingleNestedAttribute{
 																		Description:         "Adapts a ConfigMap into a projected volume.The contents of the target ConfigMap's Data field will be presented in a projected volume as files using the keys in the Data field as the file names, unless the items element is populated with specific mappings of keys to paths. Note that this is identical to a configmap volume source without the default mode.",
 																		MarkdownDescription: "Adapts a ConfigMap into a projected volume.The contents of the target ConfigMap's Data field will be presented in a projected volume as files using the keys in the Data field as the file names, unless the items element is populated with specific mappings of keys to paths. Note that this is identical to a configmap volume source without the default mode.",

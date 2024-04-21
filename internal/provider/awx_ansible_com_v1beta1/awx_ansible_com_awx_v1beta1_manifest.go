@@ -259,6 +259,19 @@ type AwxAnsibleComAwxV1Beta1ManifestData struct {
 		Loadbalancer_ip                               *string   `tfsdk:"loadbalancer_ip" json:"loadbalancer_ip,omitempty"`
 		Loadbalancer_port                             *int64    `tfsdk:"loadbalancer_port" json:"loadbalancer_port,omitempty"`
 		Loadbalancer_protocol                         *string   `tfsdk:"loadbalancer_protocol" json:"loadbalancer_protocol,omitempty"`
+		Metrics_utility_configmap                     *string   `tfsdk:"metrics_utility_configmap" json:"metrics_utility_configmap,omitempty"`
+		Metrics_utility_console_enabled               *bool     `tfsdk:"metrics_utility_console_enabled" json:"metrics_utility_console_enabled,omitempty"`
+		Metrics_utility_cronjob_gather_schedule       *string   `tfsdk:"metrics_utility_cronjob_gather_schedule" json:"metrics_utility_cronjob_gather_schedule,omitempty"`
+		Metrics_utility_cronjob_report_schedule       *string   `tfsdk:"metrics_utility_cronjob_report_schedule" json:"metrics_utility_cronjob_report_schedule,omitempty"`
+		Metrics_utility_enabled                       *bool     `tfsdk:"metrics_utility_enabled" json:"metrics_utility_enabled,omitempty"`
+		Metrics_utility_image                         *string   `tfsdk:"metrics_utility_image" json:"metrics_utility_image,omitempty"`
+		Metrics_utility_image_pull_policy             *string   `tfsdk:"metrics_utility_image_pull_policy" json:"metrics_utility_image_pull_policy,omitempty"`
+		Metrics_utility_image_version                 *string   `tfsdk:"metrics_utility_image_version" json:"metrics_utility_image_version,omitempty"`
+		Metrics_utility_pvc_claim                     *string   `tfsdk:"metrics_utility_pvc_claim" json:"metrics_utility_pvc_claim,omitempty"`
+		Metrics_utility_pvc_claim_size                *string   `tfsdk:"metrics_utility_pvc_claim_size" json:"metrics_utility_pvc_claim_size,omitempty"`
+		Metrics_utility_pvc_claim_storage_class       *string   `tfsdk:"metrics_utility_pvc_claim_storage_class" json:"metrics_utility_pvc_claim_storage_class,omitempty"`
+		Metrics_utility_secret                        *string   `tfsdk:"metrics_utility_secret" json:"metrics_utility_secret,omitempty"`
+		Metrics_utility_ship_target                   *string   `tfsdk:"metrics_utility_ship_target" json:"metrics_utility_ship_target,omitempty"`
 		Nginx_listen_queue_size                       *int64    `tfsdk:"nginx_listen_queue_size" json:"nginx_listen_queue_size,omitempty"`
 		Nginx_worker_connections                      *int64    `tfsdk:"nginx_worker_connections" json:"nginx_worker_connections,omitempty"`
 		Nginx_worker_cpu_affinity                     *string   `tfsdk:"nginx_worker_cpu_affinity" json:"nginx_worker_cpu_affinity,omitempty"`
@@ -268,12 +281,13 @@ type AwxAnsibleComAwxV1Beta1ManifestData struct {
 		Nodeport_port                                 *int64    `tfsdk:"nodeport_port" json:"nodeport_port,omitempty"`
 		Old_postgres_configuration_secret             *string   `tfsdk:"old_postgres_configuration_secret" json:"old_postgres_configuration_secret,omitempty"`
 		Postgres_configuration_secret                 *string   `tfsdk:"postgres_configuration_secret" json:"postgres_configuration_secret,omitempty"`
-		Postgres_data_path                            *string   `tfsdk:"postgres_data_path" json:"postgres_data_path,omitempty"`
+		Postgres_data_volume_init                     *bool     `tfsdk:"postgres_data_volume_init" json:"postgres_data_volume_init,omitempty"`
 		Postgres_extra_args                           *[]string `tfsdk:"postgres_extra_args" json:"postgres_extra_args,omitempty"`
 		Postgres_extra_volume_mounts                  *string   `tfsdk:"postgres_extra_volume_mounts" json:"postgres_extra_volume_mounts,omitempty"`
 		Postgres_extra_volumes                        *string   `tfsdk:"postgres_extra_volumes" json:"postgres_extra_volumes,omitempty"`
 		Postgres_image                                *string   `tfsdk:"postgres_image" json:"postgres_image,omitempty"`
 		Postgres_image_version                        *string   `tfsdk:"postgres_image_version" json:"postgres_image_version,omitempty"`
+		Postgres_init_container_commands              *string   `tfsdk:"postgres_init_container_commands" json:"postgres_init_container_commands,omitempty"`
 		Postgres_init_container_resource_requirements *struct {
 			Limits *struct {
 				Cpu     *string `tfsdk:"cpu" json:"cpu,omitempty"`
@@ -2265,6 +2279,110 @@ func (r *AwxAnsibleComAwxV1Beta1Manifest) Schema(_ context.Context, _ datasource
 						},
 					},
 
+					"metrics_utility_configmap": schema.StringAttribute{
+						Description:         "Metrics-Utility ConfigMap",
+						MarkdownDescription: "Metrics-Utility ConfigMap",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"metrics_utility_console_enabled": schema.BoolAttribute{
+						Description:         "Enable metrics utility shipping to Red Hat Hybrid Cloud Console",
+						MarkdownDescription: "Enable metrics utility shipping to Red Hat Hybrid Cloud Console",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"metrics_utility_cronjob_gather_schedule": schema.StringAttribute{
+						Description:         "Metrics-Utility Gather Data CronJob Schedule",
+						MarkdownDescription: "Metrics-Utility Gather Data CronJob Schedule",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"metrics_utility_cronjob_report_schedule": schema.StringAttribute{
+						Description:         "Metrics-Utility Report CronJob Schedule",
+						MarkdownDescription: "Metrics-Utility Report CronJob Schedule",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"metrics_utility_enabled": schema.BoolAttribute{
+						Description:         "Enable metrics utility",
+						MarkdownDescription: "Enable metrics utility",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"metrics_utility_image": schema.StringAttribute{
+						Description:         "Metrics-Utility Image",
+						MarkdownDescription: "Metrics-Utility Image",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"metrics_utility_image_pull_policy": schema.StringAttribute{
+						Description:         "Metrics-Utility Image PullPolicy",
+						MarkdownDescription: "Metrics-Utility Image PullPolicy",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"metrics_utility_image_version": schema.StringAttribute{
+						Description:         "Metrics-Utility Image Version",
+						MarkdownDescription: "Metrics-Utility Image Version",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"metrics_utility_pvc_claim": schema.StringAttribute{
+						Description:         "Metrics-Utility PVC Claim",
+						MarkdownDescription: "Metrics-Utility PVC Claim",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"metrics_utility_pvc_claim_size": schema.StringAttribute{
+						Description:         "Metrics-Utility PVC Claim Size",
+						MarkdownDescription: "Metrics-Utility PVC Claim Size",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"metrics_utility_pvc_claim_storage_class": schema.StringAttribute{
+						Description:         "Metrics-Utility PVC Claim Storage Class",
+						MarkdownDescription: "Metrics-Utility PVC Claim Storage Class",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"metrics_utility_secret": schema.StringAttribute{
+						Description:         "Metrics-Utility Secret",
+						MarkdownDescription: "Metrics-Utility Secret",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"metrics_utility_ship_target": schema.StringAttribute{
+						Description:         "Metrics-Utility Ship Target",
+						MarkdownDescription: "Metrics-Utility Ship Target",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"nginx_listen_queue_size": schema.Int64Attribute{
 						Description:         "Set the socket listen queue size for nginx (defaults to same as uwsgi)",
 						MarkdownDescription: "Set the socket listen queue size for nginx (defaults to same as uwsgi)",
@@ -2341,9 +2459,9 @@ func (r *AwxAnsibleComAwxV1Beta1Manifest) Schema(_ context.Context, _ datasource
 						Computed:            false,
 					},
 
-					"postgres_data_path": schema.StringAttribute{
-						Description:         "Path where the PostgreSQL data are located",
-						MarkdownDescription: "Path where the PostgreSQL data are located",
+					"postgres_data_volume_init": schema.BoolAttribute{
+						Description:         "Sets permissions on the /var/lib/pgdata/data for postgres container using an init container (not Openshift)",
+						MarkdownDescription: "Sets permissions on the /var/lib/pgdata/data for postgres container using an init container (not Openshift)",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -2390,9 +2508,17 @@ func (r *AwxAnsibleComAwxV1Beta1Manifest) Schema(_ context.Context, _ datasource
 						Computed:            false,
 					},
 
+					"postgres_init_container_commands": schema.StringAttribute{
+						Description:         "Customize the postgres init container commands (Non Openshift)",
+						MarkdownDescription: "Customize the postgres init container commands (Non Openshift)",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"postgres_init_container_resource_requirements": schema.SingleNestedAttribute{
-						Description:         "Resource requirements for the postgres init container",
-						MarkdownDescription: "Resource requirements for the postgres init container",
+						Description:         "(Deprecated, use postgres_resource_requirements parameter) Resource requirements for the postgres init container",
+						MarkdownDescription: "(Deprecated, use postgres_resource_requirements parameter) Resource requirements for the postgres init container",
 						Attributes: map[string]schema.Attribute{
 							"limits": schema.SingleNestedAttribute{
 								Description:         "",

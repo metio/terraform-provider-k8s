@@ -104,8 +104,8 @@ func (r *Metal3IoHardwareDataV1Alpha1Manifest) Metadata(_ context.Context, reque
 
 func (r *Metal3IoHardwareDataV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "HardwareData is the Schema for the hardwaredata API",
-		MarkdownDescription: "HardwareData is the Schema for the hardwaredata API",
+		Description:         "HardwareData is the Schema for the hardwaredata API.",
+		MarkdownDescription: "HardwareData is the Schema for the hardwaredata API.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -172,8 +172,8 @@ func (r *Metal3IoHardwareDataV1Alpha1Manifest) Schema(_ context.Context, _ datas
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "HardwareDataSpec defines the desired state of HardwareData",
-				MarkdownDescription: "HardwareDataSpec defines the desired state of HardwareData",
+				Description:         "HardwareDataSpec defines the desired state of HardwareData.",
+				MarkdownDescription: "HardwareDataSpec defines the desired state of HardwareData.",
 				Attributes: map[string]schema.Attribute{
 					"hardware": schema.SingleNestedAttribute{
 						Description:         "The hardware discovered on the host during its inspection.",

@@ -81,8 +81,10 @@ type AppsKubeblocksIoConfigConstraintV1Alpha1ManifestData struct {
 				ProcessName *string `tfsdk:"process_name" json:"processName,omitempty"`
 			} `tfsdk:"auto_trigger" json:"autoTrigger,omitempty"`
 			ShellTrigger *struct {
-				Command *[]string `tfsdk:"command" json:"command,omitempty"`
-				Sync    *bool     `tfsdk:"sync" json:"sync,omitempty"`
+				BatchParametersTemplate *string   `tfsdk:"batch_parameters_template" json:"batchParametersTemplate,omitempty"`
+				BatchReload             *bool     `tfsdk:"batch_reload" json:"batchReload,omitempty"`
+				Command                 *[]string `tfsdk:"command" json:"command,omitempty"`
+				Sync                    *bool     `tfsdk:"sync" json:"sync,omitempty"`
 			} `tfsdk:"shell_trigger" json:"shellTrigger,omitempty"`
 			TplScriptTrigger *struct {
 				Namespace          *string `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -124,8 +126,8 @@ func (r *AppsKubeblocksIoConfigConstraintV1Alpha1Manifest) Metadata(_ context.Co
 
 func (r *AppsKubeblocksIoConfigConstraintV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "ConfigConstraint is the Schema for the configconstraint API",
-		MarkdownDescription: "ConfigConstraint is the Schema for the configconstraint API",
+		Description:         "ConfigConstraint manages the parameters across multiple configuration files contained in a single configure template. These configuration files should have the same format (e.g. ini, xml, properties, json).  It provides the following functionalities:  1. **Parameter Value Validation**: Validates and ensures compliance of parameter values with defined constraints. 2. **Dynamic Reload on Modification**: Monitors parameter changes and triggers dynamic reloads to apply updates. 3. **Parameter Rendering in Templates**: Injects parameters into templates to generate up-to-date configuration files.",
+		MarkdownDescription: "ConfigConstraint manages the parameters across multiple configuration files contained in a single configure template. These configuration files should have the same format (e.g. ini, xml, properties, json).  It provides the following functionalities:  1. **Parameter Value Validation**: Validates and ensures compliance of parameter values with defined constraints. 2. **Dynamic Reload on Modification**: Monitors parameter changes and triggers dynamic reloads to apply updates. 3. **Parameter Rendering in Templates**: Injects parameters into templates to generate up-to-date configuration files.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -184,28 +186,28 @@ func (r *AppsKubeblocksIoConfigConstraintV1Alpha1Manifest) Schema(_ context.Cont
 				MarkdownDescription: "ConfigConstraintSpec defines the desired state of ConfigConstraint",
 				Attributes: map[string]schema.Attribute{
 					"cfg_schema_top_level_name": schema.StringAttribute{
-						Description:         "Top level key used to get the cue rules to validate the config file. It must exist in 'ConfigSchema' TODO (refactored to ConfigSchemaTopLevelKey)",
-						MarkdownDescription: "Top level key used to get the cue rules to validate the config file. It must exist in 'ConfigSchema' TODO (refactored to ConfigSchemaTopLevelKey)",
+						Description:         "Specifies the top-level key in the 'configurationSchema.cue' that organizes the validation rules for parameters. This key must exist within the CUE script defined in 'configurationSchema.cue'.",
+						MarkdownDescription: "Specifies the top-level key in the 'configurationSchema.cue' that organizes the validation rules for parameters. This key must exist within the CUE script defined in 'configurationSchema.cue'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"configuration_schema": schema.SingleNestedAttribute{
-						Description:         "List constraints rules for each config parameters. TODO (refactored to ConfigSchema)",
-						MarkdownDescription: "List constraints rules for each config parameters. TODO (refactored to ConfigSchema)",
+						Description:         "Defines a list of parameters including their names, default values, descriptions, types, and constraints (permissible values or the range of valid values).",
+						MarkdownDescription: "Defines a list of parameters including their names, default values, descriptions, types, and constraints (permissible values or the range of valid values).",
 						Attributes: map[string]schema.Attribute{
 							"cue": schema.StringAttribute{
-								Description:         "Enables providers to verify user configurations using the CUE language.",
-								MarkdownDescription: "Enables providers to verify user configurations using the CUE language.",
+								Description:         "Hold a string that contains a script written in CUE language that defines a list of configuration items. Each item is detailed with its name, default value, description, type (e.g. string, integer, float), and constraints (permissible values or the valid range of values).  CUE (Configure, Unify, Execute) is a declarative language designed for defining and validating complex data configurations. It is particularly useful in environments like K8s where complex configurations and validation rules are common.  This script functions as a validator for user-provided configurations, ensuring compliance with the established specifications and constraints.",
+								MarkdownDescription: "Hold a string that contains a script written in CUE language that defines a list of configuration items. Each item is detailed with its name, default value, description, type (e.g. string, integer, float), and constraints (permissible values or the valid range of values).  CUE (Configure, Unify, Execute) is a declarative language designed for defining and validating complex data configurations. It is particularly useful in environments like K8s where complex configurations and validation rules are common.  This script functions as a validator for user-provided configurations, ensuring compliance with the established specifications and constraints.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"schema": schema.MapAttribute{
-								Description:         "Transforms the schema from CUE to json for further OpenAPI validation TODO (refactored to SchemaInJson)",
-								MarkdownDescription: "Transforms the schema from CUE to json for further OpenAPI validation TODO (refactored to SchemaInJson)",
+								Description:         "Generated from the 'cue' field and transformed into a JSON format.",
+								MarkdownDescription: "Generated from the 'cue' field and transformed into a JSON format.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -218,13 +220,13 @@ func (r *AppsKubeblocksIoConfigConstraintV1Alpha1Manifest) Schema(_ context.Cont
 					},
 
 					"downward_api_options": schema.ListNestedAttribute{
-						Description:         "A set of actions for regenerating local configs.  It works when: - different engine roles have different config, such as redis primary & secondary - after a role switch, the local config will be regenerated with the help of DownwardActions TODO (refactored to DownwardActions)",
-						MarkdownDescription: "A set of actions for regenerating local configs.  It works when: - different engine roles have different config, such as redis primary & secondary - after a role switch, the local config will be regenerated with the help of DownwardActions TODO (refactored to DownwardActions)",
+						Description:         "Specifies a list of actions to execute specified commands based on Pod labels.  It utilizes the K8s Downward API to mount label information as a volume into the pod. The 'config-manager' sidecar container watches for changes in the role label and dynamically invoke registered commands (usually execute some SQL statements) when a change is detected.  It is designed for scenarios where:  - Replicas with different roles have different configurations, such as Redis primary & secondary replicas. - After a role switch (e.g., from secondary to primary), some changes in configuration are needed to reflect the new role.",
+						MarkdownDescription: "Specifies a list of actions to execute specified commands based on Pod labels.  It utilizes the K8s Downward API to mount label information as a volume into the pod. The 'config-manager' sidecar container watches for changes in the role label and dynamically invoke registered commands (usually execute some SQL statements) when a change is detected.  It is designed for scenarios where:  - Replicas with different roles have different configurations, such as Redis primary & secondary replicas. - After a role switch (e.g., from secondary to primary), some changes in configuration are needed to reflect the new role.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"command": schema.ListAttribute{
-									Description:         "The command used to execute for the downward API.",
-									MarkdownDescription: "The command used to execute for the downward API.",
+									Description:         "Specifies the command to be triggered when changes are detected in Downward API volume files. It relies on the inotify mechanism in the config-manager sidecar to monitor file changes.",
+									MarkdownDescription: "Specifies the command to be triggered when changes are detected in Downward API volume files. It relies on the inotify mechanism in the config-manager sidecar to monitor file changes.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -232,8 +234,8 @@ func (r *AppsKubeblocksIoConfigConstraintV1Alpha1Manifest) Schema(_ context.Cont
 								},
 
 								"items": schema.ListNestedAttribute{
-									Description:         "Represents a list of downward API volume files.",
-									MarkdownDescription: "Represents a list of downward API volume files.",
+									Description:         "Represents a list of files under the Downward API volume.",
+									MarkdownDescription: "Represents a list of files under the Downward API volume.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"field_ref": schema.SingleNestedAttribute{
@@ -317,8 +319,8 @@ func (r *AppsKubeblocksIoConfigConstraintV1Alpha1Manifest) Schema(_ context.Cont
 								},
 
 								"mount_point": schema.StringAttribute{
-									Description:         "Specifies the mount point of the scripts file.",
-									MarkdownDescription: "Specifies the mount point of the scripts file.",
+									Description:         "Specifies the mount point of the Downward API volume.",
+									MarkdownDescription: "Specifies the mount point of the Downward API volume.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -346,16 +348,16 @@ func (r *AppsKubeblocksIoConfigConstraintV1Alpha1Manifest) Schema(_ context.Cont
 					},
 
 					"dynamic_action_can_be_merged": schema.BoolAttribute{
-						Description:         "Indicates the dynamic reload action and restart action can be merged to a restart action.  When a batch of parameters updates incur both restart & dynamic reload, it works as: - set to true, the two actions merged to only one restart action - set to false, the two actions cannot be merged, the actions executed in order [dynamic reload, restart]",
-						MarkdownDescription: "Indicates the dynamic reload action and restart action can be merged to a restart action.  When a batch of parameters updates incur both restart & dynamic reload, it works as: - set to true, the two actions merged to only one restart action - set to false, the two actions cannot be merged, the actions executed in order [dynamic reload, restart]",
+						Description:         "Indicates whether to consolidate dynamic reload and restart actions into a single restart.  - If true, updates requiring both actions will result in only a restart, merging the actions. - If false, updates will trigger both actions executed sequentially: first dynamic reload, then restart.  This flag allows for more efficient handling of configuration changes by potentially eliminating an unnecessary reload step.",
+						MarkdownDescription: "Indicates whether to consolidate dynamic reload and restart actions into a single restart.  - If true, updates requiring both actions will result in only a restart, merging the actions. - If false, updates will trigger both actions executed sequentially: first dynamic reload, then restart.  This flag allows for more efficient handling of configuration changes by potentially eliminating an unnecessary reload step.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"dynamic_parameter_selected_policy": schema.StringAttribute{
-						Description:         "Specifies the policy for selecting the parameters of dynamic reload actions.",
-						MarkdownDescription: "Specifies the policy for selecting the parameters of dynamic reload actions.",
+						Description:         "Configures whether the dynamic reload specified in 'reloadOptions' applies only to dynamic parameters or to all parameters (including static parameters).  - 'dynamic' (default): Only modifications to the dynamic parameters listed in 'dynamicParameters' will trigger a dynamic reload. - 'all': Modifications to both dynamic parameters listed in 'dynamicParameters' and static parameters listed in 'staticParameters' will trigger a dynamic reload. The 'all' option is for certain engines that require static parameters to be set via SQL statements before they can take effect on restart.",
+						MarkdownDescription: "Configures whether the dynamic reload specified in 'reloadOptions' applies only to dynamic parameters or to all parameters (including static parameters).  - 'dynamic' (default): Only modifications to the dynamic parameters listed in 'dynamicParameters' will trigger a dynamic reload. - 'all': Modifications to both dynamic parameters listed in 'dynamicParameters' and static parameters listed in 'staticParameters' will trigger a dynamic reload. The 'all' option is for certain engines that require static parameters to be set via SQL statements before they can take effect on restart.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -365,8 +367,8 @@ func (r *AppsKubeblocksIoConfigConstraintV1Alpha1Manifest) Schema(_ context.Cont
 					},
 
 					"dynamic_parameters": schema.ListAttribute{
-						Description:         "A list of DynamicParameter. Modifications of dynamic parameters trigger a reload action without process restart.",
-						MarkdownDescription: "A list of DynamicParameter. Modifications of dynamic parameters trigger a reload action without process restart.",
+						Description:         "List dynamic parameters. Modifications to these parameters trigger a configuration reload without requiring a process restart.",
+						MarkdownDescription: "List dynamic parameters. Modifications to these parameters trigger a configuration reload without requiring a process restart.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -374,8 +376,8 @@ func (r *AppsKubeblocksIoConfigConstraintV1Alpha1Manifest) Schema(_ context.Cont
 					},
 
 					"formatter_config": schema.SingleNestedAttribute{
-						Description:         "Describes the format of the config file. The controller works as follows: 1. Parse the config file 2. Get the modified parameters 3. Trigger the corresponding action",
-						MarkdownDescription: "Describes the format of the config file. The controller works as follows: 1. Parse the config file 2. Get the modified parameters 3. Trigger the corresponding action",
+						Description:         "Specifies the format of the configuration file and any associated parameters that are specific to the chosen format. Supported formats include 'ini', 'xml', 'yaml', 'json', 'hcl', 'dotenv', 'properties', and 'toml'.  Each format may have its own set of parameters that can be configured. For instance, when using the 'ini' format, you can specify the section name.  Example: ''' formatterConfig: format: ini iniConfig: sectionName: mysqld '''",
+						MarkdownDescription: "Specifies the format of the configuration file and any associated parameters that are specific to the chosen format. Supported formats include 'ini', 'xml', 'yaml', 'json', 'hcl', 'dotenv', 'properties', and 'toml'.  Each format may have its own set of parameters that can be configured. For instance, when using the 'ini' format, you can specify the section name.  Example: ''' formatterConfig: format: ini iniConfig: sectionName: mysqld '''",
 						Attributes: map[string]schema.Attribute{
 							"format": schema.StringAttribute{
 								Description:         "The config file format. Valid values are 'ini', 'xml', 'yaml', 'json', 'hcl', 'dotenv', 'properties' and 'toml'. Each format has its own characteristics and use cases.  - ini: is a text-based content with a structure and syntax comprising key–value pairs for properties, reference wiki: https://en.wikipedia.org/wiki/INI_file - xml: refers to wiki: https://en.wikipedia.org/wiki/XML - yaml: supports for complex data types and structures. - json: refers to wiki: https://en.wikipedia.org/wiki/JSON - hcl: The HashiCorp Configuration Language (HCL) is a configuration language authored by HashiCorp, reference url: https://www.linode.com/docs/guides/introduction-to-hcl/ - dotenv: is a plain text file with simple key–value pairs, reference wiki: https://en.wikipedia.org/wiki/Configuration_file#MS-DOS - properties: a file extension mainly used in Java, reference wiki: https://en.wikipedia.org/wiki/.properties - toml: refers to wiki: https://en.wikipedia.org/wiki/TOML - props-plus: a file extension mainly used in Java, supports CamelCase(e.g: brokerMaxConnectionsPerIp)",
@@ -389,8 +391,8 @@ func (r *AppsKubeblocksIoConfigConstraintV1Alpha1Manifest) Schema(_ context.Cont
 							},
 
 							"ini_config": schema.SingleNestedAttribute{
-								Description:         "A pointer to an IniConfig struct that holds the ini options.",
-								MarkdownDescription: "A pointer to an IniConfig struct that holds the ini options.",
+								Description:         "Holds options specific to the 'ini' file format.",
+								MarkdownDescription: "Holds options specific to the 'ini' file format.",
 								Attributes: map[string]schema.Attribute{
 									"section_name": schema.StringAttribute{
 										Description:         "A string that describes the name of the ini section.",
@@ -411,8 +413,8 @@ func (r *AppsKubeblocksIoConfigConstraintV1Alpha1Manifest) Schema(_ context.Cont
 					},
 
 					"immutable_parameters": schema.ListAttribute{
-						Description:         "Describes parameters that are prohibited to do any modifications.",
-						MarkdownDescription: "Describes parameters that are prohibited to do any modifications.",
+						Description:         "Lists the parameters that cannot be modified once set. Attempting to change any of these parameters will be ignored.",
+						MarkdownDescription: "Lists the parameters that cannot be modified once set. Attempting to change any of these parameters will be ignored.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -420,12 +422,12 @@ func (r *AppsKubeblocksIoConfigConstraintV1Alpha1Manifest) Schema(_ context.Cont
 					},
 
 					"reload_options": schema.SingleNestedAttribute{
-						Description:         "Specifies the dynamic reload actions supported by the engine. If set, the controller call the scripts defined in the actions for a dynamic parameter upgrade. The actions are called only when the modified parameter is defined in dynamicParameters part && DynamicReloadActions != nil TODO (refactored to DynamicReloadActions)",
-						MarkdownDescription: "Specifies the dynamic reload actions supported by the engine. If set, the controller call the scripts defined in the actions for a dynamic parameter upgrade. The actions are called only when the modified parameter is defined in dynamicParameters part && DynamicReloadActions != nil TODO (refactored to DynamicReloadActions)",
+						Description:         "Specifies the dynamic reload action supported by the engine. When set, the controller executes the method defined here to execute hot parameter updates.  Dynamic reloading is triggered only if both of the following conditions are met:  1. The modified parameters are listed in the 'dynamicParameters' field. If 'dynamicParameterSelectedPolicy' is set to 'all', modifications to 'staticParameters' can also trigger a reload. 2. 'reloadOptions' is set.  If 'reloadOptions' is not set or the modified parameters are not listed in 'dynamicParameters', dynamic reloading will not be triggered.  Example: '''yaml reloadOptions: tplScriptTrigger: namespace: kb-system scriptConfigMapRef: mysql-reload-script sync: true '''",
+						MarkdownDescription: "Specifies the dynamic reload action supported by the engine. When set, the controller executes the method defined here to execute hot parameter updates.  Dynamic reloading is triggered only if both of the following conditions are met:  1. The modified parameters are listed in the 'dynamicParameters' field. If 'dynamicParameterSelectedPolicy' is set to 'all', modifications to 'staticParameters' can also trigger a reload. 2. 'reloadOptions' is set.  If 'reloadOptions' is not set or the modified parameters are not listed in 'dynamicParameters', dynamic reloading will not be triggered.  Example: '''yaml reloadOptions: tplScriptTrigger: namespace: kb-system scriptConfigMapRef: mysql-reload-script sync: true '''",
 						Attributes: map[string]schema.Attribute{
 							"auto_trigger": schema.SingleNestedAttribute{
-								Description:         "Used to automatically perform the reload command when conditions are met.",
-								MarkdownDescription: "Used to automatically perform the reload command when conditions are met.",
+								Description:         "Automatically perform the reload when specified conditions are met.",
+								MarkdownDescription: "Automatically perform the reload when specified conditions are met.",
 								Attributes: map[string]schema.Attribute{
 									"process_name": schema.StringAttribute{
 										Description:         "The name of the process.",
@@ -441,12 +443,28 @@ func (r *AppsKubeblocksIoConfigConstraintV1Alpha1Manifest) Schema(_ context.Cont
 							},
 
 							"shell_trigger": schema.SingleNestedAttribute{
-								Description:         "Used to perform the reload command in shell script.",
-								MarkdownDescription: "Used to perform the reload command in shell script.",
+								Description:         "Allows to execute a custom shell script to reload the process.",
+								MarkdownDescription: "Allows to execute a custom shell script to reload the process.",
 								Attributes: map[string]schema.Attribute{
+									"batch_parameters_template": schema.StringAttribute{
+										Description:         "BatchParametersTemplate provides an optional Go template string to format the batch input data passed into the STDIN of the script when 'batchReload' is set to 'True'. The template uses the updated parameters' key-value pairs, accessible via the '$' variable. This allows for custom formatting of the input data. Example template:  '''yaml batchParametersTemplate: |- {{- range $pKey, $pValue := $ }} {{ printf '%s:%s' $pKey $pValue }} {{- end }} '''  This example generates batch input data in a key:value format, sorted by keys. ''' key1:value1 key2:value2 key3:value3 '''  If not specified, the default format is key=value, sorted by keys, for each updated parameter. ''' key1=value1 key2=value2 key3=value3 '''",
+										MarkdownDescription: "BatchParametersTemplate provides an optional Go template string to format the batch input data passed into the STDIN of the script when 'batchReload' is set to 'True'. The template uses the updated parameters' key-value pairs, accessible via the '$' variable. This allows for custom formatting of the input data. Example template:  '''yaml batchParametersTemplate: |- {{- range $pKey, $pValue := $ }} {{ printf '%s:%s' $pKey $pValue }} {{- end }} '''  This example generates batch input data in a key:value format, sorted by keys. ''' key1:value1 key2:value2 key3:value3 '''  If not specified, the default format is key=value, sorted by keys, for each updated parameter. ''' key1=value1 key2=value2 key3=value3 '''",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"batch_reload": schema.BoolAttribute{
+										Description:         "Specifies whether to process dynamic parameter updates individually or collectively in a batch:  - Set to 'True' to execute all parameter changes in one batch reload action. - Set to 'False' to execute a reload action for each individual parameter change. The default behavior, if not specified, is 'False'.",
+										MarkdownDescription: "Specifies whether to process dynamic parameter updates individually or collectively in a batch:  - Set to 'True' to execute all parameter changes in one batch reload action. - Set to 'False' to execute a reload action for each individual parameter change. The default behavior, if not specified, is 'False'.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"command": schema.ListAttribute{
-										Description:         "Specifies the list of commands for reload.",
-										MarkdownDescription: "Specifies the list of commands for reload.",
+										Description:         "Specifies the command to execute in order to reload the process. It should be a valid shell command.",
+										MarkdownDescription: "Specifies the command to execute in order to reload the process. It should be a valid shell command.",
 										ElementType:         types.StringType,
 										Required:            true,
 										Optional:            false,
@@ -454,8 +472,8 @@ func (r *AppsKubeblocksIoConfigConstraintV1Alpha1Manifest) Schema(_ context.Cont
 									},
 
 									"sync": schema.BoolAttribute{
-										Description:         "Specifies whether to synchronize updates parameters to the config manager. Specifies two ways of controller to reload the parameter: - set to 'True', execute the reload action in sync mode, wait for the completion of reload - set to 'False', execute the reload action in async mode, just update the 'Configmap', no need to wait",
-										MarkdownDescription: "Specifies whether to synchronize updates parameters to the config manager. Specifies two ways of controller to reload the parameter: - set to 'True', execute the reload action in sync mode, wait for the completion of reload - set to 'False', execute the reload action in async mode, just update the 'Configmap', no need to wait",
+										Description:         "Determines whether parameter updates should be synchronized with the config manager. Specifies the controller's reload strategy:  - If set to 'True', the controller executes the reload action in synchronous mode, pausing execution until the reload completes. - If set to 'False', the controller executes the reload action in asynchronous mode, updating the ConfigMap without waiting for the reload process to finish.",
+										MarkdownDescription: "Determines whether parameter updates should be synchronized with the config manager. Specifies the controller's reload strategy:  - If set to 'True', the controller executes the reload action in synchronous mode, pausing execution until the reload completes. - If set to 'False', the controller executes the reload action in asynchronous mode, updating the ConfigMap without waiting for the reload process to finish.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -467,8 +485,8 @@ func (r *AppsKubeblocksIoConfigConstraintV1Alpha1Manifest) Schema(_ context.Cont
 							},
 
 							"tpl_script_trigger": schema.SingleNestedAttribute{
-								Description:         "Used to perform the reload command by Go template script.",
-								MarkdownDescription: "Used to perform the reload command by Go template script.",
+								Description:         "Enables reloading process using a Go template script.",
+								MarkdownDescription: "Enables reloading process using a Go template script.",
 								Attributes: map[string]schema.Attribute{
 									"namespace": schema.StringAttribute{
 										Description:         "Specifies the namespace where the referenced tpl script ConfigMap in. If left empty, by default in the 'default' namespace.",
@@ -491,8 +509,8 @@ func (r *AppsKubeblocksIoConfigConstraintV1Alpha1Manifest) Schema(_ context.Cont
 									},
 
 									"sync": schema.BoolAttribute{
-										Description:         "Specifies whether to synchronize updates parameters to the config manager. Specifies two ways of controller to reload the parameter: - set to 'True', execute the reload action in sync mode, wait for the completion of reload - set to 'False', execute the reload action in async mode, just update the 'Configmap', no need to wait",
-										MarkdownDescription: "Specifies whether to synchronize updates parameters to the config manager. Specifies two ways of controller to reload the parameter: - set to 'True', execute the reload action in sync mode, wait for the completion of reload - set to 'False', execute the reload action in async mode, just update the 'Configmap', no need to wait",
+										Description:         "Determines whether parameter updates should be synchronized with the config manager. Specifies the controller's reload strategy:  - If set to 'True', the controller executes the reload action in synchronous mode, pausing execution until the reload completes. - If set to 'False', the controller executes the reload action in asynchronous mode, updating the ConfigMap without waiting for the reload process to finish.",
+										MarkdownDescription: "Determines whether parameter updates should be synchronized with the config manager. Specifies the controller's reload strategy:  - If set to 'True', the controller executes the reload action in synchronous mode, pausing execution until the reload completes. - If set to 'False', the controller executes the reload action in asynchronous mode, updating the ConfigMap without waiting for the reload process to finish.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -504,20 +522,20 @@ func (r *AppsKubeblocksIoConfigConstraintV1Alpha1Manifest) Schema(_ context.Cont
 							},
 
 							"unix_signal_trigger": schema.SingleNestedAttribute{
-								Description:         "Used to trigger a reload by sending a Unix signal to the process.",
-								MarkdownDescription: "Used to trigger a reload by sending a Unix signal to the process.",
+								Description:         "Used to trigger a reload by sending a specific Unix signal to the process.",
+								MarkdownDescription: "Used to trigger a reload by sending a specific Unix signal to the process.",
 								Attributes: map[string]schema.Attribute{
 									"process_name": schema.StringAttribute{
-										Description:         "Represents the name of the process that the Unix signal sent to.",
-										MarkdownDescription: "Represents the name of the process that the Unix signal sent to.",
+										Description:         "Identifies the name of the process to which the Unix signal will be sent.",
+										MarkdownDescription: "Identifies the name of the process to which the Unix signal will be sent.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"signal": schema.StringAttribute{
-										Description:         "Represents a valid Unix signal. Refer to the following URL for a list of all Unix signals: ../../pkg/configuration/configmap/handler.go:allUnixSignals",
-										MarkdownDescription: "Represents a valid Unix signal. Refer to the following URL for a list of all Unix signals: ../../pkg/configuration/configmap/handler.go:allUnixSignals",
+										Description:         "Specifies a valid Unix signal to be sent. For a comprehensive list of all Unix signals, see: ../../pkg/configuration/configmap/handler.go:allUnixSignals",
+										MarkdownDescription: "Specifies a valid Unix signal to be sent. For a comprehensive list of all Unix signals, see: ../../pkg/configuration/configmap/handler.go:allUnixSignals",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -537,8 +555,8 @@ func (r *AppsKubeblocksIoConfigConstraintV1Alpha1Manifest) Schema(_ context.Cont
 					},
 
 					"script_configs": schema.ListNestedAttribute{
-						Description:         "A list of ScriptConfig used by the actions defined in dynamic reload and downward actions.",
-						MarkdownDescription: "A list of ScriptConfig used by the actions defined in dynamic reload and downward actions.",
+						Description:         "A list of ScriptConfig Object.  Each ScriptConfig object specifies a ConfigMap that contains script files that should be mounted inside the pod. The scripts are mounted as volumes and can be referenced and executed by the dynamic reload and DownwardAction to perform specific tasks or configurations.",
+						MarkdownDescription: "A list of ScriptConfig Object.  Each ScriptConfig object specifies a ConfigMap that contains script files that should be mounted inside the pod. The scripts are mounted as volumes and can be referenced and executed by the dynamic reload and DownwardAction to perform specific tasks or configurations.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"namespace": schema.StringAttribute{
@@ -568,8 +586,8 @@ func (r *AppsKubeblocksIoConfigConstraintV1Alpha1Manifest) Schema(_ context.Cont
 					},
 
 					"selector": schema.SingleNestedAttribute{
-						Description:         "Used to match labels on the pod to do a dynamic reload TODO (refactored to DynamicReloadSelector)",
-						MarkdownDescription: "Used to match labels on the pod to do a dynamic reload TODO (refactored to DynamicReloadSelector)",
+						Description:         "Used to match labels on the pod to determine whether a dynamic reload should be performed.  In some scenarios, only specific pods (e.g., primary replicas) need to undergo a dynamic reload. The 'selector' allows you to specify label selectors to target the desired pods for the reload process.  If the 'selector' is not specified or is nil, all pods managed by the workload will be considered for the dynamic reload.",
+						MarkdownDescription: "Used to match labels on the pod to determine whether a dynamic reload should be performed.  In some scenarios, only specific pods (e.g., primary replicas) need to undergo a dynamic reload. The 'selector' allows you to specify label selectors to target the desired pods for the reload process.  If the 'selector' is not specified or is nil, all pods managed by the workload will be considered for the dynamic reload.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -622,8 +640,8 @@ func (r *AppsKubeblocksIoConfigConstraintV1Alpha1Manifest) Schema(_ context.Cont
 					},
 
 					"static_parameters": schema.ListAttribute{
-						Description:         "A list of StaticParameter. Modifications of static parameters trigger a process restart.",
-						MarkdownDescription: "A list of StaticParameter. Modifications of static parameters trigger a process restart.",
+						Description:         "List static parameters. Modifications to any of these parameters require a restart of the process to take effect.",
+						MarkdownDescription: "List static parameters. Modifications to any of these parameters require a restart of the process to take effect.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -631,12 +649,12 @@ func (r *AppsKubeblocksIoConfigConstraintV1Alpha1Manifest) Schema(_ context.Cont
 					},
 
 					"tools_image_spec": schema.SingleNestedAttribute{
-						Description:         "Tools used by the dynamic reload actions. Usually it is referenced by the 'init container' for 'cp' it to a binary volume. TODO (refactored to ReloadToolsImage)",
-						MarkdownDescription: "Tools used by the dynamic reload actions. Usually it is referenced by the 'init container' for 'cp' it to a binary volume. TODO (refactored to ReloadToolsImage)",
+						Description:         "Specifies the tools container image used by ShellTrigger for dynamic reload. If the dynamic reload action is triggered by a ShellTrigger, this field is required. This image must contain all necessary tools for executing the ShellTrigger scripts.  Usually the specified image is referenced by the init container, which is then responsible for copy the tools from the image to a bin volume. This ensures that the tools are available to the 'config-manager' sidecar.",
+						MarkdownDescription: "Specifies the tools container image used by ShellTrigger for dynamic reload. If the dynamic reload action is triggered by a ShellTrigger, this field is required. This image must contain all necessary tools for executing the ShellTrigger scripts.  Usually the specified image is referenced by the init container, which is then responsible for copy the tools from the image to a bin volume. This ensures that the tools are available to the 'config-manager' sidecar.",
 						Attributes: map[string]schema.Attribute{
 							"mount_point": schema.StringAttribute{
-								Description:         "Represents the point where the scripts file will be mounted.",
-								MarkdownDescription: "Represents the point where the scripts file will be mounted.",
+								Description:         "Specifies the directory path in the container where the tools-related files are to be copied. This field is typically used with an emptyDir volume to ensure a temporary, empty directory is provided at pod creation.",
+								MarkdownDescription: "Specifies the directory path in the container where the tools-related files are to be copied. This field is typically used with an emptyDir volume to ensure a temporary, empty directory is provided at pod creation.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -646,13 +664,13 @@ func (r *AppsKubeblocksIoConfigConstraintV1Alpha1Manifest) Schema(_ context.Cont
 							},
 
 							"tool_configs": schema.ListNestedAttribute{
-								Description:         "Used to configure the initialization container.",
-								MarkdownDescription: "Used to configure the initialization container.",
+								Description:         "Specifies a list of settings of init containers that prepare tools for dynamic reload.",
+								MarkdownDescription: "Specifies a list of settings of init containers that prepare tools for dynamic reload.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"command": schema.ListAttribute{
-											Description:         "Commands to be executed when init containers.",
-											MarkdownDescription: "Commands to be executed when init containers.",
+											Description:         "Specifies the command to be executed by the init container.",
+											MarkdownDescription: "Specifies the command to be executed by the init container.",
 											ElementType:         types.StringType,
 											Required:            true,
 											Optional:            false,
@@ -660,16 +678,16 @@ func (r *AppsKubeblocksIoConfigConstraintV1Alpha1Manifest) Schema(_ context.Cont
 										},
 
 										"image": schema.StringAttribute{
-											Description:         "Represents the url of the tool container image.",
-											MarkdownDescription: "Represents the url of the tool container image.",
+											Description:         "Specifies the tool container image.",
+											MarkdownDescription: "Specifies the tool container image.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Specifies the name of the initContainer.",
-											MarkdownDescription: "Specifies the name of the initContainer.",
+											Description:         "Specifies the name of the init container.",
+											MarkdownDescription: "Specifies the name of the init container.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

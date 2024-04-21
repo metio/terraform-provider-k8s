@@ -286,8 +286,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -307,8 +307,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"type": schema.StringAttribute{
-								Description:         "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
-								MarkdownDescription: "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
+								Description:         "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
+								MarkdownDescription: "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -320,12 +320,12 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"basic_auth": schema.SingleNestedAttribute{
-						Description:         "BasicAuth allow an endpoint to authenticate over basic authentication. More info: https://prometheus.io/docs/operating/configuration/#endpoint",
-						MarkdownDescription: "BasicAuth allow an endpoint to authenticate over basic authentication. More info: https://prometheus.io/docs/operating/configuration/#endpoint",
+						Description:         "BasicAuth allow an endpoint to authenticate over basic authentication.More info: https://prometheus.io/docs/operating/configuration/#endpoint",
+						MarkdownDescription: "BasicAuth allow an endpoint to authenticate over basic authentication.More info: https://prometheus.io/docs/operating/configuration/#endpoint",
 						Attributes: map[string]schema.Attribute{
 							"password": schema.SingleNestedAttribute{
-								Description:         "'password' specifies a key of a Secret containing the password for authentication.",
-								MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
+								Description:         "'password' specifies a key of a Secret containing the password forauthentication.",
+								MarkdownDescription: "'password' specifies a key of a Secret containing the password forauthentication.",
 								Attributes: map[string]schema.Attribute{
 									"key": schema.StringAttribute{
 										Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -336,8 +336,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -357,8 +357,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"username": schema.SingleNestedAttribute{
-								Description:         "'username' specifies a key of a Secret containing the username for authentication.",
-								MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
+								Description:         "'username' specifies a key of a Secret containing the username forauthentication.",
+								MarkdownDescription: "'username' specifies a key of a Secret containing the username forauthentication.",
 								Attributes: map[string]schema.Attribute{
 									"key": schema.StringAttribute{
 										Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -369,8 +369,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -395,8 +395,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"bearer_token_secret": schema.SingleNestedAttribute{
-						Description:         "Secret to mount to read bearer token for scraping targets. The secret needs to be in the same namespace as the probe and accessible by the Prometheus Operator.",
-						MarkdownDescription: "Secret to mount to read bearer token for scraping targets. The secret needs to be in the same namespace as the probe and accessible by the Prometheus Operator.",
+						Description:         "Secret to mount to read bearer token for scraping targets. The secretneeds to be in the same namespace as the probe and accessible bythe Prometheus Operator.",
+						MarkdownDescription: "Secret to mount to read bearer token for scraping targets. The secretneeds to be in the same namespace as the probe and accessible bythe Prometheus Operator.",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
 								Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -407,8 +407,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+								Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+								MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -428,8 +428,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"interval": schema.StringAttribute{
-						Description:         "Interval at which targets are probed using the configured prober. If not specified Prometheus' global scrape interval is used.",
-						MarkdownDescription: "Interval at which targets are probed using the configured prober. If not specified Prometheus' global scrape interval is used.",
+						Description:         "Interval at which targets are probed using the configured prober.If not specified Prometheus' global scrape interval is used.",
+						MarkdownDescription: "Interval at which targets are probed using the configured prober.If not specified Prometheus' global scrape interval is used.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -447,32 +447,32 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"keep_dropped_targets": schema.Int64Attribute{
-						Description:         "Per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit.  It requires Prometheus >= v2.47.0.",
-						MarkdownDescription: "Per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit.  It requires Prometheus >= v2.47.0.",
+						Description:         "Per-scrape limit on the number of targets dropped by relabelingthat will be kept in memory. 0 means no limit.It requires Prometheus >= v2.47.0.",
+						MarkdownDescription: "Per-scrape limit on the number of targets dropped by relabelingthat will be kept in memory. 0 means no limit.It requires Prometheus >= v2.47.0.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"label_limit": schema.Int64Attribute{
-						Description:         "Per-scrape limit on number of labels that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
-						MarkdownDescription: "Per-scrape limit on number of labels that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
+						Description:         "Per-scrape limit on number of labels that will be accepted for a sample.Only valid in Prometheus versions 2.27.0 and newer.",
+						MarkdownDescription: "Per-scrape limit on number of labels that will be accepted for a sample.Only valid in Prometheus versions 2.27.0 and newer.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"label_name_length_limit": schema.Int64Attribute{
-						Description:         "Per-scrape limit on length of labels name that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
-						MarkdownDescription: "Per-scrape limit on length of labels name that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
+						Description:         "Per-scrape limit on length of labels name that will be accepted for a sample.Only valid in Prometheus versions 2.27.0 and newer.",
+						MarkdownDescription: "Per-scrape limit on length of labels name that will be accepted for a sample.Only valid in Prometheus versions 2.27.0 and newer.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"label_value_length_limit": schema.Int64Attribute{
-						Description:         "Per-scrape limit on length of labels value that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
-						MarkdownDescription: "Per-scrape limit on length of labels value that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
+						Description:         "Per-scrape limit on length of labels value that will be accepted for a sample.Only valid in Prometheus versions 2.27.0 and newer.",
+						MarkdownDescription: "Per-scrape limit on length of labels value that will be accepted for a sample.Only valid in Prometheus versions 2.27.0 and newer.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -484,8 +484,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"action": schema.StringAttribute{
-									Description:         "Action to perform based on the regex matching.  'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.  Default: 'Replace'",
-									MarkdownDescription: "Action to perform based on the regex matching.  'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.  Default: 'Replace'",
+									Description:         "Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'",
+									MarkdownDescription: "Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -495,8 +495,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 								},
 
 								"modulus": schema.Int64Attribute{
-									Description:         "Modulus to take of the hash of the source label values.  Only applicable when the action is 'HashMod'.",
-									MarkdownDescription: "Modulus to take of the hash of the source label values.  Only applicable when the action is 'HashMod'.",
+									Description:         "Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.",
+									MarkdownDescription: "Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -511,8 +511,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 								},
 
 								"replacement": schema.StringAttribute{
-									Description:         "Replacement value against which a Replace action is performed if the regular expression matches.  Regex capture groups are available.",
-									MarkdownDescription: "Replacement value against which a Replace action is performed if the regular expression matches.  Regex capture groups are available.",
+									Description:         "Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.",
+									MarkdownDescription: "Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -527,8 +527,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 								},
 
 								"source_labels": schema.ListAttribute{
-									Description:         "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
-									MarkdownDescription: "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
+									Description:         "The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.",
+									MarkdownDescription: "The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -536,8 +536,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 								},
 
 								"target_label": schema.StringAttribute{
-									Description:         "Label to which the resulting string is written in a replacement.  It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions.  Regex capture groups are available.",
-									MarkdownDescription: "Label to which the resulting string is written in a replacement.  It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions.  Regex capture groups are available.",
+									Description:         "Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.",
+									MarkdownDescription: "Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -550,8 +550,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"module": schema.StringAttribute{
-						Description:         "The module to use for probing specifying how to probe the target. Example module configuring in the blackbox exporter: https://github.com/prometheus/blackbox_exporter/blob/master/example.yml",
-						MarkdownDescription: "The module to use for probing specifying how to probe the target. Example module configuring in the blackbox exporter: https://github.com/prometheus/blackbox_exporter/blob/master/example.yml",
+						Description:         "The module to use for probing specifying how to probe the target.Example module configuring in the blackbox exporter:https://github.com/prometheus/blackbox_exporter/blob/master/example.yml",
+						MarkdownDescription: "The module to use for probing specifying how to probe the target.Example module configuring in the blackbox exporter:https://github.com/prometheus/blackbox_exporter/blob/master/example.yml",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -562,8 +562,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 						MarkdownDescription: "OAuth2 for the URL. Only valid in Prometheus versions 2.27.0 and newer.",
 						Attributes: map[string]schema.Attribute{
 							"client_id": schema.SingleNestedAttribute{
-								Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
-								MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+								Description:         "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
+								MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
 								Attributes: map[string]schema.Attribute{
 									"config_map": schema.SingleNestedAttribute{
 										Description:         "ConfigMap containing data to use for the targets.",
@@ -578,8 +578,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -611,8 +611,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -637,8 +637,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"client_secret": schema.SingleNestedAttribute{
-								Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
-								MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+								Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
+								MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
 								Attributes: map[string]schema.Attribute{
 									"key": schema.StringAttribute{
 										Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -649,8 +649,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -670,8 +670,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"endpoint_params": schema.MapAttribute{
-								Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
-								MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
+								Description:         "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
+								MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -704,12 +704,12 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"prober": schema.SingleNestedAttribute{
-						Description:         "Specification for the prober to use for probing targets. The prober.URL parameter is required. Targets cannot be probed if left empty.",
-						MarkdownDescription: "Specification for the prober to use for probing targets. The prober.URL parameter is required. Targets cannot be probed if left empty.",
+						Description:         "Specification for the prober to use for probing targets.The prober.URL parameter is required. Targets cannot be probed if left empty.",
+						MarkdownDescription: "Specification for the prober to use for probing targets.The prober.URL parameter is required. Targets cannot be probed if left empty.",
 						Attributes: map[string]schema.Attribute{
 							"path": schema.StringAttribute{
-								Description:         "Path to collect metrics from. Defaults to '/probe'.",
-								MarkdownDescription: "Path to collect metrics from. Defaults to '/probe'.",
+								Description:         "Path to collect metrics from.Defaults to '/probe'.",
+								MarkdownDescription: "Path to collect metrics from.Defaults to '/probe'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -724,8 +724,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"scheme": schema.StringAttribute{
-								Description:         "HTTP scheme to use for scraping. 'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling. If empty, Prometheus uses the default value 'http'.",
-								MarkdownDescription: "HTTP scheme to use for scraping. 'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling. If empty, Prometheus uses the default value 'http'.",
+								Description:         "HTTP scheme to use for scraping.'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling.If empty, Prometheus uses the default value 'http'.",
+								MarkdownDescription: "HTTP scheme to use for scraping.'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling.If empty, Prometheus uses the default value 'http'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -767,8 +767,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"scrape_protocols": schema.ListAttribute{
-						Description:         "'scrapeProtocols' defines the protocols to negotiate during a scrape. It tells clients the protocols supported by Prometheus in order of preference (from most to least preferred).  If unset, Prometheus uses its default value.  It requires Prometheus >= v2.49.0.",
-						MarkdownDescription: "'scrapeProtocols' defines the protocols to negotiate during a scrape. It tells clients the protocols supported by Prometheus in order of preference (from most to least preferred).  If unset, Prometheus uses its default value.  It requires Prometheus >= v2.49.0.",
+						Description:         "'scrapeProtocols' defines the protocols to negotiate during a scrape. It tells clients theprotocols supported by Prometheus in order of preference (from most to least preferred).If unset, Prometheus uses its default value.It requires Prometheus >= v2.49.0.",
+						MarkdownDescription: "'scrapeProtocols' defines the protocols to negotiate during a scrape. It tells clients theprotocols supported by Prometheus in order of preference (from most to least preferred).If unset, Prometheus uses its default value.It requires Prometheus >= v2.49.0.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -776,8 +776,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"scrape_timeout": schema.StringAttribute{
-						Description:         "Timeout for scraping metrics from the Prometheus exporter. If not specified, the Prometheus global scrape timeout is used.",
-						MarkdownDescription: "Timeout for scraping metrics from the Prometheus exporter. If not specified, the Prometheus global scrape timeout is used.",
+						Description:         "Timeout for scraping metrics from the Prometheus exporter.If not specified, the Prometheus global scrape timeout is used.",
+						MarkdownDescription: "Timeout for scraping metrics from the Prometheus exporter.If not specified, the Prometheus global scrape timeout is used.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -799,16 +799,16 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 						MarkdownDescription: "Targets defines a set of static or dynamically discovered targets to probe.",
 						Attributes: map[string]schema.Attribute{
 							"ingress": schema.SingleNestedAttribute{
-								Description:         "ingress defines the Ingress objects to probe and the relabeling configuration. If 'staticConfig' is also defined, 'staticConfig' takes precedence.",
-								MarkdownDescription: "ingress defines the Ingress objects to probe and the relabeling configuration. If 'staticConfig' is also defined, 'staticConfig' takes precedence.",
+								Description:         "ingress defines the Ingress objects to probe and the relabelingconfiguration.If 'staticConfig' is also defined, 'staticConfig' takes precedence.",
+								MarkdownDescription: "ingress defines the Ingress objects to probe and the relabelingconfiguration.If 'staticConfig' is also defined, 'staticConfig' takes precedence.",
 								Attributes: map[string]schema.Attribute{
 									"namespace_selector": schema.SingleNestedAttribute{
 										Description:         "From which namespaces to select Ingress objects.",
 										MarkdownDescription: "From which namespaces to select Ingress objects.",
 										Attributes: map[string]schema.Attribute{
 											"any": schema.BoolAttribute{
-												Description:         "Boolean describing whether all namespaces are selected in contrast to a list restricting them.",
-												MarkdownDescription: "Boolean describing whether all namespaces are selected in contrast to a list restricting them.",
+												Description:         "Boolean describing whether all namespaces are selected in contrast to alist restricting them.",
+												MarkdownDescription: "Boolean describing whether all namespaces are selected in contrast to alist restricting them.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -829,13 +829,13 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 									},
 
 									"relabeling_configs": schema.ListNestedAttribute{
-										Description:         "RelabelConfigs to apply to the label set of the target before it gets scraped. The original ingress address is available via the '__tmp_prometheus_ingress_address' label. It can be used to customize the probed URL. The original scrape job's name is available via the '__tmp_prometheus_job_name' label. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
-										MarkdownDescription: "RelabelConfigs to apply to the label set of the target before it gets scraped. The original ingress address is available via the '__tmp_prometheus_ingress_address' label. It can be used to customize the probed URL. The original scrape job's name is available via the '__tmp_prometheus_job_name' label. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
+										Description:         "RelabelConfigs to apply to the label set of the target before it getsscraped.The original ingress address is available via the'__tmp_prometheus_ingress_address' label. It can be used to customize theprobed URL.The original scrape job's name is available via the '__tmp_prometheus_job_name' label.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
+										MarkdownDescription: "RelabelConfigs to apply to the label set of the target before it getsscraped.The original ingress address is available via the'__tmp_prometheus_ingress_address' label. It can be used to customize theprobed URL.The original scrape job's name is available via the '__tmp_prometheus_job_name' label.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"action": schema.StringAttribute{
-													Description:         "Action to perform based on the regex matching.  'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.  Default: 'Replace'",
-													MarkdownDescription: "Action to perform based on the regex matching.  'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.  Default: 'Replace'",
+													Description:         "Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'",
+													MarkdownDescription: "Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -845,8 +845,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"modulus": schema.Int64Attribute{
-													Description:         "Modulus to take of the hash of the source label values.  Only applicable when the action is 'HashMod'.",
-													MarkdownDescription: "Modulus to take of the hash of the source label values.  Only applicable when the action is 'HashMod'.",
+													Description:         "Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.",
+													MarkdownDescription: "Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -861,8 +861,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"replacement": schema.StringAttribute{
-													Description:         "Replacement value against which a Replace action is performed if the regular expression matches.  Regex capture groups are available.",
-													MarkdownDescription: "Replacement value against which a Replace action is performed if the regular expression matches.  Regex capture groups are available.",
+													Description:         "Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.",
+													MarkdownDescription: "Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -877,8 +877,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"source_labels": schema.ListAttribute{
-													Description:         "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
-													MarkdownDescription: "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
+													Description:         "The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.",
+													MarkdownDescription: "The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -886,8 +886,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"target_label": schema.StringAttribute{
-													Description:         "Label to which the resulting string is written in a replacement.  It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions.  Regex capture groups are available.",
-													MarkdownDescription: "Label to which the resulting string is written in a replacement.  It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions.  Regex capture groups are available.",
+													Description:         "Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.",
+													MarkdownDescription: "Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -917,16 +917,16 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 														},
 
 														"operator": schema.StringAttribute{
-															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+															Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+															MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"values": schema.ListAttribute{
-															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+															Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -940,8 +940,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"match_labels": schema.MapAttribute{
-												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -959,8 +959,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"static_config": schema.SingleNestedAttribute{
-								Description:         "staticConfig defines the static list of targets to probe and the relabeling configuration. If 'ingress' is also defined, 'staticConfig' takes precedence. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#static_config.",
-								MarkdownDescription: "staticConfig defines the static list of targets to probe and the relabeling configuration. If 'ingress' is also defined, 'staticConfig' takes precedence. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#static_config.",
+								Description:         "staticConfig defines the static list of targets to probe and therelabeling configuration.If 'ingress' is also defined, 'staticConfig' takes precedence.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#static_config.",
+								MarkdownDescription: "staticConfig defines the static list of targets to probe and therelabeling configuration.If 'ingress' is also defined, 'staticConfig' takes precedence.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#static_config.",
 								Attributes: map[string]schema.Attribute{
 									"labels": schema.MapAttribute{
 										Description:         "Labels assigned to all metrics scraped from the targets.",
@@ -972,13 +972,13 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 									},
 
 									"relabeling_configs": schema.ListNestedAttribute{
-										Description:         "RelabelConfigs to apply to the label set of the targets before it gets scraped. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
-										MarkdownDescription: "RelabelConfigs to apply to the label set of the targets before it gets scraped. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
+										Description:         "RelabelConfigs to apply to the label set of the targets before it getsscraped.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
+										MarkdownDescription: "RelabelConfigs to apply to the label set of the targets before it getsscraped.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"action": schema.StringAttribute{
-													Description:         "Action to perform based on the regex matching.  'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.  Default: 'Replace'",
-													MarkdownDescription: "Action to perform based on the regex matching.  'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.  Default: 'Replace'",
+													Description:         "Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'",
+													MarkdownDescription: "Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -988,8 +988,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"modulus": schema.Int64Attribute{
-													Description:         "Modulus to take of the hash of the source label values.  Only applicable when the action is 'HashMod'.",
-													MarkdownDescription: "Modulus to take of the hash of the source label values.  Only applicable when the action is 'HashMod'.",
+													Description:         "Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.",
+													MarkdownDescription: "Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1004,8 +1004,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"replacement": schema.StringAttribute{
-													Description:         "Replacement value against which a Replace action is performed if the regular expression matches.  Regex capture groups are available.",
-													MarkdownDescription: "Replacement value against which a Replace action is performed if the regular expression matches.  Regex capture groups are available.",
+													Description:         "Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.",
+													MarkdownDescription: "Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1020,8 +1020,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"source_labels": schema.ListAttribute{
-													Description:         "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
-													MarkdownDescription: "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
+													Description:         "The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.",
+													MarkdownDescription: "The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1029,8 +1029,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"target_label": schema.StringAttribute{
-													Description:         "Label to which the resulting string is written in a replacement.  It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions.  Regex capture groups are available.",
-													MarkdownDescription: "Label to which the resulting string is written in a replacement.  It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions.  Regex capture groups are available.",
+													Description:         "Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.",
+													MarkdownDescription: "Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1082,8 +1082,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1115,8 +1115,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1157,8 +1157,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1190,8 +1190,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1236,8 +1236,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

@@ -175,8 +175,8 @@ func (r *SecretsHashicorpComVaultPkisecretV1Beta1Manifest) Schema(_ context.Cont
 				MarkdownDescription: "VaultPKISecretSpec defines the desired state of VaultPKISecret",
 				Attributes: map[string]schema.Attribute{
 					"alt_names": schema.ListAttribute{
-						Description:         "AltNames to include in the request May contain both DNS names and email addresses.",
-						MarkdownDescription: "AltNames to include in the request May contain both DNS names and email addresses.",
+						Description:         "AltNames to include in the requestMay contain both DNS names and email addresses.",
+						MarkdownDescription: "AltNames to include in the requestMay contain both DNS names and email addresses.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -200,8 +200,8 @@ func (r *SecretsHashicorpComVaultPkisecretV1Beta1Manifest) Schema(_ context.Cont
 					},
 
 					"destination": schema.SingleNestedAttribute{
-						Description:         "Destination provides configuration necessary for syncing the Vault secret to Kubernetes. If the type is set to 'kubernetes.io/tls', 'tls.key' will be set to the 'private_key' response from Vault, and 'tls.crt' will be set to 'certificate' + 'ca_chain' from the Vault response ('issuing_ca' is used when 'ca_chain' is empty). The 'remove_roots_from_chain=true' option is used with Vault to exclude the root CA from the Vault response.",
-						MarkdownDescription: "Destination provides configuration necessary for syncing the Vault secret to Kubernetes. If the type is set to 'kubernetes.io/tls', 'tls.key' will be set to the 'private_key' response from Vault, and 'tls.crt' will be set to 'certificate' + 'ca_chain' from the Vault response ('issuing_ca' is used when 'ca_chain' is empty). The 'remove_roots_from_chain=true' option is used with Vault to exclude the root CA from the Vault response.",
+						Description:         "Destination provides configuration necessary for syncing the Vault secretto Kubernetes. If the type is set to 'kubernetes.io/tls', 'tls.key' willbe set to the 'private_key' response from Vault, and 'tls.crt' will beset to 'certificate' + 'ca_chain' from the Vault response ('issuing_ca'is used when 'ca_chain' is empty). The 'remove_roots_from_chain=true'option is used with Vault to exclude the root CA from the Vault response.",
+						MarkdownDescription: "Destination provides configuration necessary for syncing the Vault secretto Kubernetes. If the type is set to 'kubernetes.io/tls', 'tls.key' willbe set to the 'private_key' response from Vault, and 'tls.crt' will beset to 'certificate' + 'ca_chain' from the Vault response ('issuing_ca'is used when 'ca_chain' is empty). The 'remove_roots_from_chain=true'option is used with Vault to exclude the root CA from the Vault response.",
 						Attributes: map[string]schema.Attribute{
 							"annotations": schema.MapAttribute{
 								Description:         "Annotations to apply to the Secret. Requires Create to be set to true.",
@@ -213,8 +213,8 @@ func (r *SecretsHashicorpComVaultPkisecretV1Beta1Manifest) Schema(_ context.Cont
 							},
 
 							"create": schema.BoolAttribute{
-								Description:         "Create the destination Secret. If the Secret already exists this should be set to false.",
-								MarkdownDescription: "Create the destination Secret. If the Secret already exists this should be set to false.",
+								Description:         "Create the destination Secret.If the Secret already exists this should be set to false.",
+								MarkdownDescription: "Create the destination Secret.If the Secret already exists this should be set to false.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -238,28 +238,28 @@ func (r *SecretsHashicorpComVaultPkisecretV1Beta1Manifest) Schema(_ context.Cont
 							},
 
 							"overwrite": schema.BoolAttribute{
-								Description:         "Overwrite the destination Secret if it exists and Create is true. This is useful when migrating to VSO from a previous secret deployment strategy.",
-								MarkdownDescription: "Overwrite the destination Secret if it exists and Create is true. This is useful when migrating to VSO from a previous secret deployment strategy.",
+								Description:         "Overwrite the destination Secret if it exists and Create is true. This isuseful when migrating to VSO from a previous secret deployment strategy.",
+								MarkdownDescription: "Overwrite the destination Secret if it exists and Create is true. This isuseful when migrating to VSO from a previous secret deployment strategy.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"transformation": schema.SingleNestedAttribute{
-								Description:         "Transformation provides configuration for transforming the secret data before it is stored in the Destination.",
-								MarkdownDescription: "Transformation provides configuration for transforming the secret data before it is stored in the Destination.",
+								Description:         "Transformation provides configuration for transforming the secret data beforeit is stored in the Destination.",
+								MarkdownDescription: "Transformation provides configuration for transforming the secret data beforeit is stored in the Destination.",
 								Attributes: map[string]schema.Attribute{
 									"exclude_raw": schema.BoolAttribute{
-										Description:         "ExcludeRaw data from the destination Secret. Exclusion policy can be set globally by including 'exclude-raw' in the '--global-transformation-options' command line flag. If set, the command line flag always takes precedence over this configuration.",
-										MarkdownDescription: "ExcludeRaw data from the destination Secret. Exclusion policy can be set globally by including 'exclude-raw' in the '--global-transformation-options' command line flag. If set, the command line flag always takes precedence over this configuration.",
+										Description:         "ExcludeRaw data from the destination Secret. Exclusion policy can be setglobally by including 'exclude-raw' in the '--global-transformation-options'command line flag. If set, the command line flag always takes precedence overthis configuration.",
+										MarkdownDescription: "ExcludeRaw data from the destination Secret. Exclusion policy can be setglobally by including 'exclude-raw' in the '--global-transformation-options'command line flag. If set, the command line flag always takes precedence overthis configuration.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"excludes": schema.ListAttribute{
-										Description:         "Excludes contains regex patterns used to filter top-level source secret data fields for exclusion from the final K8s Secret data. These pattern filters are never applied to templated fields as defined in Templates. They are always applied before any inclusion patterns. To exclude all source secret data fields, you can configure the single pattern '.*'.",
-										MarkdownDescription: "Excludes contains regex patterns used to filter top-level source secret data fields for exclusion from the final K8s Secret data. These pattern filters are never applied to templated fields as defined in Templates. They are always applied before any inclusion patterns. To exclude all source secret data fields, you can configure the single pattern '.*'.",
+										Description:         "Excludes contains regex patterns used to filter top-level source secret datafields for exclusion from the final K8s Secret data. These pattern filters arenever applied to templated fields as defined in Templates. They are alwaysapplied before any inclusion patterns. To exclude all source secret datafields, you can configure the single pattern '.*'.",
+										MarkdownDescription: "Excludes contains regex patterns used to filter top-level source secret datafields for exclusion from the final K8s Secret data. These pattern filters arenever applied to templated fields as defined in Templates. They are alwaysapplied before any inclusion patterns. To exclude all source secret datafields, you can configure the single pattern '.*'.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -267,8 +267,8 @@ func (r *SecretsHashicorpComVaultPkisecretV1Beta1Manifest) Schema(_ context.Cont
 									},
 
 									"includes": schema.ListAttribute{
-										Description:         "Includes contains regex patterns used to filter top-level source secret data fields for inclusion in the final K8s Secret data. These pattern filters are never applied to templated fields as defined in Templates. They are always applied last.",
-										MarkdownDescription: "Includes contains regex patterns used to filter top-level source secret data fields for inclusion in the final K8s Secret data. These pattern filters are never applied to templated fields as defined in Templates. They are always applied last.",
+										Description:         "Includes contains regex patterns used to filter top-level source secret datafields for inclusion in the final K8s Secret data. These pattern filters arenever applied to templated fields as defined in Templates. They are alwaysapplied last.",
+										MarkdownDescription: "Includes contains regex patterns used to filter top-level source secret datafields for inclusion in the final K8s Secret data. These pattern filters arenever applied to templated fields as defined in Templates. They are alwaysapplied last.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -276,8 +276,8 @@ func (r *SecretsHashicorpComVaultPkisecretV1Beta1Manifest) Schema(_ context.Cont
 									},
 
 									"templates": schema.SingleNestedAttribute{
-										Description:         "Templates maps a template name to its Template. Templates are always included in the rendered K8s Secret, and take precedence over templates defined in a SecretTransformation.",
-										MarkdownDescription: "Templates maps a template name to its Template. Templates are always included in the rendered K8s Secret, and take precedence over templates defined in a SecretTransformation.",
+										Description:         "Templates maps a template name to its Template. Templates are always includedin the rendered K8s Secret, and take precedence over templates defined in aSecretTransformation.",
+										MarkdownDescription: "Templates maps a template name to its Template. Templates are always includedin the rendered K8s Secret, and take precedence over templates defined in aSecretTransformation.",
 										Attributes: map[string]schema.Attribute{
 											"name": schema.StringAttribute{
 												Description:         "Name of the Template",
@@ -288,8 +288,8 @@ func (r *SecretsHashicorpComVaultPkisecretV1Beta1Manifest) Schema(_ context.Cont
 											},
 
 											"text": schema.StringAttribute{
-												Description:         "Text contains the Go text template format. The template references attributes from the data structure of the source secret. Refer to https://pkg.go.dev/text/template for more information.",
-												MarkdownDescription: "Text contains the Go text template format. The template references attributes from the data structure of the source secret. Refer to https://pkg.go.dev/text/template for more information.",
+												Description:         "Text contains the Go text template format. The templatereferences attributes from the data structure of the source secret.Refer to https://pkg.go.dev/text/template for more information.",
+												MarkdownDescription: "Text contains the Go text template format. The templatereferences attributes from the data structure of the source secret.Refer to https://pkg.go.dev/text/template for more information.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -301,21 +301,21 @@ func (r *SecretsHashicorpComVaultPkisecretV1Beta1Manifest) Schema(_ context.Cont
 									},
 
 									"transformation_refs": schema.ListNestedAttribute{
-										Description:         "TransformationRefs contain references to template configuration from SecretTransformation.",
-										MarkdownDescription: "TransformationRefs contain references to template configuration from SecretTransformation.",
+										Description:         "TransformationRefs contain references to template configuration fromSecretTransformation.",
+										MarkdownDescription: "TransformationRefs contain references to template configuration fromSecretTransformation.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"ignore_excludes": schema.BoolAttribute{
-													Description:         "IgnoreExcludes controls whether to use the SecretTransformation's Excludes data key filters.",
-													MarkdownDescription: "IgnoreExcludes controls whether to use the SecretTransformation's Excludes data key filters.",
+													Description:         "IgnoreExcludes controls whether to use the SecretTransformation's Excludesdata key filters.",
+													MarkdownDescription: "IgnoreExcludes controls whether to use the SecretTransformation's Excludesdata key filters.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"ignore_includes": schema.BoolAttribute{
-													Description:         "IgnoreIncludes controls whether to use the SecretTransformation's Includes data key filters.",
-													MarkdownDescription: "IgnoreIncludes controls whether to use the SecretTransformation's Includes data key filters.",
+													Description:         "IgnoreIncludes controls whether to use the SecretTransformation's Includesdata key filters.",
+													MarkdownDescription: "IgnoreIncludes controls whether to use the SecretTransformation's Includesdata key filters.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -338,21 +338,21 @@ func (r *SecretsHashicorpComVaultPkisecretV1Beta1Manifest) Schema(_ context.Cont
 												},
 
 												"template_refs": schema.ListNestedAttribute{
-													Description:         "TemplateRefs map to a Template found in this TransformationRef. If empty, then all templates from the SecretTransformation will be rendered to the K8s Secret.",
-													MarkdownDescription: "TemplateRefs map to a Template found in this TransformationRef. If empty, then all templates from the SecretTransformation will be rendered to the K8s Secret.",
+													Description:         "TemplateRefs map to a Template found in this TransformationRef. If empty, thenall templates from the SecretTransformation will be rendered to the K8s Secret.",
+													MarkdownDescription: "TemplateRefs map to a Template found in this TransformationRef. If empty, thenall templates from the SecretTransformation will be rendered to the K8s Secret.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"key_override": schema.StringAttribute{
-																Description:         "KeyOverride to the rendered template in the Destination secret. If Key is empty, then the Key from reference spec will be used. Set this to override the Key set from the reference spec.",
-																MarkdownDescription: "KeyOverride to the rendered template in the Destination secret. If Key is empty, then the Key from reference spec will be used. Set this to override the Key set from the reference spec.",
+																Description:         "KeyOverride to the rendered template in the Destination secret. If Key isempty, then the Key from reference spec will be used. Set this to override theKey set from the reference spec.",
+																MarkdownDescription: "KeyOverride to the rendered template in the Destination secret. If Key isempty, then the Key from reference spec will be used. Set this to override theKey set from the reference spec.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the Template in SecretTransformationSpec.Templates. the rendered secret data.",
-																MarkdownDescription: "Name of the Template in SecretTransformationSpec.Templates. the rendered secret data.",
+																Description:         "Name of the Template in SecretTransformationSpec.Templates.the rendered secret data.",
+																MarkdownDescription: "Name of the Template in SecretTransformationSpec.Templates.the rendered secret data.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -376,8 +376,8 @@ func (r *SecretsHashicorpComVaultPkisecretV1Beta1Manifest) Schema(_ context.Cont
 							},
 
 							"type": schema.StringAttribute{
-								Description:         "Type of Kubernetes Secret. Requires Create to be set to true. Defaults to Opaque.",
-								MarkdownDescription: "Type of Kubernetes Secret. Requires Create to be set to true. Defaults to Opaque.",
+								Description:         "Type of Kubernetes Secret. Requires Create to be set to true.Defaults to Opaque.",
+								MarkdownDescription: "Type of Kubernetes Secret. Requires Create to be set to true.Defaults to Opaque.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -389,16 +389,16 @@ func (r *SecretsHashicorpComVaultPkisecretV1Beta1Manifest) Schema(_ context.Cont
 					},
 
 					"exclude_cn_from_sans": schema.BoolAttribute{
-						Description:         "ExcludeCNFromSans from DNS or Email Subject Alternate Names. Default: false",
-						MarkdownDescription: "ExcludeCNFromSans from DNS or Email Subject Alternate Names. Default: false",
+						Description:         "ExcludeCNFromSans from DNS or Email Subject Alternate Names.Default: false",
+						MarkdownDescription: "ExcludeCNFromSans from DNS or Email Subject Alternate Names.Default: false",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"expiry_offset": schema.StringAttribute{
-						Description:         "ExpiryOffset to use for computing when the certificate should be renewed. The rotation time will be difference between the expiration and the offset. Should be in duration notation e.g. 30s, 120s, etc.",
-						MarkdownDescription: "ExpiryOffset to use for computing when the certificate should be renewed. The rotation time will be difference between the expiration and the offset. Should be in duration notation e.g. 30s, 120s, etc.",
+						Description:         "ExpiryOffset to use for computing when the certificate should be renewed.The rotation time will be difference between the expiration and the offset.Should be in duration notation e.g. 30s, 120s, etc.",
+						MarkdownDescription: "ExpiryOffset to use for computing when the certificate should be renewed.The rotation time will be difference between the expiration and the offset.Should be in duration notation e.g. 30s, 120s, etc.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -408,8 +408,8 @@ func (r *SecretsHashicorpComVaultPkisecretV1Beta1Manifest) Schema(_ context.Cont
 					},
 
 					"format": schema.StringAttribute{
-						Description:         "Format for the certificate. Choices: 'pem', 'der', 'pem_bundle'. If 'pem_bundle', any private key and issuing cert will be appended to the certificate pem. If 'der', the value will be base64 encoded. Default: pem",
-						MarkdownDescription: "Format for the certificate. Choices: 'pem', 'der', 'pem_bundle'. If 'pem_bundle', any private key and issuing cert will be appended to the certificate pem. If 'der', the value will be base64 encoded. Default: pem",
+						Description:         "Format for the certificate. Choices: 'pem', 'der', 'pem_bundle'.If 'pem_bundle',any private key and issuing cert will be appended to the certificate pem.If 'der', the value will be base64 encoded.Default: pem",
+						MarkdownDescription: "Format for the certificate. Choices: 'pem', 'der', 'pem_bundle'.If 'pem_bundle',any private key and issuing cert will be appended to the certificate pem.If 'der', the value will be base64 encoded.Default: pem",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -425,8 +425,8 @@ func (r *SecretsHashicorpComVaultPkisecretV1Beta1Manifest) Schema(_ context.Cont
 					},
 
 					"issuer_ref": schema.StringAttribute{
-						Description:         "IssuerRef reference to an existing PKI issuer, either by Vault-generated identifier, the literal string default to refer to the currently configured default issuer, or the name assigned to an issuer. This parameter is part of the request URL.",
-						MarkdownDescription: "IssuerRef reference to an existing PKI issuer, either by Vault-generated identifier, the literal string default to refer to the currently configured default issuer, or the name assigned to an issuer. This parameter is part of the request URL.",
+						Description:         "IssuerRef reference to an existing PKI issuer, either by Vault-generatedidentifier, the literal string default to refer to the currentlyconfigured default issuer, or the name assigned to an issuer.This parameter is part of the request URL.",
+						MarkdownDescription: "IssuerRef reference to an existing PKI issuer, either by Vault-generatedidentifier, the literal string default to refer to the currentlyconfigured default issuer, or the name assigned to an issuer.This parameter is part of the request URL.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -449,16 +449,16 @@ func (r *SecretsHashicorpComVaultPkisecretV1Beta1Manifest) Schema(_ context.Cont
 					},
 
 					"not_after": schema.StringAttribute{
-						Description:         "NotAfter field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ",
-						MarkdownDescription: "NotAfter field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ",
+						Description:         "NotAfter field of the certificate with specified date value.The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ",
+						MarkdownDescription: "NotAfter field of the certificate with specified date value.The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"other_sans": schema.ListAttribute{
-						Description:         "Requested other SANs, in an array with the format oid;type:value for each entry.",
-						MarkdownDescription: "Requested other SANs, in an array with the format oid;type:value for each entry.",
+						Description:         "Requested other SANs, in an array with the formatoid;type:value for each entry.",
+						MarkdownDescription: "Requested other SANs, in an array with the formatoid;type:value for each entry.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -466,8 +466,8 @@ func (r *SecretsHashicorpComVaultPkisecretV1Beta1Manifest) Schema(_ context.Cont
 					},
 
 					"private_key_format": schema.StringAttribute{
-						Description:         "PrivateKeyFormat, generally the default will be controlled by the Format parameter as either base64-encoded DER or PEM-encoded DER. However, this can be set to 'pkcs8' to have the returned private key contain base64-encoded pkcs8 or PEM-encoded pkcs8 instead. Default: der",
-						MarkdownDescription: "PrivateKeyFormat, generally the default will be controlled by the Format parameter as either base64-encoded DER or PEM-encoded DER. However, this can be set to 'pkcs8' to have the returned private key contain base64-encoded pkcs8 or PEM-encoded pkcs8 instead. Default: der",
+						Description:         "PrivateKeyFormat, generally the default will be controlled by the Formatparameter as either base64-encoded DER or PEM-encoded DER.However, this can be set to 'pkcs8' to have the returnedprivate key contain base64-encoded pkcs8 or PEM-encodedpkcs8 instead.Default: der",
+						MarkdownDescription: "PrivateKeyFormat, generally the default will be controlled by the Formatparameter as either base64-encoded DER or PEM-encoded DER.However, this can be set to 'pkcs8' to have the returnedprivate key contain base64-encoded pkcs8 or PEM-encodedpkcs8 instead.Default: der",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -490,8 +490,8 @@ func (r *SecretsHashicorpComVaultPkisecretV1Beta1Manifest) Schema(_ context.Cont
 					},
 
 					"rollout_restart_targets": schema.ListNestedAttribute{
-						Description:         "RolloutRestartTargets should be configured whenever the application(s) consuming the Vault secret does not support dynamically reloading a rotated secret. In that case one, or more RolloutRestartTarget(s) can be configured here. The Operator will trigger a 'rollout-restart' for each target whenever the Vault secret changes between reconciliation events. See RolloutRestartTarget for more details.",
-						MarkdownDescription: "RolloutRestartTargets should be configured whenever the application(s) consuming the Vault secret does not support dynamically reloading a rotated secret. In that case one, or more RolloutRestartTarget(s) can be configured here. The Operator will trigger a 'rollout-restart' for each target whenever the Vault secret changes between reconciliation events. See RolloutRestartTarget for more details.",
+						Description:         "RolloutRestartTargets should be configured whenever the application(s) consuming the Vault secret doesnot support dynamically reloading a rotated secret.In that case one, or more RolloutRestartTarget(s) can be configured here. The Operator willtrigger a 'rollout-restart' for each target whenever the Vault secret changes between reconciliation events.See RolloutRestartTarget for more details.",
+						MarkdownDescription: "RolloutRestartTargets should be configured whenever the application(s) consuming the Vault secret doesnot support dynamically reloading a rotated secret.In that case one, or more RolloutRestartTarget(s) can be configured here. The Operator willtrigger a 'rollout-restart' for each target whenever the Vault secret changes between reconciliation events.See RolloutRestartTarget for more details.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"kind": schema.StringAttribute{
@@ -520,8 +520,8 @@ func (r *SecretsHashicorpComVaultPkisecretV1Beta1Manifest) Schema(_ context.Cont
 					},
 
 					"ttl": schema.StringAttribute{
-						Description:         "TTL for the certificate; sets the expiration date. If not specified the Vault role's default, backend default, or system default TTL is used, in that order. Cannot be larger than the mount's max TTL. Note: this only has an effect when generating a CA cert or signing a CA cert, not when generating a CSR for an intermediate CA. Should be in duration notation e.g. 120s, 2h, etc.",
-						MarkdownDescription: "TTL for the certificate; sets the expiration date. If not specified the Vault role's default, backend default, or system default TTL is used, in that order. Cannot be larger than the mount's max TTL. Note: this only has an effect when generating a CA cert or signing a CA cert, not when generating a CSR for an intermediate CA. Should be in duration notation e.g. 120s, 2h, etc.",
+						Description:         "TTL for the certificate; sets the expiration date.If not specified the Vault role's default,backend default, or system default TTL is used, in that order.Cannot be larger than the mount's max TTL.Note: this only has an effect when generating a CA cert or signing a CA cert,not when generating a CSR for an intermediate CA.Should be in duration notation e.g. 120s, 2h, etc.",
+						MarkdownDescription: "TTL for the certificate; sets the expiration date.If not specified the Vault role's default,backend default, or system default TTL is used, in that order.Cannot be larger than the mount's max TTL.Note: this only has an effect when generating a CA cert or signing a CA cert,not when generating a CSR for an intermediate CA.Should be in duration notation e.g. 120s, 2h, etc.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -540,8 +540,8 @@ func (r *SecretsHashicorpComVaultPkisecretV1Beta1Manifest) Schema(_ context.Cont
 					},
 
 					"user_i_ds": schema.ListAttribute{
-						Description:         "User ID (OID 0.9.2342.19200300.100.1.1) Subject values to be placed on the signed certificate.",
-						MarkdownDescription: "User ID (OID 0.9.2342.19200300.100.1.1) Subject values to be placed on the signed certificate.",
+						Description:         "User ID (OID 0.9.2342.19200300.100.1.1) Subject values to be placed on thesigned certificate.",
+						MarkdownDescription: "User ID (OID 0.9.2342.19200300.100.1.1) Subject values to be placed on thesigned certificate.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -549,8 +549,8 @@ func (r *SecretsHashicorpComVaultPkisecretV1Beta1Manifest) Schema(_ context.Cont
 					},
 
 					"vault_auth_ref": schema.StringAttribute{
-						Description:         "VaultAuthRef to the VaultAuth resource, can be prefixed with a namespace, eg: 'namespaceA/vaultAuthRefB'. If no namespace prefix is provided it will default to namespace of the VaultAuth CR. If no value is specified for VaultAuthRef the Operator will default to the 'default' VaultAuth, configured in the operator's namespace.",
-						MarkdownDescription: "VaultAuthRef to the VaultAuth resource, can be prefixed with a namespace, eg: 'namespaceA/vaultAuthRefB'. If no namespace prefix is provided it will default to namespace of the VaultAuth CR. If no value is specified for VaultAuthRef the Operator will default to the 'default' VaultAuth, configured in the operator's namespace.",
+						Description:         "VaultAuthRef to the VaultAuth resource, can be prefixed with a namespace,eg: 'namespaceA/vaultAuthRefB'. If no namespace prefix is provided it will default tonamespace of the VaultAuth CR. If no value is specified for VaultAuthRef the Operator willdefault to the 'default' VaultAuth, configured in the operator's namespace.",
+						MarkdownDescription: "VaultAuthRef to the VaultAuth resource, can be prefixed with a namespace,eg: 'namespaceA/vaultAuthRefB'. If no namespace prefix is provided it will default tonamespace of the VaultAuth CR. If no value is specified for VaultAuthRef the Operator willdefault to the 'default' VaultAuth, configured in the operator's namespace.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

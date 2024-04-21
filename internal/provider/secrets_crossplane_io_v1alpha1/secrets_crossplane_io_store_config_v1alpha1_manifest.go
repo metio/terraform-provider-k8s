@@ -77,8 +77,8 @@ func (r *SecretsCrossplaneIoStoreConfigV1Alpha1Manifest) Metadata(_ context.Cont
 
 func (r *SecretsCrossplaneIoStoreConfigV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "A StoreConfig configures how Crossplane controllers should store connection details.",
-		MarkdownDescription: "A StoreConfig configures how Crossplane controllers should store connection details.",
+		Description:         "A StoreConfig configures how Crossplane controllers should store connectiondetails in an external secret store.",
+		MarkdownDescription: "A StoreConfig configures how Crossplane controllers should store connectiondetails in an external secret store.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",

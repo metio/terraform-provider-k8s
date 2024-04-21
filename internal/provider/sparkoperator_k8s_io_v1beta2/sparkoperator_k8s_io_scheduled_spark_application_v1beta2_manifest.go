@@ -1481,6 +1481,7 @@ type SparkoperatorK8SIoScheduledSparkApplicationV1Beta2ManifestData struct {
 					SecretName *string   `tfsdk:"secret_name" json:"secretName,omitempty"`
 				} `tfsdk:"ingress_tls" json:"ingressTLS,omitempty"`
 				ServiceAnnotations *map[string]string `tfsdk:"service_annotations" json:"serviceAnnotations,omitempty"`
+				ServiceLabels      *map[string]string `tfsdk:"service_labels" json:"serviceLabels,omitempty"`
 				ServicePort        *int64             `tfsdk:"service_port" json:"servicePort,omitempty"`
 				ServiceType        *string            `tfsdk:"service_type" json:"serviceType,omitempty"`
 			} `tfsdk:"spark_ui_options" json:"sparkUIOptions,omitempty"`
@@ -11502,6 +11503,15 @@ func (r *SparkoperatorK8SIoScheduledSparkApplicationV1Beta2Manifest) Schema(_ co
 									},
 
 									"service_annotations": schema.MapAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"service_labels": schema.MapAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										ElementType:         types.StringType,

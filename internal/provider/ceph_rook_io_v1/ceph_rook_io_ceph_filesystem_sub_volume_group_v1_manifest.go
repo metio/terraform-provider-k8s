@@ -45,6 +45,7 @@ type CephRookIoCephFilesystemSubVolumeGroupV1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		DataPoolName   *string `tfsdk:"data_pool_name" json:"dataPoolName,omitempty"`
 		FilesystemName *string `tfsdk:"filesystem_name" json:"filesystemName,omitempty"`
 		Name           *string `tfsdk:"name" json:"name,omitempty"`
 		Pinning        *struct {
@@ -52,6 +53,7 @@ type CephRookIoCephFilesystemSubVolumeGroupV1ManifestData struct {
 			Export      *int64   `tfsdk:"export" json:"export,omitempty"`
 			Random      *float64 `tfsdk:"random" json:"random,omitempty"`
 		} `tfsdk:"pinning" json:"pinning,omitempty"`
+		Quota *string `tfsdk:"quota" json:"quota,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -132,9 +134,17 @@ func (r *CephRookIoCephFilesystemSubVolumeGroupV1Manifest) Schema(_ context.Cont
 				Description:         "Spec represents the specification of a Ceph Filesystem SubVolumeGroup",
 				MarkdownDescription: "Spec represents the specification of a Ceph Filesystem SubVolumeGroup",
 				Attributes: map[string]schema.Attribute{
+					"data_pool_name": schema.StringAttribute{
+						Description:         "The data pool name for the Ceph Filesystem subvolume group layout, if the default CephFS pool is not desired.",
+						MarkdownDescription: "The data pool name for the Ceph Filesystem subvolume group layout, if the default CephFS pool is not desired.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"filesystem_name": schema.StringAttribute{
-						Description:         "FilesystemName is the name of Ceph Filesystem SubVolumeGroup volume name. Typically it's the name of the CephFilesystem CR. If not coming from the CephFilesystem CR, it can be retrieved from the list of Ceph Filesystem volumes with 'ceph fs volume ls'. To learn more about Ceph Filesystem abstractions see https://docs.ceph.com/en/latest/cephfs/fs-volumes/#fs-volumes-and-subvolumes",
-						MarkdownDescription: "FilesystemName is the name of Ceph Filesystem SubVolumeGroup volume name. Typically it's the name of the CephFilesystem CR. If not coming from the CephFilesystem CR, it can be retrieved from the list of Ceph Filesystem volumes with 'ceph fs volume ls'. To learn more about Ceph Filesystem abstractions see https://docs.ceph.com/en/latest/cephfs/fs-volumes/#fs-volumes-and-subvolumes",
+						Description:         "FilesystemName is the name of Ceph Filesystem SubVolumeGroup volume name. Typically it's the name ofthe CephFilesystem CR. If not coming from the CephFilesystem CR, it can be retrieved from thelist of Ceph Filesystem volumes with 'ceph fs volume ls'. To learn more about Ceph Filesystemabstractions see https://docs.ceph.com/en/latest/cephfs/fs-volumes/#fs-volumes-and-subvolumes",
+						MarkdownDescription: "FilesystemName is the name of Ceph Filesystem SubVolumeGroup volume name. Typically it's the name ofthe CephFilesystem CR. If not coming from the CephFilesystem CR, it can be retrieved from thelist of Ceph Filesystem volumes with 'ceph fs volume ls'. To learn more about Ceph Filesystemabstractions see https://docs.ceph.com/en/latest/cephfs/fs-volumes/#fs-volumes-and-subvolumes",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -149,8 +159,8 @@ func (r *CephRookIoCephFilesystemSubVolumeGroupV1Manifest) Schema(_ context.Cont
 					},
 
 					"pinning": schema.SingleNestedAttribute{
-						Description:         "Pinning configuration of CephFilesystemSubVolumeGroup, reference https://docs.ceph.com/en/latest/cephfs/fs-volumes/#pinning-subvolumes-and-subvolume-groups only one out of (export, distributed, random) can be set at a time",
-						MarkdownDescription: "Pinning configuration of CephFilesystemSubVolumeGroup, reference https://docs.ceph.com/en/latest/cephfs/fs-volumes/#pinning-subvolumes-and-subvolume-groups only one out of (export, distributed, random) can be set at a time",
+						Description:         "Pinning configuration of CephFilesystemSubVolumeGroup,reference https://docs.ceph.com/en/latest/cephfs/fs-volumes/#pinning-subvolumes-and-subvolume-groupsonly one out of (export, distributed, random) can be set at a time",
+						MarkdownDescription: "Pinning configuration of CephFilesystemSubVolumeGroup,reference https://docs.ceph.com/en/latest/cephfs/fs-volumes/#pinning-subvolumes-and-subvolume-groupsonly one out of (export, distributed, random) can be set at a time",
 						Attributes: map[string]schema.Attribute{
 							"distributed": schema.Int64Attribute{
 								Description:         "",
@@ -191,6 +201,14 @@ func (r *CephRookIoCephFilesystemSubVolumeGroupV1Manifest) Schema(_ context.Cont
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"quota": schema.StringAttribute{
+						Description:         "Quota size of the Ceph Filesystem subvolume group.",
+						MarkdownDescription: "Quota size of the Ceph Filesystem subvolume group.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 				},
 				Required: true,

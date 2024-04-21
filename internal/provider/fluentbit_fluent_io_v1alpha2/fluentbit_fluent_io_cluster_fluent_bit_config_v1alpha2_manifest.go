@@ -60,6 +60,14 @@ type FluentbitFluentIoClusterFluentBitConfigV1Alpha2ManifestData struct {
 			} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 		} `tfsdk:"input_selector" json:"inputSelector,omitempty"`
+		MultilineParserSelector *struct {
+			MatchExpressions *[]struct {
+				Key      *string   `tfsdk:"key" json:"key,omitempty"`
+				Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+				Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+			} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+		} `tfsdk:"multiline_parser_selector" json:"multilineParserSelector,omitempty"`
 		Namespace      *string `tfsdk:"namespace" json:"namespace,omitempty"`
 		OutputSelector *struct {
 			MatchExpressions *[]struct {
@@ -78,19 +86,23 @@ type FluentbitFluentIoClusterFluentBitConfigV1Alpha2ManifestData struct {
 			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 		} `tfsdk:"parser_selector" json:"parserSelector,omitempty"`
 		Service *struct {
-			Daemon              *bool   `tfsdk:"daemon" json:"daemon,omitempty"`
-			FlushSeconds        *int64  `tfsdk:"flush_seconds" json:"flushSeconds,omitempty"`
-			GraceSeconds        *int64  `tfsdk:"grace_seconds" json:"graceSeconds,omitempty"`
-			HcErrorsCount       *int64  `tfsdk:"hc_errors_count" json:"hcErrorsCount,omitempty"`
-			HcPeriod            *int64  `tfsdk:"hc_period" json:"hcPeriod,omitempty"`
-			HcRetryFailureCount *int64  `tfsdk:"hc_retry_failure_count" json:"hcRetryFailureCount,omitempty"`
-			HealthCheck         *bool   `tfsdk:"health_check" json:"healthCheck,omitempty"`
-			HttpListen          *string `tfsdk:"http_listen" json:"httpListen,omitempty"`
-			HttpPort            *int64  `tfsdk:"http_port" json:"httpPort,omitempty"`
-			HttpServer          *bool   `tfsdk:"http_server" json:"httpServer,omitempty"`
-			LogFile             *string `tfsdk:"log_file" json:"logFile,omitempty"`
-			LogLevel            *string `tfsdk:"log_level" json:"logLevel,omitempty"`
-			ParsersFile         *string `tfsdk:"parsers_file" json:"parsersFile,omitempty"`
+			Daemon              *bool     `tfsdk:"daemon" json:"daemon,omitempty"`
+			EmitterMemBufLimit  *string   `tfsdk:"emitter_mem_buf_limit" json:"emitterMemBufLimit,omitempty"`
+			EmitterName         *string   `tfsdk:"emitter_name" json:"emitterName,omitempty"`
+			EmitterStorageType  *string   `tfsdk:"emitter_storage_type" json:"emitterStorageType,omitempty"`
+			FlushSeconds        *int64    `tfsdk:"flush_seconds" json:"flushSeconds,omitempty"`
+			GraceSeconds        *int64    `tfsdk:"grace_seconds" json:"graceSeconds,omitempty"`
+			HcErrorsCount       *int64    `tfsdk:"hc_errors_count" json:"hcErrorsCount,omitempty"`
+			HcPeriod            *int64    `tfsdk:"hc_period" json:"hcPeriod,omitempty"`
+			HcRetryFailureCount *int64    `tfsdk:"hc_retry_failure_count" json:"hcRetryFailureCount,omitempty"`
+			HealthCheck         *bool     `tfsdk:"health_check" json:"healthCheck,omitempty"`
+			HttpListen          *string   `tfsdk:"http_listen" json:"httpListen,omitempty"`
+			HttpPort            *int64    `tfsdk:"http_port" json:"httpPort,omitempty"`
+			HttpServer          *bool     `tfsdk:"http_server" json:"httpServer,omitempty"`
+			LogFile             *string   `tfsdk:"log_file" json:"logFile,omitempty"`
+			LogLevel            *string   `tfsdk:"log_level" json:"logLevel,omitempty"`
+			ParsersFile         *string   `tfsdk:"parsers_file" json:"parsersFile,omitempty"`
+			ParsersFiles        *[]string `tfsdk:"parsers_files" json:"parsersFiles,omitempty"`
 			Storage             *struct {
 				BacklogMemLimit           *string `tfsdk:"backlog_mem_limit" json:"backlogMemLimit,omitempty"`
 				Checksum                  *string `tfsdk:"checksum" json:"checksum,omitempty"`
@@ -277,6 +289,60 @@ func (r *FluentbitFluentIoClusterFluentBitConfigV1Alpha2Manifest) Schema(_ conte
 						Computed: false,
 					},
 
+					"multiline_parser_selector": schema.SingleNestedAttribute{
+						Description:         "Select multiline parser plugins",
+						MarkdownDescription: "Select multiline parser plugins",
+						Attributes: map[string]schema.Attribute{
+							"match_expressions": schema.ListNestedAttribute{
+								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+								MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"key": schema.StringAttribute{
+											Description:         "key is the label key that the selector applies to.",
+											MarkdownDescription: "key is the label key that the selector applies to.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"operator": schema.StringAttribute{
+											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"values": schema.ListAttribute{
+											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"match_labels": schema.MapAttribute{
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"namespace": schema.StringAttribute{
 						Description:         "If namespace is defined, then the configmap and secret for fluent-bit is in this namespace. If it is not defined, it is in the namespace of the fluentd-operator",
 						MarkdownDescription: "If namespace is defined, then the configmap and secret for fluent-bit is in this namespace. If it is not defined, it is in the namespace of the fluentd-operator",
@@ -405,6 +471,30 @@ func (r *FluentbitFluentIoClusterFluentBitConfigV1Alpha2Manifest) Schema(_ conte
 								Computed:            false,
 							},
 
+							"emitter_mem_buf_limit": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"emitter_name": schema.StringAttribute{
+								Description:         "Per-namespace re-emitter configuration",
+								MarkdownDescription: "Per-namespace re-emitter configuration",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"emitter_storage_type": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"flush_seconds": schema.Int64Attribute{
 								Description:         "Interval to flush output",
 								MarkdownDescription: "Interval to flush output",
@@ -515,6 +605,15 @@ func (r *FluentbitFluentIoClusterFluentBitConfigV1Alpha2Manifest) Schema(_ conte
 							"parsers_file": schema.StringAttribute{
 								Description:         "Optional 'parsers' config file (can be multiple)",
 								MarkdownDescription: "Optional 'parsers' config file (can be multiple)",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"parsers_files": schema.ListAttribute{
+								Description:         "backward compatible",
+								MarkdownDescription: "backward compatible",
+								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

@@ -46,6 +46,7 @@ type LonghornIoNodeV1Beta2ManifestData struct {
 		AllowScheduling *bool `tfsdk:"allow_scheduling" json:"allowScheduling,omitempty"`
 		Disks           *struct {
 			AllowScheduling   *bool     `tfsdk:"allow_scheduling" json:"allowScheduling,omitempty"`
+			DiskDriver        *string   `tfsdk:"disk_driver" json:"diskDriver,omitempty"`
 			DiskType          *string   `tfsdk:"disk_type" json:"diskType,omitempty"`
 			EvictionRequested *bool     `tfsdk:"eviction_requested" json:"evictionRequested,omitempty"`
 			Path              *string   `tfsdk:"path" json:"path,omitempty"`
@@ -154,6 +155,17 @@ func (r *LonghornIoNodeV1Beta2Manifest) Schema(_ context.Context, _ datasource.S
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"disk_driver": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("", "auto", "aio"),
+								},
 							},
 
 							"disk_type": schema.StringAttribute{

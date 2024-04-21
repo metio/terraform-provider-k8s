@@ -148,16 +148,16 @@ func (r *KubeGreenComSleepInfoV1Alpha1Manifest) Schema(_ context.Context, _ data
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"api_version": schema.StringAttribute{
-									Description:         "ApiVersion of the kubernetes resources. Supported api version is 'apps/v1'.",
-									MarkdownDescription: "ApiVersion of the kubernetes resources. Supported api version is 'apps/v1'.",
+									Description:         "ApiVersion of the kubernetes resources.Supported api version is 'apps/v1'.",
+									MarkdownDescription: "ApiVersion of the kubernetes resources.Supported api version is 'apps/v1'.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"kind": schema.StringAttribute{
-									Description:         "Kind of the kubernetes resources of the specific version. Supported kind are 'Deployment' and 'CronJob'.",
-									MarkdownDescription: "Kind of the kubernetes resources of the specific version. Supported kind are 'Deployment' and 'CronJob'.",
+									Description:         "Kind of the kubernetes resources of the specific version.Supported kind are 'Deployment' and 'CronJob'.",
+									MarkdownDescription: "Kind of the kubernetes resources of the specific version.Supported kind are 'Deployment' and 'CronJob'.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -231,8 +231,8 @@ func (r *KubeGreenComSleepInfoV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"sleep_at": schema.StringAttribute{
-						Description:         "Hours:Minutes  Accept cron schedule for both hour and minute. For example, *:*/2 is set to configure a run every even minute.",
-						MarkdownDescription: "Hours:Minutes  Accept cron schedule for both hour and minute. For example, *:*/2 is set to configure a run every even minute.",
+						Description:         "Hours:MinutesAccept cron schedule for both hour and minute.For example, *:*/2 is set to configure a run every even minute.",
+						MarkdownDescription: "Hours:MinutesAccept cron schedule for both hour and minute.For example, *:*/2 is set to configure a run every even minute.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -255,24 +255,24 @@ func (r *KubeGreenComSleepInfoV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"time_zone": schema.StringAttribute{
-						Description:         "Time zone to set the schedule, in IANA time zone identifier. It is not required, default to UTC. For example, for the Italy time zone set Europe/Rome.",
-						MarkdownDescription: "Time zone to set the schedule, in IANA time zone identifier. It is not required, default to UTC. For example, for the Italy time zone set Europe/Rome.",
+						Description:         "Time zone to set the schedule, in IANA time zone identifier.It is not required, default to UTC.For example, for the Italy time zone set Europe/Rome.",
+						MarkdownDescription: "Time zone to set the schedule, in IANA time zone identifier.It is not required, default to UTC.For example, for the Italy time zone set Europe/Rome.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"wake_up_at": schema.StringAttribute{
-						Description:         "Hours:Minutes  Accept cron schedule for both hour and minute. For example, *:*/2 is set to configure a run every even minute. It is not required.",
-						MarkdownDescription: "Hours:Minutes  Accept cron schedule for both hour and minute. For example, *:*/2 is set to configure a run every even minute. It is not required.",
+						Description:         "Hours:MinutesAccept cron schedule for both hour and minute.For example, *:*/2 is set to configure a run every even minute.It is not required.",
+						MarkdownDescription: "Hours:MinutesAccept cron schedule for both hour and minute.For example, *:*/2 is set to configure a run every even minute.It is not required.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"weekdays": schema.StringAttribute{
-						Description:         "Weekdays are in cron notation.  For example, to configure a schedule from monday to friday, set it to '1-5'",
-						MarkdownDescription: "Weekdays are in cron notation.  For example, to configure a schedule from monday to friday, set it to '1-5'",
+						Description:         "Weekdays are in cron notation.For example, to configure a schedule from monday to friday, set it to '1-5'",
+						MarkdownDescription: "Weekdays are in cron notation.For example, to configure a schedule from monday to friday, set it to '1-5'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

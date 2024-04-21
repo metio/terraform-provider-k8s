@@ -102,6 +102,7 @@ type FluentbitFluentIoClusterFilterV1Alpha2ManifestData struct {
 			Lua *struct {
 				Alias         *string `tfsdk:"alias" json:"alias,omitempty"`
 				Call          *string `tfsdk:"call" json:"call,omitempty"`
+				Code          *string `tfsdk:"code" json:"code,omitempty"`
 				ProtectedMode *bool   `tfsdk:"protected_mode" json:"protectedMode,omitempty"`
 				RetryLimit    *string `tfsdk:"retry_limit" json:"retryLimit,omitempty"`
 				Script        *struct {
@@ -140,10 +141,16 @@ type FluentbitFluentIoClusterFilterV1Alpha2ManifestData struct {
 				} `tfsdk:"rules" json:"rules,omitempty"`
 			} `tfsdk:"modify" json:"modify,omitempty"`
 			Multiline *struct {
-				Alias      *string `tfsdk:"alias" json:"alias,omitempty"`
-				KeyContent *string `tfsdk:"key_content" json:"keyContent,omitempty"`
-				Parser     *string `tfsdk:"parser" json:"parser,omitempty"`
-				RetryLimit *string `tfsdk:"retry_limit" json:"retryLimit,omitempty"`
+				Alias              *string `tfsdk:"alias" json:"alias,omitempty"`
+				Buffer             *bool   `tfsdk:"buffer" json:"buffer,omitempty"`
+				EmitterMemBufLimit *int64  `tfsdk:"emitter_mem_buf_limit" json:"emitterMemBufLimit,omitempty"`
+				EmitterName        *string `tfsdk:"emitter_name" json:"emitterName,omitempty"`
+				EmitterType        *string `tfsdk:"emitter_type" json:"emitterType,omitempty"`
+				FlushMs            *int64  `tfsdk:"flush_ms" json:"flushMs,omitempty"`
+				KeyContent         *string `tfsdk:"key_content" json:"keyContent,omitempty"`
+				Mode               *string `tfsdk:"mode" json:"mode,omitempty"`
+				Parser             *string `tfsdk:"parser" json:"parser,omitempty"`
+				RetryLimit         *string `tfsdk:"retry_limit" json:"retryLimit,omitempty"`
 			} `tfsdk:"multiline" json:"multiline,omitempty"`
 			Nest *struct {
 				AddPrefix    *string   `tfsdk:"add_prefix" json:"addPrefix,omitempty"`
@@ -174,10 +181,12 @@ type FluentbitFluentIoClusterFilterV1Alpha2ManifestData struct {
 				WhitelistKeys *[]string `tfsdk:"whitelist_keys" json:"whitelistKeys,omitempty"`
 			} `tfsdk:"record_modifier" json:"recordModifier,omitempty"`
 			RewriteTag *struct {
-				Alias       *string   `tfsdk:"alias" json:"alias,omitempty"`
-				EmitterName *string   `tfsdk:"emitter_name" json:"emitterName,omitempty"`
-				RetryLimit  *string   `tfsdk:"retry_limit" json:"retryLimit,omitempty"`
-				Rules       *[]string `tfsdk:"rules" json:"rules,omitempty"`
+				Alias              *string   `tfsdk:"alias" json:"alias,omitempty"`
+				EmitterMemBufLimit *string   `tfsdk:"emitter_mem_buf_limit" json:"emitterMemBufLimit,omitempty"`
+				EmitterName        *string   `tfsdk:"emitter_name" json:"emitterName,omitempty"`
+				EmitterStorageType *string   `tfsdk:"emitter_storage_type" json:"emitterStorageType,omitempty"`
+				RetryLimit         *string   `tfsdk:"retry_limit" json:"retryLimit,omitempty"`
+				Rules              *[]string `tfsdk:"rules" json:"rules,omitempty"`
 			} `tfsdk:"rewrite_tag" json:"rewriteTag,omitempty"`
 			Throttle *struct {
 				Alias       *string `tfsdk:"alias" json:"alias,omitempty"`
@@ -711,6 +720,14 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 											Computed:            false,
 										},
 
+										"code": schema.StringAttribute{
+											Description:         "Inline LUA code instead of loading from a path via script.",
+											MarkdownDescription: "Inline LUA code instead of loading from a path via script.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"protected_mode": schema.BoolAttribute{
 											Description:         "If enabled, Lua script will be executed in protected mode. It prevents to crash when invalid Lua script is executed. Default is true.",
 											MarkdownDescription: "If enabled, Lua script will be executed in protected mode. It prevents to crash when invalid Lua script is executed. Default is true.",
@@ -758,8 +775,8 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 													Computed:            false,
 												},
 											},
-											Required: true,
-											Optional: false,
+											Required: false,
+											Optional: true,
 											Computed: false,
 										},
 
@@ -1012,12 +1029,66 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 											Computed:            false,
 										},
 
+										"buffer": schema.BoolAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"emitter_mem_buf_limit": schema.Int64Attribute{
+											Description:         "Set a limit on the amount of memory in MB the emitter can consume if the outputs provide backpressure. The default for this limit is 10M. The pipeline will pause once the buffer exceeds the value of this setting. For example, if the value is set to 10MB then the pipeline will pause if the buffer exceeds 10M. The pipeline will remain paused until the output drains the buffer below the 10M limit.",
+											MarkdownDescription: "Set a limit on the amount of memory in MB the emitter can consume if the outputs provide backpressure. The default for this limit is 10M. The pipeline will pause once the buffer exceeds the value of this setting. For example, if the value is set to 10MB then the pipeline will pause if the buffer exceeds 10M. The pipeline will remain paused until the output drains the buffer below the 10M limit.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"emitter_name": schema.StringAttribute{
+											Description:         "Name for the emitter input instance which re-emits the completed records at the beginning of the pipeline.",
+											MarkdownDescription: "Name for the emitter input instance which re-emits the completed records at the beginning of the pipeline.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"emitter_type": schema.StringAttribute{
+											Description:         "The storage type for the emitter input instance. This option supports the values memory (default) and filesystem.",
+											MarkdownDescription: "The storage type for the emitter input instance. This option supports the values memory (default) and filesystem.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("memory", "filesystem"),
+											},
+										},
+
+										"flush_ms": schema.Int64Attribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"key_content": schema.StringAttribute{
 											Description:         "Key name that holds the content to process. Note that a Multiline Parser definition can already specify the key_content to use, but this option allows to overwrite that value for the purpose of the filter.",
 											MarkdownDescription: "Key name that holds the content to process. Note that a Multiline Parser definition can already specify the key_content to use, but this option allows to overwrite that value for the purpose of the filter.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"mode": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("parser", "partial_message"),
+											},
 										},
 
 										"parser": schema.StringAttribute{
@@ -1277,9 +1348,25 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 											Computed:            false,
 										},
 
+										"emitter_mem_buf_limit": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"emitter_name": schema.StringAttribute{
 											Description:         "When the filter emits a record under the new Tag, there is an internal emitter plugin that takes care of the job. Since this emitter expose metrics as any other component of the pipeline, you can use this property to configure an optional name for it.",
 											MarkdownDescription: "When the filter emits a record under the new Tag, there is an internal emitter plugin that takes care of the job. Since this emitter expose metrics as any other component of the pipeline, you can use this property to configure an optional name for it.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"emitter_storage_type": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

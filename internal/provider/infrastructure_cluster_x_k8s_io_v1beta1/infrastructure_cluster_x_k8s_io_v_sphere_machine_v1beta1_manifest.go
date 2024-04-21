@@ -112,8 +112,9 @@ type InfrastructureClusterXK8SIoVsphereMachineV1Beta1ManifestData struct {
 		NumCoresPerSocket *int64  `tfsdk:"num_cores_per_socket" json:"numCoresPerSocket,omitempty"`
 		Os                *string `tfsdk:"os" json:"os,omitempty"`
 		PciDevices        *[]struct {
-			DeviceId *int64 `tfsdk:"device_id" json:"deviceId,omitempty"`
-			VendorId *int64 `tfsdk:"vendor_id" json:"vendorId,omitempty"`
+			CustomLabel *string `tfsdk:"custom_label" json:"customLabel,omitempty"`
+			DeviceId    *int64  `tfsdk:"device_id" json:"deviceId,omitempty"`
+			VendorId    *int64  `tfsdk:"vendor_id" json:"vendorId,omitempty"`
 		} `tfsdk:"pci_devices" json:"pciDevices,omitempty"`
 		PowerOffMode      *string   `tfsdk:"power_off_mode" json:"powerOffMode,omitempty"`
 		ProviderID        *string   `tfsdk:"provider_id" json:"providerID,omitempty"`
@@ -717,6 +718,14 @@ func (r *InfrastructureClusterXK8SIoVsphereMachineV1Beta1Manifest) Schema(_ cont
 						MarkdownDescription: "PciDevices is the list of pci devices used by the virtual machine.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"custom_label": schema.StringAttribute{
+									Description:         "CustomLabel is the hardware label of a virtual machine's PCI device. Defaults to the eponymous property value in the template from which the virtual machine is cloned.",
+									MarkdownDescription: "CustomLabel is the hardware label of a virtual machine's PCI device. Defaults to the eponymous property value in the template from which the virtual machine is cloned.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"device_id": schema.Int64Attribute{
 									Description:         "DeviceID is the device ID of a virtual machine's PCI, in integer. Defaults to the eponymous property value in the template from which the virtual machine is cloned.",
 									MarkdownDescription: "DeviceID is the device ID of a virtual machine's PCI, in integer. Defaults to the eponymous property value in the template from which the virtual machine is cloned.",

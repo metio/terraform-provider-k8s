@@ -109,9 +109,10 @@ type OperatorVictoriametricsComVmalertmanagerV1Beta1ManifestData struct {
 			} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 		} `tfsdk:"config_namespace_selector" json:"configNamespaceSelector,omitempty"`
-		ConfigRawYaml  *string `tfsdk:"config_raw_yaml" json:"configRawYaml,omitempty"`
-		ConfigSecret   *string `tfsdk:"config_secret" json:"configSecret,omitempty"`
-		ConfigSelector *struct {
+		ConfigRawYaml           *string            `tfsdk:"config_raw_yaml" json:"configRawYaml,omitempty"`
+		ConfigReloaderExtraArgs *map[string]string `tfsdk:"config_reloader_extra_args" json:"configReloaderExtraArgs,omitempty"`
+		ConfigSecret            *string            `tfsdk:"config_secret" json:"configSecret,omitempty"`
+		ConfigSelector          *struct {
 			MatchExpressions *[]struct {
 				Key      *string   `tfsdk:"key" json:"key,omitempty"`
 				Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
@@ -161,10 +162,9 @@ type OperatorVictoriametricsComVmalertmanagerV1Beta1ManifestData struct {
 			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			Name        *string            `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"pod_metadata" json:"podMetadata,omitempty"`
-		PodSecurityPolicyName *string `tfsdk:"pod_security_policy_name" json:"podSecurityPolicyName,omitempty"`
-		PortName              *string `tfsdk:"port_name" json:"portName,omitempty"`
-		PriorityClassName     *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
-		ReadinessGates        *[]struct {
+		PortName          *string `tfsdk:"port_name" json:"portName,omitempty"`
+		PriorityClassName *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
+		ReadinessGates    *[]struct {
 			ConditionType *string `tfsdk:"condition_type" json:"conditionType,omitempty"`
 		} `tfsdk:"readiness_gates" json:"readinessGates,omitempty"`
 		ReadinessProbe *map[string]string `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
@@ -193,7 +193,8 @@ type OperatorVictoriametricsComVmalertmanagerV1Beta1ManifestData struct {
 				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 				Name        *string            `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"metadata" json:"metadata,omitempty"`
-			Spec *map[string]string `tfsdk:"spec" json:"spec,omitempty"`
+			Spec         *map[string]string `tfsdk:"spec" json:"spec,omitempty"`
+			UseAsDefault *bool              `tfsdk:"use_as_default" json:"useAsDefault,omitempty"`
 		} `tfsdk:"service_spec" json:"serviceSpec,omitempty"`
 		StartupProbe *map[string]string `tfsdk:"startup_probe" json:"startupProbe,omitempty"`
 		Storage      *struct {
@@ -828,6 +829,15 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 						Computed:            false,
 					},
 
+					"config_reloader_extra_args": schema.MapAttribute{
+						Description:         "ConfigReloaderExtraArgs that will be passed to  VMAuths config-reloader containerfor example resyncInterval: '30s'",
+						MarkdownDescription: "ConfigReloaderExtraArgs that will be passed to  VMAuths config-reloader containerfor example resyncInterval: '30s'",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"config_secret": schema.StringAttribute{
 						Description:         "ConfigSecret is the name of a Kubernetes Secret in the same namespace as theVMAlertmanager object, which contains configuration for this VMAlertmanager,configuration must be inside secret key: alertmanager.yaml.It must be created by user.instance. Defaults to 'vmalertmanager-<alertmanager-name>'The secret is mounted into /etc/alertmanager/config.",
 						MarkdownDescription: "ConfigSecret is the name of a Kubernetes Secret in the same namespace as theVMAlertmanager object, which contains configuration for this VMAlertmanager,configuration must be inside secret key: alertmanager.yaml.It must be created by user.instance. Defaults to 'vmalertmanager-<alertmanager-name>'The secret is mounted into /etc/alertmanager/config.",
@@ -1199,14 +1209,6 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 						Computed: false,
 					},
 
-					"pod_security_policy_name": schema.StringAttribute{
-						Description:         "PodSecurityPolicyName - defines name for podSecurityPolicyin case of empty value, prefixedName will be used.",
-						MarkdownDescription: "PodSecurityPolicyName - defines name for podSecurityPolicyin case of empty value, prefixedName will be used.",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-					},
-
 					"port_name": schema.StringAttribute{
 						Description:         "PortName used for the pods and governing service.This defaults to web",
 						MarkdownDescription: "PortName used for the pods and governing service.This defaults to web",
@@ -1447,6 +1449,14 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 								ElementType:         types.StringType,
 								Required:            true,
 								Optional:            false,
+								Computed:            false,
+							},
+
+							"use_as_default": schema.BoolAttribute{
+								Description:         "UseAsDefault applies changes from given service definition to the main object ServiceChaning from headless service to clusterIP or loadbalancer may break cross-component communication",
+								MarkdownDescription: "UseAsDefault applies changes from given service definition to the main object ServiceChaning from headless service to clusterIP or loadbalancer may break cross-component communication",
+								Required:            false,
+								Optional:            true,
 								Computed:            false,
 							},
 						},

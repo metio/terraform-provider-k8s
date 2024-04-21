@@ -96,7 +96,13 @@ type NetworkingIstioIoEnvoyFilterV1Alpha3ManifestData struct {
 				Value       *map[string]string `tfsdk:"value" json:"value,omitempty"`
 			} `tfsdk:"patch" json:"patch,omitempty"`
 		} `tfsdk:"config_patches" json:"configPatches,omitempty"`
-		Priority         *int64 `tfsdk:"priority" json:"priority,omitempty"`
+		Priority   *int64 `tfsdk:"priority" json:"priority,omitempty"`
+		TargetRefs *[]struct {
+			Group     *string `tfsdk:"group" json:"group,omitempty"`
+			Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
+			Name      *string `tfsdk:"name" json:"name,omitempty"`
+			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+		} `tfsdk:"target_refs" json:"targetRefs,omitempty"`
 		WorkloadSelector *struct {
 			Labels *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 		} `tfsdk:"workload_selector" json:"workloadSelector,omitempty"`
@@ -545,6 +551,49 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Manifest) Schema(_ context.Context,
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"target_refs": schema.ListNestedAttribute{
+						Description:         "Optional.",
+						MarkdownDescription: "Optional.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"group": schema.StringAttribute{
+									Description:         "group is the group of the target resource.",
+									MarkdownDescription: "group is the group of the target resource.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"kind": schema.StringAttribute{
+									Description:         "kind is kind of the target resource.",
+									MarkdownDescription: "kind is kind of the target resource.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"name": schema.StringAttribute{
+									Description:         "name is the name of the target resource.",
+									MarkdownDescription: "name is the name of the target resource.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"namespace": schema.StringAttribute{
+									Description:         "namespace is the namespace of the referent.",
+									MarkdownDescription: "namespace is the namespace of the referent.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"workload_selector": schema.SingleNestedAttribute{

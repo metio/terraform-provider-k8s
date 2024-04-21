@@ -157,6 +157,14 @@ type ExternalSecretsIoClusterExternalSecretV1Beta1ManifestData struct {
 			} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 		} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
+		NamespaceSelectors *[]struct {
+			MatchExpressions *[]struct {
+				Key      *string   `tfsdk:"key" json:"key,omitempty"`
+				Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+				Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+			} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+		} `tfsdk:"namespace_selectors" json:"namespaceSelectors,omitempty"`
 		Namespaces  *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
 		RefreshTime *string   `tfsdk:"refresh_time" json:"refreshTime,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -965,8 +973,8 @@ func (r *ExternalSecretsIoClusterExternalSecretV1Beta1Manifest) Schema(_ context
 					},
 
 					"namespace_selector": schema.SingleNestedAttribute{
-						Description:         "The labels to select by to find the Namespaces to create the ExternalSecrets in.",
-						MarkdownDescription: "The labels to select by to find the Namespaces to create the ExternalSecrets in.",
+						Description:         "The labels to select by to find the Namespaces to create the ExternalSecrets in.Deprecated: Use NamespaceSelectors instead.",
+						MarkdownDescription: "The labels to select by to find the Namespaces to create the ExternalSecrets in.Deprecated: Use NamespaceSelectors instead.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1011,6 +1019,62 @@ func (r *ExternalSecretsIoClusterExternalSecretV1Beta1Manifest) Schema(_ context
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"namespace_selectors": schema.ListNestedAttribute{
+						Description:         "A list of labels to select by to find the Namespaces to create the ExternalSecrets in. The selectors are ORed.",
+						MarkdownDescription: "A list of labels to select by to find the Namespaces to create the ExternalSecrets in. The selectors are ORed.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"match_expressions": schema.ListNestedAttribute{
+									Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+									MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "key is the label key that the selector applies to.",
+												MarkdownDescription: "key is the label key that the selector applies to.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"operator": schema.StringAttribute{
+												Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+												MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"values": schema.ListAttribute{
+												Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"match_labels": schema.MapAttribute{
+									Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+									MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
 							},
 						},
 						Required: false,
