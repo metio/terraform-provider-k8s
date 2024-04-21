@@ -68,6 +68,7 @@ Optional:
 Optional:
 
 - `allow_scheduling` (Boolean)
+- `disk_driver` (String)
 - `disk_type` (String)
 - `eviction_requested` (Boolean)
 - `path` (String)

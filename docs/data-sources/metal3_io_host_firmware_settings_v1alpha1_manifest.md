@@ -3,12 +3,12 @@
 page_title: "k8s_metal3_io_host_firmware_settings_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "metal3.io"
 description: |-
-  HostFirmwareSettings is the Schema for the hostfirmwaresettings API
+  HostFirmwareSettings is the Schema for the hostfirmwaresettings API.
 ---
 
 # k8s_metal3_io_host_firmware_settings_v1alpha1_manifest (Data Source)
 
-HostFirmwareSettings is the Schema for the hostfirmwaresettings API
+HostFirmwareSettings is the Schema for the hostfirmwaresettings API.
 
 ## Example Usage
 
@@ -30,7 +30,7 @@ data "k8s_metal3_io_host_firmware_settings_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) HostFirmwareSettingsSpec defines the desired state of HostFirmwareSettings (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) HostFirmwareSettingsSpec defines the desired state of HostFirmwareSettings. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 

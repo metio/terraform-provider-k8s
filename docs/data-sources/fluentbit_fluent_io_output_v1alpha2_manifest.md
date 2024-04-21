@@ -1562,6 +1562,7 @@ Optional:
 - `json_date_key` (String) Specify the name of the time key in the output record. To disable the time key just set the value to false.
 - `log_key` (String) By default, the whole log record will be sent to S3. If you specify a key name with this option, then only the value of that key will be sent to S3.
 - `preserve_data_ordering` (Boolean) Normally, when an upload request fails, there is a high chance for the last received chunk to be swapped with a later chunk, resulting in data shuffling. This feature prevents this shuffling by using a queue logic for uploads.
+- `profile` (String) Option to specify an AWS Profile for credentials.
 - `retry_limit` (Number) Integer value to set the maximum number of retries allowed.
 - `role_arn` (String) ARN of an IAM role to assume
 - `s3_key_format` (String) Format string for keys in S3.

@@ -73,6 +73,7 @@ Optional:
 - `node_selector` (Map of String) The node selector for the builder pod. Only used for 'pod' strategy
 - `operator_namespace` (String) The namespace where to run the builder Pod (must be the same of the operator in charge of this Build reconciliation).
 - `order_strategy` (String) the build order strategy to adopt
+- `platforms` (List of String) The list of platforms used in order to build a container image.
 - `request_cpu` (String) The minimum amount of CPU required. Only used for 'pod' strategy
 - `request_memory` (String) The minimum amount of memory required. Only used for 'pod' strategy
 - `strategy` (String) the strategy to adopt
@@ -84,14 +85,14 @@ Optional:
 
 Optional:
 
-- `buildah` (Attributes) a BuildahTask, for Buildah strategy Deprecated: use spectrum, jib, s2i or a custom publishing strategy instead (see [below for nested schema](#nestedatt--spec--tasks--buildah))
+- `buildah` (Attributes) a BuildahTask, for Buildah strategy Deprecated: use jib, s2i or a custom publishing strategy instead (see [below for nested schema](#nestedatt--spec--tasks--buildah))
 - `builder` (Attributes) a BuilderTask, used to generate and build the project (see [below for nested schema](#nestedatt--spec--tasks--builder))
 - `custom` (Attributes) User customizable task execution. These are executed after the build and before the package task. (see [below for nested schema](#nestedatt--spec--tasks--custom))
 - `jib` (Attributes) a JibTask, for Jib strategy (see [below for nested schema](#nestedatt--spec--tasks--jib))
-- `kaniko` (Attributes) a KanikoTask, for Kaniko strategy Deprecated: use spectrum, jib, s2i or a custom publishing strategy instead (see [below for nested schema](#nestedatt--spec--tasks--kaniko))
+- `kaniko` (Attributes) a KanikoTask, for Kaniko strategy Deprecated: use jib, s2i or a custom publishing strategy instead (see [below for nested schema](#nestedatt--spec--tasks--kaniko))
 - `package` (Attributes) Application pre publishing a PackageTask, used to package the project (see [below for nested schema](#nestedatt--spec--tasks--package))
 - `s2i` (Attributes) a S2iTask, for S2I strategy (see [below for nested schema](#nestedatt--spec--tasks--s2i))
-- `spectrum` (Attributes) a SpectrumTask, for Spectrum strategy (see [below for nested schema](#nestedatt--spec--tasks--spectrum))
+- `spectrum` (Attributes) a SpectrumTask, for Spectrum strategy Deprecated: use jib, s2i or a custom publishing strategy instead (see [below for nested schema](#nestedatt--spec--tasks--spectrum))
 
 <a id="nestedatt--spec--tasks--buildah"></a>
 ### Nested Schema for `spec.tasks.buildah`
@@ -119,6 +120,7 @@ Optional:
 - `node_selector` (Map of String) The node selector for the builder pod. Only used for 'pod' strategy
 - `operator_namespace` (String) The namespace where to run the builder Pod (must be the same of the operator in charge of this Build reconciliation).
 - `order_strategy` (String) the build order strategy to adopt
+- `platforms` (List of String) The list of platforms used in order to build a container image.
 - `request_cpu` (String) The minimum amount of CPU required. Only used for 'pod' strategy
 - `request_memory` (String) The minimum amount of memory required. Only used for 'pod' strategy
 - `strategy` (String) the strategy to adopt
@@ -164,6 +166,7 @@ Optional:
 - `node_selector` (Map of String) The node selector for the builder pod. Only used for 'pod' strategy
 - `operator_namespace` (String) The namespace where to run the builder Pod (must be the same of the operator in charge of this Build reconciliation).
 - `order_strategy` (String) the build order strategy to adopt
+- `platforms` (List of String) The list of platforms used in order to build a container image.
 - `request_cpu` (String) The minimum amount of CPU required. Only used for 'pod' strategy
 - `request_memory` (String) The minimum amount of memory required. Only used for 'pod' strategy
 - `strategy` (String) the strategy to adopt
@@ -405,9 +408,24 @@ Optional:
 <a id="nestedatt--spec--tasks--builder--steps--capabilities"></a>
 ### Nested Schema for `spec.tasks.builder.steps.capabilities`
 
+Optional:
+
+- `build_time_properties` (Attributes List) Set of required Camel build time properties (see [below for nested schema](#nestedatt--spec--tasks--builder--steps--capabilities--build_time_properties))
+- `dependencies` (Attributes List) List of required Maven dependencies (see [below for nested schema](#nestedatt--spec--tasks--builder--steps--capabilities--dependencies))
+- `metadata` (Map of String) Set of generic metadata
+- `runtime_properties` (Attributes List) Set of required Camel runtime properties (see [below for nested schema](#nestedatt--spec--tasks--builder--steps--capabilities--runtime_properties))
+
+<a id="nestedatt--spec--tasks--builder--steps--capabilities--build_time_properties"></a>
+### Nested Schema for `spec.tasks.builder.steps.capabilities.build_time_properties`
+
 Required:
 
-- `dependencies` (Attributes List) (see [below for nested schema](#nestedatt--spec--tasks--builder--steps--capabilities--dependencies))
+- `key` (String)
+
+Optional:
+
+- `value` (String)
+
 
 <a id="nestedatt--spec--tasks--builder--steps--capabilities--dependencies"></a>
 ### Nested Schema for `spec.tasks.builder.steps.capabilities.dependencies`
@@ -422,6 +440,18 @@ Optional:
 - `classifier` (String) Maven Classifier
 - `type` (String) Maven Type
 - `version` (String) Maven Version
+
+
+<a id="nestedatt--spec--tasks--builder--steps--capabilities--runtime_properties"></a>
+### Nested Schema for `spec.tasks.builder.steps.capabilities.runtime_properties`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `value` (String)
 
 
 
@@ -472,6 +502,7 @@ Optional:
 - `node_selector` (Map of String) The node selector for the builder pod. Only used for 'pod' strategy
 - `operator_namespace` (String) The namespace where to run the builder Pod (must be the same of the operator in charge of this Build reconciliation).
 - `order_strategy` (String) the build order strategy to adopt
+- `platforms` (List of String) The list of platforms used in order to build a container image.
 - `request_cpu` (String) The minimum amount of CPU required. Only used for 'pod' strategy
 - `request_memory` (String) The minimum amount of memory required. Only used for 'pod' strategy
 - `strategy` (String) the strategy to adopt
@@ -502,6 +533,7 @@ Optional:
 - `node_selector` (Map of String) The node selector for the builder pod. Only used for 'pod' strategy
 - `operator_namespace` (String) The namespace where to run the builder Pod (must be the same of the operator in charge of this Build reconciliation).
 - `order_strategy` (String) the build order strategy to adopt
+- `platforms` (List of String) The list of platforms used in order to build a container image.
 - `request_cpu` (String) The minimum amount of CPU required. Only used for 'pod' strategy
 - `request_memory` (String) The minimum amount of memory required. Only used for 'pod' strategy
 - `strategy` (String) the strategy to adopt
@@ -556,6 +588,7 @@ Optional:
 - `node_selector` (Map of String) The node selector for the builder pod. Only used for 'pod' strategy
 - `operator_namespace` (String) The namespace where to run the builder Pod (must be the same of the operator in charge of this Build reconciliation).
 - `order_strategy` (String) the build order strategy to adopt
+- `platforms` (List of String) The list of platforms used in order to build a container image.
 - `request_cpu` (String) The minimum amount of CPU required. Only used for 'pod' strategy
 - `request_memory` (String) The minimum amount of memory required. Only used for 'pod' strategy
 - `strategy` (String) the strategy to adopt
@@ -601,6 +634,7 @@ Optional:
 - `node_selector` (Map of String) The node selector for the builder pod. Only used for 'pod' strategy
 - `operator_namespace` (String) The namespace where to run the builder Pod (must be the same of the operator in charge of this Build reconciliation).
 - `order_strategy` (String) the build order strategy to adopt
+- `platforms` (List of String) The list of platforms used in order to build a container image.
 - `request_cpu` (String) The minimum amount of CPU required. Only used for 'pod' strategy
 - `request_memory` (String) The minimum amount of memory required. Only used for 'pod' strategy
 - `strategy` (String) the strategy to adopt
@@ -842,9 +876,24 @@ Optional:
 <a id="nestedatt--spec--tasks--package--steps--capabilities"></a>
 ### Nested Schema for `spec.tasks.package.steps.capabilities`
 
+Optional:
+
+- `build_time_properties` (Attributes List) Set of required Camel build time properties (see [below for nested schema](#nestedatt--spec--tasks--package--steps--capabilities--build_time_properties))
+- `dependencies` (Attributes List) List of required Maven dependencies (see [below for nested schema](#nestedatt--spec--tasks--package--steps--capabilities--dependencies))
+- `metadata` (Map of String) Set of generic metadata
+- `runtime_properties` (Attributes List) Set of required Camel runtime properties (see [below for nested schema](#nestedatt--spec--tasks--package--steps--capabilities--runtime_properties))
+
+<a id="nestedatt--spec--tasks--package--steps--capabilities--build_time_properties"></a>
+### Nested Schema for `spec.tasks.package.steps.capabilities.build_time_properties`
+
 Required:
 
-- `dependencies` (Attributes List) (see [below for nested schema](#nestedatt--spec--tasks--package--steps--capabilities--dependencies))
+- `key` (String)
+
+Optional:
+
+- `value` (String)
+
 
 <a id="nestedatt--spec--tasks--package--steps--capabilities--dependencies"></a>
 ### Nested Schema for `spec.tasks.package.steps.capabilities.dependencies`
@@ -859,6 +908,18 @@ Optional:
 - `classifier` (String) Maven Classifier
 - `type` (String) Maven Type
 - `version` (String) Maven Version
+
+
+<a id="nestedatt--spec--tasks--package--steps--capabilities--runtime_properties"></a>
+### Nested Schema for `spec.tasks.package.steps.capabilities.runtime_properties`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `value` (String)
 
 
 
@@ -906,6 +967,7 @@ Optional:
 - `node_selector` (Map of String) The node selector for the builder pod. Only used for 'pod' strategy
 - `operator_namespace` (String) The namespace where to run the builder Pod (must be the same of the operator in charge of this Build reconciliation).
 - `order_strategy` (String) the build order strategy to adopt
+- `platforms` (List of String) The list of platforms used in order to build a container image.
 - `request_cpu` (String) The minimum amount of CPU required. Only used for 'pod' strategy
 - `request_memory` (String) The minimum amount of memory required. Only used for 'pod' strategy
 - `strategy` (String) the strategy to adopt
@@ -936,6 +998,7 @@ Optional:
 - `node_selector` (Map of String) The node selector for the builder pod. Only used for 'pod' strategy
 - `operator_namespace` (String) The namespace where to run the builder Pod (must be the same of the operator in charge of this Build reconciliation).
 - `order_strategy` (String) the build order strategy to adopt
+- `platforms` (List of String) The list of platforms used in order to build a container image.
 - `request_cpu` (String) The minimum amount of CPU required. Only used for 'pod' strategy
 - `request_memory` (String) The minimum amount of memory required. Only used for 'pod' strategy
 - `strategy` (String) the strategy to adopt

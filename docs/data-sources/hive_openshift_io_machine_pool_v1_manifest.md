@@ -101,6 +101,7 @@ Optional:
 - `metadata_service` (Attributes) EC2MetadataOptions defines metadata service interaction options for EC2 instances in the machine pool. (see [below for nested schema](#nestedatt--spec--platform--aws--metadata_service))
 - `spot_market_options` (Attributes) SpotMarketOptions allows users to configure instances to be run using AWS Spot instances. (see [below for nested schema](#nestedatt--spec--platform--aws--spot_market_options))
 - `subnets` (List of String) Subnets is the list of IDs of subnets to which to attach the machines. There must be exactly one subnet for each availability zone used. These subnets may be public or private. As a special case, for consistency with install-config, you may specify exactly one private and one public subnet for each availability zone. In this case, the public subnets will be filtered out and only the private subnets will be used. If empty/omitted, we will look for subnets in each availability zone tagged with Name=<clusterID>-private-<az>.
+- `user_tags` (Map of String) UserTags contains the user defined tags to be supplied for the ec2 instance. Note that these will be merged with ClusterDeployment.Spec.Platform.AWS.UserTags, with this field taking precedence when keys collide.
 - `zones` (List of String) Zones is list of availability zones that can be used.
 
 <a id="nestedatt--spec--platform--aws--root_volume"></a>
@@ -195,6 +196,7 @@ Required:
 Optional:
 
 - `network_project_id` (String) NetworkProjectID specifies which project the network and subnets exist in when they are not in the main ProjectID.
+- `on_host_maintenance` (String) OnHostMaintenance determines the behavior when a maintenance event occurs that might cause the instance to reboot. This is required to be set to 'Terminate' if you want to provision machine with attached GPUs. Otherwise, allowed values are 'Migrate' and 'Terminate'. If omitted, the platform chooses a default, which is subject to change over time, currently that default is 'Migrate'.
 - `os_disk` (Attributes) OSDisk defines the storage for instances. (see [below for nested schema](#nestedatt--spec--platform--gcp--os_disk))
 - `secure_boot` (String) SecureBoot Defines whether the instance should have secure boot enabled. Verifies the digital signature of all boot components, and halts the boot process if signature verification fails. If omitted, the platform chooses a default, which is subject to change over time. Currently that default is 'Disabled'.
 - `zones` (List of String) Zones is list of availability zones that can be used.

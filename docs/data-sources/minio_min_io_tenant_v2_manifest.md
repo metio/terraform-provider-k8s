@@ -101,6 +101,7 @@ Optional:
 
 Required:
 
+- `name` (String)
 - `servers` (Number)
 - `volume_claim_template` (Attributes) (see [below for nested schema](#nestedatt--spec--pools--volume_claim_template))
 - `volumes_per_server` (Number)
@@ -111,7 +112,6 @@ Optional:
 - `annotations` (Map of String)
 - `container_security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--pools--container_security_context))
 - `labels` (Map of String)
-- `name` (String)
 - `node_selector` (Map of String)
 - `reclaim_storage` (Boolean)
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--pools--resources))

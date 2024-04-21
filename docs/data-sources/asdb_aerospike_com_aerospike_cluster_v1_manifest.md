@@ -68,6 +68,7 @@ Optional:
 
 - `aerospike_access_control` (Attributes) Has the Aerospike roles and users definitions. Required if aerospike cluster security is enabled. (see [below for nested schema](#nestedatt--spec--aerospike_access_control))
 - `aerospike_network_policy` (Attributes) AerospikeNetworkPolicy specifies how clients and tools access the Aerospike cluster. (see [below for nested schema](#nestedatt--spec--aerospike_network_policy))
+- `enable_dynamic_config_update` (Boolean) EnableDynamicConfigUpdate enables dynamic config update flow of the operator. If enabled, operator will try to update the Aerospike config dynamically. In case of inconsistent state during dynamic config update, operator falls back to rolling restart.
 - `k8s_node_block_list` (List of String) K8sNodeBlockList is a list of Kubernetes nodes which are not used for Aerospike pods. Pods are not scheduled on these nodes. Pods are migrated from these nodes if already present. This is useful for the maintenance of Kubernetes nodes.
 - `max_unavailable` (String) MaxUnavailable is the percentage/number of pods that can be allowed to go down or unavailable before application disruption. This value is used to create PodDisruptionBudget. Defaults to 1. Refer Aerospike documentation for more details.
 - `operator_client_cert` (Attributes) Certificates to connect to Aerospike. (see [below for nested schema](#nestedatt--spec--operator_client_cert))
@@ -2126,7 +2127,8 @@ Optional:
 - `max_ignorable_pods` (String) MaxIgnorablePods is the maximum number/percentage of pending/failed pods in a rack that are ignored while assessing cluster stability. Pods identified using this value are not considered part of the cluster. Additionally, in SC mode clusters, these pods are removed from the roster. This is particularly useful when some pods are stuck in pending/failed state due to any scheduling issues and cannot be fixed by simply updating the CR. It enables the operator to perform specific operations on the cluster, like changing Aerospike configurations, without being hindered by these problematic pods. Remember to set MaxIgnorablePods back to 0 once the required operation is done. This makes sure that later on, all pods are properly counted when evaluating the cluster stability.
 - `namespaces` (List of String) List of Aerospike namespaces for which rack feature will be enabled
 - `racks` (Attributes List) Racks is the list of all racks (see [below for nested schema](#nestedatt--spec--rack_config--racks))
-- `rolling_update_batch_size` (String) RollingUpdateBatchSize is the percentage/number of rack pods that will be restarted simultaneously
+- `rolling_update_batch_size` (String) RollingUpdateBatchSize is the percentage/number of rack pods that can be restarted simultaneously
+- `scale_down_batch_size` (String) ScaleDownBatchSize is the percentage/number of rack pods that can be scaled down simultaneously
 
 <a id="nestedatt--spec--rack_config--racks"></a>
 ### Nested Schema for `spec.rack_config.racks`

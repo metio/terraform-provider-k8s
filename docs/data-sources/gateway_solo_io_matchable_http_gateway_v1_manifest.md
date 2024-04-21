@@ -1285,6 +1285,7 @@ Optional:
 
 Optional:
 
+- `dynamic_stats` (Boolean)
 - `suppress_envoy_headers` (Boolean)
 
 

@@ -64,6 +64,7 @@ Optional:
 - `networking` (Attributes) networking defines the networking rules to allow ELBV2 LoadBalancer to access targets in TargetGroup. (see [below for nested schema](#nestedatt--spec--networking))
 - `node_selector` (Attributes) node selector for instance type target groups to only register certain nodes (see [below for nested schema](#nestedatt--spec--node_selector))
 - `target_type` (String) targetType is the TargetType of TargetGroup. If unspecified, it will be automatically inferred.
+- `vpc_id` (String) VpcID is the VPC of the TargetGroup. If unspecified, it will be automatically inferred.
 
 <a id="nestedatt--spec--service_ref"></a>
 ### Nested Schema for `spec.service_ref`

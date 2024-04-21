@@ -76,7 +76,7 @@ Optional:
 - `annotations` (Map of String) The annotations-related configuration to add/set on each Pod related object.
 - `host_network` (Boolean) Whether host networking is enabled for the Ganesha server. If not set, the network settings from the cluster CR will be applied.
 - `labels` (Map of String) The labels-related configuration to add/set on each Pod related object.
-- `liveness_probe` (Attributes) A liveness-probe to verify that Ganesha server has valid run-time state. If LivenessProbe.Disabled is false and LivenessProbe.Probe is nil uses default probe. (see [below for nested schema](#nestedatt--spec--server--liveness_probe))
+- `liveness_probe` (Attributes) A liveness-probe to verify that Ganesha server has valid run-time state.If LivenessProbe.Disabled is false and LivenessProbe.Probe is nil uses default probe. (see [below for nested schema](#nestedatt--spec--server--liveness_probe))
 - `log_level` (String) LogLevel set logging level
 - `placement` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement))
 - `priority_class_name` (String) PriorityClassName sets the priority class on the pods
@@ -88,7 +88,7 @@ Optional:
 Optional:
 
 - `disabled` (Boolean) Disabled determines whether probe is disable or not
-- `probe` (Attributes) Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic. (see [below for nested schema](#nestedatt--spec--server--liveness_probe--probe))
+- `probe` (Attributes) Probe describes a health check to be performed against a container to determine whether it isalive or ready to receive traffic. (see [below for nested schema](#nestedatt--spec--server--liveness_probe--probe))
 
 <a id="nestedatt--spec--server--liveness_probe--probe"></a>
 ### Nested Schema for `spec.server.liveness_probe.probe`
@@ -96,22 +96,22 @@ Optional:
 Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--server--liveness_probe--probe--exec))
-- `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
+- `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.
 - `grpc` (Attributes) GRPC specifies an action involving a GRPC port. (see [below for nested schema](#nestedatt--spec--server--liveness_probe--probe--grpc))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--server--liveness_probe--probe--http_get))
-- `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
-- `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
-- `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
+- `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+- `period_seconds` (Number) How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.
+- `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
 - `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. (see [below for nested schema](#nestedatt--spec--server--liveness_probe--probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
-- `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+- `timeout_seconds` (Number) Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--server--liveness_probe--probe--exec"></a>
 ### Nested Schema for `spec.server.liveness_probe.probe.exec`
 
 Optional:
 
-- `command` (List of String) Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
+- `command` (List of String) Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
 
 
 <a id="nestedatt--spec--server--liveness_probe--probe--grpc"></a>
@@ -123,7 +123,7 @@ Required:
 
 Optional:
 
-- `service` (String) Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.
+- `service` (String) Service is the name of the service to place in the gRPC HealthCheckRequest(see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).If this is not specified, the default behavior is defined by gRPC.
 
 
 <a id="nestedatt--spec--server--liveness_probe--probe--http_get"></a>
@@ -131,21 +131,21 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (String) Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.
 
 Optional:
 
-- `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
+- `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.
 - `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--server--liveness_probe--probe--http_get--http_headers))
 - `path` (String) Path to access on the HTTP server.
-- `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
+- `scheme` (String) Scheme to use for connecting to the host.Defaults to HTTP.
 
 <a id="nestedatt--spec--server--liveness_probe--probe--http_get--http_headers"></a>
 ### Nested Schema for `spec.server.liveness_probe.probe.http_get.http_headers`
 
 Required:
 
-- `name` (String) The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
+- `name` (String) The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
 
@@ -155,7 +155,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (String) Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -605,16 +605,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--server--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--server--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--server--resources--claims"></a>
 ### Nested Schema for `spec.server.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -624,8 +624,8 @@ Required:
 
 Optional:
 
-- `namespace` (String) The namespace inside the Ceph pool (set by 'pool') where shared NFS-Ganesha config is stored. This setting is deprecated as it is internally set to the name of the CephNFS.
-- `pool` (String) The Ceph pool used store the shared configuration for NFS-Ganesha daemons. This setting is deprecated, as it is internally required to be '.nfs'.
+- `namespace` (String) The namespace inside the Ceph pool (set by 'pool') where shared NFS-Ganesha config is stored.This setting is deprecated as it is internally set to the name of the CephNFS.
+- `pool` (String) The Ceph pool used store the shared configuration for NFS-Ganesha daemons.This setting is deprecated, as it is internally required to be '.nfs'.
 
 
 <a id="nestedatt--spec--security"></a>
@@ -634,17 +634,17 @@ Optional:
 Optional:
 
 - `kerberos` (Attributes) Kerberos configures NFS-Ganesha to secure NFS client connections with Kerberos. (see [below for nested schema](#nestedatt--spec--security--kerberos))
-- `sssd` (Attributes) SSSD enables integration with System Security Services Daemon (SSSD). SSSD can be used to provide user ID mapping from a number of sources. See https://sssd.io for more information about the SSSD project. (see [below for nested schema](#nestedatt--spec--security--sssd))
+- `sssd` (Attributes) SSSD enables integration with System Security Services Daemon (SSSD). SSSD can be used toprovide user ID mapping from a number of sources. See https://sssd.io for more informationabout the SSSD project. (see [below for nested schema](#nestedatt--spec--security--sssd))
 
 <a id="nestedatt--spec--security--kerberos"></a>
 ### Nested Schema for `spec.security.kerberos`
 
 Optional:
 
-- `config_files` (Attributes) ConfigFiles defines where the Kerberos configuration should be sourced from. Config files will be placed into the '/etc/krb5.conf.rook/' directory.  If this is left empty, Rook will not add any files. This allows you to manage the files yourself however you wish. For example, you may build them into your custom Ceph container image or use the Vault agent injector to securely add the files via annotations on the CephNFS spec (passed to the NFS server pods).  Rook configures Kerberos to log to stderr. We suggest removing logging sections from config files to avoid consuming unnecessary disk space from logging to files. (see [below for nested schema](#nestedatt--spec--security--kerberos--config_files))
+- `config_files` (Attributes) ConfigFiles defines where the Kerberos configuration should be sourced from. Config fileswill be placed into the '/etc/krb5.conf.rook/' directory.If this is left empty, Rook will not add any files. This allows you to manage the filesyourself however you wish. For example, you may build them into your custom Ceph containerimage or use the Vault agent injector to securely add the files via annotations on theCephNFS spec (passed to the NFS server pods).Rook configures Kerberos to log to stderr. We suggest removing logging sections from configfiles to avoid consuming unnecessary disk space from logging to files. (see [below for nested schema](#nestedatt--spec--security--kerberos--config_files))
 - `domain_name` (String) DomainName should be set to the Kerberos Realm.
-- `keytab_file` (Attributes) KeytabFile defines where the Kerberos keytab should be sourced from. The keytab file will be placed into '/etc/krb5.keytab'. If this is left empty, Rook will not add the file. This allows you to manage the 'krb5.keytab' file yourself however you wish. For example, you may build it into your custom Ceph container image or use the Vault agent injector to securely add the file via annotations on the CephNFS spec (passed to the NFS server pods). (see [below for nested schema](#nestedatt--spec--security--kerberos--keytab_file))
-- `principal_name` (String) PrincipalName corresponds directly to NFS-Ganesha's NFS_KRB5:PrincipalName config. In practice, this is the service prefix of the principal name. The default is 'nfs'. This value is combined with (a) the namespace and name of the CephNFS (with a hyphen between) and (b) the Realm configured in the user-provided krb5.conf to determine the full principal name: <principalName>/<namespace>-<name>@<realm>. e.g., nfs/rook-ceph-my-nfs@example.net. See https://github.com/nfs-ganesha/nfs-ganesha/wiki/RPCSEC_GSS for more detail.
+- `keytab_file` (Attributes) KeytabFile defines where the Kerberos keytab should be sourced from. The keytab file will beplaced into '/etc/krb5.keytab'. If this is left empty, Rook will not add the file.This allows you to manage the 'krb5.keytab' file yourself however you wish. For example, youmay build it into your custom Ceph container image or use the Vault agent injector tosecurely add the file via annotations on the CephNFS spec (passed to the NFS server pods). (see [below for nested schema](#nestedatt--spec--security--kerberos--keytab_file))
+- `principal_name` (String) PrincipalName corresponds directly to NFS-Ganesha's NFS_KRB5:PrincipalName config. Inpractice, this is the service prefix of the principal name. The default is 'nfs'.This value is combined with (a) the namespace and name of the CephNFS (with a hyphen between)and (b) the Realm configured in the user-provided krb5.conf to determine the full principalname: <principalName>/<namespace>-<name>@<realm>. e.g., nfs/rook-ceph-my-nfs@example.net.See https://github.com/nfs-ganesha/nfs-ganesha/wiki/RPCSEC_GSS for more detail.
 
 <a id="nestedatt--spec--security--kerberos--config_files"></a>
 ### Nested Schema for `spec.security.kerberos.config_files`
@@ -1195,17 +1195,17 @@ Required:
 
 Optional:
 
-- `additional_files` (Attributes List) AdditionalFiles defines any number of additional files that should be mounted into the SSSD sidecar. These files may be referenced by the sssd.conf config file. (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files))
-- `debug_level` (Number) DebugLevel sets the debug level for SSSD. If unset or set to 0, Rook does nothing. Otherwise, this may be a value between 1 and 10. See SSSD docs for more info: https://sssd.io/troubleshooting/basics.html#sssd-debug-logs
+- `additional_files` (Attributes List) AdditionalFiles defines any number of additional files that should be mounted into the SSSDsidecar. These files may be referenced by the sssd.conf config file. (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files))
+- `debug_level` (Number) DebugLevel sets the debug level for SSSD. If unset or set to 0, Rook does nothing. Otherwise,this may be a value between 1 and 10. See SSSD docs for more info:https://sssd.io/troubleshooting/basics.html#sssd-debug-logs
 - `resources` (Attributes) Resources allow specifying resource requests/limits on the SSSD sidecar container. (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--resources))
-- `sssd_config_file` (Attributes) SSSDConfigFile defines where the SSSD configuration should be sourced from. The config file will be placed into '/etc/sssd/sssd.conf'. If this is left empty, Rook will not add the file. This allows you to manage the 'sssd.conf' file yourself however you wish. For example, you may build it into your custom Ceph container image or use the Vault agent injector to securely add the file via annotations on the CephNFS spec (passed to the NFS server pods). (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file))
+- `sssd_config_file` (Attributes) SSSDConfigFile defines where the SSSD configuration should be sourced from. The config filewill be placed into '/etc/sssd/sssd.conf'. If this is left empty, Rook will not add the file.This allows you to manage the 'sssd.conf' file yourself however you wish. For example, youmay build it into your custom Ceph container image or use the Vault agent injector tosecurely add the file via annotations on the CephNFS spec (passed to the NFS server pods). (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file))
 
 <a id="nestedatt--spec--security--sssd--sidecar--additional_files"></a>
 ### Nested Schema for `spec.security.sssd.sidecar.additional_files`
 
 Required:
 
-- `sub_path` (String) SubPath defines the sub-path in '/etc/sssd/rook-additional/' where the additional file(s) will be placed. Each subPath definition must be unique and must not contain ':'.
+- `sub_path` (String) SubPath defines the sub-path in '/etc/sssd/rook-additional/' where the additional file(s)will be placed. Each subPath definition must be unique and must not contain ':'.
 - `volume_source` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source))
 
 <a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source"></a>
@@ -1472,16 +1472,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--security--sssd--sidecar--resources--claims"></a>
 ### Nested Schema for `spec.security.sssd.sidecar.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 

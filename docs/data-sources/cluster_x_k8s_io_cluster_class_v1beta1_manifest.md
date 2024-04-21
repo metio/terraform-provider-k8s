@@ -294,6 +294,10 @@ Required:
 - `required` (Boolean) Required specifies if the variable is required.Note: this applies to the variable as a whole and thus thetop-level object defined in the schema. If nested fields arerequired, this will be specified inside the schema.
 - `schema` (Attributes) Schema defines the schema of the variable. (see [below for nested schema](#nestedatt--spec--variables--schema))
 
+Optional:
+
+- `metadata` (Attributes) Metadata is the metadata of a variable.It can be used to add additional data for higher level tools toa ClusterClassVariable. (see [below for nested schema](#nestedatt--spec--variables--metadata))
+
 <a id="nestedatt--spec--variables--schema"></a>
 ### Nested Schema for `spec.variables.schema`
 
@@ -331,6 +335,15 @@ Optional:
 - `unique_items` (Boolean) UniqueItems specifies if items in an array must be unique.NOTE: Can only be set if type is array.
 - `x_kubernetes_preserve_unknown_fields` (Boolean) XPreserveUnknownFields allows setting fields in a variable objectwhich are not defined in the variable schema. This affects fields recursively,except if nested properties or additionalProperties are specified in the schema.
 
+
+
+<a id="nestedatt--spec--variables--metadata"></a>
+### Nested Schema for `spec.variables.metadata`
+
+Optional:
+
+- `annotations` (Map of String) Annotations is an unstructured key value map that can be used to store andretrieve arbitrary metadata.They are not queryable.
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) variables.
 
 
 

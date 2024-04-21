@@ -3,12 +3,12 @@
 page_title: "k8s_postgres_operator_crunchydata_com_pg_admin_v1beta1_manifest Data Source - terraform-provider-k8s"
 subcategory: "postgres-operator.crunchydata.com"
 description: |-
-  PGAdmin is the Schema for the pgadmins API
+  PGAdmin is the Schema for the PGAdmin API
 ---
 
 # k8s_postgres_operator_crunchydata_com_pg_admin_v1beta1_manifest (Data Source)
 
-PGAdmin is the Schema for the pgadmins API
+PGAdmin is the Schema for the PGAdmin API
 
 ## Example Usage
 
@@ -69,6 +69,7 @@ Optional:
 - `resources` (Attributes) Resource requirements for the PGAdmin container. (see [below for nested schema](#nestedatt--spec--resources))
 - `server_groups` (Attributes List) ServerGroups for importing PostgresClusters to pgAdmin. To create a pgAdmin with no selectors, leave this field empty. A pgAdmin created with no 'ServerGroups' will not automatically add any servers through discovery. PostgresClusters can still be added manually. (see [below for nested schema](#nestedatt--spec--server_groups))
 - `tolerations` (Attributes List) Tolerations of the PGAdmin pod. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration (see [below for nested schema](#nestedatt--spec--tolerations))
+- `users` (Attributes List) pgAdmin users that are managed via the PGAdmin spec. Users can still be added via the pgAdmin GUI, but those users will not show up here. (see [below for nested schema](#nestedatt--spec--users))
 
 <a id="nestedatt--spec--data_volume_claim_spec"></a>
 ### Nested Schema for `spec.data_volume_claim_spec`
@@ -522,6 +523,7 @@ Optional:
 Optional:
 
 - `files` (Attributes List) Files allows the user to mount projected volumes into the pgAdmin container so that files can be referenced by pgAdmin as needed. (see [below for nested schema](#nestedatt--spec--config--files))
+- `gunicorn` (Map of String) Settings for the gunicorn server. More info: https://docs.gunicorn.org/en/latest/settings.html
 - `ldap_bind_password` (Attributes) A Secret containing the value for the LDAP_BIND_PASSWORD setting. More info: https://www.pgadmin.org/docs/pgadmin4/latest/ldap.html (see [below for nested schema](#nestedatt--spec--config--ldap_bind_password))
 - `settings` (Map of String) Settings for the pgAdmin server process. Keys should be uppercase and values must be constants. More info: https://www.pgadmin.org/docs/pgadmin4/latest/config_py.html
 
@@ -723,3 +725,15 @@ Optional:
 - `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
 - `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
 - `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+
+
+<a id="nestedatt--spec--users"></a>
+### Nested Schema for `spec.users`
+
+Required:
+
+- `username` (String) The username for User in pgAdmin. Must be unique in the pgAdmin's users list.
+
+Optional:
+
+- `role` (String) Role determines whether the user has admin privileges or not. Defaults to User. Valid options are Administrator and User.

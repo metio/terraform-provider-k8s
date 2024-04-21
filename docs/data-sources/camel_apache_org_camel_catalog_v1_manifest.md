@@ -261,9 +261,24 @@ Optional:
 <a id="nestedatt--spec--runtime--capabilities"></a>
 ### Nested Schema for `spec.runtime.capabilities`
 
+Optional:
+
+- `build_time_properties` (Attributes List) Set of required Camel build time properties (see [below for nested schema](#nestedatt--spec--runtime--capabilities--build_time_properties))
+- `dependencies` (Attributes List) List of required Maven dependencies (see [below for nested schema](#nestedatt--spec--runtime--capabilities--dependencies))
+- `metadata` (Map of String) Set of generic metadata
+- `runtime_properties` (Attributes List) Set of required Camel runtime properties (see [below for nested schema](#nestedatt--spec--runtime--capabilities--runtime_properties))
+
+<a id="nestedatt--spec--runtime--capabilities--build_time_properties"></a>
+### Nested Schema for `spec.runtime.capabilities.build_time_properties`
+
 Required:
 
-- `dependencies` (Attributes List) (see [below for nested schema](#nestedatt--spec--runtime--capabilities--dependencies))
+- `key` (String)
+
+Optional:
+
+- `value` (String)
+
 
 <a id="nestedatt--spec--runtime--capabilities--dependencies"></a>
 ### Nested Schema for `spec.runtime.capabilities.dependencies`
@@ -278,3 +293,15 @@ Optional:
 - `classifier` (String) Maven Classifier
 - `type` (String) Maven Type
 - `version` (String) Maven Version
+
+
+<a id="nestedatt--spec--runtime--capabilities--runtime_properties"></a>
+### Nested Schema for `spec.runtime.capabilities.runtime_properties`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `value` (String)

@@ -58,7 +58,7 @@ Required:
 Optional:
 
 - `description` (String) Description helps describe a GatewayClass with more details.
-- `parameters_ref` (Attributes) ParametersRef is a reference to a resource that contains the configurationparameters corresponding to the GatewayClass. This is optional if thecontroller does not require any additional configuration.ParametersRef can reference a standard Kubernetes resource, i.e. ConfigMap,or an implementation-specific custom resource. The resource can becluster-scoped or namespace-scoped.If the referent cannot be found, the GatewayClass's 'InvalidParameters'status condition will be true.Support: Implementation-specific (see [below for nested schema](#nestedatt--spec--parameters_ref))
+- `parameters_ref` (Attributes) ParametersRef is a reference to a resource that contains the configurationparameters corresponding to the GatewayClass. This is optional if thecontroller does not require any additional configuration.ParametersRef can reference a standard Kubernetes resource, i.e. ConfigMap,or an implementation-specific custom resource. The resource can becluster-scoped or namespace-scoped.If the referent cannot be found, the GatewayClass's 'InvalidParameters'status condition will be true.A Gateway for this GatewayClass may provide its own 'parametersRef'. When both are specified,the merging behavior is implementation specific.It is generally recommended that GatewayClass provides defaults that can be overridden by a Gateway.Support: Implementation-specific (see [below for nested schema](#nestedatt--spec--parameters_ref))
 
 <a id="nestedatt--spec--parameters_ref"></a>
 ### Nested Schema for `spec.parameters_ref`

@@ -198,6 +198,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
@@ -257,6 +259,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
@@ -332,6 +336,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
@@ -391,6 +397,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
@@ -741,6 +749,7 @@ Optional:
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--volume_claim_template--metadata--resources))
 - `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--volume_claim_template--metadata--selector))
 - `storage_class_name` (String)
+- `volume_attributes_class_name` (String)
 - `volume_mode` (String)
 - `volume_name` (String)
 
@@ -768,6 +777,7 @@ Required:
 Optional:
 
 - `api_group` (String)
+- `namespace` (String)
 
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--volume_claim_template--metadata--resources"></a>
@@ -1004,10 +1014,48 @@ Optional:
 
 Optional:
 
+- `cluster_trust_bundle` (Attributes) (see [below for nested schema](#nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--sources--cluster_trust_bundle))
 - `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--sources--config_map))
 - `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--sources--downward_api))
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--sources--secret))
 - `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--sources--service_account_token))
+
+<a id="nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume.sources.cluster_trust_bundle`
+
+Required:
+
+- `path` (String)
+
+Optional:
+
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--sources--service_account_token--label_selector))
+- `name` (String)
+- `optional` (Boolean)
+- `signer_name` (String)
+
+<a id="nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--sources--service_account_token--label_selector"></a>
+### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume.sources.service_account_token.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--sources--service_account_token--signer_name--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--sources--service_account_token--signer_name--match_expressions"></a>
+### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume.sources.service_account_token.signer_name.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
 
 <a id="nestedatt--spec--emqx_template--extra_volumes--vsphere_volume--sources--config_map"></a>
 ### Nested Schema for `spec.emqx_template.extra_volumes.vsphere_volume.sources.config_map`
@@ -1406,8 +1454,17 @@ Optional:
 
 Optional:
 
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--emqx_template--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
+
+<a id="nestedatt--spec--emqx_template--resources--claims"></a>
+### Nested Schema for `spec.emqx_template.resources.claims`
+
+Required:
+
+- `name` (String)
+
 
 
 <a id="nestedatt--spec--emqx_template--security_context"></a>
@@ -1717,7 +1774,9 @@ Optional:
 - `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--extra_containers--liveness_probe))
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--extra_containers--ports))
 - `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--extra_containers--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--extra_containers--resize_policy))
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--extra_containers--resources))
+- `restart_policy` (String)
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--extra_containers--security_context))
 - `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--extra_containers--startup_probe))
 - `stdin` (Boolean)
@@ -1847,6 +1906,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--extra_containers--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--extra_containers--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--extra_containers--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--extra_containers--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--extra_containers--lifecycle--pre_stop--exec"></a>
@@ -1879,6 +1939,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--extra_containers--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.extra_containers.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--extra_containers--lifecycle--pre_stop--tcp_socket"></a>
@@ -1901,6 +1969,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--extra_containers--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--extra_containers--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--extra_containers--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--extra_containers--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--extra_containers--lifecycle--pre_stop--exec"></a>
@@ -1933,6 +2002,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--extra_containers--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.extra_containers.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--extra_containers--lifecycle--pre_stop--tcp_socket"></a>
@@ -2110,13 +2187,31 @@ Optional:
 
 
 
+<a id="nestedatt--spec--extra_containers--resize_policy"></a>
+### Nested Schema for `spec.extra_containers.resize_policy`
+
+Required:
+
+- `resource_name` (String)
+- `restart_policy` (String)
+
+
 <a id="nestedatt--spec--extra_containers--resources"></a>
 ### Nested Schema for `spec.extra_containers.resources`
 
 Optional:
 
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--extra_containers--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
+
+<a id="nestedatt--spec--extra_containers--resources--claims"></a>
+### Nested Schema for `spec.extra_containers.resources.claims`
+
+Required:
+
+- `name` (String)
+
 
 
 <a id="nestedatt--spec--extra_containers--security_context"></a>
@@ -2306,7 +2401,9 @@ Optional:
 - `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--init_containers--liveness_probe))
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--init_containers--ports))
 - `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--init_containers--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--init_containers--resize_policy))
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--init_containers--resources))
+- `restart_policy` (String)
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--init_containers--security_context))
 - `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--init_containers--startup_probe))
 - `stdin` (Boolean)
@@ -2436,6 +2533,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--init_containers--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--init_containers--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--init_containers--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--init_containers--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--init_containers--lifecycle--pre_stop--exec"></a>
@@ -2468,6 +2566,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--init_containers--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.init_containers.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--init_containers--lifecycle--pre_stop--tcp_socket"></a>
@@ -2490,6 +2596,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--init_containers--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--init_containers--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--init_containers--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--init_containers--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--init_containers--lifecycle--pre_stop--exec"></a>
@@ -2522,6 +2629,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--init_containers--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.init_containers.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--init_containers--lifecycle--pre_stop--tcp_socket"></a>
@@ -2699,13 +2814,31 @@ Optional:
 
 
 
+<a id="nestedatt--spec--init_containers--resize_policy"></a>
+### Nested Schema for `spec.init_containers.resize_policy`
+
+Required:
+
+- `resource_name` (String)
+- `restart_policy` (String)
+
+
 <a id="nestedatt--spec--init_containers--resources"></a>
 ### Nested Schema for `spec.init_containers.resources`
 
 Optional:
 
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--init_containers--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
+
+<a id="nestedatt--spec--init_containers--resources--claims"></a>
+### Nested Schema for `spec.init_containers.resources.claims`
+
+Required:
+
+- `name` (String)
+
 
 
 <a id="nestedatt--spec--init_containers--security_context"></a>
@@ -2879,6 +3012,7 @@ Optional:
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--persistent--resources))
 - `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--persistent--selector))
 - `storage_class_name` (String)
+- `volume_attributes_class_name` (String)
 - `volume_mode` (String)
 - `volume_name` (String)
 
@@ -2906,6 +3040,7 @@ Required:
 Optional:
 
 - `api_group` (String)
+- `namespace` (String)
 
 
 <a id="nestedatt--spec--persistent--resources"></a>

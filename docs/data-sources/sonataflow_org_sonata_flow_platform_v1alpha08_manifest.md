@@ -57,7 +57,8 @@ Optional:
 
 - `build` (Attributes) Build Attributes for building workflows in the target platform (see [below for nested schema](#nestedatt--spec--build))
 - `dev_mode` (Attributes) DevMode Attributes for running workflows in devmode (immutable, no build required) (see [below for nested schema](#nestedatt--spec--dev_mode))
-- `persistence` (Attributes) Persistence defines the platform persistence configuration. When this field is set, the configuration is used as the persistence for platform services and sonataflow instances that don't provide one of their own. (see [below for nested schema](#nestedatt--spec--persistence))
+- `persistence` (Attributes) Persistence defines the platform persistence configuration. When this field is set, the configuration is used as the persistence for platform services and SonataFlow instances that don't provide one of their own. (see [below for nested schema](#nestedatt--spec--persistence))
+- `properties` (Attributes) Properties defines the property set for a given actor in the current context. For example, the workflow managed properties. One can define here a set of properties for SonataFlow deployments that will be reused across every workflow deployment.  These properties MAY NOT be propagated to a SonataFlowClusterPlatform since PropertyVarSource can only refer local context sources. (see [below for nested schema](#nestedatt--spec--properties))
 - `services` (Attributes) Services attributes for deploying supporting applications like Data Index & Job Service. Only workflows without the 'sonataflow.org/profile: dev' annotation will be configured to use these service(s). Setting this will override the use of any cluster-scoped services that might be defined via 'SonataFlowClusterPlatform'. (see [below for nested schema](#nestedatt--spec--services))
 
 <a id="nestedatt--spec--build"></a>
@@ -325,6 +326,62 @@ Optional:
 - `database_name` (String) Name of postgresql database to be used. Defaults to 'sonataflow'
 - `namespace` (String) Namespace of the postgresql k8s service. Defaults to the SonataFlowPlatform's local namespace.
 - `port` (Number) Port to use when connecting to the postgresql k8s service. Defaults to 5432.
+
+
+
+
+<a id="nestedatt--spec--properties"></a>
+### Nested Schema for `spec.properties`
+
+Optional:
+
+- `flow` (Attributes List) Properties that will be added to the SonataFlow managed configMaps in the current context. (see [below for nested schema](#nestedatt--spec--properties--flow))
+
+<a id="nestedatt--spec--properties--flow"></a>
+### Nested Schema for `spec.properties.flow`
+
+Required:
+
+- `name` (String) The property name
+
+Optional:
+
+- `value` (String) Defaults to ''.
+- `value_from` (Attributes) Source for the property's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--properties--flow--value_from))
+
+<a id="nestedatt--spec--properties--flow--value_from"></a>
+### Nested Schema for `spec.properties.flow.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--properties--flow--value_from--config_map_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the flow's namespace (see [below for nested schema](#nestedatt--spec--properties--flow--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--properties--flow--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.properties.flow.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--properties--flow--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.properties.flow.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
 
 
 

@@ -117,11 +117,6 @@ Optional:
 <a id="nestedatt--spec--execution_request--artifact_request"></a>
 ### Nested Schema for `spec.execution_request.artifact_request`
 
-Required:
-
-- `storage_class_name` (String) artifact storage class name for container executor
-- `volume_mount_path` (String) artifact volume mount path for container executor
-
 Optional:
 
 - `dirs` (List of String) artifact directories for scraping
@@ -129,6 +124,9 @@ Optional:
 - `omit_folder_per_execution` (Boolean) don't use a separate folder for execution artifacts
 - `shared_between_pods` (Boolean) whether to share volume between pods
 - `storage_bucket` (String) artifact bucket storage
+- `storage_class_name` (String) artifact storage class name for container executor
+- `use_default_storage_class_name` (Boolean) whether to use default storage class name
+- `volume_mount_path` (String) artifact volume mount path for container executor
 
 
 <a id="nestedatt--spec--execution_request--env_config_maps"></a>

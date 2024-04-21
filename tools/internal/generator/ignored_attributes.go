@@ -44,6 +44,9 @@ var ignoredAttributes = map[string][]string{
 	"networking_istio_io_virtual_service_v1beta1": {
 		"spec.http.mirror_percent",
 	},
+	"networking_istio_io_virtual_service_v1": {
+		"spec.http.mirror_percent",
+	},
 	"security_istio_io_request_authentication_v1beta1": {
 		"spec.jwtRules.jwks_uri",
 	},
@@ -65,6 +68,8 @@ var ignoredAttributes = map[string][]string{
 		"spec.remoteWrite.streamAggrConfig.rules.input_relabel_configs.target_label",
 		"spec.remoteWrite.streamAggrConfig.rules.output_relabel_configs.source_labels",
 		"spec.remoteWrite.streamAggrConfig.rules.output_relabel_configs.target_label",
+		"spec.scrapeConfigRelabelTemplate.source_labels",
+		"spec.scrapeConfigRelabelTemplate.target_label",
 		"spec.serviceScrapeRelabelTemplate.source_labels",
 		"spec.serviceScrapeRelabelTemplate.target_label",
 		"spec.staticScrapeRelabelTemplate.source_labels",

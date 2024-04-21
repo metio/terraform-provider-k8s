@@ -1698,12 +1698,9 @@ Optional:
 <a id="nestedatt--spec--generators--list"></a>
 ### Nested Schema for `spec.generators.list`
 
-Required:
-
-- `elements` (List of String)
-
 Optional:
 
+- `elements` (List of String)
 - `elements_yaml` (String)
 - `template` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--list--template))
 
@@ -3830,12 +3827,9 @@ Optional:
 <a id="nestedatt--spec--generators--matrix--template--list"></a>
 ### Nested Schema for `spec.generators.matrix.template.list`
 
-Required:
-
-- `elements` (List of String)
-
 Optional:
 
+- `elements` (List of String)
 - `elements_yaml` (String)
 - `template` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--list--template))
 
@@ -8416,12 +8410,9 @@ Optional:
 <a id="nestedatt--spec--generators--merge--template--list"></a>
 ### Nested Schema for `spec.generators.merge.template.list`
 
-Required:
-
-- `elements` (List of String)
-
 Optional:
 
+- `elements` (List of String)
 - `elements_yaml` (String)
 - `template` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--list--template))
 

@@ -56,11 +56,13 @@ Optional:
 Optional:
 
 - `failure_policy` (Attributes) FailurePolicy, if set, configures when to declare the JobSet asfailed.The JobSet is always declared failed if any job in the setfinished with status failed. (see [below for nested schema](#nestedatt--spec--failure_policy))
+- `managed_by` (String) ManagedBy is used to indicate the controller or entity that manages a JobSet
 - `network` (Attributes) Network defines the networking options for the jobset. (see [below for nested schema](#nestedatt--spec--network))
 - `replicated_jobs` (Attributes List) ReplicatedJobs is the group of jobs that will form the set. (see [below for nested schema](#nestedatt--spec--replicated_jobs))
 - `startup_policy` (Attributes) StartupPolicy, if set, configures in what order jobs must be started (see [below for nested schema](#nestedatt--spec--startup_policy))
 - `success_policy` (Attributes) SuccessPolicy configures when to declare the JobSet assucceeded.The JobSet is always declared succeeded if all jobs in the setfinished with status complete. (see [below for nested schema](#nestedatt--spec--success_policy))
 - `suspend` (Boolean) Suspend suspends all running child Jobs when set to true.
+- `ttl_seconds_after_finished` (Number) TTLSecondsAfterFinished limits the lifetime of a JobSet that has finishedexecution (either Complete or Failed). If this field is set,TTLSecondsAfterFinished after the JobSet finishes, it is eligible to beautomatically deleted. When the JobSet is being deleted, its lifecycleguarantees (e.g. finalizers) will be honored. If this field is unset,the JobSet won't be automatically deleted. If this field is set to zero,the JobSet becomes eligible to be deleted immediately after it finishes.
 
 <a id="nestedatt--spec--failure_policy"></a>
 ### Nested Schema for `spec.failure_policy`
@@ -76,6 +78,7 @@ Optional:
 Optional:
 
 - `enable_dns_hostnames` (Boolean) EnableDNSHostnames allows pods to be reached via their hostnames.Pods will be reachable using the fully qualified pod hostname:<jobSet.name>-<spec.replicatedJob.name>-<job-index>-<pod-index>.<subdomain>
+- `publish_not_ready_addresses` (Boolean) Indicates if DNS records of pods should be published before the pods are ready.Defaults to True.
 - `subdomain` (String) Subdomain is an explicit choice for a network subdomain nameWhen set, any replicated job in the set is added to this network.Defaults to <jobSet.name> if not set.
 
 

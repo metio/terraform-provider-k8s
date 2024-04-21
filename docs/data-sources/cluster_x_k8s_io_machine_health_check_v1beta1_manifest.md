@@ -57,13 +57,13 @@ Required:
 
 - `cluster_name` (String) ClusterName is the name of the Cluster this object belongs to.
 - `selector` (Attributes) Label selector to match machines whose health will be exercised (see [below for nested schema](#nestedatt--spec--selector))
-- `unhealthy_conditions` (Attributes List) UnhealthyConditions contains a list of the conditions that determinewhether a node is considered unhealthy.  The conditions are combined in alogical OR, i.e. if any of the conditions is met, the node is unhealthy. (see [below for nested schema](#nestedatt--spec--unhealthy_conditions))
 
 Optional:
 
 - `max_unhealthy` (String) Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by'selector' are not healthy.
 - `node_startup_timeout` (String) Machines older than this duration without a node will be considered to havefailed and will be remediated.If not set, this value is defaulted to 10 minutes.If you wish to disable this feature, set the value explicitly to 0.
 - `remediation_template` (Attributes) RemediationTemplate is a reference to a remediation templateprovided by an infrastructure provider.This field is completely optional, when filled, the MachineHealthCheck controllercreates a new object from the template referenced and hands off remediation of the machine toa controller that lives outside of Cluster API. (see [below for nested schema](#nestedatt--spec--remediation_template))
+- `unhealthy_conditions` (Attributes List) UnhealthyConditions contains a list of the conditions that determinewhether a node is considered unhealthy.  The conditions are combined in alogical OR, i.e. if any of the conditions is met, the node is unhealthy. (see [below for nested schema](#nestedatt--spec--unhealthy_conditions))
 - `unhealthy_range` (String) Any further remediation is only allowed if the number of machines selected by 'selector' as not healthyis within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy.Eg. '[3-5]' - This means that remediation will be allowed only when:(a) there are at least 3 unhealthy machines (and)(b) there are at most 5 unhealthy machines
 
 <a id="nestedatt--spec--selector"></a>
@@ -88,16 +88,6 @@ Optional:
 
 
 
-<a id="nestedatt--spec--unhealthy_conditions"></a>
-### Nested Schema for `spec.unhealthy_conditions`
-
-Required:
-
-- `status` (String)
-- `timeout` (String)
-- `type` (String)
-
-
 <a id="nestedatt--spec--remediation_template"></a>
 ### Nested Schema for `spec.remediation_template`
 
@@ -110,3 +100,13 @@ Optional:
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
 - `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+
+
+<a id="nestedatt--spec--unhealthy_conditions"></a>
+### Nested Schema for `spec.unhealthy_conditions`
+
+Required:
+
+- `status` (String)
+- `timeout` (String)
+- `type` (String)

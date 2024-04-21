@@ -151,6 +151,7 @@ Optional:
 - `node_readiness_label` (Map of String)
 - `node_readiness_label_merge` (String)
 - `oauth_token_secret_name` (String)
+- `pdb_master_label_selector` (Boolean)
 - `pdb_name_format` (String)
 - `persistent_volume_claim_retention_policy` (Attributes) (see [below for nested schema](#nestedatt--configuration--kubernetes--persistent_volume_claim_retention_policy))
 - `pod_antiaffinity_preferred_during_scheduling` (Boolean)

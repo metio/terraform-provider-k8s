@@ -60,7 +60,7 @@ Required:
 
 Optional:
 
-- `namespace` (String) The leader cluster Namespace in which the ClusterSet is defined. Used in a member cluster.
+- `namespace` (String) The leader cluster Namespace in which the ClusterSet is defined.Used in a member cluster.
 
 <a id="nestedatt--spec--leaders"></a>
 ### Nested Schema for `spec.leaders`
@@ -68,6 +68,5 @@ Optional:
 Optional:
 
 - `cluster_id` (String) Identify a leader cluster in the ClusterSet.
-- `secret` (String) Name of the Secret resource in the member cluster, which stores the token to access the leader cluster's API server.
-- `server` (String) API server endpoint of the leader cluster. E.g. 'https://172.18.0.1:6443', 'https://example.com:6443'.
-- `service_account` (String) ServiceAccount in the leader cluster, from which the member cluster's token is generated. This is an optional field which helps admin to check which ServiceAccount is used by a member cluster to access the leader cluster.  DEPRECATED This field is planned to be removed in the future releases.
+- `secret` (String) Name of the Secret resource in the member cluster, which storesthe token to access the leader cluster's API server.
+- `server` (String) API server endpoint of the leader cluster.E.g. 'https://172.18.0.1:6443', 'https://example.com:6443'.

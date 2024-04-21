@@ -55,7 +55,7 @@ Optional:
 
 Required:
 
-- `block_pool_name` (String) BlockPoolName is the name of Ceph BlockPool. Typically it's the name of the CephBlockPool CR.
+- `block_pool_name` (String) BlockPoolName is the name of Ceph BlockPool. Typically it's the name ofthe CephBlockPool CR.
 
 Optional:
 

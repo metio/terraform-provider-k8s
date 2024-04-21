@@ -77,6 +77,7 @@ Required:
 Optional:
 
 - `config` (String) Config is the engine configuration
+- `cr_version` (String) CRVersion is the desired version of the CR to use with theunderlying operator.If unspecified, everest-operator will use the same version as the operator.NOTE: Updating this property post installation may lead to a restart of the cluster.
 - `replicas` (Number) Replicas is the number of engine replicas
 - `resources` (Attributes) Resources are the resource limits for each engine replica.If not set, resource limits are not imposed (see [below for nested schema](#nestedatt--spec--engine--resources))
 - `user_secrets_name` (String) UserSecretsName is the name of the secret containing the user secrets

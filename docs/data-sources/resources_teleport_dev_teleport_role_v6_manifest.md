@@ -98,8 +98,6 @@ Optional:
 - `require_session_join` (Attributes List) RequireSessionJoin specifies policies for required users to start a session. (see [below for nested schema](#nestedatt--spec--allow--require_session_join))
 - `review_requests` (Attributes) ReviewRequests defines conditions for submitting access reviews. (see [below for nested schema](#nestedatt--spec--allow--review_requests))
 - `rules` (Attributes List) Rules is a list of rules and their access levels. Rules are a high level construct used for access control. (see [below for nested schema](#nestedatt--spec--allow--rules))
-- `saml_idp_service_provider_labels` (Map of String) SAMLIdPServiceProviderLabels is a labels map used in RBAC system to allow/deny access to saml_idp_service_provider resource.
-- `saml_idp_service_provider_labels_expression` (String) SAMLIdPServiceProviderLabelsExpression is a predicate expression used to allow/deny access to saml_idp_service_provider resource.
 - `spiffe` (Attributes List) SPIFFE is used to allow or deny access to a role holder to generating a SPIFFE SVID. (see [below for nested schema](#nestedatt--spec--allow--spiffe))
 - `windows_desktop_labels` (Map of String) WindowsDesktopLabels are used in the RBAC system to allow/deny access to Windows desktops.
 - `windows_desktop_labels_expression` (String) WindowsDesktopLabelsExpression is a predicate expression used to allow/deny access to Windows desktops.
@@ -276,8 +274,6 @@ Optional:
 - `require_session_join` (Attributes List) RequireSessionJoin specifies policies for required users to start a session. (see [below for nested schema](#nestedatt--spec--deny--require_session_join))
 - `review_requests` (Attributes) ReviewRequests defines conditions for submitting access reviews. (see [below for nested schema](#nestedatt--spec--deny--review_requests))
 - `rules` (Attributes List) Rules is a list of rules and their access levels. Rules are a high level construct used for access control. (see [below for nested schema](#nestedatt--spec--deny--rules))
-- `saml_idp_service_provider_labels` (Map of String) SAMLIdPServiceProviderLabels is a labels map used in RBAC system to allow/deny access to saml_idp_service_provider resource.
-- `saml_idp_service_provider_labels_expression` (String) SAMLIdPServiceProviderLabelsExpression is a predicate expression used to allow/deny access to saml_idp_service_provider resource.
 - `spiffe` (Attributes List) SPIFFE is used to allow or deny access to a role holder to generating a SPIFFE SVID. (see [below for nested schema](#nestedatt--spec--deny--spiffe))
 - `windows_desktop_labels` (Map of String) WindowsDesktopLabels are used in the RBAC system to allow/deny access to Windows desktops.
 - `windows_desktop_labels_expression` (String) WindowsDesktopLabelsExpression is a predicate expression used to allow/deny access to Windows desktops.
@@ -424,10 +420,10 @@ Optional:
 - `cert_format` (String) CertificateFormat defines the format of the user certificate to allow compatibility with older versions of OpenSSH.
 - `client_idle_timeout` (String) ClientIdleTimeout sets disconnect clients on idle timeout behavior, if set to 0 means do not disconnect, otherwise is set to the idle duration.
 - `create_db_user` (Boolean) CreateDatabaseUser enabled automatic database user creation.
-- `create_db_user_mode` (String) CreateDatabaseUserMode allows users to be automatically created on a database when not set to off.
+- `create_db_user_mode` (String) CreateDatabaseUserMode allows users to be automatically created on a database when not set to off. 0 is 'unspecified', 1 is 'off', 2 is 'keep', 3 is 'best_effort_drop'.
 - `create_desktop_user` (Boolean) CreateDesktopUser allows users to be automatically created on a Windows desktop
 - `create_host_user` (Boolean) CreateHostUser allows users to be automatically created on a host
-- `create_host_user_mode` (String) CreateHostUserMode allows users to be automatically created on a host when not set to off
+- `create_host_user_mode` (String) CreateHostUserMode allows users to be automatically created on a host when not set to off. 0 is 'unspecified'; 1 is 'off'; 2 is 'drop' (removed for v15 and above), 3 is 'keep'; 4 is 'insecure-drop'.
 - `desktop_clipboard` (Boolean) DesktopClipboard indicates whether clipboard sharing is allowed between the user's workstation and the remote desktop. It defaults to true unless explicitly set to false.
 - `desktop_directory_sharing` (Boolean) DesktopDirectorySharing indicates whether directory sharing is allowed between the user's workstation and the remote desktop. It defaults to false unless explicitly set to true.
 - `device_trust_mode` (String) DeviceTrustMode is the device authorization mode used for the resources associated with the role. See DeviceTrust.Mode. Reserved for future use, not yet used by Teleport.
@@ -446,7 +442,7 @@ Optional:
 - `record_session` (Attributes) RecordDesktopSession indicates whether desktop access sessions should be recorded. It defaults to true unless explicitly set to false. (see [below for nested schema](#nestedatt--spec--options--record_session))
 - `request_access` (String) RequestAccess defines the access request strategy (optional|note|always) where optional is the default.
 - `request_prompt` (String) RequestPrompt is an optional message which tells users what they aught to request.
-- `require_session_mfa` (String) RequireMFAType is the type of MFA requirement enforced for this user.
+- `require_session_mfa` (String) RequireMFAType is the type of MFA requirement enforced for this user. 0 is 'OFF', 1 is 'SESSION', 2 is 'SESSION_AND_HARDWARE_KEY', 3 is 'HARDWARE_KEY_TOUCH', 4 is 'HARDWARE_KEY_PIN', 5 is 'HARDWARE_KEY_TOUCH_AND_PIN'.
 - `ssh_file_copy` (Boolean) SSHFileCopy indicates whether remote file operations via SCP or SFTP are allowed over an SSH session. It defaults to true unless explicitly set to false.
 
 <a id="nestedatt--spec--options--cert_extensions"></a>
@@ -454,9 +450,9 @@ Optional:
 
 Optional:
 
-- `mode` (String) Mode is the type of extension to be used -- currently critical-option is not supported
+- `mode` (String) Mode is the type of extension to be used -- currently critical-option is not supported. 0 is 'extension'.
 - `name` (String) Name specifies the key to be used in the cert extension.
-- `type` (String) Type represents the certificate type being extended, only ssh is supported at this time.
+- `type` (String) Type represents the certificate type being extended, only ssh is supported at this time. 0 is 'ssh'.
 - `value` (String) Value specifies the value to be used in the cert extension.
 
 

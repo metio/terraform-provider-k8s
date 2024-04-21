@@ -547,6 +547,7 @@ Required:
 Optional:
 
 - `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--java--env))
+- `extensions` (Attributes List) (see [below for nested schema](#nestedatt--spec--java--extensions))
 - `image` (String)
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--java--resources))
 - `volume_limit_size` (String)
@@ -624,6 +625,15 @@ Optional:
 - `optional` (Boolean)
 
 
+
+
+<a id="nestedatt--spec--java--extensions"></a>
+### Nested Schema for `spec.java.extensions`
+
+Required:
+
+- `dir` (String)
+- `image` (String)
 
 
 <a id="nestedatt--spec--java--resources"></a>

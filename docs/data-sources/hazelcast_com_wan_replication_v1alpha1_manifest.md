@@ -61,6 +61,7 @@ Optional:
 - `acknowledgement` (Attributes) Acknowledgement is the configuration for the condition when the next batch of WAN events are sent. (see [below for nested schema](#nestedatt--spec--acknowledgement))
 - `batch` (Attributes) Batch is the configuration for WAN events batch. (see [below for nested schema](#nestedatt--spec--batch))
 - `queue` (Attributes) Queue is the configuration for WAN events queue. (see [below for nested schema](#nestedatt--spec--queue))
+- `sync_consistency_check_strategy` (String) SyncConsistencyCheckStrategy is the strategy for checking the consistency of data between replicas.
 
 <a id="nestedatt--spec--resources"></a>
 ### Nested Schema for `spec.resources`

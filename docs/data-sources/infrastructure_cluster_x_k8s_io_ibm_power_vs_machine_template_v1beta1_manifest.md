@@ -75,7 +75,7 @@ Required:
 Optional:
 
 - `image` (Attributes) Image is the reference to the Image from which to create the machine instance. (see [below for nested schema](#nestedatt--spec--template--spec--image))
-- `image_ref` (Attributes) ImageRef is an optional reference to a provider-specific resource that holds the details for provisioning the Image for a Cluster. (see [below for nested schema](#nestedatt--spec--template--spec--image_ref))
+- `image_ref` (Attributes) ImageRef is an optional reference to a provider-specific resource that holdsthe details for provisioning the Image for a Cluster. (see [below for nested schema](#nestedatt--spec--template--spec--image_ref))
 - `memory` (String) Memory is Amount of memory allocated (in GB)
 - `proc_type` (String) ProcType is the processor type, e.g: dedicated, shared, capped
 - `processors` (String) Processors is Number of processors allocated.
@@ -90,7 +90,7 @@ Optional:
 
 - `id` (String) ID of resource
 - `name` (String) Name of resource
-- `regex` (String) Regular expression to match resource, In case of multiple resources matches the provided regular expression the first matched resource will be selected
+- `regex` (String) Regular expression to match resource,In case of multiple resources matches the provided regular expression the first matched resource will be selected
 
 
 <a id="nestedatt--spec--template--spec--image"></a>
@@ -100,7 +100,7 @@ Optional:
 
 - `id` (String) ID of resource
 - `name` (String) Name of resource
-- `regex` (String) Regular expression to match resource, In case of multiple resources matches the provided regular expression the first matched resource will be selected
+- `regex` (String) Regular expression to match resource,In case of multiple resources matches the provided regular expression the first matched resource will be selected
 
 
 <a id="nestedatt--spec--template--spec--image_ref"></a>
@@ -108,4 +108,4 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?

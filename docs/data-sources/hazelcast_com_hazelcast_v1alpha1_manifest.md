@@ -158,19 +158,14 @@ Required:
 <a id="nestedatt--spec--cp_subsystem"></a>
 ### Nested Schema for `spec.cp_subsystem`
 
-Required:
-
-- `member_count` (Number) MemberCount is the number of CP members to initialize the CP Subsystem.
-
 Optional:
 
 - `data_load_timeout_seconds` (Number) DataLoadTimeoutSeconds is the timeout duration in seconds for CP members to restore their persisted data from disk
 - `fail_on_indeterminate_operation_state` (Boolean) FailOnIndeterminateOperationState indicated whether CP Subsystem operations use at-least-once and at-most-once execution guarantees.
-- `group_size` (Number) GroupSize is the number of CP members to participate in each CP group. Allowed values are 3, 5, and 7.
 - `missing_cp_member_auto_removal_seconds` (Number) MissingCpMemberAutoRemovalSeconds is the duration in seconds to wait before automatically removing a missing CP member from the CP Subsystem.
 - `pvc` (Attributes) PVC is the configuration of PersistenceVolumeClaim. (see [below for nested schema](#nestedatt--spec--cp_subsystem--pvc))
-- `session_heartbeat_interval_seconds` (Number) SessionHeartbeatIntervalSeconds Interval in seconds for the periodically committed CP session heartbeats. Must be greater than or equal to SessionTTLSeconds.
-- `session_ttl_seconds` (Number) SessionTTLSeconds is the duration for a CP session to be kept alive after the last received heartbeat. Must be greater than or equal to SessionTTLSeconds.
+- `session_heartbeat_interval_seconds` (Number) SessionHeartbeatIntervalSeconds Interval in seconds for the periodically committed CP session heartbeats. Must be smaller than SessionTTLSeconds.
+- `session_ttl_seconds` (Number) SessionTTLSeconds is the duration for a CP session to be kept alive after the last received heartbeat. Must be greater than or equal to SessionHeartbeatIntervalSeconds and smaller than or equal to MissingCpMemberAutoRemovalSeconds.
 
 <a id="nestedatt--spec--cp_subsystem--pvc"></a>
 ### Nested Schema for `spec.cp_subsystem.pvc`
@@ -353,6 +348,7 @@ Optional:
 
 Optional:
 
+- `base_dir` (String) BaseDir is deprecated. Use restore.localConfig to restore from a local backup.
 - `cluster_data_recovery_policy` (String) Configuration of the cluster recovery strategy.
 - `data_recovery_timeout` (Number) DataRecoveryTimeout is timeout for each step of data recovery in seconds. Maximum timeout is equal to DataRecoveryTimeout*2 (for each step: validation and data-load).
 - `pvc` (Attributes) Configuration of PersistenceVolumeClaim. (see [below for nested schema](#nestedatt--spec--persistence--pvc))
@@ -376,6 +372,7 @@ Optional:
 
 - `bucket_config` (Attributes) Bucket Configuration from which the backup will be downloaded. (see [below for nested schema](#nestedatt--spec--persistence--restore--bucket_config))
 - `hot_backup_resource_name` (String) Name of the HotBackup resource from which backup will be fetched.
+- `local_config` (Attributes) Configuration to restore from local backup (see [below for nested schema](#nestedatt--spec--persistence--restore--local_config))
 
 <a id="nestedatt--spec--persistence--restore--bucket_config"></a>
 ### Nested Schema for `spec.persistence.restore.bucket_config`
@@ -388,6 +385,17 @@ Optional:
 
 - `secret` (String) secret is a deprecated alias for secretName.
 - `secret_name` (String) Name of the secret with credentials for cloud providers.
+
+
+<a id="nestedatt--spec--persistence--restore--local_config"></a>
+### Nested Schema for `spec.persistence.restore.local_config`
+
+Optional:
+
+- `backup_dir` (String) Local backup base directory
+- `backup_folder` (String) Backup directory
+- `base_dir` (String) Persistence base directory
+- `pvc_name_prefix` (String) PVC name prefix used in existing PVCs
 
 
 

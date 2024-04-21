@@ -55,35 +55,37 @@ Optional:
 
 Required:
 
-- `termination_policy` (String) Specifies the cluster termination policy.  - DoNotTerminate will block delete operation. - Halt will delete workload resources such as statefulset, deployment workloads but keep PVCs. - Delete is based on Halt and deletes PVCs. - WipeOut is based on Delete and wipe out all volume snapshots and snapshot data from backup storage location.
+- `termination_policy` (String) Specifies the behavior when a Cluster is deleted. It defines how resources, data, and backups associated with a Cluster are managed during termination. Choose a policy based on the desired level of resource cleanup and data preservation:  - 'DoNotTerminate': Prevents deletion of the Cluster. This policy ensures that all resources remain intact. - 'Halt': Deletes Cluster resources like Pods and Services but retains Persistent Volume Claims (PVCs), allowing for data preservation while stopping other operations. - 'Delete': Extends the 'Halt' policy by also removing PVCs, leading to a thorough cleanup while removing all persistent data. - 'WipeOut': An aggressive policy that deletes all Cluster resources, including volume snapshots and backups in external storage. This results in complete data removal and should be used cautiously, primarily in non-production environments to avoid irreversible data loss.  Warning: Choosing an inappropriate termination policy can result in significant data loss. The 'WipeOut' policy is particularly risky in production environments due to its irreversible nature.
 
 Optional:
 
-- `affinity` (Attributes) A group of affinity scheduling rules. (see [below for nested schema](#nestedatt--spec--affinity))
-- `availability_policy` (String) Describes the availability policy, including zone, node, and none.
-- `backup` (Attributes) Cluster backup configuration. (see [below for nested schema](#nestedatt--spec--backup))
-- `cluster_definition_ref` (String) Refers to the ClusterDefinition name. If not specified, ComponentDef must be specified for each Component in ComponentSpecs.
-- `cluster_version_ref` (String) Refers to the ClusterVersion name.
-- `component_specs` (Attributes List) List of componentSpec used to define the components that make up a cluster. ComponentSpecs and ShardingSpecs cannot both be empty at the same time. (see [below for nested schema](#nestedatt--spec--component_specs))
-- `monitor` (Attributes) The configuration of monitor. (see [below for nested schema](#nestedatt--spec--monitor))
-- `network` (Attributes) The configuration of network. (see [below for nested schema](#nestedatt--spec--network))
-- `replicas` (Number) Specifies the replicas of the first componentSpec, if the replicas of the first componentSpec is specified, this value will be ignored.
-- `resources` (Attributes) Specifies the resources of the first componentSpec, if the resources of the first componentSpec is specified, this value will be ignored. (see [below for nested schema](#nestedatt--spec--resources))
-- `services` (Map of String) Defines the services to access a cluster.
-- `sharding_specs` (Attributes List) List of ShardingSpec used to define components with a sharding topology structure that make up a cluster. ShardingSpecs and ComponentSpecs cannot both be empty at the same time. (see [below for nested schema](#nestedatt--spec--sharding_specs))
-- `storage` (Attributes) Specifies the storage of the first componentSpec, if the storage of the first componentSpec is specified, this value will be ignored. (see [below for nested schema](#nestedatt--spec--storage))
-- `tenancy` (String) Describes how pods are distributed across node.
-- `tolerations` (Map of String) Attached to tolerate any taint that matches the triple 'key,value,effect' using the matching operator 'operator'.
+- `affinity` (Attributes) Defines a set of node affinity scheduling rules for the Cluster's Pods. This field helps control the placement of Pods on nodes within the cluster. (see [below for nested schema](#nestedatt--spec--affinity))
+- `availability_policy` (String) Describes the availability policy, including zone, node, and none.  Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.
+- `backup` (Attributes) Specifies the backup configuration of the Cluster. (see [below for nested schema](#nestedatt--spec--backup))
+- `cluster_definition_ref` (String) Specifies the name of the ClusterDefinition to use when creating a Cluster.  This field enables users to create a Cluster using a specific ClusterDefinition and topology. The specified ClusterDefinition determines the components to be used based on its defined topology, allowing for the utilization of predefined configurations and behaviors.  Advanced users may opt for more precise control by directly referencing specific ComponentDefinitions for each component within 'componentSpecs[*].componentDef'. This method offers granular control over the composition of the Cluster.  If this field is not provided, each component must be explicitly defined in 'componentSpecs[*].componentDef'.  Note: Once set, this field cannot be modified; it is immutable.
+- `cluster_version_ref` (String) Refers to the ClusterVersion name.  Deprecated since v0.9, use ComponentVersion instead. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.
+- `component_specs` (Attributes List) Specifies a list of ClusterComponentSpec objects used to define the individual components that make up a Cluster. This field allows for detailed configuration of each component within the Cluster.  Note: 'shardingSpecs' and 'componentSpecs' cannot both be empty; at least one must be defined to configure a cluster. (see [below for nested schema](#nestedatt--spec--component_specs))
+- `network` (Attributes) The configuration of network.  Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases. (see [below for nested schema](#nestedatt--spec--network))
+- `replicas` (Number) Specifies the replicas of the first componentSpec, if the replicas of the first componentSpec is specified, this value will be ignored.  Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.
+- `resources` (Attributes) Specifies the resources of the first componentSpec, if the resources of the first componentSpec is specified, this value will be ignored.  Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases. (see [below for nested schema](#nestedatt--spec--resources))
+- `runtime_class_name` (String) Defines RuntimeClassName for all Pods managed by this cluster.
+- `scheduling_policy` (Attributes) Specifies the scheduling policy for the cluster. (see [below for nested schema](#nestedatt--spec--scheduling_policy))
+- `services` (Map of String) Defines the list of services that are exposed by a Cluster. This field allows selected components, either from 'componentSpecs' or 'shardingSpecs', to be exposed as cluster-level services.  Services defined here can be referenced by other clusters using the ServiceRefClusterSelector.
+- `sharding_specs` (Attributes List) Specifies a list of ShardingSpec objects that configure the sharding topology for components of a Cluster. Each ShardingSpec corresponds to a group of components organized into shards, with each shard containing multiple replicas. Components within a shard are based on a common ClusterComponentSpec template, ensuring that all components in a shard have identical configurations as per the template.  This field supports dynamic scaling by facilitating the addition or removal of shards based on the specified number in each ShardingSpec.  Note: 'shardingSpecs' and 'componentSpecs' cannot both be empty; at least one must be defined to configure a cluster. (see [below for nested schema](#nestedatt--spec--sharding_specs))
+- `storage` (Attributes) Specifies the storage of the first componentSpec, if the storage of the first componentSpec is specified, this value will be ignored.  Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases. (see [below for nested schema](#nestedatt--spec--storage))
+- `tenancy` (String) Describes how pods are distributed across node.  Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.
+- `tolerations` (Map of String) An array that specifies tolerations attached to the Cluster's Pods, allowing them to be scheduled onto nodes with matching taints.
+- `topology` (String) Specifies the name of the ClusterTopology to be used when creating the Cluster.  This field defines which set of components, as outlined in the ClusterDefinition, will be used to construct the Cluster based on the named topology. The ClusterDefinition may list multiple topologies under 'clusterdefinition.spec.topologies[*]', each tailored to different use cases or environments.  If 'topology' is not specified, the Cluster will default to the topology defined in the ClusterDefinition.  Note: Once set during the Cluster creation, the Topology field cannot be modified. It establishes the initial composition and structure of the Cluster and is intended for one-time configuration.
 
 <a id="nestedatt--spec--affinity"></a>
 ### Nested Schema for `spec.affinity`
 
 Optional:
 
-- `node_labels` (Map of String) Indicates that pods must be scheduled to the nodes with the specified node labels.
-- `pod_anti_affinity` (String) Specifies the anti-affinity level of pods within a component.
-- `tenancy` (String) Defines how pods are distributed across nodes.
-- `topology_keys` (List of String) Represents the key of node labels.  Nodes with a label containing this key and identical values are considered to be in the same topology. This is used as the topology domain for pod anti-affinity and pod spread constraint. Some well-known label keys, such as 'kubernetes.io/hostname' and 'topology.kubernetes.io/zone', are often used as TopologyKey, along with any other custom label key.
+- `node_labels` (Map of String) Indicates the node labels that must be present on nodes for pods to be scheduled on them. It is a map where the keys are the label keys and the values are the corresponding label values. Pods will only be scheduled on nodes that have all the specified labels with the corresponding values.  For example, if NodeLabels is set to {'nodeType': 'ssd', 'environment': 'production'}, pods will only be scheduled on nodes that have both the 'nodeType' label with value 'ssd' and the 'environment' label with value 'production'.  This field allows users to control Pod placement based on specific node labels. It can be used to ensure that Pods are scheduled on nodes with certain characteristics, such as specific hardware (e.g., SSD), environment (e.g., production, staging), or any other custom labels assigned to nodes.
+- `pod_anti_affinity` (String) Specifies the anti-affinity level of Pods within a Component. It determines how pods should be spread across nodes to improve availability and performance. It can have the following values: 'Preferred' and 'Required'. The default value is 'Preferred'.
+- `tenancy` (String) Determines the level of resource isolation between Pods. It can have the following values: 'SharedNode' and 'DedicatedNode'.  - SharedNode: Allow that multiple Pods may share the same node, which is the default behavior of K8s. - DedicatedNode: Each Pod runs on a dedicated node, ensuring that no two Pods share the same node. In other words, if a Pod is already running on a node, no other Pods will be scheduled on that node. Which provides a higher level of isolation and resource guarantee for Pods.  The default value is 'SharedNode'.
+- `topology_keys` (List of String) Represents the key of node labels used to define the topology domain for Pod anti-affinity and Pod spread constraints.  In K8s, a topology domain is a set of nodes that have the same value for a specific label key. Nodes with labels containing any of the specified TopologyKeys and identical values are considered to be in the same topology domain.  Note: The concept of topology in the context of K8s TopologyKeys is different from the concept of topology in the ClusterDefinition.  When a Pod has anti-affinity or spread constraints specified, Kubernetes will attempt to schedule the Pod on nodes with different values for the specified TopologyKeys. This ensures that Pods are spread across different topology domains, promoting high availability and reducing the impact of node failures.  Some well-known label keys, such as 'kubernetes.io/hostname' and 'topology.kubernetes.io/zone', are often used as TopologyKey. These keys represent the hostname and zone of a node, respectively. By including these keys in the TopologyKeys list, Pods will be spread across nodes with different hostnames or zones.  In addition to the well-known keys, users can also specify custom label keys as TopologyKeys. This allows for more flexible and custom topology definitions based on the specific needs of the application or environment.  The TopologyKeys field is a slice of strings, where each string represents a label key. The order of the keys in the slice does not matter.
 
 
 <a id="nestedatt--spec--backup"></a>
@@ -96,11 +98,11 @@ Required:
 Optional:
 
 - `cron_expression` (String) The cron expression for the schedule. The timezone is in UTC. See https://en.wikipedia.org/wiki/Cron.
-- `enabled` (Boolean) Specifies whether automated backup is enabled.
+- `enabled` (Boolean) Specifies whether automated backup is enabled for the Cluster.
 - `pitr_enabled` (Boolean) Specifies whether to enable point-in-time recovery.
 - `repo_name` (String) Specifies the name of the backupRepo. If not set, the default backupRepo will be used.
-- `retention_period` (String) Determines the duration for which the backup should be retained. All backups older than this period will be removed by the controller.  For example, RetentionPeriod of '30d' will keep only the backups of last 30 days. Sample duration format:  - years: 	2y - months: 	6mo - days: 		30d - hours: 	12h - minutes: 	30m  You can also combine the above durations. For example: 30d12h30m
-- `starting_deadline_minutes` (Number) Defines the deadline in minutes for starting the backup job if it misses its scheduled time for any reason.
+- `retention_period` (String) Determines the duration to retain backups. Backups older than this period are automatically removed.  For example, RetentionPeriod of '30d' will keep only the backups of last 30 days. Sample duration format:  - years: 	2y - months: 	6mo - days: 		30d - hours: 	12h - minutes: 	30m  You can also combine the above durations. For example: 30d12h30m. Default value is 7d.
+- `starting_deadline_minutes` (Number) Specifies the maximum time in minutes that the system will wait to start a missed backup job. If the scheduled backup time is missed for any reason, the backup job must start within this deadline. Values must be between 0 (immediate execution) and 1440 (one day).
 
 
 <a id="nestedatt--spec--component_specs"></a>
@@ -108,53 +110,1097 @@ Optional:
 
 Required:
 
-- `replicas` (Number) Specifies the number of component replicas.
+- `replicas` (Number) Each component supports running multiple replicas to provide high availability and persistence. This field can be used to specify the desired number of replicas.
 
 Optional:
 
-- `affinity` (Attributes) A group of affinity scheduling rules. (see [below for nested schema](#nestedatt--spec--component_specs--affinity))
-- `class_def_ref` (Attributes) References the class defined in ComponentClassDefinition. (see [below for nested schema](#nestedatt--spec--component_specs--class_def_ref))
-- `component_def` (String) References the name of the ComponentDefinition. If both componentDefRef and componentDef are provided, the componentDef will take precedence over componentDefRef.  TODO +kubebuilder:validation:XValidation:rule='self == oldSelf',message='componentDef is immutable'
-- `component_def_ref` (String) References the componentDef defined in the ClusterDefinition spec. Must comply with the IANA Service Naming rule.  TODO +kubebuilder:validation:XValidation:rule='self == oldSelf',message='componentDefRef is immutable'
-- `enabled_logs` (List of String) Indicates which log file takes effect in the database cluster.
-- `instances` (List of String) Defines the list of instances to be deleted priorly. If the RsmTransformPolicy is specified as ToPod, the list of instances will be used.
-- `issuer` (Attributes) Defines provider context for TLS certs. Required when TLS is enabled. (see [below for nested schema](#nestedatt--spec--component_specs--issuer))
-- `monitor` (Boolean) To enable monitoring.
-- `name` (String) Specifies the name of the cluster's component. This name is also part of the Service DNS name and must comply with the IANA Service Naming rule. When ClusterComponentSpec is referenced as a template, the name is optional. Otherwise, it is required.  TODO +kubebuilder:validation:XValidation:rule='self == oldSelf',message='name is immutable'
-- `nodes` (List of String) Defines the list of nodes that pods can schedule. If the RsmTransformPolicy is specified as ToPod, the list of nodes will be used. If the list of nodes is empty, no specific node will be assigned. However, if the list of nodes is filled, all pods will be evenly scheduled across the nodes in the list.
-- `resources` (Attributes) Specifies the resources requests and limits of the workload. (see [below for nested schema](#nestedatt--spec--component_specs--resources))
-- `rsm_transform_policy` (String) Defines the policy to generate sts using rsm.
-- `service_account_name` (String) Specifies the name of the ServiceAccount that the running component depends on.
-- `service_refs` (Attributes List) Defines service references for the current component.  Based on the referenced services, they can be categorized into two types:  - Service provided by external sources: These services are provided by external sources and are not managed by KubeBlocks. They can be Kubernetes-based or non-Kubernetes services. For external services, an additional ServiceDescriptor object is needed to establish the service binding. - Service provided by other KubeBlocks clusters: These services are provided by other KubeBlocks clusters. Binding to these services is done by specifying the name of the hosting cluster.  Each type of service reference requires specific configurations and bindings to establish the connection and interaction with the respective services. Note that the ServiceRef has cluster-level semantic consistency, meaning that within the same Cluster, service references with the same ServiceRef.Name are considered to be the same service. It is only allowed to bind to the same Cluster or ServiceDescriptor. (see [below for nested schema](#nestedatt--spec--component_specs--service_refs))
-- `services` (Attributes List) Services expose endpoints that can be accessed by clients. (see [below for nested schema](#nestedatt--spec--component_specs--services))
-- `switch_policy` (Attributes) Defines the strategy for switchover and failover when workloadType is Replication. (see [below for nested schema](#nestedatt--spec--component_specs--switch_policy))
-- `tls` (Boolean) Enables or disables TLS certs.
-- `tolerations` (Map of String) Attached to tolerate any taint that matches the triple 'key,value,effect' using the matching operator 'operator'.
-- `update_strategy` (String) Defines the update strategy for the component. Not supported.
-- `user_resource_refs` (Attributes) Defines the user-defined volumes. (see [below for nested schema](#nestedatt--spec--component_specs--user_resource_refs))
-- `volume_claim_templates` (Attributes List) Provides information for statefulset.spec.volumeClaimTemplates. (see [below for nested schema](#nestedatt--spec--component_specs--volume_claim_templates))
+- `affinity` (Attributes) Specifies a group of affinity scheduling rules for the Component. It allows users to control how the Component's Pods are scheduled onto nodes in the cluster. (see [below for nested schema](#nestedatt--spec--component_specs--affinity))
+- `component_def` (String) References the name of a ComponentDefinition. The ComponentDefinition specifies the behavior and characteristics of the Component. If both 'componentDefRef' and 'componentDef' are provided, the 'componentDef' will take precedence over 'componentDefRef'.
+- `component_def_ref` (String) References a ClusterComponentDefinition defined in the 'clusterDefinition.spec.componentDef' field. Must comply with the IANA service naming rule.  Deprecated since v0.9, because defining components in 'clusterDefinition.spec.componentDef' field has been deprecated. This field is replaced by the 'componentDef' field, use 'componentDef' instead. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.  TODO +kubebuilder:validation:XValidation:rule='self == oldSelf',message='componentDefRef is immutable'
+- `enabled_logs` (List of String) Specifies which types of logs should be collected for the Cluster. The log types are defined in the 'componentDefinition.spec.logConfigs' field with the LogConfig entries.  The elements in the 'enabledLogs' array correspond to the names of the LogConfig entries. For example, if the 'componentDefinition.spec.logConfigs' defines LogConfig entries with names 'slow_query_log' and 'error_log', you can enable the collection of these logs by including their names in the 'enabledLogs' array: enabledLogs: ['slow_query_log', 'error_log']
+- `instances` (Attributes List) Allows for the customization of configuration values for each instance within a component. An Instance represent a single replica (Pod and associated K8s resources like PVCs, Services, and ConfigMaps). While instances typically share a common configuration as defined in the ClusterComponentSpec, they can require unique settings in various scenarios:  For example: - A database component might require different resource allocations for primary and secondary instances, with primaries needing more resources. - During a rolling upgrade, a component may first update the image for one or a few instances, and then update the remaining instances after verifying that the updated instances are functioning correctly.  InstanceTemplate allows for specifying these unique configurations per instance. Each instance's name is constructed using the pattern: $(component.name)-$(template.name)-$(ordinal), starting with an ordinal of 0. It is crucial to maintain unique names for each InstanceTemplate to avoid conflicts.  The sum of replicas across all InstanceTemplates should not exceed the total number of Replicas specified for the Component. Any remaining replicas will be generated using the default template and will follow the default naming rules. (see [below for nested schema](#nestedatt--spec--component_specs--instances))
+- `issuer` (Attributes) Specifies the configuration for the TLS certificates issuer. It allows defining the issuer name and the reference to the secret containing the TLS certificates and key. The secret should contain the CA certificate, TLS certificate, and private key in the specified keys. Required when TLS is enabled. (see [below for nested schema](#nestedatt--spec--component_specs--issuer))
+- `monitor_enabled` (Boolean) Determines whether the metrics exporter needs to be published to the service endpoint. If set to true, the metrics exporter will be published to the service endpoint, the service will be injected with the following annotations: - 'monitor.kubeblocks.io/path' - 'monitor.kubeblocks.io/port' - 'monitor.kubeblocks.io/scheme'
+- `name` (String) Specifies the name of the Component. This name is also part of the Service DNS name and must comply with the IANA service naming rule. When ClusterComponentSpec is referenced as a template, the name is optional. Otherwise, it is required.  TODO +kubebuilder:validation:XValidation:rule='self == oldSelf',message='name is immutable'
+- `offline_instances` (List of String) Specifies the names of instances to be transitioned to offline status.  Marking an instance as offline results in the following:  1. The associated pod is stopped, and its PersistentVolumeClaim (PVC) is retained for potential future reuse or data recovery, but it is no longer actively used. 2. The ordinal number assigned to this instance is preserved, ensuring it remains unique and avoiding conflicts with new instances.  Setting instances to offline allows for a controlled scale-in process, preserving their data and maintaining ordinal consistency within the cluster. Note that offline instances and their associated resources, such as PVCs, are not automatically deleted. The cluster administrator must manually manage the cleanup and removal of these resources when they are no longer needed.
+- `resources` (Attributes) Specifies the resources required by the Component. It allows defining the CPU, memory requirements and limits for the Component's containers. (see [below for nested schema](#nestedatt--spec--component_specs--resources))
+- `scheduling_policy` (Attributes) Specifies the scheduling policy for the component. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy))
+- `service_account_name` (String) Specifies the name of the ServiceAccount required by the running Component. This ServiceAccount is used to grant necessary permissions for the Component's Pods to interact with other Kubernetes resources, such as modifying pod labels or sending events.  Defaults: If not specified, KubeBlocks automatically assigns a default ServiceAccount named 'kb-{cluster.name}', bound to a default role defined during KubeBlocks installation.  Future Changes: Future versions might change the default ServiceAccount creation strategy to one per Component, potentially revising the naming to 'kb-{cluster.name}-{component.name}'.  Users can override the automatic ServiceAccount assignment by explicitly setting the name of an existed ServiceAccount in this field.
+- `service_refs` (Attributes List) Defines a list of ServiceRef for a Component, allowing it to connect and interact with other services. These services can be external or managed by the same KubeBlocks operator, categorized as follows:  1. External Services:  - Not managed by KubeBlocks. These could be services outside KubeBlocks or non-Kubernetes services. - Connection requires a ServiceDescriptor providing details for service binding.  2. KubeBlocks Services:  - Managed within the same KubeBlocks environment. - Service binding is achieved by specifying cluster names in the service references, with configurations handled by the KubeBlocks operator.  ServiceRef maintains cluster-level semantic consistency; references with the same 'serviceRef.name' within the same cluster are treated as identical. Only bindings to the same cluster or ServiceDescriptor are allowed within a cluster.  Example: '''yaml serviceRefs: - name: 'redis-sentinel' serviceDescriptor: name: 'external-redis-sentinel' - name: 'postgres-cluster' cluster: name: 'my-postgres-cluster' ''' The example above includes references to an external Redis Sentinel service and a PostgreSQL cluster managed by KubeBlocks. (see [below for nested schema](#nestedatt--spec--component_specs--service_refs))
+- `service_version` (String) ServiceVersion specifies the version of the service expected to be provisioned by this component. The version should follow the syntax and semantics of the 'Semantic Versioning' specification (http://semver.org/). If no version is specified, the latest available version will be used.
+- `services` (Attributes List) Services overrides services defined in referenced ComponentDefinition and expose endpoints that can be accessed by clients. (see [below for nested schema](#nestedatt--spec--component_specs--services))
+- `sidecars` (List of String) Defines the sidecar containers that will be attached to the component's main container.
+- `switch_policy` (Attributes) Defines the strategy for switchover and failover when workloadType is Replication.  Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases. (see [below for nested schema](#nestedatt--spec--component_specs--switch_policy))
+- `tls` (Boolean) A boolean flag that indicates whether the component should use Transport Layer Security (TLS) for secure communication. When set to true, the component will be configured to use TLS encryption for its network connections. This ensures that the data transmitted between the component and its clients or other components is encrypted and protected from unauthorized access. If TLS is enabled, the component may require additional configuration, such as specifying TLS certificates and keys, to properly set up the secure communication channel.
+- `tolerations` (Map of String) Allows the Component to be scheduled onto nodes with matching taints. It is an array of tolerations that are attached to the Component's Pods.  Each toleration consists of a 'key', 'value', 'effect', and 'operator'. The 'key', 'value', and 'effect' define the taint that the toleration matches. The 'operator' specifies how the toleration matches the taint.  If a node has a taint that matches a toleration, the Component's pods can be scheduled onto that node. This allows the Component's Pods to run on nodes that have been tainted to prevent regular Pods from being scheduled.
+- `update_strategy` (String) Defines the update strategy for the component.  Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.
+- `user_resource_refs` (Attributes) Allows users to specify custom ConfigMaps and Secrets to be mounted as volumes in the Cluster's Pods. This is useful in scenarios where users need to provide additional resources to the Cluster, such as:  - Mounting custom scripts or configuration files during Cluster startup. - Mounting Secrets as volumes to provide sensitive information, like S3 AK/SK, to the Cluster. (see [below for nested schema](#nestedatt--spec--component_specs--user_resource_refs))
+- `volume_claim_templates` (Attributes List) Specifies a list of PersistentVolumeClaim templates that define the storage requirements for the Component. Each template specifies the desired characteristics of a persistent volume, such as storage class, size, and access modes. These templates are used to dynamically provision persistent volumes for the Component when it is deployed. (see [below for nested schema](#nestedatt--spec--component_specs--volume_claim_templates))
 
 <a id="nestedatt--spec--component_specs--affinity"></a>
 ### Nested Schema for `spec.component_specs.affinity`
 
 Optional:
 
-- `node_labels` (Map of String) Indicates that pods must be scheduled to the nodes with the specified node labels.
-- `pod_anti_affinity` (String) Specifies the anti-affinity level of pods within a component.
-- `tenancy` (String) Defines how pods are distributed across nodes.
-- `topology_keys` (List of String) Represents the key of node labels.  Nodes with a label containing this key and identical values are considered to be in the same topology. This is used as the topology domain for pod anti-affinity and pod spread constraint. Some well-known label keys, such as 'kubernetes.io/hostname' and 'topology.kubernetes.io/zone', are often used as TopologyKey, along with any other custom label key.
+- `node_labels` (Map of String) Indicates the node labels that must be present on nodes for pods to be scheduled on them. It is a map where the keys are the label keys and the values are the corresponding label values. Pods will only be scheduled on nodes that have all the specified labels with the corresponding values.  For example, if NodeLabels is set to {'nodeType': 'ssd', 'environment': 'production'}, pods will only be scheduled on nodes that have both the 'nodeType' label with value 'ssd' and the 'environment' label with value 'production'.  This field allows users to control Pod placement based on specific node labels. It can be used to ensure that Pods are scheduled on nodes with certain characteristics, such as specific hardware (e.g., SSD), environment (e.g., production, staging), or any other custom labels assigned to nodes.
+- `pod_anti_affinity` (String) Specifies the anti-affinity level of Pods within a Component. It determines how pods should be spread across nodes to improve availability and performance. It can have the following values: 'Preferred' and 'Required'. The default value is 'Preferred'.
+- `tenancy` (String) Determines the level of resource isolation between Pods. It can have the following values: 'SharedNode' and 'DedicatedNode'.  - SharedNode: Allow that multiple Pods may share the same node, which is the default behavior of K8s. - DedicatedNode: Each Pod runs on a dedicated node, ensuring that no two Pods share the same node. In other words, if a Pod is already running on a node, no other Pods will be scheduled on that node. Which provides a higher level of isolation and resource guarantee for Pods.  The default value is 'SharedNode'.
+- `topology_keys` (List of String) Represents the key of node labels used to define the topology domain for Pod anti-affinity and Pod spread constraints.  In K8s, a topology domain is a set of nodes that have the same value for a specific label key. Nodes with labels containing any of the specified TopologyKeys and identical values are considered to be in the same topology domain.  Note: The concept of topology in the context of K8s TopologyKeys is different from the concept of topology in the ClusterDefinition.  When a Pod has anti-affinity or spread constraints specified, Kubernetes will attempt to schedule the Pod on nodes with different values for the specified TopologyKeys. This ensures that Pods are spread across different topology domains, promoting high availability and reducing the impact of node failures.  Some well-known label keys, such as 'kubernetes.io/hostname' and 'topology.kubernetes.io/zone', are often used as TopologyKey. These keys represent the hostname and zone of a node, respectively. By including these keys in the TopologyKeys list, Pods will be spread across nodes with different hostnames or zones.  In addition to the well-known keys, users can also specify custom label keys as TopologyKeys. This allows for more flexible and custom topology definitions based on the specific needs of the application or environment.  The TopologyKeys field is a slice of strings, where each string represents a label key. The order of the keys in the slice does not matter.
 
 
-<a id="nestedatt--spec--component_specs--class_def_ref"></a>
-### Nested Schema for `spec.component_specs.class_def_ref`
+<a id="nestedatt--spec--component_specs--instances"></a>
+### Nested Schema for `spec.component_specs.instances`
 
 Required:
 
-- `class` (String) Defines the name of the class that is defined in the ComponentClassDefinition.
+- `name` (String) Name specifies the unique name of the instance Pod created using this InstanceTemplate. This name is constructed by concatenating the component's name, the template's name, and the instance's ordinal using the pattern: $(cluster.name)-$(component.name)-$(template.name)-$(ordinal). Ordinals start from 0. The specified name overrides any default naming conventions or patterns.
 
 Optional:
 
-- `name` (String) Specifies the name of the ComponentClassDefinition.
+- `annotations` (Map of String) Specifies a map of key-value pairs to be merged into the Pod's existing annotations. Existing keys will have their values overwritten, while new keys will be added to the annotations.
+- `env` (Attributes List) Defines Env to override. Add new or override existing envs. (see [below for nested schema](#nestedatt--spec--component_specs--instances--env))
+- `image` (String) Specifies an override for the first container's image in the pod.
+- `labels` (Map of String) Specifies a map of key-value pairs that will be merged into the Pod's existing labels. Values for existing keys will be overwritten, and new keys will be added.
+- `node_name` (String) Specifies the name of the node where the Pod should be scheduled. If set, the Pod will be directly assigned to the specified node, bypassing the Kubernetes scheduler. This is useful for controlling Pod placement on specific nodes.  Important considerations: - 'nodeName' bypasses default scheduling constraints (e.g., resource requirements, node selectors, affinity rules). - It is the user's responsibility to ensure the node is suitable for the Pod. - If the node is unavailable, the Pod will remain in 'Pending' state until the node is available or the Pod is deleted.
+- `node_selector` (Map of String) Defines NodeSelector to override.
+- `replicas` (Number) Specifies the number of instances (Pods) to create from this InstanceTemplate. This field allows setting how many replicated instances of the component, with the specific overrides in the InstanceTemplate, are created. The default value is 1. A value of 0 disables instance creation.
+- `resources` (Attributes) Specifies an override for the resource requirements of the first container in the Pod. This field allows for customizing resource allocation (CPU, memory, etc.) for the container. (see [below for nested schema](#nestedatt--spec--component_specs--instances--resources))
+- `tolerations` (Attributes List) Tolerations specifies a list of tolerations to be applied to the Pod, allowing it to tolerate node taints. This field can be used to add new tolerations or override existing ones. (see [below for nested schema](#nestedatt--spec--component_specs--instances--tolerations))
+- `volume_claim_templates` (Attributes List) Defines VolumeClaimTemplates to override. Add new or override existing volume claim templates. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volume_claim_templates))
+- `volume_mounts` (Attributes List) Defines VolumeMounts to override. Add new or override existing volume mounts of the first container in the pod. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volume_mounts))
+- `volumes` (Attributes List) Defines Volumes to override. Add new or override existing volumes. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes))
+
+<a id="nestedatt--spec--component_specs--instances--env"></a>
+### Nested Schema for `spec.component_specs.instances.env`
+
+Required:
+
+- `name` (String) Name of the environment variable. Must be a C_IDENTIFIER.
+
+Optional:
+
+- `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
+- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--value_from))
+
+<a id="nestedatt--spec--component_specs--instances--volumes--value_from"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--component_specs--instances--volumes--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--value_from--field_ref"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.value_from.field_ref`
+
+Required:
+
+- `field_path` (String) Path of the field to select in the specified API version.
+
+Optional:
+
+- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.value_from.resource_field_ref`
+
+Required:
+
+- `resource` (String) Required: resource to select
+
+Optional:
+
+- `container_name` (String) Container name: required for volumes, optional for env vars
+- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+
+<a id="nestedatt--spec--component_specs--instances--resources"></a>
+### Nested Schema for `spec.component_specs.instances.resources`
+
+Optional:
+
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--component_specs--instances--volumes--claims"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+
+
+
+<a id="nestedatt--spec--component_specs--instances--tolerations"></a>
+### Nested Schema for `spec.component_specs.instances.tolerations`
+
+Optional:
+
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+
+
+<a id="nestedatt--spec--component_specs--instances--volume_claim_templates"></a>
+### Nested Schema for `spec.component_specs.instances.volume_claim_templates`
+
+Optional:
+
+- `api_version` (String) APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+- `kind` (String) Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `metadata` (Attributes) Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--metadata))
+- `spec` (Attributes) spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--spec))
+- `status` (Attributes) status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--status))
+
+<a id="nestedatt--spec--component_specs--instances--volumes--metadata"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.metadata`
+
+Optional:
+
+- `annotations` (Map of String)
+- `finalizers` (List of String)
+- `labels` (Map of String)
+- `name` (String)
+- `namespace` (String)
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--spec"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.spec`
+
+Optional:
+
+- `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
+- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--spec--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--spec--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--spec--resources))
+- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--spec--selector))
+- `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
+- `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
+
+<a id="nestedatt--spec--component_specs--instances--volumes--spec--data_source"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.spec.data_source`
+
+Required:
+
+- `kind` (String) Kind is the type of resource being referenced
+- `name` (String) Name is the name of resource being referenced
+
+Optional:
+
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--spec--data_source_ref"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.spec.data_source_ref`
+
+Required:
+
+- `kind` (String) Kind is the type of resource being referenced
+- `name` (String) Name is the name of resource being referenced
+
+Optional:
+
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+- `namespace` (String) Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--spec--resources"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.spec.resources`
+
+Optional:
+
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--spec--volume_name--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--component_specs--instances--volumes--spec--volume_name--claims"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.spec.volume_name.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--spec--selector"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.spec.selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--spec--volume_name--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--component_specs--instances--volumes--spec--volume_name--match_expressions"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.spec.volume_name.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--status"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.status`
+
+Optional:
+
+- `access_modes` (List of String) accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
+- `allocated_resource_statuses` (Map of String) allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  ClaimResourceStatus can be in any of following states: - ControllerResizeInProgress: State set when resize controller starts resizing the volume in control-plane. - ControllerResizeFailed: State set when resize has failed in resize controller with a terminal error. - NodeResizePending: State set when resize controller has finished resizing the volume but further resizing of volume is needed on the node. - NodeResizeInProgress: State set when kubelet starts resizing the volume. - NodeResizeFailed: State set when resizing has failed in kubelet with a terminal error. Transient errors don't set NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed' When this field is not set, it means that no resize operation is in progress for the given PVC.  A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
+- `allocated_resources` (Map of String) allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity.  A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
+- `capacity` (Map of String) capacity represents the actual resources of the underlying volume.
+- `conditions` (Attributes List) conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--status--conditions))
+- `phase` (String) phase represents the current phase of PersistentVolumeClaim.
+
+<a id="nestedatt--spec--component_specs--instances--volumes--status--conditions"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.status.conditions`
+
+Required:
+
+- `status` (String)
+- `type` (String) PersistentVolumeClaimConditionType is a valid value of PersistentVolumeClaimCondition.Type
+
+Optional:
+
+- `last_probe_time` (String) lastProbeTime is the time we probed the condition.
+- `last_transition_time` (String) lastTransitionTime is the time the condition transitioned from one status to another.
+- `message` (String) message is the human-readable message indicating details about last transition.
+- `reason` (String) reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.
+
+
+
+
+<a id="nestedatt--spec--component_specs--instances--volume_mounts"></a>
+### Nested Schema for `spec.component_specs.instances.volume_mounts`
+
+Required:
+
+- `mount_path` (String) Path within the container at which the volume should be mounted.  Must not contain ':'.
+- `name` (String) This must match the Name of a Volume.
+
+Optional:
+
+- `mount_propagation` (String) mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.
+- `read_only` (Boolean) Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.
+- `sub_path` (String) Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).
+- `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes"></a>
+### Nested Schema for `spec.component_specs.instances.volumes`
+
+Required:
+
+- `name` (String) name of the volume. Must be a DNS_LABEL and unique within the pod. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+
+Optional:
+
+- `aws_elastic_block_store` (Attributes) awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--aws_elastic_block_store))
+- `azure_disk` (Attributes) azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--azure_disk))
+- `azure_file` (Attributes) azureFile represents an Azure File Service mount on the host and bind mount to the pod. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--azure_file))
+- `cephfs` (Attributes) cephFS represents a Ceph FS mount on the host that shares a pod's lifetime (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--cephfs))
+- `cinder` (Attributes) cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--cinder))
+- `config_map` (Attributes) configMap represents a configMap that should populate this volume (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--config_map))
+- `csi` (Attributes) csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature). (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--csi))
+- `downward_api` (Attributes) downwardAPI represents downward API about the pod that should populate this volume (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--downward_api))
+- `empty_dir` (Attributes) emptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--empty_dir))
+- `ephemeral` (Attributes) ephemeral represents a volume that is handled by a cluster storage driver. The volume's lifecycle is tied to the pod that defines it - it will be created before the pod starts, and deleted when the pod is removed.  Use this if: a) the volume is only needed while the pod runs, b) features of normal volumes like restoring from snapshot or capacity tracking are needed, c) the storage driver is specified through a storage class, and d) the storage driver supports dynamic volume provisioning through a PersistentVolumeClaim (see EphemeralVolumeSource for more information on the connection between this volume type and PersistentVolumeClaim).  Use PersistentVolumeClaim or one of the vendor-specific APIs for volumes that persist for longer than the lifecycle of an individual pod.  Use CSI for light-weight local ephemeral volumes if the CSI driver is meant to be used that way - see the documentation of the driver for more information.  A pod can use both types of ephemeral volumes and persistent volumes at the same time. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--ephemeral))
+- `fc` (Attributes) fc represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--fc))
+- `flex_volume` (Attributes) flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--flex_volume))
+- `flocker` (Attributes) flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--flocker))
+- `gce_persistent_disk` (Attributes) gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--gce_persistent_disk))
+- `git_repo` (Attributes) gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--git_repo))
+- `glusterfs` (Attributes) glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--glusterfs))
+- `host_path` (Attributes) hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath --- TODO(jonesdl) We need to restrict who can use host directory mounts and who can/can not mount host directories as read/write. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--host_path))
+- `iscsi` (Attributes) iscsi represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://examples.k8s.io/volumes/iscsi/README.md (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--iscsi))
+- `nfs` (Attributes) nfs represents an NFS mount on the host that shares a pod's lifetime More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--nfs))
+- `persistent_volume_claim` (Attributes) persistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--persistent_volume_claim))
+- `photon_persistent_disk` (Attributes) photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--photon_persistent_disk))
+- `portworx_volume` (Attributes) portworxVolume represents a portworx volume attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--portworx_volume))
+- `projected` (Attributes) projected items for all in one resources secrets, configmaps, and downward API (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--projected))
+- `quobyte` (Attributes) quobyte represents a Quobyte mount on the host that shares a pod's lifetime (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--quobyte))
+- `rbd` (Attributes) rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--rbd))
+- `scale_io` (Attributes) scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--scale_io))
+- `secret` (Attributes) secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--secret))
+- `storageos` (Attributes) storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--storageos))
+- `vsphere_volume` (Attributes) vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--vsphere_volume))
+
+<a id="nestedatt--spec--component_specs--instances--volumes--aws_elastic_block_store"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.aws_elastic_block_store`
+
+Required:
+
+- `volume_id` (String) volumeID is unique ID of the persistent disk resource in AWS (Amazon EBS volume). More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
+
+Optional:
+
+- `fs_type` (String) fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore TODO: how do we prevent errors in the filesystem from compromising the machine
+- `partition` (Number) partition is the partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as '1'. Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty).
+- `read_only` (Boolean) readOnly value true will force the readOnly setting in VolumeMounts. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--azure_disk"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.azure_disk`
+
+Required:
+
+- `disk_name` (String) diskName is the Name of the data disk in the blob storage
+- `disk_uri` (String) diskURI is the URI of data disk in the blob storage
+
+Optional:
+
+- `caching_mode` (String) cachingMode is the Host Caching mode: None, Read Only, Read Write.
+- `fs_type` (String) fsType is Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
+- `kind` (String) kind expected values are Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared
+- `read_only` (Boolean) readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--azure_file"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.azure_file`
+
+Required:
+
+- `secret_name` (String) secretName is the  name of secret that contains Azure Storage Account Name and Key
+- `share_name` (String) shareName is the azure share Name
+
+Optional:
+
+- `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--cephfs"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.cephfs`
+
+Required:
+
+- `monitors` (List of String) monitors is Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
+
+Optional:
+
+- `path` (String) path is Optional: Used as the mounted root, rather than the full Ceph tree, default is /
+- `read_only` (Boolean) readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
+- `secret_file` (String) secretFile is Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
+- `secret_ref` (Attributes) secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--cephfs--secret_ref))
+- `user` (String) user is optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
+
+<a id="nestedatt--spec--component_specs--instances--volumes--cephfs--secret_ref"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.cephfs.secret_ref`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--cinder"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.cinder`
+
+Required:
+
+- `volume_id` (String) volumeID used to identify the volume in cinder. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
+
+Optional:
+
+- `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
+- `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
+- `secret_ref` (Attributes) secretRef is optional: points to a secret object containing parameters used to connect to OpenStack. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--cinder--secret_ref))
+
+<a id="nestedatt--spec--component_specs--instances--volumes--cinder--secret_ref"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.cinder.secret_ref`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--config_map"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.config_map`
+
+Optional:
+
+- `default_mode` (Number) defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--config_map--items))
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
+
+<a id="nestedatt--spec--component_specs--instances--volumes--config_map--items"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.config_map.items`
+
+Required:
+
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+
+Optional:
+
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--csi"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.csi`
+
+Required:
+
+- `driver` (String) driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.
+
+Optional:
+
+- `fs_type` (String) fsType to mount. Ex. 'ext4', 'xfs', 'ntfs'. If not provided, the empty value is passed to the associated CSI driver which will determine the default filesystem to apply.
+- `node_publish_secret_ref` (Attributes) nodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and  may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--csi--node_publish_secret_ref))
+- `read_only` (Boolean) readOnly specifies a read-only configuration for the volume. Defaults to false (read/write).
+- `volume_attributes` (Map of String) volumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.
+
+<a id="nestedatt--spec--component_specs--instances--volumes--csi--node_publish_secret_ref"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.csi.node_publish_secret_ref`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--downward_api"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.downward_api`
+
+Optional:
+
+- `default_mode` (Number) Optional: mode bits to use on created files by default. Must be a Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `items` (Attributes List) Items is a list of downward API volume file (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--downward_api--items))
+
+<a id="nestedatt--spec--component_specs--instances--volumes--downward_api--items"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.downward_api.items`
+
+Required:
+
+- `path` (String) Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'
+
+Optional:
+
+- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--downward_api--items--field_ref))
+- `mode` (Number) Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--downward_api--items--resource_field_ref))
+
+<a id="nestedatt--spec--component_specs--instances--volumes--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.downward_api.items.field_ref`
+
+Required:
+
+- `field_path` (String) Path of the field to select in the specified API version.
+
+Optional:
+
+- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.downward_api.items.resource_field_ref`
+
+Required:
+
+- `resource` (String) Required: resource to select
+
+Optional:
+
+- `container_name` (String) Container name: required for volumes, optional for env vars
+- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+
+
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--empty_dir"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.empty_dir`
+
+Optional:
+
+- `medium` (String) medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
+- `size_limit` (String) sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--ephemeral"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.ephemeral`
+
+Optional:
+
+- `volume_claim_template` (Attributes) Will be used to create a stand-alone PVC to provision the volume. The pod in which this EphemeralVolumeSource is embedded will be the owner of the PVC, i.e. the PVC will be deleted together with the pod.  The name of the PVC will be '<pod name>-<volume name>' where '<volume name>' is the name from the 'PodSpec.Volumes' array entry. Pod validation will reject the pod if the concatenated name is not valid for a PVC (for example, too long).  An existing PVC with that name that is not owned by the pod will *not* be used for the pod to avoid using an unrelated volume by mistake. Starting the pod is then blocked until the unrelated PVC is removed. If such a pre-created PVC is meant to be used by the pod, the PVC has to updated with an owner reference to the pod once the pod exists. Normally this should not be necessary, but it may be useful when manually reconstructing a broken cluster.  This field is read-only and no changes will be made by Kubernetes to the PVC after it has been created.  Required, must not be nil. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--ephemeral--volume_claim_template))
+
+<a id="nestedatt--spec--component_specs--instances--volumes--ephemeral--volume_claim_template"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.ephemeral.volume_claim_template`
+
+Required:
+
+- `spec` (Attributes) The specification for the PersistentVolumeClaim. The entire content is copied unchanged into the PVC that gets created from this template. The same fields as in a PersistentVolumeClaim are also valid here. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--ephemeral--volume_claim_template--spec))
+
+Optional:
+
+- `metadata` (Attributes) May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--ephemeral--volume_claim_template--metadata))
+
+<a id="nestedatt--spec--component_specs--instances--volumes--ephemeral--volume_claim_template--spec"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.ephemeral.volume_claim_template.spec`
+
+Optional:
+
+- `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
+- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--ephemeral--volume_claim_template--metadata--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--ephemeral--volume_claim_template--metadata--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--ephemeral--volume_claim_template--metadata--resources))
+- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--ephemeral--volume_claim_template--metadata--selector))
+- `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
+- `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
+
+<a id="nestedatt--spec--component_specs--instances--volumes--ephemeral--volume_claim_template--metadata--data_source"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.ephemeral.volume_claim_template.metadata.data_source`
+
+Required:
+
+- `kind` (String) Kind is the type of resource being referenced
+- `name` (String) Name is the name of resource being referenced
+
+Optional:
+
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--ephemeral--volume_claim_template--metadata--data_source_ref"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.ephemeral.volume_claim_template.metadata.data_source_ref`
+
+Required:
+
+- `kind` (String) Kind is the type of resource being referenced
+- `name` (String) Name is the name of resource being referenced
+
+Optional:
+
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+- `namespace` (String) Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--ephemeral--volume_claim_template--metadata--resources"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.ephemeral.volume_claim_template.metadata.resources`
+
+Optional:
+
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--ephemeral--volume_claim_template--metadata--volume_name--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--component_specs--instances--volumes--ephemeral--volume_claim_template--metadata--volume_name--claims"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.ephemeral.volume_claim_template.metadata.volume_name.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--ephemeral--volume_claim_template--metadata--selector"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.ephemeral.volume_claim_template.metadata.selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--ephemeral--volume_claim_template--metadata--volume_name--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--component_specs--instances--volumes--ephemeral--volume_claim_template--metadata--volume_name--match_expressions"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.ephemeral.volume_claim_template.metadata.volume_name.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--ephemeral--volume_claim_template--metadata"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.ephemeral.volume_claim_template.metadata`
+
+Optional:
+
+- `annotations` (Map of String)
+- `finalizers` (List of String)
+- `labels` (Map of String)
+- `name` (String)
+- `namespace` (String)
+
+
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--fc"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.fc`
+
+Optional:
+
+- `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. TODO: how do we prevent errors in the filesystem from compromising the machine
+- `lun` (Number) lun is Optional: FC target lun number
+- `read_only` (Boolean) readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+- `target_ww_ns` (List of String) targetWWNs is Optional: FC target worldwide names (WWNs)
+- `wwids` (List of String) wwids Optional: FC volume world wide identifiers (wwids) Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously.
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--flex_volume"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.flex_volume`
+
+Required:
+
+- `driver` (String) driver is the name of the driver to use for this volume.
+
+Optional:
+
+- `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. The default filesystem depends on FlexVolume script.
+- `options` (Map of String) options is Optional: this field holds extra command options if any.
+- `read_only` (Boolean) readOnly is Optional: defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+- `secret_ref` (Attributes) secretRef is Optional: secretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--flex_volume--secret_ref))
+
+<a id="nestedatt--spec--component_specs--instances--volumes--flex_volume--secret_ref"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.flex_volume.secret_ref`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--flocker"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.flocker`
+
+Optional:
+
+- `dataset_name` (String) datasetName is Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated
+- `dataset_uuid` (String) datasetUUID is the UUID of the dataset. This is unique identifier of a Flocker dataset
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--gce_persistent_disk"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.gce_persistent_disk`
+
+Required:
+
+- `pd_name` (String) pdName is unique name of the PD resource in GCE. Used to identify the disk in GCE. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
+
+Optional:
+
+- `fs_type` (String) fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk TODO: how do we prevent errors in the filesystem from compromising the machine
+- `partition` (Number) partition is the partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as '1'. Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty). More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
+- `read_only` (Boolean) readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--git_repo"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.git_repo`
+
+Required:
+
+- `repository` (String) repository is the URL
+
+Optional:
+
+- `directory` (String) directory is the target directory name. Must not contain or start with '..'.  If '.' is supplied, the volume directory will be the git repository.  Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.
+- `revision` (String) revision is the commit hash for the specified revision.
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--glusterfs"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.glusterfs`
+
+Required:
+
+- `endpoints` (String) endpoints is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
+- `path` (String) path is the Glusterfs volume path. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
+
+Optional:
+
+- `read_only` (Boolean) readOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--host_path"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.host_path`
+
+Required:
+
+- `path` (String) path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
+
+Optional:
+
+- `type` (String) type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--iscsi"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.iscsi`
+
+Required:
+
+- `iqn` (String) iqn is the target iSCSI Qualified Name.
+- `lun` (Number) lun represents iSCSI Target Lun number.
+- `target_portal` (String) targetPortal is iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
+
+Optional:
+
+- `chap_auth_discovery` (Boolean) chapAuthDiscovery defines whether support iSCSI Discovery CHAP authentication
+- `chap_auth_session` (Boolean) chapAuthSession defines whether support iSCSI Session CHAP authentication
+- `fs_type` (String) fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi TODO: how do we prevent errors in the filesystem from compromising the machine
+- `initiator_name` (String) initiatorName is the custom iSCSI Initiator Name. If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface <target portal>:<volume name> will be created for the connection.
+- `iscsi_interface` (String) iscsiInterface is the interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).
+- `portals` (List of String) portals is the iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
+- `read_only` (Boolean) readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.
+- `secret_ref` (Attributes) secretRef is the CHAP Secret for iSCSI target and initiator authentication (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--iscsi--secret_ref))
+
+<a id="nestedatt--spec--component_specs--instances--volumes--iscsi--secret_ref"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.iscsi.secret_ref`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--nfs"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.nfs`
+
+Required:
+
+- `path` (String) path that is exported by the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
+- `server` (String) server is the hostname or IP address of the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
+
+Optional:
+
+- `read_only` (Boolean) readOnly here will force the NFS export to be mounted with read-only permissions. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--persistent_volume_claim"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.persistent_volume_claim`
+
+Required:
+
+- `claim_name` (String) claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
+
+Optional:
+
+- `read_only` (Boolean) readOnly Will force the ReadOnly setting in VolumeMounts. Default false.
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--photon_persistent_disk"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.photon_persistent_disk`
+
+Required:
+
+- `pd_id` (String) pdID is the ID that identifies Photon Controller persistent disk
+
+Optional:
+
+- `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--portworx_volume"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.portworx_volume`
+
+Required:
+
+- `volume_id` (String) volumeID uniquely identifies a Portworx volume
+
+Optional:
+
+- `fs_type` (String) fSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs'. Implicitly inferred to be 'ext4' if unspecified.
+- `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--projected"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.projected`
+
+Optional:
+
+- `default_mode` (Number) defaultMode are the mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `sources` (Attributes List) sources is the list of volume projections (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--projected--sources))
+
+<a id="nestedatt--spec--component_specs--instances--volumes--projected--sources"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.projected.sources`
+
+Optional:
+
+- `config_map` (Attributes) configMap information about the configMap data to project (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--projected--sources--config_map))
+- `downward_api` (Attributes) downwardAPI information about the downwardAPI data to project (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--projected--sources--downward_api))
+- `secret` (Attributes) secret information about the secret data to project (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--projected--sources--secret))
+- `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--projected--sources--service_account_token))
+
+<a id="nestedatt--spec--component_specs--instances--volumes--projected--sources--config_map"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.projected.sources.config_map`
+
+Optional:
+
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--projected--sources--service_account_token--items))
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
+
+<a id="nestedatt--spec--component_specs--instances--volumes--projected--sources--service_account_token--items"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.projected.sources.service_account_token.items`
+
+Required:
+
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+
+Optional:
+
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--projected--sources--downward_api"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.projected.sources.downward_api`
+
+Optional:
+
+- `items` (Attributes List) Items is a list of DownwardAPIVolume file (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--projected--sources--service_account_token--items))
+
+<a id="nestedatt--spec--component_specs--instances--volumes--projected--sources--service_account_token--items"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.projected.sources.service_account_token.items`
+
+Required:
+
+- `path` (String) Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'
+
+Optional:
+
+- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--projected--sources--service_account_token--items--field_ref))
+- `mode` (Number) Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--projected--sources--service_account_token--items--resource_field_ref))
+
+<a id="nestedatt--spec--component_specs--instances--volumes--projected--sources--service_account_token--items--field_ref"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.projected.sources.service_account_token.items.field_ref`
+
+Required:
+
+- `field_path` (String) Path of the field to select in the specified API version.
+
+Optional:
+
+- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--projected--sources--service_account_token--items--resource_field_ref"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.projected.sources.service_account_token.items.resource_field_ref`
+
+Required:
+
+- `resource` (String) Required: resource to select
+
+Optional:
+
+- `container_name` (String) Container name: required for volumes, optional for env vars
+- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+
+
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--projected--sources--secret"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.projected.sources.secret`
+
+Optional:
+
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--projected--sources--service_account_token--items))
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) optional field specify whether the Secret or its key must be defined
+
+<a id="nestedatt--spec--component_specs--instances--volumes--projected--sources--service_account_token--items"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.projected.sources.service_account_token.items`
+
+Required:
+
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+
+Optional:
+
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--projected--sources--service_account_token"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.projected.sources.service_account_token`
+
+Required:
+
+- `path` (String) path is the path relative to the mount point of the file to project the token into.
+
+Optional:
+
+- `audience` (String) audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.
+- `expiration_seconds` (Number) expirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.
+
+
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--quobyte"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.quobyte`
+
+Required:
+
+- `registry` (String) registry represents a single or multiple Quobyte Registry services specified as a string as host:port pair (multiple entries are separated with commas) which acts as the central registry for volumes
+- `volume` (String) volume is a string that references an already created Quobyte volume by name.
+
+Optional:
+
+- `group` (String) group to map volume access to Default is no group
+- `read_only` (Boolean) readOnly here will force the Quobyte volume to be mounted with read-only permissions. Defaults to false.
+- `tenant` (String) tenant owning the given Quobyte volume in the Backend Used with dynamically provisioned Quobyte volumes, value is set by the plugin
+- `user` (String) user to map volume access to Defaults to serivceaccount user
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--rbd"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.rbd`
+
+Required:
+
+- `image` (String) image is the rados image name. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+- `monitors` (List of String) monitors is a collection of Ceph monitors. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+
+Optional:
+
+- `fs_type` (String) fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd TODO: how do we prevent errors in the filesystem from compromising the machine
+- `keyring` (String) keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+- `pool` (String) pool is the rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+- `read_only` (Boolean) readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+- `secret_ref` (Attributes) secretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--rbd--secret_ref))
+- `user` (String) user is the rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+
+<a id="nestedatt--spec--component_specs--instances--volumes--rbd--secret_ref"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.rbd.secret_ref`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--scale_io"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.scale_io`
+
+Required:
+
+- `gateway` (String) gateway is the host address of the ScaleIO API Gateway.
+- `secret_ref` (Attributes) secretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--scale_io--secret_ref))
+- `system` (String) system is the name of the storage system as configured in ScaleIO.
+
+Optional:
+
+- `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Default is 'xfs'.
+- `protection_domain` (String) protectionDomain is the name of the ScaleIO Protection Domain for the configured storage.
+- `read_only` (Boolean) readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+- `ssl_enabled` (Boolean) sslEnabled Flag enable/disable SSL communication with Gateway, default false
+- `storage_mode` (String) storageMode indicates whether the storage for a volume should be ThickProvisioned or ThinProvisioned. Default is ThinProvisioned.
+- `storage_pool` (String) storagePool is the ScaleIO Storage Pool associated with the protection domain.
+- `volume_name` (String) volumeName is the name of a volume already created in the ScaleIO system that is associated with this volume source.
+
+<a id="nestedatt--spec--component_specs--instances--volumes--scale_io--secret_ref"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.scale_io.secret_ref`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--secret"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.secret`
+
+Optional:
+
+- `default_mode` (Number) defaultMode is Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `items` (Attributes List) items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--secret--items))
+- `optional` (Boolean) optional field specify whether the Secret or its keys must be defined
+- `secret_name` (String) secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
+
+<a id="nestedatt--spec--component_specs--instances--volumes--secret--items"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.secret.items`
+
+Required:
+
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+
+Optional:
+
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--storageos"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.storageos`
+
+Optional:
+
+- `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
+- `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+- `secret_ref` (Attributes) secretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted. (see [below for nested schema](#nestedatt--spec--component_specs--instances--volumes--storageos--secret_ref))
+- `volume_name` (String) volumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.
+- `volume_namespace` (String) volumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
+
+<a id="nestedatt--spec--component_specs--instances--volumes--storageos--secret_ref"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.storageos.secret_ref`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+
+<a id="nestedatt--spec--component_specs--instances--volumes--vsphere_volume"></a>
+### Nested Schema for `spec.component_specs.instances.volumes.vsphere_volume`
+
+Required:
+
+- `volume_path` (String) volumePath is the path that identifies vSphere volume vmdk
+
+Optional:
+
+- `fs_type` (String) fsType is filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
+- `storage_policy_id` (String) storagePolicyID is the storage Policy Based Management (SPBM) profile ID associated with the StoragePolicyName.
+- `storage_policy_name` (String) storagePolicyName is the storage Policy Based Management (SPBM) profile name.
+
+
 
 
 <a id="nestedatt--spec--component_specs--issuer"></a>
@@ -162,21 +1208,21 @@ Optional:
 
 Required:
 
-- `name` (String) The issuer for TLS certificates.
+- `name` (String) The issuer for TLS certificates. It only allows two enum values: 'KubeBlocks' and 'UserProvided'.  - 'KubeBlocks' indicates that the self-signed TLS certificates generated by the KubeBlocks Operator will be used. - 'UserProvided' means that the user is responsible for providing their own CA, Cert, and Key. In this case, the user-provided CA certificate, server certificate, and private key will be used for TLS communication.
 
 Optional:
 
-- `secret_ref` (Attributes) SecretRef is the reference to the TLS certificates secret. It is required when the issuer is set to UserProvided. (see [below for nested schema](#nestedatt--spec--component_specs--issuer--secret_ref))
+- `secret_ref` (Attributes) SecretRef is the reference to the secret that contains user-provided certificates. It is required when the issuer is set to 'UserProvided'. (see [below for nested schema](#nestedatt--spec--component_specs--issuer--secret_ref))
 
 <a id="nestedatt--spec--component_specs--issuer--secret_ref"></a>
 ### Nested Schema for `spec.component_specs.issuer.secret_ref`
 
 Required:
 
-- `ca` (String) CA cert key in Secret
-- `cert` (String) Cert key in Secret
+- `ca` (String) Key of CA cert in Secret
+- `cert` (String) Key of Cert in Secret
 - `key` (String) Key of TLS private key in Secret
-- `name` (String) Name of the Secret
+- `name` (String) Name of the Secret that contains user-provided certificates.
 
 
 
@@ -198,18 +1244,493 @@ Required:
 
 
 
+<a id="nestedatt--spec--component_specs--scheduling_policy"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy`
+
+Optional:
+
+- `affinity` (Attributes) If specified, the cluster's scheduling constraints. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--affinity))
+- `node_name` (String) NodeName is a request to schedule this pod onto a specific node. If it is non-empty, the scheduler simply schedules this pod onto that node, assuming that it fits resource requirements.
+- `node_selector` (Map of String) NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+- `scheduler_name` (String) If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler.
+- `tolerations` (Attributes List) Attached to tolerate any taint that matches the triple 'key,value,effect' using the matching operator 'operator'. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--tolerations))
+- `topology_spread_constraints` (Attributes List) TopologySpreadConstraints describes how a group of pods ought to spread across topology domains. Scheduler will schedule pods in a way which abides by the constraints. All topologySpreadConstraints are ANDed. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints))
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--affinity"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.affinity`
+
+Optional:
+
+- `node_affinity` (Attributes) Describes node affinity scheduling rules for the pod. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--node_affinity))
+- `pod_affinity` (Attributes) Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_affinity))
+- `pod_anti_affinity` (Attributes) Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_anti_affinity))
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--node_affinity"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.node_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.node_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `preference` (Attributes) A node selector term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.preference`
+
+Optional:
+
+- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
+- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+
+
+
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `node_selector_terms` (Attributes List) Required. A list of node selector terms. The terms are ORed. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+
+
+
+
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_affinity"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+
+Required:
+
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+
+Optional:
+
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+
+Optional:
+
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_anti_affinity"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.pod_anti_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+
+Required:
+
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+
+Optional:
+
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+
+Optional:
+
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+
+
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--tolerations"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.tolerations`
+
+Optional:
+
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints`
+
+Required:
+
+- `max_skew` (Number) MaxSkew describes the degree to which pods may be unevenly distributed. When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. | zone1 | zone2 | zone3 | |  P P  |  P P  |   P   | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.
+- `topology_key` (String) TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a 'bucket', and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes meet the requirements of nodeAffinityPolicy and nodeTaintsPolicy. e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology. And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology. It's a required field.
+- `when_unsatisfiable` (String) WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location, but giving higher precedence to topologies that would help reduce the skew. A constraint is considered 'Unsatisfiable' for an incoming pod if and only if every possible node assignment for that pod would violate 'MaxSkew' on some topology. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: | zone1 | zone2 | zone3 | | P P P |   P   |   P   | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field.
+
+Optional:
+
+- `label_selector` (Attributes) LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.  This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).
+- `min_domains` (Number) MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.  For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.  This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).
+- `node_affinity_policy` (String) NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+- `node_taints_policy` (String) NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--label_selector"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--label_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--component_specs--scheduling_policy--topology_spread_constraints--label_selector--match_expressions"></a>
+### Nested Schema for `spec.component_specs.scheduling_policy.topology_spread_constraints.label_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+
+
 <a id="nestedatt--spec--component_specs--service_refs"></a>
 ### Nested Schema for `spec.component_specs.service_refs`
 
 Required:
 
-- `name` (String) Specifies the identifier of the service reference declaration. It corresponds to the serviceRefDeclaration name defined in the clusterDefinition.componentDefs[*].serviceRefDeclarations[*].name.
+- `name` (String) Specifies the identifier of the service reference declaration. It corresponds to the serviceRefDeclaration name defined in either:  - 'componentDefinition.spec.serviceRefDeclarations[*].name' - 'clusterDefinition.spec.componentDefs[*].serviceRefDeclarations[*].name' (deprecated)
 
 Optional:
 
-- `cluster` (String) The name of the KubeBlocks cluster being referenced when a service provided by another KubeBlocks cluster is being referenced.  By default, the clusterDefinition.spec.connectionCredential secret corresponding to the referenced Cluster will be used to bind to the current component. The connection credential secret should include and correspond to the following fields: endpoint, port, username, and password when a KubeBlocks cluster is being referenced.  Under this referencing approach, the ServiceKind and ServiceVersion of service reference declaration defined in the ClusterDefinition will not be validated. If both Cluster and ServiceDescriptor are specified, the Cluster takes precedence.
-- `namespace` (String) Specifies the namespace of the referenced Cluster or the namespace of the referenced ServiceDescriptor object. If not provided, the referenced Cluster and ServiceDescriptor will be searched in the namespace of the current cluster by default.
-- `service_descriptor` (String) The service descriptor of the service provided by external sources.  When referencing a service provided by external sources, the ServiceDescriptor object name is required to establish the service binding. The 'serviceDescriptor.spec.serviceKind' and 'serviceDescriptor.spec.serviceVersion' should match the serviceKind and serviceVersion defined in the service reference declaration in the ClusterDefinition.  If both Cluster and ServiceDescriptor are specified, the Cluster takes precedence.
+- `cluster` (String) Specifies the name of the KubeBlocks Cluster being referenced. This is used when services from another KubeBlocks Cluster are consumed.  By default, the referenced KubeBlocks Cluster's 'clusterDefinition.spec.connectionCredential' will be utilized to bind to the current Component. This credential should include: 'endpoint', 'port', 'username', and 'password'.  Note:  - The 'ServiceKind' and 'ServiceVersion' specified in the service reference within the ClusterDefinition are not validated when using this approach. - If both 'cluster' and 'serviceDescriptor' are present, 'cluster' will take precedence.  Deprecated since v0.9 since 'clusterDefinition.spec.connectionCredential' is deprecated, use 'clusterRef' instead. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.
+- `cluster_service_selector` (Attributes) ClusterRef is used to reference a service provided by another KubeBlocks Cluster. It specifies the ClusterService and the account credentials needed for access. (see [below for nested schema](#nestedatt--spec--component_specs--service_refs--cluster_service_selector))
+- `namespace` (String) Specifies the namespace of the referenced Cluster or the namespace of the referenced ServiceDescriptor object. If not provided, the referenced Cluster and ServiceDescriptor will be searched in the namespace of the current Cluster by default.
+- `service_descriptor` (String) Specifies the name of the ServiceDescriptor object that describes the service provided by external sources.  When referencing a service provided by external sources, a ServiceDescriptor object is required to establish the service binding. The 'serviceDescriptor.spec.serviceKind' and 'serviceDescriptor.spec.serviceVersion' should match the serviceKind and serviceVersion declared in the definition.  If both 'cluster' and 'serviceDescriptor' are specified, the 'cluster' takes precedence.
+
+<a id="nestedatt--spec--component_specs--service_refs--cluster_service_selector"></a>
+### Nested Schema for `spec.component_specs.service_refs.cluster_service_selector`
+
+Required:
+
+- `cluster` (String) The name of the KubeBlocks Cluster being referenced.
+
+Optional:
+
+- `credential` (Attributes) Specifies the SystemAccount to authenticate and establish a connection with the referenced Cluster. The SystemAccount should be defined in 'componentDefinition.spec.systemAccounts' of the Component providing the service in the referenced Cluster. (see [below for nested schema](#nestedatt--spec--component_specs--service_refs--service_descriptor--credential))
+- `service` (Attributes) Identifies a ClusterService from the list of services defined in 'cluster.spec.services' of the referenced Cluster. (see [below for nested schema](#nestedatt--spec--component_specs--service_refs--service_descriptor--service))
+
+<a id="nestedatt--spec--component_specs--service_refs--service_descriptor--credential"></a>
+### Nested Schema for `spec.component_specs.service_refs.service_descriptor.credential`
+
+Required:
+
+- `component` (String) The name of the component where the credential resides in.
+- `name` (String) The name of the credential (SystemAccount) to reference.
+
+
+<a id="nestedatt--spec--component_specs--service_refs--service_descriptor--service"></a>
+### Nested Schema for `spec.component_specs.service_refs.service_descriptor.service`
+
+Required:
+
+- `service` (String) The name of the service to reference.  Leave it empty to reference the default service. Set it to 'headless' to reference the default headless service. If the referenced service is a pod-service, there will be multiple service objects matched, and the resolved value will be presented in the following format: service1.name,service2.name...
+
+Optional:
+
+- `component` (String) The name of the component where the service resides in.  It is required when referencing a component service.
+- `port` (String) The port name of the service to reference.  If there is a non-zero node-port exist for the matched service port, the node-port will be selected first. If the referenced service is a pod-service, there will be multiple service objects matched, and the resolved value will be presented in the following format: service1.name:port1,service2.name:port2...
+
+
 
 
 <a id="nestedatt--spec--component_specs--services"></a>
@@ -217,12 +1738,13 @@ Optional:
 
 Required:
 
-- `name` (String) The name of the service.
+- `name` (String) References the component service name defined in the ComponentDefinition.Spec.Services[x].Name.
 
 Optional:
 
 - `annotations` (Map of String) If ServiceType is LoadBalancer, cloud provider related parameters can be put here. More info: https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer.
-- `service_type` (String) Determines how the Service is exposed. Valid options are ClusterIP, NodePort, and LoadBalancer.  - 'ClusterIP' allocates a cluster-internal IP address for load-balancing to endpoints. Endpoints are determined by the selector or if that is not specified, they are determined by manual construction of an Endpoints object or EndpointSlice objects. If clusterIP is 'None', no virtual IP is allocated and the endpoints are published as a set of endpoints rather than a virtual IP. - 'NodePort' builds on ClusterIP and allocates a port on every node which routes to the same endpoints as the clusterIP. - 'LoadBalancer' builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the clusterIP.  More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types.
+- `pod_service` (Boolean) Indicates whether to generate individual services for each pod. If set to true, a separate service will be created for each pod in the cluster.
+- `service_type` (String) Determines how the Service is exposed. Valid options are 'ClusterIP', 'NodePort', and 'LoadBalancer'.  - 'ClusterIP' allocates a cluster-internal IP address for load-balancing to endpoints. Endpoints are determined by the selector or if that is not specified, they are determined by manual construction of an Endpoints object or EndpointSlice objects. If clusterIP is 'None', no virtual IP is allocated and the endpoints are published as a set of endpoints rather than a virtual IP. - 'NodePort' builds on ClusterIP and allocates a port on every node which routes to the same endpoints as the clusterIP. - 'LoadBalancer' builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the clusterIP.  More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types.
 
 
 <a id="nestedatt--spec--component_specs--switch_policy"></a>
@@ -325,11 +1847,11 @@ Optional:
 
 Required:
 
-- `name` (String) Refers to 'clusterDefinition.spec.componentDefs.containers.volumeMounts.name'.
+- `name` (String) Refers to the name of a volumeMount defined in either:  - 'componentDefinition.spec.runtime.containers[*].volumeMounts' - 'clusterDefinition.spec.componentDefs[*].podSpec.containers[*].volumeMounts' (deprecated)  The value of 'name' must match the 'name' field of a volumeMount specified in the corresponding 'volumeMounts' array.
 
 Optional:
 
-- `spec` (Attributes) Defines the desired characteristics of a volume requested by a pod author. (see [below for nested schema](#nestedatt--spec--component_specs--volume_claim_templates--spec))
+- `spec` (Attributes) Defines the desired characteristics of a PersistentVolumeClaim that will be created for the volume with the mount name specified in the 'name' field.  When a Pod is created for this ClusterComponent, a new PVC will be created based on the specification defined in the 'spec' field. The PVC will be associated with the volume mount specified by the 'name' field. (see [below for nested schema](#nestedatt--spec--component_specs--volume_claim_templates--spec))
 
 <a id="nestedatt--spec--component_specs--volume_claim_templates--spec"></a>
 ### Nested Schema for `spec.component_specs.volume_claim_templates.spec`
@@ -339,7 +1861,7 @@ Optional:
 - `access_modes` (Map of String) Contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1.
 - `resources` (Attributes) Represents the minimum resources the volume should have. If the RecoverVolumeExpansionFailure feature is enabled, users are allowed to specify resource requirements that are lower than the previous value but must still be higher than the capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources. (see [below for nested schema](#nestedatt--spec--component_specs--volume_claim_templates--spec--resources))
 - `storage_class_name` (String) The name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1.
-- `volume_mode` (String) Defines what type of volume is required by the claim.
+- `volume_mode` (String) Defines what type of volume is required by the claim, either Block or Filesystem.
 
 <a id="nestedatt--spec--component_specs--volume_claim_templates--spec--resources"></a>
 ### Nested Schema for `spec.component_specs.volume_claim_templates.spec.resources`
@@ -362,14 +1884,6 @@ Required:
 
 
 
-<a id="nestedatt--spec--monitor"></a>
-### Nested Schema for `spec.monitor`
-
-Optional:
-
-- `monitoring_interval` (String) Defines the frequency at which monitoring occurs. If set to 0, monitoring is disabled.
-
-
 <a id="nestedatt--spec--network"></a>
 ### Nested Schema for `spec.network`
 
@@ -388,70 +1902,1553 @@ Optional:
 - `memory` (String) Specifies the amount of memory the cluster needs. For more information, refer to: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 
+<a id="nestedatt--spec--scheduling_policy"></a>
+### Nested Schema for `spec.scheduling_policy`
+
+Optional:
+
+- `affinity` (Attributes) If specified, the cluster's scheduling constraints. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity))
+- `node_name` (String) NodeName is a request to schedule this pod onto a specific node. If it is non-empty, the scheduler simply schedules this pod onto that node, assuming that it fits resource requirements.
+- `node_selector` (Map of String) NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+- `scheduler_name` (String) If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler.
+- `tolerations` (Attributes List) Attached to tolerate any taint that matches the triple 'key,value,effect' using the matching operator 'operator'. (see [below for nested schema](#nestedatt--spec--scheduling_policy--tolerations))
+- `topology_spread_constraints` (Attributes List) TopologySpreadConstraints describes how a group of pods ought to spread across topology domains. Scheduler will schedule pods in a way which abides by the constraints. All topologySpreadConstraints are ANDed. (see [below for nested schema](#nestedatt--spec--scheduling_policy--topology_spread_constraints))
+
+<a id="nestedatt--spec--scheduling_policy--affinity"></a>
+### Nested Schema for `spec.scheduling_policy.affinity`
+
+Optional:
+
+- `node_affinity` (Attributes) Describes node affinity scheduling rules for the pod. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--node_affinity))
+- `pod_affinity` (Attributes) Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_affinity))
+- `pod_anti_affinity` (Attributes) Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity))
+
+<a id="nestedatt--spec--scheduling_policy--affinity--node_affinity"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.node_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `preference` (Attributes) A node selector term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--preference))
+- `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.preference`
+
+Optional:
+
+- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_expressions))
+- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_fields))
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_expressions`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_fields"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_fields`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+
+
+
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `node_selector_terms` (Attributes List) Required. A list of node selector terms. The terms are ORed. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+
+
+
+
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_affinity"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
+
+Required:
+
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+
+Optional:
+
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector))
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+
+Optional:
+
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
+
+Required:
+
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+
+Optional:
+
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector))
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+
+Optional:
+
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--scheduling_policy--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
+### Nested Schema for `spec.scheduling_policy.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+
+
+
+<a id="nestedatt--spec--scheduling_policy--tolerations"></a>
+### Nested Schema for `spec.scheduling_policy.tolerations`
+
+Optional:
+
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+
+
+<a id="nestedatt--spec--scheduling_policy--topology_spread_constraints"></a>
+### Nested Schema for `spec.scheduling_policy.topology_spread_constraints`
+
+Required:
+
+- `max_skew` (Number) MaxSkew describes the degree to which pods may be unevenly distributed. When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. | zone1 | zone2 | zone3 | |  P P  |  P P  |   P   | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.
+- `topology_key` (String) TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a 'bucket', and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes meet the requirements of nodeAffinityPolicy and nodeTaintsPolicy. e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology. And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology. It's a required field.
+- `when_unsatisfiable` (String) WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location, but giving higher precedence to topologies that would help reduce the skew. A constraint is considered 'Unsatisfiable' for an incoming pod if and only if every possible node assignment for that pod would violate 'MaxSkew' on some topology. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: | zone1 | zone2 | zone3 | | P P P |   P   |   P   | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field.
+
+Optional:
+
+- `label_selector` (Attributes) LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain. (see [below for nested schema](#nestedatt--spec--scheduling_policy--topology_spread_constraints--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.  This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).
+- `min_domains` (Number) MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.  For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.  This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).
+- `node_affinity_policy` (String) NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+- `node_taints_policy` (String) NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+
+<a id="nestedatt--spec--scheduling_policy--topology_spread_constraints--label_selector"></a>
+### Nested Schema for `spec.scheduling_policy.topology_spread_constraints.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--scheduling_policy--topology_spread_constraints--node_taints_policy--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--scheduling_policy--topology_spread_constraints--node_taints_policy--match_expressions"></a>
+### Nested Schema for `spec.scheduling_policy.topology_spread_constraints.node_taints_policy.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+
+
 <a id="nestedatt--spec--sharding_specs"></a>
 ### Nested Schema for `spec.sharding_specs`
 
 Required:
 
-- `name` (String) Specifies the identifier for the sharding configuration. This identifier is included as part of the Service DNS name and must comply with IANA Service Naming rules. It is used to generate the names of underlying components following the pattern '$(ShardingSpec.Name)-$(ShardID)'. Note that the name of the component template defined in ShardingSpec.Template.Name will be disregarded.
-- `template` (Attributes) The blueprint for the components. Generates a set of components (also referred to as shards) based on this template. All components or shards generated will have identical specifications and definitions. (see [below for nested schema](#nestedatt--spec--sharding_specs--template))
+- `name` (String) Represents the common parent part of all shard names. This identifier is included as part of the Service DNS name and must comply with IANA service naming rules. It is used to generate the names of underlying Components following the pattern '$(shardingSpec.name)-$(ShardID)'. ShardID is a random string that is appended to the Name to generate unique identifiers for each shard. For example, if the sharding specification name is 'my-shard' and the ShardID is 'abc', the resulting component name would be 'my-shard-abc'.  Note that the name defined in component template('shardingSpec.template.name') will be disregarded when generating the component names of the shards. The 'shardingSpec.name' field takes precedence.
+- `template` (Attributes) The template for generating Components for shards, where each shard consists of one Component. This field is of type ClusterComponentSpec, which encapsulates all the required details and definitions for creating and managing the Components. KubeBlocks uses this template to generate a set of identical Components or shards. All the generated Components will have the same specifications and definitions as specified in the 'template' field.  This allows for the creation of multiple Components with consistent configurations, enabling sharding and distribution of workloads across Components. (see [below for nested schema](#nestedatt--spec--sharding_specs--template))
 
 Optional:
 
-- `shards` (Number) Specifies the number of components, all of which will have identical specifications and definitions.  The number of replicas for each component should be defined by template.replicas. The logical relationship between these components should be maintained by the components themselves. KubeBlocks only provides lifecycle management for sharding, including:  1. Executing the postProvision Action defined in the ComponentDefinition when the number of shards increases, provided the conditions are met. 2. Executing the preTerminate Action defined in the ComponentDefinition when the number of shards decreases, provided the conditions are met. Resources and data associated with the corresponding Component will also be deleted.
+- `shards` (Number) Specifies the desired number of shards. Users can declare the desired number of shards through this field. KubeBlocks dynamically creates and deletes Components based on the difference between the desired and actual number of shards. KubeBlocks provides lifecycle management for sharding, including:  - Executing the postProvision Action defined in the ComponentDefinition when the number of shards increases. This allows for custom actions to be performed after a new shard is provisioned. - Executing the preTerminate Action defined in the ComponentDefinition when the number of shards decreases. This enables custom cleanup or data migration tasks to be executed before a shard is terminated. Resources and data associated with the corresponding Component will also be deleted.
 
 <a id="nestedatt--spec--sharding_specs--template"></a>
 ### Nested Schema for `spec.sharding_specs.template`
 
 Required:
 
-- `replicas` (Number) Specifies the number of component replicas.
+- `replicas` (Number) Each component supports running multiple replicas to provide high availability and persistence. This field can be used to specify the desired number of replicas.
 
 Optional:
 
-- `affinity` (Attributes) A group of affinity scheduling rules. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--affinity))
-- `class_def_ref` (Attributes) References the class defined in ComponentClassDefinition. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--class_def_ref))
-- `component_def` (String) References the name of the ComponentDefinition. If both componentDefRef and componentDef are provided, the componentDef will take precedence over componentDefRef.  TODO +kubebuilder:validation:XValidation:rule='self == oldSelf',message='componentDef is immutable'
-- `component_def_ref` (String) References the componentDef defined in the ClusterDefinition spec. Must comply with the IANA Service Naming rule.  TODO +kubebuilder:validation:XValidation:rule='self == oldSelf',message='componentDefRef is immutable'
-- `enabled_logs` (List of String) Indicates which log file takes effect in the database cluster.
-- `instances` (List of String) Defines the list of instances to be deleted priorly. If the RsmTransformPolicy is specified as ToPod, the list of instances will be used.
-- `issuer` (Attributes) Defines provider context for TLS certs. Required when TLS is enabled. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--issuer))
-- `monitor` (Boolean) To enable monitoring.
-- `name` (String) Specifies the name of the cluster's component. This name is also part of the Service DNS name and must comply with the IANA Service Naming rule. When ClusterComponentSpec is referenced as a template, the name is optional. Otherwise, it is required.  TODO +kubebuilder:validation:XValidation:rule='self == oldSelf',message='name is immutable'
-- `nodes` (List of String) Defines the list of nodes that pods can schedule. If the RsmTransformPolicy is specified as ToPod, the list of nodes will be used. If the list of nodes is empty, no specific node will be assigned. However, if the list of nodes is filled, all pods will be evenly scheduled across the nodes in the list.
-- `resources` (Attributes) Specifies the resources requests and limits of the workload. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--resources))
-- `rsm_transform_policy` (String) Defines the policy to generate sts using rsm.
-- `service_account_name` (String) Specifies the name of the ServiceAccount that the running component depends on.
-- `service_refs` (Attributes List) Defines service references for the current component.  Based on the referenced services, they can be categorized into two types:  - Service provided by external sources: These services are provided by external sources and are not managed by KubeBlocks. They can be Kubernetes-based or non-Kubernetes services. For external services, an additional ServiceDescriptor object is needed to establish the service binding. - Service provided by other KubeBlocks clusters: These services are provided by other KubeBlocks clusters. Binding to these services is done by specifying the name of the hosting cluster.  Each type of service reference requires specific configurations and bindings to establish the connection and interaction with the respective services. Note that the ServiceRef has cluster-level semantic consistency, meaning that within the same Cluster, service references with the same ServiceRef.Name are considered to be the same service. It is only allowed to bind to the same Cluster or ServiceDescriptor. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--service_refs))
-- `services` (Attributes List) Services expose endpoints that can be accessed by clients. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--services))
-- `switch_policy` (Attributes) Defines the strategy for switchover and failover when workloadType is Replication. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--switch_policy))
-- `tls` (Boolean) Enables or disables TLS certs.
-- `tolerations` (Map of String) Attached to tolerate any taint that matches the triple 'key,value,effect' using the matching operator 'operator'.
-- `update_strategy` (String) Defines the update strategy for the component. Not supported.
-- `user_resource_refs` (Attributes) Defines the user-defined volumes. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--user_resource_refs))
-- `volume_claim_templates` (Attributes List) Provides information for statefulset.spec.volumeClaimTemplates. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates))
+- `affinity` (Attributes) Specifies a group of affinity scheduling rules for the Component. It allows users to control how the Component's Pods are scheduled onto nodes in the cluster. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--affinity))
+- `component_def` (String) References the name of a ComponentDefinition. The ComponentDefinition specifies the behavior and characteristics of the Component. If both 'componentDefRef' and 'componentDef' are provided, the 'componentDef' will take precedence over 'componentDefRef'.
+- `component_def_ref` (String) References a ClusterComponentDefinition defined in the 'clusterDefinition.spec.componentDef' field. Must comply with the IANA service naming rule.  Deprecated since v0.9, because defining components in 'clusterDefinition.spec.componentDef' field has been deprecated. This field is replaced by the 'componentDef' field, use 'componentDef' instead. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.  TODO +kubebuilder:validation:XValidation:rule='self == oldSelf',message='componentDefRef is immutable'
+- `enabled_logs` (List of String) Specifies which types of logs should be collected for the Cluster. The log types are defined in the 'componentDefinition.spec.logConfigs' field with the LogConfig entries.  The elements in the 'enabledLogs' array correspond to the names of the LogConfig entries. For example, if the 'componentDefinition.spec.logConfigs' defines LogConfig entries with names 'slow_query_log' and 'error_log', you can enable the collection of these logs by including their names in the 'enabledLogs' array: enabledLogs: ['slow_query_log', 'error_log']
+- `instances` (Attributes List) Allows for the customization of configuration values for each instance within a component. An Instance represent a single replica (Pod and associated K8s resources like PVCs, Services, and ConfigMaps). While instances typically share a common configuration as defined in the ClusterComponentSpec, they can require unique settings in various scenarios:  For example: - A database component might require different resource allocations for primary and secondary instances, with primaries needing more resources. - During a rolling upgrade, a component may first update the image for one or a few instances, and then update the remaining instances after verifying that the updated instances are functioning correctly.  InstanceTemplate allows for specifying these unique configurations per instance. Each instance's name is constructed using the pattern: $(component.name)-$(template.name)-$(ordinal), starting with an ordinal of 0. It is crucial to maintain unique names for each InstanceTemplate to avoid conflicts.  The sum of replicas across all InstanceTemplates should not exceed the total number of Replicas specified for the Component. Any remaining replicas will be generated using the default template and will follow the default naming rules. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--instances))
+- `issuer` (Attributes) Specifies the configuration for the TLS certificates issuer. It allows defining the issuer name and the reference to the secret containing the TLS certificates and key. The secret should contain the CA certificate, TLS certificate, and private key in the specified keys. Required when TLS is enabled. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--issuer))
+- `monitor_enabled` (Boolean) Determines whether the metrics exporter needs to be published to the service endpoint. If set to true, the metrics exporter will be published to the service endpoint, the service will be injected with the following annotations: - 'monitor.kubeblocks.io/path' - 'monitor.kubeblocks.io/port' - 'monitor.kubeblocks.io/scheme'
+- `name` (String) Specifies the name of the Component. This name is also part of the Service DNS name and must comply with the IANA service naming rule. When ClusterComponentSpec is referenced as a template, the name is optional. Otherwise, it is required.  TODO +kubebuilder:validation:XValidation:rule='self == oldSelf',message='name is immutable'
+- `offline_instances` (List of String) Specifies the names of instances to be transitioned to offline status.  Marking an instance as offline results in the following:  1. The associated pod is stopped, and its PersistentVolumeClaim (PVC) is retained for potential future reuse or data recovery, but it is no longer actively used. 2. The ordinal number assigned to this instance is preserved, ensuring it remains unique and avoiding conflicts with new instances.  Setting instances to offline allows for a controlled scale-in process, preserving their data and maintaining ordinal consistency within the cluster. Note that offline instances and their associated resources, such as PVCs, are not automatically deleted. The cluster administrator must manually manage the cleanup and removal of these resources when they are no longer needed.
+- `resources` (Attributes) Specifies the resources required by the Component. It allows defining the CPU, memory requirements and limits for the Component's containers. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--resources))
+- `scheduling_policy` (Attributes) Specifies the scheduling policy for the component. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--scheduling_policy))
+- `service_account_name` (String) Specifies the name of the ServiceAccount required by the running Component. This ServiceAccount is used to grant necessary permissions for the Component's Pods to interact with other Kubernetes resources, such as modifying pod labels or sending events.  Defaults: If not specified, KubeBlocks automatically assigns a default ServiceAccount named 'kb-{cluster.name}', bound to a default role defined during KubeBlocks installation.  Future Changes: Future versions might change the default ServiceAccount creation strategy to one per Component, potentially revising the naming to 'kb-{cluster.name}-{component.name}'.  Users can override the automatic ServiceAccount assignment by explicitly setting the name of an existed ServiceAccount in this field.
+- `service_refs` (Attributes List) Defines a list of ServiceRef for a Component, allowing it to connect and interact with other services. These services can be external or managed by the same KubeBlocks operator, categorized as follows:  1. External Services:  - Not managed by KubeBlocks. These could be services outside KubeBlocks or non-Kubernetes services. - Connection requires a ServiceDescriptor providing details for service binding.  2. KubeBlocks Services:  - Managed within the same KubeBlocks environment. - Service binding is achieved by specifying cluster names in the service references, with configurations handled by the KubeBlocks operator.  ServiceRef maintains cluster-level semantic consistency; references with the same 'serviceRef.name' within the same cluster are treated as identical. Only bindings to the same cluster or ServiceDescriptor are allowed within a cluster.  Example: '''yaml serviceRefs: - name: 'redis-sentinel' serviceDescriptor: name: 'external-redis-sentinel' - name: 'postgres-cluster' cluster: name: 'my-postgres-cluster' ''' The example above includes references to an external Redis Sentinel service and a PostgreSQL cluster managed by KubeBlocks. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--service_refs))
+- `service_version` (String) ServiceVersion specifies the version of the service expected to be provisioned by this component. The version should follow the syntax and semantics of the 'Semantic Versioning' specification (http://semver.org/). If no version is specified, the latest available version will be used.
+- `services` (Attributes List) Services overrides services defined in referenced ComponentDefinition and expose endpoints that can be accessed by clients. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--services))
+- `sidecars` (List of String) Defines the sidecar containers that will be attached to the component's main container.
+- `switch_policy` (Attributes) Defines the strategy for switchover and failover when workloadType is Replication.  Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--switch_policy))
+- `tls` (Boolean) A boolean flag that indicates whether the component should use Transport Layer Security (TLS) for secure communication. When set to true, the component will be configured to use TLS encryption for its network connections. This ensures that the data transmitted between the component and its clients or other components is encrypted and protected from unauthorized access. If TLS is enabled, the component may require additional configuration, such as specifying TLS certificates and keys, to properly set up the secure communication channel.
+- `tolerations` (Map of String) Allows the Component to be scheduled onto nodes with matching taints. It is an array of tolerations that are attached to the Component's Pods.  Each toleration consists of a 'key', 'value', 'effect', and 'operator'. The 'key', 'value', and 'effect' define the taint that the toleration matches. The 'operator' specifies how the toleration matches the taint.  If a node has a taint that matches a toleration, the Component's pods can be scheduled onto that node. This allows the Component's Pods to run on nodes that have been tainted to prevent regular Pods from being scheduled.
+- `update_strategy` (String) Defines the update strategy for the component.  Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.
+- `user_resource_refs` (Attributes) Allows users to specify custom ConfigMaps and Secrets to be mounted as volumes in the Cluster's Pods. This is useful in scenarios where users need to provide additional resources to the Cluster, such as:  - Mounting custom scripts or configuration files during Cluster startup. - Mounting Secrets as volumes to provide sensitive information, like S3 AK/SK, to the Cluster. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--user_resource_refs))
+- `volume_claim_templates` (Attributes List) Specifies a list of PersistentVolumeClaim templates that define the storage requirements for the Component. Each template specifies the desired characteristics of a persistent volume, such as storage class, size, and access modes. These templates are used to dynamically provision persistent volumes for the Component when it is deployed. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates))
 
 <a id="nestedatt--spec--sharding_specs--template--affinity"></a>
 ### Nested Schema for `spec.sharding_specs.template.affinity`
 
 Optional:
 
-- `node_labels` (Map of String) Indicates that pods must be scheduled to the nodes with the specified node labels.
-- `pod_anti_affinity` (String) Specifies the anti-affinity level of pods within a component.
-- `tenancy` (String) Defines how pods are distributed across nodes.
-- `topology_keys` (List of String) Represents the key of node labels.  Nodes with a label containing this key and identical values are considered to be in the same topology. This is used as the topology domain for pod anti-affinity and pod spread constraint. Some well-known label keys, such as 'kubernetes.io/hostname' and 'topology.kubernetes.io/zone', are often used as TopologyKey, along with any other custom label key.
+- `node_labels` (Map of String) Indicates the node labels that must be present on nodes for pods to be scheduled on them. It is a map where the keys are the label keys and the values are the corresponding label values. Pods will only be scheduled on nodes that have all the specified labels with the corresponding values.  For example, if NodeLabels is set to {'nodeType': 'ssd', 'environment': 'production'}, pods will only be scheduled on nodes that have both the 'nodeType' label with value 'ssd' and the 'environment' label with value 'production'.  This field allows users to control Pod placement based on specific node labels. It can be used to ensure that Pods are scheduled on nodes with certain characteristics, such as specific hardware (e.g., SSD), environment (e.g., production, staging), or any other custom labels assigned to nodes.
+- `pod_anti_affinity` (String) Specifies the anti-affinity level of Pods within a Component. It determines how pods should be spread across nodes to improve availability and performance. It can have the following values: 'Preferred' and 'Required'. The default value is 'Preferred'.
+- `tenancy` (String) Determines the level of resource isolation between Pods. It can have the following values: 'SharedNode' and 'DedicatedNode'.  - SharedNode: Allow that multiple Pods may share the same node, which is the default behavior of K8s. - DedicatedNode: Each Pod runs on a dedicated node, ensuring that no two Pods share the same node. In other words, if a Pod is already running on a node, no other Pods will be scheduled on that node. Which provides a higher level of isolation and resource guarantee for Pods.  The default value is 'SharedNode'.
+- `topology_keys` (List of String) Represents the key of node labels used to define the topology domain for Pod anti-affinity and Pod spread constraints.  In K8s, a topology domain is a set of nodes that have the same value for a specific label key. Nodes with labels containing any of the specified TopologyKeys and identical values are considered to be in the same topology domain.  Note: The concept of topology in the context of K8s TopologyKeys is different from the concept of topology in the ClusterDefinition.  When a Pod has anti-affinity or spread constraints specified, Kubernetes will attempt to schedule the Pod on nodes with different values for the specified TopologyKeys. This ensures that Pods are spread across different topology domains, promoting high availability and reducing the impact of node failures.  Some well-known label keys, such as 'kubernetes.io/hostname' and 'topology.kubernetes.io/zone', are often used as TopologyKey. These keys represent the hostname and zone of a node, respectively. By including these keys in the TopologyKeys list, Pods will be spread across nodes with different hostnames or zones.  In addition to the well-known keys, users can also specify custom label keys as TopologyKeys. This allows for more flexible and custom topology definitions based on the specific needs of the application or environment.  The TopologyKeys field is a slice of strings, where each string represents a label key. The order of the keys in the slice does not matter.
 
 
-<a id="nestedatt--spec--sharding_specs--template--class_def_ref"></a>
-### Nested Schema for `spec.sharding_specs.template.class_def_ref`
+<a id="nestedatt--spec--sharding_specs--template--instances"></a>
+### Nested Schema for `spec.sharding_specs.template.instances`
 
 Required:
 
-- `class` (String) Defines the name of the class that is defined in the ComponentClassDefinition.
+- `name` (String) Name specifies the unique name of the instance Pod created using this InstanceTemplate. This name is constructed by concatenating the component's name, the template's name, and the instance's ordinal using the pattern: $(cluster.name)-$(component.name)-$(template.name)-$(ordinal). Ordinals start from 0. The specified name overrides any default naming conventions or patterns.
 
 Optional:
 
-- `name` (String) Specifies the name of the ComponentClassDefinition.
+- `annotations` (Map of String) Specifies a map of key-value pairs to be merged into the Pod's existing annotations. Existing keys will have their values overwritten, while new keys will be added to the annotations.
+- `env` (Attributes List) Defines Env to override. Add new or override existing envs. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--env))
+- `image` (String) Specifies an override for the first container's image in the pod.
+- `labels` (Map of String) Specifies a map of key-value pairs that will be merged into the Pod's existing labels. Values for existing keys will be overwritten, and new keys will be added.
+- `node_name` (String) Specifies the name of the node where the Pod should be scheduled. If set, the Pod will be directly assigned to the specified node, bypassing the Kubernetes scheduler. This is useful for controlling Pod placement on specific nodes.  Important considerations: - 'nodeName' bypasses default scheduling constraints (e.g., resource requirements, node selectors, affinity rules). - It is the user's responsibility to ensure the node is suitable for the Pod. - If the node is unavailable, the Pod will remain in 'Pending' state until the node is available or the Pod is deleted.
+- `node_selector` (Map of String) Defines NodeSelector to override.
+- `replicas` (Number) Specifies the number of instances (Pods) to create from this InstanceTemplate. This field allows setting how many replicated instances of the component, with the specific overrides in the InstanceTemplate, are created. The default value is 1. A value of 0 disables instance creation.
+- `resources` (Attributes) Specifies an override for the resource requirements of the first container in the Pod. This field allows for customizing resource allocation (CPU, memory, etc.) for the container. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--resources))
+- `tolerations` (Attributes List) Tolerations specifies a list of tolerations to be applied to the Pod, allowing it to tolerate node taints. This field can be used to add new tolerations or override existing ones. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--tolerations))
+- `volume_claim_templates` (Attributes List) Defines VolumeClaimTemplates to override. Add new or override existing volume claim templates. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volume_claim_templates))
+- `volume_mounts` (Attributes List) Defines VolumeMounts to override. Add new or override existing volume mounts of the first container in the pod. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volume_mounts))
+- `volumes` (Attributes List) Defines Volumes to override. Add new or override existing volumes. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes))
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--env"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.env`
+
+Required:
+
+- `name` (String) Name of the environment variable. Must be a C_IDENTIFIER.
+
+Optional:
+
+- `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
+- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--env--value_from))
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--env--value_from"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.env.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--env--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.env.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--env--value_from--field_ref"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.env.value_from.field_ref`
+
+Required:
+
+- `field_path` (String) Path of the field to select in the specified API version.
+
+Optional:
+
+- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.env.value_from.resource_field_ref`
+
+Required:
+
+- `resource` (String) Required: resource to select
+
+Optional:
+
+- `container_name` (String) Container name: required for volumes, optional for env vars
+- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.env.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--resources"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.resources`
+
+Optional:
+
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--resources--claims"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.resources.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--tolerations"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.tolerations`
+
+Optional:
+
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volume_claim_templates"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volume_claim_templates`
+
+Optional:
+
+- `api_version` (String) APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+- `kind` (String) Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `metadata` (Attributes) Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volume_claim_templates--metadata))
+- `spec` (Attributes) spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volume_claim_templates--spec))
+- `status` (Attributes) status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volume_claim_templates--status))
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volume_claim_templates--metadata"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volume_claim_templates.metadata`
+
+Optional:
+
+- `annotations` (Map of String)
+- `finalizers` (List of String)
+- `labels` (Map of String)
+- `name` (String)
+- `namespace` (String)
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volume_claim_templates--spec"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volume_claim_templates.spec`
+
+Optional:
+
+- `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
+- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volume_claim_templates--status--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volume_claim_templates--status--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volume_claim_templates--status--resources))
+- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volume_claim_templates--status--selector))
+- `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
+- `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volume_claim_templates--status--data_source"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volume_claim_templates.status.data_source`
+
+Required:
+
+- `kind` (String) Kind is the type of resource being referenced
+- `name` (String) Name is the name of resource being referenced
+
+Optional:
+
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volume_claim_templates--status--data_source_ref"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volume_claim_templates.status.data_source_ref`
+
+Required:
+
+- `kind` (String) Kind is the type of resource being referenced
+- `name` (String) Name is the name of resource being referenced
+
+Optional:
+
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+- `namespace` (String) Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volume_claim_templates--status--resources"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volume_claim_templates.status.resources`
+
+Optional:
+
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volume_claim_templates--status--volume_name--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volume_claim_templates--status--volume_name--claims"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volume_claim_templates.status.volume_name.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volume_claim_templates--status--selector"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volume_claim_templates.status.selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volume_claim_templates--status--volume_name--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volume_claim_templates--status--volume_name--match_expressions"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volume_claim_templates.status.volume_name.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volume_claim_templates--status"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volume_claim_templates.status`
+
+Optional:
+
+- `access_modes` (List of String) accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
+- `allocated_resource_statuses` (Map of String) allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  ClaimResourceStatus can be in any of following states: - ControllerResizeInProgress: State set when resize controller starts resizing the volume in control-plane. - ControllerResizeFailed: State set when resize has failed in resize controller with a terminal error. - NodeResizePending: State set when resize controller has finished resizing the volume but further resizing of volume is needed on the node. - NodeResizeInProgress: State set when kubelet starts resizing the volume. - NodeResizeFailed: State set when resizing has failed in kubelet with a terminal error. Transient errors don't set NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed' When this field is not set, it means that no resize operation is in progress for the given PVC.  A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
+- `allocated_resources` (Map of String) allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity.  A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
+- `capacity` (Map of String) capacity represents the actual resources of the underlying volume.
+- `conditions` (Attributes List) conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volume_claim_templates--status--conditions))
+- `phase` (String) phase represents the current phase of PersistentVolumeClaim.
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volume_claim_templates--status--conditions"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volume_claim_templates.status.conditions`
+
+Required:
+
+- `status` (String)
+- `type` (String) PersistentVolumeClaimConditionType is a valid value of PersistentVolumeClaimCondition.Type
+
+Optional:
+
+- `last_probe_time` (String) lastProbeTime is the time we probed the condition.
+- `last_transition_time` (String) lastTransitionTime is the time the condition transitioned from one status to another.
+- `message` (String) message is the human-readable message indicating details about last transition.
+- `reason` (String) reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.
+
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volume_mounts"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volume_mounts`
+
+Required:
+
+- `mount_path` (String) Path within the container at which the volume should be mounted.  Must not contain ':'.
+- `name` (String) This must match the Name of a Volume.
+
+Optional:
+
+- `mount_propagation` (String) mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.
+- `read_only` (Boolean) Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.
+- `sub_path` (String) Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).
+- `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes`
+
+Required:
+
+- `name` (String) name of the volume. Must be a DNS_LABEL and unique within the pod. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+
+Optional:
+
+- `aws_elastic_block_store` (Attributes) awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--aws_elastic_block_store))
+- `azure_disk` (Attributes) azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--azure_disk))
+- `azure_file` (Attributes) azureFile represents an Azure File Service mount on the host and bind mount to the pod. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--azure_file))
+- `cephfs` (Attributes) cephFS represents a Ceph FS mount on the host that shares a pod's lifetime (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--cephfs))
+- `cinder` (Attributes) cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--cinder))
+- `config_map` (Attributes) configMap represents a configMap that should populate this volume (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--config_map))
+- `csi` (Attributes) csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature). (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--csi))
+- `downward_api` (Attributes) downwardAPI represents downward API about the pod that should populate this volume (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--downward_api))
+- `empty_dir` (Attributes) emptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--empty_dir))
+- `ephemeral` (Attributes) ephemeral represents a volume that is handled by a cluster storage driver. The volume's lifecycle is tied to the pod that defines it - it will be created before the pod starts, and deleted when the pod is removed.  Use this if: a) the volume is only needed while the pod runs, b) features of normal volumes like restoring from snapshot or capacity tracking are needed, c) the storage driver is specified through a storage class, and d) the storage driver supports dynamic volume provisioning through a PersistentVolumeClaim (see EphemeralVolumeSource for more information on the connection between this volume type and PersistentVolumeClaim).  Use PersistentVolumeClaim or one of the vendor-specific APIs for volumes that persist for longer than the lifecycle of an individual pod.  Use CSI for light-weight local ephemeral volumes if the CSI driver is meant to be used that way - see the documentation of the driver for more information.  A pod can use both types of ephemeral volumes and persistent volumes at the same time. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--ephemeral))
+- `fc` (Attributes) fc represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--fc))
+- `flex_volume` (Attributes) flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--flex_volume))
+- `flocker` (Attributes) flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--flocker))
+- `gce_persistent_disk` (Attributes) gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--gce_persistent_disk))
+- `git_repo` (Attributes) gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--git_repo))
+- `glusterfs` (Attributes) glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--glusterfs))
+- `host_path` (Attributes) hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath --- TODO(jonesdl) We need to restrict who can use host directory mounts and who can/can not mount host directories as read/write. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--host_path))
+- `iscsi` (Attributes) iscsi represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://examples.k8s.io/volumes/iscsi/README.md (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--iscsi))
+- `nfs` (Attributes) nfs represents an NFS mount on the host that shares a pod's lifetime More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--nfs))
+- `persistent_volume_claim` (Attributes) persistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--persistent_volume_claim))
+- `photon_persistent_disk` (Attributes) photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--photon_persistent_disk))
+- `portworx_volume` (Attributes) portworxVolume represents a portworx volume attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--portworx_volume))
+- `projected` (Attributes) projected items for all in one resources secrets, configmaps, and downward API (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--projected))
+- `quobyte` (Attributes) quobyte represents a Quobyte mount on the host that shares a pod's lifetime (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--quobyte))
+- `rbd` (Attributes) rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--rbd))
+- `scale_io` (Attributes) scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--scale_io))
+- `secret` (Attributes) secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--secret))
+- `storageos` (Attributes) storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--storageos))
+- `vsphere_volume` (Attributes) vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume))
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--aws_elastic_block_store"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.aws_elastic_block_store`
+
+Required:
+
+- `volume_id` (String) volumeID is unique ID of the persistent disk resource in AWS (Amazon EBS volume). More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
+
+Optional:
+
+- `fs_type` (String) fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore TODO: how do we prevent errors in the filesystem from compromising the machine
+- `partition` (Number) partition is the partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as '1'. Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty).
+- `read_only` (Boolean) readOnly value true will force the readOnly setting in VolumeMounts. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--azure_disk"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.azure_disk`
+
+Required:
+
+- `disk_name` (String) diskName is the Name of the data disk in the blob storage
+- `disk_uri` (String) diskURI is the URI of data disk in the blob storage
+
+Optional:
+
+- `caching_mode` (String) cachingMode is the Host Caching mode: None, Read Only, Read Write.
+- `fs_type` (String) fsType is Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
+- `kind` (String) kind expected values are Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared
+- `read_only` (Boolean) readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--azure_file"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.azure_file`
+
+Required:
+
+- `secret_name` (String) secretName is the  name of secret that contains Azure Storage Account Name and Key
+- `share_name` (String) shareName is the azure share Name
+
+Optional:
+
+- `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--cephfs"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.cephfs`
+
+Required:
+
+- `monitors` (List of String) monitors is Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
+
+Optional:
+
+- `path` (String) path is Optional: Used as the mounted root, rather than the full Ceph tree, default is /
+- `read_only` (Boolean) readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
+- `secret_file` (String) secretFile is Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
+- `secret_ref` (Attributes) secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--secret_ref))
+- `user` (String) user is optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--secret_ref"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.secret_ref`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--cinder"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.cinder`
+
+Required:
+
+- `volume_id` (String) volumeID used to identify the volume in cinder. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
+
+Optional:
+
+- `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
+- `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
+- `secret_ref` (Attributes) secretRef is optional: points to a secret object containing parameters used to connect to OpenStack. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--secret_ref))
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--secret_ref"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.secret_ref`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--config_map"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.config_map`
+
+Optional:
+
+- `default_mode` (Number) defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--items))
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--items"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.items`
+
+Required:
+
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+
+Optional:
+
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--csi"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.csi`
+
+Required:
+
+- `driver` (String) driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.
+
+Optional:
+
+- `fs_type` (String) fsType to mount. Ex. 'ext4', 'xfs', 'ntfs'. If not provided, the empty value is passed to the associated CSI driver which will determine the default filesystem to apply.
+- `node_publish_secret_ref` (Attributes) nodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and  may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--node_publish_secret_ref))
+- `read_only` (Boolean) readOnly specifies a read-only configuration for the volume. Defaults to false (read/write).
+- `volume_attributes` (Map of String) volumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--node_publish_secret_ref"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.node_publish_secret_ref`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--downward_api"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.downward_api`
+
+Optional:
+
+- `default_mode` (Number) Optional: mode bits to use on created files by default. Must be a Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `items` (Attributes List) Items is a list of downward API volume file (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--items))
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--items"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.items`
+
+Required:
+
+- `path` (String) Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'
+
+Optional:
+
+- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--items--field_ref))
+- `mode` (Number) Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--items--resource_field_ref))
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--items--field_ref"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.items.field_ref`
+
+Required:
+
+- `field_path` (String) Path of the field to select in the specified API version.
+
+Optional:
+
+- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--items--resource_field_ref"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.items.resource_field_ref`
+
+Required:
+
+- `resource` (String) Required: resource to select
+
+Optional:
+
+- `container_name` (String) Container name: required for volumes, optional for env vars
+- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--empty_dir"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.empty_dir`
+
+Optional:
+
+- `medium` (String) medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
+- `size_limit` (String) sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--ephemeral"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.ephemeral`
+
+Optional:
+
+- `volume_claim_template` (Attributes) Will be used to create a stand-alone PVC to provision the volume. The pod in which this EphemeralVolumeSource is embedded will be the owner of the PVC, i.e. the PVC will be deleted together with the pod.  The name of the PVC will be '<pod name>-<volume name>' where '<volume name>' is the name from the 'PodSpec.Volumes' array entry. Pod validation will reject the pod if the concatenated name is not valid for a PVC (for example, too long).  An existing PVC with that name that is not owned by the pod will *not* be used for the pod to avoid using an unrelated volume by mistake. Starting the pod is then blocked until the unrelated PVC is removed. If such a pre-created PVC is meant to be used by the pod, the PVC has to updated with an owner reference to the pod once the pod exists. Normally this should not be necessary, but it may be useful when manually reconstructing a broken cluster.  This field is read-only and no changes will be made by Kubernetes to the PVC after it has been created.  Required, must not be nil. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--volume_claim_template))
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--volume_claim_template"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.volume_claim_template`
+
+Required:
+
+- `spec` (Attributes) The specification for the PersistentVolumeClaim. The entire content is copied unchanged into the PVC that gets created from this template. The same fields as in a PersistentVolumeClaim are also valid here. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--volume_claim_template--spec))
+
+Optional:
+
+- `metadata` (Attributes) May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--volume_claim_template--metadata))
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--volume_claim_template--spec"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.volume_claim_template.spec`
+
+Optional:
+
+- `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
+- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--volume_claim_template--metadata--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--volume_claim_template--metadata--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--volume_claim_template--metadata--resources))
+- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--volume_claim_template--metadata--selector))
+- `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
+- `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--volume_claim_template--metadata--data_source"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.volume_claim_template.metadata.data_source`
+
+Required:
+
+- `kind` (String) Kind is the type of resource being referenced
+- `name` (String) Name is the name of resource being referenced
+
+Optional:
+
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--volume_claim_template--metadata--data_source_ref"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.volume_claim_template.metadata.data_source_ref`
+
+Required:
+
+- `kind` (String) Kind is the type of resource being referenced
+- `name` (String) Name is the name of resource being referenced
+
+Optional:
+
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+- `namespace` (String) Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--volume_claim_template--metadata--resources"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.volume_claim_template.metadata.resources`
+
+Optional:
+
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--volume_claim_template--metadata--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--volume_claim_template--metadata--resources--claims"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.volume_claim_template.metadata.resources.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--volume_claim_template--metadata--selector"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.volume_claim_template.metadata.selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--volume_claim_template--metadata--selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--volume_claim_template--metadata--selector--match_expressions"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.volume_claim_template.metadata.selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--volume_claim_template--metadata"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.volume_claim_template.metadata`
+
+Optional:
+
+- `annotations` (Map of String)
+- `finalizers` (List of String)
+- `labels` (Map of String)
+- `name` (String)
+- `namespace` (String)
+
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--fc"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.fc`
+
+Optional:
+
+- `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. TODO: how do we prevent errors in the filesystem from compromising the machine
+- `lun` (Number) lun is Optional: FC target lun number
+- `read_only` (Boolean) readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+- `target_ww_ns` (List of String) targetWWNs is Optional: FC target worldwide names (WWNs)
+- `wwids` (List of String) wwids Optional: FC volume world wide identifiers (wwids) Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously.
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--flex_volume"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.flex_volume`
+
+Required:
+
+- `driver` (String) driver is the name of the driver to use for this volume.
+
+Optional:
+
+- `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. The default filesystem depends on FlexVolume script.
+- `options` (Map of String) options is Optional: this field holds extra command options if any.
+- `read_only` (Boolean) readOnly is Optional: defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+- `secret_ref` (Attributes) secretRef is Optional: secretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--secret_ref))
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--secret_ref"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.secret_ref`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--flocker"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.flocker`
+
+Optional:
+
+- `dataset_name` (String) datasetName is Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated
+- `dataset_uuid` (String) datasetUUID is the UUID of the dataset. This is unique identifier of a Flocker dataset
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--gce_persistent_disk"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.gce_persistent_disk`
+
+Required:
+
+- `pd_name` (String) pdName is unique name of the PD resource in GCE. Used to identify the disk in GCE. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
+
+Optional:
+
+- `fs_type` (String) fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk TODO: how do we prevent errors in the filesystem from compromising the machine
+- `partition` (Number) partition is the partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as '1'. Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty). More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
+- `read_only` (Boolean) readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--git_repo"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.git_repo`
+
+Required:
+
+- `repository` (String) repository is the URL
+
+Optional:
+
+- `directory` (String) directory is the target directory name. Must not contain or start with '..'.  If '.' is supplied, the volume directory will be the git repository.  Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.
+- `revision` (String) revision is the commit hash for the specified revision.
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--glusterfs"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.glusterfs`
+
+Required:
+
+- `endpoints` (String) endpoints is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
+- `path` (String) path is the Glusterfs volume path. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
+
+Optional:
+
+- `read_only` (Boolean) readOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--host_path"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.host_path`
+
+Required:
+
+- `path` (String) path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
+
+Optional:
+
+- `type` (String) type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--iscsi"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.iscsi`
+
+Required:
+
+- `iqn` (String) iqn is the target iSCSI Qualified Name.
+- `lun` (Number) lun represents iSCSI Target Lun number.
+- `target_portal` (String) targetPortal is iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
+
+Optional:
+
+- `chap_auth_discovery` (Boolean) chapAuthDiscovery defines whether support iSCSI Discovery CHAP authentication
+- `chap_auth_session` (Boolean) chapAuthSession defines whether support iSCSI Session CHAP authentication
+- `fs_type` (String) fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi TODO: how do we prevent errors in the filesystem from compromising the machine
+- `initiator_name` (String) initiatorName is the custom iSCSI Initiator Name. If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface <target portal>:<volume name> will be created for the connection.
+- `iscsi_interface` (String) iscsiInterface is the interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).
+- `portals` (List of String) portals is the iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
+- `read_only` (Boolean) readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.
+- `secret_ref` (Attributes) secretRef is the CHAP Secret for iSCSI target and initiator authentication (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--secret_ref))
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--secret_ref"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.secret_ref`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--nfs"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.nfs`
+
+Required:
+
+- `path` (String) path that is exported by the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
+- `server` (String) server is the hostname or IP address of the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
+
+Optional:
+
+- `read_only` (Boolean) readOnly here will force the NFS export to be mounted with read-only permissions. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--persistent_volume_claim"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.persistent_volume_claim`
+
+Required:
+
+- `claim_name` (String) claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
+
+Optional:
+
+- `read_only` (Boolean) readOnly Will force the ReadOnly setting in VolumeMounts. Default false.
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--photon_persistent_disk"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.photon_persistent_disk`
+
+Required:
+
+- `pd_id` (String) pdID is the ID that identifies Photon Controller persistent disk
+
+Optional:
+
+- `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--portworx_volume"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.portworx_volume`
+
+Required:
+
+- `volume_id` (String) volumeID uniquely identifies a Portworx volume
+
+Optional:
+
+- `fs_type` (String) fSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs'. Implicitly inferred to be 'ext4' if unspecified.
+- `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--projected"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.projected`
+
+Optional:
+
+- `default_mode` (Number) defaultMode are the mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `sources` (Attributes List) sources is the list of volume projections (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--sources))
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--sources"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.sources`
+
+Optional:
+
+- `config_map` (Attributes) configMap information about the configMap data to project (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--sources--config_map))
+- `downward_api` (Attributes) downwardAPI information about the downwardAPI data to project (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--sources--downward_api))
+- `secret` (Attributes) secret information about the secret data to project (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--sources--secret))
+- `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--sources--service_account_token))
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--sources--config_map"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.sources.config_map`
+
+Optional:
+
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--sources--service_account_token--items))
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--sources--service_account_token--items"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.sources.service_account_token.items`
+
+Required:
+
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+
+Optional:
+
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--sources--downward_api"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.sources.downward_api`
+
+Optional:
+
+- `items` (Attributes List) Items is a list of DownwardAPIVolume file (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--sources--service_account_token--items))
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--sources--service_account_token--items"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.sources.service_account_token.items`
+
+Required:
+
+- `path` (String) Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'
+
+Optional:
+
+- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--sources--service_account_token--items--field_ref))
+- `mode` (Number) Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.sources.service_account_token.items.field_ref`
+
+Required:
+
+- `field_path` (String) Path of the field to select in the specified API version.
+
+Optional:
+
+- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+
+Required:
+
+- `resource` (String) Required: resource to select
+
+Optional:
+
+- `container_name` (String) Container name: required for volumes, optional for env vars
+- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--sources--secret"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.sources.secret`
+
+Optional:
+
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--sources--service_account_token--items))
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) optional field specify whether the Secret or its key must be defined
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--sources--service_account_token--items"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.sources.service_account_token.items`
+
+Required:
+
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+
+Optional:
+
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--sources--service_account_token"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.sources.service_account_token`
+
+Required:
+
+- `path` (String) path is the path relative to the mount point of the file to project the token into.
+
+Optional:
+
+- `audience` (String) audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.
+- `expiration_seconds` (Number) expirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.
+
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--quobyte"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.quobyte`
+
+Required:
+
+- `registry` (String) registry represents a single or multiple Quobyte Registry services specified as a string as host:port pair (multiple entries are separated with commas) which acts as the central registry for volumes
+- `volume` (String) volume is a string that references an already created Quobyte volume by name.
+
+Optional:
+
+- `group` (String) group to map volume access to Default is no group
+- `read_only` (Boolean) readOnly here will force the Quobyte volume to be mounted with read-only permissions. Defaults to false.
+- `tenant` (String) tenant owning the given Quobyte volume in the Backend Used with dynamically provisioned Quobyte volumes, value is set by the plugin
+- `user` (String) user to map volume access to Defaults to serivceaccount user
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--rbd"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.rbd`
+
+Required:
+
+- `image` (String) image is the rados image name. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+- `monitors` (List of String) monitors is a collection of Ceph monitors. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+
+Optional:
+
+- `fs_type` (String) fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd TODO: how do we prevent errors in the filesystem from compromising the machine
+- `keyring` (String) keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+- `pool` (String) pool is the rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+- `read_only` (Boolean) readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+- `secret_ref` (Attributes) secretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--secret_ref))
+- `user` (String) user is the rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--secret_ref"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.secret_ref`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--scale_io"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.scale_io`
+
+Required:
+
+- `gateway` (String) gateway is the host address of the ScaleIO API Gateway.
+- `secret_ref` (Attributes) secretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--secret_ref))
+- `system` (String) system is the name of the storage system as configured in ScaleIO.
+
+Optional:
+
+- `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Default is 'xfs'.
+- `protection_domain` (String) protectionDomain is the name of the ScaleIO Protection Domain for the configured storage.
+- `read_only` (Boolean) readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+- `ssl_enabled` (Boolean) sslEnabled Flag enable/disable SSL communication with Gateway, default false
+- `storage_mode` (String) storageMode indicates whether the storage for a volume should be ThickProvisioned or ThinProvisioned. Default is ThinProvisioned.
+- `storage_pool` (String) storagePool is the ScaleIO Storage Pool associated with the protection domain.
+- `volume_name` (String) volumeName is the name of a volume already created in the ScaleIO system that is associated with this volume source.
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--secret_ref"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.secret_ref`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--secret"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.secret`
+
+Optional:
+
+- `default_mode` (Number) defaultMode is Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `items` (Attributes List) items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--items))
+- `optional` (Boolean) optional field specify whether the Secret or its keys must be defined
+- `secret_name` (String) secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--items"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.items`
+
+Required:
+
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+
+Optional:
+
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--storageos"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.storageos`
+
+Optional:
+
+- `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
+- `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+- `secret_ref` (Attributes) secretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--secret_ref))
+- `volume_name` (String) volumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.
+- `volume_namespace` (String) volumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume--secret_ref"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume.secret_ref`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--volumes--vsphere_volume"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.volumes.vsphere_volume`
+
+Required:
+
+- `volume_path` (String) volumePath is the path that identifies vSphere volume vmdk
+
+Optional:
+
+- `fs_type` (String) fsType is filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
+- `storage_policy_id` (String) storagePolicyID is the storage Policy Based Management (SPBM) profile ID associated with the StoragePolicyName.
+- `storage_policy_name` (String) storagePolicyName is the storage Policy Based Management (SPBM) profile name.
+
+
 
 
 <a id="nestedatt--spec--sharding_specs--template--issuer"></a>
@@ -459,21 +3456,21 @@ Optional:
 
 Required:
 
-- `name` (String) The issuer for TLS certificates.
+- `name` (String) The issuer for TLS certificates. It only allows two enum values: 'KubeBlocks' and 'UserProvided'.  - 'KubeBlocks' indicates that the self-signed TLS certificates generated by the KubeBlocks Operator will be used. - 'UserProvided' means that the user is responsible for providing their own CA, Cert, and Key. In this case, the user-provided CA certificate, server certificate, and private key will be used for TLS communication.
 
 Optional:
 
-- `secret_ref` (Attributes) SecretRef is the reference to the TLS certificates secret. It is required when the issuer is set to UserProvided. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--secret_ref))
+- `secret_ref` (Attributes) SecretRef is the reference to the secret that contains user-provided certificates. It is required when the issuer is set to 'UserProvided'. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--secret_ref))
 
 <a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--secret_ref"></a>
 ### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.secret_ref`
 
 Required:
 
-- `ca` (String) CA cert key in Secret
-- `cert` (String) Cert key in Secret
+- `ca` (String) Key of CA cert in Secret
+- `cert` (String) Key of Cert in Secret
 - `key` (String) Key of TLS private key in Secret
-- `name` (String) Name of the Secret
+- `name` (String) Name of the Secret that contains user-provided certificates.
 
 
 
@@ -495,18 +3492,493 @@ Required:
 
 
 
+<a id="nestedatt--spec--sharding_specs--template--scheduling_policy"></a>
+### Nested Schema for `spec.sharding_specs.template.scheduling_policy`
+
+Optional:
+
+- `affinity` (Attributes) If specified, the cluster's scheduling constraints. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity))
+- `node_name` (String) NodeName is a request to schedule this pod onto a specific node. If it is non-empty, the scheduler simply schedules this pod onto that node, assuming that it fits resource requirements.
+- `node_selector` (Map of String) NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+- `scheduler_name` (String) If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler.
+- `tolerations` (Attributes List) Attached to tolerate any taint that matches the triple 'key,value,effect' using the matching operator 'operator'. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--tolerations))
+- `topology_spread_constraints` (Attributes List) TopologySpreadConstraints describes how a group of pods ought to spread across topology domains. Scheduler will schedule pods in a way which abides by the constraints. All topologySpreadConstraints are ANDed. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--topology_spread_constraints))
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity`
+
+Optional:
+
+- `node_affinity` (Attributes) Describes node affinity scheduling rules for the pod. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--node_affinity))
+- `pod_affinity` (Attributes) Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_affinity))
+- `pod_anti_affinity` (Attributes) Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity))
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--node_affinity"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.node_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `preference` (Attributes) A node selector term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference`
+
+Optional:
+
+- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
+- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `node_selector_terms` (Attributes List) Required. A list of node selector terms. The terms are ORed. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+
+
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_affinity"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+
+Required:
+
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+
+Optional:
+
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+
+Optional:
+
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+
+Required:
+
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+
+Optional:
+
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+
+Optional:
+
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--tolerations"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.tolerations`
+
+Optional:
+
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--topology_spread_constraints"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.topology_spread_constraints`
+
+Required:
+
+- `max_skew` (Number) MaxSkew describes the degree to which pods may be unevenly distributed. When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. | zone1 | zone2 | zone3 | |  P P  |  P P  |   P   | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.
+- `topology_key` (String) TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a 'bucket', and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes meet the requirements of nodeAffinityPolicy and nodeTaintsPolicy. e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology. And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology. It's a required field.
+- `when_unsatisfiable` (String) WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location, but giving higher precedence to topologies that would help reduce the skew. A constraint is considered 'Unsatisfiable' for an incoming pod if and only if every possible node assignment for that pod would violate 'MaxSkew' on some topology. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: | zone1 | zone2 | zone3 | | P P P |   P   |   P   | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field.
+
+Optional:
+
+- `label_selector` (Attributes) LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--topology_spread_constraints--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.  This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).
+- `min_domains` (Number) MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.  For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.  This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).
+- `node_affinity_policy` (String) NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+- `node_taints_policy` (String) NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--topology_spread_constraints--label_selector"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.topology_spread_constraints.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--topology_spread_constraints--node_taints_policy--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--topology_spread_constraints--node_taints_policy--match_expressions"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.topology_spread_constraints.node_taints_policy.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+
+
 <a id="nestedatt--spec--sharding_specs--template--service_refs"></a>
 ### Nested Schema for `spec.sharding_specs.template.service_refs`
 
 Required:
 
-- `name` (String) Specifies the identifier of the service reference declaration. It corresponds to the serviceRefDeclaration name defined in the clusterDefinition.componentDefs[*].serviceRefDeclarations[*].name.
+- `name` (String) Specifies the identifier of the service reference declaration. It corresponds to the serviceRefDeclaration name defined in either:  - 'componentDefinition.spec.serviceRefDeclarations[*].name' - 'clusterDefinition.spec.componentDefs[*].serviceRefDeclarations[*].name' (deprecated)
 
 Optional:
 
-- `cluster` (String) The name of the KubeBlocks cluster being referenced when a service provided by another KubeBlocks cluster is being referenced.  By default, the clusterDefinition.spec.connectionCredential secret corresponding to the referenced Cluster will be used to bind to the current component. The connection credential secret should include and correspond to the following fields: endpoint, port, username, and password when a KubeBlocks cluster is being referenced.  Under this referencing approach, the ServiceKind and ServiceVersion of service reference declaration defined in the ClusterDefinition will not be validated. If both Cluster and ServiceDescriptor are specified, the Cluster takes precedence.
-- `namespace` (String) Specifies the namespace of the referenced Cluster or the namespace of the referenced ServiceDescriptor object. If not provided, the referenced Cluster and ServiceDescriptor will be searched in the namespace of the current cluster by default.
-- `service_descriptor` (String) The service descriptor of the service provided by external sources.  When referencing a service provided by external sources, the ServiceDescriptor object name is required to establish the service binding. The 'serviceDescriptor.spec.serviceKind' and 'serviceDescriptor.spec.serviceVersion' should match the serviceKind and serviceVersion defined in the service reference declaration in the ClusterDefinition.  If both Cluster and ServiceDescriptor are specified, the Cluster takes precedence.
+- `cluster` (String) Specifies the name of the KubeBlocks Cluster being referenced. This is used when services from another KubeBlocks Cluster are consumed.  By default, the referenced KubeBlocks Cluster's 'clusterDefinition.spec.connectionCredential' will be utilized to bind to the current Component. This credential should include: 'endpoint', 'port', 'username', and 'password'.  Note:  - The 'ServiceKind' and 'ServiceVersion' specified in the service reference within the ClusterDefinition are not validated when using this approach. - If both 'cluster' and 'serviceDescriptor' are present, 'cluster' will take precedence.  Deprecated since v0.9 since 'clusterDefinition.spec.connectionCredential' is deprecated, use 'clusterRef' instead. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.
+- `cluster_service_selector` (Attributes) ClusterRef is used to reference a service provided by another KubeBlocks Cluster. It specifies the ClusterService and the account credentials needed for access. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--cluster_service_selector))
+- `namespace` (String) Specifies the namespace of the referenced Cluster or the namespace of the referenced ServiceDescriptor object. If not provided, the referenced Cluster and ServiceDescriptor will be searched in the namespace of the current Cluster by default.
+- `service_descriptor` (String) Specifies the name of the ServiceDescriptor object that describes the service provided by external sources.  When referencing a service provided by external sources, a ServiceDescriptor object is required to establish the service binding. The 'serviceDescriptor.spec.serviceKind' and 'serviceDescriptor.spec.serviceVersion' should match the serviceKind and serviceVersion declared in the definition.  If both 'cluster' and 'serviceDescriptor' are specified, the 'cluster' takes precedence.
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--cluster_service_selector"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.cluster_service_selector`
+
+Required:
+
+- `cluster` (String) The name of the KubeBlocks Cluster being referenced.
+
+Optional:
+
+- `credential` (Attributes) Specifies the SystemAccount to authenticate and establish a connection with the referenced Cluster. The SystemAccount should be defined in 'componentDefinition.spec.systemAccounts' of the Component providing the service in the referenced Cluster. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--cluster_service_selector--credential))
+- `service` (Attributes) Identifies a ClusterService from the list of services defined in 'cluster.spec.services' of the referenced Cluster. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--cluster_service_selector--service))
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--cluster_service_selector--credential"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.cluster_service_selector.credential`
+
+Required:
+
+- `component` (String) The name of the component where the credential resides in.
+- `name` (String) The name of the credential (SystemAccount) to reference.
+
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--cluster_service_selector--service"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.cluster_service_selector.service`
+
+Required:
+
+- `service` (String) The name of the service to reference.  Leave it empty to reference the default service. Set it to 'headless' to reference the default headless service. If the referenced service is a pod-service, there will be multiple service objects matched, and the resolved value will be presented in the following format: service1.name,service2.name...
+
+Optional:
+
+- `component` (String) The name of the component where the service resides in.  It is required when referencing a component service.
+- `port` (String) The port name of the service to reference.  If there is a non-zero node-port exist for the matched service port, the node-port will be selected first. If the referenced service is a pod-service, there will be multiple service objects matched, and the resolved value will be presented in the following format: service1.name:port1,service2.name:port2...
+
+
 
 
 <a id="nestedatt--spec--sharding_specs--template--services"></a>
@@ -514,12 +3986,13 @@ Optional:
 
 Required:
 
-- `name` (String) The name of the service.
+- `name` (String) References the component service name defined in the ComponentDefinition.Spec.Services[x].Name.
 
 Optional:
 
 - `annotations` (Map of String) If ServiceType is LoadBalancer, cloud provider related parameters can be put here. More info: https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer.
-- `service_type` (String) Determines how the Service is exposed. Valid options are ClusterIP, NodePort, and LoadBalancer.  - 'ClusterIP' allocates a cluster-internal IP address for load-balancing to endpoints. Endpoints are determined by the selector or if that is not specified, they are determined by manual construction of an Endpoints object or EndpointSlice objects. If clusterIP is 'None', no virtual IP is allocated and the endpoints are published as a set of endpoints rather than a virtual IP. - 'NodePort' builds on ClusterIP and allocates a port on every node which routes to the same endpoints as the clusterIP. - 'LoadBalancer' builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the clusterIP.  More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types.
+- `pod_service` (Boolean) Indicates whether to generate individual services for each pod. If set to true, a separate service will be created for each pod in the cluster.
+- `service_type` (String) Determines how the Service is exposed. Valid options are 'ClusterIP', 'NodePort', and 'LoadBalancer'.  - 'ClusterIP' allocates a cluster-internal IP address for load-balancing to endpoints. Endpoints are determined by the selector or if that is not specified, they are determined by manual construction of an Endpoints object or EndpointSlice objects. If clusterIP is 'None', no virtual IP is allocated and the endpoints are published as a set of endpoints rather than a virtual IP. - 'NodePort' builds on ClusterIP and allocates a port on every node which routes to the same endpoints as the clusterIP. - 'LoadBalancer' builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the clusterIP.  More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types.
 
 
 <a id="nestedatt--spec--sharding_specs--template--switch_policy"></a>
@@ -622,11 +4095,11 @@ Optional:
 
 Required:
 
-- `name` (String) Refers to 'clusterDefinition.spec.componentDefs.containers.volumeMounts.name'.
+- `name` (String) Refers to the name of a volumeMount defined in either:  - 'componentDefinition.spec.runtime.containers[*].volumeMounts' - 'clusterDefinition.spec.componentDefs[*].podSpec.containers[*].volumeMounts' (deprecated)  The value of 'name' must match the 'name' field of a volumeMount specified in the corresponding 'volumeMounts' array.
 
 Optional:
 
-- `spec` (Attributes) Defines the desired characteristics of a volume requested by a pod author. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--spec))
+- `spec` (Attributes) Defines the desired characteristics of a PersistentVolumeClaim that will be created for the volume with the mount name specified in the 'name' field.  When a Pod is created for this ClusterComponent, a new PVC will be created based on the specification defined in the 'spec' field. The PVC will be associated with the volume mount specified by the 'name' field. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--spec))
 
 <a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--spec"></a>
 ### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.spec`
@@ -636,7 +4109,7 @@ Optional:
 - `access_modes` (Map of String) Contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1.
 - `resources` (Attributes) Represents the minimum resources the volume should have. If the RecoverVolumeExpansionFailure feature is enabled, users are allowed to specify resource requirements that are lower than the previous value but must still be higher than the capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--spec--resources))
 - `storage_class_name` (String) The name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1.
-- `volume_mode` (String) Defines what type of volume is required by the claim.
+- `volume_mode` (String) Defines what type of volume is required by the claim, either Block or Filesystem.
 
 <a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--spec--resources"></a>
 ### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.spec.resources`

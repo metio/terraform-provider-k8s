@@ -110,6 +110,19 @@ Optional:
 - `loadbalancer_ip` (String) Assign LoadBalancer IP address
 - `loadbalancer_port` (Number) Port to use for the loadbalancer
 - `loadbalancer_protocol` (String) Protocol to use for the loadbalancer
+- `metrics_utility_configmap` (String) Metrics-Utility ConfigMap
+- `metrics_utility_console_enabled` (Boolean) Enable metrics utility shipping to Red Hat Hybrid Cloud Console
+- `metrics_utility_cronjob_gather_schedule` (String) Metrics-Utility Gather Data CronJob Schedule
+- `metrics_utility_cronjob_report_schedule` (String) Metrics-Utility Report CronJob Schedule
+- `metrics_utility_enabled` (Boolean) Enable metrics utility
+- `metrics_utility_image` (String) Metrics-Utility Image
+- `metrics_utility_image_pull_policy` (String) Metrics-Utility Image PullPolicy
+- `metrics_utility_image_version` (String) Metrics-Utility Image Version
+- `metrics_utility_pvc_claim` (String) Metrics-Utility PVC Claim
+- `metrics_utility_pvc_claim_size` (String) Metrics-Utility PVC Claim Size
+- `metrics_utility_pvc_claim_storage_class` (String) Metrics-Utility PVC Claim Storage Class
+- `metrics_utility_secret` (String) Metrics-Utility Secret
+- `metrics_utility_ship_target` (String) Metrics-Utility Ship Target
 - `nginx_listen_queue_size` (Number) Set the socket listen queue size for nginx (defaults to same as uwsgi)
 - `nginx_worker_connections` (Number) Set the number of connections per worker for nginx
 - `nginx_worker_cpu_affinity` (String) Set the CPU affinity for nginx workers
@@ -119,13 +132,14 @@ Optional:
 - `nodeport_port` (Number) Port to use for the nodeport
 - `old_postgres_configuration_secret` (String) Secret where the old database configuration can be found for data migration
 - `postgres_configuration_secret` (String) Secret where the database configuration can be found
-- `postgres_data_path` (String) Path where the PostgreSQL data are located
+- `postgres_data_volume_init` (Boolean) Sets permissions on the /var/lib/pgdata/data for postgres container using an init container (not Openshift)
 - `postgres_extra_args` (List of String)
 - `postgres_extra_volume_mounts` (String) Specify volume mounts to be added to Postgres container
 - `postgres_extra_volumes` (String) Specify extra volumes to add to the application pod
 - `postgres_image` (String) Registry path to the PostgreSQL container to use
 - `postgres_image_version` (String) PostgreSQL container image version to use
-- `postgres_init_container_resource_requirements` (Attributes) Resource requirements for the postgres init container (see [below for nested schema](#nestedatt--spec--postgres_init_container_resource_requirements))
+- `postgres_init_container_commands` (String) Customize the postgres init container commands (Non Openshift)
+- `postgres_init_container_resource_requirements` (Attributes) (Deprecated, use postgres_resource_requirements parameter) Resource requirements for the postgres init container (see [below for nested schema](#nestedatt--spec--postgres_init_container_resource_requirements))
 - `postgres_keep_pvc_after_upgrade` (Boolean) Specify whether or not to keep the old PVC after PostgreSQL upgrades
 - `postgres_keepalives` (Boolean) Controls whether client-side TCP keepalives are used for Postgres connections.
 - `postgres_keepalives_count` (Number) Controls the number of TCP keepalives that can be lost before the client's connection to the server is considered dead.

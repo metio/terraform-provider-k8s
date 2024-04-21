@@ -56,6 +56,7 @@ Optional:
 
 - `filter_selector` (Attributes) Select filter plugins (see [below for nested schema](#nestedatt--spec--filter_selector))
 - `input_selector` (Attributes) Select input plugins (see [below for nested schema](#nestedatt--spec--input_selector))
+- `multiline_parser_selector` (Attributes) Select multiline parser plugins (see [below for nested schema](#nestedatt--spec--multiline_parser_selector))
 - `namespace` (String) If namespace is defined, then the configmap and secret for fluent-bit is in this namespace. If it is not defined, it is in the namespace of the fluentd-operator
 - `output_selector` (Attributes) Select output plugins (see [below for nested schema](#nestedatt--spec--output_selector))
 - `parser_selector` (Attributes) Select parser plugins (see [below for nested schema](#nestedatt--spec--parser_selector))
@@ -93,6 +94,28 @@ Optional:
 
 <a id="nestedatt--spec--input_selector--match_expressions"></a>
 ### Nested Schema for `spec.input_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+<a id="nestedatt--spec--multiline_parser_selector"></a>
+### Nested Schema for `spec.multiline_parser_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--multiline_parser_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--multiline_parser_selector--match_expressions"></a>
+### Nested Schema for `spec.multiline_parser_selector.match_expressions`
 
 Required:
 
@@ -155,6 +178,9 @@ Optional:
 Optional:
 
 - `daemon` (Boolean) If true go to background on start
+- `emitter_mem_buf_limit` (String)
+- `emitter_name` (String) Per-namespace re-emitter configuration
+- `emitter_storage_type` (String)
 - `flush_seconds` (Number) Interval to flush output
 - `grace_seconds` (Number) Wait time on exit
 - `hc_errors_count` (Number) the error count to meet the unhealthy requirement, this is a sum for all output plugins in a defined HC_Period, example for output error: [2022/02/16 10:44:10] [ warn] [engine] failed to flush chunk '1-1645008245.491540684.flb', retry in 7 seconds: task_id=0, input=forward.1 > output=cloudwatch_logs.3 (out_id=3)
@@ -167,6 +193,7 @@ Optional:
 - `log_file` (String) File to log diagnostic output
 - `log_level` (String) Diagnostic level (error/warning/info/debug/trace)
 - `parsers_file` (String) Optional 'parsers' config file (can be multiple)
+- `parsers_files` (List of String) backward compatible
 - `storage` (Attributes) Configure a global environment for the storage layer in Service. It is recommended to configure the volume and volumeMount separately for this storage. The hostPath type should be used for that Volume in Fluentbit daemon set. (see [below for nested schema](#nestedatt--spec--service--storage))
 
 <a id="nestedatt--spec--service--storage"></a>

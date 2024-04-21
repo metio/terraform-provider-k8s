@@ -59,7 +59,6 @@ Optional:
 - `cluster_version` (String) ClusterVersion defines default images tag for all components.it can be overwritten with component specific image.tag value.
 - `image_pull_secrets` (Attributes List) ImagePullSecrets An optional list of references to secrets in the same namespaceto use for pulling images from registriessee https://kubernetes.io/docs/concepts/containers/images/#referring-to-an-imagepullsecrets-on-a-pod (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
 - `license` (Attributes) License allows to configure license key to be used for enterprise features.Using license key is supported starting from VictoriaMetrics v1.94.0.See: https://docs.victoriametrics.com/enterprise.html (see [below for nested schema](#nestedatt--spec--license))
-- `pod_security_policy_name` (String) PodSecurityPolicyName - defines name for podSecurityPolicyin case of empty value, prefixedName will be used.
 - `replication_factor` (Number) ReplicationFactor defines how many copies of data make amongdistinct storage nodes
 - `service_account_name` (String) ServiceAccountName is the name of the ServiceAccount to use to run theVMSelect, VMStorage and VMInsert Pods.
 - `use_strict_security` (Boolean) UseStrictSecurity enables strict security mode for componentit restricts disk writes accessuses non-root user out of the boxdrops not needed security permissions
@@ -108,25 +107,24 @@ Optional:
 
 - `affinity` (Map of String) Affinity If specified, the pod's scheduling constraints.
 - `cluster_native_listen_port` (String) ClusterNativePort for multi-level cluster setup.More details: https://docs.victoriametrics.com/Cluster-VictoriaMetrics.html#multi-level-cluster-setup
-- `config_maps` (List of String) ConfigMaps is a list of ConfigMaps in the same namespace as the VMSelectobject, which shall be mounted into the VMSelect Pods.The ConfigMaps are mounted into /etc/vm/configs/<configmap-name>.
+- `config_maps` (List of String) ConfigMaps is a list of ConfigMaps in the same namespace as the VMInsertobject, which shall be mounted into the VMInsert Pods.The ConfigMaps are mounted into /etc/vm/configs/<configmap-name>.
 - `containers` (List of Map of String) Containers property allows to inject additions sidecars or to patch existing containers.It can be useful for proxies, backup, etc.
 - `dns_config` (Attributes) Specifies the DNS parameters of a pod.Parameters specified here will be merged to the generated DNSconfiguration based on DNSPolicy. (see [below for nested schema](#nestedatt--spec--vminsert--dns_config))
 - `dns_policy` (String) DNSPolicy sets DNS policy for the pod
 - `extra_args` (Map of String)
-- `extra_envs` (List of Map of String) ExtraEnvs that will be added to VMSelect pod
+- `extra_envs` (List of Map of String) ExtraEnvs that will be added to VMInsert pod
 - `host_network` (Boolean) HostNetwork controls whether the pod may use the node network namespace
 - `hpa` (Map of String) HPA defines kubernetes PodAutoScaling configuration version 2.
 - `image` (Attributes) Image - docker image settings for VMInsert (see [below for nested schema](#nestedatt--spec--vminsert--image))
-- `init_containers` (List of Map of String) InitContainers allows adding initContainers to the pod definition. Those can be used to e.g.fetch secrets for injection into the VMSelect configuration from external sources. Anyerrors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/Using initContainers for any use case other then secret fetching is entirely outside the scopeof what the maintainers will support and by doing so, you accept that this behaviour may breakat any time without notice.
+- `init_containers` (List of Map of String) InitContainers allows adding initContainers to the pod definition. Those can be used to e.g.fetch secrets for injection into the VMInsert configuration from external sources. Anyerrors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/Using initContainers for any use case other then secret fetching is entirely outside the scopeof what the maintainers will support and by doing so, you accept that this behaviour may breakat any time without notice.
 - `insert_ports` (Attributes) InsertPorts - additional listen ports for data ingestion. (see [below for nested schema](#nestedatt--spec--vminsert--insert_ports))
 - `liveness_probe` (Map of String) LivenessProbe that will be added CRD pod
-- `log_format` (String) LogFormat for VMSelect to be configured with.default or json
-- `log_level` (String) LogLevel for VMSelect to be configured with.
+- `log_format` (String) LogFormat for VMInsert to be configured with.default or json
+- `log_level` (String) LogLevel for VMInsert to be configured with.
 - `min_ready_seconds` (Number) MinReadySeconds defines a minim number os seconds to wait before starting update next podif previous in healthy state
-- `name` (String) Name is deprecated and will be removed at 0.22.0 release
 - `node_selector` (Map of String) NodeSelector Define which Nodes the Pods are scheduled on.
 - `pod_disruption_budget` (Attributes) PodDisruptionBudget created by operator (see [below for nested schema](#nestedatt--spec--vminsert--pod_disruption_budget))
-- `pod_metadata` (Attributes) PodMetadata configures Labels and Annotations which are propagated to the VMSelect pods. (see [below for nested schema](#nestedatt--spec--vminsert--pod_metadata))
+- `pod_metadata` (Attributes) PodMetadata configures Labels and Annotations which are propagated to the VMInsert pods. (see [below for nested schema](#nestedatt--spec--vminsert--pod_metadata))
 - `port` (String) Port listen port
 - `priority_class_name` (String) Priority class assigned to the Pods
 - `readiness_gates` (Attributes List) ReadinessGates defines pod readiness gates (see [below for nested schema](#nestedatt--spec--vminsert--readiness_gates))
@@ -136,7 +134,7 @@ Optional:
 - `rolling_update` (Attributes) RollingUpdate - overrides deployment update params. (see [below for nested schema](#nestedatt--spec--vminsert--rolling_update))
 - `runtime_class_name` (String) RuntimeClassName - defines runtime class for kubernetes pod.https://kubernetes.io/docs/concepts/containers/runtime-class/
 - `scheduler_name` (String) SchedulerName - defines kubernetes scheduler name
-- `secrets` (List of String) Secrets is a list of Secrets in the same namespace as the VMSelectobject, which shall be mounted into the VMSelect Pods.The Secrets are mounted into /etc/vm/secrets/<secret-name>.
+- `secrets` (List of String) Secrets is a list of Secrets in the same namespace as the VMInsertobject, which shall be mounted into the VMInsert Pods.The Secrets are mounted into /etc/vm/secrets/<secret-name>.
 - `security_context` (Map of String) SecurityContext holds pod-level security attributes and common container settings.This defaults to the default PodSecurityContext.
 - `service_scrape_spec` (Map of String) ServiceScrapeSpec that will be added to vminsert VMServiceScrape spec
 - `service_spec` (Attributes) ServiceSpec that will be added to vminsert service spec (see [below for nested schema](#nestedatt--spec--vminsert--service_spec))
@@ -145,7 +143,7 @@ Optional:
 - `tolerations` (Attributes List) Tolerations If specified, the pod's tolerations. (see [below for nested schema](#nestedatt--spec--vminsert--tolerations))
 - `topology_spread_constraints` (List of Map of String) TopologySpreadConstraints embedded kubernetes pod configuration option,controls how pods are spread across your cluster among failure-domainssuch as regions, zones, nodes, and other user-defined topology domainshttps://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/
 - `update_strategy` (String) UpdateStrategy - overrides default update strategy.
-- `volume_mounts` (Attributes List) VolumeMounts allows configuration of additional VolumeMounts on the output Deployment definition.VolumeMounts specified will be appended to other VolumeMounts in the VMSelect container,that are generated as a result of StorageSpec objects. (see [below for nested schema](#nestedatt--spec--vminsert--volume_mounts))
+- `volume_mounts` (Attributes List) VolumeMounts allows configuration of additional VolumeMounts on the output Deployment definition.VolumeMounts specified will be appended to other VolumeMounts in the VMInsert container,that are generated as a result of StorageSpec objects. (see [below for nested schema](#nestedatt--spec--vminsert--volume_mounts))
 - `volumes` (List of Map of String) Volumes allows configuration of additional volumes on the output Deployment definition.Volumes specified will be appended to other volumes that are generated as a result ofStorageSpec objects.
 
 <a id="nestedatt--spec--vminsert--dns_config"></a>
@@ -253,6 +251,7 @@ Required:
 Optional:
 
 - `metadata` (Attributes) EmbeddedObjectMetadata defines objectMeta for additional service. (see [below for nested schema](#nestedatt--spec--vminsert--service_spec--metadata))
+- `use_as_default` (Boolean) UseAsDefault applies changes from given service definition to the main object ServiceChaning from headless service to clusterIP or loadbalancer may break cross-component communication
 
 <a id="nestedatt--spec--vminsert--service_spec--metadata"></a>
 ### Nested Schema for `spec.vminsert.service_spec.metadata`
@@ -321,7 +320,6 @@ Optional:
 - `log_format` (String) LogFormat for VMSelect to be configured with.default or json
 - `log_level` (String) LogLevel for VMSelect to be configured with.
 - `min_ready_seconds` (Number) MinReadySeconds defines a minim number os seconds to wait before starting update next podif previous in healthy state
-- `name` (String) Name is deprecated and will be removed at 0.22.0 release
 - `node_selector` (Map of String) NodeSelector Define which Nodes the Pods are scheduled on.
 - `persistent_volume` (Attributes) Storage - add persistent volume for cacheMounthPathits useful for persistent cacheuse storage instead of persistentVolume. (see [below for nested schema](#nestedatt--spec--vmselect--persistent_volume))
 - `pod_disruption_budget` (Attributes) PodDisruptionBudget created by operator (see [below for nested schema](#nestedatt--spec--vmselect--pod_disruption_budget))
@@ -574,6 +572,7 @@ Required:
 Optional:
 
 - `metadata` (Attributes) EmbeddedObjectMetadata defines objectMeta for additional service. (see [below for nested schema](#nestedatt--spec--vmselect--service_spec--metadata))
+- `use_as_default` (Boolean) UseAsDefault applies changes from given service definition to the main object ServiceChaning from headless service to clusterIP or loadbalancer may break cross-component communication
 
 <a id="nestedatt--spec--vmselect--service_spec--metadata"></a>
 ### Nested Schema for `spec.vmselect.service_spec.metadata`
@@ -778,25 +777,24 @@ Optional:
 
 - `affinity` (Map of String) Affinity If specified, the pod's scheduling constraints.
 - `claim_templates` (Attributes List) ClaimTemplates allows adding additional VolumeClaimTemplates for StatefulSet (see [below for nested schema](#nestedatt--spec--vmstorage--claim_templates))
-- `config_maps` (List of String) ConfigMaps is a list of ConfigMaps in the same namespace as the VMSelectobject, which shall be mounted into the VMSelect Pods.The ConfigMaps are mounted into /etc/vm/configs/<configmap-name>.
+- `config_maps` (List of String) ConfigMaps is a list of ConfigMaps in the same namespace as the VMStorageobject, which shall be mounted into the VMStorage Pods.The ConfigMaps are mounted into /etc/vm/configs/<configmap-name>.
 - `containers` (List of Map of String) Containers property allows to inject additions sidecars or to patch existing containers.It can be useful for proxies, backup, etc.
 - `dns_config` (Attributes) Specifies the DNS parameters of a pod.Parameters specified here will be merged to the generated DNSconfiguration based on DNSPolicy. (see [below for nested schema](#nestedatt--spec--vmstorage--dns_config))
 - `dns_policy` (String) DNSPolicy sets DNS policy for the pod
 - `extra_args` (Map of String)
-- `extra_envs` (List of Map of String) ExtraEnvs that will be added to VMSelect pod
+- `extra_envs` (List of Map of String) ExtraEnvs that will be added to VMStorage pod
 - `host_network` (Boolean) HostNetwork controls whether the pod may use the node network namespace
 - `image` (Attributes) Image - docker image settings for VMStorage (see [below for nested schema](#nestedatt--spec--vmstorage--image))
-- `init_containers` (List of Map of String) InitContainers allows adding initContainers to the pod definition. Those can be used to e.g.fetch secrets for injection into the VMSelect configuration from external sources. Anyerrors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/Using initContainers for any use case other then secret fetching is entirely outside the scopeof what the maintainers will support and by doing so, you accept that this behaviour may breakat any time without notice.
+- `init_containers` (List of Map of String) InitContainers allows adding initContainers to the pod definition. Those can be used to e.g.fetch secrets for injection into the VMStorage configuration from external sources. Anyerrors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/Using initContainers for any use case other then secret fetching is entirely outside the scopeof what the maintainers will support and by doing so, you accept that this behaviour may breakat any time without notice.
 - `liveness_probe` (Map of String) LivenessProbe that will be added CRD pod
-- `log_format` (String) LogFormat for VMSelect to be configured with.default or json
-- `log_level` (String) LogLevel for VMSelect to be configured with.
+- `log_format` (String) LogFormat for VMStorage to be configured with.default or json
+- `log_level` (String) LogLevel for VMStorage to be configured with.
 - `maintenance_insert_node_i_ds` (List of String) MaintenanceInsertNodeIDs - excludes given node ids from insert requests routing, must contain pod suffixes - for pod-0, id will be 0 and etc.lets say, you have pod-0, pod-1, pod-2, pod-3. to exclude pod-0 and pod-3 from insert routing, define nodeIDs: [0,3].Useful at storage expanding, when you want to rebalance some data at cluster.
 - `maintenance_select_node_i_ds` (List of String) MaintenanceInsertNodeIDs - excludes given node ids from select requests routing, must contain pod suffixes - for pod-0, id will be 0 and etc.
 - `min_ready_seconds` (Number) MinReadySeconds defines a minim number os seconds to wait before starting update next podif previous in healthy state
-- `name` (String) Name is deprecated and will be removed at 0.22.0 release
 - `node_selector` (Map of String) NodeSelector Define which Nodes the Pods are scheduled on.
 - `pod_disruption_budget` (Attributes) PodDisruptionBudget created by operator (see [below for nested schema](#nestedatt--spec--vmstorage--pod_disruption_budget))
-- `pod_metadata` (Attributes) PodMetadata configures Labels and Annotations which are propagated to the VMSelect pods. (see [below for nested schema](#nestedatt--spec--vmstorage--pod_metadata))
+- `pod_metadata` (Attributes) PodMetadata configures Labels and Annotations which are propagated to the VMStorage pods. (see [below for nested schema](#nestedatt--spec--vmstorage--pod_metadata))
 - `port` (String) Port for health check connetions
 - `priority_class_name` (String) Priority class assigned to the Pods
 - `readiness_gates` (Attributes List) ReadinessGates defines pod readiness gates (see [below for nested schema](#nestedatt--spec--vmstorage--readiness_gates))
@@ -806,7 +804,7 @@ Optional:
 - `rolling_update_strategy` (String) RollingUpdateStrategy defines strategy for application updatesDefault is OnDelete, in this case operator handles update processCan be changed for RollingUpdate
 - `runtime_class_name` (String) RuntimeClassName - defines runtime class for kubernetes pod.https://kubernetes.io/docs/concepts/containers/runtime-class/
 - `scheduler_name` (String) SchedulerName - defines kubernetes scheduler name
-- `secrets` (List of String) Secrets is a list of Secrets in the same namespace as the VMSelectobject, which shall be mounted into the VMSelect Pods.The Secrets are mounted into /etc/vm/secrets/<secret-name>.
+- `secrets` (List of String) Secrets is a list of Secrets in the same namespace as the VMStorageobject, which shall be mounted into the VMStorage Pods.The Secrets are mounted into /etc/vm/secrets/<secret-name>.
 - `security_context` (Map of String) SecurityContext holds pod-level security attributes and common container settings.This defaults to the default PodSecurityContext.
 - `service_scrape_spec` (Map of String) ServiceScrapeSpec that will be added to vmstorage VMServiceScrape spec
 - `service_spec` (Attributes) ServiceSpec that will be create additional service for vmstorage (see [below for nested schema](#nestedatt--spec--vmstorage--service_spec))
@@ -819,7 +817,7 @@ Optional:
 - `vm_backup` (Attributes) VMBackup configuration for backup (see [below for nested schema](#nestedatt--spec--vmstorage--vm_backup))
 - `vm_insert_port` (String) VMInsertPort for VMInsert connections
 - `vm_select_port` (String) VMSelectPort for VMSelect connections
-- `volume_mounts` (Attributes List) VolumeMounts allows configuration of additional VolumeMounts on the output Deployment definition.VolumeMounts specified will be appended to other VolumeMounts in the VMSelect container,that are generated as a result of StorageSpec objects. (see [below for nested schema](#nestedatt--spec--vmstorage--volume_mounts))
+- `volume_mounts` (Attributes List) VolumeMounts allows configuration of additional VolumeMounts on the output Deployment definition.VolumeMounts specified will be appended to other VolumeMounts in the VMStorage container,that are generated as a result of StorageSpec objects. (see [below for nested schema](#nestedatt--spec--vmstorage--volume_mounts))
 - `volumes` (List of Map of String) Volumes allows configuration of additional volumes on the output Deployment definition.Volumes specified will be appended to other volumes that are generated as a result ofStorageSpec objects.
 
 <a id="nestedatt--spec--vmstorage--claim_templates"></a>
@@ -1030,6 +1028,7 @@ Required:
 Optional:
 
 - `metadata` (Attributes) EmbeddedObjectMetadata defines objectMeta for additional service. (see [below for nested schema](#nestedatt--spec--vmstorage--service_spec--metadata))
+- `use_as_default` (Boolean) UseAsDefault applies changes from given service definition to the main object ServiceChaning from headless service to clusterIP or loadbalancer may break cross-component communication
 
 <a id="nestedatt--spec--vmstorage--service_spec--metadata"></a>
 ### Nested Schema for `spec.vmstorage.service_spec.metadata`
@@ -1091,8 +1090,8 @@ Optional:
 - `extra_args` (Map of String) extra args like maxBytesPerSecond default 0
 - `extra_envs` (Attributes List) (see [below for nested schema](#nestedatt--spec--vmstorage--vm_backup--extra_envs))
 - `image` (Attributes) Image - docker image settings for VMBackuper (see [below for nested schema](#nestedatt--spec--vmstorage--vm_backup--image))
-- `log_format` (String) LogFormat for VMSelect to be configured with.default or json
-- `log_level` (String) LogLevel for VMSelect to be configured with.
+- `log_format` (String) LogFormat for VMBackup to be configured with.default or json
+- `log_level` (String) LogLevel for VMBackup to be configured with.
 - `port` (String) Port for health check connections
 - `resources` (Attributes) Resources container resource request and limits, https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/if not defined default resources from operator config will be used (see [below for nested schema](#nestedatt--spec--vmstorage--vm_backup--resources))
 - `restore` (Attributes) Restore Allows to enable restore options for podRead more: https://docs.victoriametrics.com/vmbackupmanager.html#restore-commands (see [below for nested schema](#nestedatt--spec--vmstorage--vm_backup--restore))

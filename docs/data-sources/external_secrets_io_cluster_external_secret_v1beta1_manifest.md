@@ -60,7 +60,8 @@ Optional:
 
 - `external_secret_metadata` (Attributes) The metadata of the external secrets to be created (see [below for nested schema](#nestedatt--spec--external_secret_metadata))
 - `external_secret_name` (String) The name of the external secrets to be created defaults to the name of the ClusterExternalSecret
-- `namespace_selector` (Attributes) The labels to select by to find the Namespaces to create the ExternalSecrets in. (see [below for nested schema](#nestedatt--spec--namespace_selector))
+- `namespace_selector` (Attributes) The labels to select by to find the Namespaces to create the ExternalSecrets in.Deprecated: Use NamespaceSelectors instead. (see [below for nested schema](#nestedatt--spec--namespace_selector))
+- `namespace_selectors` (Attributes List) A list of labels to select by to find the Namespaces to create the ExternalSecrets in. The selectors are ORed. (see [below for nested schema](#nestedatt--spec--namespace_selectors))
 - `namespaces` (List of String) Choose namespaces by name. This field is ORed with anything that NamespaceSelector ends up choosing.
 - `refresh_time` (String) The time in which the controller should reconcile its objects and recheck namespaces for labels.
 
@@ -364,6 +365,28 @@ Optional:
 
 <a id="nestedatt--spec--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.namespace_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+<a id="nestedatt--spec--namespace_selectors"></a>
+### Nested Schema for `spec.namespace_selectors`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--namespace_selectors--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--namespace_selectors--match_expressions"></a>
+### Nested Schema for `spec.namespace_selectors.match_expressions`
 
 Required:
 

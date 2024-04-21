@@ -55,19 +55,19 @@ Optional:
 Required:
 
 - `driver` (String) The driver to use to connect to the shared datastore.
-- `endpoints` (List of String) List of the endpoints to connect to the shared datastore. No need for protocol, just bare IP/FQDN and port.
+- `endpoints` (List of String) List of the endpoints to connect to the shared datastore.No need for protocol, just bare IP/FQDN and port.
 - `tls_config` (Attributes) Defines the TLS/SSL configuration required to connect to the data store in a secure way. (see [below for nested schema](#nestedatt--spec--tls_config))
 
 Optional:
 
-- `basic_auth` (Attributes) In case of authentication enabled for the given data store, specifies the username and password pair. This value is optional. (see [below for nested schema](#nestedatt--spec--basic_auth))
+- `basic_auth` (Attributes) In case of authentication enabled for the given data store, specifies the username and password pair.This value is optional. (see [below for nested schema](#nestedatt--spec--basic_auth))
 
 <a id="nestedatt--spec--tls_config"></a>
 ### Nested Schema for `spec.tls_config`
 
 Required:
 
-- `certificate_authority` (Attributes) Retrieve the Certificate Authority certificate and private key, such as bare content of the file, or a SecretReference. The key reference is required since etcd authentication is based on certificates, and Kamaji is responsible in creating this. (see [below for nested schema](#nestedatt--spec--tls_config--certificate_authority))
+- `certificate_authority` (Attributes) Retrieve the Certificate Authority certificate and private key, such as bare content of the file, or a SecretReference.The key reference is required since etcd authentication is based on certificates, and Kamaji is responsible in creating this. (see [below for nested schema](#nestedatt--spec--tls_config--certificate_authority))
 - `client_certificate` (Attributes) Specifies the SSL/TLS key and private key pair used to connect to the data store. (see [below for nested schema](#nestedatt--spec--tls_config--client_certificate))
 
 <a id="nestedatt--spec--tls_config--certificate_authority"></a>
@@ -86,7 +86,7 @@ Optional:
 
 Optional:
 
-- `content` (String) Bare content of the file, base64 encoded. It has precedence over the SecretReference value.
+- `content` (String) Bare content of the file, base64 encoded.It has precedence over the SecretReference value.
 - `secret_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--tls_config--certificate_authority--private_key--secret_reference))
 
 <a id="nestedatt--spec--tls_config--certificate_authority--private_key--secret_reference"></a>
@@ -94,7 +94,7 @@ Optional:
 
 Required:
 
-- `key_path` (String) Name of the key for the given Secret reference where the content is stored. This value is mandatory.
+- `key_path` (String) Name of the key for the given Secret reference where the content is stored.This value is mandatory.
 
 Optional:
 
@@ -108,7 +108,7 @@ Optional:
 
 Optional:
 
-- `content` (String) Bare content of the file, base64 encoded. It has precedence over the SecretReference value.
+- `content` (String) Bare content of the file, base64 encoded.It has precedence over the SecretReference value.
 - `secret_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--tls_config--certificate_authority--private_key--secret_reference))
 
 <a id="nestedatt--spec--tls_config--certificate_authority--private_key--secret_reference"></a>
@@ -116,7 +116,7 @@ Optional:
 
 Required:
 
-- `key_path` (String) Name of the key for the given Secret reference where the content is stored. This value is mandatory.
+- `key_path` (String) Name of the key for the given Secret reference where the content is stored.This value is mandatory.
 
 Optional:
 
@@ -139,7 +139,7 @@ Required:
 
 Optional:
 
-- `content` (String) Bare content of the file, base64 encoded. It has precedence over the SecretReference value.
+- `content` (String) Bare content of the file, base64 encoded.It has precedence over the SecretReference value.
 - `secret_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--tls_config--client_certificate--private_key--secret_reference))
 
 <a id="nestedatt--spec--tls_config--client_certificate--private_key--secret_reference"></a>
@@ -147,7 +147,7 @@ Optional:
 
 Required:
 
-- `key_path` (String) Name of the key for the given Secret reference where the content is stored. This value is mandatory.
+- `key_path` (String) Name of the key for the given Secret reference where the content is stored.This value is mandatory.
 
 Optional:
 
@@ -161,7 +161,7 @@ Optional:
 
 Optional:
 
-- `content` (String) Bare content of the file, base64 encoded. It has precedence over the SecretReference value.
+- `content` (String) Bare content of the file, base64 encoded.It has precedence over the SecretReference value.
 - `secret_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--tls_config--client_certificate--private_key--secret_reference))
 
 <a id="nestedatt--spec--tls_config--client_certificate--private_key--secret_reference"></a>
@@ -169,7 +169,7 @@ Optional:
 
 Required:
 
-- `key_path` (String) Name of the key for the given Secret reference where the content is stored. This value is mandatory.
+- `key_path` (String) Name of the key for the given Secret reference where the content is stored.This value is mandatory.
 
 Optional:
 
@@ -193,7 +193,7 @@ Required:
 
 Optional:
 
-- `content` (String) Bare content of the file, base64 encoded. It has precedence over the SecretReference value.
+- `content` (String) Bare content of the file, base64 encoded.It has precedence over the SecretReference value.
 - `secret_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--basic_auth--password--secret_reference))
 
 <a id="nestedatt--spec--basic_auth--password--secret_reference"></a>
@@ -201,7 +201,7 @@ Optional:
 
 Required:
 
-- `key_path` (String) Name of the key for the given Secret reference where the content is stored. This value is mandatory.
+- `key_path` (String) Name of the key for the given Secret reference where the content is stored.This value is mandatory.
 
 Optional:
 
@@ -215,7 +215,7 @@ Optional:
 
 Optional:
 
-- `content` (String) Bare content of the file, base64 encoded. It has precedence over the SecretReference value.
+- `content` (String) Bare content of the file, base64 encoded.It has precedence over the SecretReference value.
 - `secret_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--basic_auth--username--secret_reference))
 
 <a id="nestedatt--spec--basic_auth--username--secret_reference"></a>
@@ -223,7 +223,7 @@ Optional:
 
 Required:
 
-- `key_path` (String) Name of the key for the given Secret reference where the content is stored. This value is mandatory.
+- `key_path` (String) Name of the key for the given Secret reference where the content is stored.This value is mandatory.
 
 Optional:
 

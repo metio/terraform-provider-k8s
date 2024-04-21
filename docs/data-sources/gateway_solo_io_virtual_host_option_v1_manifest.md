@@ -57,6 +57,7 @@ Optional:
 
 - `namespaced_statuses` (Attributes) (see [below for nested schema](#nestedatt--spec--namespaced_statuses))
 - `options` (Attributes) (see [below for nested schema](#nestedatt--spec--options))
+- `target_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--target_ref))
 
 <a id="nestedatt--spec--namespaced_statuses"></a>
 ### Nested Schema for `spec.namespaced_statuses`
@@ -2782,3 +2783,17 @@ Optional:
 - `directory` (String)
 - `files` (List of String)
 - `rule_str` (String)
+
+
+
+
+<a id="nestedatt--spec--target_ref"></a>
+### Nested Schema for `spec.target_ref`
+
+Optional:
+
+- `group` (String)
+- `kind` (String)
+- `name` (String)
+- `namespace` (String)
+- `section_name` (String)

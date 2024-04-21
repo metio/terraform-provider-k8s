@@ -159,13 +159,14 @@ Optional:
 Required:
 
 - `call` (String) Lua function name that will be triggered to do filtering. It's assumed that the function is declared inside the Script defined above.
-- `script` (Attributes) Path to the Lua script that will be used. (see [below for nested schema](#nestedatt--spec--filters--lua--script))
 
 Optional:
 
 - `alias` (String) Alias for the plugin
+- `code` (String) Inline LUA code instead of loading from a path via script.
 - `protected_mode` (Boolean) If enabled, Lua script will be executed in protected mode. It prevents to crash when invalid Lua script is executed. Default is true.
 - `retry_limit` (String) RetryLimit describes how many times fluent-bit should retry to send data to a specific output. If set to false fluent-bit will try indefinetly. If set to any integer N>0 it will try at most N+1 times. Leading zeros are not allowed (values such as 007, 0150, 01 do not work). If this property is not defined fluent-bit will use the default value: 1.
+- `script` (Attributes) Path to the Lua script that will be used. (see [below for nested schema](#nestedatt--spec--filters--lua--script))
 - `time_as_table` (Boolean) By default when the Lua script is invoked, the record timestamp is passed as a Floating number which might lead to loss precision when the data is converted back. If you desire timestamp precision enabling this option will pass the timestamp as a Lua table with keys sec for seconds since epoch and nsec for nanoseconds.
 - `type_int_key` (List of String) If these keys are matched, the fields are converted to integer. If more than one key, delimit by space. Note that starting from Fluent Bit v1.6 integer data types are preserved and not converted to double as in previous versions.
 
@@ -237,7 +238,13 @@ Required:
 Optional:
 
 - `alias` (String) Alias for the plugin
+- `buffer` (Boolean)
+- `emitter_mem_buf_limit` (Number) Set a limit on the amount of memory in MB the emitter can consume if the outputs provide backpressure. The default for this limit is 10M. The pipeline will pause once the buffer exceeds the value of this setting. For example, if the value is set to 10MB then the pipeline will pause if the buffer exceeds 10M. The pipeline will remain paused until the output drains the buffer below the 10M limit.
+- `emitter_name` (String) Name for the emitter input instance which re-emits the completed records at the beginning of the pipeline.
+- `emitter_type` (String) The storage type for the emitter input instance. This option supports the values memory (default) and filesystem.
+- `flush_ms` (Number)
 - `key_content` (String) Key name that holds the content to process. Note that a Multiline Parser definition can already specify the key_content to use, but this option allows to overwrite that value for the purpose of the filter.
+- `mode` (String)
 - `retry_limit` (String) RetryLimit describes how many times fluent-bit should retry to send data to a specific output. If set to false fluent-bit will try indefinetly. If set to any integer N>0 it will try at most N+1 times. Leading zeros are not allowed (values such as 007, 0150, 01 do not work). If this property is not defined fluent-bit will use the default value: 1.
 
 
@@ -290,7 +297,9 @@ Optional:
 Optional:
 
 - `alias` (String) Alias for the plugin
+- `emitter_mem_buf_limit` (String)
 - `emitter_name` (String) When the filter emits a record under the new Tag, there is an internal emitter plugin that takes care of the job. Since this emitter expose metrics as any other component of the pipeline, you can use this property to configure an optional name for it.
+- `emitter_storage_type` (String)
 - `retry_limit` (String) RetryLimit describes how many times fluent-bit should retry to send data to a specific output. If set to false fluent-bit will try indefinetly. If set to any integer N>0 it will try at most N+1 times. Leading zeros are not allowed (values such as 007, 0150, 01 do not work). If this property is not defined fluent-bit will use the default value: 1.
 - `rules` (List of String) Defines the matching criteria and the format of the Tag for the matching record. The Rule format have four components: KEY REGEX NEW_TAG KEEP.
 

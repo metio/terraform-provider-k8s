@@ -63,6 +63,7 @@ Optional:
 - `resources` (Attributes) Resources describes the compute resource requirements (cpu, memory, etc.) (see [below for nested schema](#nestedatt--spec--resources))
 - `retention` (Attributes) Retention sets how many backups should be kept after a forget and prune (see [below for nested schema](#nestedatt--spec--retention))
 - `successful_jobs_history_limit` (Number) SuccessfulJobsHistoryLimit amount of successful jobs to keep for later analysis.KeepJobs is used property is not specified.
+- `volumes` (Attributes List) Volumes List of volumes that can be mounted by containers belonging to the pod. (see [below for nested schema](#nestedatt--spec--volumes))
 
 <a id="nestedatt--spec--backend"></a>
 ### Nested Schema for `spec.backend`
@@ -78,6 +79,8 @@ Optional:
 - `rest` (Attributes) (see [below for nested schema](#nestedatt--spec--backend--rest))
 - `s3` (Attributes) (see [below for nested schema](#nestedatt--spec--backend--s3))
 - `swift` (Attributes) (see [below for nested schema](#nestedatt--spec--backend--swift))
+- `tls_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backend--tls_options))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--backend--volume_mounts))
 
 <a id="nestedatt--spec--backend--azure"></a>
 ### Nested Schema for `spec.backend.azure`
@@ -320,6 +323,32 @@ Optional:
 - `path` (String)
 
 
+<a id="nestedatt--spec--backend--tls_options"></a>
+### Nested Schema for `spec.backend.tls_options`
+
+Optional:
+
+- `ca_cert` (String)
+- `client_cert` (String)
+- `client_key` (String)
+
+
+<a id="nestedatt--spec--backend--volume_mounts"></a>
+### Nested Schema for `spec.backend.volume_mounts`
+
+Required:
+
+- `mount_path` (String) Path within the container at which the volume should be mounted.  Mustnot contain ':'.
+- `name` (String) This must match the Name of a Volume.
+
+Optional:
+
+- `mount_propagation` (String) mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.
+- `read_only` (Boolean) Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.
+- `sub_path` (String) Path within the volume from which the container's volume should be mounted.Defaults to '' (volume's root).
+- `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted.Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment.Defaults to '' (volume's root).SubPathExpr and SubPath are mutually exclusive.
+
+
 
 <a id="nestedatt--spec--pod_security_context"></a>
 ### Nested Schema for `spec.pod_security_context`
@@ -413,3 +442,75 @@ Optional:
 - `keep_weekly` (Number)
 - `keep_yearly` (Number)
 - `tags` (List of String) Tags is a filter on what tags the policy should be appliedDO NOT CONFUSE THIS WITH KeepTags OR YOU'LL have a bad time
+
+
+<a id="nestedatt--spec--volumes"></a>
+### Nested Schema for `spec.volumes`
+
+Required:
+
+- `name` (String) name of the volume.Must be a DNS_LABEL and unique within the pod.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+
+Optional:
+
+- `config_map` (Attributes) configMap represents a configMap that should populate this volume (see [below for nested schema](#nestedatt--spec--volumes--config_map))
+- `persistent_volume_claim` (Attributes) persistentVolumeClaimVolumeSource represents a reference to aPersistentVolumeClaim in the same namespace.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--volumes--persistent_volume_claim))
+- `secret` (Attributes) secret represents a secret that should populate this volume.More info: https://kubernetes.io/docs/concepts/storage/volumes#secret (see [below for nested schema](#nestedatt--spec--volumes--secret))
+
+<a id="nestedatt--spec--volumes--config_map"></a>
+### Nested Schema for `spec.volumes.config_map`
+
+Optional:
+
+- `default_mode` (Number) defaultMode is optional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--volumes--config_map--items))
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
+
+<a id="nestedatt--spec--volumes--config_map--items"></a>
+### Nested Schema for `spec.volumes.config_map.items`
+
+Required:
+
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.
+
+Optional:
+
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
+
+
+
+<a id="nestedatt--spec--volumes--persistent_volume_claim"></a>
+### Nested Schema for `spec.volumes.persistent_volume_claim`
+
+Required:
+
+- `claim_name` (String) claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
+
+Optional:
+
+- `read_only` (Boolean) readOnly Will force the ReadOnly setting in VolumeMounts.Default false.
+
+
+<a id="nestedatt--spec--volumes--secret"></a>
+### Nested Schema for `spec.volumes.secret`
+
+Optional:
+
+- `default_mode` (Number) defaultMode is Optional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal valuesfor mode bits. Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
+- `items` (Attributes List) items If unspecified, each key-value pair in the Data field of the referencedSecret will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the Secret,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--volumes--secret--items))
+- `optional` (Boolean) optional field specify whether the Secret or its keys must be defined
+- `secret_name` (String) secretName is the name of the secret in the pod's namespace to use.More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
+
+<a id="nestedatt--spec--volumes--secret--items"></a>
+### Nested Schema for `spec.volumes.secret.items`
+
+Required:
+
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.
+
+Optional:
+
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.

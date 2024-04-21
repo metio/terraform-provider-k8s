@@ -57,6 +57,7 @@ Optional:
 
 - `affinity` (Map of String) Affinity If specified, the pod's scheduling constraints.
 - `config_maps` (List of String) ConfigMaps is a list of ConfigMaps in the same namespace as the VMAuthobject, which shall be mounted into the VMAuth Pods.
+- `config_reloader_extra_args` (Map of String) ConfigReloaderExtraArgs that will be passed to  VMAuths config-reloader containerfor example resyncInterval: '30s'
 - `config_secret` (String) ConfigSecret is the name of a Kubernetes Secret in the same namespace as theVMAuth object, which contains auth configuration for vmauth,configuration must be inside secret key: config.yaml.It must be created and managed manually.If it's defined, configuration for vmauth becomes unmanaged and operator'll not create any related secrets/config-reloaders
 - `containers` (List of Map of String) Containers property allows to inject additions sidecars or to patch existing containers.It can be useful for proxies, backup, etc.
 - `dns_config` (Attributes) Specifies the DNS parameters of a pod.Parameters specified here will be merged to the generated DNSconfiguration based on DNSPolicy. (see [below for nested schema](#nestedatt--spec--dns_config))
@@ -77,7 +78,6 @@ Optional:
 - `node_selector` (Map of String) NodeSelector Define which Nodes the Pods are scheduled on.
 - `pod_disruption_budget` (Attributes) PodDisruptionBudget created by operator (see [below for nested schema](#nestedatt--spec--pod_disruption_budget))
 - `pod_metadata` (Attributes) PodMetadata configures Labels and Annotations which are propagated to the VMAuth pods. (see [below for nested schema](#nestedatt--spec--pod_metadata))
-- `pod_security_policy_name` (String) PodSecurityPolicyName - defines name for podSecurityPolicyin case of empty value, prefixedName will be used.
 - `port` (String) Port listen port
 - `priority_class_name` (String) PriorityClassName assigned to the Pods
 - `readiness_gates` (Attributes List) ReadinessGates defines pod readiness gates (see [below for nested schema](#nestedatt--spec--readiness_gates))
@@ -326,6 +326,7 @@ Required:
 Optional:
 
 - `metadata` (Attributes) EmbeddedObjectMetadata defines objectMeta for additional service. (see [below for nested schema](#nestedatt--spec--service_spec--metadata))
+- `use_as_default` (Boolean) UseAsDefault applies changes from given service definition to the main object ServiceChaning from headless service to clusterIP or loadbalancer may break cross-component communication
 
 <a id="nestedatt--spec--service_spec--metadata"></a>
 ### Nested Schema for `spec.service_spec.metadata`

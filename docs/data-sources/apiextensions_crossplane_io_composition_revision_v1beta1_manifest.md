@@ -3,12 +3,12 @@
 page_title: "k8s_apiextensions_crossplane_io_composition_revision_v1beta1_manifest Data Source - terraform-provider-k8s"
 subcategory: "apiextensions.crossplane.io"
 description: |-
-  A CompositionRevision represents a revision in time of a Composition.Revisions are created by Crossplane; they should be treated as immutable.
+  A CompositionRevision represents a revision of a Composition. Crossplanecreates new revisions when there are changes to the Composition.Crossplane creates and manages CompositionRevisions. Don't directly editCompositionRevisions.
 ---
 
 # k8s_apiextensions_crossplane_io_composition_revision_v1beta1_manifest (Data Source)
 
-A CompositionRevision represents a revision in time of a Composition.Revisions are created by Crossplane; they should be treated as immutable.
+A CompositionRevision represents a revision of a Composition. Crossplanecreates new revisions when there are changes to the Composition.Crossplane creates and manages CompositionRevisions. Don't directly editCompositionRevisions.
 
 ## Example Usage
 
@@ -257,7 +257,7 @@ Optional:
 
 Optional:
 
-- `convert` (String) Optional conversion method to be specified.'ToUpper' and 'ToLower' change the letter case of the input string.'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string.'ToJson' converts any input value into its raw JSON representation.'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the inputconverted to JSON.
+- `convert` (String) Optional conversion method to be specified.'ToUpper' and 'ToLower' change the letter case of the input string.'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string.'ToJson' converts any input value into its raw JSON representation.'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the inputconverted to JSON.'ToAdler32' generate a addler32 hash based on the input string.
 - `fmt` (String) Format the input using a Go format string. Seehttps://golang.org/pkg/fmt/ for details.
 - `join` (Attributes) Join defines parameters to join a slice of values to a string. (see [below for nested schema](#nestedatt--spec--environment--patches--type--string--join))
 - `regexp` (Attributes) Extract a match from the input using a regular expression. (see [below for nested schema](#nestedatt--spec--environment--patches--type--string--regexp))
@@ -432,7 +432,7 @@ Optional:
 
 Optional:
 
-- `convert` (String) Optional conversion method to be specified.'ToUpper' and 'ToLower' change the letter case of the input string.'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string.'ToJson' converts any input value into its raw JSON representation.'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the inputconverted to JSON.
+- `convert` (String) Optional conversion method to be specified.'ToUpper' and 'ToLower' change the letter case of the input string.'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string.'ToJson' converts any input value into its raw JSON representation.'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the inputconverted to JSON.'ToAdler32' generate a addler32 hash based on the input string.
 - `fmt` (String) Format the input using a Go format string. Seehttps://golang.org/pkg/fmt/ for details.
 - `join` (Attributes) Join defines parameters to join a slice of values to a string. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--type--string--join))
 - `regexp` (Attributes) Extract a match from the input using a regular expression. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--type--string--regexp))
@@ -645,7 +645,7 @@ Optional:
 
 Optional:
 
-- `convert` (String) Optional conversion method to be specified.'ToUpper' and 'ToLower' change the letter case of the input string.'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string.'ToJson' converts any input value into its raw JSON representation.'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the inputconverted to JSON.
+- `convert` (String) Optional conversion method to be specified.'ToUpper' and 'ToLower' change the letter case of the input string.'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string.'ToJson' converts any input value into its raw JSON representation.'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the inputconverted to JSON.'ToAdler32' generate a addler32 hash based on the input string.
 - `fmt` (String) Format the input using a Go format string. Seehttps://golang.org/pkg/fmt/ for details.
 - `join` (Attributes) Join defines parameters to join a slice of values to a string. (see [below for nested schema](#nestedatt--spec--resources--patches--type--string--join))
 - `regexp` (Attributes) Extract a match from the input using a regular expression. (see [below for nested schema](#nestedatt--spec--resources--patches--type--string--regexp))

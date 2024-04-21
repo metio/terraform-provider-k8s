@@ -76,6 +76,10 @@ Required:
 - `name` (String) Specifies the backup name.
 - `namespace` (String) Specifies the backup namespace.
 
+Optional:
+
+- `source_target_name` (String) Specifies the source target for restoration, identified by its name.
+
 
 <a id="nestedatt--spec--container_resources"></a>
 ### Nested Schema for `spec.container_resources`
@@ -105,6 +109,7 @@ Required:
 Optional:
 
 - `data_source_ref` (Attributes) Specifies the configuration when using 'persistentVolumeClaim.spec.dataSourceRef' method for restoring. Describes the source volume of the backup targetVolumes and the mount path in the restoring container. (see [below for nested schema](#nestedatt--spec--prepare_data_config--data_source_ref))
+- `required_policy_for_all_pod_selection` (Attributes) Specifies the restore policy, which is required when the pod selection strategy for the source target is 'All'. This field is ignored if the pod selection strategy is 'Any'. optional (see [below for nested schema](#nestedatt--spec--prepare_data_config--required_policy_for_all_pod_selection))
 - `scheduling_spec` (Attributes) Specifies the scheduling spec for the restoring pod. (see [below for nested schema](#nestedatt--spec--prepare_data_config--scheduling_spec))
 - `volume_claims` (Attributes List) Defines the persistent Volume claims that need to be restored and mounted together into the restore job. These persistent Volume claims will be created if they do not exist. (see [below for nested schema](#nestedatt--spec--prepare_data_config--volume_claims))
 - `volume_claims_template` (Attributes) Defines a template to build persistent Volume claims that need to be restored. These claims will be created in an orderly manner based on the number of replicas or reused if they already exist. (see [below for nested schema](#nestedatt--spec--prepare_data_config--volume_claims_template))
@@ -116,6 +121,26 @@ Optional:
 
 - `mount_path` (String) Specifies the path within the restoring container at which the volume should be mounted.
 - `volume_source` (String) Describes the volume that will be restored from the specified volume of the backup targetVolumes. This is required if the backup uses a volume snapshot.
+
+
+<a id="nestedatt--spec--prepare_data_config--required_policy_for_all_pod_selection"></a>
+### Nested Schema for `spec.prepare_data_config.required_policy_for_all_pod_selection`
+
+Required:
+
+- `data_restore_policy` (String) Specifies the data restore policy. Options include: - OneToMany: Enables restoration of all volumes from a single data copy of the original target instance. The 'sourceOfOneToMany' field must be set when using this policy. - OneToOne: Restricts data restoration such that each data piece can only be restored to a single target instance. This is the default policy. When the number of target instances specified for restoration surpasses the count of original backup target instances.
+
+Optional:
+
+- `source_of_one_to_many` (Attributes) Specifies the name of the source target pod. This field is mandatory when the DataRestorePolicy is configured to 'OneToMany'. (see [below for nested schema](#nestedatt--spec--prepare_data_config--required_policy_for_all_pod_selection--source_of_one_to_many))
+
+<a id="nestedatt--spec--prepare_data_config--required_policy_for_all_pod_selection--source_of_one_to_many"></a>
+### Nested Schema for `spec.prepare_data_config.required_policy_for_all_pod_selection.source_of_one_to_many`
+
+Required:
+
+- `target_pod_name` (String) Specifies the name of the source target pod.
+
 
 
 <a id="nestedatt--spec--prepare_data_config--scheduling_spec"></a>
@@ -855,29 +880,34 @@ Optional:
 
 Required:
 
-- `target` (Attributes) Defines the pod that needs to be executed for the job action. A pod that meets the conditions will be selected for execution. (see [below for nested schema](#nestedatt--spec--ready_config--job_action--target))
+- `target` (Attributes) Defines the pods that needs to be executed for the job action. (see [below for nested schema](#nestedatt--spec--ready_config--job_action--target))
+
+Optional:
+
+- `required_policy_for_all_pod_selection` (Attributes) Specifies the restore policy, which is required when the pod selection strategy for the source target is 'All'. This field is ignored if the pod selection strategy is 'Any'. optional (see [below for nested schema](#nestedatt--spec--ready_config--job_action--required_policy_for_all_pod_selection))
 
 <a id="nestedatt--spec--ready_config--job_action--target"></a>
 ### Nested Schema for `spec.ready_config.job_action.target`
 
 Required:
 
-- `pod_selector` (Attributes) Selects one of the pods, identified by labels, to build the job spec. This includes mounting required volumes and injecting built-in environment variables of the selected pod. (see [below for nested schema](#nestedatt--spec--ready_config--job_action--target--pod_selector))
+- `pod_selector` (Attributes) Selects one of the pods, identified by labels, to build the job spec. This includes mounting required volumes and injecting built-in environment variables of the selected pod. (see [below for nested schema](#nestedatt--spec--ready_config--job_action--required_policy_for_all_pod_selection--pod_selector))
 
 Optional:
 
-- `volume_mounts` (Attributes List) Defines which volumes of the selected pod need to be mounted on the restoring pod. (see [below for nested schema](#nestedatt--spec--ready_config--job_action--target--volume_mounts))
+- `volume_mounts` (Attributes List) Defines which volumes of the selected pod need to be mounted on the restoring pod. (see [below for nested schema](#nestedatt--spec--ready_config--job_action--required_policy_for_all_pod_selection--volume_mounts))
 
-<a id="nestedatt--spec--ready_config--job_action--target--pod_selector"></a>
-### Nested Schema for `spec.ready_config.job_action.target.pod_selector`
+<a id="nestedatt--spec--ready_config--job_action--required_policy_for_all_pod_selection--pod_selector"></a>
+### Nested Schema for `spec.ready_config.job_action.required_policy_for_all_pod_selection.pod_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--ready_config--job_action--target--pod_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--ready_config--job_action--required_policy_for_all_pod_selection--pod_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `strategy` (String) Specifies the strategy to select the target pod when multiple pods are selected. Valid values are:  - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.
 
-<a id="nestedatt--spec--ready_config--job_action--target--pod_selector--match_expressions"></a>
-### Nested Schema for `spec.ready_config.job_action.target.pod_selector.match_expressions`
+<a id="nestedatt--spec--ready_config--job_action--required_policy_for_all_pod_selection--pod_selector--match_expressions"></a>
+### Nested Schema for `spec.ready_config.job_action.required_policy_for_all_pod_selection.pod_selector.match_expressions`
 
 Required:
 
@@ -890,8 +920,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ready_config--job_action--target--volume_mounts"></a>
-### Nested Schema for `spec.ready_config.job_action.target.volume_mounts`
+<a id="nestedatt--spec--ready_config--job_action--required_policy_for_all_pod_selection--volume_mounts"></a>
+### Nested Schema for `spec.ready_config.job_action.required_policy_for_all_pod_selection.volume_mounts`
 
 Required:
 
@@ -904,6 +934,26 @@ Optional:
 - `read_only` (Boolean) Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.
 - `sub_path` (String) Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).
 - `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.
+
+
+
+<a id="nestedatt--spec--ready_config--job_action--required_policy_for_all_pod_selection"></a>
+### Nested Schema for `spec.ready_config.job_action.required_policy_for_all_pod_selection`
+
+Required:
+
+- `data_restore_policy` (String) Specifies the data restore policy. Options include: - OneToMany: Enables restoration of all volumes from a single data copy of the original target instance. The 'sourceOfOneToMany' field must be set when using this policy. - OneToOne: Restricts data restoration such that each data piece can only be restored to a single target instance. This is the default policy. When the number of target instances specified for restoration surpasses the count of original backup target instances.
+
+Optional:
+
+- `source_of_one_to_many` (Attributes) Specifies the name of the source target pod. This field is mandatory when the DataRestorePolicy is configured to 'OneToMany'. (see [below for nested schema](#nestedatt--spec--ready_config--job_action--required_policy_for_all_pod_selection--source_of_one_to_many))
+
+<a id="nestedatt--spec--ready_config--job_action--required_policy_for_all_pod_selection--source_of_one_to_many"></a>
+### Nested Schema for `spec.ready_config.job_action.required_policy_for_all_pod_selection.source_of_one_to_many`
+
+Required:
+
+- `target_pod_name` (String) Specifies the name of the source target pod.
 
 
 

@@ -163,6 +163,7 @@ Optional:
 
 Optional:
 
+- `api_server_extra_args` (Map of String) APIServerExtraArgs defines the flags to configure for the API server.
 - `cert_sans` (List of String) CertSANs is a slice of domain names or IPs to be added as Subject Name Alternatives of the Kube API Servers Certificate.
 - `count` (Number) Count defines the number of desired control plane nodes. Defaults to 1.
 - `endpoint` (Attributes) Endpoint defines the host ip and port to use for the control plane. (see [below for nested schema](#nestedatt--spec--control_plane_configuration--endpoint))

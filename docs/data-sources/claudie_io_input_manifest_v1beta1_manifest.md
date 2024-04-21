@@ -3,12 +3,12 @@
 page_title: "k8s_claudie_io_input_manifest_v1beta1_manifest Data Source - terraform-provider-k8s"
 subcategory: "claudie.io"
 description: |-
-  InputManifest is a definition of the user's infrastructure. It contains cloud provider specification, nodepool specification, Kubernetes and loadbalancer clusters.
+  InputManifest is a definition of the user's infrastructure.It contains cloud provider specification,nodepool specification, Kubernetes and loadbalancer clusters.
 ---
 
 # k8s_claudie_io_input_manifest_v1beta1_manifest (Data Source)
 
-InputManifest is a definition of the user's infrastructure. It contains cloud provider specification, nodepool specification, Kubernetes and loadbalancer clusters.
+InputManifest is a definition of the user's infrastructure.It contains cloud provider specification,nodepool specification, Kubernetes and loadbalancer clusters.
 
 ## Example Usage
 
@@ -57,8 +57,8 @@ Optional:
 
 - `kubernetes` (Attributes) Kubernetes list of Kubernetes cluster this manifest will manage. (see [below for nested schema](#nestedatt--spec--kubernetes))
 - `load_balancers` (Attributes) LoadBalancers list of loadbalancer clusters the Kubernetes clusters may use. (see [below for nested schema](#nestedatt--spec--load_balancers))
-- `node_pools` (Attributes) NodePool is a map of dynamic nodepools and static nodepools which will be used to form kubernetes or loadbalancer clusters. (see [below for nested schema](#nestedatt--spec--node_pools))
-- `providers` (Attributes List) Providers list of defined cloud provider configuration that will be used while infrastructure provisioning. (see [below for nested schema](#nestedatt--spec--providers))
+- `node_pools` (Attributes) NodePool is a map of dynamic nodepools and static nodepools which will be used toform kubernetes or loadbalancer clusters. (see [below for nested schema](#nestedatt--spec--node_pools))
+- `providers` (Attributes List) Providers list of defined cloud provider configurationthat will be used while infrastructure provisioning. (see [below for nested schema](#nestedatt--spec--providers))
 
 <a id="nestedatt--spec--kubernetes"></a>
 ### Nested Schema for `spec.kubernetes`
@@ -75,7 +75,7 @@ Required:
 - `name` (String) Name of the Kubernetes cluster. Each cluster will have a random hash appended to the name, so the whole name will be of format <name>-<hash>.
 - `network` (String) Network range for the VPN of the cluster. The value should be defined in format A.B.C.D/mask.
 - `pools` (Attributes) List of nodepool names this cluster will use. (see [below for nested schema](#nestedatt--spec--kubernetes--clusters--pools))
-- `version` (String) Version should be defined in format vX.Y. In terms of supported versions of Kubernetes, Claudie follows kubeone releases and their supported versions. The current kubeone version used in Claudie is 1.5. To see the list of supported versions, please refer to kubeone documentation. https://docs.kubermatic.com/kubeone/v1.5/architecture/compatibility/supported-versions/#supported-kubernetes-versions
+- `version` (String) Version should be defined in format vX.Y. In terms of supported versions of Kubernetes,Claudie follows kubeone releases and their supported versions.The current kubeone version used in Claudie is 1.5.To see the list of supported versions, please refer to kubeone documentation.https://docs.kubermatic.com/kubeone/v1.5/architecture/compatibility/supported-versions/#supported-kubernetes-versions
 
 <a id="nestedatt--spec--kubernetes--clusters--pools"></a>
 ### Nested Schema for `spec.kubernetes.clusters.pools`
@@ -102,7 +102,7 @@ Optional:
 Required:
 
 - `name` (String) Name of the loadbalancer.
-- `pools` (List of String) List of nodepool names this loadbalancer will use. Remember, that nodepools defined in nodepools are only 'blueprints'. The actual nodepool will be created once referenced here.
+- `pools` (List of String) List of nodepool names this loadbalancer will use. Remember, that nodepools definedin nodepools are only 'blueprints'. The actual nodepool will be created once referenced here.
 - `roles` (List of String) List of roles the loadbalancer uses.
 - `targeted_k8s` (String) Name of the Kubernetes cluster targeted by this loadbalancer.
 
@@ -162,7 +162,7 @@ Optional:
 - `count` (Number) Number of the nodes in the nodepool. Mutually exclusive with autoscaler.
 - `labels` (Map of String) User defined labels for this nodepool.
 - `machine_spec` (Attributes) MachineSpec further describe the properties of the selected server type. (see [below for nested schema](#nestedatt--spec--node_pools--dynamic--machine_spec))
-- `storage_disk_size` (Number) Size of the storage disk on the nodes in the nodepool in GB. The OS disk is created automatically with predefined size of 100GB for kubernetes nodes and 50GB for Loadbalancer nodes. The value must be either -1 (no disk is created), or >= 50. If no value is specified, 50 is used.
+- `storage_disk_size` (Number) Size of the storage disk on the nodes in the nodepool in GB. The OS disk is created automaticallywith predefined size of 100GB for kubernetes nodes and 50GB for Loadbalancer nodes.The value must be either -1 (no disk is created), or >= 50. If no value is specified, 50 is used.
 - `taints` (Attributes List) User defined taints for this nodepool. (see [below for nested schema](#nestedatt--spec--node_pools--dynamic--taints))
 
 <a id="nestedatt--spec--node_pools--dynamic--provider_spec"></a>
@@ -201,12 +201,12 @@ Required:
 
 Required:
 
-- `effect` (String) Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.
+- `effect` (String) Required. The effect of the taint on podsthat do not tolerate the taint.Valid effects are NoSchedule, PreferNoSchedule and NoExecute.
 - `key` (String) Required. The taint key to be applied to a node.
 
 Optional:
 
-- `time_added` (String) TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.
+- `time_added` (String) TimeAdded represents the time at which the taint was added.It is only written for NoExecute taints.
 - `value` (String) The taint value corresponding to the taint key.
 
 
@@ -233,6 +233,10 @@ Required:
 - `endpoint` (String) Endpoint under which Claudie will access this node.
 - `secret_ref` (Attributes) Secret reference to the private key of the node. (see [below for nested schema](#nestedatt--spec--node_pools--static--taints--secret_ref))
 
+Optional:
+
+- `username` (String) Username with root access. Used in SSH connection also.
+
 <a id="nestedatt--spec--node_pools--static--taints--secret_ref"></a>
 ### Nested Schema for `spec.node_pools.static.taints.secret_ref`
 
@@ -248,12 +252,12 @@ Optional:
 
 Required:
 
-- `effect` (String) Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.
+- `effect` (String) Required. The effect of the taint on podsthat do not tolerate the taint.Valid effects are NoSchedule, PreferNoSchedule and NoExecute.
 - `key` (String) Required. The taint key to be applied to a node.
 
 Optional:
 
-- `time_added` (String) TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.
+- `time_added` (String) TimeAdded represents the time at which the taint was added.It is only written for NoExecute taints.
 - `value` (String) The taint value corresponding to the taint key.
 
 
@@ -265,8 +269,8 @@ Optional:
 Required:
 
 - `name` (String) Name is the name of the provider specification. It has to be unique across all providers.
-- `provider_type` (String) ProviderType type of a provider. A list of available providers can be found at https://docs.claudie.io/v0.3.2/input-manifest/providers/aws/
-- `secret_ref` (Attributes) SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace (see [below for nested schema](#nestedatt--spec--providers--secret_ref))
+- `provider_type` (String) ProviderType type of a provider.A list of available providers can be found at https://docs.claudie.io/v0.3.2/input-manifest/providers/aws/
+- `secret_ref` (Attributes) SecretReference represents a Secret Reference. It has enough information to retrieve secretin any namespace (see [below for nested schema](#nestedatt--spec--providers--secret_ref))
 
 <a id="nestedatt--spec--providers--secret_ref"></a>
 ### Nested Schema for `spec.providers.secret_ref`

@@ -59,9 +59,9 @@ Required:
 
 Optional:
 
-- `control_plane_replicas` (Number) ControlPlaneReplicas defines how many replicas of the control plane core components will be deployed in the Tenant's namespace. Defaults to the controlPlaneReplicas in Installation CR
+- `control_plane_replicas` (Number) ControlPlaneReplicas defines how many replicas of the control plane core components will be deployedin the Tenant's namespace. Defaults to the controlPlaneReplicas in Installation CR
 - `dashboards_job` (Attributes) DashboardsJob configures the Dashboards job (see [below for nested schema](#nestedatt--spec--dashboards_job))
-- `elastic` (Attributes) Elastic configures per-tenant ElasticSearch and Kibana parameters. This field is required for clusters using external ES. (see [below for nested schema](#nestedatt--spec--elastic))
+- `elastic` (Attributes) Elastic configures per-tenant ElasticSearch and Kibana parameters.This field is required for clusters using external ES. (see [below for nested schema](#nestedatt--spec--elastic))
 - `id` (String) ID is the unique identifier for this tenant.
 - `linseed_deployment` (Attributes) LinseedDeployment configures the linseed Deployment. (see [below for nested schema](#nestedatt--spec--linseed_deployment))
 - `name` (String) Name is a human readable name for this tenant.
@@ -71,7 +71,7 @@ Optional:
 
 Required:
 
-- `base_index_name` (String) BaseIndexName defines the name of the index that will be used to store data (this name excludes the numerical identifier suffix)
+- `base_index_name` (String) BaseIndexName defines the name of the indexthat will be used to store data (this nameexcludes the numerical identifier suffix)
 - `data_type` (String) DataType represents the type of data stored in the defined index
 
 
@@ -101,34 +101,34 @@ Optional:
 
 Optional:
 
-- `containers` (Attributes List) Containers is a list of dashboards job containers. If specified, this overrides the specified Dashboard job containers. If omitted, the Dashboard job will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--dashboards_job--spec--template--spec--containers))
+- `containers` (Attributes List) Containers is a list of dashboards job containers.If specified, this overrides the specified Dashboard job containers.If omitted, the Dashboard job will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--dashboards_job--spec--template--spec--containers))
 
 <a id="nestedatt--spec--dashboards_job--spec--template--spec--containers"></a>
 ### Nested Schema for `spec.dashboards_job.spec.template.spec.containers`
 
 Required:
 
-- `name` (String) Name is an enum which identifies the Dashboard Job container by name.
+- `name` (String) Name is an enum which identifies the Dashboard Job container by name.Supported values are: dashboards-installer
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named Dashboard Job container's resources. If omitted, the Dashboard Job will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--dashboards_job--spec--template--spec--containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named Dashboard Job container's resources.If omitted, the Dashboard Job will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--dashboards_job--spec--template--spec--containers--resources))
 
 <a id="nestedatt--spec--dashboards_job--spec--template--spec--containers--resources"></a>
 ### Nested Schema for `spec.dashboards_job.spec.template.spec.containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--dashboards_job--spec--template--spec--containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--dashboards_job--spec--template--spec--containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--dashboards_job--spec--template--spec--containers--resources--claims"></a>
 ### Nested Schema for `spec.dashboards_job.spec.template.spec.containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -176,35 +176,35 @@ Optional:
 
 Optional:
 
-- `containers` (Attributes List) Containers is a list of linseed containers. If specified, this overrides the specified linseed Deployment containers. If omitted, the linseed Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--linseed_deployment--spec--template--spec--containers))
-- `init_containers` (Attributes List) InitContainers is a list of linseed init containers. If specified, this overrides the specified linseed Deployment init containers. If omitted, the linseed Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--linseed_deployment--spec--template--spec--init_containers))
+- `containers` (Attributes List) Containers is a list of linseed containers.If specified, this overrides the specified linseed Deployment containers.If omitted, the linseed Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--linseed_deployment--spec--template--spec--containers))
+- `init_containers` (Attributes List) InitContainers is a list of linseed init containers.If specified, this overrides the specified linseed Deployment init containers.If omitted, the linseed Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--linseed_deployment--spec--template--spec--init_containers))
 
 <a id="nestedatt--spec--linseed_deployment--spec--template--spec--containers"></a>
 ### Nested Schema for `spec.linseed_deployment.spec.template.spec.containers`
 
 Required:
 
-- `name` (String) Name is an enum which identifies the linseed Deployment container by name.
+- `name` (String) Name is an enum which identifies the linseed Deployment container by name.Supported values are: tigera-linseed
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named linseed Deployment container's resources. If omitted, the linseed Deployment will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--linseed_deployment--spec--template--spec--init_containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named linseed Deployment container's resources.If omitted, the linseed Deployment will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--linseed_deployment--spec--template--spec--init_containers--resources))
 
 <a id="nestedatt--spec--linseed_deployment--spec--template--spec--init_containers--resources"></a>
 ### Nested Schema for `spec.linseed_deployment.spec.template.spec.init_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--linseed_deployment--spec--template--spec--init_containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--linseed_deployment--spec--template--spec--init_containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--linseed_deployment--spec--template--spec--init_containers--resources--claims"></a>
 ### Nested Schema for `spec.linseed_deployment.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -214,24 +214,24 @@ Required:
 
 Required:
 
-- `name` (String) Name is an enum which identifies the linseed Deployment init container by name.
+- `name` (String) Name is an enum which identifies the linseed Deployment init container by name.Supported values are: tigera-secure-linseed-token-tls-key-cert-provisioner,tigera-secure-linseed-cert-key-cert-provisioner
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named linseed Deployment init container's resources. If omitted, the linseed Deployment will use its default value for this init container's resources. (see [below for nested schema](#nestedatt--spec--linseed_deployment--spec--template--spec--init_containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named linseed Deployment init container's resources.If omitted, the linseed Deployment will use its default value for this init container's resources. (see [below for nested schema](#nestedatt--spec--linseed_deployment--spec--template--spec--init_containers--resources))
 
 <a id="nestedatt--spec--linseed_deployment--spec--template--spec--init_containers--resources"></a>
 ### Nested Schema for `spec.linseed_deployment.spec.template.spec.init_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--linseed_deployment--spec--template--spec--init_containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--linseed_deployment--spec--template--spec--init_containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--linseed_deployment--spec--template--spec--init_containers--resources--claims"></a>
 ### Nested Schema for `spec.linseed_deployment.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.

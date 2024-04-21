@@ -54,10 +54,10 @@ Optional:
 
 Optional:
 
-- `apply_to` (Attributes List) ApplyTo lists the specific groups, versions and kinds of generator resources which will be expanded. (see [below for nested schema](#nestedatt--spec--apply_to))
-- `enforcement_action` (String) EnforcementAction specifies the enforcement action to be used for resources matching the ExpansionTemplate. Specifying an empty value will use the enforcement action specified by the Constraint in violation.
-- `generated_gvk` (Attributes) GeneratedGVK specifies the GVK of the resources which the generator resource creates. (see [below for nested schema](#nestedatt--spec--generated_gvk))
-- `template_source` (String) TemplateSource specifies the source field on the generator resource to use as the base for expanded resource. For Pod-creating generators, this is usually spec.template
+- `apply_to` (Attributes List) ApplyTo lists the specific groups, versions and kinds of generator resourceswhich will be expanded. (see [below for nested schema](#nestedatt--spec--apply_to))
+- `enforcement_action` (String) EnforcementAction specifies the enforcement action to be used for resourcesmatching the ExpansionTemplate. Specifying an empty value will use theenforcement action specified by the Constraint in violation.
+- `generated_gvk` (Attributes) GeneratedGVK specifies the GVK of the resources which the generatorresource creates. (see [below for nested schema](#nestedatt--spec--generated_gvk))
+- `template_source` (String) TemplateSource specifies the source field on the generator resource touse as the base for expanded resource. For Pod-creating generators, thisis usually spec.template
 
 <a id="nestedatt--spec--apply_to"></a>
 ### Nested Schema for `spec.apply_to`

@@ -30,7 +30,7 @@ data "k8s_kuadrant_io_auth_policy_v1beta2_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) RouteSelectors - implicit default validationRouteSelectors - explicit default validationRouteSelectors - explicit overrides validationMutual Exclusivity Validation (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -59,6 +59,8 @@ Required:
 
 Optional:
 
+- `defaults` (Attributes) Defaults define explicit default values for this policy and for policies inheriting this policy.Defaults are mutually exclusive with implicit defaults defined by AuthPolicyCommonSpec. (see [below for nested schema](#nestedatt--spec--defaults))
+- `overrides` (Attributes) Overrides define explicit override values for this policy.Overrides are mutually exclusive with explicit and implicit defaults defined by AuthPolicyCommonSpec. (see [below for nested schema](#nestedatt--spec--overrides))
 - `patterns` (Map of String) Named sets of patterns that can be referred in 'when' conditions and in pattern-matching authorization policy rules.
 - `route_selectors` (Attributes List) Top-level route selectors.If present, the elements will be used to select HTTPRoute rules that, when activated, trigger the external authorization service.At least one selected HTTPRoute rule must match to trigger the AuthPolicy.If no route selectors are specified, the AuthPolicy will be enforced at all requests to the protected routes. (see [below for nested schema](#nestedatt--spec--route_selectors))
 - `rules` (Attributes) The auth rules of the policy.See Authorino's AuthConfig CRD for more details. (see [below for nested schema](#nestedatt--spec--rules))
@@ -76,6 +78,3430 @@ Required:
 Optional:
 
 - `namespace` (String) Namespace is the namespace of the referent. When unspecified, the localnamespace is inferred. Even when policy targets a resource in a differentnamespace, it MUST only apply to traffic originating from the samenamespace as the policy.
+
+
+<a id="nestedatt--spec--defaults"></a>
+### Nested Schema for `spec.defaults`
+
+Optional:
+
+- `patterns` (Map of String) Named sets of patterns that can be referred in 'when' conditions and in pattern-matching authorization policy rules.
+- `route_selectors` (Attributes List) Top-level route selectors.If present, the elements will be used to select HTTPRoute rules that, when activated, trigger the external authorization service.At least one selected HTTPRoute rule must match to trigger the AuthPolicy.If no route selectors are specified, the AuthPolicy will be enforced at all requests to the protected routes. (see [below for nested schema](#nestedatt--spec--defaults--route_selectors))
+- `rules` (Attributes) The auth rules of the policy.See Authorino's AuthConfig CRD for more details. (see [below for nested schema](#nestedatt--spec--defaults--rules))
+- `when` (Attributes List) Overall conditions for the AuthPolicy to be enforced.If omitted, the AuthPolicy will be enforced at all requests to the protected routes.If present, all conditions must match for the AuthPolicy to be enforced; otherwise, the authorization service skips the AuthPolicy and returns to the auth request with status OK. (see [below for nested schema](#nestedatt--spec--defaults--when))
+
+<a id="nestedatt--spec--defaults--route_selectors"></a>
+### Nested Schema for `spec.defaults.route_selectors`
+
+Optional:
+
+- `hostnames` (List of String) Hostnames defines a set of hostname that should match against the HTTP Host header to select a HTTPRoute to process the requesthttps://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec
+- `matches` (Attributes List) Matches define conditions used for matching the rule against incoming HTTP requests.https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec (see [below for nested schema](#nestedatt--spec--defaults--route_selectors--matches))
+
+<a id="nestedatt--spec--defaults--route_selectors--matches"></a>
+### Nested Schema for `spec.defaults.route_selectors.matches`
+
+Optional:
+
+- `headers` (Attributes List) Headers specifies HTTP request header matchers. Multiple match values areANDed together, meaning, a request must match all the specified headersto select the route. (see [below for nested schema](#nestedatt--spec--defaults--route_selectors--matches--headers))
+- `method` (String) Method specifies HTTP method matcher.When specified, this route will be matched only if the request has thespecified method.Support: Extended
+- `path` (Attributes) Path specifies a HTTP request path matcher. If this field is notspecified, a default prefix match on the '/' path is provided. (see [below for nested schema](#nestedatt--spec--defaults--route_selectors--matches--path))
+- `query_params` (Attributes List) QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended (see [below for nested schema](#nestedatt--spec--defaults--route_selectors--matches--query_params))
+
+<a id="nestedatt--spec--defaults--route_selectors--matches--headers"></a>
+### Nested Schema for `spec.defaults.route_selectors.matches.headers`
+
+Required:
+
+- `name` (String) Name is the name of the HTTP Header to be matched. Name matching MUST becase insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).If multiple entries specify equivalent header names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent header name MUST be ignored. Due to thecase-insensitivity of header names, 'foo' and 'Foo' are consideredequivalent.When a header is repeated in an HTTP request, it isimplementation-specific behavior as to how this is represented.Generally, proxies should follow the guidance from the RFC:https://www.rfc-editor.org/rfc/rfc7230.html#section-3.2.2 regardingprocessing a repeated header, with special handling for 'Set-Cookie'.
+- `value` (String) Value is the value of HTTP Header to be matched.
+
+Optional:
+
+- `type` (String) Type specifies how to match against the value of the header.Support: Core (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression HeaderMatchType has implementation-specificconformance, implementations can support POSIX, PCRE or any other dialectsof regular expressions. Please read the implementation's documentation todetermine the supported dialect.
+
+
+<a id="nestedatt--spec--defaults--route_selectors--matches--path"></a>
+### Nested Schema for `spec.defaults.route_selectors.matches.path`
+
+Optional:
+
+- `type` (String) Type specifies how to match against the path Value.Support: Core (Exact, PathPrefix)Support: Implementation-specific (RegularExpression)
+- `value` (String) Value of the HTTP path to match against.
+
+
+<a id="nestedatt--spec--defaults--route_selectors--matches--query_params"></a>
+### Nested Schema for `spec.defaults.route_selectors.matches.query_params`
+
+Required:
+
+- `name` (String) Name is the name of the HTTP query param to be matched. This must be anexact string match. (Seehttps://tools.ietf.org/html/rfc7230#section-2.7.3).If multiple entries specify equivalent query param names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent query param name MUST be ignored.If a query param is repeated in an HTTP request, the behavior ispurposely left undefined, since different data planes have differentcapabilities. However, it is *recommended* that implementations shouldmatch against the first value of the param if the data plane supports it,as this behavior is expected in other load balancing contexts outside ofthe Gateway API.Users SHOULD NOT route traffic based on repeated query params to guardthemselves against potential differences in the implementations.
+- `value` (String) Value is the value of HTTP query param to be matched.
+
+Optional:
+
+- `type` (String) Type specifies how to match against the value of the query parameter.Support: Extended (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression QueryParamMatchType has Implementation-specificconformance, implementations can support POSIX, PCRE or any otherdialects of regular expressions. Please read the implementation'sdocumentation to determine the supported dialect.
+
+
+
+
+<a id="nestedatt--spec--defaults--rules"></a>
+### Nested Schema for `spec.defaults.rules`
+
+Optional:
+
+- `authentication` (Attributes) Authentication configs.At least one config MUST evaluate to a valid identity object for the auth request to be successful. (see [below for nested schema](#nestedatt--spec--defaults--rules--authentication))
+- `authorization` (Attributes) Authorization policies.All policies MUST evaluate to 'allowed = true' for the auth request be successful. (see [below for nested schema](#nestedatt--spec--defaults--rules--authorization))
+- `callbacks` (Attributes) Callback functions.Authorino sends callbacks at the end of the auth pipeline to the endpoints specified in this config. (see [below for nested schema](#nestedatt--spec--defaults--rules--callbacks))
+- `metadata` (Attributes) Metadata sources.Authorino fetches auth metadata as JSON from sources specified in this config. (see [below for nested schema](#nestedatt--spec--defaults--rules--metadata))
+- `response` (Attributes) Response items.Authorino builds custom responses to the client of the auth request. (see [below for nested schema](#nestedatt--spec--defaults--rules--response))
+
+<a id="nestedatt--spec--defaults--rules--authentication"></a>
+### Nested Schema for `spec.defaults.rules.authentication`
+
+Optional:
+
+- `anonymous` (Map of String) Anonymous access.
+- `api_key` (Attributes) Authentication based on API keys stored in Kubernetes secrets. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--api_key))
+- `cache` (Attributes) Caching options for the resolved object returned when applying this config.Omit it to avoid caching objects for this config. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--cache))
+- `credentials` (Attributes) Defines where credentials are required to be passed in the request for authentication based on this config.If omitted, it defaults to credentials passed in the HTTP Authorization header and the 'Bearer' prefix prepended to the secret credential value. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--credentials))
+- `defaults` (Attributes) Set default property values (claims) for the resolved identity object, that are set before appending the object tothe authorization JSON. If the property is already present in the resolved identity object, the default value is ignored.It requires the resolved identity object to always be a JSON object.Do not use this option with identity objects of other JSON types (array, string, etc). (see [below for nested schema](#nestedatt--spec--defaults--rules--response--defaults))
+- `jwt` (Attributes) Authentication based on JWT tokens. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--jwt))
+- `kubernetes_token_review` (Attributes) Authentication by Kubernetes token review. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--kubernetes_token_review))
+- `metrics` (Boolean) Whether this config should generate individual observability metrics
+- `oauth2_introspection` (Attributes) Authentication by OAuth2 token introspection. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--oauth2_introspection))
+- `overrides` (Attributes) Overrides the resolved identity object by setting the additional properties (claims) specified in this config,before appending the object to the authorization JSON.It requires the resolved identity object to always be a JSON object.Do not use this option with identity objects of other JSON types (array, string, etc). (see [below for nested schema](#nestedatt--spec--defaults--rules--response--overrides))
+- `plain` (Attributes) Identity object extracted from the context.Use this method when authentication is performed beforehand by a proxy and the resulting object passed to Authorino as JSON in the auth request. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--plain))
+- `priority` (Number) Priority group of the config.All configs in the same priority group are evaluated concurrently; consecutive priority groups are evaluated sequentially.
+- `route_selectors` (Attributes List) Top-level route selectors.If present, the elements will be used to select HTTPRoute rules that, when activated, trigger the auth rule.At least one selected HTTPRoute rule must match to trigger the auth rule.If no route selectors are specified, the auth rule will be evaluated at all requests to the protected routes. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--route_selectors))
+- `when` (Attributes List) Conditions for Authorino to enforce this config.If omitted, the config will be enforced for all requests.If present, all conditions must match for the config to be enforced; otherwise, the config will be skipped. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--when))
+- `x509` (Attributes) Authentication based on client X.509 certificates.The certificates presented by the clients must be signed by a trusted CA whose certificates are stored in Kubernetes secrets. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--x509))
+
+<a id="nestedatt--spec--defaults--rules--response--api_key"></a>
+### Nested Schema for `spec.defaults.rules.response.api_key`
+
+Required:
+
+- `selector` (Attributes) Label selector used by Authorino to match secrets from the cluster storing valid credentials to authenticate to this service (see [below for nested schema](#nestedatt--spec--defaults--rules--response--api_key--selector))
+
+Optional:
+
+- `all_namespaces` (Boolean) Whether Authorino should look for API key secrets in all namespaces or only in the same namespace as the AuthConfig.Enabling this option in namespaced Authorino instances has no effect.
+
+<a id="nestedatt--spec--defaults--rules--response--api_key--selector"></a>
+### Nested Schema for `spec.defaults.rules.response.api_key.selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--api_key--all_namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--defaults--rules--response--api_key--all_namespaces--match_expressions"></a>
+### Nested Schema for `spec.defaults.rules.response.api_key.all_namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--cache"></a>
+### Nested Schema for `spec.defaults.rules.response.cache`
+
+Required:
+
+- `key` (Attributes) Key used to store the entry in the cache.The resolved key must be unique within the scope of this particular config. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--cache--key))
+
+Optional:
+
+- `ttl` (Number) Duration (in seconds) of the external data in the cache before pulled again from the source.
+
+<a id="nestedatt--spec--defaults--rules--response--cache--key"></a>
+### Nested Schema for `spec.defaults.rules.response.cache.key`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--credentials"></a>
+### Nested Schema for `spec.defaults.rules.response.credentials`
+
+Optional:
+
+- `authorization_header` (Attributes) (see [below for nested schema](#nestedatt--spec--defaults--rules--response--credentials--authorization_header))
+- `cookie` (Attributes) (see [below for nested schema](#nestedatt--spec--defaults--rules--response--credentials--cookie))
+- `custom_header` (Attributes) (see [below for nested schema](#nestedatt--spec--defaults--rules--response--credentials--custom_header))
+- `query_string` (Attributes) (see [below for nested schema](#nestedatt--spec--defaults--rules--response--credentials--query_string))
+
+<a id="nestedatt--spec--defaults--rules--response--credentials--authorization_header"></a>
+### Nested Schema for `spec.defaults.rules.response.credentials.authorization_header`
+
+Optional:
+
+- `prefix` (String)
+
+
+<a id="nestedatt--spec--defaults--rules--response--credentials--cookie"></a>
+### Nested Schema for `spec.defaults.rules.response.credentials.cookie`
+
+Required:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--defaults--rules--response--credentials--custom_header"></a>
+### Nested Schema for `spec.defaults.rules.response.credentials.custom_header`
+
+Required:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--defaults--rules--response--credentials--query_string"></a>
+### Nested Schema for `spec.defaults.rules.response.credentials.query_string`
+
+Required:
+
+- `name` (String)
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--defaults"></a>
+### Nested Schema for `spec.defaults.rules.response.defaults`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--defaults--rules--response--jwt"></a>
+### Nested Schema for `spec.defaults.rules.response.jwt`
+
+Optional:
+
+- `issuer_url` (String) URL of the issuer of the JWT.If 'jwksUrl' is omitted, Authorino will append the path to the OpenID Connect Well-Known Discovery endpoint(i.e. '/.well-known/openid-configuration') to this URL, to discover the OIDC configuration where to obtainthe 'jkws_uri' claim from.The value must coincide with the value of  the 'iss' (issuer) claim of the discovered OpenID Connect configuration.
+- `ttl` (Number) Decides how long to wait before refreshing the JWKS (in seconds).If omitted, Authorino will never refresh the JWKS.
+
+
+<a id="nestedatt--spec--defaults--rules--response--kubernetes_token_review"></a>
+### Nested Schema for `spec.defaults.rules.response.kubernetes_token_review`
+
+Optional:
+
+- `audiences` (List of String) The list of audiences (scopes) that must be claimed in a Kubernetes authentication token supplied in the request, and reviewed by Authorino.If omitted, Authorino will review tokens expecting the host name of the requested protected service amongst the audiences.
+
+
+<a id="nestedatt--spec--defaults--rules--response--oauth2_introspection"></a>
+### Nested Schema for `spec.defaults.rules.response.oauth2_introspection`
+
+Required:
+
+- `credentials_ref` (Attributes) Reference to a Kubernetes secret in the same namespace, that stores client credentials to the OAuth2 server. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--oauth2_introspection--credentials_ref))
+- `endpoint` (String) The full URL of the token introspection endpoint.
+
+Optional:
+
+- `token_type_hint` (String) The token type hint for the token introspection.If omitted, it defaults to 'access_token'.
+
+<a id="nestedatt--spec--defaults--rules--response--oauth2_introspection--credentials_ref"></a>
+### Nested Schema for `spec.defaults.rules.response.oauth2_introspection.credentials_ref`
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--overrides"></a>
+### Nested Schema for `spec.defaults.rules.response.overrides`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--defaults--rules--response--plain"></a>
+### Nested Schema for `spec.defaults.rules.response.plain`
+
+Required:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+
+
+<a id="nestedatt--spec--defaults--rules--response--route_selectors"></a>
+### Nested Schema for `spec.defaults.rules.response.route_selectors`
+
+Optional:
+
+- `hostnames` (List of String) Hostnames defines a set of hostname that should match against the HTTP Host header to select a HTTPRoute to process the requesthttps://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec
+- `matches` (Attributes List) Matches define conditions used for matching the rule against incoming HTTP requests.https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec (see [below for nested schema](#nestedatt--spec--defaults--rules--response--route_selectors--matches))
+
+<a id="nestedatt--spec--defaults--rules--response--route_selectors--matches"></a>
+### Nested Schema for `spec.defaults.rules.response.route_selectors.matches`
+
+Optional:
+
+- `headers` (Attributes List) Headers specifies HTTP request header matchers. Multiple match values areANDed together, meaning, a request must match all the specified headersto select the route. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--route_selectors--matches--headers))
+- `method` (String) Method specifies HTTP method matcher.When specified, this route will be matched only if the request has thespecified method.Support: Extended
+- `path` (Attributes) Path specifies a HTTP request path matcher. If this field is notspecified, a default prefix match on the '/' path is provided. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--route_selectors--matches--path))
+- `query_params` (Attributes List) QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended (see [below for nested schema](#nestedatt--spec--defaults--rules--response--route_selectors--matches--query_params))
+
+<a id="nestedatt--spec--defaults--rules--response--route_selectors--matches--headers"></a>
+### Nested Schema for `spec.defaults.rules.response.route_selectors.matches.headers`
+
+Required:
+
+- `name` (String) Name is the name of the HTTP Header to be matched. Name matching MUST becase insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).If multiple entries specify equivalent header names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent header name MUST be ignored. Due to thecase-insensitivity of header names, 'foo' and 'Foo' are consideredequivalent.When a header is repeated in an HTTP request, it isimplementation-specific behavior as to how this is represented.Generally, proxies should follow the guidance from the RFC:https://www.rfc-editor.org/rfc/rfc7230.html#section-3.2.2 regardingprocessing a repeated header, with special handling for 'Set-Cookie'.
+- `value` (String) Value is the value of HTTP Header to be matched.
+
+Optional:
+
+- `type` (String) Type specifies how to match against the value of the header.Support: Core (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression HeaderMatchType has implementation-specificconformance, implementations can support POSIX, PCRE or any other dialectsof regular expressions. Please read the implementation's documentation todetermine the supported dialect.
+
+
+<a id="nestedatt--spec--defaults--rules--response--route_selectors--matches--path"></a>
+### Nested Schema for `spec.defaults.rules.response.route_selectors.matches.path`
+
+Optional:
+
+- `type` (String) Type specifies how to match against the path Value.Support: Core (Exact, PathPrefix)Support: Implementation-specific (RegularExpression)
+- `value` (String) Value of the HTTP path to match against.
+
+
+<a id="nestedatt--spec--defaults--rules--response--route_selectors--matches--query_params"></a>
+### Nested Schema for `spec.defaults.rules.response.route_selectors.matches.query_params`
+
+Required:
+
+- `name` (String) Name is the name of the HTTP query param to be matched. This must be anexact string match. (Seehttps://tools.ietf.org/html/rfc7230#section-2.7.3).If multiple entries specify equivalent query param names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent query param name MUST be ignored.If a query param is repeated in an HTTP request, the behavior ispurposely left undefined, since different data planes have differentcapabilities. However, it is *recommended* that implementations shouldmatch against the first value of the param if the data plane supports it,as this behavior is expected in other load balancing contexts outside ofthe Gateway API.Users SHOULD NOT route traffic based on repeated query params to guardthemselves against potential differences in the implementations.
+- `value` (String) Value is the value of HTTP query param to be matched.
+
+Optional:
+
+- `type` (String) Type specifies how to match against the value of the query parameter.Support: Extended (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression QueryParamMatchType has Implementation-specificconformance, implementations can support POSIX, PCRE or any otherdialects of regular expressions. Please read the implementation'sdocumentation to determine the supported dialect.
+
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--when"></a>
+### Nested Schema for `spec.defaults.rules.response.when`
+
+Optional:
+
+- `all` (List of Map of String) A list of pattern expressions to be evaluated as a logical AND.
+- `any` (List of Map of String) A list of pattern expressions to be evaluated as a logical OR.
+- `operator` (String) The binary operator to be applied to the content fetched from the authorization JSON, for comparison with 'value'.Possible values are: 'eq' (equal to), 'neq' (not equal to), 'incl' (includes; for arrays), 'excl' (excludes; for arrays), 'matches' (regex)
+- `pattern_ref` (String) Reference to a named set of pattern expressions
+- `selector` (String) Path selector to fetch content from the authorization JSON (e.g. 'request.method').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.Authorino custom JSON path modifiers are also supported.
+- `value` (String) The value of reference for the comparison with the content fetched from the authorization JSON.If used with the 'matches' operator, the value must compile to a valid Golang regex.
+
+
+<a id="nestedatt--spec--defaults--rules--response--x509"></a>
+### Nested Schema for `spec.defaults.rules.response.x509`
+
+Required:
+
+- `selector` (Attributes) Label selector used by Authorino to match secrets from the cluster storing trusted CA certificates to validateclients trying to authenticate to this service (see [below for nested schema](#nestedatt--spec--defaults--rules--response--x509--selector))
+
+Optional:
+
+- `all_namespaces` (Boolean) Whether Authorino should look for TLS secrets in all namespaces or only in the same namespace as the AuthConfig.Enabling this option in namespaced Authorino instances has no effect.
+
+<a id="nestedatt--spec--defaults--rules--response--x509--selector"></a>
+### Nested Schema for `spec.defaults.rules.response.x509.selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--x509--all_namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--defaults--rules--response--x509--all_namespaces--match_expressions"></a>
+### Nested Schema for `spec.defaults.rules.response.x509.all_namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+
+
+<a id="nestedatt--spec--defaults--rules--authorization"></a>
+### Nested Schema for `spec.defaults.rules.authorization`
+
+Optional:
+
+- `cache` (Attributes) Caching options for the resolved object returned when applying this config.Omit it to avoid caching objects for this config. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--cache))
+- `kubernetes_subject_access_review` (Attributes) Authorization by Kubernetes SubjectAccessReview (see [below for nested schema](#nestedatt--spec--defaults--rules--response--kubernetes_subject_access_review))
+- `metrics` (Boolean) Whether this config should generate individual observability metrics
+- `opa` (Attributes) Open Policy Agent (OPA) Rego policy. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--opa))
+- `pattern_matching` (Attributes) Pattern-matching authorization rules. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--pattern_matching))
+- `priority` (Number) Priority group of the config.All configs in the same priority group are evaluated concurrently; consecutive priority groups are evaluated sequentially.
+- `route_selectors` (Attributes List) Top-level route selectors.If present, the elements will be used to select HTTPRoute rules that, when activated, trigger the auth rule.At least one selected HTTPRoute rule must match to trigger the auth rule.If no route selectors are specified, the auth rule will be evaluated at all requests to the protected routes. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--route_selectors))
+- `spicedb` (Attributes) Authorization decision delegated to external Authzed/SpiceDB server. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--spicedb))
+- `when` (Attributes List) Conditions for Authorino to enforce this config.If omitted, the config will be enforced for all requests.If present, all conditions must match for the config to be enforced; otherwise, the config will be skipped. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--when))
+
+<a id="nestedatt--spec--defaults--rules--response--cache"></a>
+### Nested Schema for `spec.defaults.rules.response.cache`
+
+Required:
+
+- `key` (Attributes) Key used to store the entry in the cache.The resolved key must be unique within the scope of this particular config. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--cache--key))
+
+Optional:
+
+- `ttl` (Number) Duration (in seconds) of the external data in the cache before pulled again from the source.
+
+<a id="nestedatt--spec--defaults--rules--response--cache--key"></a>
+### Nested Schema for `spec.defaults.rules.response.cache.key`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--kubernetes_subject_access_review"></a>
+### Nested Schema for `spec.defaults.rules.response.kubernetes_subject_access_review`
+
+Optional:
+
+- `groups` (List of String) Groups the user must be a member of or, if 'user' is omitted, the groups to check for authorization in the Kubernetes RBAC.
+- `resource_attributes` (Attributes) Use resourceAttributes to check permissions on Kubernetes resources.If omitted, it performs a non-resource SubjectAccessReview, with verb and path inferred from the request. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--kubernetes_subject_access_review--resource_attributes))
+- `user` (Attributes) User to check for authorization in the Kubernetes RBAC.Omit it to check for group authorization only. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--kubernetes_subject_access_review--user))
+
+<a id="nestedatt--spec--defaults--rules--response--kubernetes_subject_access_review--resource_attributes"></a>
+### Nested Schema for `spec.defaults.rules.response.kubernetes_subject_access_review.resource_attributes`
+
+Optional:
+
+- `group` (Attributes) API group of the resource.Use '*' for all API groups. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--kubernetes_subject_access_review--user--group))
+- `name` (Attributes) Resource nameOmit it to check for authorization on all resources of the specified kind. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--kubernetes_subject_access_review--user--name))
+- `namespace` (Attributes) Namespace where the user must have permissions on the resource. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--kubernetes_subject_access_review--user--namespace))
+- `resource` (Attributes) Resource kindUse '*' for all resource kinds. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--kubernetes_subject_access_review--user--resource))
+- `subresource` (Attributes) Subresource kind (see [below for nested schema](#nestedatt--spec--defaults--rules--response--kubernetes_subject_access_review--user--subresource))
+- `verb` (Attributes) Verb to check for authorization on the resource.Use '*' for all verbs. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--kubernetes_subject_access_review--user--verb))
+
+<a id="nestedatt--spec--defaults--rules--response--kubernetes_subject_access_review--user--group"></a>
+### Nested Schema for `spec.defaults.rules.response.kubernetes_subject_access_review.user.group`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--defaults--rules--response--kubernetes_subject_access_review--user--name"></a>
+### Nested Schema for `spec.defaults.rules.response.kubernetes_subject_access_review.user.name`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--defaults--rules--response--kubernetes_subject_access_review--user--namespace"></a>
+### Nested Schema for `spec.defaults.rules.response.kubernetes_subject_access_review.user.namespace`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--defaults--rules--response--kubernetes_subject_access_review--user--resource"></a>
+### Nested Schema for `spec.defaults.rules.response.kubernetes_subject_access_review.user.resource`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--defaults--rules--response--kubernetes_subject_access_review--user--subresource"></a>
+### Nested Schema for `spec.defaults.rules.response.kubernetes_subject_access_review.user.subresource`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--defaults--rules--response--kubernetes_subject_access_review--user--verb"></a>
+### Nested Schema for `spec.defaults.rules.response.kubernetes_subject_access_review.user.verb`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--kubernetes_subject_access_review--user"></a>
+### Nested Schema for `spec.defaults.rules.response.kubernetes_subject_access_review.user`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--opa"></a>
+### Nested Schema for `spec.defaults.rules.response.opa`
+
+Optional:
+
+- `all_values` (Boolean) Returns the value of all Rego rules in the virtual document. Values can be read in subsequent evaluators/phases of the Auth Pipeline.Otherwise, only the default 'allow' rule will be exposed.Returning all Rego rules can affect performance of OPA policies during reconciliation (policy precompile) and at runtime.
+- `external_policy` (Attributes) Settings for fetching the OPA policy from an external registry.Use it alternatively to 'rego'.For the configurations of the HTTP request, the following options are not implemented: 'method', 'body', 'bodyParameters','contentType', 'headers', 'oauth2'. Use it only with: 'url', 'sharedSecret', 'credentials'. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--opa--external_policy))
+- `rego` (String) Authorization policy as a Rego language document.The Rego document must include the 'allow' condition, set by Authorino to 'false' by default (i.e. requests are unauthorized unless changed).The Rego document must NOT include the 'package' declaration in line 1.
+
+<a id="nestedatt--spec--defaults--rules--response--opa--external_policy"></a>
+### Nested Schema for `spec.defaults.rules.response.opa.external_policy`
+
+Required:
+
+- `url` (String) Endpoint URL of the HTTP service.The value can include variable placeholders in the format '{selector}', where 'selector' is any pattern supportedby https://pkg.go.dev/github.com/tidwall/gjson and selects value from the authorization JSON.E.g. https://ext-auth-server.io/metadata?p={request.path}
+
+Optional:
+
+- `body` (Attributes) Raw body of the HTTP request.Supersedes 'bodyParameters'; use either one or the other.Use it with method=POST; for GET requests, set parameters as query string in the 'endpoint' (placeholders can be used). (see [below for nested schema](#nestedatt--spec--defaults--rules--response--opa--rego--body))
+- `body_parameters` (Attributes) Custom parameters to encode in the body of the HTTP request.Superseded by 'body'; use either one or the other.Use it with method=POST; for GET requests, set parameters as query string in the 'endpoint' (placeholders can be used). (see [below for nested schema](#nestedatt--spec--defaults--rules--response--opa--rego--body_parameters))
+- `content_type` (String) Content-Type of the request body. Shapes how 'bodyParameters' are encoded.Use it with method=POST; for GET requests, Content-Type is automatically set to 'text/plain'.
+- `credentials` (Attributes) Defines where client credentials will be passed in the request to the service.If omitted, it defaults to client credentials passed in the HTTP Authorization header and the 'Bearer' prefix expected prepended to the secret value. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--opa--rego--credentials))
+- `headers` (Attributes) Custom headers in the HTTP request. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--opa--rego--headers))
+- `method` (String) HTTP verb used in the request to the service. Accepted values: GET (default), POST.When the request method is POST, the authorization JSON is passed in the body of the request.
+- `oauth2` (Attributes) Authentication with the HTTP service by OAuth2 Client Credentials grant. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--opa--rego--oauth2))
+- `shared_secret_ref` (Attributes) Reference to a Secret key whose value will be passed by Authorino in the request.The HTTP service can use the shared secret to authenticate the origin of the request.Ignored if used together with oauth2. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--opa--rego--shared_secret_ref))
+- `ttl` (Number) Duration (in seconds) of the external data in the cache before pulled again from the source.
+
+<a id="nestedatt--spec--defaults--rules--response--opa--rego--body"></a>
+### Nested Schema for `spec.defaults.rules.response.opa.rego.body`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--defaults--rules--response--opa--rego--body_parameters"></a>
+### Nested Schema for `spec.defaults.rules.response.opa.rego.body_parameters`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--defaults--rules--response--opa--rego--credentials"></a>
+### Nested Schema for `spec.defaults.rules.response.opa.rego.credentials`
+
+Optional:
+
+- `authorization_header` (Attributes) (see [below for nested schema](#nestedatt--spec--defaults--rules--response--opa--rego--ttl--authorization_header))
+- `cookie` (Attributes) (see [below for nested schema](#nestedatt--spec--defaults--rules--response--opa--rego--ttl--cookie))
+- `custom_header` (Attributes) (see [below for nested schema](#nestedatt--spec--defaults--rules--response--opa--rego--ttl--custom_header))
+- `query_string` (Attributes) (see [below for nested schema](#nestedatt--spec--defaults--rules--response--opa--rego--ttl--query_string))
+
+<a id="nestedatt--spec--defaults--rules--response--opa--rego--ttl--authorization_header"></a>
+### Nested Schema for `spec.defaults.rules.response.opa.rego.ttl.authorization_header`
+
+Optional:
+
+- `prefix` (String)
+
+
+<a id="nestedatt--spec--defaults--rules--response--opa--rego--ttl--cookie"></a>
+### Nested Schema for `spec.defaults.rules.response.opa.rego.ttl.cookie`
+
+Required:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--defaults--rules--response--opa--rego--ttl--custom_header"></a>
+### Nested Schema for `spec.defaults.rules.response.opa.rego.ttl.custom_header`
+
+Required:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--defaults--rules--response--opa--rego--ttl--query_string"></a>
+### Nested Schema for `spec.defaults.rules.response.opa.rego.ttl.query_string`
+
+Required:
+
+- `name` (String)
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--opa--rego--headers"></a>
+### Nested Schema for `spec.defaults.rules.response.opa.rego.headers`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--defaults--rules--response--opa--rego--oauth2"></a>
+### Nested Schema for `spec.defaults.rules.response.opa.rego.oauth2`
+
+Required:
+
+- `client_id` (String) OAuth2 Client ID.
+- `client_secret_ref` (Attributes) Reference to a Kuberentes Secret key that stores that OAuth2 Client Secret. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--opa--rego--ttl--client_secret_ref))
+- `token_url` (String) Token endpoint URL of the OAuth2 resource server.
+
+Optional:
+
+- `cache` (Boolean) Caches and reuses the token until expired.Set it to false to force fetch the token at every authorization request regardless of expiration.
+- `extra_params` (Map of String) Optional extra parameters for the requests to the token URL.
+- `scopes` (List of String) Optional scopes for the client credentials grant, if supported by he OAuth2 server.
+
+<a id="nestedatt--spec--defaults--rules--response--opa--rego--ttl--client_secret_ref"></a>
+### Nested Schema for `spec.defaults.rules.response.opa.rego.ttl.client_secret_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `name` (String) The name of the secret in the Authorino's namespace to select from.
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--opa--rego--shared_secret_ref"></a>
+### Nested Schema for `spec.defaults.rules.response.opa.rego.shared_secret_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `name` (String) The name of the secret in the Authorino's namespace to select from.
+
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--pattern_matching"></a>
+### Nested Schema for `spec.defaults.rules.response.pattern_matching`
+
+Required:
+
+- `patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--defaults--rules--response--pattern_matching--patterns))
+
+<a id="nestedatt--spec--defaults--rules--response--pattern_matching--patterns"></a>
+### Nested Schema for `spec.defaults.rules.response.pattern_matching.patterns`
+
+Optional:
+
+- `all` (List of Map of String) A list of pattern expressions to be evaluated as a logical AND.
+- `any` (List of Map of String) A list of pattern expressions to be evaluated as a logical OR.
+- `operator` (String) The binary operator to be applied to the content fetched from the authorization JSON, for comparison with 'value'.Possible values are: 'eq' (equal to), 'neq' (not equal to), 'incl' (includes; for arrays), 'excl' (excludes; for arrays), 'matches' (regex)
+- `pattern_ref` (String) Reference to a named set of pattern expressions
+- `selector` (String) Path selector to fetch content from the authorization JSON (e.g. 'request.method').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.Authorino custom JSON path modifiers are also supported.
+- `value` (String) The value of reference for the comparison with the content fetched from the authorization JSON.If used with the 'matches' operator, the value must compile to a valid Golang regex.
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--route_selectors"></a>
+### Nested Schema for `spec.defaults.rules.response.route_selectors`
+
+Optional:
+
+- `hostnames` (List of String) Hostnames defines a set of hostname that should match against the HTTP Host header to select a HTTPRoute to process the requesthttps://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec
+- `matches` (Attributes List) Matches define conditions used for matching the rule against incoming HTTP requests.https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec (see [below for nested schema](#nestedatt--spec--defaults--rules--response--route_selectors--matches))
+
+<a id="nestedatt--spec--defaults--rules--response--route_selectors--matches"></a>
+### Nested Schema for `spec.defaults.rules.response.route_selectors.matches`
+
+Optional:
+
+- `headers` (Attributes List) Headers specifies HTTP request header matchers. Multiple match values areANDed together, meaning, a request must match all the specified headersto select the route. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--route_selectors--matches--headers))
+- `method` (String) Method specifies HTTP method matcher.When specified, this route will be matched only if the request has thespecified method.Support: Extended
+- `path` (Attributes) Path specifies a HTTP request path matcher. If this field is notspecified, a default prefix match on the '/' path is provided. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--route_selectors--matches--path))
+- `query_params` (Attributes List) QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended (see [below for nested schema](#nestedatt--spec--defaults--rules--response--route_selectors--matches--query_params))
+
+<a id="nestedatt--spec--defaults--rules--response--route_selectors--matches--headers"></a>
+### Nested Schema for `spec.defaults.rules.response.route_selectors.matches.headers`
+
+Required:
+
+- `name` (String) Name is the name of the HTTP Header to be matched. Name matching MUST becase insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).If multiple entries specify equivalent header names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent header name MUST be ignored. Due to thecase-insensitivity of header names, 'foo' and 'Foo' are consideredequivalent.When a header is repeated in an HTTP request, it isimplementation-specific behavior as to how this is represented.Generally, proxies should follow the guidance from the RFC:https://www.rfc-editor.org/rfc/rfc7230.html#section-3.2.2 regardingprocessing a repeated header, with special handling for 'Set-Cookie'.
+- `value` (String) Value is the value of HTTP Header to be matched.
+
+Optional:
+
+- `type` (String) Type specifies how to match against the value of the header.Support: Core (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression HeaderMatchType has implementation-specificconformance, implementations can support POSIX, PCRE or any other dialectsof regular expressions. Please read the implementation's documentation todetermine the supported dialect.
+
+
+<a id="nestedatt--spec--defaults--rules--response--route_selectors--matches--path"></a>
+### Nested Schema for `spec.defaults.rules.response.route_selectors.matches.path`
+
+Optional:
+
+- `type` (String) Type specifies how to match against the path Value.Support: Core (Exact, PathPrefix)Support: Implementation-specific (RegularExpression)
+- `value` (String) Value of the HTTP path to match against.
+
+
+<a id="nestedatt--spec--defaults--rules--response--route_selectors--matches--query_params"></a>
+### Nested Schema for `spec.defaults.rules.response.route_selectors.matches.query_params`
+
+Required:
+
+- `name` (String) Name is the name of the HTTP query param to be matched. This must be anexact string match. (Seehttps://tools.ietf.org/html/rfc7230#section-2.7.3).If multiple entries specify equivalent query param names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent query param name MUST be ignored.If a query param is repeated in an HTTP request, the behavior ispurposely left undefined, since different data planes have differentcapabilities. However, it is *recommended* that implementations shouldmatch against the first value of the param if the data plane supports it,as this behavior is expected in other load balancing contexts outside ofthe Gateway API.Users SHOULD NOT route traffic based on repeated query params to guardthemselves against potential differences in the implementations.
+- `value` (String) Value is the value of HTTP query param to be matched.
+
+Optional:
+
+- `type` (String) Type specifies how to match against the value of the query parameter.Support: Extended (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression QueryParamMatchType has Implementation-specificconformance, implementations can support POSIX, PCRE or any otherdialects of regular expressions. Please read the implementation'sdocumentation to determine the supported dialect.
+
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--spicedb"></a>
+### Nested Schema for `spec.defaults.rules.response.spicedb`
+
+Required:
+
+- `endpoint` (String) Hostname and port number to the GRPC interface of the SpiceDB server (e.g. spicedb:50051).
+
+Optional:
+
+- `insecure` (Boolean) Insecure HTTP connection (i.e. disables TLS verification)
+- `permission` (Attributes) The name of the permission (or relation) on which to execute the check. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--spicedb--permission))
+- `resource` (Attributes) The resource on which to check the permission or relation. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--spicedb--resource))
+- `shared_secret_ref` (Attributes) Reference to a Secret key whose value will be used by Authorino to authenticate with the Authzed service. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--spicedb--shared_secret_ref))
+- `subject` (Attributes) The subject that will be checked for the permission or relation. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--spicedb--subject))
+
+<a id="nestedatt--spec--defaults--rules--response--spicedb--permission"></a>
+### Nested Schema for `spec.defaults.rules.response.spicedb.permission`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--defaults--rules--response--spicedb--resource"></a>
+### Nested Schema for `spec.defaults.rules.response.spicedb.resource`
+
+Optional:
+
+- `kind` (Attributes) (see [below for nested schema](#nestedatt--spec--defaults--rules--response--spicedb--subject--kind))
+- `name` (Attributes) (see [below for nested schema](#nestedatt--spec--defaults--rules--response--spicedb--subject--name))
+
+<a id="nestedatt--spec--defaults--rules--response--spicedb--subject--kind"></a>
+### Nested Schema for `spec.defaults.rules.response.spicedb.subject.kind`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--defaults--rules--response--spicedb--subject--name"></a>
+### Nested Schema for `spec.defaults.rules.response.spicedb.subject.name`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--spicedb--shared_secret_ref"></a>
+### Nested Schema for `spec.defaults.rules.response.spicedb.shared_secret_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `name` (String) The name of the secret in the Authorino's namespace to select from.
+
+
+<a id="nestedatt--spec--defaults--rules--response--spicedb--subject"></a>
+### Nested Schema for `spec.defaults.rules.response.spicedb.subject`
+
+Optional:
+
+- `kind` (Attributes) (see [below for nested schema](#nestedatt--spec--defaults--rules--response--spicedb--subject--kind))
+- `name` (Attributes) (see [below for nested schema](#nestedatt--spec--defaults--rules--response--spicedb--subject--name))
+
+<a id="nestedatt--spec--defaults--rules--response--spicedb--subject--kind"></a>
+### Nested Schema for `spec.defaults.rules.response.spicedb.subject.kind`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--defaults--rules--response--spicedb--subject--name"></a>
+### Nested Schema for `spec.defaults.rules.response.spicedb.subject.name`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--when"></a>
+### Nested Schema for `spec.defaults.rules.response.when`
+
+Optional:
+
+- `all` (List of Map of String) A list of pattern expressions to be evaluated as a logical AND.
+- `any` (List of Map of String) A list of pattern expressions to be evaluated as a logical OR.
+- `operator` (String) The binary operator to be applied to the content fetched from the authorization JSON, for comparison with 'value'.Possible values are: 'eq' (equal to), 'neq' (not equal to), 'incl' (includes; for arrays), 'excl' (excludes; for arrays), 'matches' (regex)
+- `pattern_ref` (String) Reference to a named set of pattern expressions
+- `selector` (String) Path selector to fetch content from the authorization JSON (e.g. 'request.method').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.Authorino custom JSON path modifiers are also supported.
+- `value` (String) The value of reference for the comparison with the content fetched from the authorization JSON.If used with the 'matches' operator, the value must compile to a valid Golang regex.
+
+
+
+<a id="nestedatt--spec--defaults--rules--callbacks"></a>
+### Nested Schema for `spec.defaults.rules.callbacks`
+
+Required:
+
+- `http` (Attributes) Settings of the external HTTP request (see [below for nested schema](#nestedatt--spec--defaults--rules--response--http))
+
+Optional:
+
+- `cache` (Attributes) Caching options for the resolved object returned when applying this config.Omit it to avoid caching objects for this config. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--cache))
+- `metrics` (Boolean) Whether this config should generate individual observability metrics
+- `priority` (Number) Priority group of the config.All configs in the same priority group are evaluated concurrently; consecutive priority groups are evaluated sequentially.
+- `route_selectors` (Attributes List) Top-level route selectors.If present, the elements will be used to select HTTPRoute rules that, when activated, trigger the auth rule.At least one selected HTTPRoute rule must match to trigger the auth rule.If no route selectors are specified, the auth rule will be evaluated at all requests to the protected routes. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--route_selectors))
+- `when` (Attributes List) Conditions for Authorino to enforce this config.If omitted, the config will be enforced for all requests.If present, all conditions must match for the config to be enforced; otherwise, the config will be skipped. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--when))
+
+<a id="nestedatt--spec--defaults--rules--response--http"></a>
+### Nested Schema for `spec.defaults.rules.response.http`
+
+Required:
+
+- `url` (String) Endpoint URL of the HTTP service.The value can include variable placeholders in the format '{selector}', where 'selector' is any pattern supportedby https://pkg.go.dev/github.com/tidwall/gjson and selects value from the authorization JSON.E.g. https://ext-auth-server.io/metadata?p={request.path}
+
+Optional:
+
+- `body` (Attributes) Raw body of the HTTP request.Supersedes 'bodyParameters'; use either one or the other.Use it with method=POST; for GET requests, set parameters as query string in the 'endpoint' (placeholders can be used). (see [below for nested schema](#nestedatt--spec--defaults--rules--response--http--body))
+- `body_parameters` (Attributes) Custom parameters to encode in the body of the HTTP request.Superseded by 'body'; use either one or the other.Use it with method=POST; for GET requests, set parameters as query string in the 'endpoint' (placeholders can be used). (see [below for nested schema](#nestedatt--spec--defaults--rules--response--http--body_parameters))
+- `content_type` (String) Content-Type of the request body. Shapes how 'bodyParameters' are encoded.Use it with method=POST; for GET requests, Content-Type is automatically set to 'text/plain'.
+- `credentials` (Attributes) Defines where client credentials will be passed in the request to the service.If omitted, it defaults to client credentials passed in the HTTP Authorization header and the 'Bearer' prefix expected prepended to the secret value. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--http--credentials))
+- `headers` (Attributes) Custom headers in the HTTP request. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--http--headers))
+- `method` (String) HTTP verb used in the request to the service. Accepted values: GET (default), POST.When the request method is POST, the authorization JSON is passed in the body of the request.
+- `oauth2` (Attributes) Authentication with the HTTP service by OAuth2 Client Credentials grant. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--http--oauth2))
+- `shared_secret_ref` (Attributes) Reference to a Secret key whose value will be passed by Authorino in the request.The HTTP service can use the shared secret to authenticate the origin of the request.Ignored if used together with oauth2. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--http--shared_secret_ref))
+
+<a id="nestedatt--spec--defaults--rules--response--http--body"></a>
+### Nested Schema for `spec.defaults.rules.response.http.body`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--defaults--rules--response--http--body_parameters"></a>
+### Nested Schema for `spec.defaults.rules.response.http.body_parameters`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--defaults--rules--response--http--credentials"></a>
+### Nested Schema for `spec.defaults.rules.response.http.credentials`
+
+Optional:
+
+- `authorization_header` (Attributes) (see [below for nested schema](#nestedatt--spec--defaults--rules--response--http--shared_secret_ref--authorization_header))
+- `cookie` (Attributes) (see [below for nested schema](#nestedatt--spec--defaults--rules--response--http--shared_secret_ref--cookie))
+- `custom_header` (Attributes) (see [below for nested schema](#nestedatt--spec--defaults--rules--response--http--shared_secret_ref--custom_header))
+- `query_string` (Attributes) (see [below for nested schema](#nestedatt--spec--defaults--rules--response--http--shared_secret_ref--query_string))
+
+<a id="nestedatt--spec--defaults--rules--response--http--shared_secret_ref--authorization_header"></a>
+### Nested Schema for `spec.defaults.rules.response.http.shared_secret_ref.authorization_header`
+
+Optional:
+
+- `prefix` (String)
+
+
+<a id="nestedatt--spec--defaults--rules--response--http--shared_secret_ref--cookie"></a>
+### Nested Schema for `spec.defaults.rules.response.http.shared_secret_ref.cookie`
+
+Required:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--defaults--rules--response--http--shared_secret_ref--custom_header"></a>
+### Nested Schema for `spec.defaults.rules.response.http.shared_secret_ref.custom_header`
+
+Required:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--defaults--rules--response--http--shared_secret_ref--query_string"></a>
+### Nested Schema for `spec.defaults.rules.response.http.shared_secret_ref.query_string`
+
+Required:
+
+- `name` (String)
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--http--headers"></a>
+### Nested Schema for `spec.defaults.rules.response.http.headers`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--defaults--rules--response--http--oauth2"></a>
+### Nested Schema for `spec.defaults.rules.response.http.oauth2`
+
+Required:
+
+- `client_id` (String) OAuth2 Client ID.
+- `client_secret_ref` (Attributes) Reference to a Kuberentes Secret key that stores that OAuth2 Client Secret. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--http--shared_secret_ref--client_secret_ref))
+- `token_url` (String) Token endpoint URL of the OAuth2 resource server.
+
+Optional:
+
+- `cache` (Boolean) Caches and reuses the token until expired.Set it to false to force fetch the token at every authorization request regardless of expiration.
+- `extra_params` (Map of String) Optional extra parameters for the requests to the token URL.
+- `scopes` (List of String) Optional scopes for the client credentials grant, if supported by he OAuth2 server.
+
+<a id="nestedatt--spec--defaults--rules--response--http--shared_secret_ref--client_secret_ref"></a>
+### Nested Schema for `spec.defaults.rules.response.http.shared_secret_ref.client_secret_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `name` (String) The name of the secret in the Authorino's namespace to select from.
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--http--shared_secret_ref"></a>
+### Nested Schema for `spec.defaults.rules.response.http.shared_secret_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `name` (String) The name of the secret in the Authorino's namespace to select from.
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--cache"></a>
+### Nested Schema for `spec.defaults.rules.response.cache`
+
+Required:
+
+- `key` (Attributes) Key used to store the entry in the cache.The resolved key must be unique within the scope of this particular config. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--cache--key))
+
+Optional:
+
+- `ttl` (Number) Duration (in seconds) of the external data in the cache before pulled again from the source.
+
+<a id="nestedatt--spec--defaults--rules--response--cache--key"></a>
+### Nested Schema for `spec.defaults.rules.response.cache.key`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--route_selectors"></a>
+### Nested Schema for `spec.defaults.rules.response.route_selectors`
+
+Optional:
+
+- `hostnames` (List of String) Hostnames defines a set of hostname that should match against the HTTP Host header to select a HTTPRoute to process the requesthttps://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec
+- `matches` (Attributes List) Matches define conditions used for matching the rule against incoming HTTP requests.https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec (see [below for nested schema](#nestedatt--spec--defaults--rules--response--route_selectors--matches))
+
+<a id="nestedatt--spec--defaults--rules--response--route_selectors--matches"></a>
+### Nested Schema for `spec.defaults.rules.response.route_selectors.matches`
+
+Optional:
+
+- `headers` (Attributes List) Headers specifies HTTP request header matchers. Multiple match values areANDed together, meaning, a request must match all the specified headersto select the route. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--route_selectors--matches--headers))
+- `method` (String) Method specifies HTTP method matcher.When specified, this route will be matched only if the request has thespecified method.Support: Extended
+- `path` (Attributes) Path specifies a HTTP request path matcher. If this field is notspecified, a default prefix match on the '/' path is provided. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--route_selectors--matches--path))
+- `query_params` (Attributes List) QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended (see [below for nested schema](#nestedatt--spec--defaults--rules--response--route_selectors--matches--query_params))
+
+<a id="nestedatt--spec--defaults--rules--response--route_selectors--matches--headers"></a>
+### Nested Schema for `spec.defaults.rules.response.route_selectors.matches.headers`
+
+Required:
+
+- `name` (String) Name is the name of the HTTP Header to be matched. Name matching MUST becase insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).If multiple entries specify equivalent header names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent header name MUST be ignored. Due to thecase-insensitivity of header names, 'foo' and 'Foo' are consideredequivalent.When a header is repeated in an HTTP request, it isimplementation-specific behavior as to how this is represented.Generally, proxies should follow the guidance from the RFC:https://www.rfc-editor.org/rfc/rfc7230.html#section-3.2.2 regardingprocessing a repeated header, with special handling for 'Set-Cookie'.
+- `value` (String) Value is the value of HTTP Header to be matched.
+
+Optional:
+
+- `type` (String) Type specifies how to match against the value of the header.Support: Core (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression HeaderMatchType has implementation-specificconformance, implementations can support POSIX, PCRE or any other dialectsof regular expressions. Please read the implementation's documentation todetermine the supported dialect.
+
+
+<a id="nestedatt--spec--defaults--rules--response--route_selectors--matches--path"></a>
+### Nested Schema for `spec.defaults.rules.response.route_selectors.matches.path`
+
+Optional:
+
+- `type` (String) Type specifies how to match against the path Value.Support: Core (Exact, PathPrefix)Support: Implementation-specific (RegularExpression)
+- `value` (String) Value of the HTTP path to match against.
+
+
+<a id="nestedatt--spec--defaults--rules--response--route_selectors--matches--query_params"></a>
+### Nested Schema for `spec.defaults.rules.response.route_selectors.matches.query_params`
+
+Required:
+
+- `name` (String) Name is the name of the HTTP query param to be matched. This must be anexact string match. (Seehttps://tools.ietf.org/html/rfc7230#section-2.7.3).If multiple entries specify equivalent query param names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent query param name MUST be ignored.If a query param is repeated in an HTTP request, the behavior ispurposely left undefined, since different data planes have differentcapabilities. However, it is *recommended* that implementations shouldmatch against the first value of the param if the data plane supports it,as this behavior is expected in other load balancing contexts outside ofthe Gateway API.Users SHOULD NOT route traffic based on repeated query params to guardthemselves against potential differences in the implementations.
+- `value` (String) Value is the value of HTTP query param to be matched.
+
+Optional:
+
+- `type` (String) Type specifies how to match against the value of the query parameter.Support: Extended (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression QueryParamMatchType has Implementation-specificconformance, implementations can support POSIX, PCRE or any otherdialects of regular expressions. Please read the implementation'sdocumentation to determine the supported dialect.
+
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--when"></a>
+### Nested Schema for `spec.defaults.rules.response.when`
+
+Optional:
+
+- `all` (List of Map of String) A list of pattern expressions to be evaluated as a logical AND.
+- `any` (List of Map of String) A list of pattern expressions to be evaluated as a logical OR.
+- `operator` (String) The binary operator to be applied to the content fetched from the authorization JSON, for comparison with 'value'.Possible values are: 'eq' (equal to), 'neq' (not equal to), 'incl' (includes; for arrays), 'excl' (excludes; for arrays), 'matches' (regex)
+- `pattern_ref` (String) Reference to a named set of pattern expressions
+- `selector` (String) Path selector to fetch content from the authorization JSON (e.g. 'request.method').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.Authorino custom JSON path modifiers are also supported.
+- `value` (String) The value of reference for the comparison with the content fetched from the authorization JSON.If used with the 'matches' operator, the value must compile to a valid Golang regex.
+
+
+
+<a id="nestedatt--spec--defaults--rules--metadata"></a>
+### Nested Schema for `spec.defaults.rules.metadata`
+
+Optional:
+
+- `cache` (Attributes) Caching options for the resolved object returned when applying this config.Omit it to avoid caching objects for this config. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--cache))
+- `http` (Attributes) External source of auth metadata via HTTP request (see [below for nested schema](#nestedatt--spec--defaults--rules--response--http))
+- `metrics` (Boolean) Whether this config should generate individual observability metrics
+- `priority` (Number) Priority group of the config.All configs in the same priority group are evaluated concurrently; consecutive priority groups are evaluated sequentially.
+- `route_selectors` (Attributes List) Top-level route selectors.If present, the elements will be used to select HTTPRoute rules that, when activated, trigger the auth rule.At least one selected HTTPRoute rule must match to trigger the auth rule.If no route selectors are specified, the auth rule will be evaluated at all requests to the protected routes. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--route_selectors))
+- `uma` (Attributes) User-Managed Access (UMA) source of resource data. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--uma))
+- `user_info` (Attributes) OpendID Connect UserInfo linked to an OIDC authentication config specified in this same AuthConfig. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--user_info))
+- `when` (Attributes List) Conditions for Authorino to enforce this config.If omitted, the config will be enforced for all requests.If present, all conditions must match for the config to be enforced; otherwise, the config will be skipped. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--when))
+
+<a id="nestedatt--spec--defaults--rules--response--cache"></a>
+### Nested Schema for `spec.defaults.rules.response.cache`
+
+Required:
+
+- `key` (Attributes) Key used to store the entry in the cache.The resolved key must be unique within the scope of this particular config. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--cache--key))
+
+Optional:
+
+- `ttl` (Number) Duration (in seconds) of the external data in the cache before pulled again from the source.
+
+<a id="nestedatt--spec--defaults--rules--response--cache--key"></a>
+### Nested Schema for `spec.defaults.rules.response.cache.key`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--http"></a>
+### Nested Schema for `spec.defaults.rules.response.http`
+
+Required:
+
+- `url` (String) Endpoint URL of the HTTP service.The value can include variable placeholders in the format '{selector}', where 'selector' is any pattern supportedby https://pkg.go.dev/github.com/tidwall/gjson and selects value from the authorization JSON.E.g. https://ext-auth-server.io/metadata?p={request.path}
+
+Optional:
+
+- `body` (Attributes) Raw body of the HTTP request.Supersedes 'bodyParameters'; use either one or the other.Use it with method=POST; for GET requests, set parameters as query string in the 'endpoint' (placeholders can be used). (see [below for nested schema](#nestedatt--spec--defaults--rules--response--http--body))
+- `body_parameters` (Attributes) Custom parameters to encode in the body of the HTTP request.Superseded by 'body'; use either one or the other.Use it with method=POST; for GET requests, set parameters as query string in the 'endpoint' (placeholders can be used). (see [below for nested schema](#nestedatt--spec--defaults--rules--response--http--body_parameters))
+- `content_type` (String) Content-Type of the request body. Shapes how 'bodyParameters' are encoded.Use it with method=POST; for GET requests, Content-Type is automatically set to 'text/plain'.
+- `credentials` (Attributes) Defines where client credentials will be passed in the request to the service.If omitted, it defaults to client credentials passed in the HTTP Authorization header and the 'Bearer' prefix expected prepended to the secret value. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--http--credentials))
+- `headers` (Attributes) Custom headers in the HTTP request. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--http--headers))
+- `method` (String) HTTP verb used in the request to the service. Accepted values: GET (default), POST.When the request method is POST, the authorization JSON is passed in the body of the request.
+- `oauth2` (Attributes) Authentication with the HTTP service by OAuth2 Client Credentials grant. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--http--oauth2))
+- `shared_secret_ref` (Attributes) Reference to a Secret key whose value will be passed by Authorino in the request.The HTTP service can use the shared secret to authenticate the origin of the request.Ignored if used together with oauth2. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--http--shared_secret_ref))
+
+<a id="nestedatt--spec--defaults--rules--response--http--body"></a>
+### Nested Schema for `spec.defaults.rules.response.http.body`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--defaults--rules--response--http--body_parameters"></a>
+### Nested Schema for `spec.defaults.rules.response.http.body_parameters`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--defaults--rules--response--http--credentials"></a>
+### Nested Schema for `spec.defaults.rules.response.http.credentials`
+
+Optional:
+
+- `authorization_header` (Attributes) (see [below for nested schema](#nestedatt--spec--defaults--rules--response--http--shared_secret_ref--authorization_header))
+- `cookie` (Attributes) (see [below for nested schema](#nestedatt--spec--defaults--rules--response--http--shared_secret_ref--cookie))
+- `custom_header` (Attributes) (see [below for nested schema](#nestedatt--spec--defaults--rules--response--http--shared_secret_ref--custom_header))
+- `query_string` (Attributes) (see [below for nested schema](#nestedatt--spec--defaults--rules--response--http--shared_secret_ref--query_string))
+
+<a id="nestedatt--spec--defaults--rules--response--http--shared_secret_ref--authorization_header"></a>
+### Nested Schema for `spec.defaults.rules.response.http.shared_secret_ref.authorization_header`
+
+Optional:
+
+- `prefix` (String)
+
+
+<a id="nestedatt--spec--defaults--rules--response--http--shared_secret_ref--cookie"></a>
+### Nested Schema for `spec.defaults.rules.response.http.shared_secret_ref.cookie`
+
+Required:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--defaults--rules--response--http--shared_secret_ref--custom_header"></a>
+### Nested Schema for `spec.defaults.rules.response.http.shared_secret_ref.custom_header`
+
+Required:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--defaults--rules--response--http--shared_secret_ref--query_string"></a>
+### Nested Schema for `spec.defaults.rules.response.http.shared_secret_ref.query_string`
+
+Required:
+
+- `name` (String)
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--http--headers"></a>
+### Nested Schema for `spec.defaults.rules.response.http.headers`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--defaults--rules--response--http--oauth2"></a>
+### Nested Schema for `spec.defaults.rules.response.http.oauth2`
+
+Required:
+
+- `client_id` (String) OAuth2 Client ID.
+- `client_secret_ref` (Attributes) Reference to a Kuberentes Secret key that stores that OAuth2 Client Secret. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--http--shared_secret_ref--client_secret_ref))
+- `token_url` (String) Token endpoint URL of the OAuth2 resource server.
+
+Optional:
+
+- `cache` (Boolean) Caches and reuses the token until expired.Set it to false to force fetch the token at every authorization request regardless of expiration.
+- `extra_params` (Map of String) Optional extra parameters for the requests to the token URL.
+- `scopes` (List of String) Optional scopes for the client credentials grant, if supported by he OAuth2 server.
+
+<a id="nestedatt--spec--defaults--rules--response--http--shared_secret_ref--client_secret_ref"></a>
+### Nested Schema for `spec.defaults.rules.response.http.shared_secret_ref.client_secret_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `name` (String) The name of the secret in the Authorino's namespace to select from.
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--http--shared_secret_ref"></a>
+### Nested Schema for `spec.defaults.rules.response.http.shared_secret_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `name` (String) The name of the secret in the Authorino's namespace to select from.
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--route_selectors"></a>
+### Nested Schema for `spec.defaults.rules.response.route_selectors`
+
+Optional:
+
+- `hostnames` (List of String) Hostnames defines a set of hostname that should match against the HTTP Host header to select a HTTPRoute to process the requesthttps://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec
+- `matches` (Attributes List) Matches define conditions used for matching the rule against incoming HTTP requests.https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec (see [below for nested schema](#nestedatt--spec--defaults--rules--response--route_selectors--matches))
+
+<a id="nestedatt--spec--defaults--rules--response--route_selectors--matches"></a>
+### Nested Schema for `spec.defaults.rules.response.route_selectors.matches`
+
+Optional:
+
+- `headers` (Attributes List) Headers specifies HTTP request header matchers. Multiple match values areANDed together, meaning, a request must match all the specified headersto select the route. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--route_selectors--matches--headers))
+- `method` (String) Method specifies HTTP method matcher.When specified, this route will be matched only if the request has thespecified method.Support: Extended
+- `path` (Attributes) Path specifies a HTTP request path matcher. If this field is notspecified, a default prefix match on the '/' path is provided. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--route_selectors--matches--path))
+- `query_params` (Attributes List) QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended (see [below for nested schema](#nestedatt--spec--defaults--rules--response--route_selectors--matches--query_params))
+
+<a id="nestedatt--spec--defaults--rules--response--route_selectors--matches--headers"></a>
+### Nested Schema for `spec.defaults.rules.response.route_selectors.matches.headers`
+
+Required:
+
+- `name` (String) Name is the name of the HTTP Header to be matched. Name matching MUST becase insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).If multiple entries specify equivalent header names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent header name MUST be ignored. Due to thecase-insensitivity of header names, 'foo' and 'Foo' are consideredequivalent.When a header is repeated in an HTTP request, it isimplementation-specific behavior as to how this is represented.Generally, proxies should follow the guidance from the RFC:https://www.rfc-editor.org/rfc/rfc7230.html#section-3.2.2 regardingprocessing a repeated header, with special handling for 'Set-Cookie'.
+- `value` (String) Value is the value of HTTP Header to be matched.
+
+Optional:
+
+- `type` (String) Type specifies how to match against the value of the header.Support: Core (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression HeaderMatchType has implementation-specificconformance, implementations can support POSIX, PCRE or any other dialectsof regular expressions. Please read the implementation's documentation todetermine the supported dialect.
+
+
+<a id="nestedatt--spec--defaults--rules--response--route_selectors--matches--path"></a>
+### Nested Schema for `spec.defaults.rules.response.route_selectors.matches.path`
+
+Optional:
+
+- `type` (String) Type specifies how to match against the path Value.Support: Core (Exact, PathPrefix)Support: Implementation-specific (RegularExpression)
+- `value` (String) Value of the HTTP path to match against.
+
+
+<a id="nestedatt--spec--defaults--rules--response--route_selectors--matches--query_params"></a>
+### Nested Schema for `spec.defaults.rules.response.route_selectors.matches.query_params`
+
+Required:
+
+- `name` (String) Name is the name of the HTTP query param to be matched. This must be anexact string match. (Seehttps://tools.ietf.org/html/rfc7230#section-2.7.3).If multiple entries specify equivalent query param names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent query param name MUST be ignored.If a query param is repeated in an HTTP request, the behavior ispurposely left undefined, since different data planes have differentcapabilities. However, it is *recommended* that implementations shouldmatch against the first value of the param if the data plane supports it,as this behavior is expected in other load balancing contexts outside ofthe Gateway API.Users SHOULD NOT route traffic based on repeated query params to guardthemselves against potential differences in the implementations.
+- `value` (String) Value is the value of HTTP query param to be matched.
+
+Optional:
+
+- `type` (String) Type specifies how to match against the value of the query parameter.Support: Extended (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression QueryParamMatchType has Implementation-specificconformance, implementations can support POSIX, PCRE or any otherdialects of regular expressions. Please read the implementation'sdocumentation to determine the supported dialect.
+
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--uma"></a>
+### Nested Schema for `spec.defaults.rules.response.uma`
+
+Required:
+
+- `credentials_ref` (Attributes) Reference to a Kubernetes secret in the same namespace, that stores client credentials to the resource registration API of the UMA server. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--uma--credentials_ref))
+- `endpoint` (String) The endpoint of the UMA server.The value must coincide with the 'issuer' claim of the UMA config discovered from the well-known uma configuration endpoint.
+
+<a id="nestedatt--spec--defaults--rules--response--uma--credentials_ref"></a>
+### Nested Schema for `spec.defaults.rules.response.uma.credentials_ref`
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--user_info"></a>
+### Nested Schema for `spec.defaults.rules.response.user_info`
+
+Required:
+
+- `identity_source` (String) The name of an OIDC-enabled JWT authentication config whose OpenID Connect configuration discovered includes the OIDC 'userinfo_endpoint' claim.
+
+
+<a id="nestedatt--spec--defaults--rules--response--when"></a>
+### Nested Schema for `spec.defaults.rules.response.when`
+
+Optional:
+
+- `all` (List of Map of String) A list of pattern expressions to be evaluated as a logical AND.
+- `any` (List of Map of String) A list of pattern expressions to be evaluated as a logical OR.
+- `operator` (String) The binary operator to be applied to the content fetched from the authorization JSON, for comparison with 'value'.Possible values are: 'eq' (equal to), 'neq' (not equal to), 'incl' (includes; for arrays), 'excl' (excludes; for arrays), 'matches' (regex)
+- `pattern_ref` (String) Reference to a named set of pattern expressions
+- `selector` (String) Path selector to fetch content from the authorization JSON (e.g. 'request.method').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.Authorino custom JSON path modifiers are also supported.
+- `value` (String) The value of reference for the comparison with the content fetched from the authorization JSON.If used with the 'matches' operator, the value must compile to a valid Golang regex.
+
+
+
+<a id="nestedatt--spec--defaults--rules--response"></a>
+### Nested Schema for `spec.defaults.rules.response`
+
+Optional:
+
+- `success` (Attributes) Response items to be included in the auth response when the request is authenticated and authorized.For integration of Authorino via proxy, the proxy must use these settings to propagate dynamic metadata and/or inject data in the request. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success))
+- `unauthenticated` (Attributes) Customizations on the denial status attributes when the request is unauthenticated.For integration of Authorino via proxy, the proxy must honour the response status attributes specified in this config.Default: 401 Unauthorized (see [below for nested schema](#nestedatt--spec--defaults--rules--response--unauthenticated))
+- `unauthorized` (Attributes) Customizations on the denial status attributes when the request is unauthorized.For integration of Authorino via proxy, the proxy must honour the response status attributes specified in this config.Default: 403 Forbidden (see [below for nested schema](#nestedatt--spec--defaults--rules--response--unauthorized))
+
+<a id="nestedatt--spec--defaults--rules--response--success"></a>
+### Nested Schema for `spec.defaults.rules.response.success`
+
+Optional:
+
+- `dynamic_metadata` (Attributes) Custom success response items wrapped as HTTP headers.For integration of Authorino via proxy, the proxy must use these settings to propagate dynamic metadata.See https://www.envoyproxy.io/docs/envoy/latest/configuration/advanced/well_known_dynamic_metadata (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success--dynamic_metadata))
+- `headers` (Attributes) Custom success response items wrapped as HTTP headers.For integration of Authorino via proxy, the proxy must use these settings to inject data in the request. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success--headers))
+
+<a id="nestedatt--spec--defaults--rules--response--success--dynamic_metadata"></a>
+### Nested Schema for `spec.defaults.rules.response.success.dynamic_metadata`
+
+Optional:
+
+- `cache` (Attributes) Caching options for the resolved object returned when applying this config.Omit it to avoid caching objects for this config. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success--headers--cache))
+- `json` (Attributes) JSON objectSpecify it as the list of properties of the object, whose values can combine static values and values selected from the authorization JSON. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success--headers--json))
+- `key` (String) The key used to add the custom response item (name of the HTTP header or root property of the Dynamic Metadata object).If omitted, it will be set to the name of the response config.
+- `metrics` (Boolean) Whether this config should generate individual observability metrics
+- `plain` (Attributes) Plain text content (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success--headers--plain))
+- `priority` (Number) Priority group of the config.All configs in the same priority group are evaluated concurrently; consecutive priority groups are evaluated sequentially.
+- `route_selectors` (Attributes List) Top-level route selectors.If present, the elements will be used to select HTTPRoute rules that, when activated, trigger the auth rule.At least one selected HTTPRoute rule must match to trigger the auth rule.If no route selectors are specified, the auth rule will be evaluated at all requests to the protected routes. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success--headers--route_selectors))
+- `when` (Attributes List) Conditions for Authorino to enforce this config.If omitted, the config will be enforced for all requests.If present, all conditions must match for the config to be enforced; otherwise, the config will be skipped. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success--headers--when))
+- `wristband` (Attributes) Authorino Festival Wristband token (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success--headers--wristband))
+
+<a id="nestedatt--spec--defaults--rules--response--success--headers--cache"></a>
+### Nested Schema for `spec.defaults.rules.response.success.headers.cache`
+
+Required:
+
+- `key` (Attributes) Key used to store the entry in the cache.The resolved key must be unique within the scope of this particular config. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success--headers--wristband--key))
+
+Optional:
+
+- `ttl` (Number) Duration (in seconds) of the external data in the cache before pulled again from the source.
+
+<a id="nestedatt--spec--defaults--rules--response--success--headers--wristband--key"></a>
+### Nested Schema for `spec.defaults.rules.response.success.headers.wristband.key`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--success--headers--json"></a>
+### Nested Schema for `spec.defaults.rules.response.success.headers.json`
+
+Required:
+
+- `properties` (Attributes) (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success--headers--wristband--properties))
+
+<a id="nestedatt--spec--defaults--rules--response--success--headers--wristband--properties"></a>
+### Nested Schema for `spec.defaults.rules.response.success.headers.wristband.properties`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--success--headers--plain"></a>
+### Nested Schema for `spec.defaults.rules.response.success.headers.plain`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--defaults--rules--response--success--headers--route_selectors"></a>
+### Nested Schema for `spec.defaults.rules.response.success.headers.route_selectors`
+
+Optional:
+
+- `hostnames` (List of String) Hostnames defines a set of hostname that should match against the HTTP Host header to select a HTTPRoute to process the requesthttps://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec
+- `matches` (Attributes List) Matches define conditions used for matching the rule against incoming HTTP requests.https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success--headers--wristband--matches))
+
+<a id="nestedatt--spec--defaults--rules--response--success--headers--wristband--matches"></a>
+### Nested Schema for `spec.defaults.rules.response.success.headers.wristband.matches`
+
+Optional:
+
+- `headers` (Attributes List) Headers specifies HTTP request header matchers. Multiple match values areANDed together, meaning, a request must match all the specified headersto select the route. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success--headers--wristband--matches--headers))
+- `method` (String) Method specifies HTTP method matcher.When specified, this route will be matched only if the request has thespecified method.Support: Extended
+- `path` (Attributes) Path specifies a HTTP request path matcher. If this field is notspecified, a default prefix match on the '/' path is provided. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success--headers--wristband--matches--path))
+- `query_params` (Attributes List) QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success--headers--wristband--matches--query_params))
+
+<a id="nestedatt--spec--defaults--rules--response--success--headers--wristband--matches--headers"></a>
+### Nested Schema for `spec.defaults.rules.response.success.headers.wristband.matches.headers`
+
+Required:
+
+- `name` (String) Name is the name of the HTTP Header to be matched. Name matching MUST becase insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).If multiple entries specify equivalent header names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent header name MUST be ignored. Due to thecase-insensitivity of header names, 'foo' and 'Foo' are consideredequivalent.When a header is repeated in an HTTP request, it isimplementation-specific behavior as to how this is represented.Generally, proxies should follow the guidance from the RFC:https://www.rfc-editor.org/rfc/rfc7230.html#section-3.2.2 regardingprocessing a repeated header, with special handling for 'Set-Cookie'.
+- `value` (String) Value is the value of HTTP Header to be matched.
+
+Optional:
+
+- `type` (String) Type specifies how to match against the value of the header.Support: Core (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression HeaderMatchType has implementation-specificconformance, implementations can support POSIX, PCRE or any other dialectsof regular expressions. Please read the implementation's documentation todetermine the supported dialect.
+
+
+<a id="nestedatt--spec--defaults--rules--response--success--headers--wristband--matches--path"></a>
+### Nested Schema for `spec.defaults.rules.response.success.headers.wristband.matches.path`
+
+Optional:
+
+- `type` (String) Type specifies how to match against the path Value.Support: Core (Exact, PathPrefix)Support: Implementation-specific (RegularExpression)
+- `value` (String) Value of the HTTP path to match against.
+
+
+<a id="nestedatt--spec--defaults--rules--response--success--headers--wristband--matches--query_params"></a>
+### Nested Schema for `spec.defaults.rules.response.success.headers.wristband.matches.query_params`
+
+Required:
+
+- `name` (String) Name is the name of the HTTP query param to be matched. This must be anexact string match. (Seehttps://tools.ietf.org/html/rfc7230#section-2.7.3).If multiple entries specify equivalent query param names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent query param name MUST be ignored.If a query param is repeated in an HTTP request, the behavior ispurposely left undefined, since different data planes have differentcapabilities. However, it is *recommended* that implementations shouldmatch against the first value of the param if the data plane supports it,as this behavior is expected in other load balancing contexts outside ofthe Gateway API.Users SHOULD NOT route traffic based on repeated query params to guardthemselves against potential differences in the implementations.
+- `value` (String) Value is the value of HTTP query param to be matched.
+
+Optional:
+
+- `type` (String) Type specifies how to match against the value of the query parameter.Support: Extended (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression QueryParamMatchType has Implementation-specificconformance, implementations can support POSIX, PCRE or any otherdialects of regular expressions. Please read the implementation'sdocumentation to determine the supported dialect.
+
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--success--headers--when"></a>
+### Nested Schema for `spec.defaults.rules.response.success.headers.when`
+
+Optional:
+
+- `all` (List of Map of String) A list of pattern expressions to be evaluated as a logical AND.
+- `any` (List of Map of String) A list of pattern expressions to be evaluated as a logical OR.
+- `operator` (String) The binary operator to be applied to the content fetched from the authorization JSON, for comparison with 'value'.Possible values are: 'eq' (equal to), 'neq' (not equal to), 'incl' (includes; for arrays), 'excl' (excludes; for arrays), 'matches' (regex)
+- `pattern_ref` (String) Reference to a named set of pattern expressions
+- `selector` (String) Path selector to fetch content from the authorization JSON (e.g. 'request.method').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.Authorino custom JSON path modifiers are also supported.
+- `value` (String) The value of reference for the comparison with the content fetched from the authorization JSON.If used with the 'matches' operator, the value must compile to a valid Golang regex.
+
+
+<a id="nestedatt--spec--defaults--rules--response--success--headers--wristband"></a>
+### Nested Schema for `spec.defaults.rules.response.success.headers.wristband`
+
+Required:
+
+- `issuer` (String) The endpoint to the Authorino service that issues the wristband (format: <scheme>://<host>:<port>/<realm>, where <realm> = <namespace>/<authorino-auth-config-resource-name/wristband-config-name)
+- `signing_key_refs` (Attributes List) Reference by name to Kubernetes secrets and corresponding signing algorithms.The secrets must contain a 'key.pem' entry whose value is the signing key formatted as PEM. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success--headers--wristband--signing_key_refs))
+
+Optional:
+
+- `custom_claims` (Attributes) Any claims to be added to the wristband token apart from the standard JWT claims (iss, iat, exp) added by default. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success--headers--wristband--custom_claims))
+- `token_duration` (Number) Time span of the wristband token, in seconds.
+
+<a id="nestedatt--spec--defaults--rules--response--success--headers--wristband--signing_key_refs"></a>
+### Nested Schema for `spec.defaults.rules.response.success.headers.wristband.signing_key_refs`
+
+Required:
+
+- `algorithm` (String) Algorithm to sign the wristband token using the signing key provided
+- `name` (String) Name of the signing key.The value is used to reference the Kubernetes secret that stores the key and in the 'kid' claim of the wristband token header.
+
+
+<a id="nestedatt--spec--defaults--rules--response--success--headers--wristband--custom_claims"></a>
+### Nested Schema for `spec.defaults.rules.response.success.headers.wristband.custom_claims`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--success--headers"></a>
+### Nested Schema for `spec.defaults.rules.response.success.headers`
+
+Optional:
+
+- `cache` (Attributes) Caching options for the resolved object returned when applying this config.Omit it to avoid caching objects for this config. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success--headers--cache))
+- `json` (Attributes) JSON objectSpecify it as the list of properties of the object, whose values can combine static values and values selected from the authorization JSON. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success--headers--json))
+- `key` (String) The key used to add the custom response item (name of the HTTP header or root property of the Dynamic Metadata object).If omitted, it will be set to the name of the response config.
+- `metrics` (Boolean) Whether this config should generate individual observability metrics
+- `plain` (Attributes) Plain text content (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success--headers--plain))
+- `priority` (Number) Priority group of the config.All configs in the same priority group are evaluated concurrently; consecutive priority groups are evaluated sequentially.
+- `route_selectors` (Attributes List) Top-level route selectors.If present, the elements will be used to select HTTPRoute rules that, when activated, trigger the auth rule.At least one selected HTTPRoute rule must match to trigger the auth rule.If no route selectors are specified, the auth rule will be evaluated at all requests to the protected routes. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success--headers--route_selectors))
+- `when` (Attributes List) Conditions for Authorino to enforce this config.If omitted, the config will be enforced for all requests.If present, all conditions must match for the config to be enforced; otherwise, the config will be skipped. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success--headers--when))
+- `wristband` (Attributes) Authorino Festival Wristband token (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success--headers--wristband))
+
+<a id="nestedatt--spec--defaults--rules--response--success--headers--cache"></a>
+### Nested Schema for `spec.defaults.rules.response.success.headers.cache`
+
+Required:
+
+- `key` (Attributes) Key used to store the entry in the cache.The resolved key must be unique within the scope of this particular config. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success--headers--wristband--key))
+
+Optional:
+
+- `ttl` (Number) Duration (in seconds) of the external data in the cache before pulled again from the source.
+
+<a id="nestedatt--spec--defaults--rules--response--success--headers--wristband--key"></a>
+### Nested Schema for `spec.defaults.rules.response.success.headers.wristband.key`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--success--headers--json"></a>
+### Nested Schema for `spec.defaults.rules.response.success.headers.json`
+
+Required:
+
+- `properties` (Attributes) (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success--headers--wristband--properties))
+
+<a id="nestedatt--spec--defaults--rules--response--success--headers--wristband--properties"></a>
+### Nested Schema for `spec.defaults.rules.response.success.headers.wristband.properties`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--success--headers--plain"></a>
+### Nested Schema for `spec.defaults.rules.response.success.headers.plain`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--defaults--rules--response--success--headers--route_selectors"></a>
+### Nested Schema for `spec.defaults.rules.response.success.headers.route_selectors`
+
+Optional:
+
+- `hostnames` (List of String) Hostnames defines a set of hostname that should match against the HTTP Host header to select a HTTPRoute to process the requesthttps://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec
+- `matches` (Attributes List) Matches define conditions used for matching the rule against incoming HTTP requests.https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success--headers--wristband--matches))
+
+<a id="nestedatt--spec--defaults--rules--response--success--headers--wristband--matches"></a>
+### Nested Schema for `spec.defaults.rules.response.success.headers.wristband.matches`
+
+Optional:
+
+- `headers` (Attributes List) Headers specifies HTTP request header matchers. Multiple match values areANDed together, meaning, a request must match all the specified headersto select the route. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success--headers--wristband--matches--headers))
+- `method` (String) Method specifies HTTP method matcher.When specified, this route will be matched only if the request has thespecified method.Support: Extended
+- `path` (Attributes) Path specifies a HTTP request path matcher. If this field is notspecified, a default prefix match on the '/' path is provided. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success--headers--wristband--matches--path))
+- `query_params` (Attributes List) QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success--headers--wristband--matches--query_params))
+
+<a id="nestedatt--spec--defaults--rules--response--success--headers--wristband--matches--headers"></a>
+### Nested Schema for `spec.defaults.rules.response.success.headers.wristband.matches.headers`
+
+Required:
+
+- `name` (String) Name is the name of the HTTP Header to be matched. Name matching MUST becase insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).If multiple entries specify equivalent header names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent header name MUST be ignored. Due to thecase-insensitivity of header names, 'foo' and 'Foo' are consideredequivalent.When a header is repeated in an HTTP request, it isimplementation-specific behavior as to how this is represented.Generally, proxies should follow the guidance from the RFC:https://www.rfc-editor.org/rfc/rfc7230.html#section-3.2.2 regardingprocessing a repeated header, with special handling for 'Set-Cookie'.
+- `value` (String) Value is the value of HTTP Header to be matched.
+
+Optional:
+
+- `type` (String) Type specifies how to match against the value of the header.Support: Core (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression HeaderMatchType has implementation-specificconformance, implementations can support POSIX, PCRE or any other dialectsof regular expressions. Please read the implementation's documentation todetermine the supported dialect.
+
+
+<a id="nestedatt--spec--defaults--rules--response--success--headers--wristband--matches--path"></a>
+### Nested Schema for `spec.defaults.rules.response.success.headers.wristband.matches.path`
+
+Optional:
+
+- `type` (String) Type specifies how to match against the path Value.Support: Core (Exact, PathPrefix)Support: Implementation-specific (RegularExpression)
+- `value` (String) Value of the HTTP path to match against.
+
+
+<a id="nestedatt--spec--defaults--rules--response--success--headers--wristband--matches--query_params"></a>
+### Nested Schema for `spec.defaults.rules.response.success.headers.wristband.matches.query_params`
+
+Required:
+
+- `name` (String) Name is the name of the HTTP query param to be matched. This must be anexact string match. (Seehttps://tools.ietf.org/html/rfc7230#section-2.7.3).If multiple entries specify equivalent query param names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent query param name MUST be ignored.If a query param is repeated in an HTTP request, the behavior ispurposely left undefined, since different data planes have differentcapabilities. However, it is *recommended* that implementations shouldmatch against the first value of the param if the data plane supports it,as this behavior is expected in other load balancing contexts outside ofthe Gateway API.Users SHOULD NOT route traffic based on repeated query params to guardthemselves against potential differences in the implementations.
+- `value` (String) Value is the value of HTTP query param to be matched.
+
+Optional:
+
+- `type` (String) Type specifies how to match against the value of the query parameter.Support: Extended (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression QueryParamMatchType has Implementation-specificconformance, implementations can support POSIX, PCRE or any otherdialects of regular expressions. Please read the implementation'sdocumentation to determine the supported dialect.
+
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--success--headers--when"></a>
+### Nested Schema for `spec.defaults.rules.response.success.headers.when`
+
+Optional:
+
+- `all` (List of Map of String) A list of pattern expressions to be evaluated as a logical AND.
+- `any` (List of Map of String) A list of pattern expressions to be evaluated as a logical OR.
+- `operator` (String) The binary operator to be applied to the content fetched from the authorization JSON, for comparison with 'value'.Possible values are: 'eq' (equal to), 'neq' (not equal to), 'incl' (includes; for arrays), 'excl' (excludes; for arrays), 'matches' (regex)
+- `pattern_ref` (String) Reference to a named set of pattern expressions
+- `selector` (String) Path selector to fetch content from the authorization JSON (e.g. 'request.method').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.Authorino custom JSON path modifiers are also supported.
+- `value` (String) The value of reference for the comparison with the content fetched from the authorization JSON.If used with the 'matches' operator, the value must compile to a valid Golang regex.
+
+
+<a id="nestedatt--spec--defaults--rules--response--success--headers--wristband"></a>
+### Nested Schema for `spec.defaults.rules.response.success.headers.wristband`
+
+Required:
+
+- `issuer` (String) The endpoint to the Authorino service that issues the wristband (format: <scheme>://<host>:<port>/<realm>, where <realm> = <namespace>/<authorino-auth-config-resource-name/wristband-config-name)
+- `signing_key_refs` (Attributes List) Reference by name to Kubernetes secrets and corresponding signing algorithms.The secrets must contain a 'key.pem' entry whose value is the signing key formatted as PEM. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success--headers--wristband--signing_key_refs))
+
+Optional:
+
+- `custom_claims` (Attributes) Any claims to be added to the wristband token apart from the standard JWT claims (iss, iat, exp) added by default. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--success--headers--wristband--custom_claims))
+- `token_duration` (Number) Time span of the wristband token, in seconds.
+
+<a id="nestedatt--spec--defaults--rules--response--success--headers--wristband--signing_key_refs"></a>
+### Nested Schema for `spec.defaults.rules.response.success.headers.wristband.signing_key_refs`
+
+Required:
+
+- `algorithm` (String) Algorithm to sign the wristband token using the signing key provided
+- `name` (String) Name of the signing key.The value is used to reference the Kubernetes secret that stores the key and in the 'kid' claim of the wristband token header.
+
+
+<a id="nestedatt--spec--defaults--rules--response--success--headers--wristband--custom_claims"></a>
+### Nested Schema for `spec.defaults.rules.response.success.headers.wristband.custom_claims`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--unauthenticated"></a>
+### Nested Schema for `spec.defaults.rules.response.unauthenticated`
+
+Optional:
+
+- `body` (Attributes) HTTP response body to override the default denial body. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--unauthenticated--body))
+- `code` (Number) HTTP status code to override the default denial status code.
+- `headers` (Attributes) HTTP response headers to override the default denial headers. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--unauthenticated--headers))
+- `message` (Attributes) HTTP message to override the default denial message. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--unauthenticated--message))
+
+<a id="nestedatt--spec--defaults--rules--response--unauthenticated--body"></a>
+### Nested Schema for `spec.defaults.rules.response.unauthenticated.body`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--defaults--rules--response--unauthenticated--headers"></a>
+### Nested Schema for `spec.defaults.rules.response.unauthenticated.headers`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--defaults--rules--response--unauthenticated--message"></a>
+### Nested Schema for `spec.defaults.rules.response.unauthenticated.message`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+<a id="nestedatt--spec--defaults--rules--response--unauthorized"></a>
+### Nested Schema for `spec.defaults.rules.response.unauthorized`
+
+Optional:
+
+- `body` (Attributes) HTTP response body to override the default denial body. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--unauthorized--body))
+- `code` (Number) HTTP status code to override the default denial status code.
+- `headers` (Attributes) HTTP response headers to override the default denial headers. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--unauthorized--headers))
+- `message` (Attributes) HTTP message to override the default denial message. (see [below for nested schema](#nestedatt--spec--defaults--rules--response--unauthorized--message))
+
+<a id="nestedatt--spec--defaults--rules--response--unauthorized--body"></a>
+### Nested Schema for `spec.defaults.rules.response.unauthorized.body`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--defaults--rules--response--unauthorized--headers"></a>
+### Nested Schema for `spec.defaults.rules.response.unauthorized.headers`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--defaults--rules--response--unauthorized--message"></a>
+### Nested Schema for `spec.defaults.rules.response.unauthorized.message`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+
+
+<a id="nestedatt--spec--defaults--when"></a>
+### Nested Schema for `spec.defaults.when`
+
+Optional:
+
+- `all` (List of Map of String) A list of pattern expressions to be evaluated as a logical AND.
+- `any` (List of Map of String) A list of pattern expressions to be evaluated as a logical OR.
+- `operator` (String) The binary operator to be applied to the content fetched from the authorization JSON, for comparison with 'value'.Possible values are: 'eq' (equal to), 'neq' (not equal to), 'incl' (includes; for arrays), 'excl' (excludes; for arrays), 'matches' (regex)
+- `pattern_ref` (String) Reference to a named set of pattern expressions
+- `selector` (String) Path selector to fetch content from the authorization JSON (e.g. 'request.method').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.Authorino custom JSON path modifiers are also supported.
+- `value` (String) The value of reference for the comparison with the content fetched from the authorization JSON.If used with the 'matches' operator, the value must compile to a valid Golang regex.
+
+
+
+<a id="nestedatt--spec--overrides"></a>
+### Nested Schema for `spec.overrides`
+
+Optional:
+
+- `patterns` (Map of String) Named sets of patterns that can be referred in 'when' conditions and in pattern-matching authorization policy rules.
+- `route_selectors` (Attributes List) Top-level route selectors.If present, the elements will be used to select HTTPRoute rules that, when activated, trigger the external authorization service.At least one selected HTTPRoute rule must match to trigger the AuthPolicy.If no route selectors are specified, the AuthPolicy will be enforced at all requests to the protected routes. (see [below for nested schema](#nestedatt--spec--overrides--route_selectors))
+- `rules` (Attributes) The auth rules of the policy.See Authorino's AuthConfig CRD for more details. (see [below for nested schema](#nestedatt--spec--overrides--rules))
+- `when` (Attributes List) Overall conditions for the AuthPolicy to be enforced.If omitted, the AuthPolicy will be enforced at all requests to the protected routes.If present, all conditions must match for the AuthPolicy to be enforced; otherwise, the authorization service skips the AuthPolicy and returns to the auth request with status OK. (see [below for nested schema](#nestedatt--spec--overrides--when))
+
+<a id="nestedatt--spec--overrides--route_selectors"></a>
+### Nested Schema for `spec.overrides.route_selectors`
+
+Optional:
+
+- `hostnames` (List of String) Hostnames defines a set of hostname that should match against the HTTP Host header to select a HTTPRoute to process the requesthttps://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec
+- `matches` (Attributes List) Matches define conditions used for matching the rule against incoming HTTP requests.https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec (see [below for nested schema](#nestedatt--spec--overrides--route_selectors--matches))
+
+<a id="nestedatt--spec--overrides--route_selectors--matches"></a>
+### Nested Schema for `spec.overrides.route_selectors.matches`
+
+Optional:
+
+- `headers` (Attributes List) Headers specifies HTTP request header matchers. Multiple match values areANDed together, meaning, a request must match all the specified headersto select the route. (see [below for nested schema](#nestedatt--spec--overrides--route_selectors--matches--headers))
+- `method` (String) Method specifies HTTP method matcher.When specified, this route will be matched only if the request has thespecified method.Support: Extended
+- `path` (Attributes) Path specifies a HTTP request path matcher. If this field is notspecified, a default prefix match on the '/' path is provided. (see [below for nested schema](#nestedatt--spec--overrides--route_selectors--matches--path))
+- `query_params` (Attributes List) QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended (see [below for nested schema](#nestedatt--spec--overrides--route_selectors--matches--query_params))
+
+<a id="nestedatt--spec--overrides--route_selectors--matches--headers"></a>
+### Nested Schema for `spec.overrides.route_selectors.matches.headers`
+
+Required:
+
+- `name` (String) Name is the name of the HTTP Header to be matched. Name matching MUST becase insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).If multiple entries specify equivalent header names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent header name MUST be ignored. Due to thecase-insensitivity of header names, 'foo' and 'Foo' are consideredequivalent.When a header is repeated in an HTTP request, it isimplementation-specific behavior as to how this is represented.Generally, proxies should follow the guidance from the RFC:https://www.rfc-editor.org/rfc/rfc7230.html#section-3.2.2 regardingprocessing a repeated header, with special handling for 'Set-Cookie'.
+- `value` (String) Value is the value of HTTP Header to be matched.
+
+Optional:
+
+- `type` (String) Type specifies how to match against the value of the header.Support: Core (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression HeaderMatchType has implementation-specificconformance, implementations can support POSIX, PCRE or any other dialectsof regular expressions. Please read the implementation's documentation todetermine the supported dialect.
+
+
+<a id="nestedatt--spec--overrides--route_selectors--matches--path"></a>
+### Nested Schema for `spec.overrides.route_selectors.matches.path`
+
+Optional:
+
+- `type` (String) Type specifies how to match against the path Value.Support: Core (Exact, PathPrefix)Support: Implementation-specific (RegularExpression)
+- `value` (String) Value of the HTTP path to match against.
+
+
+<a id="nestedatt--spec--overrides--route_selectors--matches--query_params"></a>
+### Nested Schema for `spec.overrides.route_selectors.matches.query_params`
+
+Required:
+
+- `name` (String) Name is the name of the HTTP query param to be matched. This must be anexact string match. (Seehttps://tools.ietf.org/html/rfc7230#section-2.7.3).If multiple entries specify equivalent query param names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent query param name MUST be ignored.If a query param is repeated in an HTTP request, the behavior ispurposely left undefined, since different data planes have differentcapabilities. However, it is *recommended* that implementations shouldmatch against the first value of the param if the data plane supports it,as this behavior is expected in other load balancing contexts outside ofthe Gateway API.Users SHOULD NOT route traffic based on repeated query params to guardthemselves against potential differences in the implementations.
+- `value` (String) Value is the value of HTTP query param to be matched.
+
+Optional:
+
+- `type` (String) Type specifies how to match against the value of the query parameter.Support: Extended (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression QueryParamMatchType has Implementation-specificconformance, implementations can support POSIX, PCRE or any otherdialects of regular expressions. Please read the implementation'sdocumentation to determine the supported dialect.
+
+
+
+
+<a id="nestedatt--spec--overrides--rules"></a>
+### Nested Schema for `spec.overrides.rules`
+
+Optional:
+
+- `authentication` (Attributes) Authentication configs.At least one config MUST evaluate to a valid identity object for the auth request to be successful. (see [below for nested schema](#nestedatt--spec--overrides--rules--authentication))
+- `authorization` (Attributes) Authorization policies.All policies MUST evaluate to 'allowed = true' for the auth request be successful. (see [below for nested schema](#nestedatt--spec--overrides--rules--authorization))
+- `callbacks` (Attributes) Callback functions.Authorino sends callbacks at the end of the auth pipeline to the endpoints specified in this config. (see [below for nested schema](#nestedatt--spec--overrides--rules--callbacks))
+- `metadata` (Attributes) Metadata sources.Authorino fetches auth metadata as JSON from sources specified in this config. (see [below for nested schema](#nestedatt--spec--overrides--rules--metadata))
+- `response` (Attributes) Response items.Authorino builds custom responses to the client of the auth request. (see [below for nested schema](#nestedatt--spec--overrides--rules--response))
+
+<a id="nestedatt--spec--overrides--rules--authentication"></a>
+### Nested Schema for `spec.overrides.rules.authentication`
+
+Optional:
+
+- `anonymous` (Map of String) Anonymous access.
+- `api_key` (Attributes) Authentication based on API keys stored in Kubernetes secrets. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--api_key))
+- `cache` (Attributes) Caching options for the resolved object returned when applying this config.Omit it to avoid caching objects for this config. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--cache))
+- `credentials` (Attributes) Defines where credentials are required to be passed in the request for authentication based on this config.If omitted, it defaults to credentials passed in the HTTP Authorization header and the 'Bearer' prefix prepended to the secret credential value. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--credentials))
+- `defaults` (Attributes) Set default property values (claims) for the resolved identity object, that are set before appending the object tothe authorization JSON. If the property is already present in the resolved identity object, the default value is ignored.It requires the resolved identity object to always be a JSON object.Do not use this option with identity objects of other JSON types (array, string, etc). (see [below for nested schema](#nestedatt--spec--overrides--rules--response--defaults))
+- `jwt` (Attributes) Authentication based on JWT tokens. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--jwt))
+- `kubernetes_token_review` (Attributes) Authentication by Kubernetes token review. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--kubernetes_token_review))
+- `metrics` (Boolean) Whether this config should generate individual observability metrics
+- `oauth2_introspection` (Attributes) Authentication by OAuth2 token introspection. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--oauth2_introspection))
+- `overrides` (Attributes) Overrides the resolved identity object by setting the additional properties (claims) specified in this config,before appending the object to the authorization JSON.It requires the resolved identity object to always be a JSON object.Do not use this option with identity objects of other JSON types (array, string, etc). (see [below for nested schema](#nestedatt--spec--overrides--rules--response--overrides))
+- `plain` (Attributes) Identity object extracted from the context.Use this method when authentication is performed beforehand by a proxy and the resulting object passed to Authorino as JSON in the auth request. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--plain))
+- `priority` (Number) Priority group of the config.All configs in the same priority group are evaluated concurrently; consecutive priority groups are evaluated sequentially.
+- `route_selectors` (Attributes List) Top-level route selectors.If present, the elements will be used to select HTTPRoute rules that, when activated, trigger the auth rule.At least one selected HTTPRoute rule must match to trigger the auth rule.If no route selectors are specified, the auth rule will be evaluated at all requests to the protected routes. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--route_selectors))
+- `when` (Attributes List) Conditions for Authorino to enforce this config.If omitted, the config will be enforced for all requests.If present, all conditions must match for the config to be enforced; otherwise, the config will be skipped. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--when))
+- `x509` (Attributes) Authentication based on client X.509 certificates.The certificates presented by the clients must be signed by a trusted CA whose certificates are stored in Kubernetes secrets. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--x509))
+
+<a id="nestedatt--spec--overrides--rules--response--api_key"></a>
+### Nested Schema for `spec.overrides.rules.response.api_key`
+
+Required:
+
+- `selector` (Attributes) Label selector used by Authorino to match secrets from the cluster storing valid credentials to authenticate to this service (see [below for nested schema](#nestedatt--spec--overrides--rules--response--api_key--selector))
+
+Optional:
+
+- `all_namespaces` (Boolean) Whether Authorino should look for API key secrets in all namespaces or only in the same namespace as the AuthConfig.Enabling this option in namespaced Authorino instances has no effect.
+
+<a id="nestedatt--spec--overrides--rules--response--api_key--selector"></a>
+### Nested Schema for `spec.overrides.rules.response.api_key.selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--api_key--all_namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--overrides--rules--response--api_key--all_namespaces--match_expressions"></a>
+### Nested Schema for `spec.overrides.rules.response.api_key.all_namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--cache"></a>
+### Nested Schema for `spec.overrides.rules.response.cache`
+
+Required:
+
+- `key` (Attributes) Key used to store the entry in the cache.The resolved key must be unique within the scope of this particular config. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--cache--key))
+
+Optional:
+
+- `ttl` (Number) Duration (in seconds) of the external data in the cache before pulled again from the source.
+
+<a id="nestedatt--spec--overrides--rules--response--cache--key"></a>
+### Nested Schema for `spec.overrides.rules.response.cache.key`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--credentials"></a>
+### Nested Schema for `spec.overrides.rules.response.credentials`
+
+Optional:
+
+- `authorization_header` (Attributes) (see [below for nested schema](#nestedatt--spec--overrides--rules--response--credentials--authorization_header))
+- `cookie` (Attributes) (see [below for nested schema](#nestedatt--spec--overrides--rules--response--credentials--cookie))
+- `custom_header` (Attributes) (see [below for nested schema](#nestedatt--spec--overrides--rules--response--credentials--custom_header))
+- `query_string` (Attributes) (see [below for nested schema](#nestedatt--spec--overrides--rules--response--credentials--query_string))
+
+<a id="nestedatt--spec--overrides--rules--response--credentials--authorization_header"></a>
+### Nested Schema for `spec.overrides.rules.response.credentials.authorization_header`
+
+Optional:
+
+- `prefix` (String)
+
+
+<a id="nestedatt--spec--overrides--rules--response--credentials--cookie"></a>
+### Nested Schema for `spec.overrides.rules.response.credentials.cookie`
+
+Required:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--overrides--rules--response--credentials--custom_header"></a>
+### Nested Schema for `spec.overrides.rules.response.credentials.custom_header`
+
+Required:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--overrides--rules--response--credentials--query_string"></a>
+### Nested Schema for `spec.overrides.rules.response.credentials.query_string`
+
+Required:
+
+- `name` (String)
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--defaults"></a>
+### Nested Schema for `spec.overrides.rules.response.defaults`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--overrides--rules--response--jwt"></a>
+### Nested Schema for `spec.overrides.rules.response.jwt`
+
+Optional:
+
+- `issuer_url` (String) URL of the issuer of the JWT.If 'jwksUrl' is omitted, Authorino will append the path to the OpenID Connect Well-Known Discovery endpoint(i.e. '/.well-known/openid-configuration') to this URL, to discover the OIDC configuration where to obtainthe 'jkws_uri' claim from.The value must coincide with the value of  the 'iss' (issuer) claim of the discovered OpenID Connect configuration.
+- `ttl` (Number) Decides how long to wait before refreshing the JWKS (in seconds).If omitted, Authorino will never refresh the JWKS.
+
+
+<a id="nestedatt--spec--overrides--rules--response--kubernetes_token_review"></a>
+### Nested Schema for `spec.overrides.rules.response.kubernetes_token_review`
+
+Optional:
+
+- `audiences` (List of String) The list of audiences (scopes) that must be claimed in a Kubernetes authentication token supplied in the request, and reviewed by Authorino.If omitted, Authorino will review tokens expecting the host name of the requested protected service amongst the audiences.
+
+
+<a id="nestedatt--spec--overrides--rules--response--oauth2_introspection"></a>
+### Nested Schema for `spec.overrides.rules.response.oauth2_introspection`
+
+Required:
+
+- `credentials_ref` (Attributes) Reference to a Kubernetes secret in the same namespace, that stores client credentials to the OAuth2 server. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--oauth2_introspection--credentials_ref))
+- `endpoint` (String) The full URL of the token introspection endpoint.
+
+Optional:
+
+- `token_type_hint` (String) The token type hint for the token introspection.If omitted, it defaults to 'access_token'.
+
+<a id="nestedatt--spec--overrides--rules--response--oauth2_introspection--credentials_ref"></a>
+### Nested Schema for `spec.overrides.rules.response.oauth2_introspection.credentials_ref`
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--overrides"></a>
+### Nested Schema for `spec.overrides.rules.response.overrides`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--overrides--rules--response--plain"></a>
+### Nested Schema for `spec.overrides.rules.response.plain`
+
+Required:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+
+
+<a id="nestedatt--spec--overrides--rules--response--route_selectors"></a>
+### Nested Schema for `spec.overrides.rules.response.route_selectors`
+
+Optional:
+
+- `hostnames` (List of String) Hostnames defines a set of hostname that should match against the HTTP Host header to select a HTTPRoute to process the requesthttps://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec
+- `matches` (Attributes List) Matches define conditions used for matching the rule against incoming HTTP requests.https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec (see [below for nested schema](#nestedatt--spec--overrides--rules--response--route_selectors--matches))
+
+<a id="nestedatt--spec--overrides--rules--response--route_selectors--matches"></a>
+### Nested Schema for `spec.overrides.rules.response.route_selectors.matches`
+
+Optional:
+
+- `headers` (Attributes List) Headers specifies HTTP request header matchers. Multiple match values areANDed together, meaning, a request must match all the specified headersto select the route. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--route_selectors--matches--headers))
+- `method` (String) Method specifies HTTP method matcher.When specified, this route will be matched only if the request has thespecified method.Support: Extended
+- `path` (Attributes) Path specifies a HTTP request path matcher. If this field is notspecified, a default prefix match on the '/' path is provided. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--route_selectors--matches--path))
+- `query_params` (Attributes List) QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended (see [below for nested schema](#nestedatt--spec--overrides--rules--response--route_selectors--matches--query_params))
+
+<a id="nestedatt--spec--overrides--rules--response--route_selectors--matches--headers"></a>
+### Nested Schema for `spec.overrides.rules.response.route_selectors.matches.headers`
+
+Required:
+
+- `name` (String) Name is the name of the HTTP Header to be matched. Name matching MUST becase insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).If multiple entries specify equivalent header names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent header name MUST be ignored. Due to thecase-insensitivity of header names, 'foo' and 'Foo' are consideredequivalent.When a header is repeated in an HTTP request, it isimplementation-specific behavior as to how this is represented.Generally, proxies should follow the guidance from the RFC:https://www.rfc-editor.org/rfc/rfc7230.html#section-3.2.2 regardingprocessing a repeated header, with special handling for 'Set-Cookie'.
+- `value` (String) Value is the value of HTTP Header to be matched.
+
+Optional:
+
+- `type` (String) Type specifies how to match against the value of the header.Support: Core (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression HeaderMatchType has implementation-specificconformance, implementations can support POSIX, PCRE or any other dialectsof regular expressions. Please read the implementation's documentation todetermine the supported dialect.
+
+
+<a id="nestedatt--spec--overrides--rules--response--route_selectors--matches--path"></a>
+### Nested Schema for `spec.overrides.rules.response.route_selectors.matches.path`
+
+Optional:
+
+- `type` (String) Type specifies how to match against the path Value.Support: Core (Exact, PathPrefix)Support: Implementation-specific (RegularExpression)
+- `value` (String) Value of the HTTP path to match against.
+
+
+<a id="nestedatt--spec--overrides--rules--response--route_selectors--matches--query_params"></a>
+### Nested Schema for `spec.overrides.rules.response.route_selectors.matches.query_params`
+
+Required:
+
+- `name` (String) Name is the name of the HTTP query param to be matched. This must be anexact string match. (Seehttps://tools.ietf.org/html/rfc7230#section-2.7.3).If multiple entries specify equivalent query param names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent query param name MUST be ignored.If a query param is repeated in an HTTP request, the behavior ispurposely left undefined, since different data planes have differentcapabilities. However, it is *recommended* that implementations shouldmatch against the first value of the param if the data plane supports it,as this behavior is expected in other load balancing contexts outside ofthe Gateway API.Users SHOULD NOT route traffic based on repeated query params to guardthemselves against potential differences in the implementations.
+- `value` (String) Value is the value of HTTP query param to be matched.
+
+Optional:
+
+- `type` (String) Type specifies how to match against the value of the query parameter.Support: Extended (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression QueryParamMatchType has Implementation-specificconformance, implementations can support POSIX, PCRE or any otherdialects of regular expressions. Please read the implementation'sdocumentation to determine the supported dialect.
+
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--when"></a>
+### Nested Schema for `spec.overrides.rules.response.when`
+
+Optional:
+
+- `all` (List of Map of String) A list of pattern expressions to be evaluated as a logical AND.
+- `any` (List of Map of String) A list of pattern expressions to be evaluated as a logical OR.
+- `operator` (String) The binary operator to be applied to the content fetched from the authorization JSON, for comparison with 'value'.Possible values are: 'eq' (equal to), 'neq' (not equal to), 'incl' (includes; for arrays), 'excl' (excludes; for arrays), 'matches' (regex)
+- `pattern_ref` (String) Reference to a named set of pattern expressions
+- `selector` (String) Path selector to fetch content from the authorization JSON (e.g. 'request.method').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.Authorino custom JSON path modifiers are also supported.
+- `value` (String) The value of reference for the comparison with the content fetched from the authorization JSON.If used with the 'matches' operator, the value must compile to a valid Golang regex.
+
+
+<a id="nestedatt--spec--overrides--rules--response--x509"></a>
+### Nested Schema for `spec.overrides.rules.response.x509`
+
+Required:
+
+- `selector` (Attributes) Label selector used by Authorino to match secrets from the cluster storing trusted CA certificates to validateclients trying to authenticate to this service (see [below for nested schema](#nestedatt--spec--overrides--rules--response--x509--selector))
+
+Optional:
+
+- `all_namespaces` (Boolean) Whether Authorino should look for TLS secrets in all namespaces or only in the same namespace as the AuthConfig.Enabling this option in namespaced Authorino instances has no effect.
+
+<a id="nestedatt--spec--overrides--rules--response--x509--selector"></a>
+### Nested Schema for `spec.overrides.rules.response.x509.selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--x509--all_namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--overrides--rules--response--x509--all_namespaces--match_expressions"></a>
+### Nested Schema for `spec.overrides.rules.response.x509.all_namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+
+
+<a id="nestedatt--spec--overrides--rules--authorization"></a>
+### Nested Schema for `spec.overrides.rules.authorization`
+
+Optional:
+
+- `cache` (Attributes) Caching options for the resolved object returned when applying this config.Omit it to avoid caching objects for this config. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--cache))
+- `kubernetes_subject_access_review` (Attributes) Authorization by Kubernetes SubjectAccessReview (see [below for nested schema](#nestedatt--spec--overrides--rules--response--kubernetes_subject_access_review))
+- `metrics` (Boolean) Whether this config should generate individual observability metrics
+- `opa` (Attributes) Open Policy Agent (OPA) Rego policy. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--opa))
+- `pattern_matching` (Attributes) Pattern-matching authorization rules. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--pattern_matching))
+- `priority` (Number) Priority group of the config.All configs in the same priority group are evaluated concurrently; consecutive priority groups are evaluated sequentially.
+- `route_selectors` (Attributes List) Top-level route selectors.If present, the elements will be used to select HTTPRoute rules that, when activated, trigger the auth rule.At least one selected HTTPRoute rule must match to trigger the auth rule.If no route selectors are specified, the auth rule will be evaluated at all requests to the protected routes. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--route_selectors))
+- `spicedb` (Attributes) Authorization decision delegated to external Authzed/SpiceDB server. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--spicedb))
+- `when` (Attributes List) Conditions for Authorino to enforce this config.If omitted, the config will be enforced for all requests.If present, all conditions must match for the config to be enforced; otherwise, the config will be skipped. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--when))
+
+<a id="nestedatt--spec--overrides--rules--response--cache"></a>
+### Nested Schema for `spec.overrides.rules.response.cache`
+
+Required:
+
+- `key` (Attributes) Key used to store the entry in the cache.The resolved key must be unique within the scope of this particular config. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--cache--key))
+
+Optional:
+
+- `ttl` (Number) Duration (in seconds) of the external data in the cache before pulled again from the source.
+
+<a id="nestedatt--spec--overrides--rules--response--cache--key"></a>
+### Nested Schema for `spec.overrides.rules.response.cache.key`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--kubernetes_subject_access_review"></a>
+### Nested Schema for `spec.overrides.rules.response.kubernetes_subject_access_review`
+
+Optional:
+
+- `groups` (List of String) Groups the user must be a member of or, if 'user' is omitted, the groups to check for authorization in the Kubernetes RBAC.
+- `resource_attributes` (Attributes) Use resourceAttributes to check permissions on Kubernetes resources.If omitted, it performs a non-resource SubjectAccessReview, with verb and path inferred from the request. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--kubernetes_subject_access_review--resource_attributes))
+- `user` (Attributes) User to check for authorization in the Kubernetes RBAC.Omit it to check for group authorization only. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--kubernetes_subject_access_review--user))
+
+<a id="nestedatt--spec--overrides--rules--response--kubernetes_subject_access_review--resource_attributes"></a>
+### Nested Schema for `spec.overrides.rules.response.kubernetes_subject_access_review.resource_attributes`
+
+Optional:
+
+- `group` (Attributes) API group of the resource.Use '*' for all API groups. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--kubernetes_subject_access_review--user--group))
+- `name` (Attributes) Resource nameOmit it to check for authorization on all resources of the specified kind. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--kubernetes_subject_access_review--user--name))
+- `namespace` (Attributes) Namespace where the user must have permissions on the resource. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--kubernetes_subject_access_review--user--namespace))
+- `resource` (Attributes) Resource kindUse '*' for all resource kinds. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--kubernetes_subject_access_review--user--resource))
+- `subresource` (Attributes) Subresource kind (see [below for nested schema](#nestedatt--spec--overrides--rules--response--kubernetes_subject_access_review--user--subresource))
+- `verb` (Attributes) Verb to check for authorization on the resource.Use '*' for all verbs. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--kubernetes_subject_access_review--user--verb))
+
+<a id="nestedatt--spec--overrides--rules--response--kubernetes_subject_access_review--user--group"></a>
+### Nested Schema for `spec.overrides.rules.response.kubernetes_subject_access_review.user.group`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--overrides--rules--response--kubernetes_subject_access_review--user--name"></a>
+### Nested Schema for `spec.overrides.rules.response.kubernetes_subject_access_review.user.name`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--overrides--rules--response--kubernetes_subject_access_review--user--namespace"></a>
+### Nested Schema for `spec.overrides.rules.response.kubernetes_subject_access_review.user.namespace`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--overrides--rules--response--kubernetes_subject_access_review--user--resource"></a>
+### Nested Schema for `spec.overrides.rules.response.kubernetes_subject_access_review.user.resource`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--overrides--rules--response--kubernetes_subject_access_review--user--subresource"></a>
+### Nested Schema for `spec.overrides.rules.response.kubernetes_subject_access_review.user.subresource`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--overrides--rules--response--kubernetes_subject_access_review--user--verb"></a>
+### Nested Schema for `spec.overrides.rules.response.kubernetes_subject_access_review.user.verb`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--kubernetes_subject_access_review--user"></a>
+### Nested Schema for `spec.overrides.rules.response.kubernetes_subject_access_review.user`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--opa"></a>
+### Nested Schema for `spec.overrides.rules.response.opa`
+
+Optional:
+
+- `all_values` (Boolean) Returns the value of all Rego rules in the virtual document. Values can be read in subsequent evaluators/phases of the Auth Pipeline.Otherwise, only the default 'allow' rule will be exposed.Returning all Rego rules can affect performance of OPA policies during reconciliation (policy precompile) and at runtime.
+- `external_policy` (Attributes) Settings for fetching the OPA policy from an external registry.Use it alternatively to 'rego'.For the configurations of the HTTP request, the following options are not implemented: 'method', 'body', 'bodyParameters','contentType', 'headers', 'oauth2'. Use it only with: 'url', 'sharedSecret', 'credentials'. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--opa--external_policy))
+- `rego` (String) Authorization policy as a Rego language document.The Rego document must include the 'allow' condition, set by Authorino to 'false' by default (i.e. requests are unauthorized unless changed).The Rego document must NOT include the 'package' declaration in line 1.
+
+<a id="nestedatt--spec--overrides--rules--response--opa--external_policy"></a>
+### Nested Schema for `spec.overrides.rules.response.opa.external_policy`
+
+Required:
+
+- `url` (String) Endpoint URL of the HTTP service.The value can include variable placeholders in the format '{selector}', where 'selector' is any pattern supportedby https://pkg.go.dev/github.com/tidwall/gjson and selects value from the authorization JSON.E.g. https://ext-auth-server.io/metadata?p={request.path}
+
+Optional:
+
+- `body` (Attributes) Raw body of the HTTP request.Supersedes 'bodyParameters'; use either one or the other.Use it with method=POST; for GET requests, set parameters as query string in the 'endpoint' (placeholders can be used). (see [below for nested schema](#nestedatt--spec--overrides--rules--response--opa--rego--body))
+- `body_parameters` (Attributes) Custom parameters to encode in the body of the HTTP request.Superseded by 'body'; use either one or the other.Use it with method=POST; for GET requests, set parameters as query string in the 'endpoint' (placeholders can be used). (see [below for nested schema](#nestedatt--spec--overrides--rules--response--opa--rego--body_parameters))
+- `content_type` (String) Content-Type of the request body. Shapes how 'bodyParameters' are encoded.Use it with method=POST; for GET requests, Content-Type is automatically set to 'text/plain'.
+- `credentials` (Attributes) Defines where client credentials will be passed in the request to the service.If omitted, it defaults to client credentials passed in the HTTP Authorization header and the 'Bearer' prefix expected prepended to the secret value. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--opa--rego--credentials))
+- `headers` (Attributes) Custom headers in the HTTP request. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--opa--rego--headers))
+- `method` (String) HTTP verb used in the request to the service. Accepted values: GET (default), POST.When the request method is POST, the authorization JSON is passed in the body of the request.
+- `oauth2` (Attributes) Authentication with the HTTP service by OAuth2 Client Credentials grant. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--opa--rego--oauth2))
+- `shared_secret_ref` (Attributes) Reference to a Secret key whose value will be passed by Authorino in the request.The HTTP service can use the shared secret to authenticate the origin of the request.Ignored if used together with oauth2. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--opa--rego--shared_secret_ref))
+- `ttl` (Number) Duration (in seconds) of the external data in the cache before pulled again from the source.
+
+<a id="nestedatt--spec--overrides--rules--response--opa--rego--body"></a>
+### Nested Schema for `spec.overrides.rules.response.opa.rego.body`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--overrides--rules--response--opa--rego--body_parameters"></a>
+### Nested Schema for `spec.overrides.rules.response.opa.rego.body_parameters`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--overrides--rules--response--opa--rego--credentials"></a>
+### Nested Schema for `spec.overrides.rules.response.opa.rego.credentials`
+
+Optional:
+
+- `authorization_header` (Attributes) (see [below for nested schema](#nestedatt--spec--overrides--rules--response--opa--rego--ttl--authorization_header))
+- `cookie` (Attributes) (see [below for nested schema](#nestedatt--spec--overrides--rules--response--opa--rego--ttl--cookie))
+- `custom_header` (Attributes) (see [below for nested schema](#nestedatt--spec--overrides--rules--response--opa--rego--ttl--custom_header))
+- `query_string` (Attributes) (see [below for nested schema](#nestedatt--spec--overrides--rules--response--opa--rego--ttl--query_string))
+
+<a id="nestedatt--spec--overrides--rules--response--opa--rego--ttl--authorization_header"></a>
+### Nested Schema for `spec.overrides.rules.response.opa.rego.ttl.authorization_header`
+
+Optional:
+
+- `prefix` (String)
+
+
+<a id="nestedatt--spec--overrides--rules--response--opa--rego--ttl--cookie"></a>
+### Nested Schema for `spec.overrides.rules.response.opa.rego.ttl.cookie`
+
+Required:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--overrides--rules--response--opa--rego--ttl--custom_header"></a>
+### Nested Schema for `spec.overrides.rules.response.opa.rego.ttl.custom_header`
+
+Required:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--overrides--rules--response--opa--rego--ttl--query_string"></a>
+### Nested Schema for `spec.overrides.rules.response.opa.rego.ttl.query_string`
+
+Required:
+
+- `name` (String)
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--opa--rego--headers"></a>
+### Nested Schema for `spec.overrides.rules.response.opa.rego.headers`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--overrides--rules--response--opa--rego--oauth2"></a>
+### Nested Schema for `spec.overrides.rules.response.opa.rego.oauth2`
+
+Required:
+
+- `client_id` (String) OAuth2 Client ID.
+- `client_secret_ref` (Attributes) Reference to a Kuberentes Secret key that stores that OAuth2 Client Secret. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--opa--rego--ttl--client_secret_ref))
+- `token_url` (String) Token endpoint URL of the OAuth2 resource server.
+
+Optional:
+
+- `cache` (Boolean) Caches and reuses the token until expired.Set it to false to force fetch the token at every authorization request regardless of expiration.
+- `extra_params` (Map of String) Optional extra parameters for the requests to the token URL.
+- `scopes` (List of String) Optional scopes for the client credentials grant, if supported by he OAuth2 server.
+
+<a id="nestedatt--spec--overrides--rules--response--opa--rego--ttl--client_secret_ref"></a>
+### Nested Schema for `spec.overrides.rules.response.opa.rego.ttl.client_secret_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `name` (String) The name of the secret in the Authorino's namespace to select from.
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--opa--rego--shared_secret_ref"></a>
+### Nested Schema for `spec.overrides.rules.response.opa.rego.shared_secret_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `name` (String) The name of the secret in the Authorino's namespace to select from.
+
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--pattern_matching"></a>
+### Nested Schema for `spec.overrides.rules.response.pattern_matching`
+
+Required:
+
+- `patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--overrides--rules--response--pattern_matching--patterns))
+
+<a id="nestedatt--spec--overrides--rules--response--pattern_matching--patterns"></a>
+### Nested Schema for `spec.overrides.rules.response.pattern_matching.patterns`
+
+Optional:
+
+- `all` (List of Map of String) A list of pattern expressions to be evaluated as a logical AND.
+- `any` (List of Map of String) A list of pattern expressions to be evaluated as a logical OR.
+- `operator` (String) The binary operator to be applied to the content fetched from the authorization JSON, for comparison with 'value'.Possible values are: 'eq' (equal to), 'neq' (not equal to), 'incl' (includes; for arrays), 'excl' (excludes; for arrays), 'matches' (regex)
+- `pattern_ref` (String) Reference to a named set of pattern expressions
+- `selector` (String) Path selector to fetch content from the authorization JSON (e.g. 'request.method').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.Authorino custom JSON path modifiers are also supported.
+- `value` (String) The value of reference for the comparison with the content fetched from the authorization JSON.If used with the 'matches' operator, the value must compile to a valid Golang regex.
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--route_selectors"></a>
+### Nested Schema for `spec.overrides.rules.response.route_selectors`
+
+Optional:
+
+- `hostnames` (List of String) Hostnames defines a set of hostname that should match against the HTTP Host header to select a HTTPRoute to process the requesthttps://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec
+- `matches` (Attributes List) Matches define conditions used for matching the rule against incoming HTTP requests.https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec (see [below for nested schema](#nestedatt--spec--overrides--rules--response--route_selectors--matches))
+
+<a id="nestedatt--spec--overrides--rules--response--route_selectors--matches"></a>
+### Nested Schema for `spec.overrides.rules.response.route_selectors.matches`
+
+Optional:
+
+- `headers` (Attributes List) Headers specifies HTTP request header matchers. Multiple match values areANDed together, meaning, a request must match all the specified headersto select the route. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--route_selectors--matches--headers))
+- `method` (String) Method specifies HTTP method matcher.When specified, this route will be matched only if the request has thespecified method.Support: Extended
+- `path` (Attributes) Path specifies a HTTP request path matcher. If this field is notspecified, a default prefix match on the '/' path is provided. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--route_selectors--matches--path))
+- `query_params` (Attributes List) QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended (see [below for nested schema](#nestedatt--spec--overrides--rules--response--route_selectors--matches--query_params))
+
+<a id="nestedatt--spec--overrides--rules--response--route_selectors--matches--headers"></a>
+### Nested Schema for `spec.overrides.rules.response.route_selectors.matches.headers`
+
+Required:
+
+- `name` (String) Name is the name of the HTTP Header to be matched. Name matching MUST becase insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).If multiple entries specify equivalent header names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent header name MUST be ignored. Due to thecase-insensitivity of header names, 'foo' and 'Foo' are consideredequivalent.When a header is repeated in an HTTP request, it isimplementation-specific behavior as to how this is represented.Generally, proxies should follow the guidance from the RFC:https://www.rfc-editor.org/rfc/rfc7230.html#section-3.2.2 regardingprocessing a repeated header, with special handling for 'Set-Cookie'.
+- `value` (String) Value is the value of HTTP Header to be matched.
+
+Optional:
+
+- `type` (String) Type specifies how to match against the value of the header.Support: Core (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression HeaderMatchType has implementation-specificconformance, implementations can support POSIX, PCRE or any other dialectsof regular expressions. Please read the implementation's documentation todetermine the supported dialect.
+
+
+<a id="nestedatt--spec--overrides--rules--response--route_selectors--matches--path"></a>
+### Nested Schema for `spec.overrides.rules.response.route_selectors.matches.path`
+
+Optional:
+
+- `type` (String) Type specifies how to match against the path Value.Support: Core (Exact, PathPrefix)Support: Implementation-specific (RegularExpression)
+- `value` (String) Value of the HTTP path to match against.
+
+
+<a id="nestedatt--spec--overrides--rules--response--route_selectors--matches--query_params"></a>
+### Nested Schema for `spec.overrides.rules.response.route_selectors.matches.query_params`
+
+Required:
+
+- `name` (String) Name is the name of the HTTP query param to be matched. This must be anexact string match. (Seehttps://tools.ietf.org/html/rfc7230#section-2.7.3).If multiple entries specify equivalent query param names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent query param name MUST be ignored.If a query param is repeated in an HTTP request, the behavior ispurposely left undefined, since different data planes have differentcapabilities. However, it is *recommended* that implementations shouldmatch against the first value of the param if the data plane supports it,as this behavior is expected in other load balancing contexts outside ofthe Gateway API.Users SHOULD NOT route traffic based on repeated query params to guardthemselves against potential differences in the implementations.
+- `value` (String) Value is the value of HTTP query param to be matched.
+
+Optional:
+
+- `type` (String) Type specifies how to match against the value of the query parameter.Support: Extended (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression QueryParamMatchType has Implementation-specificconformance, implementations can support POSIX, PCRE or any otherdialects of regular expressions. Please read the implementation'sdocumentation to determine the supported dialect.
+
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--spicedb"></a>
+### Nested Schema for `spec.overrides.rules.response.spicedb`
+
+Required:
+
+- `endpoint` (String) Hostname and port number to the GRPC interface of the SpiceDB server (e.g. spicedb:50051).
+
+Optional:
+
+- `insecure` (Boolean) Insecure HTTP connection (i.e. disables TLS verification)
+- `permission` (Attributes) The name of the permission (or relation) on which to execute the check. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--spicedb--permission))
+- `resource` (Attributes) The resource on which to check the permission or relation. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--spicedb--resource))
+- `shared_secret_ref` (Attributes) Reference to a Secret key whose value will be used by Authorino to authenticate with the Authzed service. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--spicedb--shared_secret_ref))
+- `subject` (Attributes) The subject that will be checked for the permission or relation. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--spicedb--subject))
+
+<a id="nestedatt--spec--overrides--rules--response--spicedb--permission"></a>
+### Nested Schema for `spec.overrides.rules.response.spicedb.permission`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--overrides--rules--response--spicedb--resource"></a>
+### Nested Schema for `spec.overrides.rules.response.spicedb.resource`
+
+Optional:
+
+- `kind` (Attributes) (see [below for nested schema](#nestedatt--spec--overrides--rules--response--spicedb--subject--kind))
+- `name` (Attributes) (see [below for nested schema](#nestedatt--spec--overrides--rules--response--spicedb--subject--name))
+
+<a id="nestedatt--spec--overrides--rules--response--spicedb--subject--kind"></a>
+### Nested Schema for `spec.overrides.rules.response.spicedb.subject.kind`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--overrides--rules--response--spicedb--subject--name"></a>
+### Nested Schema for `spec.overrides.rules.response.spicedb.subject.name`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--spicedb--shared_secret_ref"></a>
+### Nested Schema for `spec.overrides.rules.response.spicedb.shared_secret_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `name` (String) The name of the secret in the Authorino's namespace to select from.
+
+
+<a id="nestedatt--spec--overrides--rules--response--spicedb--subject"></a>
+### Nested Schema for `spec.overrides.rules.response.spicedb.subject`
+
+Optional:
+
+- `kind` (Attributes) (see [below for nested schema](#nestedatt--spec--overrides--rules--response--spicedb--subject--kind))
+- `name` (Attributes) (see [below for nested schema](#nestedatt--spec--overrides--rules--response--spicedb--subject--name))
+
+<a id="nestedatt--spec--overrides--rules--response--spicedb--subject--kind"></a>
+### Nested Schema for `spec.overrides.rules.response.spicedb.subject.kind`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--overrides--rules--response--spicedb--subject--name"></a>
+### Nested Schema for `spec.overrides.rules.response.spicedb.subject.name`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--when"></a>
+### Nested Schema for `spec.overrides.rules.response.when`
+
+Optional:
+
+- `all` (List of Map of String) A list of pattern expressions to be evaluated as a logical AND.
+- `any` (List of Map of String) A list of pattern expressions to be evaluated as a logical OR.
+- `operator` (String) The binary operator to be applied to the content fetched from the authorization JSON, for comparison with 'value'.Possible values are: 'eq' (equal to), 'neq' (not equal to), 'incl' (includes; for arrays), 'excl' (excludes; for arrays), 'matches' (regex)
+- `pattern_ref` (String) Reference to a named set of pattern expressions
+- `selector` (String) Path selector to fetch content from the authorization JSON (e.g. 'request.method').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.Authorino custom JSON path modifiers are also supported.
+- `value` (String) The value of reference for the comparison with the content fetched from the authorization JSON.If used with the 'matches' operator, the value must compile to a valid Golang regex.
+
+
+
+<a id="nestedatt--spec--overrides--rules--callbacks"></a>
+### Nested Schema for `spec.overrides.rules.callbacks`
+
+Required:
+
+- `http` (Attributes) Settings of the external HTTP request (see [below for nested schema](#nestedatt--spec--overrides--rules--response--http))
+
+Optional:
+
+- `cache` (Attributes) Caching options for the resolved object returned when applying this config.Omit it to avoid caching objects for this config. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--cache))
+- `metrics` (Boolean) Whether this config should generate individual observability metrics
+- `priority` (Number) Priority group of the config.All configs in the same priority group are evaluated concurrently; consecutive priority groups are evaluated sequentially.
+- `route_selectors` (Attributes List) Top-level route selectors.If present, the elements will be used to select HTTPRoute rules that, when activated, trigger the auth rule.At least one selected HTTPRoute rule must match to trigger the auth rule.If no route selectors are specified, the auth rule will be evaluated at all requests to the protected routes. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--route_selectors))
+- `when` (Attributes List) Conditions for Authorino to enforce this config.If omitted, the config will be enforced for all requests.If present, all conditions must match for the config to be enforced; otherwise, the config will be skipped. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--when))
+
+<a id="nestedatt--spec--overrides--rules--response--http"></a>
+### Nested Schema for `spec.overrides.rules.response.http`
+
+Required:
+
+- `url` (String) Endpoint URL of the HTTP service.The value can include variable placeholders in the format '{selector}', where 'selector' is any pattern supportedby https://pkg.go.dev/github.com/tidwall/gjson and selects value from the authorization JSON.E.g. https://ext-auth-server.io/metadata?p={request.path}
+
+Optional:
+
+- `body` (Attributes) Raw body of the HTTP request.Supersedes 'bodyParameters'; use either one or the other.Use it with method=POST; for GET requests, set parameters as query string in the 'endpoint' (placeholders can be used). (see [below for nested schema](#nestedatt--spec--overrides--rules--response--http--body))
+- `body_parameters` (Attributes) Custom parameters to encode in the body of the HTTP request.Superseded by 'body'; use either one or the other.Use it with method=POST; for GET requests, set parameters as query string in the 'endpoint' (placeholders can be used). (see [below for nested schema](#nestedatt--spec--overrides--rules--response--http--body_parameters))
+- `content_type` (String) Content-Type of the request body. Shapes how 'bodyParameters' are encoded.Use it with method=POST; for GET requests, Content-Type is automatically set to 'text/plain'.
+- `credentials` (Attributes) Defines where client credentials will be passed in the request to the service.If omitted, it defaults to client credentials passed in the HTTP Authorization header and the 'Bearer' prefix expected prepended to the secret value. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--http--credentials))
+- `headers` (Attributes) Custom headers in the HTTP request. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--http--headers))
+- `method` (String) HTTP verb used in the request to the service. Accepted values: GET (default), POST.When the request method is POST, the authorization JSON is passed in the body of the request.
+- `oauth2` (Attributes) Authentication with the HTTP service by OAuth2 Client Credentials grant. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--http--oauth2))
+- `shared_secret_ref` (Attributes) Reference to a Secret key whose value will be passed by Authorino in the request.The HTTP service can use the shared secret to authenticate the origin of the request.Ignored if used together with oauth2. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--http--shared_secret_ref))
+
+<a id="nestedatt--spec--overrides--rules--response--http--body"></a>
+### Nested Schema for `spec.overrides.rules.response.http.body`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--overrides--rules--response--http--body_parameters"></a>
+### Nested Schema for `spec.overrides.rules.response.http.body_parameters`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--overrides--rules--response--http--credentials"></a>
+### Nested Schema for `spec.overrides.rules.response.http.credentials`
+
+Optional:
+
+- `authorization_header` (Attributes) (see [below for nested schema](#nestedatt--spec--overrides--rules--response--http--shared_secret_ref--authorization_header))
+- `cookie` (Attributes) (see [below for nested schema](#nestedatt--spec--overrides--rules--response--http--shared_secret_ref--cookie))
+- `custom_header` (Attributes) (see [below for nested schema](#nestedatt--spec--overrides--rules--response--http--shared_secret_ref--custom_header))
+- `query_string` (Attributes) (see [below for nested schema](#nestedatt--spec--overrides--rules--response--http--shared_secret_ref--query_string))
+
+<a id="nestedatt--spec--overrides--rules--response--http--shared_secret_ref--authorization_header"></a>
+### Nested Schema for `spec.overrides.rules.response.http.shared_secret_ref.authorization_header`
+
+Optional:
+
+- `prefix` (String)
+
+
+<a id="nestedatt--spec--overrides--rules--response--http--shared_secret_ref--cookie"></a>
+### Nested Schema for `spec.overrides.rules.response.http.shared_secret_ref.cookie`
+
+Required:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--overrides--rules--response--http--shared_secret_ref--custom_header"></a>
+### Nested Schema for `spec.overrides.rules.response.http.shared_secret_ref.custom_header`
+
+Required:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--overrides--rules--response--http--shared_secret_ref--query_string"></a>
+### Nested Schema for `spec.overrides.rules.response.http.shared_secret_ref.query_string`
+
+Required:
+
+- `name` (String)
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--http--headers"></a>
+### Nested Schema for `spec.overrides.rules.response.http.headers`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--overrides--rules--response--http--oauth2"></a>
+### Nested Schema for `spec.overrides.rules.response.http.oauth2`
+
+Required:
+
+- `client_id` (String) OAuth2 Client ID.
+- `client_secret_ref` (Attributes) Reference to a Kuberentes Secret key that stores that OAuth2 Client Secret. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--http--shared_secret_ref--client_secret_ref))
+- `token_url` (String) Token endpoint URL of the OAuth2 resource server.
+
+Optional:
+
+- `cache` (Boolean) Caches and reuses the token until expired.Set it to false to force fetch the token at every authorization request regardless of expiration.
+- `extra_params` (Map of String) Optional extra parameters for the requests to the token URL.
+- `scopes` (List of String) Optional scopes for the client credentials grant, if supported by he OAuth2 server.
+
+<a id="nestedatt--spec--overrides--rules--response--http--shared_secret_ref--client_secret_ref"></a>
+### Nested Schema for `spec.overrides.rules.response.http.shared_secret_ref.client_secret_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `name` (String) The name of the secret in the Authorino's namespace to select from.
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--http--shared_secret_ref"></a>
+### Nested Schema for `spec.overrides.rules.response.http.shared_secret_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `name` (String) The name of the secret in the Authorino's namespace to select from.
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--cache"></a>
+### Nested Schema for `spec.overrides.rules.response.cache`
+
+Required:
+
+- `key` (Attributes) Key used to store the entry in the cache.The resolved key must be unique within the scope of this particular config. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--cache--key))
+
+Optional:
+
+- `ttl` (Number) Duration (in seconds) of the external data in the cache before pulled again from the source.
+
+<a id="nestedatt--spec--overrides--rules--response--cache--key"></a>
+### Nested Schema for `spec.overrides.rules.response.cache.key`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--route_selectors"></a>
+### Nested Schema for `spec.overrides.rules.response.route_selectors`
+
+Optional:
+
+- `hostnames` (List of String) Hostnames defines a set of hostname that should match against the HTTP Host header to select a HTTPRoute to process the requesthttps://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec
+- `matches` (Attributes List) Matches define conditions used for matching the rule against incoming HTTP requests.https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec (see [below for nested schema](#nestedatt--spec--overrides--rules--response--route_selectors--matches))
+
+<a id="nestedatt--spec--overrides--rules--response--route_selectors--matches"></a>
+### Nested Schema for `spec.overrides.rules.response.route_selectors.matches`
+
+Optional:
+
+- `headers` (Attributes List) Headers specifies HTTP request header matchers. Multiple match values areANDed together, meaning, a request must match all the specified headersto select the route. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--route_selectors--matches--headers))
+- `method` (String) Method specifies HTTP method matcher.When specified, this route will be matched only if the request has thespecified method.Support: Extended
+- `path` (Attributes) Path specifies a HTTP request path matcher. If this field is notspecified, a default prefix match on the '/' path is provided. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--route_selectors--matches--path))
+- `query_params` (Attributes List) QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended (see [below for nested schema](#nestedatt--spec--overrides--rules--response--route_selectors--matches--query_params))
+
+<a id="nestedatt--spec--overrides--rules--response--route_selectors--matches--headers"></a>
+### Nested Schema for `spec.overrides.rules.response.route_selectors.matches.headers`
+
+Required:
+
+- `name` (String) Name is the name of the HTTP Header to be matched. Name matching MUST becase insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).If multiple entries specify equivalent header names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent header name MUST be ignored. Due to thecase-insensitivity of header names, 'foo' and 'Foo' are consideredequivalent.When a header is repeated in an HTTP request, it isimplementation-specific behavior as to how this is represented.Generally, proxies should follow the guidance from the RFC:https://www.rfc-editor.org/rfc/rfc7230.html#section-3.2.2 regardingprocessing a repeated header, with special handling for 'Set-Cookie'.
+- `value` (String) Value is the value of HTTP Header to be matched.
+
+Optional:
+
+- `type` (String) Type specifies how to match against the value of the header.Support: Core (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression HeaderMatchType has implementation-specificconformance, implementations can support POSIX, PCRE or any other dialectsof regular expressions. Please read the implementation's documentation todetermine the supported dialect.
+
+
+<a id="nestedatt--spec--overrides--rules--response--route_selectors--matches--path"></a>
+### Nested Schema for `spec.overrides.rules.response.route_selectors.matches.path`
+
+Optional:
+
+- `type` (String) Type specifies how to match against the path Value.Support: Core (Exact, PathPrefix)Support: Implementation-specific (RegularExpression)
+- `value` (String) Value of the HTTP path to match against.
+
+
+<a id="nestedatt--spec--overrides--rules--response--route_selectors--matches--query_params"></a>
+### Nested Schema for `spec.overrides.rules.response.route_selectors.matches.query_params`
+
+Required:
+
+- `name` (String) Name is the name of the HTTP query param to be matched. This must be anexact string match. (Seehttps://tools.ietf.org/html/rfc7230#section-2.7.3).If multiple entries specify equivalent query param names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent query param name MUST be ignored.If a query param is repeated in an HTTP request, the behavior ispurposely left undefined, since different data planes have differentcapabilities. However, it is *recommended* that implementations shouldmatch against the first value of the param if the data plane supports it,as this behavior is expected in other load balancing contexts outside ofthe Gateway API.Users SHOULD NOT route traffic based on repeated query params to guardthemselves against potential differences in the implementations.
+- `value` (String) Value is the value of HTTP query param to be matched.
+
+Optional:
+
+- `type` (String) Type specifies how to match against the value of the query parameter.Support: Extended (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression QueryParamMatchType has Implementation-specificconformance, implementations can support POSIX, PCRE or any otherdialects of regular expressions. Please read the implementation'sdocumentation to determine the supported dialect.
+
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--when"></a>
+### Nested Schema for `spec.overrides.rules.response.when`
+
+Optional:
+
+- `all` (List of Map of String) A list of pattern expressions to be evaluated as a logical AND.
+- `any` (List of Map of String) A list of pattern expressions to be evaluated as a logical OR.
+- `operator` (String) The binary operator to be applied to the content fetched from the authorization JSON, for comparison with 'value'.Possible values are: 'eq' (equal to), 'neq' (not equal to), 'incl' (includes; for arrays), 'excl' (excludes; for arrays), 'matches' (regex)
+- `pattern_ref` (String) Reference to a named set of pattern expressions
+- `selector` (String) Path selector to fetch content from the authorization JSON (e.g. 'request.method').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.Authorino custom JSON path modifiers are also supported.
+- `value` (String) The value of reference for the comparison with the content fetched from the authorization JSON.If used with the 'matches' operator, the value must compile to a valid Golang regex.
+
+
+
+<a id="nestedatt--spec--overrides--rules--metadata"></a>
+### Nested Schema for `spec.overrides.rules.metadata`
+
+Optional:
+
+- `cache` (Attributes) Caching options for the resolved object returned when applying this config.Omit it to avoid caching objects for this config. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--cache))
+- `http` (Attributes) External source of auth metadata via HTTP request (see [below for nested schema](#nestedatt--spec--overrides--rules--response--http))
+- `metrics` (Boolean) Whether this config should generate individual observability metrics
+- `priority` (Number) Priority group of the config.All configs in the same priority group are evaluated concurrently; consecutive priority groups are evaluated sequentially.
+- `route_selectors` (Attributes List) Top-level route selectors.If present, the elements will be used to select HTTPRoute rules that, when activated, trigger the auth rule.At least one selected HTTPRoute rule must match to trigger the auth rule.If no route selectors are specified, the auth rule will be evaluated at all requests to the protected routes. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--route_selectors))
+- `uma` (Attributes) User-Managed Access (UMA) source of resource data. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--uma))
+- `user_info` (Attributes) OpendID Connect UserInfo linked to an OIDC authentication config specified in this same AuthConfig. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--user_info))
+- `when` (Attributes List) Conditions for Authorino to enforce this config.If omitted, the config will be enforced for all requests.If present, all conditions must match for the config to be enforced; otherwise, the config will be skipped. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--when))
+
+<a id="nestedatt--spec--overrides--rules--response--cache"></a>
+### Nested Schema for `spec.overrides.rules.response.cache`
+
+Required:
+
+- `key` (Attributes) Key used to store the entry in the cache.The resolved key must be unique within the scope of this particular config. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--cache--key))
+
+Optional:
+
+- `ttl` (Number) Duration (in seconds) of the external data in the cache before pulled again from the source.
+
+<a id="nestedatt--spec--overrides--rules--response--cache--key"></a>
+### Nested Schema for `spec.overrides.rules.response.cache.key`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--http"></a>
+### Nested Schema for `spec.overrides.rules.response.http`
+
+Required:
+
+- `url` (String) Endpoint URL of the HTTP service.The value can include variable placeholders in the format '{selector}', where 'selector' is any pattern supportedby https://pkg.go.dev/github.com/tidwall/gjson and selects value from the authorization JSON.E.g. https://ext-auth-server.io/metadata?p={request.path}
+
+Optional:
+
+- `body` (Attributes) Raw body of the HTTP request.Supersedes 'bodyParameters'; use either one or the other.Use it with method=POST; for GET requests, set parameters as query string in the 'endpoint' (placeholders can be used). (see [below for nested schema](#nestedatt--spec--overrides--rules--response--http--body))
+- `body_parameters` (Attributes) Custom parameters to encode in the body of the HTTP request.Superseded by 'body'; use either one or the other.Use it with method=POST; for GET requests, set parameters as query string in the 'endpoint' (placeholders can be used). (see [below for nested schema](#nestedatt--spec--overrides--rules--response--http--body_parameters))
+- `content_type` (String) Content-Type of the request body. Shapes how 'bodyParameters' are encoded.Use it with method=POST; for GET requests, Content-Type is automatically set to 'text/plain'.
+- `credentials` (Attributes) Defines where client credentials will be passed in the request to the service.If omitted, it defaults to client credentials passed in the HTTP Authorization header and the 'Bearer' prefix expected prepended to the secret value. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--http--credentials))
+- `headers` (Attributes) Custom headers in the HTTP request. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--http--headers))
+- `method` (String) HTTP verb used in the request to the service. Accepted values: GET (default), POST.When the request method is POST, the authorization JSON is passed in the body of the request.
+- `oauth2` (Attributes) Authentication with the HTTP service by OAuth2 Client Credentials grant. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--http--oauth2))
+- `shared_secret_ref` (Attributes) Reference to a Secret key whose value will be passed by Authorino in the request.The HTTP service can use the shared secret to authenticate the origin of the request.Ignored if used together with oauth2. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--http--shared_secret_ref))
+
+<a id="nestedatt--spec--overrides--rules--response--http--body"></a>
+### Nested Schema for `spec.overrides.rules.response.http.body`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--overrides--rules--response--http--body_parameters"></a>
+### Nested Schema for `spec.overrides.rules.response.http.body_parameters`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--overrides--rules--response--http--credentials"></a>
+### Nested Schema for `spec.overrides.rules.response.http.credentials`
+
+Optional:
+
+- `authorization_header` (Attributes) (see [below for nested schema](#nestedatt--spec--overrides--rules--response--http--shared_secret_ref--authorization_header))
+- `cookie` (Attributes) (see [below for nested schema](#nestedatt--spec--overrides--rules--response--http--shared_secret_ref--cookie))
+- `custom_header` (Attributes) (see [below for nested schema](#nestedatt--spec--overrides--rules--response--http--shared_secret_ref--custom_header))
+- `query_string` (Attributes) (see [below for nested schema](#nestedatt--spec--overrides--rules--response--http--shared_secret_ref--query_string))
+
+<a id="nestedatt--spec--overrides--rules--response--http--shared_secret_ref--authorization_header"></a>
+### Nested Schema for `spec.overrides.rules.response.http.shared_secret_ref.authorization_header`
+
+Optional:
+
+- `prefix` (String)
+
+
+<a id="nestedatt--spec--overrides--rules--response--http--shared_secret_ref--cookie"></a>
+### Nested Schema for `spec.overrides.rules.response.http.shared_secret_ref.cookie`
+
+Required:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--overrides--rules--response--http--shared_secret_ref--custom_header"></a>
+### Nested Schema for `spec.overrides.rules.response.http.shared_secret_ref.custom_header`
+
+Required:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--overrides--rules--response--http--shared_secret_ref--query_string"></a>
+### Nested Schema for `spec.overrides.rules.response.http.shared_secret_ref.query_string`
+
+Required:
+
+- `name` (String)
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--http--headers"></a>
+### Nested Schema for `spec.overrides.rules.response.http.headers`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--overrides--rules--response--http--oauth2"></a>
+### Nested Schema for `spec.overrides.rules.response.http.oauth2`
+
+Required:
+
+- `client_id` (String) OAuth2 Client ID.
+- `client_secret_ref` (Attributes) Reference to a Kuberentes Secret key that stores that OAuth2 Client Secret. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--http--shared_secret_ref--client_secret_ref))
+- `token_url` (String) Token endpoint URL of the OAuth2 resource server.
+
+Optional:
+
+- `cache` (Boolean) Caches and reuses the token until expired.Set it to false to force fetch the token at every authorization request regardless of expiration.
+- `extra_params` (Map of String) Optional extra parameters for the requests to the token URL.
+- `scopes` (List of String) Optional scopes for the client credentials grant, if supported by he OAuth2 server.
+
+<a id="nestedatt--spec--overrides--rules--response--http--shared_secret_ref--client_secret_ref"></a>
+### Nested Schema for `spec.overrides.rules.response.http.shared_secret_ref.client_secret_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `name` (String) The name of the secret in the Authorino's namespace to select from.
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--http--shared_secret_ref"></a>
+### Nested Schema for `spec.overrides.rules.response.http.shared_secret_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `name` (String) The name of the secret in the Authorino's namespace to select from.
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--route_selectors"></a>
+### Nested Schema for `spec.overrides.rules.response.route_selectors`
+
+Optional:
+
+- `hostnames` (List of String) Hostnames defines a set of hostname that should match against the HTTP Host header to select a HTTPRoute to process the requesthttps://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec
+- `matches` (Attributes List) Matches define conditions used for matching the rule against incoming HTTP requests.https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec (see [below for nested schema](#nestedatt--spec--overrides--rules--response--route_selectors--matches))
+
+<a id="nestedatt--spec--overrides--rules--response--route_selectors--matches"></a>
+### Nested Schema for `spec.overrides.rules.response.route_selectors.matches`
+
+Optional:
+
+- `headers` (Attributes List) Headers specifies HTTP request header matchers. Multiple match values areANDed together, meaning, a request must match all the specified headersto select the route. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--route_selectors--matches--headers))
+- `method` (String) Method specifies HTTP method matcher.When specified, this route will be matched only if the request has thespecified method.Support: Extended
+- `path` (Attributes) Path specifies a HTTP request path matcher. If this field is notspecified, a default prefix match on the '/' path is provided. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--route_selectors--matches--path))
+- `query_params` (Attributes List) QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended (see [below for nested schema](#nestedatt--spec--overrides--rules--response--route_selectors--matches--query_params))
+
+<a id="nestedatt--spec--overrides--rules--response--route_selectors--matches--headers"></a>
+### Nested Schema for `spec.overrides.rules.response.route_selectors.matches.headers`
+
+Required:
+
+- `name` (String) Name is the name of the HTTP Header to be matched. Name matching MUST becase insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).If multiple entries specify equivalent header names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent header name MUST be ignored. Due to thecase-insensitivity of header names, 'foo' and 'Foo' are consideredequivalent.When a header is repeated in an HTTP request, it isimplementation-specific behavior as to how this is represented.Generally, proxies should follow the guidance from the RFC:https://www.rfc-editor.org/rfc/rfc7230.html#section-3.2.2 regardingprocessing a repeated header, with special handling for 'Set-Cookie'.
+- `value` (String) Value is the value of HTTP Header to be matched.
+
+Optional:
+
+- `type` (String) Type specifies how to match against the value of the header.Support: Core (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression HeaderMatchType has implementation-specificconformance, implementations can support POSIX, PCRE or any other dialectsof regular expressions. Please read the implementation's documentation todetermine the supported dialect.
+
+
+<a id="nestedatt--spec--overrides--rules--response--route_selectors--matches--path"></a>
+### Nested Schema for `spec.overrides.rules.response.route_selectors.matches.path`
+
+Optional:
+
+- `type` (String) Type specifies how to match against the path Value.Support: Core (Exact, PathPrefix)Support: Implementation-specific (RegularExpression)
+- `value` (String) Value of the HTTP path to match against.
+
+
+<a id="nestedatt--spec--overrides--rules--response--route_selectors--matches--query_params"></a>
+### Nested Schema for `spec.overrides.rules.response.route_selectors.matches.query_params`
+
+Required:
+
+- `name` (String) Name is the name of the HTTP query param to be matched. This must be anexact string match. (Seehttps://tools.ietf.org/html/rfc7230#section-2.7.3).If multiple entries specify equivalent query param names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent query param name MUST be ignored.If a query param is repeated in an HTTP request, the behavior ispurposely left undefined, since different data planes have differentcapabilities. However, it is *recommended* that implementations shouldmatch against the first value of the param if the data plane supports it,as this behavior is expected in other load balancing contexts outside ofthe Gateway API.Users SHOULD NOT route traffic based on repeated query params to guardthemselves against potential differences in the implementations.
+- `value` (String) Value is the value of HTTP query param to be matched.
+
+Optional:
+
+- `type` (String) Type specifies how to match against the value of the query parameter.Support: Extended (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression QueryParamMatchType has Implementation-specificconformance, implementations can support POSIX, PCRE or any otherdialects of regular expressions. Please read the implementation'sdocumentation to determine the supported dialect.
+
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--uma"></a>
+### Nested Schema for `spec.overrides.rules.response.uma`
+
+Required:
+
+- `credentials_ref` (Attributes) Reference to a Kubernetes secret in the same namespace, that stores client credentials to the resource registration API of the UMA server. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--uma--credentials_ref))
+- `endpoint` (String) The endpoint of the UMA server.The value must coincide with the 'issuer' claim of the UMA config discovered from the well-known uma configuration endpoint.
+
+<a id="nestedatt--spec--overrides--rules--response--uma--credentials_ref"></a>
+### Nested Schema for `spec.overrides.rules.response.uma.credentials_ref`
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--user_info"></a>
+### Nested Schema for `spec.overrides.rules.response.user_info`
+
+Required:
+
+- `identity_source` (String) The name of an OIDC-enabled JWT authentication config whose OpenID Connect configuration discovered includes the OIDC 'userinfo_endpoint' claim.
+
+
+<a id="nestedatt--spec--overrides--rules--response--when"></a>
+### Nested Schema for `spec.overrides.rules.response.when`
+
+Optional:
+
+- `all` (List of Map of String) A list of pattern expressions to be evaluated as a logical AND.
+- `any` (List of Map of String) A list of pattern expressions to be evaluated as a logical OR.
+- `operator` (String) The binary operator to be applied to the content fetched from the authorization JSON, for comparison with 'value'.Possible values are: 'eq' (equal to), 'neq' (not equal to), 'incl' (includes; for arrays), 'excl' (excludes; for arrays), 'matches' (regex)
+- `pattern_ref` (String) Reference to a named set of pattern expressions
+- `selector` (String) Path selector to fetch content from the authorization JSON (e.g. 'request.method').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.Authorino custom JSON path modifiers are also supported.
+- `value` (String) The value of reference for the comparison with the content fetched from the authorization JSON.If used with the 'matches' operator, the value must compile to a valid Golang regex.
+
+
+
+<a id="nestedatt--spec--overrides--rules--response"></a>
+### Nested Schema for `spec.overrides.rules.response`
+
+Optional:
+
+- `success` (Attributes) Response items to be included in the auth response when the request is authenticated and authorized.For integration of Authorino via proxy, the proxy must use these settings to propagate dynamic metadata and/or inject data in the request. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success))
+- `unauthenticated` (Attributes) Customizations on the denial status attributes when the request is unauthenticated.For integration of Authorino via proxy, the proxy must honour the response status attributes specified in this config.Default: 401 Unauthorized (see [below for nested schema](#nestedatt--spec--overrides--rules--response--unauthenticated))
+- `unauthorized` (Attributes) Customizations on the denial status attributes when the request is unauthorized.For integration of Authorino via proxy, the proxy must honour the response status attributes specified in this config.Default: 403 Forbidden (see [below for nested schema](#nestedatt--spec--overrides--rules--response--unauthorized))
+
+<a id="nestedatt--spec--overrides--rules--response--success"></a>
+### Nested Schema for `spec.overrides.rules.response.success`
+
+Optional:
+
+- `dynamic_metadata` (Attributes) Custom success response items wrapped as HTTP headers.For integration of Authorino via proxy, the proxy must use these settings to propagate dynamic metadata.See https://www.envoyproxy.io/docs/envoy/latest/configuration/advanced/well_known_dynamic_metadata (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success--dynamic_metadata))
+- `headers` (Attributes) Custom success response items wrapped as HTTP headers.For integration of Authorino via proxy, the proxy must use these settings to inject data in the request. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success--headers))
+
+<a id="nestedatt--spec--overrides--rules--response--success--dynamic_metadata"></a>
+### Nested Schema for `spec.overrides.rules.response.success.dynamic_metadata`
+
+Optional:
+
+- `cache` (Attributes) Caching options for the resolved object returned when applying this config.Omit it to avoid caching objects for this config. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success--headers--cache))
+- `json` (Attributes) JSON objectSpecify it as the list of properties of the object, whose values can combine static values and values selected from the authorization JSON. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success--headers--json))
+- `key` (String) The key used to add the custom response item (name of the HTTP header or root property of the Dynamic Metadata object).If omitted, it will be set to the name of the response config.
+- `metrics` (Boolean) Whether this config should generate individual observability metrics
+- `plain` (Attributes) Plain text content (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success--headers--plain))
+- `priority` (Number) Priority group of the config.All configs in the same priority group are evaluated concurrently; consecutive priority groups are evaluated sequentially.
+- `route_selectors` (Attributes List) Top-level route selectors.If present, the elements will be used to select HTTPRoute rules that, when activated, trigger the auth rule.At least one selected HTTPRoute rule must match to trigger the auth rule.If no route selectors are specified, the auth rule will be evaluated at all requests to the protected routes. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success--headers--route_selectors))
+- `when` (Attributes List) Conditions for Authorino to enforce this config.If omitted, the config will be enforced for all requests.If present, all conditions must match for the config to be enforced; otherwise, the config will be skipped. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success--headers--when))
+- `wristband` (Attributes) Authorino Festival Wristband token (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success--headers--wristband))
+
+<a id="nestedatt--spec--overrides--rules--response--success--headers--cache"></a>
+### Nested Schema for `spec.overrides.rules.response.success.headers.cache`
+
+Required:
+
+- `key` (Attributes) Key used to store the entry in the cache.The resolved key must be unique within the scope of this particular config. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success--headers--wristband--key))
+
+Optional:
+
+- `ttl` (Number) Duration (in seconds) of the external data in the cache before pulled again from the source.
+
+<a id="nestedatt--spec--overrides--rules--response--success--headers--wristband--key"></a>
+### Nested Schema for `spec.overrides.rules.response.success.headers.wristband.key`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--success--headers--json"></a>
+### Nested Schema for `spec.overrides.rules.response.success.headers.json`
+
+Required:
+
+- `properties` (Attributes) (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success--headers--wristband--properties))
+
+<a id="nestedatt--spec--overrides--rules--response--success--headers--wristband--properties"></a>
+### Nested Schema for `spec.overrides.rules.response.success.headers.wristband.properties`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--success--headers--plain"></a>
+### Nested Schema for `spec.overrides.rules.response.success.headers.plain`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--overrides--rules--response--success--headers--route_selectors"></a>
+### Nested Schema for `spec.overrides.rules.response.success.headers.route_selectors`
+
+Optional:
+
+- `hostnames` (List of String) Hostnames defines a set of hostname that should match against the HTTP Host header to select a HTTPRoute to process the requesthttps://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec
+- `matches` (Attributes List) Matches define conditions used for matching the rule against incoming HTTP requests.https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success--headers--wristband--matches))
+
+<a id="nestedatt--spec--overrides--rules--response--success--headers--wristband--matches"></a>
+### Nested Schema for `spec.overrides.rules.response.success.headers.wristband.matches`
+
+Optional:
+
+- `headers` (Attributes List) Headers specifies HTTP request header matchers. Multiple match values areANDed together, meaning, a request must match all the specified headersto select the route. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success--headers--wristband--matches--headers))
+- `method` (String) Method specifies HTTP method matcher.When specified, this route will be matched only if the request has thespecified method.Support: Extended
+- `path` (Attributes) Path specifies a HTTP request path matcher. If this field is notspecified, a default prefix match on the '/' path is provided. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success--headers--wristband--matches--path))
+- `query_params` (Attributes List) QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success--headers--wristband--matches--query_params))
+
+<a id="nestedatt--spec--overrides--rules--response--success--headers--wristband--matches--headers"></a>
+### Nested Schema for `spec.overrides.rules.response.success.headers.wristband.matches.headers`
+
+Required:
+
+- `name` (String) Name is the name of the HTTP Header to be matched. Name matching MUST becase insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).If multiple entries specify equivalent header names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent header name MUST be ignored. Due to thecase-insensitivity of header names, 'foo' and 'Foo' are consideredequivalent.When a header is repeated in an HTTP request, it isimplementation-specific behavior as to how this is represented.Generally, proxies should follow the guidance from the RFC:https://www.rfc-editor.org/rfc/rfc7230.html#section-3.2.2 regardingprocessing a repeated header, with special handling for 'Set-Cookie'.
+- `value` (String) Value is the value of HTTP Header to be matched.
+
+Optional:
+
+- `type` (String) Type specifies how to match against the value of the header.Support: Core (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression HeaderMatchType has implementation-specificconformance, implementations can support POSIX, PCRE or any other dialectsof regular expressions. Please read the implementation's documentation todetermine the supported dialect.
+
+
+<a id="nestedatt--spec--overrides--rules--response--success--headers--wristband--matches--path"></a>
+### Nested Schema for `spec.overrides.rules.response.success.headers.wristband.matches.path`
+
+Optional:
+
+- `type` (String) Type specifies how to match against the path Value.Support: Core (Exact, PathPrefix)Support: Implementation-specific (RegularExpression)
+- `value` (String) Value of the HTTP path to match against.
+
+
+<a id="nestedatt--spec--overrides--rules--response--success--headers--wristband--matches--query_params"></a>
+### Nested Schema for `spec.overrides.rules.response.success.headers.wristband.matches.query_params`
+
+Required:
+
+- `name` (String) Name is the name of the HTTP query param to be matched. This must be anexact string match. (Seehttps://tools.ietf.org/html/rfc7230#section-2.7.3).If multiple entries specify equivalent query param names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent query param name MUST be ignored.If a query param is repeated in an HTTP request, the behavior ispurposely left undefined, since different data planes have differentcapabilities. However, it is *recommended* that implementations shouldmatch against the first value of the param if the data plane supports it,as this behavior is expected in other load balancing contexts outside ofthe Gateway API.Users SHOULD NOT route traffic based on repeated query params to guardthemselves against potential differences in the implementations.
+- `value` (String) Value is the value of HTTP query param to be matched.
+
+Optional:
+
+- `type` (String) Type specifies how to match against the value of the query parameter.Support: Extended (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression QueryParamMatchType has Implementation-specificconformance, implementations can support POSIX, PCRE or any otherdialects of regular expressions. Please read the implementation'sdocumentation to determine the supported dialect.
+
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--success--headers--when"></a>
+### Nested Schema for `spec.overrides.rules.response.success.headers.when`
+
+Optional:
+
+- `all` (List of Map of String) A list of pattern expressions to be evaluated as a logical AND.
+- `any` (List of Map of String) A list of pattern expressions to be evaluated as a logical OR.
+- `operator` (String) The binary operator to be applied to the content fetched from the authorization JSON, for comparison with 'value'.Possible values are: 'eq' (equal to), 'neq' (not equal to), 'incl' (includes; for arrays), 'excl' (excludes; for arrays), 'matches' (regex)
+- `pattern_ref` (String) Reference to a named set of pattern expressions
+- `selector` (String) Path selector to fetch content from the authorization JSON (e.g. 'request.method').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.Authorino custom JSON path modifiers are also supported.
+- `value` (String) The value of reference for the comparison with the content fetched from the authorization JSON.If used with the 'matches' operator, the value must compile to a valid Golang regex.
+
+
+<a id="nestedatt--spec--overrides--rules--response--success--headers--wristband"></a>
+### Nested Schema for `spec.overrides.rules.response.success.headers.wristband`
+
+Required:
+
+- `issuer` (String) The endpoint to the Authorino service that issues the wristband (format: <scheme>://<host>:<port>/<realm>, where <realm> = <namespace>/<authorino-auth-config-resource-name/wristband-config-name)
+- `signing_key_refs` (Attributes List) Reference by name to Kubernetes secrets and corresponding signing algorithms.The secrets must contain a 'key.pem' entry whose value is the signing key formatted as PEM. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success--headers--wristband--signing_key_refs))
+
+Optional:
+
+- `custom_claims` (Attributes) Any claims to be added to the wristband token apart from the standard JWT claims (iss, iat, exp) added by default. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success--headers--wristband--custom_claims))
+- `token_duration` (Number) Time span of the wristband token, in seconds.
+
+<a id="nestedatt--spec--overrides--rules--response--success--headers--wristband--signing_key_refs"></a>
+### Nested Schema for `spec.overrides.rules.response.success.headers.wristband.signing_key_refs`
+
+Required:
+
+- `algorithm` (String) Algorithm to sign the wristband token using the signing key provided
+- `name` (String) Name of the signing key.The value is used to reference the Kubernetes secret that stores the key and in the 'kid' claim of the wristband token header.
+
+
+<a id="nestedatt--spec--overrides--rules--response--success--headers--wristband--custom_claims"></a>
+### Nested Schema for `spec.overrides.rules.response.success.headers.wristband.custom_claims`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--success--headers"></a>
+### Nested Schema for `spec.overrides.rules.response.success.headers`
+
+Optional:
+
+- `cache` (Attributes) Caching options for the resolved object returned when applying this config.Omit it to avoid caching objects for this config. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success--headers--cache))
+- `json` (Attributes) JSON objectSpecify it as the list of properties of the object, whose values can combine static values and values selected from the authorization JSON. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success--headers--json))
+- `key` (String) The key used to add the custom response item (name of the HTTP header or root property of the Dynamic Metadata object).If omitted, it will be set to the name of the response config.
+- `metrics` (Boolean) Whether this config should generate individual observability metrics
+- `plain` (Attributes) Plain text content (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success--headers--plain))
+- `priority` (Number) Priority group of the config.All configs in the same priority group are evaluated concurrently; consecutive priority groups are evaluated sequentially.
+- `route_selectors` (Attributes List) Top-level route selectors.If present, the elements will be used to select HTTPRoute rules that, when activated, trigger the auth rule.At least one selected HTTPRoute rule must match to trigger the auth rule.If no route selectors are specified, the auth rule will be evaluated at all requests to the protected routes. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success--headers--route_selectors))
+- `when` (Attributes List) Conditions for Authorino to enforce this config.If omitted, the config will be enforced for all requests.If present, all conditions must match for the config to be enforced; otherwise, the config will be skipped. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success--headers--when))
+- `wristband` (Attributes) Authorino Festival Wristband token (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success--headers--wristband))
+
+<a id="nestedatt--spec--overrides--rules--response--success--headers--cache"></a>
+### Nested Schema for `spec.overrides.rules.response.success.headers.cache`
+
+Required:
+
+- `key` (Attributes) Key used to store the entry in the cache.The resolved key must be unique within the scope of this particular config. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success--headers--wristband--key))
+
+Optional:
+
+- `ttl` (Number) Duration (in seconds) of the external data in the cache before pulled again from the source.
+
+<a id="nestedatt--spec--overrides--rules--response--success--headers--wristband--key"></a>
+### Nested Schema for `spec.overrides.rules.response.success.headers.wristband.key`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--success--headers--json"></a>
+### Nested Schema for `spec.overrides.rules.response.success.headers.json`
+
+Required:
+
+- `properties` (Attributes) (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success--headers--wristband--properties))
+
+<a id="nestedatt--spec--overrides--rules--response--success--headers--wristband--properties"></a>
+### Nested Schema for `spec.overrides.rules.response.success.headers.wristband.properties`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--success--headers--plain"></a>
+### Nested Schema for `spec.overrides.rules.response.success.headers.plain`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--overrides--rules--response--success--headers--route_selectors"></a>
+### Nested Schema for `spec.overrides.rules.response.success.headers.route_selectors`
+
+Optional:
+
+- `hostnames` (List of String) Hostnames defines a set of hostname that should match against the HTTP Host header to select a HTTPRoute to process the requesthttps://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec
+- `matches` (Attributes List) Matches define conditions used for matching the rule against incoming HTTP requests.https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success--headers--wristband--matches))
+
+<a id="nestedatt--spec--overrides--rules--response--success--headers--wristband--matches"></a>
+### Nested Schema for `spec.overrides.rules.response.success.headers.wristband.matches`
+
+Optional:
+
+- `headers` (Attributes List) Headers specifies HTTP request header matchers. Multiple match values areANDed together, meaning, a request must match all the specified headersto select the route. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success--headers--wristband--matches--headers))
+- `method` (String) Method specifies HTTP method matcher.When specified, this route will be matched only if the request has thespecified method.Support: Extended
+- `path` (Attributes) Path specifies a HTTP request path matcher. If this field is notspecified, a default prefix match on the '/' path is provided. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success--headers--wristband--matches--path))
+- `query_params` (Attributes List) QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success--headers--wristband--matches--query_params))
+
+<a id="nestedatt--spec--overrides--rules--response--success--headers--wristband--matches--headers"></a>
+### Nested Schema for `spec.overrides.rules.response.success.headers.wristband.matches.headers`
+
+Required:
+
+- `name` (String) Name is the name of the HTTP Header to be matched. Name matching MUST becase insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).If multiple entries specify equivalent header names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent header name MUST be ignored. Due to thecase-insensitivity of header names, 'foo' and 'Foo' are consideredequivalent.When a header is repeated in an HTTP request, it isimplementation-specific behavior as to how this is represented.Generally, proxies should follow the guidance from the RFC:https://www.rfc-editor.org/rfc/rfc7230.html#section-3.2.2 regardingprocessing a repeated header, with special handling for 'Set-Cookie'.
+- `value` (String) Value is the value of HTTP Header to be matched.
+
+Optional:
+
+- `type` (String) Type specifies how to match against the value of the header.Support: Core (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression HeaderMatchType has implementation-specificconformance, implementations can support POSIX, PCRE or any other dialectsof regular expressions. Please read the implementation's documentation todetermine the supported dialect.
+
+
+<a id="nestedatt--spec--overrides--rules--response--success--headers--wristband--matches--path"></a>
+### Nested Schema for `spec.overrides.rules.response.success.headers.wristband.matches.path`
+
+Optional:
+
+- `type` (String) Type specifies how to match against the path Value.Support: Core (Exact, PathPrefix)Support: Implementation-specific (RegularExpression)
+- `value` (String) Value of the HTTP path to match against.
+
+
+<a id="nestedatt--spec--overrides--rules--response--success--headers--wristband--matches--query_params"></a>
+### Nested Schema for `spec.overrides.rules.response.success.headers.wristband.matches.query_params`
+
+Required:
+
+- `name` (String) Name is the name of the HTTP query param to be matched. This must be anexact string match. (Seehttps://tools.ietf.org/html/rfc7230#section-2.7.3).If multiple entries specify equivalent query param names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent query param name MUST be ignored.If a query param is repeated in an HTTP request, the behavior ispurposely left undefined, since different data planes have differentcapabilities. However, it is *recommended* that implementations shouldmatch against the first value of the param if the data plane supports it,as this behavior is expected in other load balancing contexts outside ofthe Gateway API.Users SHOULD NOT route traffic based on repeated query params to guardthemselves against potential differences in the implementations.
+- `value` (String) Value is the value of HTTP query param to be matched.
+
+Optional:
+
+- `type` (String) Type specifies how to match against the value of the query parameter.Support: Extended (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression QueryParamMatchType has Implementation-specificconformance, implementations can support POSIX, PCRE or any otherdialects of regular expressions. Please read the implementation'sdocumentation to determine the supported dialect.
+
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--success--headers--when"></a>
+### Nested Schema for `spec.overrides.rules.response.success.headers.when`
+
+Optional:
+
+- `all` (List of Map of String) A list of pattern expressions to be evaluated as a logical AND.
+- `any` (List of Map of String) A list of pattern expressions to be evaluated as a logical OR.
+- `operator` (String) The binary operator to be applied to the content fetched from the authorization JSON, for comparison with 'value'.Possible values are: 'eq' (equal to), 'neq' (not equal to), 'incl' (includes; for arrays), 'excl' (excludes; for arrays), 'matches' (regex)
+- `pattern_ref` (String) Reference to a named set of pattern expressions
+- `selector` (String) Path selector to fetch content from the authorization JSON (e.g. 'request.method').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.Authorino custom JSON path modifiers are also supported.
+- `value` (String) The value of reference for the comparison with the content fetched from the authorization JSON.If used with the 'matches' operator, the value must compile to a valid Golang regex.
+
+
+<a id="nestedatt--spec--overrides--rules--response--success--headers--wristband"></a>
+### Nested Schema for `spec.overrides.rules.response.success.headers.wristband`
+
+Required:
+
+- `issuer` (String) The endpoint to the Authorino service that issues the wristband (format: <scheme>://<host>:<port>/<realm>, where <realm> = <namespace>/<authorino-auth-config-resource-name/wristband-config-name)
+- `signing_key_refs` (Attributes List) Reference by name to Kubernetes secrets and corresponding signing algorithms.The secrets must contain a 'key.pem' entry whose value is the signing key formatted as PEM. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success--headers--wristband--signing_key_refs))
+
+Optional:
+
+- `custom_claims` (Attributes) Any claims to be added to the wristband token apart from the standard JWT claims (iss, iat, exp) added by default. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--success--headers--wristband--custom_claims))
+- `token_duration` (Number) Time span of the wristband token, in seconds.
+
+<a id="nestedatt--spec--overrides--rules--response--success--headers--wristband--signing_key_refs"></a>
+### Nested Schema for `spec.overrides.rules.response.success.headers.wristband.signing_key_refs`
+
+Required:
+
+- `algorithm` (String) Algorithm to sign the wristband token using the signing key provided
+- `name` (String) Name of the signing key.The value is used to reference the Kubernetes secret that stores the key and in the 'kid' claim of the wristband token header.
+
+
+<a id="nestedatt--spec--overrides--rules--response--success--headers--wristband--custom_claims"></a>
+### Nested Schema for `spec.overrides.rules.response.success.headers.wristband.custom_claims`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--unauthenticated"></a>
+### Nested Schema for `spec.overrides.rules.response.unauthenticated`
+
+Optional:
+
+- `body` (Attributes) HTTP response body to override the default denial body. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--unauthenticated--body))
+- `code` (Number) HTTP status code to override the default denial status code.
+- `headers` (Attributes) HTTP response headers to override the default denial headers. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--unauthenticated--headers))
+- `message` (Attributes) HTTP message to override the default denial message. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--unauthenticated--message))
+
+<a id="nestedatt--spec--overrides--rules--response--unauthenticated--body"></a>
+### Nested Schema for `spec.overrides.rules.response.unauthenticated.body`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--overrides--rules--response--unauthenticated--headers"></a>
+### Nested Schema for `spec.overrides.rules.response.unauthenticated.headers`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--overrides--rules--response--unauthenticated--message"></a>
+### Nested Schema for `spec.overrides.rules.response.unauthenticated.message`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+<a id="nestedatt--spec--overrides--rules--response--unauthorized"></a>
+### Nested Schema for `spec.overrides.rules.response.unauthorized`
+
+Optional:
+
+- `body` (Attributes) HTTP response body to override the default denial body. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--unauthorized--body))
+- `code` (Number) HTTP status code to override the default denial status code.
+- `headers` (Attributes) HTTP response headers to override the default denial headers. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--unauthorized--headers))
+- `message` (Attributes) HTTP message to override the default denial message. (see [below for nested schema](#nestedatt--spec--overrides--rules--response--unauthorized--message))
+
+<a id="nestedatt--spec--overrides--rules--response--unauthorized--body"></a>
+### Nested Schema for `spec.overrides.rules.response.unauthorized.body`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--overrides--rules--response--unauthorized--headers"></a>
+### Nested Schema for `spec.overrides.rules.response.unauthorized.headers`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+<a id="nestedatt--spec--overrides--rules--response--unauthorized--message"></a>
+### Nested Schema for `spec.overrides.rules.response.unauthorized.message`
+
+Optional:
+
+- `selector` (String) Simple path selector to fetch content from the authorization JSON (e.g. 'request.method') or a string template with variables that resolve to patterns (e.g. 'Hello, {auth.identity.name}!').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.The following Authorino custom modifiers are supported: @extract:{sep:' ',pos:0}, @replace{old:'',new:''}, @case:upper|lower, @base64:encode|decode and @strip.
+- `value` (Map of String) Static value
+
+
+
+
+
+<a id="nestedatt--spec--overrides--when"></a>
+### Nested Schema for `spec.overrides.when`
+
+Optional:
+
+- `all` (List of Map of String) A list of pattern expressions to be evaluated as a logical AND.
+- `any` (List of Map of String) A list of pattern expressions to be evaluated as a logical OR.
+- `operator` (String) The binary operator to be applied to the content fetched from the authorization JSON, for comparison with 'value'.Possible values are: 'eq' (equal to), 'neq' (not equal to), 'incl' (includes; for arrays), 'excl' (excludes; for arrays), 'matches' (regex)
+- `pattern_ref` (String) Reference to a named set of pattern expressions
+- `selector` (String) Path selector to fetch content from the authorization JSON (e.g. 'request.method').Any pattern supported by https://pkg.go.dev/github.com/tidwall/gjson can be used.Authorino custom JSON path modifiers are also supported.
+- `value` (String) The value of reference for the comparison with the content fetched from the authorization JSON.If used with the 'matches' operator, the value must compile to a valid Golang regex.
+
 
 
 <a id="nestedatt--spec--route_selectors"></a>

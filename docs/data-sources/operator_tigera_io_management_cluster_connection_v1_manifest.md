@@ -3,12 +3,12 @@
 page_title: "k8s_operator_tigera_io_management_cluster_connection_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "operator.tigera.io"
 description: |-
-  ManagementClusterConnection represents a link between a managed cluster and a management cluster. At most one instance of this resource is supported. It must be named 'tigera-secure'.
+  ManagementClusterConnection represents a link between a managed cluster and a management cluster. At most oneinstance of this resource is supported. It must be named 'tigera-secure'.
 ---
 
 # k8s_operator_tigera_io_management_cluster_connection_v1_manifest (Data Source)
 
-ManagementClusterConnection represents a link between a managed cluster and a management cluster. At most one instance of this resource is supported. It must be named 'tigera-secure'.
+ManagementClusterConnection represents a link between a managed cluster and a management cluster. At most oneinstance of this resource is supported. It must be named 'tigera-secure'.
 
 ## Example Usage
 
@@ -55,7 +55,7 @@ Optional:
 Optional:
 
 - `guardian_deployment` (Attributes) GuardianDeployment configures the guardian Deployment. (see [below for nested schema](#nestedatt--spec--guardian_deployment))
-- `management_cluster_addr` (String) Specify where the managed cluster can reach the management cluster. Ex.: '10.128.0.10:30449'. A managed cluster should be able to access this address. This field is used by managed clusters only.
+- `management_cluster_addr` (String) Specify where the managed cluster can reach the management cluster. Ex.: '10.128.0.10:30449'. A managed clustershould be able to access this address. This field is used by managed clusters only.
 - `tls` (Attributes) TLS provides options for configuring how Managed Clusters can establish an mTLS connection with the Management Cluster. (see [below for nested schema](#nestedatt--spec--tls))
 
 <a id="nestedatt--spec--guardian_deployment"></a>
@@ -84,35 +84,35 @@ Optional:
 
 Optional:
 
-- `containers` (Attributes List) Containers is a list of guardian containers. If specified, this overrides the specified guardian Deployment containers. If omitted, the guardian Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--guardian_deployment--spec--template--spec--containers))
-- `init_containers` (Attributes List) InitContainers is a list of guardian init containers. If specified, this overrides the specified guardian Deployment init containers. If omitted, the guardian Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--guardian_deployment--spec--template--spec--init_containers))
+- `containers` (Attributes List) Containers is a list of guardian containers.If specified, this overrides the specified guardian Deployment containers.If omitted, the guardian Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--guardian_deployment--spec--template--spec--containers))
+- `init_containers` (Attributes List) InitContainers is a list of guardian init containers.If specified, this overrides the specified guardian Deployment init containers.If omitted, the guardian Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--guardian_deployment--spec--template--spec--init_containers))
 
 <a id="nestedatt--spec--guardian_deployment--spec--template--spec--containers"></a>
 ### Nested Schema for `spec.guardian_deployment.spec.template.spec.containers`
 
 Required:
 
-- `name` (String) Name is an enum which identifies the guardian Deployment container by name.
+- `name` (String) Name is an enum which identifies the guardian Deployment container by name.Supported values are: tigera-guardian
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named guardian Deployment container's resources. If omitted, the guardian Deployment will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--guardian_deployment--spec--template--spec--init_containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named guardian Deployment container's resources.If omitted, the guardian Deployment will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--guardian_deployment--spec--template--spec--init_containers--resources))
 
 <a id="nestedatt--spec--guardian_deployment--spec--template--spec--init_containers--resources"></a>
 ### Nested Schema for `spec.guardian_deployment.spec.template.spec.init_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--guardian_deployment--spec--template--spec--init_containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--guardian_deployment--spec--template--spec--init_containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--guardian_deployment--spec--template--spec--init_containers--resources--claims"></a>
 ### Nested Schema for `spec.guardian_deployment.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -126,23 +126,23 @@ Required:
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named guardian Deployment init container's resources. If omitted, the guardian Deployment will use its default value for this init container's resources. (see [below for nested schema](#nestedatt--spec--guardian_deployment--spec--template--spec--init_containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named guardian Deployment init container's resources.If omitted, the guardian Deployment will use its default value for this init container's resources. (see [below for nested schema](#nestedatt--spec--guardian_deployment--spec--template--spec--init_containers--resources))
 
 <a id="nestedatt--spec--guardian_deployment--spec--template--spec--init_containers--resources"></a>
 ### Nested Schema for `spec.guardian_deployment.spec.template.spec.init_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--guardian_deployment--spec--template--spec--init_containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--guardian_deployment--spec--template--spec--init_containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--guardian_deployment--spec--template--spec--init_containers--resources--claims"></a>
 ### Nested Schema for `spec.guardian_deployment.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -156,4 +156,4 @@ Required:
 
 Optional:
 
-- `ca` (String) CA indicates which verification method the tunnel client should use to verify the tunnel server's identity.  When left blank or set to 'Tigera', the tunnel client will expect a self-signed cert to be included in the certificate bundle and will expect the cert to have a Common Name (CN) of 'voltron'.  When set to 'Public', the tunnel client will use its installed system certs and will use the managementClusterAddr to verify the tunnel server's identity.  Default: Tigera
+- `ca` (String) CA indicates which verification method the tunnel client should use to verify the tunnel server's identity.When left blank or set to 'Tigera', the tunnel client will expect a self-signed cert to be included in the certificate bundleand will expect the cert to have a Common Name (CN) of 'voltron'.When set to 'Public', the tunnel client will use its installed system certs and will use the managementClusterAddr to verify the tunnel server's identity.Default: Tigera

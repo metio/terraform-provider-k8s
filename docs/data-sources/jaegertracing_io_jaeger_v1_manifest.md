@@ -2541,6 +2541,7 @@ Optional:
 
 Optional:
 
+- `server_url` (String)
 - `type` (String)
 
 
@@ -8768,6 +8769,7 @@ Optional:
 
 Optional:
 
+- `server_url` (String)
 - `type` (String)
 
 

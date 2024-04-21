@@ -156,8 +156,7 @@ type NetworkingIstioIoVirtualServiceV1ManifestData struct {
 			MirrorPercentage *struct {
 				Value *float64 `tfsdk:"value" json:"value,omitempty"`
 			} `tfsdk:"mirror_percentage" json:"mirrorPercentage,omitempty"`
-			Mirror_percent *int64 `tfsdk:"mirror_percent" json:"mirror_percent,omitempty"`
-			Mirrors        *[]struct {
+			Mirrors *[]struct {
 				Destination *struct {
 					Host *string `tfsdk:"host" json:"host,omitempty"`
 					Port *struct {
@@ -1086,14 +1085,6 @@ func (r *NetworkingIstioIoVirtualServiceV1Manifest) Schema(_ context.Context, _ 
 									Required: false,
 									Optional: true,
 									Computed: false,
-								},
-
-								"mirror_percent": schema.Int64Attribute{
-									Description:         "",
-									MarkdownDescription: "",
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
 								},
 
 								"mirrors": schema.ListNestedAttribute{

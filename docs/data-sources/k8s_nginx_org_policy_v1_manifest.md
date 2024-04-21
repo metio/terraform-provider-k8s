@@ -171,6 +171,7 @@ Optional:
 
 Optional:
 
+- `ap_log_bundle` (String)
 - `ap_log_conf` (String)
 - `enable` (Boolean)
 - `log_dest` (String)
@@ -181,6 +182,7 @@ Optional:
 
 Optional:
 
+- `ap_log_bundle` (String)
 - `ap_log_conf` (String)
 - `enable` (Boolean)
 - `log_dest` (String)

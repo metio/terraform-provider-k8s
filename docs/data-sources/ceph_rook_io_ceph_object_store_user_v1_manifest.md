@@ -89,4 +89,4 @@ Optional:
 
 - `max_buckets` (Number) Maximum bucket limit for the ceph user
 - `max_objects` (Number) Maximum number of objects across all the user's buckets
-- `max_size` (String) Maximum size limit of all objects across all the user's buckets See https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Quantity for more info.
+- `max_size` (String) Maximum size limit of all objects across all the user's bucketsSee https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Quantity for more info.

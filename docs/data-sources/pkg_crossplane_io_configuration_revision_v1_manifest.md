@@ -3,12 +3,12 @@
 page_title: "k8s_pkg_crossplane_io_configuration_revision_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "pkg.crossplane.io"
 description: |-
-  A ConfigurationRevision that has been added to Crossplane.
+  A ConfigurationRevision represents a revision of a Configuration. Crossplanecreates new revisions when there are changes to a Configuration.Crossplane creates and manages ConfigurationRevision. Don't directly editConfigurationRevisions.
 ---
 
 # k8s_pkg_crossplane_io_configuration_revision_v1_manifest (Data Source)
 
-A ConfigurationRevision that has been added to Crossplane.
+A ConfigurationRevision represents a revision of a Configuration. Crossplanecreates new revisions when there are changes to a Configuration.Crossplane creates and manages ConfigurationRevision. Don't directly editConfigurationRevisions.
 
 ## Example Usage
 
@@ -60,7 +60,7 @@ Required:
 
 Optional:
 
-- `common_labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels
+- `common_labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
 - `ignore_crossplane_constraints` (Boolean) IgnoreCrossplaneConstraints indicates to the package manager whether tohonor Crossplane version constrains specified by the package.Default is false.
 - `package_pull_policy` (String) PackagePullPolicy defines the pull policy for the package. It is alsoapplied to any images pulled for the package, such as a provider'scontroller image.Default is IfNotPresent.
 - `package_pull_secrets` (Attributes List) PackagePullSecrets are named secrets in the same namespace that can beused to fetch packages from private registries. They are also applied toany images pulled for the package, such as a provider's controller image. (see [below for nested schema](#nestedatt--spec--package_pull_secrets))

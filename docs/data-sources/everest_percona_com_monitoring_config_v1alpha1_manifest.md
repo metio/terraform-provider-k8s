@@ -62,6 +62,7 @@ Optional:
 
 - `allowed_namespaces` (List of String) AllowedNamespaces is the list of namespaces where the operator will copy secrets provided in the CredentialsSecretsName.
 - `pmm` (Attributes) PMM is configuration for the PMM monitoring type. (see [below for nested schema](#nestedatt--spec--pmm))
+- `verify_tls` (Boolean) VerifyTLS is set to ensure TLS/SSL verification.If unspecified, the default value is true.
 
 <a id="nestedatt--spec--pmm"></a>
 ### Nested Schema for `spec.pmm`

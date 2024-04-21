@@ -102,6 +102,7 @@ Optional:
 - `onboardbase` (Attributes) Onboardbase configures this store to sync secrets using the Onboardbase provider (see [below for nested schema](#nestedatt--spec--provider--onboardbase))
 - `onepassword` (Attributes) OnePassword configures this store to sync secrets using the 1Password Cloud provider (see [below for nested schema](#nestedatt--spec--provider--onepassword))
 - `oracle` (Attributes) Oracle configures this store to sync secrets using Oracle Vault provider (see [below for nested schema](#nestedatt--spec--provider--oracle))
+- `passbolt` (Attributes) (see [below for nested schema](#nestedatt--spec--provider--passbolt))
 - `passworddepot` (Attributes) Configures a store to sync secrets with a Password Depot instance. (see [below for nested schema](#nestedatt--spec--provider--passworddepot))
 - `pulumi` (Attributes) Pulumi configures this store to sync secrets using the Pulumi provider (see [below for nested schema](#nestedatt--spec--provider--pulumi))
 - `scaleway` (Attributes) Scaleway (see [below for nested schema](#nestedatt--spec--provider--scaleway))
@@ -399,20 +400,21 @@ Required:
 
 Optional:
 
-- `auth_secret_ref` (Attributes) Auth configures how the operator authenticates with Azure. Required for ServicePrincipal auth type. (see [below for nested schema](#nestedatt--spec--provider--azurekv--auth_secret_ref))
+- `auth_secret_ref` (Attributes) Auth configures how the operator authenticates with Azure. Required for ServicePrincipal auth type. Optional for WorkloadIdentity. (see [below for nested schema](#nestedatt--spec--provider--azurekv--auth_secret_ref))
 - `auth_type` (String) Auth type defines how to authenticate to the keyvault service.Valid values are:- 'ServicePrincipal' (default): Using a service principal (tenantId, clientId, clientSecret)- 'ManagedIdentity': Using Managed Identity assigned to the pod (see aad-pod-identity)
 - `environment_type` (String) EnvironmentType specifies the Azure cloud environment endpoints to use forconnecting and authenticating with Azure. By default it points to the public cloud AAD endpoint.The following endpoints are available, also see here: https://github.com/Azure/go-autorest/blob/main/autorest/azure/environments.go#L152PublicCloud, USGovernmentCloud, ChinaCloud, GermanCloud
 - `identity_id` (String) If multiple Managed Identity is assigned to the pod, you can select the one to be used
 - `service_account_ref` (Attributes) ServiceAccountRef specified the service accountthat should be used when authenticating with WorkloadIdentity. (see [below for nested schema](#nestedatt--spec--provider--azurekv--service_account_ref))
-- `tenant_id` (String) TenantID configures the Azure Tenant to send requests to. Required for ServicePrincipal auth type.
+- `tenant_id` (String) TenantID configures the Azure Tenant to send requests to. Required for ServicePrincipal auth type. Optional for WorkloadIdentity.
 
 <a id="nestedatt--spec--provider--azurekv--auth_secret_ref"></a>
 ### Nested Schema for `spec.provider.azurekv.auth_secret_ref`
 
 Optional:
 
-- `client_id` (Attributes) The Azure clientId of the service principle used for authentication. (see [below for nested schema](#nestedatt--spec--provider--azurekv--tenant_id--client_id))
+- `client_id` (Attributes) The Azure clientId of the service principle or managed identity used for authentication. (see [below for nested schema](#nestedatt--spec--provider--azurekv--tenant_id--client_id))
 - `client_secret` (Attributes) The Azure ClientSecret of the service principle used for authentication. (see [below for nested schema](#nestedatt--spec--provider--azurekv--tenant_id--client_secret))
+- `tenant_id` (Attributes) The Azure tenantId of the managed identity used for authentication. (see [below for nested schema](#nestedatt--spec--provider--azurekv--tenant_id--tenant_id))
 
 <a id="nestedatt--spec--provider--azurekv--tenant_id--client_id"></a>
 ### Nested Schema for `spec.provider.azurekv.tenant_id.client_id`
@@ -426,6 +428,16 @@ Optional:
 
 <a id="nestedatt--spec--provider--azurekv--tenant_id--client_secret"></a>
 ### Nested Schema for `spec.provider.azurekv.tenant_id.client_secret`
+
+Optional:
+
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `name` (String) The name of the Secret resource being referred to.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+
+
+<a id="nestedatt--spec--provider--azurekv--tenant_id--tenant_id"></a>
+### Nested Schema for `spec.provider.azurekv.tenant_id.tenant_id`
 
 Optional:
 
@@ -1161,6 +1173,44 @@ Optional:
 
 
 
+<a id="nestedatt--spec--provider--passbolt"></a>
+### Nested Schema for `spec.provider.passbolt`
+
+Required:
+
+- `auth` (Attributes) Auth defines the information necessary to authenticate against Passbolt Server (see [below for nested schema](#nestedatt--spec--provider--passbolt--auth))
+- `host` (String) Host defines the Passbolt Server to connect to
+
+<a id="nestedatt--spec--provider--passbolt--auth"></a>
+### Nested Schema for `spec.provider.passbolt.auth`
+
+Required:
+
+- `password_secret_ref` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--passbolt--host--password_secret_ref))
+- `private_key_secret_ref` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--passbolt--host--private_key_secret_ref))
+
+<a id="nestedatt--spec--provider--passbolt--host--password_secret_ref"></a>
+### Nested Schema for `spec.provider.passbolt.host.password_secret_ref`
+
+Optional:
+
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `name` (String) The name of the Secret resource being referred to.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+
+
+<a id="nestedatt--spec--provider--passbolt--host--private_key_secret_ref"></a>
+### Nested Schema for `spec.provider.passbolt.host.private_key_secret_ref`
+
+Optional:
+
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `name` (String) The name of the Secret resource being referred to.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+
+
+
+
 <a id="nestedatt--spec--provider--passworddepot"></a>
 ### Nested Schema for `spec.provider.passworddepot`
 
@@ -1345,6 +1395,7 @@ Optional:
 - `jwt` (Attributes) Jwt authenticates with Vault by passing role and JWT token using theJWT/OIDC authentication method (see [below for nested schema](#nestedatt--spec--provider--vault--version--jwt))
 - `kubernetes` (Attributes) Kubernetes authenticates with Vault by passing the ServiceAccounttoken stored in the named Secret resource to the Vault server. (see [below for nested schema](#nestedatt--spec--provider--vault--version--kubernetes))
 - `ldap` (Attributes) Ldap authenticates with Vault by passing username/password pair usingthe LDAP authentication method (see [below for nested schema](#nestedatt--spec--provider--vault--version--ldap))
+- `namespace` (String) Name of the vault namespace to authenticate to. This can be different than the namespace your secret is in.Namespaces is a set of features within Vault Enterprise that allowsVault environments to support Secure Multi-tenancy. e.g: 'ns1'.More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespacesThis will default to Vault.Namespace field if set, or empty otherwise
 - `token_secret_ref` (Attributes) TokenSecretRef authenticates with Vault by presenting a token. (see [below for nested schema](#nestedatt--spec--provider--vault--version--token_secret_ref))
 - `user_pass` (Attributes) UserPass authenticates with Vault by passing username/password pair (see [below for nested schema](#nestedatt--spec--provider--vault--version--user_pass))
 

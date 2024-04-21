@@ -69,6 +69,7 @@ Optional:
 - `spacelift` (Attributes) Spacelift allows the configuration of options specific to the 'spacelift' join method. (see [below for nested schema](#nestedatt--spec--spacelift))
 - `suggested_agent_matcher_labels` (Map of String) SuggestedAgentMatcherLabels is a set of labels to be used by agents to match on resources. When an agent uses this token, the agent should monitor resources that match those labels. For databases, this means adding the labels to 'db_service.resources.labels'. Currently, only node-join scripts create a configuration according to the suggestion.
 - `suggested_labels` (Map of String) SuggestedLabels is a set of labels that resources should set when using this token to enroll themselves in the cluster. Currently, only node-join scripts create a configuration according to the suggestion.
+- `tpm` (Attributes) TPM allows the configuration of options specific to the 'tpm' join method. (see [below for nested schema](#nestedatt--spec--tpm))
 
 <a id="nestedatt--spec--allow"></a>
 ### Nested Schema for `spec.allow`
@@ -234,3 +235,22 @@ Optional:
 - `caller_type` (String)
 - `scope` (String)
 - `space_id` (String)
+
+
+
+<a id="nestedatt--spec--tpm"></a>
+### Nested Schema for `spec.tpm`
+
+Optional:
+
+- `allow` (Attributes List) Allow is a list of Rules, the presented delegated identity must match one allow rule to permit joining. (see [below for nested schema](#nestedatt--spec--tpm--allow))
+- `ekcert_allowed_cas` (List of String) EKCertAllowedCAs is a list of CA certificates that will be used to validate TPM EKCerts. When specified, joining TPMs must present an EKCert signed by one of the specified CAs. TPMs that do not present an EKCert will be not permitted to join. When unspecified, TPMs will be allowed to join with either an EKCert or an EKPubHash.
+
+<a id="nestedatt--spec--tpm--allow"></a>
+### Nested Schema for `spec.tpm.allow`
+
+Optional:
+
+- `description` (String)
+- `ek_certificate_serial` (String)
+- `ek_public_hash` (String)

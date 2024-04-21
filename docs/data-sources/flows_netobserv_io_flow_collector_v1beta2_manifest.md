@@ -30,7 +30,7 @@ data "k8s_flows_netobserv_io_flow_collector_v1beta2_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) Defines the desired state of the FlowCollector resource. <br><br> *: the mention of 'unsupported', or 'deprecated' for a feature throughout this document means that this feature is not officially supported by Red Hat. It might have been, for example, contributed by the community and accepted without a formal agreement for maintenance. The product maintainers might provide some support for these features as a best effort only. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) Defines the desired state of the FlowCollector resource.<br><br>*: the mention of 'unsupported', or 'deprecated' for a feature throughout this document means that this featureis not officially supported by Red Hat. It might have been, for example, contributed by the communityand accepted without a formal agreement for maintenance. The product maintainers might provide some supportfor these features as a best effort only. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -56,39 +56,40 @@ Optional:
 
 - `agent` (Attributes) Agent configuration for flows extraction. (see [below for nested schema](#nestedatt--spec--agent))
 - `console_plugin` (Attributes) 'consolePlugin' defines the settings related to the OpenShift Console plugin, when available. (see [below for nested schema](#nestedatt--spec--console_plugin))
-- `deployment_model` (String) 'deploymentModel' defines the desired type of deployment for flow processing. Possible values are:<br> - 'Direct' (default) to make the flow processor listening directly from the agents.<br> - 'Kafka' to make flows sent to a Kafka pipeline before consumption by the processor.<br> Kafka can provide better scalability, resiliency, and high availability (for more details, see https://www.redhat.com/en/topics/integration/what-is-apache-kafka).
+- `deployment_model` (String) 'deploymentModel' defines the desired type of deployment for flow processing. Possible values are:<br>- 'Direct' (default) to make the flow processor listening directly from the agents.<br>- 'Kafka' to make flows sent to a Kafka pipeline before consumption by the processor.<br>Kafka can provide better scalability, resiliency, and high availability (for more details, see https://www.redhat.com/en/topics/integration/what-is-apache-kafka).
 - `exporters` (Attributes List) 'exporters' define additional optional exporters for custom consumption or storage. (see [below for nested schema](#nestedatt--spec--exporters))
 - `kafka` (Attributes) Kafka configuration, allowing to use Kafka as a broker as part of the flow collection pipeline. Available when the 'spec.deploymentModel' is 'Kafka'. (see [below for nested schema](#nestedatt--spec--kafka))
 - `loki` (Attributes) 'loki', the flow store, client settings. (see [below for nested schema](#nestedatt--spec--loki))
 - `namespace` (String) Namespace where NetObserv pods are deployed.
-- `processor` (Attributes) 'processor' defines the settings of the component that receives the flows from the agent, enriches them, generates metrics, and forwards them to the Loki persistence layer and/or any available exporter. (see [below for nested schema](#nestedatt--spec--processor))
+- `processor` (Attributes) 'processor' defines the settings of the component that receives the flows from the agent,enriches them, generates metrics, and forwards them to the Loki persistence layer and/or any available exporter. (see [below for nested schema](#nestedatt--spec--processor))
 
 <a id="nestedatt--spec--agent"></a>
 ### Nested Schema for `spec.agent`
 
 Optional:
 
-- `ebpf` (Attributes) 'ebpf' describes the settings related to the eBPF-based flow reporter when 'spec.agent.type' is set to 'eBPF'. (see [below for nested schema](#nestedatt--spec--agent--ebpf))
-- `ipfix` (Attributes) 'ipfix' [deprecated (*)] - describes the settings related to the IPFIX-based flow reporter when 'spec.agent.type' is set to 'IPFIX'. (see [below for nested schema](#nestedatt--spec--agent--ipfix))
-- `type` (String) 'type' [deprecated (*)] selects the flows tracing agent. The only possible value is 'eBPF' (default), to use NetObserv eBPF agent.<br> Previously, using an IPFIX collector was allowed, but was deprecated and it is now removed.<br> Setting 'IPFIX' is ignored and still use the eBPF Agent. Since there is only a single option here, this field will be remove in a future API version.
+- `ebpf` (Attributes) 'ebpf' describes the settings related to the eBPF-based flow reporter when 'spec.agent.type'is set to 'eBPF'. (see [below for nested schema](#nestedatt--spec--agent--ebpf))
+- `ipfix` (Attributes) 'ipfix' [deprecated (*)] - describes the settings related to the IPFIX-based flow reporter when 'spec.agent.type'is set to 'IPFIX'. (see [below for nested schema](#nestedatt--spec--agent--ipfix))
+- `type` (String) 'type' [deprecated (*)] selects the flows tracing agent. The only possible value is 'eBPF' (default), to use NetObserv eBPF agent.<br>Previously, using an IPFIX collector was allowed, but was deprecated and it is now removed.<br>Setting 'IPFIX' is ignored and still use the eBPF Agent.Since there is only a single option here, this field will be remove in a future API version.
 
 <a id="nestedatt--spec--agent--ebpf"></a>
 ### Nested Schema for `spec.agent.ebpf`
 
 Optional:
 
-- `advanced` (Attributes) 'advanced' allows setting some aspects of the internal configuration of the eBPF agent. This section is aimed mostly for debugging and fine-grained performance optimizations, such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced))
-- `cache_active_timeout` (String) 'cacheActiveTimeout' is the max period during which the reporter aggregates flows before sending. Increasing 'cacheMaxFlows' and 'cacheActiveTimeout' can decrease the network traffic overhead and the CPU load, however you can expect higher memory consumption and an increased latency in the flow collection.
-- `cache_max_flows` (Number) 'cacheMaxFlows' is the max number of flows in an aggregate; when reached, the reporter sends the flows. Increasing 'cacheMaxFlows' and 'cacheActiveTimeout' can decrease the network traffic overhead and the CPU load, however you can expect higher memory consumption and an increased latency in the flow collection.
-- `exclude_interfaces` (List of String) 'excludeInterfaces' contains the interface names that are excluded from flow tracing. An entry enclosed by slashes, such as '/br-/', is matched as a regular expression. Otherwise it is matched as a case-sensitive string.
-- `features` (List of String) List of additional features to enable. They are all disabled by default. Enabling additional features might have performance impacts. Possible values are:<br> - 'PacketDrop': enable the packets drop flows logging feature. This feature requires mounting the kernel debug filesystem, so the eBPF pod has to run as privileged. If the 'spec.agent.ebpf.privileged' parameter is not set, an error is reported.<br> - 'DNSTracking': enable the DNS tracking feature.<br> - 'FlowRTT': enable flow latency (RTT) calculations in the eBPF agent during TCP handshakes. This feature better works with 'sampling' set to 1.<br>
+- `advanced` (Attributes) 'advanced' allows setting some aspects of the internal configuration of the eBPF agent.This section is aimed mostly for debugging and fine-grained performance optimizations,such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk. (see [below for nested schema](#nestedatt--spec--agent--ebpf--advanced))
+- `cache_active_timeout` (String) 'cacheActiveTimeout' is the max period during which the reporter aggregates flows before sending.Increasing 'cacheMaxFlows' and 'cacheActiveTimeout' can decrease the network traffic overhead and the CPU load,however you can expect higher memory consumption and an increased latency in the flow collection.
+- `cache_max_flows` (Number) 'cacheMaxFlows' is the max number of flows in an aggregate; when reached, the reporter sends the flows.Increasing 'cacheMaxFlows' and 'cacheActiveTimeout' can decrease the network traffic overhead and the CPU load,however you can expect higher memory consumption and an increased latency in the flow collection.
+- `exclude_interfaces` (List of String) 'excludeInterfaces' contains the interface names that are excluded from flow tracing.An entry enclosed by slashes, such as '/br-/', is matched as a regular expression.Otherwise it is matched as a case-sensitive string.
+- `features` (List of String) List of additional features to enable. They are all disabled by default. Enabling additional features might have performance impacts. Possible values are:<br>- 'PacketDrop': enable the packets drop flows logging feature. This feature requires mountingthe kernel debug filesystem, so the eBPF pod has to run as privileged.If the 'spec.agent.ebpf.privileged' parameter is not set, an error is reported.<br>- 'DNSTracking': enable the DNS tracking feature.<br>- 'FlowRTT': enable flow latency (RTT) calculations in the eBPF agent during TCP handshakes. This feature better works with 'sampling' set to 1.<br>
+- `flow_filter` (Attributes) 'flowFilter' defines the eBPF agent configuration regarding flow filtering (see [below for nested schema](#nestedatt--spec--agent--ebpf--flow_filter))
 - `image_pull_policy` (String) 'imagePullPolicy' is the Kubernetes pull policy for the image defined above
-- `interfaces` (List of String) 'interfaces' contains the interface names from where flows are collected. If empty, the agent fetches all the interfaces in the system, excepting the ones listed in ExcludeInterfaces. An entry enclosed by slashes, such as '/br-/', is matched as a regular expression. Otherwise it is matched as a case-sensitive string.
+- `interfaces` (List of String) 'interfaces' contains the interface names from where flows are collected. If empty, the agentfetches all the interfaces in the system, excepting the ones listed in ExcludeInterfaces.An entry enclosed by slashes, such as '/br-/', is matched as a regular expression.Otherwise it is matched as a case-sensitive string.
 - `kafka_batch_size` (Number) 'kafkaBatchSize' limits the maximum size of a request in bytes before being sent to a partition. Ignored when not using Kafka. Default: 1MB.
 - `log_level` (String) 'logLevel' defines the log level for the NetObserv eBPF Agent
 - `metrics` (Attributes) 'metrics' defines the eBPF agent configuration regarding metrics (see [below for nested schema](#nestedatt--spec--agent--ebpf--metrics))
-- `privileged` (Boolean) Privileged mode for the eBPF Agent container. When ignored or set to 'false', the operator sets granular capabilities (BPF, PERFMON, NET_ADMIN, SYS_RESOURCE) to the container. If for some reason these capabilities cannot be set, such as if an old kernel version not knowing CAP_BPF is in use, then you can turn on this mode for more global privileges. Some agent features require the privileged mode, such as packet drops tracking (see 'features') and SR-IOV support.
-- `resources` (Attributes) 'resources' are the compute resources required by this container. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--agent--ebpf--resources))
+- `privileged` (Boolean) Privileged mode for the eBPF Agent container. When ignored or set to 'false', the operator setsgranular capabilities (BPF, PERFMON, NET_ADMIN, SYS_RESOURCE) to the container.If for some reason these capabilities cannot be set, such as if an old kernel version not knowing CAP_BPFis in use, then you can turn on this mode for more global privileges.Some agent features require the privileged mode, such as packet drops tracking (see 'features') and SR-IOV support.
+- `resources` (Attributes) 'resources' are the compute resources required by this container.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--agent--ebpf--resources))
 - `sampling` (Number) Sampling rate of the flow reporter. 100 means one flow on 100 is sent. 0 or 1 means all flows are sampled.
 
 <a id="nestedatt--spec--agent--ebpf--advanced"></a>
@@ -96,7 +97,431 @@ Optional:
 
 Optional:
 
-- `env` (Map of String) 'env' allows passing custom environment variables to underlying components. Useful for passing some very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not be publicly exposed as part of the FlowCollector descriptor, as they are only useful in edge debug or support scenarios.
+- `env` (Map of String) 'env' allows passing custom environment variables to underlying components. Useful for passingsome very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not bepublicly exposed as part of the FlowCollector descriptor, as they are only usefulin edge debug or support scenarios.
+- `scheduling` (Attributes) scheduling controls whether the pod will be scheduled or not. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling))
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling`
+
+Optional:
+
+- `affinity` (Attributes) If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--affinity))
+- `node_selector` (Map of String) NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+- `priority_class_name` (String) If specified, indicates the pod's priority. 'system-node-critical' and'system-cluster-critical' are two special keywords which indicate thehighest priorities with the former being the highest priority. Any othername must be defined by creating a PriorityClass object with that name.If not specified, the pod priority will be default or zero if there is nodefault.
+- `tolerations` (Attributes List) tolerations is a list of tolerations that allow the pod to schedule onto nodes with matching taints. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations))
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--affinity"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.affinity`
+
+Optional:
+
+- `node_affinity` (Attributes) Describes node affinity scheduling rules for the pod. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--node_affinity))
+- `pod_affinity` (Attributes) Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_affinity))
+- `pod_anti_affinity` (Attributes) Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity))
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--node_affinity"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.node_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `preference` (Attributes) A node selector term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference`
+
+Optional:
+
+- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference--match_fields))
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference.match_expressions`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference.match_fields`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+
+
+
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `node_selector_terms` (Attributes List) Required. A list of node selector terms. The terms are ORed. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+
+
+
+
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_affinity"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+
+Required:
+
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
+
+Optional:
+
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
+
+Optional:
+
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+
+Required:
+
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
+
+Optional:
+
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
+
+Optional:
+
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+
+
+
+<a id="nestedatt--spec--agent--ebpf--sampling--scheduling--tolerations"></a>
+### Nested Schema for `spec.agent.ebpf.sampling.scheduling.tolerations`
+
+Optional:
+
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
+
+
+
+
+<a id="nestedatt--spec--agent--ebpf--flow_filter"></a>
+### Nested Schema for `spec.agent.ebpf.flow_filter`
+
+Optional:
+
+- `action` (String) Action defines the action to perform on the flows that match the filter.
+- `cidr` (String) CIDR defines the IP CIDR to filter flows by.Example: 10.10.10.0/24 or 100:100:100:100::/64
+- `dest_ports` (String) DestPorts defines the destination ports to filter flows by.To filter a single port, set a single port as an integer value. For example destPorts: 80.To filter a range of ports, use a 'start-end' range, string format. For example destPorts: '80-100'.
+- `direction` (String) Direction defines the direction to filter flows by.
+- `enable` (Boolean) Set 'enable' to 'true' to enable eBPF flow filtering feature.
+- `icmp_code` (Number) ICMPCode defines the ICMP code to filter flows by.
+- `icmp_type` (Number) ICMPType defines the ICMP type to filter flows by.
+- `peer_ip` (String) PeerIP defines the IP address to filter flows by.Example: 10.10.10.10
+- `ports` (String) Ports defines the ports to filter flows by. it can be user for either source or destination ports.To filter a single port, set a single port as an integer value. For example ports: 80.To filter a range of ports, use a 'start-end' range, string format. For example ports: '80-10
+- `protocol` (String) Protocol defines the protocol to filter flows by.
+- `source_ports` (String) SourcePorts defines the source ports to filter flows by.To filter a single port, set a single port as an integer value. For example sourcePorts: 80.To filter a range of ports, use a 'start-end' range, string format. For example sourcePorts: '80-100'.
 
 
 <a id="nestedatt--spec--agent--ebpf--metrics"></a>
@@ -120,10 +545,10 @@ Optional:
 
 Optional:
 
-- `insecure_skip_verify` (Boolean) 'insecureSkipVerify' allows skipping client-side verification of the provided certificate. If set to 'true', the 'providedCaFile' field is ignored.
+- `insecure_skip_verify` (Boolean) 'insecureSkipVerify' allows skipping client-side verification of the provided certificate.If set to 'true', the 'providedCaFile' field is ignored.
 - `provided` (Attributes) TLS configuration when 'type' is set to 'Provided'. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--server--tls--provided))
 - `provided_ca_file` (Attributes) Reference to the CA file when 'type' is set to 'Provided'. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--server--tls--provided_ca_file))
-- `type` (String) Select the type of TLS configuration:<br> - 'Disabled' (default) to not configure TLS for the endpoint. - 'Provided' to manually provide cert file and a key file. - 'Auto' to use OpenShift auto generated certificate using annotations.
+- `type` (String) Select the type of TLS configuration:<br>- 'Disabled' (default) to not configure TLS for the endpoint.- 'Provided' to manually provide cert file and a key file. [Unsupported (*)].- 'Auto' to use OpenShift auto generated certificate using annotations.
 
 <a id="nestedatt--spec--agent--ebpf--sampling--server--tls--provided"></a>
 ### Nested Schema for `spec.agent.ebpf.sampling.server.tls.provided`
@@ -133,7 +558,7 @@ Optional:
 - `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
 - `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
 - `name` (String) Name of the config map or secret containing certificates
-- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
+- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
 - `type` (String) Type for the certificate reference: 'configmap' or 'secret'
 
 
@@ -144,7 +569,7 @@ Optional:
 
 - `file` (String) File name within the config map or secret
 - `name` (String) Name of the config map or secret containing the file
-- `namespace` (String) Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
+- `namespace` (String) Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
 - `type` (String) Type for the file reference: 'configmap' or 'secret'
 
 
@@ -156,16 +581,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--agent--ebpf--sampling--claims"></a>
 ### Nested Schema for `spec.agent.ebpf.sampling.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -178,9 +603,9 @@ Optional:
 - `cache_active_timeout` (String) 'cacheActiveTimeout' is the max period during which the reporter aggregates flows before sending.
 - `cache_max_flows` (Number) 'cacheMaxFlows' is the max number of flows in an aggregate; when reached, the reporter sends the flows.
 - `cluster_network_operator` (Attributes) 'clusterNetworkOperator' defines the settings related to the OpenShift Cluster Network Operator, when available. (see [below for nested schema](#nestedatt--spec--agent--ipfix--cluster_network_operator))
-- `force_sample_all` (Boolean) 'forceSampleAll' allows disabling sampling in the IPFIX-based flow reporter. It is not recommended to sample all the traffic with IPFIX, as it might generate cluster instability. If you REALLY want to do that, set this flag to 'true'. Use at your own risk. When it is set to 'true', the value of 'sampling' is ignored.
+- `force_sample_all` (Boolean) 'forceSampleAll' allows disabling sampling in the IPFIX-based flow reporter.It is not recommended to sample all the traffic with IPFIX, as it might generate cluster instability.If you REALLY want to do that, set this flag to 'true'. Use at your own risk.When it is set to 'true', the value of 'sampling' is ignored.
 - `ovn_kubernetes` (Attributes) 'ovnKubernetes' defines the settings of the OVN-Kubernetes CNI, when available. This configuration is used when using OVN's IPFIX exports, without OpenShift. When using OpenShift, refer to the 'clusterNetworkOperator' property instead. (see [below for nested schema](#nestedatt--spec--agent--ipfix--ovn_kubernetes))
-- `sampling` (Number) 'sampling' is the sampling rate on the reporter. 100 means one flow on 100 is sent. To ensure cluster stability, it is not possible to set a value below 2. If you really want to sample every packet, which might impact the cluster stability, refer to 'forceSampleAll'. Alternatively, you can use the eBPF Agent instead of IPFIX.
+- `sampling` (Number) 'sampling' is the sampling rate on the reporter. 100 means one flow on 100 is sent.To ensure cluster stability, it is not possible to set a value below 2.If you really want to sample every packet, which might impact the cluster stability,refer to 'forceSampleAll'. Alternatively, you can use the eBPF Agent instead of IPFIX.
 
 <a id="nestedatt--spec--agent--ipfix--cluster_network_operator"></a>
 ### Nested Schema for `spec.agent.ipfix.cluster_network_operator`
@@ -207,25 +632,431 @@ Optional:
 
 Optional:
 
-- `advanced` (Attributes) 'advanced' allows setting some aspects of the internal configuration of the console plugin. This section is aimed mostly for debugging and fine-grained performance optimizations, such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced))
+- `advanced` (Attributes) 'advanced' allows setting some aspects of the internal configuration of the console plugin.This section is aimed mostly for debugging and fine-grained performance optimizations,such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced))
 - `autoscaler` (Attributes) 'autoscaler' spec of a horizontal pod autoscaler to set up for the plugin Deployment. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler))
-- `enable` (Boolean) Enables the console plugin deployment. 'spec.loki.enable' must also be 'true'
+- `enable` (Boolean) Enables the console plugin deployment.'spec.loki.enable' must also be 'true'
 - `image_pull_policy` (String) 'imagePullPolicy' is the Kubernetes pull policy for the image defined above
 - `log_level` (String) 'logLevel' for the console plugin backend
 - `port_naming` (Attributes) 'portNaming' defines the configuration of the port-to-service name translation (see [below for nested schema](#nestedatt--spec--console_plugin--port_naming))
 - `quick_filters` (Attributes List) 'quickFilters' configures quick filter presets for the Console plugin (see [below for nested schema](#nestedatt--spec--console_plugin--quick_filters))
 - `replicas` (Number) 'replicas' defines the number of replicas (pods) to start.
-- `resources` (Attributes) 'resources', in terms of compute resources, required by this container. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--console_plugin--resources))
+- `resources` (Attributes) 'resources', in terms of compute resources, required by this container.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--console_plugin--resources))
 
 <a id="nestedatt--spec--console_plugin--advanced"></a>
 ### Nested Schema for `spec.console_plugin.advanced`
 
 Optional:
 
-- `args` (List of String) 'args' allows passing custom arguments to underlying components. Useful for overriding some parameters, such as an url or a configuration path, that should not be publicly exposed as part of the FlowCollector descriptor, as they are only useful in edge debug or support scenarios.
-- `env` (Map of String) 'env' allows passing custom environment variables to underlying components. Useful for passing some very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not be publicly exposed as part of the FlowCollector descriptor, as they are only useful in edge debug or support scenarios.
+- `args` (List of String) 'args' allows passing custom arguments to underlying components. Useful for overridingsome parameters, such as an url or a configuration path, that should not bepublicly exposed as part of the FlowCollector descriptor, as they are only usefulin edge debug or support scenarios.
+- `env` (Map of String) 'env' allows passing custom environment variables to underlying components. Useful for passingsome very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not bepublicly exposed as part of the FlowCollector descriptor, as they are only usefulin edge debug or support scenarios.
 - `port` (Number) 'port' is the plugin service port. Do not use 9002, which is reserved for metrics.
-- `register` (Boolean) 'register' allows, when set to 'true', to automatically register the provided console plugin with the OpenShift Console operator. When set to 'false', you can still register it manually by editing console.operator.openshift.io/cluster with the following command: 'oc patch console.operator.openshift.io cluster --type='json' -p '[{'op': 'add', 'path': '/spec/plugins/-', 'value': 'netobserv-plugin'}]''
+- `register` (Boolean) 'register' allows, when set to 'true', to automatically register the provided console plugin with the OpenShift Console operator.When set to 'false', you can still register it manually by editing console.operator.openshift.io/cluster with the following command:'oc patch console.operator.openshift.io cluster --type='json' -p '[{'op': 'add', 'path': '/spec/plugins/-', 'value': 'netobserv-plugin'}]''
+- `scheduling` (Attributes) scheduling controls whether the pod will be scheduled or not. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling))
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling`
+
+Optional:
+
+- `affinity` (Attributes) If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity))
+- `node_selector` (Map of String) NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+- `priority_class_name` (String) If specified, indicates the pod's priority. 'system-node-critical' and'system-cluster-critical' are two special keywords which indicate thehighest priorities with the former being the highest priority. Any othername must be defined by creating a PriorityClass object with that name.If not specified, the pod priority will be default or zero if there is nodefault.
+- `tolerations` (Attributes List) tolerations is a list of tolerations that allow the pod to schedule onto nodes with matching taints. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--tolerations))
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity`
+
+Optional:
+
+- `node_affinity` (Attributes) Describes node affinity scheduling rules for the pod. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--node_affinity))
+- `pod_affinity` (Attributes) Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_affinity))
+- `pod_anti_affinity` (Attributes) Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity))
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--node_affinity"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.node_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `preference` (Attributes) A node selector term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference`
+
+Optional:
+
+- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
+- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+
+
+
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `node_selector_terms` (Attributes List) Required. A list of node selector terms. The terms are ORed. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+
+
+
+
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_affinity"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+
+Required:
+
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
+
+Optional:
+
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
+
+Optional:
+
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+
+Required:
+
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
+
+Optional:
+
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
+
+Optional:
+
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+
+
+
+<a id="nestedatt--spec--console_plugin--advanced--scheduling--tolerations"></a>
+### Nested Schema for `spec.console_plugin.advanced.scheduling.tolerations`
+
+Optional:
+
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
+
+
 
 
 <a id="nestedatt--spec--console_plugin--autoscaler"></a>
@@ -234,46 +1065,46 @@ Optional:
 Optional:
 
 - `max_replicas` (Number) 'maxReplicas' is the upper limit for the number of pods that can be set by the autoscaler; cannot be smaller than MinReplicas.
-- `metrics` (Attributes List) Metrics used by the pod autoscaler (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics))
-- `min_replicas` (Number) 'minReplicas' is the lower limit for the number of replicas to which the autoscaler can scale down. It defaults to 1 pod. minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured. Scaling is active as long as at least one metric value is available.
-- `status` (String) 'status' describes the desired status regarding deploying an horizontal pod autoscaler.<br> - 'Disabled' does not deploy an horizontal pod autoscaler.<br> - 'Enabled' deploys an horizontal pod autoscaler.<br>
+- `metrics` (Attributes List) Metrics used by the pod autoscaler. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/horizontal-pod-autoscaler-v2/ (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics))
+- `min_replicas` (Number) 'minReplicas' is the lower limit for the number of replicas to which the autoscalercan scale down. It defaults to 1 pod. minReplicas is allowed to be 0 if thealpha feature gate HPAScaleToZero is enabled and at least one Object or Externalmetric is configured. Scaling is active as long as at least one metric value isavailable.
+- `status` (String) 'status' describes the desired status regarding deploying an horizontal pod autoscaler.<br>- 'Disabled' does not deploy an horizontal pod autoscaler.<br>- 'Enabled' deploys an horizontal pod autoscaler.<br>
 
 <a id="nestedatt--spec--console_plugin--autoscaler--metrics"></a>
 ### Nested Schema for `spec.console_plugin.autoscaler.metrics`
 
 Required:
 
-- `type` (String) type is the type of metric source.  It should be one of 'ContainerResource', 'External', 'Object', 'Pods' or 'Resource', each mapping to a matching field in the object. Note: 'ContainerResource' type is available on when the feature-gate HPAContainerMetrics is enabled
+- `type` (String)
 
 Optional:
 
-- `container_resource` (Attributes) containerResource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing a single container in each pod of the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source. This is an alpha feature and can be enabled by the HPAContainerMetrics feature flag. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--container_resource))
-- `external` (Attributes) external refers to a global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster). (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--external))
-- `object` (Attributes) object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object). (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object))
-- `pods` (Attributes) pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).  The values will be averaged together before being compared to the target value. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--pods))
-- `resource` (Attributes) resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--resource))
+- `container_resource` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--container_resource))
+- `external` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--external))
+- `object` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object))
+- `pods` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--pods))
+- `resource` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--resource))
 
 <a id="nestedatt--spec--console_plugin--autoscaler--status--container_resource"></a>
 ### Nested Schema for `spec.console_plugin.autoscaler.status.container_resource`
 
 Required:
 
-- `container` (String) container is the name of the container in the pods of the scaling target
-- `name` (String) name is the name of the resource in question.
-- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--container_resource--target))
+- `container` (String)
+- `name` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--container_resource--target))
 
 <a id="nestedatt--spec--console_plugin--autoscaler--status--container_resource--target"></a>
 ### Nested Schema for `spec.console_plugin.autoscaler.status.container_resource.target`
 
 Required:
 
-- `type` (String) type represents whether the metric type is Utilization, Value, or AverageValue
+- `type` (String)
 
 Optional:
 
-- `average_utilization` (Number) averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type
-- `average_value` (String) averageValue is the target value of the average of the metric across all relevant pods (as a quantity)
-- `value` (String) value is the target value of the metric (as a quantity).
+- `average_utilization` (Number)
+- `average_value` (String)
+- `value` (String)
 
 
 
@@ -282,39 +1113,39 @@ Optional:
 
 Required:
 
-- `metric` (Attributes) metric identifies the target metric by name and selector (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--external--metric))
-- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--external--target))
+- `metric` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--external--metric))
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--external--target))
 
 <a id="nestedatt--spec--console_plugin--autoscaler--status--external--metric"></a>
 ### Nested Schema for `spec.console_plugin.autoscaler.status.external.metric`
 
 Required:
 
-- `name` (String) name is the name of the given metric
+- `name` (String)
 
 Optional:
 
-- `selector` (Attributes) selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--external--target--selector))
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--external--target--selector))
 
 <a id="nestedatt--spec--console_plugin--autoscaler--status--external--target--selector"></a>
 ### Nested Schema for `spec.console_plugin.autoscaler.status.external.target.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--external--target--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--external--target--selector--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--console_plugin--autoscaler--status--external--target--selector--match_expressions"></a>
 ### Nested Schema for `spec.console_plugin.autoscaler.status.external.target.selector.match_expressions`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -324,13 +1155,13 @@ Optional:
 
 Required:
 
-- `type` (String) type represents whether the metric type is Utilization, Value, or AverageValue
+- `type` (String)
 
 Optional:
 
-- `average_utilization` (Number) averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type
-- `average_value` (String) averageValue is the target value of the average of the metric across all relevant pods (as a quantity)
-- `value` (String) value is the target value of the metric (as a quantity).
+- `average_utilization` (Number)
+- `average_value` (String)
+- `value` (String)
 
 
 
@@ -339,21 +1170,21 @@ Optional:
 
 Required:
 
-- `described_object` (Attributes) describedObject specifies the descriptions of a object,such as kind,name apiVersion (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object--described_object))
-- `metric` (Attributes) metric identifies the target metric by name and selector (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object--metric))
-- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object--target))
+- `described_object` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object--described_object))
+- `metric` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object--metric))
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object--target))
 
 <a id="nestedatt--spec--console_plugin--autoscaler--status--object--described_object"></a>
 ### Nested Schema for `spec.console_plugin.autoscaler.status.object.described_object`
 
 Required:
 
-- `kind` (String) kind is the kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) name is the name of the referent; More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `kind` (String)
+- `name` (String)
 
 Optional:
 
-- `api_version` (String) apiVersion is the API version of the referent
+- `api_version` (String)
 
 
 <a id="nestedatt--spec--console_plugin--autoscaler--status--object--metric"></a>
@@ -361,31 +1192,31 @@ Optional:
 
 Required:
 
-- `name` (String) name is the name of the given metric
+- `name` (String)
 
 Optional:
 
-- `selector` (Attributes) selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object--target--selector))
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object--target--selector))
 
 <a id="nestedatt--spec--console_plugin--autoscaler--status--object--target--selector"></a>
 ### Nested Schema for `spec.console_plugin.autoscaler.status.object.target.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object--target--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object--target--selector--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--console_plugin--autoscaler--status--object--target--selector--match_expressions"></a>
 ### Nested Schema for `spec.console_plugin.autoscaler.status.object.target.selector.match_expressions`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -395,13 +1226,13 @@ Optional:
 
 Required:
 
-- `type` (String) type represents whether the metric type is Utilization, Value, or AverageValue
+- `type` (String)
 
 Optional:
 
-- `average_utilization` (Number) averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type
-- `average_value` (String) averageValue is the target value of the average of the metric across all relevant pods (as a quantity)
-- `value` (String) value is the target value of the metric (as a quantity).
+- `average_utilization` (Number)
+- `average_value` (String)
+- `value` (String)
 
 
 
@@ -410,39 +1241,39 @@ Optional:
 
 Required:
 
-- `metric` (Attributes) metric identifies the target metric by name and selector (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--pods--metric))
-- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--pods--target))
+- `metric` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--pods--metric))
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--pods--target))
 
 <a id="nestedatt--spec--console_plugin--autoscaler--status--pods--metric"></a>
 ### Nested Schema for `spec.console_plugin.autoscaler.status.pods.metric`
 
 Required:
 
-- `name` (String) name is the name of the given metric
+- `name` (String)
 
 Optional:
 
-- `selector` (Attributes) selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--pods--target--selector))
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--pods--target--selector))
 
 <a id="nestedatt--spec--console_plugin--autoscaler--status--pods--target--selector"></a>
 ### Nested Schema for `spec.console_plugin.autoscaler.status.pods.target.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--pods--target--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--pods--target--selector--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--console_plugin--autoscaler--status--pods--target--selector--match_expressions"></a>
 ### Nested Schema for `spec.console_plugin.autoscaler.status.pods.target.selector.match_expressions`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -452,13 +1283,13 @@ Optional:
 
 Required:
 
-- `type` (String) type represents whether the metric type is Utilization, Value, or AverageValue
+- `type` (String)
 
 Optional:
 
-- `average_utilization` (Number) averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type
-- `average_value` (String) averageValue is the target value of the average of the metric across all relevant pods (as a quantity)
-- `value` (String) value is the target value of the metric (as a quantity).
+- `average_utilization` (Number)
+- `average_value` (String)
+- `value` (String)
 
 
 
@@ -467,21 +1298,21 @@ Optional:
 
 Required:
 
-- `name` (String) name is the name of the resource in question.
-- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--resource--target))
+- `name` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--resource--target))
 
 <a id="nestedatt--spec--console_plugin--autoscaler--status--resource--target"></a>
 ### Nested Schema for `spec.console_plugin.autoscaler.status.resource.target`
 
 Required:
 
-- `type` (String) type represents whether the metric type is Utilization, Value, or AverageValue
+- `type` (String)
 
 Optional:
 
-- `average_utilization` (Number) averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type
-- `average_value` (String) averageValue is the target value of the average of the metric across all relevant pods (as a quantity)
-- `value` (String) value is the target value of the metric (as a quantity).
+- `average_utilization` (Number)
+- `average_value` (String)
+- `value` (String)
 
 
 
@@ -493,7 +1324,7 @@ Optional:
 Optional:
 
 - `enable` (Boolean) Enable the console plugin port-to-service name translation
-- `port_names` (Map of String) 'portNames' defines additional port names to use in the console, for example, 'portNames: {'3100': 'loki'}'.
+- `port_names` (Map of String) 'portNames' defines additional port names to use in the console,for example, 'portNames: {'3100': 'loki'}'.
 
 
 <a id="nestedatt--spec--console_plugin--quick_filters"></a>
@@ -501,7 +1332,7 @@ Optional:
 
 Required:
 
-- `filter` (Map of String) 'filter' is a set of keys and values to be set when this filter is selected. Each key can relate to a list of values using a coma-separated string, for example, 'filter: {'src_namespace': 'namespace1,namespace2'}'.
+- `filter` (Map of String) 'filter' is a set of keys and values to be set when this filter is selected. Each key can relate to a list of values using a coma-separated string,for example, 'filter: {'src_namespace': 'namespace1,namespace2'}'.
 - `name` (String) Name of the filter, that is displayed in the Console
 
 Optional:
@@ -514,16 +1345,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--console_plugin--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--console_plugin--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--console_plugin--resources--claims"></a>
 ### Nested Schema for `spec.console_plugin.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 
@@ -582,7 +1413,7 @@ Optional:
 
 - `file` (String) File name within the config map or secret
 - `name` (String) Name of the config map or secret containing the file
-- `namespace` (String) Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
+- `namespace` (String) Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
 - `type` (String) Type for the file reference: 'configmap' or 'secret'
 
 
@@ -593,7 +1424,7 @@ Optional:
 
 - `file` (String) File name within the config map or secret
 - `name` (String) Name of the config map or secret containing the file
-- `namespace` (String) Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
+- `namespace` (String) Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
 - `type` (String) Type for the file reference: 'configmap' or 'secret'
 
 
@@ -605,7 +1436,7 @@ Optional:
 
 - `ca_cert` (Attributes) 'caCert' defines the reference of the certificate for the Certificate Authority (see [below for nested schema](#nestedatt--spec--exporters--kafka--tls--ca_cert))
 - `enable` (Boolean) Enable TLS
-- `insecure_skip_verify` (Boolean) 'insecureSkipVerify' allows skipping client-side verification of the server certificate. If set to 'true', the 'caCert' field is ignored.
+- `insecure_skip_verify` (Boolean) 'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.
 - `user_cert` (Attributes) 'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS) (see [below for nested schema](#nestedatt--spec--exporters--kafka--tls--user_cert))
 
 <a id="nestedatt--spec--exporters--kafka--tls--ca_cert"></a>
@@ -616,7 +1447,7 @@ Optional:
 - `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
 - `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
 - `name` (String) Name of the config map or secret containing certificates
-- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
+- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
 - `type` (String) Type for the certificate reference: 'configmap' or 'secret'
 
 
@@ -628,7 +1459,7 @@ Optional:
 - `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
 - `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
 - `name` (String) Name of the config map or secret containing certificates
-- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
+- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
 - `type` (String) Type for the certificate reference: 'configmap' or 'secret'
 
 
@@ -664,7 +1495,7 @@ Optional:
 
 - `file` (String) File name within the config map or secret
 - `name` (String) Name of the config map or secret containing the file
-- `namespace` (String) Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
+- `namespace` (String) Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
 - `type` (String) Type for the file reference: 'configmap' or 'secret'
 
 
@@ -675,7 +1506,7 @@ Optional:
 
 - `file` (String) File name within the config map or secret
 - `name` (String) Name of the config map or secret containing the file
-- `namespace` (String) Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
+- `namespace` (String) Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
 - `type` (String) Type for the file reference: 'configmap' or 'secret'
 
 
@@ -687,7 +1518,7 @@ Optional:
 
 - `ca_cert` (Attributes) 'caCert' defines the reference of the certificate for the Certificate Authority (see [below for nested schema](#nestedatt--spec--kafka--tls--ca_cert))
 - `enable` (Boolean) Enable TLS
-- `insecure_skip_verify` (Boolean) 'insecureSkipVerify' allows skipping client-side verification of the server certificate. If set to 'true', the 'caCert' field is ignored.
+- `insecure_skip_verify` (Boolean) 'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.
 - `user_cert` (Attributes) 'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS) (see [below for nested schema](#nestedatt--spec--kafka--tls--user_cert))
 
 <a id="nestedatt--spec--kafka--tls--ca_cert"></a>
@@ -698,7 +1529,7 @@ Optional:
 - `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
 - `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
 - `name` (String) Name of the config map or secret containing certificates
-- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
+- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
 - `type` (String) Type for the certificate reference: 'configmap' or 'secret'
 
 
@@ -710,7 +1541,7 @@ Optional:
 - `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
 - `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
 - `name` (String) Name of the config map or secret containing certificates
-- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
+- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
 - `type` (String) Type for the certificate reference: 'configmap' or 'secret'
 
 
@@ -721,17 +1552,17 @@ Optional:
 
 Optional:
 
-- `advanced` (Attributes) 'advanced' allows setting some aspects of the internal configuration of the Loki clients. This section is aimed mostly for debugging and fine-grained performance optimizations. (see [below for nested schema](#nestedatt--spec--loki--advanced))
+- `advanced` (Attributes) 'advanced' allows setting some aspects of the internal configuration of the Loki clients.This section is aimed mostly for debugging and fine-grained performance optimizations. (see [below for nested schema](#nestedatt--spec--loki--advanced))
 - `enable` (Boolean) Set 'enable' to 'true' to store flows in Loki. It is required for the OpenShift Console plugin installation.
-- `loki_stack` (Attributes) Loki configuration for 'LokiStack' mode. This is useful for an easy loki-operator configuration. It is ignored for other modes. (see [below for nested schema](#nestedatt--spec--loki--loki_stack))
-- `manual` (Attributes) Loki configuration for 'Manual' mode. This is the most flexible configuration. It is ignored for other modes. (see [below for nested schema](#nestedatt--spec--loki--manual))
-- `microservices` (Attributes) Loki configuration for 'Microservices' mode. Use this option when Loki is installed using the microservices deployment mode (https://grafana.com/docs/loki/latest/fundamentals/architecture/deployment-modes/#microservices-mode). It is ignored for other modes. (see [below for nested schema](#nestedatt--spec--loki--microservices))
-- `mode` (String) 'mode' must be set according to the installation mode of Loki:<br> - Use 'LokiStack' when Loki is managed using the Loki Operator<br> - Use 'Monolithic' when Loki is installed as a monolithic workload<br> - Use 'Microservices' when Loki is installed as microservices, but without Loki Operator<br> - Use 'Manual' if none of the options above match your setup<br>
-- `monolithic` (Attributes) Loki configuration for 'Monolithic' mode. Use this option when Loki is installed using the monolithic deployment mode (https://grafana.com/docs/loki/latest/fundamentals/architecture/deployment-modes/#monolithic-mode). It is ignored for other modes. (see [below for nested schema](#nestedatt--spec--loki--monolithic))
-- `read_timeout` (String) 'readTimeout' is the maximum console plugin loki query total time limit. A timeout of zero means no timeout.
+- `loki_stack` (Attributes) Loki configuration for 'LokiStack' mode. This is useful for an easy loki-operator configuration.It is ignored for other modes. (see [below for nested schema](#nestedatt--spec--loki--loki_stack))
+- `manual` (Attributes) Loki configuration for 'Manual' mode. This is the most flexible configuration.It is ignored for other modes. (see [below for nested schema](#nestedatt--spec--loki--manual))
+- `microservices` (Attributes) Loki configuration for 'Microservices' mode.Use this option when Loki is installed using the microservices deployment mode (https://grafana.com/docs/loki/latest/fundamentals/architecture/deployment-modes/#microservices-mode).It is ignored for other modes. (see [below for nested schema](#nestedatt--spec--loki--microservices))
+- `mode` (String) 'mode' must be set according to the installation mode of Loki:<br>- Use 'LokiStack' when Loki is managed using the Loki Operator<br>- Use 'Monolithic' when Loki is installed as a monolithic workload<br>- Use 'Microservices' when Loki is installed as microservices, but without Loki Operator<br>- Use 'Manual' if none of the options above match your setup<br>
+- `monolithic` (Attributes) Loki configuration for 'Monolithic' mode.Use this option when Loki is installed using the monolithic deployment mode (https://grafana.com/docs/loki/latest/fundamentals/architecture/deployment-modes/#monolithic-mode).It is ignored for other modes. (see [below for nested schema](#nestedatt--spec--loki--monolithic))
+- `read_timeout` (String) 'readTimeout' is the maximum console plugin loki query total time limit.A timeout of zero means no timeout.
 - `write_batch_size` (Number) 'writeBatchSize' is the maximum batch size (in bytes) of Loki logs to accumulate before sending.
 - `write_batch_wait` (String) 'writeBatchWait' is the maximum time to wait before sending a Loki batch.
-- `write_timeout` (String) 'writeTimeout' is the maximum Loki time connection / request limit. A timeout of zero means no timeout.
+- `write_timeout` (String) 'writeTimeout' is the maximum Loki time connection / request limit.A timeout of zero means no timeout.
 
 <a id="nestedatt--spec--loki--advanced"></a>
 ### Nested Schema for `spec.loki.advanced`
@@ -750,7 +1581,7 @@ Optional:
 Optional:
 
 - `name` (String) Name of an existing LokiStack resource to use.
-- `namespace` (String) Namespace where this 'LokiStack' resource is located. If omited, it is assumed to be the same as 'spec.namespace'.
+- `namespace` (String) Namespace where this 'LokiStack' resource is located. If omitted, it is assumed to be the same as 'spec.namespace'.
 
 
 <a id="nestedatt--spec--loki--manual"></a>
@@ -758,12 +1589,12 @@ Optional:
 
 Optional:
 
-- `auth_token` (String) 'authToken' describes the way to get a token to authenticate to Loki.<br> - 'Disabled' does not send any token with the request.<br> - 'Forward' forwards the user token for authorization.<br> - 'Host' [deprecated (*)] - uses the local pod service account to authenticate to Loki.<br> When using the Loki Operator, this must be set to 'Forward'.
-- `ingester_url` (String) 'ingesterUrl' is the address of an existing Loki ingester service to push the flows to. When using the Loki Operator, set it to the Loki gateway service with the 'network' tenant set in path, for example https://loki-gateway-http.netobserv.svc:8080/api/logs/v1/network.
-- `querier_url` (String) 'querierUrl' specifies the address of the Loki querier service. When using the Loki Operator, set it to the Loki gateway service with the 'network' tenant set in path, for example https://loki-gateway-http.netobserv.svc:8080/api/logs/v1/network.
+- `auth_token` (String) 'authToken' describes the way to get a token to authenticate to Loki.<br>- 'Disabled' does not send any token with the request.<br>- 'Forward' forwards the user token for authorization.<br>- 'Host' [deprecated (*)] - uses the local pod service account to authenticate to Loki.<br>When using the Loki Operator, this must be set to 'Forward'.
+- `ingester_url` (String) 'ingesterUrl' is the address of an existing Loki ingester service to push the flows to. When using the Loki Operator,set it to the Loki gateway service with the 'network' tenant set in path, for examplehttps://loki-gateway-http.netobserv.svc:8080/api/logs/v1/network.
+- `querier_url` (String) 'querierUrl' specifies the address of the Loki querier service.When using the Loki Operator, set it to the Loki gateway service with the 'network' tenant set in path, for examplehttps://loki-gateway-http.netobserv.svc:8080/api/logs/v1/network.
 - `status_tls` (Attributes) TLS client configuration for Loki status URL. (see [below for nested schema](#nestedatt--spec--loki--manual--status_tls))
-- `status_url` (String) 'statusUrl' specifies the address of the Loki '/ready', '/metrics' and '/config' endpoints, in case it is different from the Loki querier URL. If empty, the 'querierUrl' value is used. This is useful to show error messages and some context in the frontend. When using the Loki Operator, set it to the Loki HTTP query frontend service, for example https://loki-query-frontend-http.netobserv.svc:3100/. 'statusTLS' configuration is used when 'statusUrl' is set.
-- `tenant_id` (String) 'tenantID' is the Loki 'X-Scope-OrgID' that identifies the tenant for each request. When using the Loki Operator, set it to 'network', which corresponds to a special tenant mode.
+- `status_url` (String) 'statusUrl' specifies the address of the Loki '/ready', '/metrics' and '/config' endpoints, in case it is different from theLoki querier URL. If empty, the 'querierUrl' value is used.This is useful to show error messages and some context in the frontend.When using the Loki Operator, set it to the Loki HTTP query frontend service, for examplehttps://loki-query-frontend-http.netobserv.svc:3100/.'statusTLS' configuration is used when 'statusUrl' is set.
+- `tenant_id` (String) 'tenantID' is the Loki 'X-Scope-OrgID' that identifies the tenant for each request.When using the Loki Operator, set it to 'network', which corresponds to a special tenant mode.
 - `tls` (Attributes) TLS client configuration for Loki URL. (see [below for nested schema](#nestedatt--spec--loki--manual--tls))
 
 <a id="nestedatt--spec--loki--manual--status_tls"></a>
@@ -773,7 +1604,7 @@ Optional:
 
 - `ca_cert` (Attributes) 'caCert' defines the reference of the certificate for the Certificate Authority (see [below for nested schema](#nestedatt--spec--loki--manual--tls--ca_cert))
 - `enable` (Boolean) Enable TLS
-- `insecure_skip_verify` (Boolean) 'insecureSkipVerify' allows skipping client-side verification of the server certificate. If set to 'true', the 'caCert' field is ignored.
+- `insecure_skip_verify` (Boolean) 'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.
 - `user_cert` (Attributes) 'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS) (see [below for nested schema](#nestedatt--spec--loki--manual--tls--user_cert))
 
 <a id="nestedatt--spec--loki--manual--tls--ca_cert"></a>
@@ -784,7 +1615,7 @@ Optional:
 - `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
 - `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
 - `name` (String) Name of the config map or secret containing certificates
-- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
+- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
 - `type` (String) Type for the certificate reference: 'configmap' or 'secret'
 
 
@@ -796,7 +1627,7 @@ Optional:
 - `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
 - `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
 - `name` (String) Name of the config map or secret containing certificates
-- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
+- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
 - `type` (String) Type for the certificate reference: 'configmap' or 'secret'
 
 
@@ -808,7 +1639,7 @@ Optional:
 
 - `ca_cert` (Attributes) 'caCert' defines the reference of the certificate for the Certificate Authority (see [below for nested schema](#nestedatt--spec--loki--manual--tls--ca_cert))
 - `enable` (Boolean) Enable TLS
-- `insecure_skip_verify` (Boolean) 'insecureSkipVerify' allows skipping client-side verification of the server certificate. If set to 'true', the 'caCert' field is ignored.
+- `insecure_skip_verify` (Boolean) 'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.
 - `user_cert` (Attributes) 'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS) (see [below for nested schema](#nestedatt--spec--loki--manual--tls--user_cert))
 
 <a id="nestedatt--spec--loki--manual--tls--ca_cert"></a>
@@ -819,7 +1650,7 @@ Optional:
 - `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
 - `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
 - `name` (String) Name of the config map or secret containing certificates
-- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
+- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
 - `type` (String) Type for the certificate reference: 'configmap' or 'secret'
 
 
@@ -831,7 +1662,7 @@ Optional:
 - `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
 - `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
 - `name` (String) Name of the config map or secret containing certificates
-- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
+- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
 - `type` (String) Type for the certificate reference: 'configmap' or 'secret'
 
 
@@ -854,7 +1685,7 @@ Optional:
 
 - `ca_cert` (Attributes) 'caCert' defines the reference of the certificate for the Certificate Authority (see [below for nested schema](#nestedatt--spec--loki--microservices--tls--ca_cert))
 - `enable` (Boolean) Enable TLS
-- `insecure_skip_verify` (Boolean) 'insecureSkipVerify' allows skipping client-side verification of the server certificate. If set to 'true', the 'caCert' field is ignored.
+- `insecure_skip_verify` (Boolean) 'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.
 - `user_cert` (Attributes) 'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS) (see [below for nested schema](#nestedatt--spec--loki--microservices--tls--user_cert))
 
 <a id="nestedatt--spec--loki--microservices--tls--ca_cert"></a>
@@ -865,7 +1696,7 @@ Optional:
 - `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
 - `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
 - `name` (String) Name of the config map or secret containing certificates
-- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
+- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
 - `type` (String) Type for the certificate reference: 'configmap' or 'secret'
 
 
@@ -877,7 +1708,7 @@ Optional:
 - `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
 - `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
 - `name` (String) Name of the config map or secret containing certificates
-- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
+- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
 - `type` (String) Type for the certificate reference: 'configmap' or 'secret'
 
 
@@ -899,7 +1730,7 @@ Optional:
 
 - `ca_cert` (Attributes) 'caCert' defines the reference of the certificate for the Certificate Authority (see [below for nested schema](#nestedatt--spec--loki--monolithic--url--ca_cert))
 - `enable` (Boolean) Enable TLS
-- `insecure_skip_verify` (Boolean) 'insecureSkipVerify' allows skipping client-side verification of the server certificate. If set to 'true', the 'caCert' field is ignored.
+- `insecure_skip_verify` (Boolean) 'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.
 - `user_cert` (Attributes) 'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS) (see [below for nested schema](#nestedatt--spec--loki--monolithic--url--user_cert))
 
 <a id="nestedatt--spec--loki--monolithic--url--ca_cert"></a>
@@ -910,7 +1741,7 @@ Optional:
 - `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
 - `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
 - `name` (String) Name of the config map or secret containing certificates
-- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
+- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
 - `type` (String) Type for the certificate reference: 'configmap' or 'secret'
 
 
@@ -922,7 +1753,7 @@ Optional:
 - `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
 - `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
 - `name` (String) Name of the config map or secret containing certificates
-- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
+- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
 - `type` (String) Type for the certificate reference: 'configmap' or 'secret'
 
 
@@ -934,34 +1765,441 @@ Optional:
 
 Optional:
 
-- `add_zone` (Boolean) 'addZone' allows availability zone awareness by labelling flows with their source and destination zones. This feature requires the 'topology.kubernetes.io/zone' label to be set on nodes.
-- `advanced` (Attributes) 'advanced' allows setting some aspects of the internal configuration of the flow processor. This section is aimed mostly for debugging and fine-grained performance optimizations, such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk. (see [below for nested schema](#nestedatt--spec--processor--advanced))
+- `add_zone` (Boolean) 'addZone' allows availability zone awareness by labelling flows with their source and destination zones.This feature requires the 'topology.kubernetes.io/zone' label to be set on nodes.
+- `advanced` (Attributes) 'advanced' allows setting some aspects of the internal configuration of the flow processor.This section is aimed mostly for debugging and fine-grained performance optimizations,such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk. (see [below for nested schema](#nestedatt--spec--processor--advanced))
 - `cluster_name` (String) 'clusterName' is the name of the cluster to appear in the flows data. This is useful in a multi-cluster context. When using OpenShift, leave empty to make it automatically determined.
 - `image_pull_policy` (String) 'imagePullPolicy' is the Kubernetes pull policy for the image defined above
-- `kafka_consumer_autoscaler` (Attributes) 'kafkaConsumerAutoscaler' is the spec of a horizontal pod autoscaler to set up for 'flowlogs-pipeline-transformer', which consumes Kafka messages. This setting is ignored when Kafka is disabled. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler))
+- `kafka_consumer_autoscaler` (Attributes) 'kafkaConsumerAutoscaler' is the spec of a horizontal pod autoscaler to set up for 'flowlogs-pipeline-transformer', which consumes Kafka messages.This setting is ignored when Kafka is disabled. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler))
 - `kafka_consumer_batch_size` (Number) 'kafkaConsumerBatchSize' indicates to the broker the maximum batch size, in bytes, that the consumer accepts. Ignored when not using Kafka. Default: 10MB.
 - `kafka_consumer_queue_capacity` (Number) 'kafkaConsumerQueueCapacity' defines the capacity of the internal message queue used in the Kafka consumer client. Ignored when not using Kafka.
-- `kafka_consumer_replicas` (Number) 'kafkaConsumerReplicas' defines the number of replicas (pods) to start for 'flowlogs-pipeline-transformer', which consumes Kafka messages. This setting is ignored when Kafka is disabled.
+- `kafka_consumer_replicas` (Number) 'kafkaConsumerReplicas' defines the number of replicas (pods) to start for 'flowlogs-pipeline-transformer', which consumes Kafka messages.This setting is ignored when Kafka is disabled.
 - `log_level` (String) 'logLevel' of the processor runtime
-- `log_types` (String) 'logTypes' defines the desired record types to generate. Possible values are:<br> - 'Flows' (default) to export regular network flows<br> - 'Conversations' to generate events for started conversations, ended conversations as well as periodic 'tick' updates<br> - 'EndedConversations' to generate only ended conversations events<br> - 'All' to generate both network flows and all conversations events<br>
+- `log_types` (String) 'logTypes' defines the desired record types to generate. Possible values are:<br>- 'Flows' (default) to export regular network flows<br>- 'Conversations' to generate events for started conversations, ended conversations as well as periodic 'tick' updates<br>- 'EndedConversations' to generate only ended conversations events<br>- 'All' to generate both network flows and all conversations events<br>
 - `metrics` (Attributes) 'Metrics' define the processor configuration regarding metrics (see [below for nested schema](#nestedatt--spec--processor--metrics))
 - `multi_cluster_deployment` (Boolean) Set 'multiClusterDeployment' to 'true' to enable multi clusters feature. This adds 'clusterName' label to flows data
-- `resources` (Attributes) 'resources' are the compute resources required by this container. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--processor--resources))
+- `resources` (Attributes) 'resources' are the compute resources required by this container.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--processor--resources))
+- `subnet_labels` (Attributes) 'SubnetLabels' allows to define custom labels on subnets and IPs or to enable automatic labelling of recognized subnets in OpenShift.When a subnet matches the source or destination IP of a flow, a corresponding field is added: 'SrcSubnetLabel' or 'DstSubnetLabel'. (see [below for nested schema](#nestedatt--spec--processor--subnet_labels))
 
 <a id="nestedatt--spec--processor--advanced"></a>
 ### Nested Schema for `spec.processor.advanced`
 
 Optional:
 
-- `conversation_end_timeout` (String) 'conversationEndTimeout' is the time to wait after a network flow is received, to consider the conversation ended. This delay is ignored when a FIN packet is collected for TCP flows (see 'conversationTerminatingTimeout' instead).
+- `conversation_end_timeout` (String) 'conversationEndTimeout' is the time to wait after a network flow is received, to consider the conversation ended.This delay is ignored when a FIN packet is collected for TCP flows (see 'conversationTerminatingTimeout' instead).
 - `conversation_heartbeat_interval` (String) 'conversationHeartbeatInterval' is the time to wait between 'tick' events of a conversation
 - `conversation_terminating_timeout` (String) 'conversationTerminatingTimeout' is the time to wait from detected FIN flag to end a conversation. Only relevant for TCP flows.
 - `drop_unused_fields` (Boolean) 'dropUnusedFields' [deprecated (*)] this setting is not used anymore.
 - `enable_kube_probes` (Boolean) 'enableKubeProbes' is a flag to enable or disable Kubernetes liveness and readiness probes
-- `env` (Map of String) 'env' allows passing custom environment variables to underlying components. Useful for passing some very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not be publicly exposed as part of the FlowCollector descriptor, as they are only useful in edge debug or support scenarios.
+- `env` (Map of String) 'env' allows passing custom environment variables to underlying components. Useful for passingsome very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not bepublicly exposed as part of the FlowCollector descriptor, as they are only usefulin edge debug or support scenarios.
 - `health_port` (Number) 'healthPort' is a collector HTTP port in the Pod that exposes the health check API
-- `port` (Number) Port of the flow collector (host port). By convention, some values are forbidden. It must be greater than 1024 and different from 4500, 4789 and 6081.
+- `port` (Number) Port of the flow collector (host port).By convention, some values are forbidden. It must be greater than 1024 and different from4500, 4789 and 6081.
 - `profile_port` (Number) 'profilePort' allows setting up a Go pprof profiler listening to this port
+- `scheduling` (Attributes) scheduling controls whether the pod will be scheduled or not. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling))
+
+<a id="nestedatt--spec--processor--advanced--scheduling"></a>
+### Nested Schema for `spec.processor.advanced.scheduling`
+
+Optional:
+
+- `affinity` (Attributes) If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity))
+- `node_selector` (Map of String) NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+- `priority_class_name` (String) If specified, indicates the pod's priority. 'system-node-critical' and'system-cluster-critical' are two special keywords which indicate thehighest priorities with the former being the highest priority. Any othername must be defined by creating a PriorityClass object with that name.If not specified, the pod priority will be default or zero if there is nodefault.
+- `tolerations` (Attributes List) tolerations is a list of tolerations that allow the pod to schedule onto nodes with matching taints. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--tolerations))
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity`
+
+Optional:
+
+- `node_affinity` (Attributes) Describes node affinity scheduling rules for the pod. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--node_affinity))
+- `pod_affinity` (Attributes) Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_affinity))
+- `pod_anti_affinity` (Attributes) Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity))
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--node_affinity"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.node_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `preference` (Attributes) A node selector term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference`
+
+Optional:
+
+- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
+- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+
+
+
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `node_selector_terms` (Attributes List) Required. A list of node selector terms. The terms are ORed. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+
+
+
+
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_affinity"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+
+Required:
+
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
+
+Optional:
+
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
+
+Optional:
+
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+
+Required:
+
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
+
+Optional:
+
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
+
+Optional:
+
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--processor--advanced--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+
+
+
+<a id="nestedatt--spec--processor--advanced--scheduling--tolerations"></a>
+### Nested Schema for `spec.processor.advanced.scheduling.tolerations`
+
+Optional:
+
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
+
+
 
 
 <a id="nestedatt--spec--processor--kafka_consumer_autoscaler"></a>
@@ -970,46 +2208,46 @@ Optional:
 Optional:
 
 - `max_replicas` (Number) 'maxReplicas' is the upper limit for the number of pods that can be set by the autoscaler; cannot be smaller than MinReplicas.
-- `metrics` (Attributes List) Metrics used by the pod autoscaler (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics))
-- `min_replicas` (Number) 'minReplicas' is the lower limit for the number of replicas to which the autoscaler can scale down. It defaults to 1 pod. minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured. Scaling is active as long as at least one metric value is available.
-- `status` (String) 'status' describes the desired status regarding deploying an horizontal pod autoscaler.<br> - 'Disabled' does not deploy an horizontal pod autoscaler.<br> - 'Enabled' deploys an horizontal pod autoscaler.<br>
+- `metrics` (Attributes List) Metrics used by the pod autoscaler. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/horizontal-pod-autoscaler-v2/ (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics))
+- `min_replicas` (Number) 'minReplicas' is the lower limit for the number of replicas to which the autoscalercan scale down. It defaults to 1 pod. minReplicas is allowed to be 0 if thealpha feature gate HPAScaleToZero is enabled and at least one Object or Externalmetric is configured. Scaling is active as long as at least one metric value isavailable.
+- `status` (String) 'status' describes the desired status regarding deploying an horizontal pod autoscaler.<br>- 'Disabled' does not deploy an horizontal pod autoscaler.<br>- 'Enabled' deploys an horizontal pod autoscaler.<br>
 
 <a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics"></a>
 ### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics`
 
 Required:
 
-- `type` (String) type is the type of metric source.  It should be one of 'ContainerResource', 'External', 'Object', 'Pods' or 'Resource', each mapping to a matching field in the object. Note: 'ContainerResource' type is available on when the feature-gate HPAContainerMetrics is enabled
+- `type` (String)
 
 Optional:
 
-- `container_resource` (Attributes) containerResource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing a single container in each pod of the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source. This is an alpha feature and can be enabled by the HPAContainerMetrics feature flag. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--container_resource))
-- `external` (Attributes) external refers to a global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster). (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--external))
-- `object` (Attributes) object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object). (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object))
-- `pods` (Attributes) pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).  The values will be averaged together before being compared to the target value. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods))
-- `resource` (Attributes) resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--resource))
+- `container_resource` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--container_resource))
+- `external` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--external))
+- `object` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object))
+- `pods` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods))
+- `resource` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--resource))
 
 <a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--container_resource"></a>
 ### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.container_resource`
 
 Required:
 
-- `container` (String) container is the name of the container in the pods of the scaling target
-- `name` (String) name is the name of the resource in question.
-- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--container_resource--target))
+- `container` (String)
+- `name` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--container_resource--target))
 
 <a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--container_resource--target"></a>
 ### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.container_resource.target`
 
 Required:
 
-- `type` (String) type represents whether the metric type is Utilization, Value, or AverageValue
+- `type` (String)
 
 Optional:
 
-- `average_utilization` (Number) averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type
-- `average_value` (String) averageValue is the target value of the average of the metric across all relevant pods (as a quantity)
-- `value` (String) value is the target value of the metric (as a quantity).
+- `average_utilization` (Number)
+- `average_value` (String)
+- `value` (String)
 
 
 
@@ -1018,39 +2256,39 @@ Optional:
 
 Required:
 
-- `metric` (Attributes) metric identifies the target metric by name and selector (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--metric))
-- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--target))
+- `metric` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--metric))
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--target))
 
 <a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--metric"></a>
 ### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.external.metric`
 
 Required:
 
-- `name` (String) name is the name of the given metric
+- `name` (String)
 
 Optional:
 
-- `selector` (Attributes) selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--target--selector))
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--target--selector))
 
 <a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--target--selector"></a>
 ### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.external.target.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--target--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--target--selector--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--target--selector--match_expressions"></a>
 ### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.external.target.selector.match_expressions`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -1060,13 +2298,13 @@ Optional:
 
 Required:
 
-- `type` (String) type represents whether the metric type is Utilization, Value, or AverageValue
+- `type` (String)
 
 Optional:
 
-- `average_utilization` (Number) averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type
-- `average_value` (String) averageValue is the target value of the average of the metric across all relevant pods (as a quantity)
-- `value` (String) value is the target value of the metric (as a quantity).
+- `average_utilization` (Number)
+- `average_value` (String)
+- `value` (String)
 
 
 
@@ -1075,21 +2313,21 @@ Optional:
 
 Required:
 
-- `described_object` (Attributes) describedObject specifies the descriptions of a object,such as kind,name apiVersion (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--described_object))
-- `metric` (Attributes) metric identifies the target metric by name and selector (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--metric))
-- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--target))
+- `described_object` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--described_object))
+- `metric` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--metric))
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--target))
 
 <a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--described_object"></a>
 ### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.object.described_object`
 
 Required:
 
-- `kind` (String) kind is the kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) name is the name of the referent; More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `kind` (String)
+- `name` (String)
 
 Optional:
 
-- `api_version` (String) apiVersion is the API version of the referent
+- `api_version` (String)
 
 
 <a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--metric"></a>
@@ -1097,31 +2335,31 @@ Optional:
 
 Required:
 
-- `name` (String) name is the name of the given metric
+- `name` (String)
 
 Optional:
 
-- `selector` (Attributes) selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--target--selector))
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--target--selector))
 
 <a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--target--selector"></a>
 ### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.object.target.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--target--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--target--selector--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--target--selector--match_expressions"></a>
 ### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.object.target.selector.match_expressions`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -1131,13 +2369,13 @@ Optional:
 
 Required:
 
-- `type` (String) type represents whether the metric type is Utilization, Value, or AverageValue
+- `type` (String)
 
 Optional:
 
-- `average_utilization` (Number) averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type
-- `average_value` (String) averageValue is the target value of the average of the metric across all relevant pods (as a quantity)
-- `value` (String) value is the target value of the metric (as a quantity).
+- `average_utilization` (Number)
+- `average_value` (String)
+- `value` (String)
 
 
 
@@ -1146,39 +2384,39 @@ Optional:
 
 Required:
 
-- `metric` (Attributes) metric identifies the target metric by name and selector (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--metric))
-- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--target))
+- `metric` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--metric))
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--target))
 
 <a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--metric"></a>
 ### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.pods.metric`
 
 Required:
 
-- `name` (String) name is the name of the given metric
+- `name` (String)
 
 Optional:
 
-- `selector` (Attributes) selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--target--selector))
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--target--selector))
 
 <a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--target--selector"></a>
 ### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.pods.target.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--target--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--target--selector--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--target--selector--match_expressions"></a>
 ### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.pods.target.selector.match_expressions`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -1188,13 +2426,13 @@ Optional:
 
 Required:
 
-- `type` (String) type represents whether the metric type is Utilization, Value, or AverageValue
+- `type` (String)
 
 Optional:
 
-- `average_utilization` (Number) averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type
-- `average_value` (String) averageValue is the target value of the average of the metric across all relevant pods (as a quantity)
-- `value` (String) value is the target value of the metric (as a quantity).
+- `average_utilization` (Number)
+- `average_value` (String)
+- `value` (String)
 
 
 
@@ -1203,21 +2441,21 @@ Optional:
 
 Required:
 
-- `name` (String) name is the name of the resource in question.
-- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--resource--target))
+- `name` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--resource--target))
 
 <a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--resource--target"></a>
 ### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.resource.target`
 
 Required:
 
-- `type` (String) type represents whether the metric type is Utilization, Value, or AverageValue
+- `type` (String)
 
 Optional:
 
-- `average_utilization` (Number) averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type
-- `average_value` (String) averageValue is the target value of the average of the metric across all relevant pods (as a quantity)
-- `value` (String) value is the target value of the metric (as a quantity).
+- `average_utilization` (Number)
+- `average_value` (String)
+- `value` (String)
 
 
 
@@ -1228,8 +2466,8 @@ Optional:
 
 Optional:
 
-- `disable_alerts` (List of String) 'disableAlerts' is a list of alerts that should be disabled. Possible values are:<br> 'NetObservNoFlows', which is triggered when no flows are being observed for a certain period.<br> 'NetObservLokiError', which is triggered when flows are being dropped due to Loki errors.<br>
-- `include_list` (List of String) 'includeList' is a list of metric names to specify which ones to generate. The names correspond to the names in Prometheus without the prefix. For example, 'namespace_egress_packets_total' shows up as 'netobserv_namespace_egress_packets_total' in Prometheus. Note that the more metrics you add, the bigger is the impact on Prometheus workload resources. Metrics enabled by default are: 'namespace_flows_total', 'node_ingress_bytes_total', 'workload_ingress_bytes_total', 'namespace_drop_packets_total' (when 'PacketDrop' feature is enabled), 'namespace_rtt_seconds' (when 'FlowRTT' feature is enabled), 'namespace_dns_latency_seconds' (when 'DNSTracking' feature is enabled). More information, with full list of available metrics: https://github.com/netobserv/network-observability-operator/blob/main/docs/Metrics.md
+- `disable_alerts` (List of String) 'disableAlerts' is a list of alerts that should be disabled.Possible values are:<br>'NetObservNoFlows', which is triggered when no flows are being observed for a certain period.<br>'NetObservLokiError', which is triggered when flows are being dropped due to Loki errors.<br>
+- `include_list` (List of String) 'includeList' is a list of metric names to specify which ones to generate.The names correspond to the names in Prometheus without the prefix. For example,'namespace_egress_packets_total' shows up as 'netobserv_namespace_egress_packets_total' in Prometheus.Note that the more metrics you add, the bigger is the impact on Prometheus workload resources.Metrics enabled by default are:'namespace_flows_total', 'node_ingress_bytes_total', 'workload_ingress_bytes_total', 'namespace_drop_packets_total' (when 'PacketDrop' feature is enabled),'namespace_rtt_seconds' (when 'FlowRTT' feature is enabled), 'namespace_dns_latency_seconds' (when 'DNSTracking' feature is enabled).More information, with full list of available metrics: https://github.com/netobserv/network-observability-operator/blob/main/docs/Metrics.md
 - `server` (Attributes) Metrics server endpoint configuration for Prometheus scraper (see [below for nested schema](#nestedatt--spec--processor--metrics--server))
 
 <a id="nestedatt--spec--processor--metrics--server"></a>
@@ -1245,10 +2483,10 @@ Optional:
 
 Optional:
 
-- `insecure_skip_verify` (Boolean) 'insecureSkipVerify' allows skipping client-side verification of the provided certificate. If set to 'true', the 'providedCaFile' field is ignored.
+- `insecure_skip_verify` (Boolean) 'insecureSkipVerify' allows skipping client-side verification of the provided certificate.If set to 'true', the 'providedCaFile' field is ignored.
 - `provided` (Attributes) TLS configuration when 'type' is set to 'Provided'. (see [below for nested schema](#nestedatt--spec--processor--metrics--server--tls--provided))
 - `provided_ca_file` (Attributes) Reference to the CA file when 'type' is set to 'Provided'. (see [below for nested schema](#nestedatt--spec--processor--metrics--server--tls--provided_ca_file))
-- `type` (String) Select the type of TLS configuration:<br> - 'Disabled' (default) to not configure TLS for the endpoint. - 'Provided' to manually provide cert file and a key file. - 'Auto' to use OpenShift auto generated certificate using annotations.
+- `type` (String) Select the type of TLS configuration:<br>- 'Disabled' (default) to not configure TLS for the endpoint.- 'Provided' to manually provide cert file and a key file. [Unsupported (*)].- 'Auto' to use OpenShift auto generated certificate using annotations.
 
 <a id="nestedatt--spec--processor--metrics--server--tls--provided"></a>
 ### Nested Schema for `spec.processor.metrics.server.tls.provided`
@@ -1258,7 +2496,7 @@ Optional:
 - `cert_file` (String) 'certFile' defines the path to the certificate file name within the config map or secret
 - `cert_key` (String) 'certKey' defines the path to the certificate private key file name within the config map or secret. Omit when the key is not necessary.
 - `name` (String) Name of the config map or secret containing certificates
-- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
+- `namespace` (String) Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
 - `type` (String) Type for the certificate reference: 'configmap' or 'secret'
 
 
@@ -1269,7 +2507,7 @@ Optional:
 
 - `file` (String) File name within the config map or secret
 - `name` (String) Name of the config map or secret containing the file
-- `namespace` (String) Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
+- `namespace` (String) Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.
 - `type` (String) Type for the file reference: 'configmap' or 'secret'
 
 
@@ -1281,13 +2519,31 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--processor--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--processor--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--processor--resources--claims"></a>
 ### Nested Schema for `spec.processor.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+
+
+
+<a id="nestedatt--spec--processor--subnet_labels"></a>
+### Nested Schema for `spec.processor.subnet_labels`
+
+Optional:
+
+- `custom_labels` (Attributes List) 'customLabels' allows to customize subnets and IPs labelling, such as to identify cluster-external workloads or web services.If you enable 'openShiftAutoDetect', 'customLabels' can override the detected subnets in case they overlap. (see [below for nested schema](#nestedatt--spec--processor--subnet_labels--custom_labels))
+- `open_shift_auto_detect` (Boolean) 'openShiftAutoDetect' allows, when set to 'true', to detect automatically the machines, pods and services subnets based on theOpenShift install configuration and the Cluster Network Operator configuration. Indirectly, this is a way to accurately detectexternal traffic: flows that are not labeled for those subnets are external to the cluster. Enabled by default on OpenShift.
+
+<a id="nestedatt--spec--processor--subnet_labels--custom_labels"></a>
+### Nested Schema for `spec.processor.subnet_labels.custom_labels`
+
+Optional:
+
+- `cidrs` (List of String) List of CIDRs, such as '['1.2.3.4/32']'.
+- `name` (String) Label name, used to flag matching flows.

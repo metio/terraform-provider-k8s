@@ -56,7 +56,6 @@ Optional:
 Required:
 
 - `backup_methods` (Attributes List) Defines the backup methods. (see [below for nested schema](#nestedatt--spec--backup_methods))
-- `target` (Attributes) Specifies the target information to back up, such as the target pod, the cluster connection credential. (see [below for nested schema](#nestedatt--spec--target))
 
 Optional:
 
@@ -64,6 +63,8 @@ Optional:
 - `backup_repo_name` (String) Specifies the name of BackupRepo where the backup data will be stored. If not set, data will be stored in the default backup repository.
 - `encryption_config` (Attributes) Specifies the parameters for encrypting backup data. Encryption will be disabled if the field is not set. (see [below for nested schema](#nestedatt--spec--encryption_config))
 - `path_prefix` (String) Specifies the directory inside the backup repository to store the backup. This path is relative to the path of the backup repository.
+- `target` (Attributes) Specifies the target information to back up, such as the target pod, the cluster connection credential. (see [below for nested schema](#nestedatt--spec--target))
+- `targets` (Attributes List) Specifies multiple target information for backup operations. This includes details such as the target pod and cluster connection credentials. All specified targets will be backed up collectively. optional (see [below for nested schema](#nestedatt--spec--targets))
 - `use_kopia` (Boolean) Specifies whether backup data should be stored in a Kopia repository.  Data within the Kopia repository is both compressed and encrypted. Furthermore, data deduplication is implemented across various backups of the same cluster. This approach significantly reduces the actual storage usage, particularly for clusters with a low update frequency.  NOTE: This feature should NOT be enabled when using KubeBlocks Community Edition, otherwise the backup will not be processed.
 
 <a id="nestedatt--spec--backup_methods"></a>
@@ -81,6 +82,7 @@ Optional:
 - `snapshot_volumes` (Boolean) Specifies whether to take snapshots of persistent volumes. If true, the ActionSetName is not required, the controller will use the CSI volume snapshotter to create the snapshot.
 - `target` (Attributes) Specifies the target information to back up, it will override the target in backup policy. (see [below for nested schema](#nestedatt--spec--backup_methods--target))
 - `target_volumes` (Attributes) Specifies which volumes from the target should be mounted in the backup workload. (see [below for nested schema](#nestedatt--spec--backup_methods--target_volumes))
+- `targets` (Attributes List) Specifies multiple target information for backup operations. This includes details such as the target pod and cluster connection credentials. All specified targets will be backed up collectively. (see [below for nested schema](#nestedatt--spec--backup_methods--targets))
 
 <a id="nestedatt--spec--backup_methods--env"></a>
 ### Nested Schema for `spec.backup_methods.env`
@@ -189,6 +191,7 @@ Required:
 Optional:
 
 - `connection_credential` (Attributes) Specifies the connection credential to connect to the target database cluster. (see [below for nested schema](#nestedatt--spec--backup_methods--target--connection_credential))
+- `name` (String) Specifies a mandatory and unique identifier for each target when using the 'targets' field. The backup data for the current target is stored in a uniquely named subdirectory.
 - `pod_selector` (Attributes) Used to find the target pod. The volumes of the target pod will be backed up. (see [below for nested schema](#nestedatt--spec--backup_methods--target--pod_selector))
 - `resources` (Attributes) Specifies the kubernetes resources to back up. (see [below for nested schema](#nestedatt--spec--backup_methods--target--resources))
 - `service_account_name` (String) Specifies the service account to run the backup workload.
@@ -215,7 +218,7 @@ Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--backup_methods--target--service_account_name--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
-- `strategy` (String) Specifies the strategy to select the target pod when multiple pods are selected. Valid values are: Any: select any one pod that match the labelsSelector.  - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector.
+- `strategy` (String) Specifies the strategy to select the target pod when multiple pods are selected. Valid values are:  - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.
 
 <a id="nestedatt--spec--backup_methods--target--service_account_name--match_expressions"></a>
 ### Nested Schema for `spec.backup_methods.target.service_account_name.match_expressions`
@@ -289,6 +292,110 @@ Optional:
 
 
 
+<a id="nestedatt--spec--backup_methods--targets"></a>
+### Nested Schema for `spec.backup_methods.targets`
+
+Optional:
+
+- `connection_credential` (Attributes) Specifies the connection credential to connect to the target database cluster. (see [below for nested schema](#nestedatt--spec--backup_methods--targets--connection_credential))
+- `name` (String) Specifies a mandatory and unique identifier for each target when using the 'targets' field. The backup data for the current target is stored in a uniquely named subdirectory.
+- `pod_selector` (Attributes) Used to find the target pod. The volumes of the target pod will be backed up. (see [below for nested schema](#nestedatt--spec--backup_methods--targets--pod_selector))
+- `resources` (Attributes) Specifies the kubernetes resources to back up. (see [below for nested schema](#nestedatt--spec--backup_methods--targets--resources))
+- `service_account_name` (String) Specifies the service account to run the backup workload.
+
+<a id="nestedatt--spec--backup_methods--targets--connection_credential"></a>
+### Nested Schema for `spec.backup_methods.targets.connection_credential`
+
+Required:
+
+- `secret_name` (String) Refers to the Secret object that contains the connection credential.
+
+Optional:
+
+- `host_key` (String) Specifies the map key of the host in the connection credential secret.
+- `password_key` (String) Specifies the map key of the password in the connection credential secret. This password will be saved in the backup annotation for full backup. You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.
+- `port_key` (String) Specifies the map key of the port in the connection credential secret.
+- `username_key` (String) Specifies the map key of the user in the connection credential secret.
+
+
+<a id="nestedatt--spec--backup_methods--targets--pod_selector"></a>
+### Nested Schema for `spec.backup_methods.targets.pod_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--backup_methods--targets--service_account_name--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `strategy` (String) Specifies the strategy to select the target pod when multiple pods are selected. Valid values are:  - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.
+
+<a id="nestedatt--spec--backup_methods--targets--service_account_name--match_expressions"></a>
+### Nested Schema for `spec.backup_methods.targets.service_account_name.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+<a id="nestedatt--spec--backup_methods--targets--resources"></a>
+### Nested Schema for `spec.backup_methods.targets.resources`
+
+Optional:
+
+- `excluded` (List of String) excluded is a slice of namespaced-scoped resource type names to exclude in the kubernetes resources. The default value is empty.
+- `included` (List of String) included is a slice of namespaced-scoped resource type names to include in the kubernetes resources. The default value is empty.
+- `selector` (Attributes) A metav1.LabelSelector to filter the target kubernetes resources that need to be backed up. If not set, will do not back up any kubernetes resources. (see [below for nested schema](#nestedatt--spec--backup_methods--targets--service_account_name--selector))
+
+<a id="nestedatt--spec--backup_methods--targets--service_account_name--selector"></a>
+### Nested Schema for `spec.backup_methods.targets.service_account_name.selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--backup_methods--targets--service_account_name--selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--backup_methods--targets--service_account_name--selector--match_expressions"></a>
+### Nested Schema for `spec.backup_methods.targets.service_account_name.selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+
+
+
+<a id="nestedatt--spec--encryption_config"></a>
+### Nested Schema for `spec.encryption_config`
+
+Required:
+
+- `algorithm` (String) Specifies the encryption algorithm. Currently supported algorithms are:  - AES-128-CFB - AES-192-CFB - AES-256-CFB
+- `pass_phrase_secret_key_ref` (Attributes) Selects the key of a secret in the current namespace, the value of the secret is used as the encryption key. (see [below for nested schema](#nestedatt--spec--encryption_config--pass_phrase_secret_key_ref))
+
+<a id="nestedatt--spec--encryption_config--pass_phrase_secret_key_ref"></a>
+### Nested Schema for `spec.encryption_config.pass_phrase_secret_key_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
 
 <a id="nestedatt--spec--target"></a>
 ### Nested Schema for `spec.target`
@@ -296,6 +403,7 @@ Optional:
 Optional:
 
 - `connection_credential` (Attributes) Specifies the connection credential to connect to the target database cluster. (see [below for nested schema](#nestedatt--spec--target--connection_credential))
+- `name` (String) Specifies a mandatory and unique identifier for each target when using the 'targets' field. The backup data for the current target is stored in a uniquely named subdirectory.
 - `pod_selector` (Attributes) Used to find the target pod. The volumes of the target pod will be backed up. (see [below for nested schema](#nestedatt--spec--target--pod_selector))
 - `resources` (Attributes) Specifies the kubernetes resources to back up. (see [below for nested schema](#nestedatt--spec--target--resources))
 - `service_account_name` (String) Specifies the service account to run the backup workload.
@@ -322,7 +430,7 @@ Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--target--pod_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
-- `strategy` (String) Specifies the strategy to select the target pod when multiple pods are selected. Valid values are: Any: select any one pod that match the labelsSelector.  - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector.
+- `strategy` (String) Specifies the strategy to select the target pod when multiple pods are selected. Valid values are:  - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.
 
 <a id="nestedatt--spec--target--pod_selector--match_expressions"></a>
 ### Nested Schema for `spec.target.pod_selector.match_expressions`
@@ -371,22 +479,80 @@ Optional:
 
 
 
-<a id="nestedatt--spec--encryption_config"></a>
-### Nested Schema for `spec.encryption_config`
-
-Required:
-
-- `algorithm` (String) Specifies the encryption algorithm. Currently supported algorithms are:  - AES-128-CFB - AES-192-CFB - AES-256-CFB
-- `pass_phrase_secret_key_ref` (Attributes) Selects the key of a secret in the current namespace, the value of the secret is used as the encryption key. (see [below for nested schema](#nestedatt--spec--encryption_config--pass_phrase_secret_key_ref))
-
-<a id="nestedatt--spec--encryption_config--pass_phrase_secret_key_ref"></a>
-### Nested Schema for `spec.encryption_config.pass_phrase_secret_key_ref`
-
-Required:
-
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+<a id="nestedatt--spec--targets"></a>
+### Nested Schema for `spec.targets`
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
+- `connection_credential` (Attributes) Specifies the connection credential to connect to the target database cluster. (see [below for nested schema](#nestedatt--spec--targets--connection_credential))
+- `name` (String) Specifies a mandatory and unique identifier for each target when using the 'targets' field. The backup data for the current target is stored in a uniquely named subdirectory.
+- `pod_selector` (Attributes) Used to find the target pod. The volumes of the target pod will be backed up. (see [below for nested schema](#nestedatt--spec--targets--pod_selector))
+- `resources` (Attributes) Specifies the kubernetes resources to back up. (see [below for nested schema](#nestedatt--spec--targets--resources))
+- `service_account_name` (String) Specifies the service account to run the backup workload.
+
+<a id="nestedatt--spec--targets--connection_credential"></a>
+### Nested Schema for `spec.targets.connection_credential`
+
+Required:
+
+- `secret_name` (String) Refers to the Secret object that contains the connection credential.
+
+Optional:
+
+- `host_key` (String) Specifies the map key of the host in the connection credential secret.
+- `password_key` (String) Specifies the map key of the password in the connection credential secret. This password will be saved in the backup annotation for full backup. You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.
+- `port_key` (String) Specifies the map key of the port in the connection credential secret.
+- `username_key` (String) Specifies the map key of the user in the connection credential secret.
+
+
+<a id="nestedatt--spec--targets--pod_selector"></a>
+### Nested Schema for `spec.targets.pod_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--targets--pod_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `strategy` (String) Specifies the strategy to select the target pod when multiple pods are selected. Valid values are:  - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.
+
+<a id="nestedatt--spec--targets--pod_selector--match_expressions"></a>
+### Nested Schema for `spec.targets.pod_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+<a id="nestedatt--spec--targets--resources"></a>
+### Nested Schema for `spec.targets.resources`
+
+Optional:
+
+- `excluded` (List of String) excluded is a slice of namespaced-scoped resource type names to exclude in the kubernetes resources. The default value is empty.
+- `included` (List of String) included is a slice of namespaced-scoped resource type names to include in the kubernetes resources. The default value is empty.
+- `selector` (Attributes) A metav1.LabelSelector to filter the target kubernetes resources that need to be backed up. If not set, will do not back up any kubernetes resources. (see [below for nested schema](#nestedatt--spec--targets--resources--selector))
+
+<a id="nestedatt--spec--targets--resources--selector"></a>
+### Nested Schema for `spec.targets.resources.selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--targets--resources--selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--targets--resources--selector--match_expressions"></a>
+### Nested Schema for `spec.targets.resources.selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.

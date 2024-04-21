@@ -55,16 +55,16 @@ Optional:
 
 Required:
 
-- `backup_storage_location` (String) BackupStorageLocation is the name of the backup storage location where the backup repository is stored.
+- `backup_storage_location` (String) BackupStorageLocation is the name of the backup storage locationwhere the backup repository is stored.
 - `node` (String) Node is the name of the node that the Pod is running on.
 - `pod` (Attributes) Pod is a reference to the pod containing the volume to be backed up. (see [below for nested schema](#nestedatt--spec--pod))
 - `repo_identifier` (String) RepoIdentifier is the backup repository identifier.
-- `volume` (String) Volume is the name of the volume within the Pod to be backed up.
+- `volume` (String) Volume is the name of the volume within the Pod to be backedup.
 
 Optional:
 
-- `tags` (Map of String) Tags are a map of key-value pairs that should be applied to the volume backup as tags.
-- `uploader_settings` (Map of String) UploaderSettings are a map of key-value pairs that should be applied to the uploader configuration.
+- `tags` (Map of String) Tags are a map of key-value pairs that should be applied to thevolume backup as tags.
+- `uploader_settings` (Map of String) UploaderSettings are a map of key-value pairs that should be applied to theuploader configuration.
 - `uploader_type` (String) UploaderType is the type of the uploader to handle the data transfer.
 
 <a id="nestedatt--spec--pod"></a>
@@ -73,9 +73,9 @@ Optional:
 Optional:
 
 - `api_version` (String) API version of the referent.
-- `field_path` (String) If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.
-- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+- `field_path` (String) If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+- `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids

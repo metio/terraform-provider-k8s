@@ -63,7 +63,7 @@ Required:
 
 Optional:
 
-- `custom_endpoints` (List of String) If this zone cannot be accessed from other peer Ceph clusters via the ClusterIP Service endpoint created by Rook, you must set this to the externally reachable endpoint(s). You may include the port in the definition. For example: 'https://my-object-store.my-domain.net:443'. In many cases, you should set this to the endpoint of the ingress resource that makes the CephObjectStore associated with this CephObjectStoreZone reachable to peer clusters. The list can have one or more endpoints pointing to different RGW servers in the zone.  If a CephObjectStore endpoint is omitted from this list, that object store's gateways will not receive multisite replication data (see CephObjectStore.spec.gateway.disableMultisiteSyncTraffic).
+- `custom_endpoints` (List of String) If this zone cannot be accessed from other peer Ceph clusters via the ClusterIP Serviceendpoint created by Rook, you must set this to the externally reachable endpoint(s). You mayinclude the port in the definition. For example: 'https://my-object-store.my-domain.net:443'.In many cases, you should set this to the endpoint of the ingress resource that makes theCephObjectStore associated with this CephObjectStoreZone reachable to peer clusters.The list can have one or more endpoints pointing to different RGW servers in the zone.If a CephObjectStore endpoint is omitted from this list, that object store's gateways willnot receive multisite replication data(see CephObjectStore.spec.gateway.disableMultisiteSyncTraffic).
 - `preserve_pools_on_delete` (Boolean) Preserve pools on object zone deletion
 - `shared_pools` (Attributes) The pool information when configuring RADOS namespaces in existing pools. (see [below for nested schema](#nestedatt--spec--shared_pools))
 
@@ -73,7 +73,7 @@ Optional:
 Optional:
 
 - `application` (String) The application name to set on the pool. Only expected to be set for rgw pools.
-- `compression_mode` (String) DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force' The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force) Do NOT set a default value for kubebuilder as this will override the Parameters
+- `compression_mode` (String) DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force'The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force)Do NOT set a default value for kubebuilder as this will override the Parameters
 - `crush_root` (String) The root of the crush hierarchy utilized by the pool
 - `device_class` (String) The device class the OSD should set to for use in the pool
 - `enable_rbd_stats` (Boolean) EnableRBDStats is used to enable gathering of statistics for all RBD images in the pool
@@ -90,8 +90,8 @@ Optional:
 
 Required:
 
-- `coding_chunks` (Number) Number of coding chunks per object in an erasure coded storage pool (required for erasure-coded pool type). This is the number of OSDs that can be lost simultaneously before data cannot be recovered.
-- `data_chunks` (Number) Number of data chunks per object in an erasure coded storage pool (required for erasure-coded pool type). The number of chunks required to recover an object when any single OSD is lost is the same as dataChunks so be aware that the larger the number of data chunks, the higher the cost of recovery.
+- `coding_chunks` (Number) Number of coding chunks per object in an erasure coded storage pool (required for erasure-coded pool type).This is the number of OSDs that can be lost simultaneously before data cannot be recovered.
+- `data_chunks` (Number) Number of data chunks per object in an erasure coded storage pool (required for erasure-coded pool type).The number of chunks required to recover an object when any single OSD is lost is the sameas dataChunks so be aware that the larger the number of data chunks, the higher the cost of recovery.
 
 Optional:
 
@@ -132,7 +132,7 @@ Optional:
 
 Optional:
 
-- `max_bytes` (Number) MaxBytes represents the quota in bytes Deprecated in favor of MaxSize
+- `max_bytes` (Number) MaxBytes represents the quota in bytesDeprecated in favor of MaxSize
 - `max_objects` (Number) MaxObjects represents the quota in objects
 - `max_size` (String) MaxSize represents the quota in bytes as a string
 
@@ -187,7 +187,7 @@ Optional:
 Optional:
 
 - `application` (String) The application name to set on the pool. Only expected to be set for rgw pools.
-- `compression_mode` (String) DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force' The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force) Do NOT set a default value for kubebuilder as this will override the Parameters
+- `compression_mode` (String) DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force'The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force)Do NOT set a default value for kubebuilder as this will override the Parameters
 - `crush_root` (String) The root of the crush hierarchy utilized by the pool
 - `device_class` (String) The device class the OSD should set to for use in the pool
 - `enable_rbd_stats` (Boolean) EnableRBDStats is used to enable gathering of statistics for all RBD images in the pool
@@ -204,8 +204,8 @@ Optional:
 
 Required:
 
-- `coding_chunks` (Number) Number of coding chunks per object in an erasure coded storage pool (required for erasure-coded pool type). This is the number of OSDs that can be lost simultaneously before data cannot be recovered.
-- `data_chunks` (Number) Number of data chunks per object in an erasure coded storage pool (required for erasure-coded pool type). The number of chunks required to recover an object when any single OSD is lost is the same as dataChunks so be aware that the larger the number of data chunks, the higher the cost of recovery.
+- `coding_chunks` (Number) Number of coding chunks per object in an erasure coded storage pool (required for erasure-coded pool type).This is the number of OSDs that can be lost simultaneously before data cannot be recovered.
+- `data_chunks` (Number) Number of data chunks per object in an erasure coded storage pool (required for erasure-coded pool type).The number of chunks required to recover an object when any single OSD is lost is the sameas dataChunks so be aware that the larger the number of data chunks, the higher the cost of recovery.
 
 Optional:
 
@@ -246,7 +246,7 @@ Optional:
 
 Optional:
 
-- `max_bytes` (Number) MaxBytes represents the quota in bytes Deprecated in favor of MaxSize
+- `max_bytes` (Number) MaxBytes represents the quota in bytesDeprecated in favor of MaxSize
 - `max_objects` (Number) MaxObjects represents the quota in objects
 - `max_size` (String) MaxSize represents the quota in bytes as a string
 
