@@ -26,7 +26,7 @@ func TestKubernetesSchema(t *testing.T) {
 	templateSpec := templateProps["spec"].Value
 	templateSpecProps := templateSpec.Properties
 
-	assert.Equal(t, len(properties), 11, "properties")
-	assert.Equal(t, len(templateProps), 5, "templateProps")
-	assert.Equal(t, len(templateSpecProps), 8, "templateSpecProps")
+	assert.Equal(t, 11, len(properties), "properties")
+	assert.Equal(t, 5, len(templateProps), "templateProps")
+	assert.Equal(t, 9, len(templateSpecProps), "templateSpecProps")
 }
